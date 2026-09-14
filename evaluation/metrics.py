@@ -21,43 +21,54 @@ def normalize_id(aid: str) -> str:
     return aid
 
 
-def calculate_retrieval_metrics(retrieved_ids: List[str], ground_truth_id: str, k_list: List[int] = [1, 3, 5]) -> Dict[str, float]:
+def calculate_retrieval_metrics(retrieved_ids: List[str], ground_truth_id: Any, k_list: List[int] = [1, 3, 5]) -> Dict[str, float]:
     """
     Tính Recall@k và MRR cho tác vụ truy xuất điều luật
     """
-    norm_gt = normalize_id(ground_truth_id)
+    if isinstance(ground_truth_id, (list, tuple, set)):
+        norm_gts = [normalize_id(g) for g in ground_truth_id if g]
+    else:
+        norm_gts = [normalize_id(ground_truth_id)] if ground_truth_id else []
+
     norm_retrieved = [normalize_id(r) for r in retrieved_ids]
 
     metrics = {}
     for k in k_list:
-        hits = 1.0 if norm_gt in norm_retrieved[:k] else 0.0
+        hits = 1.0 if any(g in norm_retrieved[:k] for g in norm_gts) else 0.0
         metrics[f"Recall@{k}"] = hits
 
     # MRR (Mean Reciprocal Rank)
-    if norm_gt in norm_retrieved:
-        rank = norm_retrieved.index(norm_gt) + 1
-        metrics["MRR"] = 1.0 / rank
+    ranks = [norm_retrieved.index(g) + 1 for g in norm_gts if g in norm_retrieved]
+    if ranks:
+        metrics["MRR"] = round(1.0 / min(ranks), 4)
     else:
         metrics["MRR"] = 0.0
 
     return metrics
 
 
-def calculate_citation_metrics(predicted_citations: List[str], ground_truth_id: str) -> Dict[str, float]:
+def calculate_citation_metrics(predicted_citations: List[str], ground_truth_id: Any) -> Dict[str, float]:
     """
     Tính Citation Precision và Citation Recall
     """
-    norm_gt = normalize_id(ground_truth_id)
-    norm_preds = {normalize_id(c) for c in predicted_citations}
+    if isinstance(ground_truth_id, (list, tuple, set)):
+        norm_gts = {normalize_id(g) for g in ground_truth_id if g}
+    else:
+        norm_gts = {normalize_id(ground_truth_id)} if ground_truth_id else set()
+
+    norm_preds = {normalize_id(c) for c in predicted_citations if c}
 
     if not norm_preds:
         return {"citation_precision": 0.0, "citation_recall": 0.0}
+    if not norm_gts:
+        return {"citation_precision": 0.0, "citation_recall": 1.0}
 
-    precision = 1.0 if norm_gt in norm_preds else 0.0
-    recall = 1.0 if norm_gt in norm_preds else 0.0
+    hits = len(norm_preds & norm_gts)
+    precision = hits / len(norm_preds) if norm_preds else 0.0
+    recall = hits / len(norm_gts) if norm_gts else 0.0
     return {
-        "citation_precision": precision,
-        "citation_recall": recall
+        "citation_precision": round(float(precision), 4),
+        "citation_recall": round(float(recall), 4)
     }
 
 
