@@ -180,16 +180,16 @@ class L2SemanticEntailmentVerifier:
                     if days > 180:
                         return f"CONTRADICTION: Điều 25 quy định thời gian thử việc tối đa không quá 180 ngày (kể cả người quản lý doanh nghiệp), không thể là {raw_str}."
 
+                    # Trình độ trung cấp, công nhân kỹ thuật, sơ cấp: tối đa 30 ngày (enforce even if 'kỹ thuật' in text)
+                    has_vocational = any(w in claim_lower for w in ["công nhân kỹ thuật", "trung cấp", "sơ cấp", "công nhân", "nghiệp vụ"])
+                    if has_vocational and not is_manager_job and days > 30:
+                        return f"CONTRADICTION: Khoản 3 Điều 25 quy định thử việc trình độ trung cấp, công nhân kỹ thuật không quá 30 ngày, không thể là {raw_str}."
+
                     has_univ = any(w in claim_lower for w in ["đại học", "cao đẳng", "chuyên môn", "kỹ thuật", "văn phòng", "nhân viên", "cử nhân", "kỹ sư", "chuyên viên"])
 
                     # Trình độ chuyên môn kỹ thuật từ cao đẳng trở lên: tối đa 60 ngày
                     if has_univ and not is_manager_job and days > 60:
                         return f"CONTRADICTION: Khoản 2 Điều 25 quy định thử việc trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên không quá 60 ngày, không thể là {raw_str}."
-
-                    # Trình độ trung cấp, công nhân kỹ thuật: tối đa 30 ngày
-                    has_vocational = any(w in claim_lower for w in ["trung cấp", "công nhân", "nghiệp vụ"])
-                    if has_vocational and not has_univ and not is_manager_job and days > 30:
-                        return f"CONTRADICTION: Khoản 3 Điều 25 quy định thử việc trình độ trung cấp, công nhân kỹ thuật không quá 30 ngày, không thể là {raw_str}."
 
                     # Công việc khác: tối đa 06 ngày làm việc
                     has_simple = any(w in claim_lower for w in ["công việc khác", "lao động phổ thông", "giản đơn"])
@@ -210,10 +210,25 @@ class L2SemanticEntailmentVerifier:
         # 3. Mâu thuẫn Điều 24 (Thử việc: Không áp dụng thử việc đối với HĐLĐ dưới 01 tháng)
         if norm_id == "dieu_24":
             has_under_1m = any(w in claim_lower for w in ["dưới 01 tháng", "dưới 1 tháng", "dưới 30 ngày", "dưới một tháng"])
-            if has_under_1m:
+
+            # Phát hiện hợp đồng có thời hạn cụ thể < 30 ngày (e.g. 15 ngày, 2 tuần, 3 tuần)
+            has_short_contract = False
+            short_dur_desc = ""
+            for days, unit_type, raw_str in durations:
+                if 0 < days < 30.0:
+                    pat1 = rf"\b(hợp\s+đồng|hđlđ|hđ|giao\s+kết)\b(?:(?!\bthử\s+việc\b).){{0,25}}\b{re.escape(raw_str)}"
+                    pat2 = rf"{re.escape(raw_str)}\s+(?:hợp\s+đồng|hđlđ|hđ)"
+                    if re.search(pat1, claim_lower) or re.search(pat2, claim_lower):
+                        has_short_contract = True
+                        short_dur_desc = raw_str
+                        break
+
+            if (has_under_1m or has_short_contract) and "thử việc" in claim_lower:
                 # Nếu câu khẳng định được phép / áp dụng thử việc mà không có từ ngữ phủ định
-                if not re.search(r"\b(không\s+áp\s+dụng|không\s+được|nghiêm\s+cấm|cấm)\b.{0,30}\bthử\s+việc\b", claim_lower):
-                    return "CONTRADICTION: Khoản 3 Điều 24 quy định không áp dụng thử việc đối với người lao động giao kết hợp đồng lao động có thời hạn dưới 01 tháng."
+                if not re.search(r"\b(không\s+áp\s+dụng|không\s+được|nghiêm\s+cấm|cấm|không\s+thể)\b.{0,30}\bthử\s+việc\b", claim_lower) and \
+                   not re.search(r"\bthử\s+việc\b.{0,30}\b(không\s+áp\s+dụng|không\s+được|bị\s+cấm)\b", claim_lower):
+                    desc_str = f" ({short_dur_desc})" if short_dur_desc else ""
+                    return f"CONTRADICTION: Khoản 3 Điều 24 quy định không áp dụng thử việc đối với người lao động giao kết hợp đồng lao động có thời hạn dưới 01 tháng{desc_str}."
 
         # 4. Mâu thuẫn Điều 26 (Tiền lương thử việc: ít nhất 85%)
         if norm_id == "dieu_26":

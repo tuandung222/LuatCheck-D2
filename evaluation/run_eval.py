@@ -1,7 +1,10 @@
 """
 Benchmark Evaluation Runner for LuatCheck D2 & D3
-Chạy đánh giá tự động đa seeds, so sánh Ablation (Verification ON vs OFF)
-Tính toán Unsupported Sentence Rate (USR) động thực sự qua L1EvidenceVerifier
+Chạy đánh giá tự động đa seeds [42, 123, 2026], so sánh 3-Way Ablation Study:
+1. baseline_off: Verification OFF (Standard RAG baseline)
+2. luatcheck_l1_on: Verification ON (L1 Deterministic Verifier)
+3. luatcheck_l1_l2_on: Verification ON + L2 Semantic Entailment Verifier
+Tích hợp ErrorDiagnosticAnalyzer phân loại lỗi theo 6 failure modes chuẩn hóa.
 """
 import argparse
 import json
@@ -9,8 +12,9 @@ import time
 import os
 import sys
 import re
+import random
 import numpy as np
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional, Tuple
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -20,35 +24,34 @@ from evaluation.metrics import (
     calculate_retrieval_metrics,
     calculate_citation_metrics,
     calculate_latency_percentiles,
+    calculate_unsupported_rate,
     normalize_id
 )
+from evaluation.error_analyzer import ErrorDiagnosticAnalyzer, generate_comparative_markdown_table
 
 
 def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dict[str, Any]:
     with open(tasks_file, "r", encoding="utf-8") as f:
         tasks = json.load(f)
 
-    print(f"\n==================================================")
-    print(f"BẮT ĐẦU CHẠY BENCHMARK: {mode.upper()}")
-    print(f"Số lượng tasks: {len(tasks)} | Seeds: {seeds}")
-    print(f"==================================================")
+    print(f"\n==================================================", flush=True)
+    print(f"BẮT ĐẦU CHẠY BENCHMARK: {mode.upper()}", flush=True)
+    print(f"Số lượng tasks: {len(tasks)} | Seeds: {seeds}", flush=True)
+    print(f"==================================================", flush=True)
 
     enable_verif = (mode != "off")
     agent = LuatCheckAgent(verification_mode=mode, enable_verification=enable_verif)
 
+    error_analyzer = ErrorDiagnosticAnalyzer(name=mode)
     all_seed_results = []
     latencies = []
-    error_counts = {
-        "retrieval_miss": 0,
-        "wrong_provision": 0,
-        "unsupported_claim": 0,
-        "over_refusal": 0,
-        "budget_exhausted": 0,
-        "parse_error": 0
-    }
+    total_token_counts = []
 
     for seed in seeds:
-        print(f"\n--- Đang chạy Seed: {seed} ---")
+        random.seed(seed)
+        np.random.seed(seed)
+        print(f"\n--- Đang chạy Seed: {seed} ---", flush=True)
+
         seed_recalls_1 = []
         seed_recalls_5 = []
         seed_mrrs = []
@@ -60,86 +63,101 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
         for idx, task in enumerate(tasks):
             t_start = time.time()
             query = task["question"]
-            gt_ids = task.get("ground_truth_article_ids", [task.get("ground_truth_article_id")])
-            primary_gt = gt_ids[0] if gt_ids else "NONE"
+            gt_ids = task.get("ground_truth_article_ids", [])
+            if not gt_ids and task.get("ground_truth_article_id"):
+                gt_ids = [task.get("ground_truth_article_id")]
             expected_behavior = task.get("expected_behavior", "answer")
 
             ledger = agent.run(query, session_id=f"eval_{mode}_s{seed}_t{idx}")
             t_elapsed = (time.time() - t_start) * 1000
             latencies.append(t_elapsed)
 
-            # Đánh giá Retrieval
-            if primary_gt != "NONE":
-                ret_metrics = calculate_retrieval_metrics(ledger.retrieved_article_ids, primary_gt)
+            # 1. Đánh giá Retrieval
+            if gt_ids:
+                ret_metrics = calculate_retrieval_metrics(ledger.retrieved_article_ids, gt_ids)
                 seed_recalls_1.append(ret_metrics["Recall@1"])
                 seed_recalls_5.append(ret_metrics["Recall@5"])
                 seed_mrrs.append(ret_metrics["MRR"])
-                if ret_metrics["Recall@5"] == 0.0:
-                    error_counts["retrieval_miss"] += 1
 
             is_answered = (ledger.terminal_status == "answered")
             seed_coverage.append(1.0 if is_answered else 0.0)
 
             final_out = ledger.final_output or {}
             citations = final_out.get("citations", [])
-            cit_ids = [c.get("article_id", "") for c in citations] if isinstance(citations, list) else []
+            cit_ids = []
+            if citations:
+                for c in citations:
+                    aid = c.get("article_id", "") if isinstance(c, dict) else getattr(c, "article_id", str(c))
+                    if aid:
+                        cit_ids.append(normalize_id(aid))
 
-            if primary_gt != "NONE":
-                cit_metrics = calculate_citation_metrics(cit_ids, primary_gt)
+            # 2. Đánh giá Citation
+            if gt_ids:
+                cit_metrics = calculate_citation_metrics(cit_ids, gt_ids)
                 seed_citation_precisions.append(cit_metrics["citation_precision"])
                 seed_citation_recalls.append(cit_metrics["citation_recall"])
-                if cit_metrics["citation_precision"] < 1.0 and is_answered:
-                    error_counts["wrong_provision"] += 1
             else:
-                seed_citation_precisions.append(1.0)
-                seed_citation_recalls.append(1.0)
+                cit_metrics = calculate_citation_metrics(cit_ids, [])
+                seed_citation_precisions.append(cit_metrics["citation_precision"])
+                seed_citation_recalls.append(cit_metrics["citation_recall"])
 
-            # Error diagnosis for refusal vs answer
-            if expected_behavior == "refuse" and is_answered:
-                error_counts["unsupported_claim"] += 1
-            elif expected_behavior == "answer" and not is_answered:
-                error_counts["over_refusal"] += 1
-
-            # Tính toán Unsupported Sentence Rate (USR) động thực tế theo ALCE (Gao et al., 2023)
+            # 3. Tính toán Unsupported Sentence Rate (USR) động theo chuẩn ALCE
+            unsupported_claims_list = []
             if not is_answered:
-                # Phản hồi từ chối hoặc làm rõ không chứa khẳng định pháp lý sai lệch
                 usr = 0.0
             else:
                 answer_text = final_out.get("content", "")
-                sentences = [s.strip() for s in re.split(r'[.?!]\s+', answer_text) if len(s.strip()) > 15]
-                total_sentences = len(sentences)
-
-                if total_sentences == 0:
-                    usr = 0.0
-                elif not cit_ids or not citations:
-                    # Đưa ra câu trả lời khẳng định nhưng không có trích dẫn điều luật nào -> 100% unsupported
-                    usr = 1.0
-                else:
-                    citation_objs = []
-                    for c in citations:
-                        if isinstance(c, dict):
-                            citation_objs.append(Citation(article_id=c.get("article_id", ""), span=c.get("span", "")))
-                        elif hasattr(c, "article_id"):
-                            citation_objs.append(c)
-
-                    # Sử dụng L1EvidenceVerifier của agent để kiểm tra tính hợp lệ và span overlap
-                    l1_res = agent.verifier.verify(
+                if mode in ["l1_l2", "l1_l2_on"]:
+                    usr = calculate_unsupported_rate(
                         answer_text=answer_text,
-                        citations=citation_objs,
+                        cited_articles=citations,
+                        verifier=agent.verifier,
                         retrieved_article_ids=ledger.retrieved_article_ids
                     )
-
-                    if l1_res.invalid_citations:
-                        # Điều luật trích dẫn không tồn tại hoặc hallucinated -> unsupported
-                        usr = 1.0
-                    else:
-                        unsupported_count = len(l1_res.unsupported_claims)
-                        usr = round(float(unsupported_count / total_sentences), 4)
+                    l2_res = agent.l2_verifier.verify_all_claims(answer_text, cit_ids)
+                    unsupported_claims_list = [f["sentence"] for f in l2_res.get("failed_claims", [])]
+                    if not l2_res.get("is_entailed", False) and usr == 0.0 and len(unsupported_claims_list) > 0:
+                        total_sents = max(l2_res.get("total_sentences", 1), 1)
+                        usr = round(float(len(unsupported_claims_list) / total_sents), 4)
+                else:
+                    usr = calculate_unsupported_rate(
+                        answer_text=answer_text,
+                        cited_articles=citations,
+                        verifier=agent.verifier,
+                        retrieved_article_ids=ledger.retrieved_article_ids
+                    )
+                    cit_objs = [
+                        Citation(article_id=c.get("article_id", ""), span=c.get("span", ""))
+                        if isinstance(c, dict) else c
+                        for c in citations
+                    ]
+                    l1_res = agent.verifier.verify(
+                        answer_text=answer_text,
+                        citations=cit_objs,
+                        retrieved_article_ids=ledger.retrieved_article_ids
+                    )
+                    if hasattr(l1_res, "unsupported_claims"):
+                        unsupported_claims_list = list(l1_res.unsupported_claims)
 
             seed_unsupported_rates.append(usr)
 
+            # Ước tính Tokens cho mỗi task
+            prompt_tokens = int(len(query.split()) * 1.3) + 120
+            out_tokens = int(len(str(final_out.get("content", "")).split()) * 1.3) if is_answered else 35
+            total_token_counts.append(prompt_tokens + out_tokens)
+
+            # 4. Ghi nhận vào ErrorDiagnosticAnalyzer
+            error_analyzer.record_task_evaluation(
+                task=task,
+                ledger=ledger,
+                citations=citations,
+                unsupported_sentence_rate=usr,
+                unsupported_claims=unsupported_claims_list,
+                parse_error_detected=False
+            )
+
             status_icon = "✅" if (is_answered and expected_behavior == "answer") or (not is_answered and expected_behavior == "refuse") else "⚠️"
-            print(f" Task {idx+1:02d}: {status_icon} | Ret:{ledger.retrieved_article_ids[:2]} | GT:{primary_gt} | USR:{usr:.3f} | Latency: {t_elapsed:.1f}ms")
+            print(f" Task {idx+1:02d} [{task.get('task_id', '')[:28]:<28}]: {status_icon} | Ret:{ledger.retrieved_article_ids[:2]} | GT:{gt_ids[:2]} | USR:{usr:.3f} | Latency:{t_elapsed:.1f}ms", flush=True)
 
         all_seed_results.append({
             "seed": seed,
@@ -152,6 +170,8 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
             "Unsupported_Rate": np.mean(seed_unsupported_rates)
         })
 
+    error_stats = error_analyzer.get_statistics()
+
     aggregated = {
         "mode": mode,
         "seeds": seeds,
@@ -160,15 +180,23 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
         "Recall@5_mean": round(float(np.mean([r["Recall@5"] for r in all_seed_results])), 4),
         "Recall@5_std": round(float(np.std([r["Recall@5"] for r in all_seed_results])), 4),
         "MRR_mean": round(float(np.mean([r["MRR"] for r in all_seed_results])), 4),
+        "MRR_std": round(float(np.std([r["MRR"] for r in all_seed_results])), 4),
         "Citation_Precision_mean": round(float(np.mean([r["Citation_Precision"] for r in all_seed_results])), 4),
         "Citation_Precision_std": round(float(np.std([r["Citation_Precision"] for r in all_seed_results])), 4),
         "Citation_Recall_mean": round(float(np.mean([r["Citation_Recall"] for r in all_seed_results])), 4),
         "Citation_Recall_std": round(float(np.std([r["Citation_Recall"] for r in all_seed_results])), 4),
         "Coverage_mean": round(float(np.mean([r["Coverage"] for r in all_seed_results])), 4),
+        "Coverage_std": round(float(np.std([r["Coverage"] for r in all_seed_results])), 4),
         "Unsupported_Rate_mean": round(float(np.mean([r["Unsupported_Rate"] for r in all_seed_results])), 4),
-        "Error_Taxonomy": error_counts,
+        "Unsupported_Rate_std": round(float(np.std([r["Unsupported_Rate"] for r in all_seed_results])), 4),
+        "Error_Taxonomy": error_stats["counts"],
+        "Error_Taxonomy_Detailed": error_stats,
+        "Markdown_Taxonomy": error_analyzer.to_markdown_table(),
         "Latency": calculate_latency_percentiles(latencies),
-        "Compute_Cost_USD": 0.0
+        "Tokens_Per_Task_mean": round(float(np.mean(total_token_counts)), 1) if total_token_counts else 0.0,
+        "Total_Tokens": sum(total_token_counts),
+        "Compute_Cost_USD": 0.0,
+        "_analyzer": error_analyzer
     }
     return aggregated
 
@@ -181,55 +209,79 @@ def main():
     args = parser.parse_args()
 
     results = {}
+    analyzers = {}
+
     if args.ablation in ["off", "both", "three_way"]:
-        results["baseline_off"] = run_benchmark(args.tasks, args.seeds, mode="off")
+        res_off = run_benchmark(args.tasks, args.seeds, mode="off")
+        an_off = res_off.pop("_analyzer")
+        results["baseline_off"] = res_off
+        analyzers["Baseline (OFF)"] = an_off
 
     if args.ablation in ["on", "both", "three_way"]:
-        results["luatcheck_l1_on"] = run_benchmark(args.tasks, args.seeds, mode="l1_on")
+        res_l1 = run_benchmark(args.tasks, args.seeds, mode="l1_on")
+        an_l1 = res_l1.pop("_analyzer")
+        results["luatcheck_l1_on"] = res_l1
+        analyzers["LuatCheck (L1 ON)"] = an_l1
 
     if args.ablation == "three_way":
-        results["luatcheck_l1_l2_on"] = run_benchmark(args.tasks, args.seeds, mode="l1_l2_on")
+        res_l2 = run_benchmark(args.tasks, args.seeds, mode="l1_l2_on")
+        an_l2 = res_l2.pop("_analyzer")
+        results["luatcheck_l1_l2_on"] = res_l2
+        analyzers["LuatCheck (L1+L2)"] = an_l2
 
-    # Lưu kết quả
+    # Lưu kết quả định lượng vào cả hai file: eval_results_3way.json và eval_results_d3.json
     os.makedirs("evaluation", exist_ok=True)
     with open("evaluation/eval_results_d3.json", "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
-    print("\n" + "=" * 80)
-    print(" BẢNG TỔNG HỢP KẾT QUẢ ĐÁNH GIÁ ĐỊNH LƯỢNG D3 (THREE-WAY ABLATION STUDY)")
-    print("=" * 80)
-    header = f"{'Metric':<24} | {'Baseline (OFF)':<16} | {'LuatCheck (L1 ON)':<17} | {'LuatCheck (L1+L2)':<17}"
-    print(header)
-    print("-" * 80)
+    with open("evaluation/eval_results_3way.json", "w", encoding="utf-8") as f:
+        json.dump(results, f, ensure_ascii=False, indent=2)
+
+    print("\n" + "=" * 90, flush=True)
+    print(" BẢNG TỔNG HỢP KẾT QUẢ ĐÁNH GIÁ ĐỊNH LƯỢNG D3 (THREE-WAY ABLATION STUDY)", flush=True)
+    print("=" * 90, flush=True)
+    header = f"{'Metric':<26} | {'Baseline (OFF)':<18} | {'LuatCheck (L1 ON)':<18} | {'LuatCheck (L1+L2)':<18}"
+    print(header, flush=True)
+    print("-" * 90, flush=True)
 
     b = results.get("baseline_off", {})
     l1 = results.get("luatcheck_l1_on", {})
     l2 = results.get("luatcheck_l1_l2_on", {})
 
     metrics_map = [
-        ("Recall@1", "Recall@1_mean"),
-        ("Recall@5", "Recall@5_mean"),
-        ("MRR", "MRR_mean"),
-        ("Citation Precision", "Citation_Precision_mean"),
-        ("Citation Recall", "Citation_Recall_mean"),
-        ("Answer Coverage", "Coverage_mean"),
-        ("Unsupported Rate (↓)", "Unsupported_Rate_mean"),
+        ("Recall@1", "Recall@1_mean", "Recall@1_std"),
+        ("Recall@5", "Recall@5_mean", "Recall@5_std"),
+        ("MRR", "MRR_mean", "MRR_std"),
+        ("Citation Precision", "Citation_Precision_mean", "Citation_Precision_std"),
+        ("Citation Recall", "Citation_Recall_mean", "Citation_Recall_std"),
+        ("Answer Coverage", "Coverage_mean", "Coverage_std"),
+        ("Unsupported Rate (↓)", "Unsupported_Rate_mean", "Unsupported_Rate_std"),
+        ("Tokens / Task (mean)", "Tokens_Per_Task_mean", None),
     ]
 
-    for label, m_key in metrics_map:
-        b_val = f"{b.get(m_key, 0):.3f}"
-        l1_val = f"{l1.get(m_key, 0):.3f}"
-        l2_val = f"{l2.get(m_key, 0):.3f}"
-        print(f"{label:<24} | {b_val:<16} | {l1_val:<17} | {l2_val:<17}")
+    for label, m_key, s_key in metrics_map:
+        if s_key:
+            b_val = f"{b.get(m_key, 0):.3f} ± {b.get(s_key, 0):.3f}"
+            l1_val = f"{l1.get(m_key, 0):.3f} ± {l1.get(s_key, 0):.3f}"
+            l2_val = f"{l2.get(m_key, 0):.3f} ± {l2.get(s_key, 0):.3f}"
+        else:
+            b_val = f"{b.get(m_key, 0)}"
+            l1_val = f"{l1.get(m_key, 0)}"
+            l2_val = f"{l2.get(m_key, 0)}"
+        print(f"{label:<26} | {b_val:<18} | {l1_val:<18} | {l2_val:<18}", flush=True)
 
-    print("-" * 80)
-    print("\n--- BẢNG PHÂN LOẠI LỖI (ERROR TAXONOMY DIAGNOSIS) ---")
-    err_b = b.get("Error_Taxonomy", {})
-    err_l1 = l1.get("Error_Taxonomy", {})
-    err_l2 = l2.get("Error_Taxonomy", {})
-    for k in err_b:
-        print(f" - {k:<20}: Baseline={err_b.get(k, 0):<3} | L1_ON={err_l1.get(k, 0):<3} | L1+L2={err_l2.get(k, 0):<3}")
-    print("=" * 80)
+    print("-" * 90, flush=True)
+    b_lat = f"{b.get('Latency', {}).get('p50_ms', 0):.1f}ms / {b.get('Latency', {}).get('p95_ms', 0):.1f}ms"
+    l1_lat = f"{l1.get('Latency', {}).get('p50_ms', 0):.1f}ms / {l1.get('Latency', {}).get('p95_ms', 0):.1f}ms"
+    l2_lat = f"{l2.get('Latency', {}).get('p50_ms', 0):.1f}ms / {l2.get('Latency', {}).get('p95_ms', 0):.1f}ms"
+    print(f"{'Latency (p50 / p95)':<26} | {b_lat:<18} | {l1_lat:<18} | {l2_lat:<18}", flush=True)
+    print(f"{'Compute Cost (USD)':<26} | {'$0.00 (Local)':<18} | {'$0.00 (Local)':<18} | {'$0.00 (Local)':<18}", flush=True)
+    print("=" * 90, flush=True)
+
+    print("\n" + generate_comparative_markdown_table(analyzers), flush=True)
+    print("\nĐã lưu kết quả thành công vào:", flush=True)
+    print(" - evaluation/eval_results_d3.json", flush=True)
+    print(" - evaluation/eval_results_3way.json", flush=True)
 
 
 if __name__ == "__main__":

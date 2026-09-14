@@ -28,12 +28,14 @@ class LuatCheckAgent:
         max_tool_calls: int = 5,
         max_repairs: int = 2,
         verification_mode: str = "l1_only",
-        enable_verification: Optional[bool] = None
+        enable_verification: Optional[bool] = None,
+        l2_use_slm: bool = False
     ):
         self.model_name = model_name
         self.ollama_url = ollama_url
         self.max_tool_calls = max_tool_calls
         self.max_repairs = max_repairs
+        self.l2_use_slm = l2_use_slm
 
         # Xử lý tương thích ngược giữa enable_verification và verification_mode
         if enable_verification is False:
@@ -50,7 +52,8 @@ class LuatCheckAgent:
         self.verifier = L1EvidenceVerifier(self.tool_registry.retriever.corpus)
         self.l2_verifier = L2SemanticEntailmentVerifier(
             self.tool_registry.retriever.corpus,
-            entailment_threshold=0.30
+            entailment_threshold=0.30,
+            use_slm=l2_use_slm
         )
         self.sqlite_store = SQLiteEpisodicStore()
         self.audit_logger = AuditLogger()

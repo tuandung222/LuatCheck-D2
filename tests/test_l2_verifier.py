@@ -369,3 +369,65 @@ def test_article_122_illegal_financial_penalty(verifier):
 def test_timeout_setting_default(sample_corpus):
     v = L2SemanticEntailmentVerifier(sample_corpus, use_slm=True)
     assert v.slm_timeout == 10.0
+
+
+# =========================================================================
+# 9. CHALLENGER M1-R2-1 REFINEMENTS
+# =========================================================================
+
+def test_article_25_probation_cong_nhan_ky_thuat_cap_30_days(verifier):
+    """
+    Article 25 Khoản 3: Enforce 30-day cap for 'công nhân kỹ thuật', 'trung cấp', 'sơ cấp'
+    even if 'kỹ thuật' is matched in the text.
+    """
+    # 45 days for công nhân kỹ thuật -> CONTRADICTION (> 30 days)
+    claim1 = "Thời gian thử việc đối với công nhân kỹ thuật là 45 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim1, "Dieu_25")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+    # 40 days for trình độ trung cấp -> CONTRADICTION (> 30 days)
+    claim2 = "Thời gian thử việc đối với người có trình độ kỹ thuật trung cấp là 40 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim2, "Dieu_25")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+    # 35 days for sơ cấp -> CONTRADICTION (> 30 days)
+    claim3 = "Thời gian thử việc cho lao động có chứng chỉ sơ cấp là 35 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim3, "Dieu_25")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+    # 25 days for công nhân kỹ thuật -> NOT a contradiction (<= 30 days)
+    claim4 = "Thời gian thử việc đối với công nhân kỹ thuật là 25 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim4, "Dieu_25")
+    assert msg != "CONTRADICTION"
+
+
+def test_article_24_explicit_short_contract_durations(verifier):
+    """
+    Article 24 Khoản 3: Detect explicit contract durations < 30 days
+    (e.g. '15 ngày', '2 tuần', '3 tuần') asserting probation and flag as contradiction.
+    """
+    # 15 days contract asserting probation -> CONTRADICTION
+    claim1 = "Hợp đồng lao động 15 ngày có áp dụng thời gian thử việc 3 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim1, "Dieu_24")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+    # 2 weeks contract asserting probation -> CONTRADICTION
+    claim2 = "Người lao động ký hợp đồng 2 tuần vẫn phải thử việc theo yêu cầu của công ty."
+    is_ent, score, msg = verifier.verify_entailment(claim2, "Dieu_24")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+    # 3 weeks contract asserting probation -> CONTRADICTION
+    claim3 = "Hợp đồng thời hạn 3 tuần được áp dụng thử việc."
+    is_ent, score, msg = verifier.verify_entailment(claim3, "Dieu_24")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+    # Explicit prohibition for 15 days contract -> NOT a contradiction (entails statutory prohibition)
+    claim4 = "Không áp dụng thử việc đối với hợp đồng lao động 15 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim4, "Dieu_24")
+    assert msg != "CONTRADICTION"

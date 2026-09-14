@@ -1,3 +1,6 @@
+PORT ?= 8501
+HEADLESS ?= false
+
 .PHONY: test eval eval_d3 redteam demo report report_d2 report_d3 clean all
 
 all: test eval_d3 redteam report
@@ -15,7 +18,7 @@ redteam:
 	PYTHONPATH=. python3 redteam/run_redteam.py
 
 demo:
-	streamlit run src/ui/app.py
+	streamlit run src/ui/app.py --server.port $(PORT) --server.headless $(HEADLESS) --browser.gatherUsageStats false
 
 report: report_d2 report_d3
 
