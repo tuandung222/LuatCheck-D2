@@ -204,13 +204,9 @@ class ErrorDiagnosticAnalyzer:
         max_tools = getattr(ledger, "max_tool_calls", 5) if ledger else 5
         max_rep = getattr(ledger, "max_repairs", 2) if ledger else 2
         is_budget_exhausted = (
-            tool_calls_count > max_tools or repairs_count > max_rep
-        ) or (
-            (tool_calls_count >= max_tools or repairs_count >= max_rep) and not is_answered
-        ) or (
-            ledger is not None
-            and getattr(ledger, "terminal_status", None) == "refused"
-            and "ngân sách" in str(getattr(ledger, "final_output", "")).lower()
+            tool_calls_count >= max_tools or
+            repairs_count >= max_rep or
+            bool(ledger and getattr(ledger, "terminal_status", None) == "refused" and "ngân sách" in str(getattr(ledger, "final_output", "")).lower())
         )
         if is_budget_exhausted:
             detected_modes.append("budget_exhausted")

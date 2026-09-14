@@ -18,12 +18,12 @@
     "Citation_Recall_std": 0.0,
     "Coverage_mean": 1.0,
     "Coverage_std": 0.0,
-    "Unsupported_Rate_mean": 0.1,
+    "Unsupported_Rate_mean": 0.0,
     "Unsupported_Rate_std": 0.0,
     "Error_Taxonomy": {
       "retrieval_miss": 3,
       "wrong_provision_cited": 9,
-      "unsupported_claim": 3,
+      "unsupported_claim": 0,
       "over_refusal": 0,
       "budget_exhausted": 0,
       "parse_error": 0
@@ -31,11 +31,11 @@
     "Error_Taxonomy_Detailed": {
       "configuration": "off",
       "total_tasks_evaluated": 30,
-      "total_failure_instances": 15,
+      "total_failure_instances": 12,
       "counts": {
         "retrieval_miss": 3,
         "wrong_provision_cited": 9,
-        "unsupported_claim": 3,
+        "unsupported_claim": 0,
         "over_refusal": 0,
         "budget_exhausted": 0,
         "parse_error": 0
@@ -43,7 +43,7 @@
       "frequencies_percent": {
         "retrieval_miss": 10.0,
         "wrong_provision_cited": 30.0,
-        "unsupported_claim": 10.0,
+        "unsupported_claim": 0.0,
         "over_refusal": 0.0,
         "budget_exhausted": 0.0,
         "parse_error": 0.0
@@ -260,56 +260,16 @@
             }
           }
         ],
-        "unsupported_claim": [
-          {
-            "task_id": "VLQA_LABOR_007",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_007",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_007",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
-              ]
-            }
-          }
-        ],
+        "unsupported_claim": [],
         "over_refusal": [],
         "budget_exhausted": [],
         "parse_error": []
       }
     },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 15\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **3** | 10.0% | **VLQA_LABOR_007**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **9** | 30.0% | **VLQA_LABOR_003**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **3** | 10.0% | **VLQA_LABOR_007**: Phát hiện phát biểu không được chứng minh (USR=100.0%)... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 12\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **3** | 10.0% | **VLQA_LABOR_007**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **9** | 30.0% | **VLQA_LABOR_003**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 8.99,
-      "p95_ms": 15.95
+      "p50_ms": 6.67,
+      "p95_ms": 13.63
     },
     "Tokens_Per_Task_mean": 209.5,
     "Total_Tokens": 6285,
@@ -476,8 +436,8 @@
     },
     "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 6\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **3** | 10.0% | **VLQA_LABOR_007**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **3** | 10.0% | **VLQA_LABOR_007**: Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 7.84,
-      "p95_ms": 24.96
+      "p50_ms": 6.44,
+      "p95_ms": 11.93
     },
     "Tokens_Per_Task_mean": 210.3,
     "Total_Tokens": 6309,
