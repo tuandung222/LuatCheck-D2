@@ -13,28 +13,70 @@ from datetime import datetime, timezone
 
 def sanitize_pii(text: str) -> str:
     """
-    Khử khuẩn dữ liệu cá nhân (PII Sanitization) tuân thủ Nghị định 13/2023/NĐ-CP & PDPL 2025:
-    - Số căn cước công dân (CCCD 12 chữ số) và định dạng có dấu cách/dấu gạch
-    - Số điện thoại di động Việt Nam (các đầu số 03, 05, 07, 08, 09 hoặc +84)
-    - Địa chỉ email
-    Thay thế toàn bộ bằng nhãn chuẩn [REDACTED_PII].
+    Khử khuẩn dữ liệu định danh cá nhân (PII Sanitization) tuân thủ Nghị định 13/2023/NĐ-CP & PDPL 2025:
+    - Bảo toàn Mã số thuế doanh nghiệp 10 chữ số (và 13 chữ số chi nhánh) khi có nhãn mã số thuế/MST/MSDN.
+    - Khử khuẩn Số căn cước công dân (CCCD 12 chữ số theo các định dạng 3-3-3-3, 4-4-4, 3-1-2-6, tiền tố CCCD_)
+      và CMND 9 chữ số, có cơ chế loại trừ số tiền tệ lớn (>= 100 tỷ đồng, VNĐ, VND, đ,...) bằng negative lookahead.
+    - Khử khuẩn Số điện thoại di động và cố định Việt Nam (đầu số 03, 05, 07, 08, 09, 02x, +84, (+84)
+      kèm dấu cách, gạch nối, dấu chấm, ngoặc đơn).
+    - Khử khuẩn Địa chỉ email.
+    Thay thế toàn bộ thông tin cá nhân nhạy cảm bằng nhãn chuẩn [REDACTED_PII].
     """
     if not text:
         return ""
 
     sanitized = text
 
-    # 1. Email addresses
+    # 0. BẢO VỆ MÃ SỐ THUẾ DOANH NGHIỆP (Enterprise Tax Codes)
+    # Mã số thuế của pháp nhân/doanh nghiệp là thông tin công khai minh bạch, không phải PII cá nhân.
+    # Sử dụng kỹ thuật Masking Placeholder để ngăn regex SĐT (đầu 03x) hoặc CCCD nhận diện nhầm.
+    tax_placeholders = {}
+    tax_pattern = r"(?i)\b(?:mã\s+số\s+thuế|mst|mã\s+số\s+doanh\s+nghiệp|msdn|tax\s+code)\b[\s:._-]*([0-9]{10}(?:-[0-9]{3})?)\b"
+
+    def _mask_tax(match: re.Match) -> str:
+        key = f"__PRESERVED_TAX_CODE_{len(tax_placeholders)}__"
+        full = match.group(0)
+        num = match.group(1)
+        tax_placeholders[key] = num
+        prefix = full[:match.start(1) - match.start(0)]
+        return f"{prefix}{key}"
+
+    sanitized = re.sub(tax_pattern, _mask_tax, sanitized)
+
+    # 1. Email addresses (chuẩn RFC 5322 cơ bản, hỗ trợ subdomain nhiều cấp và tag dấu +)
     email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
     sanitized = re.sub(email_pattern, '[REDACTED_PII]', sanitized)
 
-    # 2. Số điện thoại di động Việt Nam (+84 hoặc 0, theo sau bởi 3/5/7/8/9 và 8 chữ số, hỗ trợ dấu phân cách)
-    phone_pattern = r'(?:\+84|84|0)(?:3|5|7|8|9)(?:[.\-\s]?\d){8}\b'
+    # Biểu thức loại trừ các đơn vị tiền tệ phổ biến (không phân biệt hoa thường)
+    currency_exclusion = r'(?!\s*(?i:đồng|đ|vnđ|vnd|usd|eur|tỷ|tỉ|triệu|nghìn|ngàn))\b'
+
+    # 2. Số Căn cước công dân 12 chữ số (CCCD) và phân cách định dạng chuẩn (3-3-3-3, 4-4-4)
+    # Loại trừ các số tiền tệ 12 chữ số (ví dụ: 100.000.000.000 đồng)
+    cccd_pattern = (
+        r'(?<![\d])(?:'
+        r'\d{12}'
+        r'|\d{3}[.\-\s]\d{3}[.\-\s]\d{3}[.\-\s]\d{3}'
+        r'|\d{4}[.\-\s]\d{4}[.\-\s]\d{4}'
+        r')(?![\d])' + currency_exclusion
+    )
+    sanitized = re.sub(cccd_pattern, '[REDACTED_PII]', sanitized)
+
+    # 3. Số điện thoại di động Việt Nam (hỗ trợ +84, 84, 0; tiền tố (0912), (091), (09), (+84); dấu cách, chấm, gạch ngang)
+    # Loại trừ số tiền tệ (84.500.000.000 VNĐ, 0.900.000.000 đồng) và tránh nuốt số lớn hơn (184...)
+    phone_pattern = (
+        r'(?<![\d])(?:'
+        r'(?:(?:\+84|84|0|\(\+84\))[\s.\-]*(?:\(?0?(?:3|5|7|8|9)\)?))[\s.\-]*(?:[\s.\-]?\d){7,8}'
+        r'|'
+        r'(?:\(0[35789]\d{2}\))[\s.\-]*(?:[\s.\-]?\d){6}'
+        r'|'
+        r'(?:\(0[35789]\d?\))[\s.\-]*(?:[\s.\-]?\d){7,8}'
+        r')(?![\s.\-]?\d)' + currency_exclusion
+    )
     sanitized = re.sub(phone_pattern, '[REDACTED_PII]', sanitized)
 
-    # 3. Số Căn cước công dân 12 chữ số (CCCD) và phân cách định dạng chuẩn
-    cccd_pattern = r'\b\d{12}\b|\b\d{3}[.\-\s]\d{3}[.\-\s]\d{3}[.\-\s]\d{3}\b'
-    sanitized = re.sub(cccd_pattern, '[REDACTED_PII]', sanitized)
+    # 4. KHÔI PHỤC MÃ SỐ THUẾ DOANH NGHIỆP
+    for key, original_tax in tax_placeholders.items():
+        sanitized = sanitized.replace(key, original_tax)
 
     return sanitized
 

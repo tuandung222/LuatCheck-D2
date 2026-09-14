@@ -75,8 +75,9 @@ class L1EvidenceVerifier:
             if doc:
                 cited_texts.append(doc["content"].lower())
         combined_law_text = " ".join(cited_texts)
+        law_token_set = set(re.findall(r'\w+', combined_law_text))
 
-        # Kiểm tra tỷ lệ từ khóa quan trọng trong câu có xuất hiện trong văn bản điều luật
+        # Kiểm tra tỷ lệ từ khóa quan trọng trong câu có xuất hiện trong tập token điều luật
         for sent in sentences:
             sent_words = set(re.findall(r'\w+', sent.lower()))
             # Bỏ bớt stop words tiếng Việt phổ biến
@@ -85,7 +86,9 @@ class L1EvidenceVerifier:
             if not meaningful_words:
                 continue
 
-            matches = sum(1 for w in meaningful_words if w in combined_law_text)
+            # Sử dụng phép giao tập hợp token (Token Set Intersection) thay vì tìm chuỗi con (substring)
+            # Ngăn ngừa hoàn toàn hiện tượng false matches do từ đơn ngẫu nhiên trùng với âm tiết con (sub-syllable)
+            matches = sum(1 for w in meaningful_words if w in law_token_set)
             overlap_ratio = matches / len(meaningful_words)
 
             if overlap_ratio < 0.25: # Nếu dưới 25% từ vựng xuất hiện trong luật

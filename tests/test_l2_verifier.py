@@ -237,3 +237,135 @@ def test_l2_slm_nli_integration_mocked(sample_corpus):
         assert is_ent is True
         assert score == 0.95
         assert msg == "ENTAILMENT"
+
+
+# =========================================================================
+# 6. REMEDIATION: SHORT SENTENCE BYPASS & ANTI-VACUOUS APPROVAL
+# =========================================================================
+
+def test_short_sentence_bypass_illegal_termination(verifier):
+    answer = "Được sa thải."
+    res = verifier.verify_all_claims(answer, ["Dieu_37"])
+    assert res["is_entailed"] is False
+    assert res["total_sentences"] == 1
+    assert res["failed_claims"][0]["sentence"] == "Được sa thải"
+
+
+def test_short_sentence_bypass_holding_degrees(verifier):
+    answer = "Giữ bằng cấp."
+    res = verifier.verify_all_claims(answer, ["Dieu_13"])
+    assert res["is_entailed"] is False
+    assert res["total_sentences"] == 1
+
+
+def test_short_sentences_combined(verifier):
+    answer = "Được sa thải. Giữ bằng cấp."
+    res = verifier.verify_all_claims(answer, ["Dieu_37", "Dieu_122"])
+    assert res["is_entailed"] is False
+    assert res["total_sentences"] == 2
+    assert len(res["failed_claims"]) == 2
+
+
+def test_vacuous_approval_empty_answer(verifier):
+    res = verifier.verify_all_claims("", ["Dieu_25"])
+    assert res["is_entailed"] is False
+    assert res["total_sentences"] == 0
+
+
+def test_vacuous_approval_whitespace_or_punctuation(verifier):
+    res = verifier.verify_all_claims("...", ["Dieu_25"])
+    assert res["is_entailed"] is False
+    assert res["total_sentences"] == 0
+
+
+def test_no_citations_provided(verifier):
+    res = verifier.verify_all_claims("Thời gian thử việc tối đa 60 ngày.", [])
+    assert res["is_entailed"] is False
+
+
+# =========================================================================
+# 7. REMEDIATION: QUANTIFIER & NUMERICAL CLASH
+# =========================================================================
+
+def test_article_25_probation_100_days_clash(verifier):
+    claim = "Thời gian thử việc đối với người làm công việc có chức danh nghề nghiệp cần trình độ chuyên môn kỹ thuật là 100 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_25")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_article_25_probation_90_days_office_clash(verifier):
+    claim = "Thời gian thử việc đối với nhân viên văn phòng là 90 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_25")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_article_25_probation_exceeding_180_days(verifier):
+    claim = "Thời gian thử việc cho giám đốc điều hành là 200 ngày."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_25")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_article_25_probation_multiple_times(verifier):
+    claim = "Công ty có quyền áp dụng thời gian thử việc 2 lần đối với một vị trí công việc."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_25")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_article_20_fixed_term_contract_years_clash(verifier):
+    claim = "Hợp đồng lao động xác định thời hạn có thời hạn 5 năm."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_20")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+    claim_10y = "Hợp đồng lao động xác định thời hạn kéo dài 10 năm."
+    is_ent, score, msg = verifier.verify_entailment(claim_10y, "Dieu_20")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_article_26_probation_wage_percentage_clash(verifier):
+    claim = "Tiền lương thử việc của người lao động bằng 70% mức lương của công việc."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_26")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+# =========================================================================
+# 8. REMEDIATION: NEGATION & POLARITY CONTRADICTIONS
+# =========================================================================
+
+def test_article_24_probation_under_1_month_prohibition(verifier):
+    claim = "Được phép thử việc đối với hợp đồng lao động có thời hạn dưới 1 tháng."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_24")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_article_26_unpaid_probation_prohibition(verifier):
+    claim = "Người lao động không được trả lương trong thời gian thử việc."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_26")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_article_37_illegal_dismissal_pregnancy(verifier):
+    claim = "Doanh nghiệp có quyền sa thải nhân viên nữ mang thai."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_37")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_article_122_illegal_financial_penalty(verifier):
+    claim = "Người sử dụng lao động được phạt tiền nhân viên vi phạm quy chế."
+    is_ent, score, msg = verifier.verify_entailment(claim, "Dieu_122")
+    assert is_ent is False
+    assert msg == "CONTRADICTION"
+
+
+def test_timeout_setting_default(sample_corpus):
+    v = L2SemanticEntailmentVerifier(sample_corpus, use_slm=True)
+    assert v.slm_timeout == 10.0
