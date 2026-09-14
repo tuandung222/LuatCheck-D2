@@ -159,6 +159,28 @@ def test_error_analyzer_budget_exhausted():
     assert "budget_exhausted" in failures
 
 
+def test_error_analyzer_budget_boundary_answered_within_limit():
+    analyzer = ErrorDiagnosticAnalyzer("test_mode")
+    task = {
+        "task_id": "T06_answered",
+        "question": "Thời gian thử việc?",
+        "ground_truth_article_ids": ["Dieu_25"],
+        "expected_behavior": "answer"
+    }
+    ledger = MockLedger(
+        retrieved_article_ids=["Dieu_25"],
+        terminal_status="answered",
+        tool_calls_count=5,
+        repairs_count=0
+    )
+    failures = analyzer.record_task_evaluation(
+        task=task,
+        ledger=ledger,
+        citations=[{"article_id": "Dieu_25"}]
+    )
+    assert "budget_exhausted" not in failures
+
+
 def test_error_analyzer_parse_error():
     analyzer = ErrorDiagnosticAnalyzer("test_mode")
     task = {

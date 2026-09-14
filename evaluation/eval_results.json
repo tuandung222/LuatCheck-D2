@@ -6,24 +6,24 @@
       123,
       2026
     ],
-    "Recall@1_mean": 0.8,
+    "Recall@1_mean": 0.7,
     "Recall@1_std": 0.0,
-    "Recall@5_mean": 0.8,
+    "Recall@5_mean": 0.7,
     "Recall@5_std": 0.0,
-    "MRR_mean": 0.8,
+    "MRR_mean": 0.7,
     "MRR_std": 0.0,
-    "Citation_Precision_mean": 0.8,
+    "Citation_Precision_mean": 0.7,
     "Citation_Precision_std": 0.0,
-    "Citation_Recall_mean": 0.8,
+    "Citation_Recall_mean": 0.7,
     "Citation_Recall_std": 0.0,
     "Coverage_mean": 1.0,
     "Coverage_std": 0.0,
-    "Unsupported_Rate_mean": 0.2,
+    "Unsupported_Rate_mean": 0.1,
     "Unsupported_Rate_std": 0.0,
     "Error_Taxonomy": {
-      "retrieval_miss": 6,
-      "wrong_provision_cited": 0,
-      "unsupported_claim": 6,
+      "retrieval_miss": 3,
+      "wrong_provision_cited": 9,
+      "unsupported_claim": 3,
       "over_refusal": 0,
       "budget_exhausted": 0,
       "parse_error": 0
@@ -31,19 +31,19 @@
     "Error_Taxonomy_Detailed": {
       "configuration": "off",
       "total_tasks_evaluated": 30,
-      "total_failure_instances": 12,
+      "total_failure_instances": 15,
       "counts": {
-        "retrieval_miss": 6,
-        "wrong_provision_cited": 0,
-        "unsupported_claim": 6,
+        "retrieval_miss": 3,
+        "wrong_provision_cited": 9,
+        "unsupported_claim": 3,
         "over_refusal": 0,
         "budget_exhausted": 0,
         "parse_error": 0
       },
       "frequencies_percent": {
-        "retrieval_miss": 20.0,
-        "wrong_provision_cited": 0.0,
-        "unsupported_claim": 20.0,
+        "retrieval_miss": 10.0,
+        "wrong_provision_cited": 30.0,
+        "unsupported_claim": 10.0,
         "over_refusal": 0.0,
         "budget_exhausted": 0.0,
         "parse_error": 0.0
@@ -54,106 +54,223 @@
             "task_id": "VLQA_LABOR_007",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
                 "dieu_40"
               ],
-              "retrieved": []
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_122'] không xuất hiện trong top-k truy xuất ([])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_122"
-              ],
-              "retrieved": []
+              "retrieved": [
+                "dieu_41"
+              ]
             }
           },
           {
             "task_id": "VLQA_LABOR_007",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
                 "dieu_40"
               ],
-              "retrieved": []
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_122'] không xuất hiện trong top-k truy xuất ([])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_122"
-              ],
-              "retrieved": []
+              "retrieved": [
+                "dieu_41"
+              ]
             }
           },
           {
             "task_id": "VLQA_LABOR_007",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
                 "dieu_40"
               ],
-              "retrieved": []
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_122'] không xuất hiện trong top-k truy xuất ([])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_122"
-              ],
-              "retrieved": []
+              "retrieved": [
+                "dieu_41"
+              ]
             }
           }
         ],
-        "wrong_provision_cited": [],
+        "wrong_provision_cited": [
+          {
+            "task_id": "VLQA_LABOR_003",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_004",
+            "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_003",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_004",
+            "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_003",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_004",
+            "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          }
+        ],
         "unsupported_claim": [
           {
             "task_id": "VLQA_LABOR_007",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "unsupported_claim",
             "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường.']",
+            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
             "details": {
               "unsupported_rate": 1.0,
               "unsupported_claims": [
-                "Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này."
+                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
               ]
             }
           },
@@ -162,24 +279,11 @@
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "unsupported_claim",
             "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường.']",
+            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
             "details": {
               "unsupported_rate": 1.0,
               "unsupported_claims": [
-                "Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này."
+                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
               ]
             }
           },
@@ -188,24 +292,11 @@
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "unsupported_claim",
             "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường.']",
+            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
             "details": {
               "unsupported_rate": 1.0,
               "unsupported_claims": [
-                "Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này."
+                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
               ]
             }
           }
@@ -215,13 +306,13 @@
         "parse_error": []
       }
     },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 12\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 20.0% | **VLQA_LABOR_007**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **0** | 0.0% | *None observed (0 failures)* |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **6** | 20.0% | **VLQA_LABOR_007**: Phát hiện phát biểu không được chứng minh (USR=100.0%)... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 15\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **3** | 10.0% | **VLQA_LABOR_007**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **9** | 30.0% | **VLQA_LABOR_003**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **3** | 10.0% | **VLQA_LABOR_007**: Phát hiện phát biểu không được chứng minh (USR=100.0%)... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 6.75,
-      "p95_ms": 22.94
+      "p50_ms": 8.99,
+      "p95_ms": 15.95
     },
-    "Tokens_Per_Task_mean": 282.3,
-    "Total_Tokens": 8469,
+    "Tokens_Per_Task_mean": 209.5,
+    "Total_Tokens": 6285,
     "Compute_Cost_USD": 0.0
   },
   "luatcheck_l1_on": {
@@ -233,9 +324,9 @@
     ],
     "Recall@1_mean": 0.9,
     "Recall@1_std": 0.0,
-    "Recall@5_mean": 1.0,
+    "Recall@5_mean": 0.9,
     "Recall@5_std": 0.0,
-    "MRR_mean": 0.95,
+    "MRR_mean": 0.9,
     "MRR_std": 0.0,
     "Citation_Precision_mean": 0.9,
     "Citation_Precision_std": 0.0,
@@ -246,7 +337,7 @@
     "Unsupported_Rate_mean": 0.0,
     "Unsupported_Rate_std": 0.0,
     "Error_Taxonomy": {
-      "retrieval_miss": 0,
+      "retrieval_miss": 3,
       "wrong_provision_cited": 3,
       "unsupported_claim": 0,
       "over_refusal": 0,
@@ -256,9 +347,9 @@
     "Error_Taxonomy_Detailed": {
       "configuration": "l1_on",
       "total_tasks_evaluated": 30,
-      "total_failure_instances": 3,
+      "total_failure_instances": 6,
       "counts": {
-        "retrieval_miss": 0,
+        "retrieval_miss": 3,
         "wrong_provision_cited": 3,
         "unsupported_claim": 0,
         "over_refusal": 0,
@@ -266,7 +357,7 @@
         "parse_error": 0
       },
       "frequencies_percent": {
-        "retrieval_miss": 0.0,
+        "retrieval_miss": 10.0,
         "wrong_provision_cited": 10.0,
         "unsupported_claim": 0.0,
         "over_refusal": 0.0,
@@ -274,7 +365,53 @@
         "parse_error": 0.0
       },
       "case_studies": {
-        "retrieval_miss": [],
+        "retrieval_miss": [
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "retrieved": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "retrieved": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "retrieved": [
+                "dieu_41"
+              ]
+            }
+          }
+        ],
         "wrong_provision_cited": [
           {
             "task_id": "VLQA_LABOR_007",
@@ -337,13 +474,13 @@
         "parse_error": []
       }
     },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 3\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **3** | 10.0% | **VLQA_LABOR_007**: Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 6\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **3** | 10.0% | **VLQA_LABOR_007**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **3** | 10.0% | **VLQA_LABOR_007**: Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 7.76,
-      "p95_ms": 29.48
+      "p50_ms": 7.84,
+      "p95_ms": 24.96
     },
-    "Tokens_Per_Task_mean": 267.3,
-    "Total_Tokens": 8019,
+    "Tokens_Per_Task_mean": 210.3,
+    "Total_Tokens": 6309,
     "Compute_Cost_USD": 0.0
   }
 }
