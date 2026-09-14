@@ -217,8 +217,8 @@
     },
     "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 12\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 20.0% | **VLQA_LABOR_007**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **0** | 0.0% | *None observed (0 failures)* |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **6** | 20.0% | **VLQA_LABOR_007**: Phát hiện phát biểu không được chứng minh (USR=100.0%)... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 6.97,
-      "p95_ms": 14.59
+      "p50_ms": 8.39,
+      "p95_ms": 19.43
     },
     "Tokens_Per_Task_mean": 282.3,
     "Total_Tokens": 8469,
@@ -231,17 +231,17 @@
       123,
       2026
     ],
-    "Recall@1_mean": 1.0,
-    "Recall@1_std": 0.0,
+    "Recall@1_mean": 0.9333,
+    "Recall@1_std": 0.0471,
     "Recall@5_mean": 1.0,
     "Recall@5_std": 0.0,
-    "MRR_mean": 1.0,
-    "MRR_std": 0.0,
-    "Citation_Precision_mean": 0.9444,
-    "Citation_Precision_std": 0.0416,
-    "Citation_Recall_mean": 0.9667,
+    "MRR_mean": 0.9667,
+    "MRR_std": 0.0236,
+    "Citation_Precision_mean": 0.8167,
+    "Citation_Precision_std": 0.0236,
+    "Citation_Recall_mean": 0.8333,
     "Citation_Recall_std": 0.0471,
-    "Coverage_mean": 0.9667,
+    "Coverage_mean": 0.8333,
     "Coverage_std": 0.0471,
     "Unsupported_Rate_mean": 0.0,
     "Unsupported_Rate_std": 0.0,
@@ -249,28 +249,28 @@
       "retrieval_miss": 0,
       "wrong_provision_cited": 1,
       "unsupported_claim": 0,
-      "over_refusal": 1,
-      "budget_exhausted": 0,
+      "over_refusal": 5,
+      "budget_exhausted": 2,
       "parse_error": 0
     },
     "Error_Taxonomy_Detailed": {
       "configuration": "l1_on",
       "total_tasks_evaluated": 30,
-      "total_failure_instances": 2,
+      "total_failure_instances": 8,
       "counts": {
         "retrieval_miss": 0,
         "wrong_provision_cited": 1,
         "unsupported_claim": 0,
-        "over_refusal": 1,
-        "budget_exhausted": 0,
+        "over_refusal": 5,
+        "budget_exhausted": 2,
         "parse_error": 0
       },
       "frequencies_percent": {
         "retrieval_miss": 0.0,
         "wrong_provision_cited": 3.33,
         "unsupported_claim": 0.0,
-        "over_refusal": 3.33,
-        "budget_exhausted": 0.0,
+        "over_refusal": 16.67,
+        "budget_exhausted": 6.67,
         "parse_error": 0.0
       },
       "case_studies": {
@@ -280,26 +280,68 @@
             "task_id": "VLQA_LABOR_007",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "wrong_provision_cited",
-            "what_failed": "Trích dẫn sai điều luật: ['dieu_41', 'dieu_46'] (kỳ vọng: ['dieu_40'])",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
             "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
             "details": {
               "cited": [
                 "dieu_40",
-                "dieu_41",
-                "dieu_46"
+                "dieu_41"
               ],
               "ground_truth": [
                 "dieu_40"
               ],
               "invalid": [
-                "dieu_41",
-                "dieu_46"
+                "dieu_41"
               ]
             }
           }
         ],
         "unsupported_claim": [],
         "over_refusal": [
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_010",
+            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (clarified) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "clarified"
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_010",
+            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
           {
             "task_id": "VLQA_LABOR_010",
             "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
@@ -312,17 +354,40 @@
             }
           }
         ],
-        "budget_exhausted": [],
+        "budget_exhausted": [
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "budget_exhausted",
+            "what_failed": "Chạm ngưỡng ngân sách kiểm soát: 5/5 công cụ, 0/2 sửa chữa",
+            "why": "Vòng lặp ReAct lúng túng trong việc tìm căn cứ hoặc không sửa được lỗi xác thực trong số lượt cho phép.",
+            "details": {
+              "tool_calls": 5,
+              "repairs": 0
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_010",
+            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "failure_mode": "budget_exhausted",
+            "what_failed": "Chạm ngưỡng ngân sách kiểm soát: 5/5 công cụ, 0/2 sửa chữa",
+            "why": "Vòng lặp ReAct lúng túng trong việc tìm căn cứ hoặc không sửa được lỗi xác thực trong số lượt cho phép.",
+            "details": {
+              "tool_calls": 5,
+              "repairs": 0
+            }
+          }
+        ],
         "parse_error": []
       }
     },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 2\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **1** | 3.3% | **VLQA_LABOR_007**: Trích dẫn sai điều luật: ['dieu_41', 'dieu_46'] (kỳ vọng: ['dieu_... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **1** | 3.3% | **VLQA_LABOR_010**: Hệ thống từ chối hoặc làm rõ (clarified) đối với câu hỏi hợp lệ c... |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 8\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **1** | 3.3% | **VLQA_LABOR_007**: Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **5** | 16.7% | **VLQA_LABOR_007**: Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có ... |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **2** | 6.7% | **VLQA_LABOR_007**: Chạm ngưỡng ngân sách kiểm soát: 5/5 công cụ, 0/2 sửa chữa... |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 9.17,
-      "p95_ms": 47929.54
+      "p50_ms": 8.57,
+      "p95_ms": 51324.55
     },
-    "Tokens_Per_Task_mean": 277.0,
-    "Total_Tokens": 8309,
+    "Tokens_Per_Task_mean": 266.9,
+    "Total_Tokens": 8008,
     "Compute_Cost_USD": 0.0
   }
 }
