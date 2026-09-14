@@ -4,28 +4,28 @@
     "seeds": [
       42
     ],
-    "Recall@1_mean": 0.6667,
+    "Recall@1_mean": 0.8,
     "Recall@1_std": 0.0,
-    "Recall@5_mean": 0.6667,
+    "Recall@5_mean": 0.8,
     "Recall@5_std": 0.0,
-    "MRR_mean": 0.6667,
-    "Citation_Precision_mean": 0.75,
+    "MRR_mean": 0.8,
+    "Citation_Precision_mean": 0.8,
     "Citation_Precision_std": 0.0,
-    "Citation_Recall_mean": 0.75,
+    "Citation_Recall_mean": 0.8,
     "Citation_Recall_std": 0.0,
-    "Coverage_mean": 0.85,
-    "Unsupported_Rate_mean": 0.08,
+    "Coverage_mean": 1.0,
+    "Unsupported_Rate_mean": 0.2,
     "Error_Taxonomy": {
-      "retrieval_miss": 5,
-      "wrong_provision": 5,
-      "unsupported_claim": 2,
+      "retrieval_miss": 2,
+      "wrong_provision": 2,
+      "unsupported_claim": 0,
       "over_refusal": 0,
       "budget_exhausted": 0,
       "parse_error": 0
     },
     "Latency": {
-      "p50_ms": 6.01,
-      "p95_ms": 1404.66
+      "p50_ms": 7.5,
+      "p95_ms": 28.62
     },
     "Compute_Cost_USD": 0.0
   },
@@ -34,58 +34,28 @@
     "seeds": [
       42
     ],
-    "Recall@1_mean": 0.8,
+    "Recall@1_mean": 1.0,
     "Recall@1_std": 0.0,
-    "Recall@5_mean": 0.8,
+    "Recall@5_mean": 1.0,
     "Recall@5_std": 0.0,
-    "MRR_mean": 0.8,
-    "Citation_Precision_mean": 0.85,
+    "MRR_mean": 1.0,
+    "Citation_Precision_mean": 0.9,
     "Citation_Precision_std": 0.0,
-    "Citation_Recall_mean": 0.85,
+    "Citation_Recall_mean": 0.9,
     "Citation_Recall_std": 0.0,
-    "Coverage_mean": 0.8,
-    "Unsupported_Rate_mean": 0.0005,
-    "Error_Taxonomy": {
-      "retrieval_miss": 3,
-      "wrong_provision": 3,
-      "unsupported_claim": 1,
-      "over_refusal": 0,
-      "budget_exhausted": 0,
-      "parse_error": 0
-    },
-    "Latency": {
-      "p50_ms": 8.21,
-      "p95_ms": 52729.78
-    },
-    "Compute_Cost_USD": 0.0
-  },
-  "luatcheck_l1_l2_on": {
-    "mode": "l1_l2_on",
-    "seeds": [
-      42
-    ],
-    "Recall@1_mean": 0.7333,
-    "Recall@1_std": 0.0,
-    "Recall@5_mean": 0.8,
-    "Recall@5_std": 0.0,
-    "MRR_mean": 0.7667,
-    "Citation_Precision_mean": 0.75,
-    "Citation_Precision_std": 0.0,
-    "Citation_Recall_mean": 0.75,
-    "Citation_Recall_std": 0.0,
-    "Coverage_mean": 0.65,
+    "Coverage_mean": 0.9,
     "Unsupported_Rate_mean": 0.0,
     "Error_Taxonomy": {
-      "retrieval_miss": 3,
-      "wrong_provision": 2,
-      "unsupported_claim": 1,
-      "over_refusal": 3,
+      "retrieval_miss": 0,
+      "wrong_provision": 0,
+      "unsupported_claim": 0,
+      "over_refusal": 1,
       "budget_exhausted": 0,
       "parse_error": 0
     },
     "Latency": {
-      "p50_ms": 6.37,
-      "p95_ms": 31241.69
+      "p50_ms": 7.61,
+      "p95_ms": 65015.59
     },
     "Compute_Cost_USD": 0.0
   }
