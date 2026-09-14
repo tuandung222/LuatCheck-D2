@@ -1,0 +1,31 @@
+# LuatCheck System Configuration
+model:
+  provider: "ollama" # "ollama" or "mock"
+  endpoint: "http://localhost:11434"
+  name: "qwen2.5:7b-instruct"
+  temperature: 0.1
+  timeout_seconds: 30
+
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+
+retrieval:
+  bm25_top_k: 5
+  dense_top_k: 5
+  rrf_k: 60
+  final_top_k: 5
+  corpus_path: "data/corpus/labor_code_2019.json"
+
+verifier:
+  similarity_threshold: 0.70
+  min_supported_ratio: 0.80
+
+memory:
+  sqlite_path: "data/db/luatcheck_memory.db"
+  similarity_threshold: 0.88
+  index_version: "v2026.1"
+
+security:
+  audit_log_path: "data/audit_log.jsonl"
+  egress_requires_confirmation: true

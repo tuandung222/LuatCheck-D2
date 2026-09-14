@@ -1,0 +1,52 @@
+{
+  "baseline_off": {
+    "mode": "Verification_OFF",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.1667,
+    "Recall@1_std": 0.2357,
+    "Recall@5_mean": 0.4333,
+    "Recall@5_std": 0.33,
+    "MRR_mean": 0.2778,
+    "MRR_std": 0.2869,
+    "Citation_Precision_mean": 0.6667,
+    "Citation_Precision_std": 0.0943,
+    "Citation_Recall_mean": 0.6667,
+    "Citation_Recall_std": 0.0943,
+    "Coverage_mean": 0.8667,
+    "Unsupported_Rate_mean": 0.0667,
+    "Latency": {
+      "p50_ms": 8.82,
+      "p95_ms": 37794.94
+    },
+    "Compute_Cost_USD": 0.0
+  },
+  "proposed_on": {
+    "mode": "Verification_ON",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.0,
+    "Recall@1_std": 0.0,
+    "Recall@5_mean": 0.0,
+    "Recall@5_std": 0.0,
+    "MRR_mean": 0.0,
+    "MRR_std": 0.0,
+    "Citation_Precision_mean": 0.8,
+    "Citation_Precision_std": 0.0,
+    "Citation_Recall_mean": 0.8,
+    "Citation_Recall_std": 0.0,
+    "Coverage_mean": 1.0,
+    "Unsupported_Rate_mean": 0.0,
+    "Latency": {
+      "p50_ms": 3.24,
+      "p95_ms": 17.32
+    },
+    "Compute_Cost_USD": 0.0
+  }
+}
