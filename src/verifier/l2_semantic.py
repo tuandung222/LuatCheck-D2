@@ -193,8 +193,9 @@ class L2SemanticEntailmentVerifier:
             slm_verdict, slm_conf = slm_result
             if slm_verdict == "CONTRADICTION":
                 return False, round(slm_conf * 0.2, 4), "CONTRADICTION"
-            elif slm_verdict == "ENTAILMENT" and slm_conf >= self.entailment_threshold:
-                return True, round(slm_conf, 4), "ENTAILMENT"
+            elif slm_verdict == "ENTAILMENT":
+                is_ent = slm_conf >= self.entailment_threshold
+                return is_ent, round(slm_conf, 4), "ENTAILMENT" if is_ent else "NEUTRAL_OR_UNSUPPORTED"
             elif slm_verdict == "NEUTRAL":
                 return False, round(slm_conf * 0.3, 4), "NEUTRAL_OR_UNSUPPORTED"
 
