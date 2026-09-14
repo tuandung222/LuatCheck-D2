@@ -717,8 +717,9 @@ with col3:
     summary_txt = st.text_area("Nội dung tóm tắt:", value=default_egress_txt, height=70, key="col3_txt")
     
     # SHA-256 Idempotency Check
-    default_egress_key = f"demo_key_{int(time.time())}"
-    egress_idempotency_key = st.text_input("Idempotency Key:", value=default_egress_key, key="col3_key")
+    if "col3_key" not in st.session_state:
+        st.session_state.col3_key = f"demo_key_{int(time.time())}"
+    egress_idempotency_key = st.text_input("Idempotency Key:", value=st.session_state.col3_key, key="col3_key")
     hash_payload = f"{rec_email}:{summary_txt}:{egress_idempotency_key}"
     sha256_hash = hashlib.sha256(hash_payload.encode("utf-8")).hexdigest()
     st.caption(f"SHA-256 Hash: `{sha256_hash[:24]}...`")

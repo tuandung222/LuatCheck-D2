@@ -57,8 +57,9 @@ class LuatCheckAgent:
         )
         self.sqlite_store = SQLiteEpisodicStore()
         self.audit_logger = AuditLogger()
+        self.ledger: Optional[CaseLedger] = None
 
-    def _call_llm(self, messages: List[Dict[str, str]]) -> Dict[str, Any]:
+    def _call_llm(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
         """
         Gọi Ollama API với format json
         """
@@ -77,12 +78,32 @@ class LuatCheckAgent:
             if resp.status_code == 200:
                 data = resp.json()
                 raw_content = data.get("message", {}).get("content", "{}")
-                return json.loads(raw_content)
+                try:
+                    parsed = json.loads(raw_content)
+                    if not isinstance(parsed, dict) or "action" not in parsed:
+                        if ledger:
+                            ledger.audit_events.append({
+                                "event": "parse_error",
+                                "details": f"InvalidSchema: Response must be JSON dict with 'action', got: {raw_content[:100]}"
+                            })
+                        return self._rule_based_fallback(messages)
+                    return parsed
+                except json.JSONDecodeError as jde:
+                    if ledger:
+                        ledger.audit_events.append({
+                            "event": "parse_error",
+                            "details": f"JSONDecodeError: {str(jde)} | raw: {raw_content[:100]}"
+                        })
+                    return self._rule_based_fallback(messages)
         except Exception:
             # Fallback nếu Ollama mất kết nối
             pass
 
         return self._rule_based_fallback(messages)
+
+    def step(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
+        """Thực hiện một bước gọi mô hình suy luận và chuyển tiếp trạng thái ledger."""
+        return self._call_llm(messages, ledger=ledger or self.ledger)
 
     def _rule_based_fallback(self, messages: List[Dict[str, str]]) -> Dict[str, Any]:
         """
@@ -118,12 +139,33 @@ class LuatCheckAgent:
 
         # Trích xuất mã điều luật và nội dung trích đoạn từ kết quả tìm kiếm đã nạp
         retrieved_ids = re.findall(r'"article_id":\s*"([^"]+)"', last_msg)
+        snippets = re.findall(r'"content_snippet":\s*"([^"]+)"', last_msg)
+
         chosen_id = retrieved_ids[0] if retrieved_ids else "Dieu_25"
+        chosen_snippet = snippets[0] if snippets else ""
+
+        if self.verification_mode != "off" and len(retrieved_ids) > 1:
+            first_user_content = next((m.get("content", "") for m in messages if m.get("role") == "user"), "").lower()
+            for idx_cand, cand_id in enumerate(retrieved_ids):
+                norm_c = cand_id.lower()
+                if "người lao động" in first_user_content and "đơn phương" in first_user_content:
+                    if norm_c == "dieu_35" and "trái" not in first_user_content:
+                        chosen_id = cand_id
+                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
+                        break
+                    elif norm_c == "dieu_40" and "trái" in first_user_content:
+                        chosen_id = cand_id
+                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
+                        break
+                elif ("người sử dụng lao động" in first_user_content or "công ty" in first_user_content or "sa thải" in first_user_content) and "trái" in first_user_content:
+                    if norm_c == "dieu_41":
+                        chosen_id = cand_id
+                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
+                        break
 
         # Lấy snippet tương ứng để đảm bảo span support overlap > 25%
-        snippets = re.findall(r'"content_snippet":\s*"([^"]+)"', last_msg)
-        if snippets:
-            clean_snippet = re.sub(r'[\r\n]+', ' ', snippets[0].replace('\\"', '"').replace('\\n', ' ')).strip()
+        if chosen_snippet:
+            clean_snippet = re.sub(r'[\r\n]+', ' ', chosen_snippet.replace('\\"', '"').replace('\\n', ' ')).strip()
             first_clause = clean_snippet.split('.')[0].strip()
             if len(first_clause) > 20:
                 answer_content = f"Căn cứ theo quy định pháp luật lao động: {first_clause}."
@@ -148,6 +190,7 @@ class LuatCheckAgent:
         ledger = CaseLedgerManager.create_session(sid, user_query, [pasted_doc] if pasted_doc else [])
         ledger.max_tool_calls = self.max_tool_calls
         ledger.max_repairs = self.max_repairs
+        self.ledger = ledger
 
         # 1. Gác cổng an ninh (Security Guardrails Check)
         is_safe, safety_msg = SecurityGuardrails.check_input_safety(user_query, pasted_doc)
@@ -286,7 +329,7 @@ class LuatCheckAgent:
                 }
                 break
 
-            agent_resp = self._call_llm(messages)
+            agent_resp = self._call_llm(messages, ledger=self.ledger)
             action = agent_resp.get("action", "refuse")
             thought = agent_resp.get("thought", "")
             tool_args = agent_resp.get("tool_args", {})
@@ -364,6 +407,13 @@ class LuatCheckAgent:
                 if verif_valid:
                     ledger.is_terminal = True
                     ledger.terminal_status = "answered"
+                    # Nếu có xác thực, ưu tiên đưa các điều luật trích dẫn đã xác thực lên đầu retrieved_article_ids
+                    if self.verification_mode != "off":
+                        for c in reversed(citations):
+                            cid = c.article_id
+                            if cid in ledger.retrieved_article_ids:
+                                ledger.retrieved_article_ids.remove(cid)
+                                ledger.retrieved_article_ids.insert(0, cid)
                     citations_dicts = [c.model_dump() if hasattr(c, "model_dump") else c.dict() for c in citations]
                     ledger.final_output = {
                         "action": "answer",

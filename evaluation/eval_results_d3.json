@@ -12,37 +12,37 @@
     "Recall@5_std": 0.0,
     "MRR_mean": 0.8,
     "MRR_std": 0.0,
-    "Citation_Precision_mean": 0.8,
+    "Citation_Precision_mean": 0.6,
     "Citation_Precision_std": 0.0,
-    "Citation_Recall_mean": 0.8,
+    "Citation_Recall_mean": 0.65,
     "Citation_Recall_std": 0.0,
-    "Coverage_mean": 1.0,
+    "Coverage_mean": 0.9,
     "Coverage_std": 0.0,
     "Unsupported_Rate_mean": 0.2,
     "Unsupported_Rate_std": 0.0,
     "Error_Taxonomy": {
       "retrieval_miss": 6,
-      "wrong_provision_cited": 0,
-      "unsupported_claim": 6,
+      "wrong_provision_cited": 18,
+      "unsupported_claim": 12,
       "over_refusal": 0,
       "budget_exhausted": 0,
       "parse_error": 0
     },
     "Error_Taxonomy_Detailed": {
       "configuration": "off",
-      "total_tasks_evaluated": 30,
-      "total_failure_instances": 12,
+      "total_tasks_evaluated": 60,
+      "total_failure_instances": 36,
       "counts": {
         "retrieval_miss": 6,
-        "wrong_provision_cited": 0,
-        "unsupported_claim": 6,
+        "wrong_provision_cited": 18,
+        "unsupported_claim": 12,
         "over_refusal": 0,
         "budget_exhausted": 0,
         "parse_error": 0
       },
       "frequencies_percent": {
-        "retrieval_miss": 20.0,
-        "wrong_provision_cited": 0.0,
+        "retrieval_miss": 10.0,
+        "wrong_provision_cited": 30.0,
         "unsupported_claim": 20.0,
         "over_refusal": 0.0,
         "budget_exhausted": 0.0,
@@ -51,240 +51,126 @@
       "case_studies": {
         "retrieval_miss": [
           {
-            "task_id": "VLQA_LABOR_007",
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
                 "dieu_40"
               ],
-              "retrieved": []
+              "retrieved": [
+                "dieu_41"
+              ]
             }
           },
           {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_122'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
-                "dieu_122"
+                "dieu_41",
+                "dieu_46"
               ],
-              "retrieved": []
+              "retrieved": [
+                "dieu_40"
+              ]
             }
           },
           {
-            "task_id": "VLQA_LABOR_007",
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
                 "dieu_40"
               ],
-              "retrieved": []
+              "retrieved": [
+                "dieu_41"
+              ]
             }
           },
           {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_122'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
-                "dieu_122"
+                "dieu_41",
+                "dieu_46"
               ],
-              "retrieved": []
+              "retrieved": [
+                "dieu_40"
+              ]
             }
           },
           {
-            "task_id": "VLQA_LABOR_007",
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
                 "dieu_40"
               ],
-              "retrieved": []
+              "retrieved": [
+                "dieu_41"
+              ]
             }
           },
           {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
             "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_122'] không xuất hiện trong top-k truy xuất ([])",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
             "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
             "details": {
               "ground_truth": [
-                "dieu_122"
+                "dieu_41",
+                "dieu_46"
               ],
-              "retrieved": []
-            }
-          }
-        ],
-        "wrong_provision_cited": [],
-        "unsupported_claim": [
-          {
-            "task_id": "VLQA_LABOR_007",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_007",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_007",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 36 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Do đó, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật có thể không được nhận trợ cấp thôi việc, nhưng cần xem xét các điều khoản cụ thể của hợp đồng lao động và quy định pháp luật. Về phần bồi thường, nếu người lao động vi phạm quy định về thời gian thử việc hoặc các quy định khác của pháp luật, người sử dụng lao động có quyền yêu cầu bồi thường."
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Theo Điều 122 của Bộ luật Lao động 2019, việc xử lý kỷ luật lao động không được áp dụng đối với người lao động đang trong các trường hợp như đang mang thai hoặc nuôi con dưới 12 tháng tuổi. Do đó, doanh nghiệp không được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ trong các trường hợp này."
+              "retrieved": [
+                "dieu_40"
               ]
             }
           }
         ],
-        "over_refusal": [],
-        "budget_exhausted": [],
-        "parse_error": []
-      }
-    },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 12\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 20.0% | **VLQA_LABOR_007**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **0** | 0.0% | *None observed (0 failures)* |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **6** | 20.0% | **VLQA_LABOR_007**: Phát hiện phát biểu không được chứng minh (USR=100.0%)... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
-    "Latency": {
-      "p50_ms": 8.39,
-      "p95_ms": 19.43
-    },
-    "Tokens_Per_Task_mean": 282.3,
-    "Total_Tokens": 8469,
-    "Compute_Cost_USD": 0.0
-  },
-  "luatcheck_l1_on": {
-    "mode": "l1_on",
-    "seeds": [
-      42,
-      123,
-      2026
-    ],
-    "Recall@1_mean": 0.9333,
-    "Recall@1_std": 0.0471,
-    "Recall@5_mean": 1.0,
-    "Recall@5_std": 0.0,
-    "MRR_mean": 0.9667,
-    "MRR_std": 0.0236,
-    "Citation_Precision_mean": 0.8167,
-    "Citation_Precision_std": 0.0236,
-    "Citation_Recall_mean": 0.8333,
-    "Citation_Recall_std": 0.0471,
-    "Coverage_mean": 0.8333,
-    "Coverage_std": 0.0471,
-    "Unsupported_Rate_mean": 0.0,
-    "Unsupported_Rate_std": 0.0,
-    "Error_Taxonomy": {
-      "retrieval_miss": 0,
-      "wrong_provision_cited": 1,
-      "unsupported_claim": 0,
-      "over_refusal": 5,
-      "budget_exhausted": 2,
-      "parse_error": 0
-    },
-    "Error_Taxonomy_Detailed": {
-      "configuration": "l1_on",
-      "total_tasks_evaluated": 30,
-      "total_failure_instances": 8,
-      "counts": {
-        "retrieval_miss": 0,
-        "wrong_provision_cited": 1,
-        "unsupported_claim": 0,
-        "over_refusal": 5,
-        "budget_exhausted": 2,
-        "parse_error": 0
-      },
-      "frequencies_percent": {
-        "retrieval_miss": 0.0,
-        "wrong_provision_cited": 3.33,
-        "unsupported_claim": 0.0,
-        "over_refusal": 16.67,
-        "budget_exhausted": 6.67,
-        "parse_error": 0.0
-      },
-      "case_studies": {
-        "retrieval_miss": [],
         "wrong_provision_cited": [
           {
-            "task_id": "VLQA_LABOR_007",
+            "task_id": "VLQA_03_RESIGNATION_NOTICE_INDEFINITE",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
             "failure_mode": "wrong_provision_cited",
             "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
             "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
             "details": {
               "cited": [
-                "dieu_40",
                 "dieu_41"
               ],
               "ground_truth": [
@@ -294,100 +180,1327 @@
                 "dieu_41"
               ]
             }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_40"
+              ],
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "invalid": [
+                "dieu_40"
+              ]
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "VLQA_03_RESIGNATION_NOTICE_INDEFINITE",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_40"
+              ],
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "invalid": [
+                "dieu_40"
+              ]
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "VLQA_03_RESIGNATION_NOTICE_INDEFINITE",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_40"
+              ],
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "invalid": [
+                "dieu_40"
+              ]
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
           }
         ],
-        "unsupported_claim": [],
-        "over_refusal": [
+        "unsupported_claim": [
           {
-            "task_id": "VLQA_LABOR_007",
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "over_refusal",
-            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
-            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
+            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
             "details": {
-              "expected_behavior": "answer",
-              "terminal_status": "refused"
+              "unsupported_rate": 1.0,
+              "unsupported_claims": [
+                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
+              ]
             }
           },
           {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "over_refusal",
-            "what_failed": "Hệ thống từ chối hoặc làm rõ (clarified) đối với câu hỏi hợp lệ có căn cứ",
-            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
             "details": {
-              "expected_behavior": "answer",
-              "terminal_status": "clarified"
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
             }
           },
           {
-            "task_id": "VLQA_LABOR_007",
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
             "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "over_refusal",
-            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
-            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
+            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
             "details": {
-              "expected_behavior": "answer",
-              "terminal_status": "refused"
+              "unsupported_rate": 1.0,
+              "unsupported_claims": [
+                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
+              ]
             }
           },
           {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "over_refusal",
-            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
-            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
             "details": {
-              "expected_behavior": "answer",
-              "terminal_status": "refused"
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
             }
           },
           {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "over_refusal",
-            "what_failed": "Hệ thống từ chối hoặc làm rõ (clarified) đối với câu hỏi hợp lệ có căn cứ",
-            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
             "details": {
-              "expected_behavior": "answer",
-              "terminal_status": "clarified"
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
+            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
+            "details": {
+              "unsupported_rate": 1.0,
+              "unsupported_claims": [
+                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
+              ]
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
             }
           }
         ],
-        "budget_exhausted": [
-          {
-            "task_id": "VLQA_LABOR_007",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "budget_exhausted",
-            "what_failed": "Chạm ngưỡng ngân sách kiểm soát: 5/5 công cụ, 0/2 sửa chữa",
-            "why": "Vòng lặp ReAct lúng túng trong việc tìm căn cứ hoặc không sửa được lỗi xác thực trong số lượt cho phép.",
-            "details": {
-              "tool_calls": 5,
-              "repairs": 0
-            }
-          },
-          {
-            "task_id": "VLQA_LABOR_010",
-            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
-            "failure_mode": "budget_exhausted",
-            "what_failed": "Chạm ngưỡng ngân sách kiểm soát: 5/5 công cụ, 0/2 sửa chữa",
-            "why": "Vòng lặp ReAct lúng túng trong việc tìm căn cứ hoặc không sửa được lỗi xác thực trong số lượt cho phép.",
-            "details": {
-              "tool_calls": 5,
-              "repairs": 0
-            }
-          }
-        ],
+        "over_refusal": [],
+        "budget_exhausted": [],
         "parse_error": []
       }
     },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 8\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **1** | 3.3% | **VLQA_LABOR_007**: Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **5** | 16.7% | **VLQA_LABOR_007**: Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có ... |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **2** | 6.7% | **VLQA_LABOR_007**: Chạm ngưỡng ngân sách kiểm soát: 5/5 công cụ, 0/2 sửa chữa... |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 36\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 10.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **18** | 30.0% | **VLQA_03_RESIGNATION_NOTICE_INDEFINITE**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **12** | 20.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Phát hiện phát biểu không được chứng minh (USR=100.0%)... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 8.57,
-      "p95_ms": 51324.55
+      "p50_ms": 8.87,
+      "p95_ms": 12.78
     },
-    "Tokens_Per_Task_mean": 266.9,
-    "Total_Tokens": 8008,
+    "Tokens_Per_Task_mean": 207.2,
+    "Total_Tokens": 12429,
+    "Compute_Cost_USD": 0.0
+  },
+  "luatcheck_l1_on": {
+    "mode": "l1_on",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.8667,
+    "Recall@1_std": 0.0,
+    "Recall@5_mean": 0.8667,
+    "Recall@5_std": 0.0,
+    "MRR_mean": 0.8667,
+    "MRR_std": 0.0,
+    "Citation_Precision_mean": 0.65,
+    "Citation_Precision_std": 0.0,
+    "Citation_Recall_mean": 0.7,
+    "Citation_Recall_std": 0.0,
+    "Coverage_mean": 0.9,
+    "Coverage_std": 0.0,
+    "Unsupported_Rate_mean": 0.0,
+    "Unsupported_Rate_std": 0.0,
+    "Error_Taxonomy": {
+      "retrieval_miss": 6,
+      "wrong_provision_cited": 15,
+      "unsupported_claim": 9,
+      "over_refusal": 0,
+      "budget_exhausted": 0,
+      "parse_error": 0
+    },
+    "Error_Taxonomy_Detailed": {
+      "configuration": "l1_on",
+      "total_tasks_evaluated": 60,
+      "total_failure_instances": 30,
+      "counts": {
+        "retrieval_miss": 6,
+        "wrong_provision_cited": 15,
+        "unsupported_claim": 9,
+        "over_refusal": 0,
+        "budget_exhausted": 0,
+        "parse_error": 0
+      },
+      "frequencies_percent": {
+        "retrieval_miss": 10.0,
+        "wrong_provision_cited": 25.0,
+        "unsupported_claim": 15.0,
+        "over_refusal": 0.0,
+        "budget_exhausted": 0.0,
+        "parse_error": 0.0
+      },
+      "case_studies": {
+        "retrieval_miss": [
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "retrieved": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "retrieved": [
+                "dieu_40"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "retrieved": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "retrieved": [
+                "dieu_40"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "retrieved": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "retrieval_miss",
+            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
+            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
+            "details": {
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "retrieved": [
+                "dieu_40"
+              ]
+            }
+          }
+        ],
+        "wrong_provision_cited": [
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_40"
+              ],
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "invalid": [
+                "dieu_40"
+              ]
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_40"
+              ],
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "invalid": [
+                "dieu_40"
+              ]
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_40"
+              ],
+              "ground_truth": [
+                "dieu_41",
+                "dieu_46"
+              ],
+              "invalid": [
+                "dieu_40"
+              ]
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi điều chỉnh",
+            "why": "Agent ảo tưởng căn cứ pháp luật cho câu hỏi không có căn cứ hoặc vi phạm thẩm quyền.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": []
+            }
+          }
+        ],
+        "unsupported_claim": [
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
+            "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_02_MISSING_DETAILS",
+            "query": "Công ty bắt tôi đóng tiền cọc khi vào làm thì có đúng luật không?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          },
+          {
+            "task_id": "UNANSWERABLE_03_FOREIGN_JURISDICTION",
+            "query": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần?",
+            "failure_mode": "unsupported_claim",
+            "what_failed": "Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expected_behavior == 'refuse')",
+            "why": "Agent không nhận diện được giới hạn thẩm quyền hoặc tấn công injection, phát biểu mệnh đề không có căn cứ.",
+            "details": {
+              "expected_behavior": "refuse",
+              "terminal_status": "answered"
+            }
+          }
+        ],
+        "over_refusal": [],
+        "budget_exhausted": [],
+        "parse_error": []
+      }
+    },
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 30\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 10.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **15** | 25.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **9** | 15.0% | **UNANSWERABLE_01_CRIMINAL_PENALTY**: Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expect... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Latency": {
+      "p50_ms": 10.3,
+      "p95_ms": 32.44
+    },
+    "Tokens_Per_Task_mean": 207.3,
+    "Total_Tokens": 12441,
+    "Compute_Cost_USD": 0.0
+  },
+  "luatcheck_l1_l2_on": {
+    "mode": "l1_l2_on",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.8,
+    "Recall@1_std": 0.0,
+    "Recall@5_mean": 1.0,
+    "Recall@5_std": 0.0,
+    "MRR_mean": 0.9,
+    "MRR_std": 0.0,
+    "Citation_Precision_mean": 0.2,
+    "Citation_Precision_std": 0.0,
+    "Citation_Recall_mean": 0.175,
+    "Citation_Recall_std": 0.0,
+    "Coverage_mean": 0.2,
+    "Coverage_std": 0.0,
+    "Unsupported_Rate_mean": 0.0,
+    "Unsupported_Rate_std": 0.0,
+    "Error_Taxonomy": {
+      "retrieval_miss": 0,
+      "wrong_provision_cited": 0,
+      "unsupported_claim": 0,
+      "over_refusal": 33,
+      "budget_exhausted": 0,
+      "parse_error": 0
+    },
+    "Error_Taxonomy_Detailed": {
+      "configuration": "l1_l2_on",
+      "total_tasks_evaluated": 60,
+      "total_failure_instances": 33,
+      "counts": {
+        "retrieval_miss": 0,
+        "wrong_provision_cited": 0,
+        "unsupported_claim": 0,
+        "over_refusal": 33,
+        "budget_exhausted": 0,
+        "parse_error": 0
+      },
+      "frequencies_percent": {
+        "retrieval_miss": 0.0,
+        "wrong_provision_cited": 0.0,
+        "unsupported_claim": 0.0,
+        "over_refusal": 55.0,
+        "budget_exhausted": 0.0,
+        "parse_error": 0.0
+      },
+      "case_studies": {
+        "retrieval_miss": [],
+        "wrong_provision_cited": [],
+        "unsupported_claim": [],
+        "over_refusal": [
+          {
+            "task_id": "VLQA_03_RESIGNATION_NOTICE_INDEFINITE",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_04_RESIGNATION_NO_NOTICE_WAGE_DELAY",
+            "query": "Trong trường hợp người sử dụng lao động không trả đủ lương hoặc trả lương không đúng thời hạn thì người lao động có quyền nghỉ việc ngay mà không cần báo trước không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_05_EMPLOYER_TERMINATION_ABSENCE",
+            "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_06_PREGNANCY_PROTECTION_TERMINATION",
+            "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_08_SEVERANCE_PAY_CONDITIONS",
+            "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_10_DISCIPLINARY_PROCEDURE_PREGNANCY",
+            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_01_RESIGNATION_AND_SEVERANCE",
+            "query": "Tôi làm việc 3 năm theo hợp đồng xác định thời hạn 24 tháng, nay muốn đơn phương nghỉ việc đúng luật thì cần báo trước bao nhiêu ngày và có được hưởng trợ cấp thôi việc không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_03_CONTRACT_EXPIRY_RENEWAL",
+            "query": "Hợp đồng lao động 12 tháng của tôi hết hạn nhưng tôi vẫn tiếp tục đi làm 45 ngày sau mà công ty không ký hợp đồng mới thì hợp đồng của tôi trở thành loại hợp đồng gì?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_04_PROBATION_TERMINATION_RIGHTS",
+            "query": "Trong thời gian thử việc, nếu người lao động thấy công việc không phù hợp và muốn nghỉ việc thì có phải báo trước không và có phải bồi thường gì không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_03_RESIGNATION_NOTICE_INDEFINITE",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_04_RESIGNATION_NO_NOTICE_WAGE_DELAY",
+            "query": "Trong trường hợp người sử dụng lao động không trả đủ lương hoặc trả lương không đúng thời hạn thì người lao động có quyền nghỉ việc ngay mà không cần báo trước không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_05_EMPLOYER_TERMINATION_ABSENCE",
+            "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_06_PREGNANCY_PROTECTION_TERMINATION",
+            "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_08_SEVERANCE_PAY_CONDITIONS",
+            "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_10_DISCIPLINARY_PROCEDURE_PREGNANCY",
+            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_01_RESIGNATION_AND_SEVERANCE",
+            "query": "Tôi làm việc 3 năm theo hợp đồng xác định thời hạn 24 tháng, nay muốn đơn phương nghỉ việc đúng luật thì cần báo trước bao nhiêu ngày và có được hưởng trợ cấp thôi việc không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_03_CONTRACT_EXPIRY_RENEWAL",
+            "query": "Hợp đồng lao động 12 tháng của tôi hết hạn nhưng tôi vẫn tiếp tục đi làm 45 ngày sau mà công ty không ký hợp đồng mới thì hợp đồng của tôi trở thành loại hợp đồng gì?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_04_PROBATION_TERMINATION_RIGHTS",
+            "query": "Trong thời gian thử việc, nếu người lao động thấy công việc không phù hợp và muốn nghỉ việc thì có phải báo trước không và có phải bồi thường gì không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_03_RESIGNATION_NOTICE_INDEFINITE",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_04_RESIGNATION_NO_NOTICE_WAGE_DELAY",
+            "query": "Trong trường hợp người sử dụng lao động không trả đủ lương hoặc trả lương không đúng thời hạn thì người lao động có quyền nghỉ việc ngay mà không cần báo trước không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_05_EMPLOYER_TERMINATION_ABSENCE",
+            "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_06_PREGNANCY_PROTECTION_TERMINATION",
+            "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_08_SEVERANCE_PAY_CONDITIONS",
+            "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "VLQA_10_DISCIPLINARY_PROCEDURE_PREGNANCY",
+            "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_01_RESIGNATION_AND_SEVERANCE",
+            "query": "Tôi làm việc 3 năm theo hợp đồng xác định thời hạn 24 tháng, nay muốn đơn phương nghỉ việc đúng luật thì cần báo trước bao nhiêu ngày và có được hưởng trợ cấp thôi việc không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
+            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_03_CONTRACT_EXPIRY_RENEWAL",
+            "query": "Hợp đồng lao động 12 tháng của tôi hết hạn nhưng tôi vẫn tiếp tục đi làm 45 ngày sau mà công ty không ký hợp đồng mới thì hợp đồng của tôi trở thành loại hợp đồng gì?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          },
+          {
+            "task_id": "SYNTHESIS_04_PROBATION_TERMINATION_RIGHTS",
+            "query": "Trong thời gian thử việc, nếu người lao động thấy công việc không phù hợp và muốn nghỉ việc thì có phải báo trước không và có phải bồi thường gì không?",
+            "failure_mode": "over_refusal",
+            "what_failed": "Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có căn cứ",
+            "why": "Cơ chế bảo vệ hoặc verifier quá khắt khe, hoặc hết ngân sách sửa chữa dẫn đến từ chối oan.",
+            "details": {
+              "expected_behavior": "answer",
+              "terminal_status": "refused"
+            }
+          }
+        ],
+        "budget_exhausted": [],
+        "parse_error": []
+      }
+    },
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_L2_ON`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 33\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **0** | 0.0% | *None observed (0 failures)* |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **33** | 55.0% | **VLQA_03_RESIGNATION_NOTICE_INDEFINITE**: Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có ... |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Latency": {
+      "p50_ms": 11.67,
+      "p95_ms": 23.13
+    },
+    "Tokens_Per_Task_mean": 194.9,
+    "Total_Tokens": 11694,
     "Compute_Cost_USD": 0.0
   }
 }

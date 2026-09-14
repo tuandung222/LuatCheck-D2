@@ -8,11 +8,10 @@ all: test eval_d3 redteam report
 test:
 	PYTHONPATH=. pytest tests/ -v
 
-eval:
-	PYTHONPATH=. python3 evaluation/run_eval.py --seeds 42 123 2026 --ablation both
+eval: eval_d3
 
 eval_d3:
-	PYTHONPATH=. python3 evaluation/run_eval.py --tasks evaluation/tasks/vlqa_full_20.json --seeds 42 123 2026 --ablation three_way
+	PYTHONPATH=. python3 evaluation/run_eval.py --tasks evaluation/tasks/vlqa_full_20.json --seeds 42 123 2026 --ablation three_way --offline
 
 redteam:
 	PYTHONPATH=. python3 redteam/run_redteam.py

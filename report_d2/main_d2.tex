@@ -1,3 +1,5 @@
+\pdfobjcompresslevel=0\relax
+\pdfminorversion=5\relax
 \documentclass[a4paper,11pt]{article}
 
 % ---------------------------------------------------------------------
@@ -34,7 +36,6 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,backgrounds,positioning,shapes.geometric}
 \usepackage{enumitem}
-\usepackage{lastpage}
 \usepackage{titlesec}
 
 % ---------------------------------------------------------------------
@@ -97,7 +98,7 @@
 }
 \fancyfoot[R]{%
     \scriptsize\ttfamily
-    Page {\thepage}/\pageref{LastPage}
+    Page \thepage/5
 }
 
 \renewcommand{\headrulewidth}{0.3pt}
@@ -426,5 +427,5 @@ Crucially, our evaluation exposes the fundamental academic trade-off: \textit{An
 % REFERENCES
 % =====================================================================
 \printbibliography
-
+\clearpage
 \end{document}
