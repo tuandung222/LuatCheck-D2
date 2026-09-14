@@ -46,3 +46,20 @@ def test_unretrieved_article_fails(verifier):
     res = verifier.verify(answer, citations, retrieved)
     assert res.is_valid is False
     assert any("chưa từng được bạn tra cứu" in s for s in res.invalid_citations)
+
+
+def test_l2_semantic_entailment(sample_corpus):
+    from src.verifier.l2_semantic import L2SemanticEntailmentVerifier
+    l2_ver = L2SemanticEntailmentVerifier(sample_corpus, entailment_threshold=0.30)
+
+    # Entailed statement (matching Dieu_25 probation rules)
+    claim = "Thời gian thử việc đối với người làm công việc có chức danh nghề nghiệp cần trình độ cao đẳng trở lên không quá 60 ngày."
+    is_entailed, score, msg = l2_ver.verify_entailment(claim, "Dieu_25")
+    assert is_entailed is True
+    assert score >= 0.30
+    assert msg == "ENTAILMENT"
+
+    # Non-entailed claim (unrelated topic compared to Dieu_25)
+    unrelated = "Người sử dụng lao động có quyền xử lý kỷ luật sa thải đối với hành vi trộm cắp tài sản."
+    is_entailed_unrelated, score_unrelated, msg_unrelated = l2_ver.verify_entailment(unrelated, "Dieu_25")
+    assert score_unrelated < 0.50
