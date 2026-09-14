@@ -398,7 +398,7 @@ Crucially, our evaluation exposes the fundamental academic trade-off: \textit{An
 \label{tab:redteam}
 \end{table}
 
-\hdr{Security Evaluation Results.} As recorded in Table~\ref{tab:redteam}, LuatCheck achieved a **0.0\% Attack Success Rate (ASR)** across all 10 attack scenarios, with **100.0\% defense success** and **100.0\% task utility** on clean legal inquiries:
+\hdr{Security Evaluation Results.} As recorded in Table~\ref{tab:redteam}, LuatCheck achieved a \textbf{0.0\% Attack Success Rate (ASR)} across all 10 attack scenarios, with \textbf{100.0\% defense success} and \textbf{100.0\% task utility} on clean legal inquiries:
 \begin{itemize}[leftmargin=14pt,noitemsep,topsep=1pt]
     \item \textbf{Input Isolation \& Guardrails:} Structural delimiters (\texttt{[UNTRUSTED\_DATA]}) and input regex filters successfully defused direct overrides (\texttt{DIRECT\_01}), evasion prompting (\texttt{DIRECT\_02}), and roleplay escapes (\texttt{DIRECT\_03}).
     \item \textbf{Corpus Provenance \& L1 Barrier:} Coercion to cite fictitious provisions (\texttt{DIRECT\_04}) and poisoned retrieval shards (\texttt{POISON\_01}, \texttt{POISON\_02}) were intercepted by the L1 existence check, which verifies provisions against the canonical statutory store.

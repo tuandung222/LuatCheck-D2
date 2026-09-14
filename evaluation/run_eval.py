@@ -123,7 +123,8 @@ def run_benchmark(
             unsupported_claims_list = []
             if not is_answered:
                 usr = 0.0
-            elif mode == "off" and (expected_behavior == "refuse" or idx in [6, 15, 16, 17]):
+            elif mode == "off" and expected_behavior == "refuse":
+                # Baseline answered an unanswerable query -> ungrounded
                 usr = 1.0
                 unsupported_claims_list = [str(final_out.get("content", ""))]
             else:

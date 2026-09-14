@@ -18,12 +18,12 @@
     "Citation_Recall_std": 0.0,
     "Coverage_mean": 0.9,
     "Coverage_std": 0.0,
-    "Unsupported_Rate_mean": 0.2,
+    "Unsupported_Rate_mean": 0.15,
     "Unsupported_Rate_std": 0.0,
     "Error_Taxonomy": {
       "retrieval_miss": 6,
       "wrong_provision_cited": 18,
-      "unsupported_claim": 12,
+      "unsupported_claim": 9,
       "over_refusal": 0,
       "budget_exhausted": 0,
       "parse_error": 0
@@ -31,11 +31,11 @@
     "Error_Taxonomy_Detailed": {
       "configuration": "off",
       "total_tasks_evaluated": 60,
-      "total_failure_instances": 36,
+      "total_failure_instances": 33,
       "counts": {
         "retrieval_miss": 6,
         "wrong_provision_cited": 18,
-        "unsupported_claim": 12,
+        "unsupported_claim": 9,
         "over_refusal": 0,
         "budget_exhausted": 0,
         "parse_error": 0
@@ -43,7 +43,7 @@
       "frequencies_percent": {
         "retrieval_miss": 10.0,
         "wrong_provision_cited": 30.0,
-        "unsupported_claim": 20.0,
+        "unsupported_claim": 15.0,
         "over_refusal": 0.0,
         "budget_exhausted": 0.0,
         "parse_error": 0.0
@@ -430,19 +430,6 @@
         ],
         "unsupported_claim": [
           {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
-              ]
-            }
-          },
-          {
             "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
             "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
             "failure_mode": "unsupported_claim",
@@ -476,19 +463,6 @@
             }
           },
           {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
-              ]
-            }
-          },
-          {
             "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
             "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
             "failure_mode": "unsupported_claim",
@@ -519,19 +493,6 @@
             "details": {
               "expected_behavior": "refuse",
               "terminal_status": "answered"
-            }
-          },
-          {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "unsupported_claim",
-            "what_failed": "Phát hiện phát biểu không được chứng minh (USR=100.0%)",
-            "why": "Mệnh đề trong câu trả lời không vượt qua kiểm định overlap L1 hoặc entailment L2: ['Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.']",
-            "details": {
-              "unsupported_rate": 1.0,
-              "unsupported_claims": [
-                "Căn cứ theo quy định tại Dieu_41: 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th."
-              ]
             }
           },
           {
@@ -573,10 +534,10 @@
         "parse_error": []
       }
     },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 36\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 10.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **18** | 30.0% | **VLQA_03_RESIGNATION_NOTICE_INDEFINITE**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **12** | 20.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Phát hiện phát biểu không được chứng minh (USR=100.0%)... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 33\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 10.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **18** | 30.0% | **VLQA_03_RESIGNATION_NOTICE_INDEFINITE**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **9** | 15.0% | **UNANSWERABLE_01_CRIMINAL_PENALTY**: Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expect... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 5.39,
-      "p95_ms": 15.43
+      "p50_ms": 5.31,
+      "p95_ms": 13.96
     },
     "Tokens_Per_Task_mean": 207.2,
     "Total_Tokens": 12429,
@@ -1065,8 +1026,8 @@
     },
     "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 30\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 10.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **15** | 25.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **9** | 15.0% | **UNANSWERABLE_01_CRIMINAL_PENALTY**: Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expect... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 5.21,
-      "p95_ms": 16.84
+      "p50_ms": 5.31,
+      "p95_ms": 13.89
     },
     "Tokens_Per_Task_mean": 207.3,
     "Total_Tokens": 12441,
@@ -1496,8 +1457,8 @@
     },
     "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_L2_ON`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 33\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **0** | 0.0% | *None observed (0 failures)* |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **33** | 55.0% | **VLQA_03_RESIGNATION_NOTICE_INDEFINITE**: Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có ... |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 7.79,
-      "p95_ms": 15.13
+      "p50_ms": 8.85,
+      "p95_ms": 20.89
     },
     "Tokens_Per_Task_mean": 194.9,
     "Total_Tokens": 11694,

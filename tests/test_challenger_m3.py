@@ -199,13 +199,17 @@ def test_error_analyzer_budget_exhausted_boundary_values():
     l1 = MockLedger(retrieved_article_ids=["dieu_25"], tool_calls_count=4, repairs_count=1)
     assert "budget_exhausted" not in analyzer.record_task_evaluation(task, l1, citations=["dieu_25"])
 
-    # Exactly 5 tools -> EXHAUSTED
-    l2 = MockLedger(retrieved_article_ids=["dieu_25"], tool_calls_count=5, repairs_count=0)
+    # Exactly 5 tools and not answered -> EXHAUSTED
+    l2 = MockLedger(retrieved_article_ids=["dieu_25"], terminal_status="refused", tool_calls_count=5, repairs_count=0)
     assert "budget_exhausted" in analyzer.record_task_evaluation(task, l2, citations=["dieu_25"])
 
-    # Exactly 2 repairs -> EXHAUSTED
-    l3 = MockLedger(retrieved_article_ids=["dieu_25"], tool_calls_count=2, repairs_count=2)
+    # Exactly 2 repairs and not answered -> EXHAUSTED
+    l3 = MockLedger(retrieved_article_ids=["dieu_25"], terminal_status="refused", tool_calls_count=2, repairs_count=2)
     assert "budget_exhausted" in analyzer.record_task_evaluation(task, l3, citations=["dieu_25"])
+
+    # Exceeded max_tools (> 5) -> EXHAUSTED even if answered
+    l_exceeded = MockLedger(retrieved_article_ids=["dieu_25"], terminal_status="answered", tool_calls_count=6, repairs_count=0)
+    assert "budget_exhausted" in analyzer.record_task_evaluation(task, l_exceeded, citations=["dieu_25"])
 
     # Custom max (max_tool_calls=8, tool_calls_count=6) -> NOT exhausted
     l4 = MockLedger(retrieved_article_ids=["dieu_25"], tool_calls_count=6, repairs_count=1, max_tool_calls=8, max_repairs=3)

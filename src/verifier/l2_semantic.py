@@ -318,7 +318,10 @@ class L2SemanticEntailmentVerifier:
             asymmetric_recall = 0.0
 
         # Điểm tổng hợp ngữ nghĩa: kết hợp tương đồng TF-IDF và độ phủ từ khóa định hướng
-        score = 0.6 * tfidf_score + 0.4 * asymmetric_recall
+        if not claim_words or asymmetric_recall == 0.0:
+            score = 0.0
+        else:
+            score = 0.6 * tfidf_score + 0.4 * asymmetric_recall
 
         is_entailed = score >= self.entailment_threshold
         if is_entailed:
