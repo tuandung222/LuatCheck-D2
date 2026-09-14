@@ -1,0 +1,98 @@
+{
+  "baseline_off": {
+    "mode": "off",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.1111,
+    "Recall@1_std": 0.0831,
+    "Recall@5_mean": 0.1556,
+    "Recall@5_std": 0.137,
+    "MRR_mean": 0.1296,
+    "Citation_Precision_mean": 0.7333,
+    "Citation_Precision_std": 0.0236,
+    "Citation_Recall_mean": 0.7333,
+    "Citation_Recall_std": 0.0236,
+    "Coverage_mean": 0.8,
+    "Unsupported_Rate_mean": 0.085,
+    "Error_Taxonomy": {
+      "retrieval_miss": 38,
+      "wrong_provision": 14,
+      "unsupported_claim": 5,
+      "over_refusal": 2,
+      "budget_exhausted": 0,
+      "parse_error": 0
+    },
+    "Latency": {
+      "p50_ms": 6.44,
+      "p95_ms": 23300.82
+    },
+    "Compute_Cost_USD": 0.0
+  },
+  "luatcheck_l1_on": {
+    "mode": "l1_on",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.0,
+    "Recall@1_std": 0.0,
+    "Recall@5_mean": 0.0,
+    "Recall@5_std": 0.0,
+    "MRR_mean": 0.0,
+    "Citation_Precision_mean": 0.75,
+    "Citation_Precision_std": 0.0,
+    "Citation_Recall_mean": 0.75,
+    "Citation_Recall_std": 0.0,
+    "Coverage_mean": 0.85,
+    "Unsupported_Rate_mean": 0.001,
+    "Error_Taxonomy": {
+      "retrieval_miss": 45,
+      "wrong_provision": 15,
+      "unsupported_claim": 6,
+      "over_refusal": 0,
+      "budget_exhausted": 0,
+      "parse_error": 0
+    },
+    "Latency": {
+      "p50_ms": 4.77,
+      "p95_ms": 227.56
+    },
+    "Compute_Cost_USD": 0.0
+  },
+  "luatcheck_l1_l2_on": {
+    "mode": "l1_l2_on",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.0,
+    "Recall@1_std": 0.0,
+    "Recall@5_mean": 0.0,
+    "Recall@5_std": 0.0,
+    "MRR_mean": 0.0,
+    "Citation_Precision_mean": 0.75,
+    "Citation_Precision_std": 0.0,
+    "Citation_Recall_mean": 0.75,
+    "Citation_Recall_std": 0.0,
+    "Coverage_mean": 0.85,
+    "Unsupported_Rate_mean": 0.0,
+    "Error_Taxonomy": {
+      "retrieval_miss": 45,
+      "wrong_provision": 15,
+      "unsupported_claim": 6,
+      "over_refusal": 0,
+      "budget_exhausted": 0,
+      "parse_error": 0
+    },
+    "Latency": {
+      "p50_ms": 4.96,
+      "p95_ms": 310.49
+    },
+    "Compute_Cost_USD": 0.0
+  }
+}

@@ -1,16 +1,17 @@
 """
 LuatCheck Budgeted ReAct Agent Loop
-Vòng lặp suy luận - hành động có giới hạn ngân sách và xác thực căn cứ L1
+Vòng lặp suy luận - hành động có giới hạn ngân sách và xác thực căn cứ pháp lý L1 & L2
 """
 import json
 import time
 import requests
-from typing import Dict, Any, Optional, List, Tuple
+from typing import Dict, Any, Optional, List, Tuple, Literal
 
 from src.agent.state import ActionType, AgentAction, CaseLedger, Citation
 from src.agent.prompts import SYSTEM_PROMPT, REPAIR_PROMPT_TEMPLATE
 from src.tools.legal_tools import LegalToolRegistry
 from src.verifier.l1_deterministic import L1EvidenceVerifier
+from src.verifier.l2_semantic import L2SemanticEntailmentVerifier
 from src.memory.ledger import CaseLedgerManager
 from src.memory.sqlite_store import SQLiteEpisodicStore
 from src.security.guardrails import SecurityGuardrails
@@ -25,17 +26,31 @@ class LuatCheckAgent:
         corpus_path: str = "data/corpus/labor_code_2019.json",
         max_tool_calls: int = 5,
         max_repairs: int = 2,
-        enable_verification: bool = True
+        verification_mode: str = "l1_only",
+        enable_verification: Optional[bool] = None
     ):
         self.model_name = model_name
         self.ollama_url = ollama_url
         self.max_tool_calls = max_tool_calls
         self.max_repairs = max_repairs
-        self.enable_verification = enable_verification
+
+        # Xử lý tương thích ngược giữa enable_verification và verification_mode
+        if enable_verification is False:
+            self.verification_mode = "off"
+        elif enable_verification is True and verification_mode == "off":
+            self.verification_mode = "l1_only"
+        else:
+            self.verification_mode = verification_mode
+
+        self.enable_verification = (self.verification_mode != "off")
 
         # Khởi tạo các hệ thống con
         self.tool_registry = LegalToolRegistry(corpus_path=corpus_path)
         self.verifier = L1EvidenceVerifier(self.tool_registry.retriever.corpus)
+        self.l2_verifier = L2SemanticEntailmentVerifier(
+            self.tool_registry.retriever.corpus,
+            entailment_threshold=0.30
+        )
         self.sqlite_store = SQLiteEpisodicStore()
         self.audit_logger = AuditLogger()
 
@@ -59,7 +74,7 @@ class LuatCheckAgent:
                 data = resp.json()
                 raw_content = data.get("message", {}).get("content", "{}")
                 return json.loads(raw_content)
-        except Exception as e:
+        except Exception:
             # Fallback nếu Ollama mất kết nối
             pass
 
@@ -72,7 +87,7 @@ class LuatCheckAgent:
         last_msg = messages[-1]["content"]
         # Phân tích xem đã search chưa
         has_search = any("search_law" in m.get("content", "") for m in messages)
-        has_repair = any("CẢNH BÁO TỪ HỆ THỐNG" in m.get("content", "") for m in messages)
+        has_repair = any("CẢNH BÁO TỪ HỆ THỐNG" in m.get("content", "") or "CẢNH BÁO XÁC THỰC" in m.get("content", "") for m in messages)
 
         if has_repair:
             return {
@@ -101,6 +116,8 @@ class LuatCheckAgent:
         start_time = time.time()
         sid = session_id or f"session_{int(time.time() * 1000)}"
         ledger = CaseLedgerManager.create_session(sid, user_query, [pasted_doc] if pasted_doc else [])
+        ledger.max_tool_calls = self.max_tool_calls
+        ledger.max_repairs = self.max_repairs
 
         # 1. Gác cổng an ninh (Security Guardrails Check)
         is_safe, safety_msg = SecurityGuardrails.check_input_safety(user_query, pasted_doc)
@@ -115,19 +132,109 @@ class LuatCheckAgent:
             self.audit_logger.log_event(sid, "security_refusal", {"query": user_query, "reason": safety_msg})
             return ledger
 
-        # 2. Kiểm tra bộ nhớ dài hạn (Episodic Store Check)
+        # 2. Kiểm tra bộ nhớ dài hạn (Episodic Store Check) & Tái xác thực Cache
         cached_case = self.sqlite_store.retrieve_similar_case(user_query)
         if cached_case:
-            ledger.is_terminal = True
-            ledger.terminal_status = "answered"
-            ledger.final_output = {
-                "action": "answer",
-                "content": cached_case["answer"],
-                "citations": cached_case["citations"],
-                "from_cache": True
-            }
-            self.audit_logger.log_event(sid, "cache_hit", {"case_id": cached_case["case_id"]})
-            return ledger
+            # 2.1 Phục hồi danh sách điều luật đã truy xuất
+            raw_article_ids = cached_case.get("article_ids", "")
+            if isinstance(raw_article_ids, str):
+                cached_article_ids = [aid.strip() for aid in raw_article_ids.split(",") if aid.strip()]
+            elif isinstance(raw_article_ids, (list, tuple, set)):
+                cached_article_ids = [str(aid).strip() for aid in raw_article_ids if str(aid).strip()]
+            else:
+                cached_article_ids = []
+
+            # Chuẩn hóa trích dẫn thành đối tượng Citation để L1 verifier có thể đọc
+            raw_citations = cached_case.get("citations", [])
+            cached_citations = [
+                Citation(**c) if isinstance(c, dict) else Citation(article_id=str(c))
+                for c in raw_citations
+            ]
+
+            # Bổ sung các article_id từ citations vào danh sách retrieved nếu chưa có
+            for c in cached_citations:
+                if c.article_id and c.article_id not in cached_article_ids:
+                    cached_article_ids.append(c.article_id)
+
+            # Nạp vào ledger short-term memory
+            for aid in cached_article_ids:
+                art = self.tool_registry.retriever.get_article_by_id(aid)
+                content = art.get("content", "") if art else ""
+                CaseLedgerManager.add_retrieved_article(ledger, aid, content)
+
+            # 2.2 Tái xác thực căn cứ pháp lý L1 & L2 trước khi tái sử dụng (Cache Re-Verification)
+            is_cache_valid = True
+            cache_feedback = None
+
+            if self.verification_mode in ["l1", "l1_only", "l1_on"]:
+                l1_res = self.verifier.verify(
+                    answer_text=cached_case["answer"],
+                    citations=cached_citations,
+                    retrieved_article_ids=ledger.retrieved_article_ids
+                )
+                if not l1_res.is_valid:
+                    is_cache_valid = False
+                    cache_feedback = l1_res.repair_feedback
+
+            elif self.verification_mode in ["l1_l2", "l1_l2_on"]:
+                l1_res = self.verifier.verify(
+                    answer_text=cached_case["answer"],
+                    citations=cached_citations,
+                    retrieved_article_ids=ledger.retrieved_article_ids
+                )
+                if not l1_res.is_valid:
+                    is_cache_valid = False
+                    cache_feedback = l1_res.repair_feedback
+                else:
+                    cit_ids = [c.article_id for c in cached_citations]
+                    l2_res = self.l2_verifier.verify_all_claims(cached_case["answer"], cit_ids)
+                    if not l2_res.get("is_entailed", False):
+                        is_cache_valid = False
+                        failed_claims = l2_res.get("failed_claims", [])
+                        failed_sentences = [f["sentence"] for f in failed_claims]
+                        cache_feedback = (
+                            f"L2 SEMANTIC VERIFIER REJECTED (Cache): Phát hiện {len(failed_sentences)} câu khẳng định "
+                            f"chưa đạt căn cứ kéo theo ngữ nghĩa:\n"
+                            + "\n".join(f"- \"{s}\"" for s in failed_sentences[:2])
+                        )
+
+            # 2.3 Xử lý kết quả tái xác thực cache
+            if is_cache_valid:
+                ledger.is_terminal = True
+                ledger.terminal_status = "answered"
+                ledger.final_output = {
+                    "action": "answer",
+                    "content": cached_case["answer"],
+                    "citations": [c.model_dump() if hasattr(c, "model_dump") else c.dict() for c in cached_citations],
+                    "from_cache": True,
+                    "verified": (self.verification_mode != "off")
+                }
+                elapsed_ms = (time.time() - start_time) * 1000
+                self.audit_logger.log_event(
+                    sid,
+                    "cache_hit",
+                    {
+                        "case_id": cached_case.get("case_id"),
+                        "verified": True,
+                        "article_ids": ledger.retrieved_article_ids,
+                        "citations_count": len(cached_citations)
+                    },
+                    latency_ms=elapsed_ms
+                )
+                return ledger
+            else:
+                # Nếu xác thực thất bại: ghi log cảnh báo và Fallback sang vòng lặp ReAct bình thường
+                self.audit_logger.log_event(
+                    sid,
+                    "cache_verification_failed",
+                    {
+                        "case_id": cached_case.get("case_id"),
+                        "feedback": cache_feedback
+                    }
+                )
+                # Dọn sạch danh sách retrieved tạm thời để ReAct loop bắt đầu truy xuất mới
+                ledger.retrieved_article_ids = []
+                ledger.retrieved_articles_cache = {}
 
         # 3. Chuẩn bị ngữ cảnh cho LLM
         wrapped_input = SecurityGuardrails.wrap_untrusted_input(user_query, pasted_doc)
@@ -144,7 +251,7 @@ class LuatCheckAgent:
                 ledger.terminal_status = "refused"
                 ledger.final_output = {
                     "action": "refuse",
-                    "reason": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ mà chưa hoàn tất xác thực.",
+                    "reason": f"Hệ thống đã sử dụng hết ngân sách {self.max_tool_calls} lượt gọi công cụ mà chưa hoàn tất xác thực.",
                     "citations": []
                 }
                 break
@@ -163,7 +270,8 @@ class LuatCheckAgent:
                 # Lưu vào cache ledger
                 for art in tool_res.get("articles", []):
                     CaseLedgerManager.add_retrieved_article(ledger, art["article_id"], art["content_snippet"])
-                
+                CaseLedgerManager.add_query(ledger, q)
+
                 ledger.record_tool_call("search_law", tool_args, f"Tìm thấy {len(tool_res.get('articles', []))} điều luật")
                 messages.append({"role": "assistant", "content": json.dumps(agent_resp, ensure_ascii=False)})
                 messages.append({"role": "user", "content": f"[OBSERVATION_TOOL_RESULT]\n{json.dumps(tool_res, ensure_ascii=False)}"})
@@ -183,40 +291,70 @@ class LuatCheckAgent:
                 raw_citations = tool_args.get("citations", [])
                 citations = [Citation(**c) if isinstance(c, dict) else Citation(article_id=str(c)) for c in raw_citations]
 
-                # BƯỚC XÁC THỰC CĂN CỨ PHÁP LÝ L1
-                if self.enable_verification:
+                # BƯỚC XÁC THỰC CĂN CỨ PHÁP LÝ (3-WAY ABLATION CONTRACT)
+                verif_valid = True
+                repair_feedback = None
+
+                if self.verification_mode == "off":
+                    verif_valid = True
+                    repair_feedback = None
+                elif self.verification_mode in ["l1", "l1_only", "l1_on"]:
                     l1_res = self.verifier.verify(
                         answer_text=answer_content,
                         citations=citations,
                         retrieved_article_ids=ledger.retrieved_article_ids
                     )
-                else:
-                    # Ablation: Tắt verification
-                    from src.agent.state import L1VerificationResult
-                    l1_res = L1VerificationResult(is_valid=True)
+                    verif_valid = l1_res.is_valid
+                    repair_feedback = l1_res.repair_feedback
+                elif self.verification_mode in ["l1_l2", "l1_l2_on"]:
+                    l1_res = self.verifier.verify(
+                        answer_text=answer_content,
+                        citations=citations,
+                        retrieved_article_ids=ledger.retrieved_article_ids
+                    )
+                    if not l1_res.is_valid:
+                        verif_valid = False
+                        repair_feedback = l1_res.repair_feedback
+                    else:
+                        cit_ids = [c.article_id for c in citations]
+                        l2_res = self.l2_verifier.verify_all_claims(answer_content, cit_ids)
+                        if not l2_res.get("is_entailed", False):
+                            verif_valid = False
+                            failed_claims = l2_res.get("failed_claims", [])
+                            failed_sentences = [f["sentence"] for f in failed_claims]
+                            repair_feedback = (
+                                f"CẢNH BÁO XÁC THỰC L2 (Ngữ nghĩa): Phát hiện {len(failed_sentences)} câu khẳng định "
+                                f"chưa đạt căn cứ kéo theo ngữ nghĩa (entailment score < {self.l2_verifier.entailment_threshold}):\n"
+                                + "\n".join(f"- \"{s}\"" for s in failed_sentences[:2])
+                            )
+                        else:
+                            verif_valid = True
+                            repair_feedback = None
 
-                if l1_res.is_valid:
+                if verif_valid:
                     ledger.is_terminal = True
                     ledger.terminal_status = "answered"
+                    citations_dicts = [c.model_dump() if hasattr(c, "model_dump") else c.dict() for c in citations]
                     ledger.final_output = {
                         "action": "answer",
                         "content": answer_content,
-                        "citations": [c.dict() for c in citations],
-                        "verified": True
+                        "citations": citations_dicts,
+                        "verified": (self.verification_mode != "off")
                     }
-                    # Lưu vào SQLite Episodic Store
-                    self.sqlite_store.write_if_verified(
-                        case_id=sid,
-                        query=user_query,
-                        answer=answer_content,
-                        citations=[c.dict() for c in citations],
-                        is_l1_verified=True
-                    )
+                    # Lưu vào SQLite Episodic Store (chỉ ghi khi kết quả được xác thực)
+                    if self.verification_mode != "off":
+                        self.sqlite_store.write_if_verified(
+                            case_id=sid,
+                            query=user_query,
+                            answer=answer_content,
+                            citations=citations_dicts,
+                            is_l1_verified=True
+                        )
                 else:
-                    # Xử lý khi xác thực L1 thất bại -> Kích hoạt Targeted Repair
+                    # Xử lý khi xác thực L1/L2 thất bại -> Kích hoạt Targeted Repair
                     if ledger.can_repair():
-                        ledger.record_repair(l1_res.repair_feedback)
-                        repair_prompt = REPAIR_PROMPT_TEMPLATE.format(repair_feedback=l1_res.repair_feedback)
+                        ledger.record_repair(repair_feedback)
+                        repair_prompt = REPAIR_PROMPT_TEMPLATE.format(repair_feedback=repair_feedback)
                         messages.append({"role": "assistant", "content": json.dumps(agent_resp, ensure_ascii=False)})
                         messages.append({"role": "user", "content": repair_prompt})
                     else:
@@ -225,7 +363,7 @@ class LuatCheckAgent:
                         ledger.terminal_status = "refused"
                         ledger.final_output = {
                             "action": "refuse",
-                            "reason": f"Không thể xác thực căn cứ pháp lý sau {self.max_repairs} lần thử sửa chữa. Chi tiết vi phạm: {l1_res.repair_feedback}",
+                            "reason": f"Không thể xác thực căn cứ pháp lý sau {self.max_repairs} lần thử sửa chữa. Chi tiết vi phạm: {repair_feedback}",
                             "citations": []
                         }
 
