@@ -5,7 +5,7 @@ Ghi nhận toàn bộ vết kiểm toán (Audit Trail) định dạng JSON Lines
 import json
 import os
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, Optional
 
 
@@ -23,7 +23,7 @@ class AuditLogger:
         token_count: Optional[int] = None
     ):
         record = {
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "epoch": time.time(),
             "session_id": session_id,
             "event_type": event_type,

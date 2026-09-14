@@ -1,4 +1,4 @@
-.PHONY: test eval eval_d3 redteam demo report report_d2 report_d3 all
+.PHONY: test eval eval_d3 redteam demo report report_d2 report_d3 clean all
 
 all: test eval_d3 redteam report
 
@@ -24,3 +24,8 @@ report_d2:
 
 report_d3:
 	cd report_d3 && pdflatex -interaction=nonstopmode main_d3.tex && bibtex main_d3 && pdflatex -interaction=nonstopmode main_d3.tex && pdflatex -interaction=nonstopmode main_d3.tex
+
+clean:
+	find . -type d -name "__pycache__" -exec rm -rf {} +
+	find . -type d -name ".pytest_cache" -exec rm -rf {} +
+	find report_d2 report_d3 -type f \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.bbl" -o -name "*.blg" \) -delete 2>/dev/null || true

@@ -7,6 +7,7 @@ import pytest
 import sqlite3
 import json
 import uuid
+import requests
 from unittest.mock import patch
 from src.agent.loop import LuatCheckAgent
 from src.agent.state import ActionType, Citation
@@ -45,13 +46,15 @@ def test_agent_direct_injection_blocked(agent_default):
     assert ledger.tool_calls_count == 0
 
 
-def test_agent_rule_based_fallback_end_to_end(agent_default):
+def test_agent_rule_based_fallback_end_to_end(clean_agent):
     """
     R1 & R8: Kiểm tra quy trình ReAct hoạt động hoàn chỉnh ngay cả ở chế độ offline
     (rule-based fallback khi Ollama không kết nối).
     """
+    import requests
     unique_q = f"Quy định về thử việc đối với kỹ sư cơ khí mã số {uuid.uuid4().hex[:8]} như thế nào?"
-    ledger = agent_default.run(unique_q, session_id="test_rule_based_e2e")
+    with patch("requests.post", side_effect=requests.exceptions.ConnectionError("Offline")):
+        ledger = clean_agent.run(unique_q, session_id="test_rule_based_e2e")
 
     assert ledger.is_terminal is True
     # Chu trình: search_law -> answer/clarify/refuse
@@ -223,7 +226,8 @@ def test_cache_hit_invalid_citation_fallback(clean_agent):
         ))
         conn.commit()
 
-    ledger = clean_agent.run(query)
+    with patch("requests.post", side_effect=requests.exceptions.ConnectionError("Offline")):
+        ledger = clean_agent.run(query)
 
     # Không được chấp nhận câu trả lời bịa đặt từ cache
     assert ledger.final_output.get("from_cache") is not True
