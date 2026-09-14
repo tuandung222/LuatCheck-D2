@@ -147,6 +147,7 @@ def test_error_analyzer_budget_exhausted():
     }
     ledger = MockLedger(
         retrieved_article_ids=["Dieu_25"],
+        terminal_status="refused",
         tool_calls_count=5,
         repairs_count=2
     )

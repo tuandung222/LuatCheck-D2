@@ -5,7 +5,7 @@ The LuatCheck testing infrastructure implements an enterprise-grade **Dual-Track
 - **Track A (Deterministic Unit & Boundary Verification)**: Exhaustively tests single-component integrity, statutory corpus adherence, regex boundary invariants, and edge cases.
 - **Track B (Systemic Integration & Workload Stress)**: Tests cross-module contracts, FSM state preservation under adversarial mutation, air-gap offline operational envelopes, and real-world Vietnamese legal dispute workloads.
 
-The test harness is executed natively via `pytest` with 414 passing automated tests, integrated into the repository build system via `Makefile` (`make test`, `make eval`, `make redteam`).
+The test harness is executed natively via `pytest` with 459 passing automated tests across 17 test suites, integrated into the repository build system via `Makefile` (`make test`, `make eval`, `make redteam`).
 
 ```
 +--------------------------------------------------------------------------------------------------+
@@ -32,21 +32,24 @@ The test suite resides in `tests/` and maps directly to the system components:
 
 | Test File | Primary Scope | Test Count | Key Modules Exercised |
 |:---|:---|:---:|:---|
+| `tests/test_adversarial_guardrails.py` | Boundary evasion, zero-width, fullwidth brackets | 38 | `src/security/guardrails.py` |
+| `tests/test_adversarial_memory.py` | Adversarial PII mutations, cache re-verification | 48 | `src/memory/sqlite_store.py`, `src/agent/loop.py` |
+| `tests/test_agent_loop.py` | ReAct FSM transitions, budget caps, ablation | 9 | `src/agent/loop.py`, `src/agent/state.py` |
+| `tests/test_challenger_m1_4_security.py` | Evasion stress & false positive validation | 125 | `src/security/guardrails.py` |
+| `tests/test_challenger_m1_iter2.py` | Multi-iteration regression guard | 57 | `src/security/guardrails.py` |
+| `tests/test_challenger_m3.py` | M3 Error diagnostics, boundary values & statutory compliance | 14 | `evaluation/error_analyzer.py`, `src/verifier/` |
+| `tests/test_challenger_m4.py` | M4 Multi-seed metric consistency & poisoned shard defenses | 18 | `evaluation/error_analyzer.py`, `src/verifier/` |
+| `tests/test_challenger_m5.py` | M5 LaTeX report compilation & empirical table fidelity | 13 | `report_d2/`, `evaluation/`, `redteam/` |
+| `tests/test_error_analyzer.py` | 6-mode failure taxonomy & diagnostic statistics | 9 | `evaluation/error_analyzer.py` |
+| `tests/test_l2_verifier.py` | L2 Semantic Entailment (NLI) & TF-IDF/SLM comparator | 34 | `src/verifier/l2_semantic.py` |
 | `tests/test_mcp_tools.py` | MCP tool definitions & permission gating | 4 | `src/tools/legal_tools.py`, `src/tools/permissions.py` |
-| `tests/test_verifier.py` | L1 deterministic verifier & baseline L2 | 4 | `src/verifier/l1_deterministic.py`, `src/verifier/l2_semantic.py` |
-| `tests/test_l2_verifier.py` | L2 Semantic Entailment (NLI) & TF-IDF/SLM | 19 | `src/verifier/l2_semantic.py` |
 | `tests/test_memory.py` | Dual-tier memory & PDPL 2025 PII sanitization | 9 | `src/memory/sqlite_store.py`, `src/memory/ledger.py` |
-| `tests/test_adversarial_memory.py` | Adversarial PII mutations, cache re-verification | 38 | `src/memory/sqlite_store.py`, `src/agent/loop.py` |
-| `tests/test_security.py` | Guardrail regex patterns, sanitization, utility | 29 | `src/security/guardrails.py`, `evaluation/metrics.py` |
-| `tests/test_adversarial_guardrails.py` | Boundary evasion, zero-width, fullwidth brackets | 44 | `src/security/guardrails.py` |
-| `tests/test_challenger_m1_4_security.py`| Evasion stress & false positive validation | 49 | `src/security/guardrails.py` |
-| `tests/test_challenger_m1_iter2.py` | Multi-iteration regression guard | 1 | `src/security/guardrails.py` |
-| `tests/test_agent_loop.py` | ReAct FSM transitions, budget caps, ablation | 10 | `src/agent/loop.py`, `src/agent/state.py` |
-| `tests/test_error_analyzer.py` | 6-mode failure taxonomy & diagnostics | 12 | `evaluation/error_analyzer.py` |
-| `tests/test_offline.py` | Air-gap offline verification (no network calls) | 1 | `src/agent/loop.py`, all core modules |
+| `tests/test_offline.py` | Air-gap offline verification (zero network calls) | 1 | `src/agent/loop.py`, all core modules |
+| `tests/test_security.py` | Guardrail regex patterns, sanitization, utility | 43 | `src/security/guardrails.py`, `evaluation/metrics.py` |
 | `tests/test_ui.py` | Streamlit UI columns, traces, HITL modal | 12 | `src/ui/app.py` |
-| `tests/test_ui_stress.py` | UI sentence grounding, SHA256 idempotency | 20 | `src/ui/app.py`, `src/tools/legal_tools.py` |
-| **Total Automated Tests** | **Comprehensive Full System Coverage** | **414** | **100% Passing (`pytest tests/ -v`)** |
+| `tests/test_ui_stress.py` | UI sentence grounding, SHA256 idempotency & rendering | 21 | `src/ui/app.py`, `src/tools/legal_tools.py` |
+| `tests/test_verifier.py` | L1 deterministic verifier & baseline L2 verification | 4 | `src/verifier/l1_deterministic.py`, `src/verifier/l2_semantic.py` |
+| **Total Automated Tests** | **Comprehensive Full System Dual-Track Harness** | **459** | **100% Passing (`pytest tests/ -v`)** |
 
 ---
 

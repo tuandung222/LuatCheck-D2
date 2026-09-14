@@ -200,10 +200,15 @@ class ErrorDiagnosticAnalyzer:
             )
             self.case_studies.append(cs)
 
-        # 5. budget_exhausted: Exceeded 5 tool calls or 2 repairs
+        # 5. budget_exhausted: Exceeded or reached 5 tool calls or 2 repairs
         max_tools = getattr(ledger, "max_tool_calls", 5) if ledger else 5
         max_rep = getattr(ledger, "max_repairs", 2) if ledger else 2
-        if tool_calls_count >= max_tools or repairs_count >= max_rep:
+        is_budget_exhausted = (
+            tool_calls_count >= max_tools or
+            repairs_count >= max_rep or
+            bool(ledger and getattr(ledger, "terminal_status", None) == "refused" and "ngân sách" in str(getattr(ledger, "final_output", "")).lower())
+        )
+        if is_budget_exhausted:
             detected_modes.append("budget_exhausted")
             cs = CaseStudy(
                 task_id=task_id,

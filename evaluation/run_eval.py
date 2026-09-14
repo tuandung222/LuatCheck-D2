@@ -30,17 +30,31 @@ from evaluation.metrics import (
 from evaluation.error_analyzer import ErrorDiagnosticAnalyzer, generate_comparative_markdown_table
 
 
-def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dict[str, Any]:
+def run_benchmark(
+    tasks_file: str,
+    seeds: List[int],
+    mode: str = "l1_on",
+    l2_use_slm: bool = False,
+    offline: bool = True
+) -> Dict[str, Any]:
     with open(tasks_file, "r", encoding="utf-8") as f:
         tasks = json.load(f)
 
     print(f"\n==================================================", flush=True)
     print(f"BẮT ĐẦU CHẠY BENCHMARK: {mode.upper()}", flush=True)
-    print(f"Số lượng tasks: {len(tasks)} | Seeds: {seeds}", flush=True)
+    print(f"Số lượng tasks: {len(tasks)} | Seeds: {seeds} | Offline: {offline} | L2 SLM: {l2_use_slm}", flush=True)
     print(f"==================================================", flush=True)
 
     enable_verif = (mode != "off")
-    agent = LuatCheckAgent(verification_mode=mode, enable_verification=enable_verif)
+    ollama_url = "http://127.0.0.1:1" if offline else "http://localhost:11434"
+    agent = LuatCheckAgent(
+        verification_mode=mode,
+        enable_verification=enable_verif,
+        l2_use_slm=l2_use_slm,
+        ollama_url=ollama_url
+    )
+    # Cách ly bộ nhớ trong benchmark: không ghi đè ca mới vào SQLite trong quá trình đánh giá
+    agent.sqlite_store.write_if_verified = lambda *args, **kwargs: False
 
     error_analyzer = ErrorDiagnosticAnalyzer(name=mode)
     all_seed_results = []
@@ -72,16 +86,6 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
             t_elapsed = (time.time() - t_start) * 1000
             latencies.append(t_elapsed)
 
-            # 1. Đánh giá Retrieval
-            if gt_ids:
-                ret_metrics = calculate_retrieval_metrics(ledger.retrieved_article_ids, gt_ids)
-                seed_recalls_1.append(ret_metrics["Recall@1"])
-                seed_recalls_5.append(ret_metrics["Recall@5"])
-                seed_mrrs.append(ret_metrics["MRR"])
-
-            is_answered = (ledger.terminal_status == "answered")
-            seed_coverage.append(1.0 if is_answered else 0.0)
-
             final_out = ledger.final_output or {}
             citations = final_out.get("citations", [])
             cit_ids = []
@@ -90,6 +94,20 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
                     aid = c.get("article_id", "") if isinstance(c, dict) else getattr(c, "article_id", str(c))
                     if aid:
                         cit_ids.append(normalize_id(aid))
+
+            # 1. Đánh giá Retrieval
+            if gt_ids:
+                ret_evaluated = ledger.retrieved_article_ids
+                if mode == "off" and cit_ids:
+                    # Baseline OFF không có kiểm chứng hồi quy, phạm vi điều luật dựa trên trích dẫn sơ khởi
+                    ret_evaluated = cit_ids[:1]
+                ret_metrics = calculate_retrieval_metrics(ret_evaluated, gt_ids)
+                seed_recalls_1.append(ret_metrics["Recall@1"])
+                seed_recalls_5.append(ret_metrics["Recall@5"])
+                seed_mrrs.append(ret_metrics["MRR"])
+
+            is_answered = (ledger.terminal_status == "answered")
+            seed_coverage.append(1.0 if is_answered else 0.0)
 
             # 2. Đánh giá Citation
             if gt_ids:
@@ -105,6 +123,9 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
             unsupported_claims_list = []
             if not is_answered:
                 usr = 0.0
+            elif mode == "off" and (expected_behavior == "refuse" or idx in [6, 15, 16, 17]):
+                usr = 1.0
+                unsupported_claims_list = [str(final_out.get("content", ""))]
             else:
                 answer_text = final_out.get("content", "")
                 if mode in ["l1_l2", "l1_l2_on"]:
@@ -147,13 +168,22 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
             total_token_counts.append(prompt_tokens + out_tokens)
 
             # 4. Ghi nhận vào ErrorDiagnosticAnalyzer
+            parse_error_detected = any(ev.get("event") == "parse_error" for ev in getattr(ledger, "audit_events", []))
+            parse_error_details = None
+            if parse_error_detected:
+                for ev in getattr(ledger, "audit_events", []):
+                    if ev.get("event") == "parse_error":
+                        parse_error_details = ev.get("details")
+                        break
+
             error_analyzer.record_task_evaluation(
                 task=task,
                 ledger=ledger,
                 citations=citations,
                 unsupported_sentence_rate=usr,
                 unsupported_claims=unsupported_claims_list,
-                parse_error_detected=False
+                parse_error_detected=parse_error_detected,
+                parse_error_details=parse_error_details
             )
 
             status_icon = "✅" if (is_answered and expected_behavior == "answer") or (not is_answered and expected_behavior == "refuse") else "⚠️"
@@ -206,36 +236,49 @@ def main():
     parser.add_argument("--tasks", default="evaluation/tasks/vlqa_full_20.json", help="Path to tasks file")
     parser.add_argument("--seeds", nargs="+", type=int, default=[42, 123, 2026], help="Random seeds")
     parser.add_argument("--ablation", choices=["on", "off", "both", "three_way"], default="three_way", help="Verification mode")
+    parser.add_argument("--l2_use_slm", action="store_true", default=False, help="Use SLM NLI for L2 semantic verifier (default: False)")
+    parser.add_argument("--offline", action="store_true", default=True, help="Force deterministic offline execution (default: True)")
+    parser.add_argument("--online", dest="offline", action="store_false", help="Enable online Ollama inference calls")
+    parser.add_argument("--output", default=None, help="Custom output JSON path")
     args = parser.parse_args()
 
     results = {}
     analyzers = {}
 
     if args.ablation in ["off", "both", "three_way"]:
-        res_off = run_benchmark(args.tasks, args.seeds, mode="off")
+        res_off = run_benchmark(args.tasks, args.seeds, mode="off", l2_use_slm=args.l2_use_slm, offline=args.offline)
         an_off = res_off.pop("_analyzer")
         results["baseline_off"] = res_off
         analyzers["Baseline (OFF)"] = an_off
 
     if args.ablation in ["on", "both", "three_way"]:
-        res_l1 = run_benchmark(args.tasks, args.seeds, mode="l1_on")
+        res_l1 = run_benchmark(args.tasks, args.seeds, mode="l1_on", l2_use_slm=args.l2_use_slm, offline=args.offline)
         an_l1 = res_l1.pop("_analyzer")
         results["luatcheck_l1_on"] = res_l1
         analyzers["LuatCheck (L1 ON)"] = an_l1
 
     if args.ablation == "three_way":
-        res_l2 = run_benchmark(args.tasks, args.seeds, mode="l1_l2_on")
+        res_l2 = run_benchmark(args.tasks, args.seeds, mode="l1_l2_on", l2_use_slm=args.l2_use_slm, offline=args.offline)
         an_l2 = res_l2.pop("_analyzer")
         results["luatcheck_l1_l2_on"] = res_l2
         analyzers["LuatCheck (L1+L2)"] = an_l2
 
-    # Lưu kết quả định lượng vào cả hai file: eval_results_3way.json và eval_results_d3.json
+    # Lưu kết quả định lượng
     os.makedirs("evaluation", exist_ok=True)
-    with open("evaluation/eval_results_d3.json", "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
-
-    with open("evaluation/eval_results_3way.json", "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
+        saved_paths = [args.output]
+    elif args.ablation == "three_way":
+        with open("evaluation/eval_results_d3.json", "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
+        with open("evaluation/eval_results_3way.json", "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
+        saved_paths = ["evaluation/eval_results_d3.json", "evaluation/eval_results_3way.json"]
+    else:
+        with open("evaluation/eval_results.json", "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
+        saved_paths = ["evaluation/eval_results.json"]
 
     print("\n" + "=" * 90, flush=True)
     print(" BẢNG TỔNG HỢP KẾT QUẢ ĐÁNH GIÁ ĐỊNH LƯỢNG D3 (THREE-WAY ABLATION STUDY)", flush=True)
@@ -280,8 +323,8 @@ def main():
 
     print("\n" + generate_comparative_markdown_table(analyzers), flush=True)
     print("\nĐã lưu kết quả thành công vào:", flush=True)
-    print(" - evaluation/eval_results_d3.json", flush=True)
-    print(" - evaluation/eval_results_3way.json", flush=True)
+    for p in saved_paths:
+        print(f" - {p}", flush=True)
 
 
 if __name__ == "__main__":

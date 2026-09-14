@@ -227,6 +227,8 @@ class TestHitlSha256Idempotency:
     def test_ui_column3_duplicate_suppression(self):
         """Executing send_summary twice with identical parameters triggers duplicate suppression error in UI."""
         st.cache_resource.clear()
+        st.cache_data.clear()
+        st.session_state.clear()
         at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
         
         # Check confirmation checkbox

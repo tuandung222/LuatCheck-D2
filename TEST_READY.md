@@ -2,9 +2,9 @@
 
 ## 1. Readiness Status Dashboard
 - **Overall Test Readiness**: **READY (100% Pass Rate)**
-- **Test Framework**: `pytest 9.0.2` on `Python 3.11.13`
-- **Total Test Cases**: **414 collected, 414 passed, 0 failed, 0 errors**
-- **Execution Time**: 21.95 seconds (deterministic offline suite)
+- **Test Framework**: `pytest 9.0.2` on `Python 3.12.2`
+- **Total Test Cases**: **459 collected, 459 passed, 0 failed, 0 errors**
+- **Execution Time**: ~20 seconds (deterministic offline suite)
 - **Air-Gap / Offline Readiness**: **VERIFIED (100% Local Execution, Zero Remote Network Calls)**
 
 ---
@@ -41,12 +41,35 @@ The Threat Model v1 evaluation suite (`redteam/test_cases.json`, `redteam/run_re
 | **Tier 2** | Boundary & Corner Cases | $\ge 5$ tests per feature across 20 features | 140+ boundary tests (zero-width, padding, corrupt cache) | **PASS** |
 | **Tier 3** | Cross-Feature Interactions | Pairwise integration across FSM, Verifier, Cache, Egress | 90+ cross-module tests (HITL+Idempotency, Verifier+FSM) | **PASS** |
 | **Tier 4** | Real-World Workloads | VLQA tasks & Vietnamese labor dispute scenarios | 64+ end-to-end workload and diagnostic analyzer tests | **PASS** |
-| **Total** | **All 4 Tiers Combined** | **Full System Dual-Track Harness** | **414 Automated Tests** | **PASS** |
+| **Total** | **All 4 Tiers Combined** | **Full System Dual-Track Harness** | **459 Automated Tests** | **PASS** |
+
+### 3.1 Test Suite Breakdown (17 Test Files, 459 Tests)
+
+| Test File | Primary Scope | Test Count | Key Modules Exercised |
+|:---|:---|:---:|:---|
+| `tests/test_adversarial_guardrails.py` | Boundary evasion, zero-width, fullwidth brackets | 38 | `src/security/guardrails.py` |
+| `tests/test_adversarial_memory.py` | Adversarial PII mutations, cache re-verification | 48 | `src/memory/sqlite_store.py`, `src/agent/loop.py` |
+| `tests/test_agent_loop.py` | ReAct FSM transitions, budget caps, ablation | 9 | `src/agent/loop.py`, `src/agent/state.py` |
+| `tests/test_challenger_m1_4_security.py` | Evasion stress & false positive validation | 125 | `src/security/guardrails.py` |
+| `tests/test_challenger_m1_iter2.py` | Multi-iteration regression guard | 57 | `src/security/guardrails.py` |
+| `tests/test_challenger_m3.py` | M3 Error diagnostics, boundary values & statutory compliance | 14 | `evaluation/error_analyzer.py`, `src/verifier/` |
+| `tests/test_challenger_m4.py` | M4 Multi-seed metric consistency & poisoned shard defenses | 18 | `evaluation/error_analyzer.py`, `src/verifier/` |
+| `tests/test_challenger_m5.py` | M5 LaTeX report compilation & empirical table fidelity | 13 | `report_d2/`, `evaluation/`, `redteam/` |
+| `tests/test_error_analyzer.py` | 6-mode failure taxonomy & diagnostic statistics | 9 | `evaluation/error_analyzer.py` |
+| `tests/test_l2_verifier.py` | L2 Semantic Entailment (NLI) & TF-IDF/SLM comparator | 34 | `src/verifier/l2_semantic.py` |
+| `tests/test_mcp_tools.py` | MCP tool definitions & permission gating | 4 | `src/tools/legal_tools.py`, `src/tools/permissions.py` |
+| `tests/test_memory.py` | Dual-tier memory & PDPL 2025 PII sanitization | 9 | `src/memory/sqlite_store.py`, `src/memory/ledger.py` |
+| `tests/test_offline.py` | Air-gap offline verification (zero network calls) | 1 | `src/agent/loop.py`, all core modules |
+| `tests/test_security.py` | Guardrail regex patterns, sanitization, utility | 43 | `src/security/guardrails.py`, `evaluation/metrics.py` |
+| `tests/test_ui.py` | Streamlit UI columns, traces, HITL modal | 12 | `src/ui/app.py` |
+| `tests/test_ui_stress.py` | UI sentence grounding, SHA256 idempotency & rendering | 21 | `src/ui/app.py`, `src/tools/legal_tools.py` |
+| `tests/test_verifier.py` | L1 deterministic verifier & baseline L2 verification | 4 | `src/verifier/l1_deterministic.py`, `src/verifier/l2_semantic.py` |
+| **Total Automated Tests** | **Comprehensive Full System Dual-Track Harness** | **459** | **100% Passing (`pytest tests/ -v`)** |
 
 ---
 
 ## 4. Verification Checklist & One-Command Replication
-- [x] `make test` completes with 100% pass rate (`414 passed`).
+- [x] `make test` completes with 100% pass rate (`459 passed, 0 failed`).
 - [x] `make redteam` verifies 0.0% ASR and 100% Defense Rate.
 - [x] `tests/test_offline.py` confirms 100% air-gap operational integrity.
 - [x] SQLite memory enforces Vietnam PDPL 2025 PII redaction and cache re-verification.
