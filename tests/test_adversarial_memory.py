@@ -128,7 +128,7 @@ def evaluate_pii_sanitization_corpus():
         cleaned = sanitize_pii(raw)
         has_redacted = "[REDACTED_PII]" in cleaned
         # Extract digits to check if original phone leaked
-        leaked = any(c in cleaned for c in ["0912345678", "0387654321", "0771234567", "0868888888", "0523456789", "912 345 678", "234-5678", "234 5678"])
+        leaked = any(c in cleaned for c in ["0912345678", "0387654321", "0771234567", "0868888888", "0523456789", "912 345 678", "234-5678", "234 5678", "345 678"])
         if has_redacted and not leaked:
             results["phones"]["passed"].append((cid, raw, cleaned, desc))
         else:
@@ -179,89 +179,52 @@ def test_adversarial_email_sanitization(cid, raw, should_redact, desc):
     assert "@" not in cleaned, f"Email character '@' still present in: {cleaned}"
 
 
-@pytest.mark.parametrize("cid,raw,should_redact,desc", [
-    p for p in ADVERSARIAL_PHONES if "paren" not in p[0] and "space" not in p[0] and "dash" not in p[0] and "plus84_dots" not in p[0]
-])
-def test_standard_phone_sanitization_passes(cid, raw, should_redact, desc):
+@pytest.mark.parametrize("cid,raw,should_redact,desc", ADVERSARIAL_PHONES)
+def test_all_phone_sanitization_passes(cid, raw, should_redact, desc):
     """
-    Standard phone patterns supported by current regex must pass.
+    All Vietnamese mobile phone variations must be successfully redacted.
     """
     cleaned = sanitize_pii(raw)
-    assert "[REDACTED_PII]" in cleaned, f"Standard phone not redacted: {raw}"
+    assert "[REDACTED_PII]" in cleaned, f"Phone not redacted in: {raw}"
+    assert not any(c in cleaned for c in ["0912345678", "0387654321", "0771234567", "0868888888", "0523456789", "912 345 678", "234-5678", "234 5678", "345 678"])
 
 
 def test_adversarial_phone_leakage_edge_cases():
-    """
-    EMPIRICAL BUG REPRODUCTION:
-    Tests known phone formatting edge cases where current regex fails to redact PII.
-    These leak personal contact data under Vietnam PDPL 2025.
-    """
-    intl_space = "+84 912 345 678"
-    cleaned_space = sanitize_pii(intl_space)
-    
-    intl_dash = "+84-912-345-678"
-    cleaned_dash = sanitize_pii(intl_dash)
-
-    intl_dots = "+84.912.345.678"
-    cleaned_dots = sanitize_pii(intl_dots)
-
-    paren_area = "(091) 234-5678"
-    cleaned_paren = sanitize_pii(paren_area)
-
-    # Documenting empirical findings:
-    # Current regex: r'(?:\+84|84|0)(?:3|5|7|8|9)(?:[.\-\s]?\d){8}\b'
-    # Fails when a separator (space/dash/dots/parenthesis) directly follows +84 or area code.
-    leaks = []
-    if "[REDACTED_PII]" not in cleaned_space:
-        leaks.append(f"Leaked phone with country code space: {intl_space} -> {cleaned_space}")
-    if "[REDACTED_PII]" not in cleaned_dash:
-        leaks.append(f"Leaked phone with country code dash: {intl_dash} -> {cleaned_dash}")
-    if "[REDACTED_PII]" not in cleaned_dots:
-        leaks.append(f"Leaked phone with country code dots: {intl_dots} -> {cleaned_dots}")
-    if "[REDACTED_PII]" not in cleaned_paren:
-        leaks.append(f"Leaked phone with parentheses: {paren_area} -> {cleaned_paren}")
-
-    # We assert that these leaks exist in current code to empirically confirm the vulnerability
-    print(f"\n[EMPIRICAL FINDING] PII Phone Leakages Found: {len(leaks)}")
-    for leak in leaks:
-        print(f"  - {leak}")
-    assert len(leaks) >= 1, "Expected empirical phone leakages to reproduce bug"
+    """Verify that all tricky phone formats are cleanly redacted."""
+    test_cases = ["+84 912 345 678", "+84-912-345-678", "+84.912.345.678", "(091) 234-5678", "(0912) 345 678"]
+    for s in test_cases:
+        cleaned = sanitize_pii(s)
+        assert "[REDACTED_PII]" in cleaned
+        assert not any(c in cleaned for c in ["912", "345", "678", "234", "5678"])
 
 
 def test_adversarial_cccd_grouping_edge_cases():
     r"""
-    EMPIRICAL BUG REPRODUCTION:
-    CCCD grouped as 4-4-4 (common in ID cards/documents) is not captured by
-    current pattern r'\b\d{12}\b|\b\d{3}[.\-\s]\d{3}[.\-\s]\d{3}[.\-\s]\d{3}\b'.
+    VERIFIED RESOLUTION:
+    CCCD grouped as 4-4-4 (common in ID cards/documents) is correctly captured.
     """
     cccd_444 = "0012 3456 7890"
     cleaned_444 = sanitize_pii(cccd_444)
-    print(f"\n[EMPIRICAL FINDING] CCCD 4-4-4: {cccd_444!r} -> {cleaned_444!r}")
-    # Document empirical behavior
-    assert "[REDACTED_PII]" not in cleaned_444, "CCCD 4-4-4 unexpectedly redacted"
+    assert "[REDACTED_PII]" in cleaned_444, "CCCD 4-4-4 must be redacted"
+    assert "0012 3456 7890" not in cleaned_444
 
 
 def test_legal_text_false_positive_financial_hundred_billion():
     """
-    EMPIRICAL BUG REPRODUCTION:
-    Zero False Positive Violation:
-    Money amounts >= 100 billion VND (100.000.000.000 đồng) match the 3-3-3-3 pattern
-    and are falsely redacted as [REDACTED_PII] đồng!
+    VERIFIED RESOLUTION:
+    Zero False Positive Mandate:
+    Money amounts >= 100 billion VND (100.000.000.000 đồng) are preserved and NOT redacted.
     """
     hundred_billion = "100.000.000.000 đồng"
     cleaned = sanitize_pii(hundred_billion)
-    print(f"\n[EMPIRICAL FINDING] Hundred billion VND false positive: {hundred_billion!r} -> {cleaned!r}")
-    # Current implementation falsely redacts this legal money amount:
-    assert "[REDACTED_PII]" in cleaned, "Expected empirical false positive on 100 billion VND to reproduce"
+    assert "[REDACTED_PII]" not in cleaned, "100 billion VND must NOT be redacted"
+    assert cleaned == hundred_billion
 
 
-@pytest.mark.parametrize("cid,raw,desc", [
-    item for item in LEGAL_AND_FINANCIAL_TEXTS 
-    if item[0] not in ["legal_money_hundred_billion", "legal_money_plain_12_digits"]
-])
+@pytest.mark.parametrize("cid,raw,desc", LEGAL_AND_FINANCIAL_TEXTS)
 def test_legal_text_invariance_passes(cid, raw, desc):
     """
-    Legal decrees, articles, dates, and typical monetary amounts under 100 billion
+    Legal decrees, articles, dates, and typical monetary amounts
     must NEVER be altered or redacted.
     """
     cleaned = sanitize_pii(raw)

@@ -1,18 +1,21 @@
 """
-Benchmark Evaluation Runner for LuatCheck D2
+Benchmark Evaluation Runner for LuatCheck D2 & D3
 Chạy đánh giá tự động đa seeds, so sánh Ablation (Verification ON vs OFF)
+Tính toán Unsupported Sentence Rate (USR) động thực sự qua L1EvidenceVerifier
 """
 import argparse
 import json
 import time
 import os
 import sys
+import re
 import numpy as np
 from typing import Dict, Any, List
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.agent.loop import LuatCheckAgent
+from src.agent.state import Citation
 from evaluation.metrics import (
     calculate_retrieval_metrics,
     calculate_citation_metrics,
@@ -31,7 +34,7 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
     print(f"==================================================")
 
     enable_verif = (mode != "off")
-    agent = LuatCheckAgent(enable_verification=enable_verif)
+    agent = LuatCheckAgent(verification_mode=mode, enable_verification=enable_verif)
 
     all_seed_results = []
     latencies = []
@@ -97,17 +100,46 @@ def run_benchmark(tasks_file: str, seeds: List[int], mode: str = "l1_on") -> Dic
             elif expected_behavior == "answer" and not is_answered:
                 error_counts["over_refusal"] += 1
 
-            # Unsupported rate
-            if mode == "off":
-                usr = 0.15 if not cit_ids else 0.05
-            elif mode == "l1_on":
-                usr = 0.01 if is_answered and primary_gt == "NONE" else 0.0
-            else: # l1_l2_on
+            # Tính toán Unsupported Sentence Rate (USR) động thực tế theo ALCE (Gao et al., 2023)
+            if not is_answered:
+                # Phản hồi từ chối hoặc làm rõ không chứa khẳng định pháp lý sai lệch
                 usr = 0.0
+            else:
+                answer_text = final_out.get("content", "")
+                sentences = [s.strip() for s in re.split(r'[.?!]\s+', answer_text) if len(s.strip()) > 15]
+                total_sentences = len(sentences)
+
+                if total_sentences == 0:
+                    usr = 0.0
+                elif not cit_ids or not citations:
+                    # Đưa ra câu trả lời khẳng định nhưng không có trích dẫn điều luật nào -> 100% unsupported
+                    usr = 1.0
+                else:
+                    citation_objs = []
+                    for c in citations:
+                        if isinstance(c, dict):
+                            citation_objs.append(Citation(article_id=c.get("article_id", ""), span=c.get("span", "")))
+                        elif hasattr(c, "article_id"):
+                            citation_objs.append(c)
+
+                    # Sử dụng L1EvidenceVerifier của agent để kiểm tra tính hợp lệ và span overlap
+                    l1_res = agent.verifier.verify(
+                        answer_text=answer_text,
+                        citations=citation_objs,
+                        retrieved_article_ids=ledger.retrieved_article_ids
+                    )
+
+                    if l1_res.invalid_citations:
+                        # Điều luật trích dẫn không tồn tại hoặc hallucinated -> unsupported
+                        usr = 1.0
+                    else:
+                        unsupported_count = len(l1_res.unsupported_claims)
+                        usr = round(float(unsupported_count / total_sentences), 4)
+
             seed_unsupported_rates.append(usr)
 
             status_icon = "✅" if (is_answered and expected_behavior == "answer") or (not is_answered and expected_behavior == "refuse") else "⚠️"
-            print(f" Task {idx+1:02d}: {status_icon} | Ret:{ledger.retrieved_article_ids[:2]} | GT:{primary_gt} | Latency: {t_elapsed:.1f}ms")
+            print(f" Task {idx+1:02d}: {status_icon} | Ret:{ledger.retrieved_article_ids[:2]} | GT:{primary_gt} | USR:{usr:.3f} | Latency: {t_elapsed:.1f}ms")
 
         all_seed_results.append({
             "seed": seed,

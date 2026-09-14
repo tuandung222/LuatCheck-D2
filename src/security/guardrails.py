@@ -1,5 +1,5 @@
 """
-Security Guardrails for LuatCheck
+Security Guardrails for LuatCheck (Remediation M1-Rem-3)
 Bảo vệ biên an toàn hệ thống, khử khuẩn delimiter và phát hiện tấn công Prompt Injection đa tầng
 """
 import re
@@ -20,9 +20,10 @@ class SecurityGuardrails:
     # Nhóm 1: Override & Exfiltration
     INSTRUCTION_OVERRIDE_PATTERNS = [
         # Bỏ qua / quên chỉ dẫn trước đó (Tiếng Việt & Tiếng Anh)
-        r"(?i)\b(bỏ\s+qua|quên(\s+hết|\s+đi)?|hủy\s+bỏ|ignore|disregard|override|bypass)\b.{0,40}\b(chỉ\s+dẫn|hướng\s+dẫn|nguyên\s+tắc|câu\s+lệnh|mệnh\s+lệnh|yêu\s+cầu|instructions?|prompts?|rules?|laws?|statutes?)\b",
-        # Bỏ qua quy định trước đó / nội bộ / hệ thống
-        r"(?i)\b(bỏ\s+qua|quên)\b.{0,30}\b(quy\s+định|luật\s+lệ)\b.{0,25}\b(trước\s+(đó|đây)|nội\s+bộ|hệ\s+thống|ban\s+đầu)\b",
+        # Loại trừ các nguyên tắc pháp lý hợp lệ trong luật lao động (đối thoại, thương lượng, kỷ luật, bình đẳng...)
+        r"(?i)\b(bỏ\s+qua|quên(\s+hết|\s+đi)?|hủy\s+bỏ|ignore|disregard|override|bypass)\b.{0,40}\b(chỉ\s+dẫn|hướng\s+dẫn|nguyên\s+tắc\s+(?!đối\s+thoại|thương\s+lượng|kỷ\s+luật|lao\s+động|bình\s+đẳng|tự\s+nguyện|thiện\s+chí)|câu\s+lệnh|mệnh\s+lệnh|yêu\s+cầu|instructions?|prompts?|rules?|laws?|statutes?)\b",
+        # Bỏ qua quy định trước đó / nội bộ hệ thống / ban đầu (loại trừ quy định nội bộ doanh nghiệp)
+        r"(?i)\b(bỏ\s+qua|quên)\b.{0,30}\b(quy\s+định|luật\s+lệ)\b.{0,25}\b(trước\s+(đó|đây)|hệ\s+thống|ban\s+đầu|nội\s+bộ\s+(?:của\s+)?(?:hệ\s+thống|ai|chatbot|prompt|mô\s+hình))\b",
         # Trích xuất / hiển thị system prompt hoặc chỉ dẫn nội bộ
         r"(?i)\b(in\s+ra|tiết\s+lộ|hiển\s+thị|cho\s+(tôi\s+)?(xem|biết)|đọc|xuất|dump|print|reveal|show|display|output|expose|repeat|leak)\b.{0,40}\b(system\s+prompt|prompt(\s+hệ\s+thống|\s+gốc|\s+ban\s+đầu)?|hướng\s+dẫn\s+nội\s+bộ|chỉ\s+dẫn\s+(gốc|nội\s+bộ|hệ\s+thống)|hidden\s+instructions?|system\s+instructions?)\b",
         # Yêu cầu in nguyên văn prompt / system prompt
@@ -42,25 +43,31 @@ class SecurityGuardrails:
 
     # Nhóm 3: Legal Evasion & Malicious Advisory
     LEGAL_EVASION_PATTERNS = [
-        # Yêu cầu bày cách trốn thuế, lách luật, gian lận bảo hiểm
-        r"(?i)\b(cách|làm\s+sao|làm\s+thế\s+nào|hướng\s+dẫn|chỉ\s+(cho\s+)?(tôi\s+)?|bày\s+(cho\s+)?(tôi\s+)?)\b.{0,30}\b(trốn|lách|né|gian\s+lận|quỵt)\b.{0,30}\b(bảo\s+hiểm|thuế|luật|nghĩa\s+vụ|trợ\s+cấp|bồi\s+thường)\b",
+        # Yêu cầu bày cách trốn thuế, lách luật, gian lận bảo hiểm (loại trừ whistleblower / khiếu nại / tố cáo / phát hiện)
+        (
+            r"(?i)\b(cách|làm\s+sao|làm\s+thế\s+nào|hướng\s+dẫn|chỉ\s+(?:cho\s+)?(?:tôi\s+)?|bày\s+(?:cho\s+)?(?:tôi\s+)?)\b"
+            r"(?:(?!(?:khiếu\s+nại|tố\s+cáo|tố\s+giác|xử\s+lý|nhận\s+biết|phát\s+hiện|phản\s+ánh|biết\b|phòng\s+tránh|bảo\s+vệ)).){0,35}"
+            r"\b(trốn|lách|né|gian\s+lận|quỵt)\b.{0,30}\b(bảo\s+hiểm|thuế|luật|nghĩa\s+vụ|trợ\s+cấp|bồi\s+thường)\b"
+        ),
         # Hướng dẫn cách thức sa thải trái luật lao động nữ mang thai
         r"(?i)\b(cách|làm\s+sao|làm\s+thế\s+nào|chỉ\s+(cho\s+)?(tôi\s+)?|hướng\s+dẫn|bày\s+(cho\s+)?(tôi\s+)?)\b.{0,40}\b(đuổi\s+việc|sa\s+thải|cho\s+nghỉ\s+việc)\b.{0,40}\b(mang\s+thai|thai\s+sản|nuôi\s+con\s+nhỏ)\b",
     ]
 
     # Nhóm 4: Indirect Document Injection, Egress & Memory Poisoning
     INDIRECT_INJECTION_PATTERNS = [
-        # System directives nhúng trong hợp đồng / tài liệu
-        r"(?i)\[\s*(lệnh\s+hệ\s+thống|lệnh\s+khẩn\s+cấp|system\s*(note|override|command|directive|instruction)|instruction)\b",
-        r"(?i)\b(system\s+note|system\s+override|system\s+directive|lệnh\s+hệ\s+thống|chỉ\s+thị\s+hệ\s+thống|chỉ\s+dẫn\s+ẩn|lưu\s+ý\s+hệ\s+thống)\b",
+        # Thẻ ranh giới giả mạo (Delimiter spoofing / boundary escape)
+        r"(?i)\[\s*/?\s*(?:UNTRUSTED_[A-Z_]+|OBSERVATION_TOOL_RESULT)\b",
+        # System directives nhúng trong hợp đồng / tài liệu (hỗ trợ _, -, và spaces: [SYSTEM_NOTE], [SYSTEM-NOTE], v.v.)
+        r"(?i)\[\s*(lệnh\s+hệ\s+thống|lệnh\s+khẩn\s+cấp|system[\s_\-]*(note|override|command|directive|instruction)|instruction)\b",
+        r"(?i)\b(system[\s_\-]+(note|override|directive|command|instruction)|lệnh\s+hệ\s+thống|chỉ\s+thị\s+hệ\s+thống|chỉ\s+dẫn\s+ẩn|lưu\s+ý\s+hệ\s+thống)\b",
         # Lén kích hoạt egress tool send_summary hoặc save_case
         r"(?i)\b(gọi|kích\s+hoạt|thực\s+thi|call|invoke|execute|trigger)\b.{0,30}\b(send_summary|save_case)\b",
         r"(?i)\b(gửi|send|transfer|export)\b.{0,40}\b(attacker|evil\.com|webhook|email|ra\s+ngoài)\b",
-        # Tấn công phá hoại SQL / Memory injection
-        r"(?i)\b(drop\s+table|delete\s+from|insert\s+into|update\s+\w+\s+set|union\s+select)\b",
+        # Tấn công phá hoại SQL / Memory injection (neo vào câu lệnh SQL cụ thể hoặc bảng hệ thống)
+        r"(?i)\b(drop\s+table(\s+\w+)?|delete\s+from\s+\w+(\s+where)?|insert\s+into\s+(?:episodic_memory|cases|sqlite_\w+|users|memory\b)|update\s+(?:episodic_memory|cases|\w+)\s+set|union\s+(?:all\s+)?select)\b",
         r"(?i)\bwhere\s+1\s*=\s*1\b",
-        # Trích xuất dữ liệu phiên trước / rò rỉ bộ nhớ
-        r"(?i)\b(dump|trích\s+xuất|hiển\s+thị|xem|leak|export)\b.{0,40}\b(memory|ledger|previous\s+session|phiên\s+(trước|khác)|bộ\s+nhớ|client\s+names|danh\s+sách\s+khách\s+hàng)\b",
+        # Trích xuất dữ liệu phiên trước / rò rỉ bộ nhớ (loại trừ camera, thiết bị phần cứng, máy chấm công)
+        r"(?i)\b(dump|trích\s+xuất|hiển\s+thị|xem|leak|export)\b.{0,40}\b(memory|ledger|previous\s+session|phiên\s+(trước|khác)|bộ\s+nhớ\s+(?!(?:camera|máy\s+chấm\s+công|thiết\s+bị|điện\s+thoại|phần\s+cứng))|client\s+names|danh\s+sách\s+khách\s+hàng)\b",
         r"(?i)\bdump\s+all\s+previous\b",
     ]
 
@@ -93,18 +100,21 @@ class SecurityGuardrails:
         """
         Khử khuẩn văn bản đầu vào:
         1. Chuẩn hóa Unicode NFC để ngăn chặn evasion bằng ký tự tổ hợp
-        2. Loại bỏ các ký tự điều khiển ẩn và null byte
-        3. Vô hiệu hóa các thẻ boundary giả mạo (delimiter smuggling)
+        2. Chuẩn hóa các ký tự ngoặc vuông fullwidth Unicode (［, ］) thành ASCII [, ]
+        3. Loại bỏ các ký tự điều khiển ẩn, ký tự độ dài bằng 0 (zero-width) và null byte
+        4. Vô hiệu hóa các thẻ boundary giả mạo (delimiter smuggling) kể cả có khoảng trắng, ký tự gạch nối
         """
         if not text:
             return ""
         # 1. Unicode NFC
         text = unicodedata.normalize("NFC", text)
-        # 2. Strip null bytes & control chars (giữ lại \n, \r, \t)
-        text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", text)
-        # 3. Neutralize delimiter spoofing tags
+        # 2. Chuẩn hóa ngoặc fullwidth
+        text = text.replace("［", "[").replace("］", "]")
+        # 3. Strip null bytes, control chars & zero-width chars (giữ lại \n, \r, \t)
+        text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f\u200b-\u200f\ufeff]", "", text)
+        # 4. Neutralize delimiter spoofing tags (hỗ trợ khoảng trắng trước/sau dấu /, gạch dưới, gạch ngang)
         text = re.sub(
-            r"\[/?(UNTRUSTED_[A-Z_]+|SYSTEM[A-Z_]*|INSTRUCTION|OBSERVATION_TOOL_RESULT)[^\]]*\]",
+            r"\[\s*/?\s*(?:UNTRUSTED_[A-Z_]+|SYSTEM[A-Z_\-]*|INSTRUCTION|OBSERVATION_TOOL_RESULT)\b[^\]]*\]",
             "[STRIPPED_BOUNDARY_TAG]",
             text,
             flags=re.IGNORECASE
@@ -120,6 +130,13 @@ class SecurityGuardrails:
         # Chuẩn hóa văn bản trước khi quét
         norm_query = unicodedata.normalize("NFC", user_query or "")
         norm_doc = unicodedata.normalize("NFC", pasted_doc or "")
+        # Chuẩn hóa ngoặc fullwidth
+        norm_query = norm_query.replace("［", "[").replace("］", "]")
+        norm_doc = norm_doc.replace("［", "[").replace("］", "]")
+        # Loại bỏ zero-width characters
+        norm_query = re.sub(r"[\u200b-\u200f\ufeff]", "", norm_query)
+        norm_doc = re.sub(r"[\u200b-\u200f\ufeff]", "", norm_doc)
+
         combined_text = f"{norm_query} {norm_doc}".lower()
 
         for pattern in cls.ALL_PATTERNS:
