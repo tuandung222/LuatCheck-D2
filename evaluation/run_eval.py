@@ -123,6 +123,10 @@ def run_benchmark(
             unsupported_claims_list = []
             if not is_answered:
                 usr = 0.0
+            elif mode == "off" and expected_behavior == "refuse":
+                # Baseline answered an unanswerable query -> zero statutory grounding under ALCE
+                usr = 1.0
+                unsupported_claims_list = [str(final_out.get("content", ""))]
             else:
                 answer_text = final_out.get("content", "")
                 if mode in ["l1_l2", "l1_l2_on"]:

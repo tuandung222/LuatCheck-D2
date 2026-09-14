@@ -22,14 +22,22 @@ demo:
 report: report_d2 report_d3
 
 report_d2:
-	rm -f report_d2/*.aux report_d2/*.bbl report_d2/*.blg report_d2/*.out report_d2/*.log report_d2/*.run.xml report_d2/*-blx.bib
-	cd report_d2 && pdflatex -interaction=nonstopmode main_d2.tex && bibtex main_d2 && pdflatex -interaction=nonstopmode main_d2.tex && pdflatex -interaction=nonstopmode main_d2.tex
+	cd report_d2 && \
+	rm -f *.aux *.bbl *.blg *.out *.log *.run.xml *-blx.bib *.toc *.lot *.lof && \
+	pdflatex -interaction=nonstopmode main_d2.tex && \
+	bibtex main_d2 && \
+	pdflatex -interaction=nonstopmode main_d2.tex && \
+	pdflatex -interaction=nonstopmode main_d2.tex
 
 report_d3:
-	rm -f report_d3/*.aux report_d3/*.bbl report_d3/*.blg report_d3/*.out report_d3/*.log report_d3/*.run.xml report_d3/*-blx.bib
-	cd report_d3 && pdflatex -interaction=nonstopmode main_d3.tex && bibtex main_d3 && pdflatex -interaction=nonstopmode main_d3.tex && pdflatex -interaction=nonstopmode main_d3.tex
+	cd report_d3 && \
+	rm -f *.aux *.bbl *.blg *.out *.log *.run.xml *-blx.bib *.toc *.lot *.lof && \
+	pdflatex -interaction=nonstopmode main_d3.tex && \
+	bibtex main_d3 && \
+	pdflatex -interaction=nonstopmode main_d3.tex && \
+	pdflatex -interaction=nonstopmode main_d3.tex
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +
-	find report_d2 report_d3 -type f \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.bbl" -o -name "*.blg" \) -delete 2>/dev/null || true
+	find report_d2 report_d3 -type f \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.bbl" -o -name "*.blg" -o -name "*.run.xml" -o -name "*-blx.bib" -o -name "*.toc" -o -name "*.lot" -o -name "*.lof" \) -delete 2>/dev/null || true
