@@ -36,13 +36,19 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,backgrounds,positioning,shapes.geometric}
 \usepackage{enumitem}
-\usepackage{titlesec}
-
 % ---------------------------------------------------------------------
-% Spacing adjustments for conference progress report format
+% Spacing adjustments for conference progress report format (LaTeX2e hook compliant)
 % ---------------------------------------------------------------------
-\titlespacing*{\section}{0pt}{7pt plus 1pt minus 1pt}{3pt plus 1pt minus 1pt}
-\titlespacing*{\subsection}{0pt}{5pt plus 1pt minus 1pt}{2pt plus 1pt minus 1pt}
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+                                   {-7pt \@plus -1pt \@minus -1pt}%
+                                   {3pt \@plus 1pt \@minus 1pt}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-5pt \@plus -1pt \@minus -1pt}%
+                                     {2pt \@plus 1pt \@minus 1pt}%
+                                     {\normalfont\normalsize\bfseries}}
+\makeatother
 \setlength{\parskip}{1.5pt plus 0.5pt minus 0.5pt}
 \setlength{\parindent}{12pt}
 
@@ -176,7 +182,7 @@
 
 \hdr{Vietnamese Legal Stakes \& Enterprise Context.} Legal consultations in Vietnam carry substantial regulatory, financial, and civil liability. Under the Vietnamese Labor Code 2019 (Law No.~45/2019/QH14), improper termination notices, unlawful overtime mandates, or unauthorized wage deductions subject enterprises to punitive administrative fines and mandatory back-pay. Non-lawyer stakeholders---such as human resources (HR) administrators, small-business managers, and employees---frequently require rapid, intelligible legal interpretations coupled with verified statutory grounding. However, deploying public, commercial large language models (LLMs) like ChatGPT or Claude poses two severe risks:
 \begin{enumerate}[leftmargin=14pt,noitemsep,topsep=1pt]
-    \item \textbf{Data Privacy \& Regulatory Non-Compliance:} Vietnamese enterprises face strict statutory restrictions under the \textit{Personal Data Protection Law 2025} (PDPL 2025, Law No.~91/2025/QH15)~\citep{vietnam2025pdpl} and Decree No.~356/2025/ND-CP~\citep{decree3562025}. Inquiring into employment disputes requires pasting sensitive contracts containing Citizen IDs, salary figures, and medical histories. Sending such personally identifiable information (PII) to foreign cloud-hosted LLM endpoints violates corporate data residency and statutory obligations.
+    \item \textbf{Data Privacy \& Regulatory Non-Compliance:} Vietnamese enterprises face strict statutory restrictions under the \textit{Personal Data Protection Law 2025} (PDPL 2025, Law No. 91/2025/QH15) and Decree No. 356/2025/ND-CP~\citep{vietnam2025pdpl,decree3562025}. Inquiring into employment disputes requires pasting sensitive contracts containing Citizen IDs, salary figures, and medical histories. Sending such personally identifiable information (PII) to foreign cloud-hosted LLM endpoints violates corporate data residency and statutory obligations.
     \item \textbf{Hallucinated Citations \& Legal Liability:} Recent empirical benchmarks demonstrate that state-of-the-art commercial legal AI tools fabricate or mis-attribute statutory provisions in over 15--30\% of queries~\citep{magesh2025hallucination}. In law, a plausible but fictitious article number is far more hazardous than an explicit refusal.
 \end{enumerate}
 

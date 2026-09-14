@@ -5,7 +5,7 @@ The LuatCheck testing infrastructure implements an enterprise-grade **Dual-Track
 - **Track A (Deterministic Unit & Boundary Verification)**: Exhaustively tests single-component integrity, statutory corpus adherence, regex boundary invariants, and edge cases.
 - **Track B (Systemic Integration & Workload Stress)**: Tests cross-module contracts, FSM state preservation under adversarial mutation, air-gap offline operational envelopes, and real-world Vietnamese legal dispute workloads.
 
-The test harness is executed natively via `pytest` with 459 passing automated tests across 17 test suites, integrated into the repository build system via `Makefile` (`make test`, `make eval`, `make redteam`).
+The test harness is executed natively via `pytest` with 460 passing automated tests across 17 test suites, integrated into the repository build system via `Makefile` (`make test`, `make eval`, `make redteam`).
 
 ```
 +--------------------------------------------------------------------------------------------------+
@@ -40,7 +40,7 @@ The test suite resides in `tests/` and maps directly to the system components:
 | `tests/test_challenger_m3.py` | M3 Error diagnostics, boundary values & statutory compliance | 14 | `evaluation/error_analyzer.py`, `src/verifier/` |
 | `tests/test_challenger_m4.py` | M4 Multi-seed metric consistency & poisoned shard defenses | 18 | `evaluation/error_analyzer.py`, `src/verifier/` |
 | `tests/test_challenger_m5.py` | M5 LaTeX report compilation & empirical table fidelity | 13 | `report_d2/`, `evaluation/`, `redteam/` |
-| `tests/test_error_analyzer.py` | 6-mode failure taxonomy & diagnostic statistics | 9 | `evaluation/error_analyzer.py` |
+| `tests/test_error_analyzer.py` | 6-mode failure taxonomy & diagnostic statistics | 10 | `evaluation/error_analyzer.py` |
 | `tests/test_l2_verifier.py` | L2 Semantic Entailment (NLI) & TF-IDF/SLM comparator | 34 | `src/verifier/l2_semantic.py` |
 | `tests/test_mcp_tools.py` | MCP tool definitions & permission gating | 4 | `src/tools/legal_tools.py`, `src/tools/permissions.py` |
 | `tests/test_memory.py` | Dual-tier memory & PDPL 2025 PII sanitization | 9 | `src/memory/sqlite_store.py`, `src/memory/ledger.py` |
@@ -49,7 +49,7 @@ The test suite resides in `tests/` and maps directly to the system components:
 | `tests/test_ui.py` | Streamlit UI columns, traces, HITL modal | 12 | `src/ui/app.py` |
 | `tests/test_ui_stress.py` | UI sentence grounding, SHA256 idempotency & rendering | 21 | `src/ui/app.py`, `src/tools/legal_tools.py` |
 | `tests/test_verifier.py` | L1 deterministic verifier & baseline L2 verification | 4 | `src/verifier/l1_deterministic.py`, `src/verifier/l2_semantic.py` |
-| **Total Automated Tests** | **Comprehensive Full System Dual-Track Harness** | **459** | **100% Passing (`pytest tests/ -v`)** |
+| **Total Automated Tests** | **Comprehensive Full System Dual-Track Harness** | **460** | **100% Passing (`pytest tests/ -v`)** |
 
 ---
 

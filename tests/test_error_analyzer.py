@@ -170,8 +170,8 @@ def test_error_analyzer_budget_boundary_answered_within_limit():
     ledger = MockLedger(
         retrieved_article_ids=["Dieu_25"],
         terminal_status="answered",
-        tool_calls_count=5,
-        repairs_count=0
+        tool_calls_count=4,
+        repairs_count=1
     )
     failures = analyzer.record_task_evaluation(
         task=task,
