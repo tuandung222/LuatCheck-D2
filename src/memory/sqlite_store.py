@@ -48,7 +48,7 @@ def sanitize_pii(text: str) -> str:
     sanitized = re.sub(email_pattern, '[REDACTED_PII]', sanitized)
 
     # Biểu thức loại trừ các đơn vị tiền tệ phổ biến (không phân biệt hoa thường)
-    currency_exclusion = r'(?!\s*(?i:đồng|đ|vnđ|vnd|usd|eur|tỷ|tỉ|triệu|nghìn|ngàn))\b'
+    currency_exclusion = r'(?!\s*(?i:(?:đồng|đ|vnđ|vnd|usd|eur|tỷ|tỉ|triệu|nghìn|ngàn)\b))'
 
     # 2. Số Căn cước công dân 12 chữ số (CCCD) và phân cách định dạng chuẩn (3-3-3-3, 4-4-4)
     # Loại trừ các số tiền tệ 12 chữ số (ví dụ: 100.000.000.000 đồng)
