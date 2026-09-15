@@ -11,9 +11,10 @@ class LegalToolRegistry:
     def __init__(
         self,
         corpus_path: str = "data/corpus/labor_code_2019.json",
-        outbox_path: Optional[str] = None
+        outbox_path: Optional[str] = None,
+        retriever: Optional[Any] = None
     ):
-        self.retriever = HybridLegalRetriever(corpus_path=corpus_path)
+        self.retriever = retriever or HybridLegalRetriever(corpus_path=corpus_path)
         self.saved_cases: Dict[str, Dict[str, Any]] = {}
         self.sent_summaries_log: List[Dict[str, Any]] = []
         self.executed_idempotency_keys: set = set()
@@ -51,12 +52,13 @@ class LegalToolRegistry:
         
         articles_summary = []
         for r in results:
+            content_text = r.get("content_snippet") or r.get("content") or r.get("text") or ""
             articles_summary.append({
-                "article_id": r["article_id"],
-                "law_name": r["law_name"],
-                "title": r["title"],
-                "content_snippet": r["content"][:300] + "..." if len(r["content"]) > 300 else r["content"],
-                "rrf_score": round(r["rrf_score"], 4)
+                "article_id": r.get("article_id", ""),
+                "law_name": r.get("law_name", "Bộ luật Lao động 2019"),
+                "title": r.get("title", ""),
+                "content_snippet": content_text[:300] + "..." if len(content_text) > 300 else content_text,
+                "rrf_score": round(r.get("rrf_score", r.get("score", 1.0)), 4)
             })
 
         return {

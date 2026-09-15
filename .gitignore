@@ -6,6 +6,7 @@ __pycache__/
 *.sqlite
 data/db/*.db
 data/audit_log.jsonl
+data/outbox/
 
 # LaTeX temp files
 *.aux

@@ -226,32 +226,46 @@ class TestHitlSha256Idempotency:
 
     def test_ui_column3_duplicate_suppression(self):
         """Executing send_summary twice with identical parameters triggers duplicate suppression error in UI."""
-        st.cache_resource.clear()
-        st.cache_data.clear()
-        st.session_state.clear()
-        at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
-        
-        # Check confirmation checkbox
-        chk = next(c for c in at.checkbox if getattr(c, "key", None) == "col3_chk")
-        chk.check()
+        import os
+        outbox_file = "data/outbox/sent_summaries.jsonl"
+        if os.path.exists(outbox_file):
+            try:
+                os.remove(outbox_file)
+            except Exception:
+                pass
+        try:
+            st.cache_resource.clear()
+            st.cache_data.clear()
+            st.session_state.clear()
+            at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+            
+            # Check confirmation checkbox
+            chk = next(c for c in at.checkbox if getattr(c, "key", None) == "col3_chk")
+            chk.check()
 
-        # Set a fixed idempotency key to test collision
-        key_input = next(t for t in at.text_input if getattr(t, "key", None) == "col3_key")
-        key_input.input("fixed_test_key_col3")
+            # Set a fixed idempotency key to test collision
+            key_input = next(t for t in at.text_input if getattr(t, "key", None) == "col3_key")
+            key_input.input("fixed_test_key_col3")
 
-        # First click -> Success
-        btn_send = next(b for b in at.button if getattr(b, "key", None) == "btn_send_col3")
-        btn_send.click().run()
-        assert not at.exception
-        assert len(at.success) >= 1
-        assert "Đã gửi thành công" in at.success[0].value
+            # First click -> Success
+            btn_send = next(b for b in at.button if getattr(b, "key", None) == "btn_send_col3")
+            btn_send.click().run()
+            assert not at.exception
+            assert len(at.success) >= 1
+            assert "Đã gửi thành công" in at.success[0].value
 
-        # Second click -> Duplicate suppression error
-        btn_send = next(b for b in at.button if getattr(b, "key", None) == "btn_send_col3")
-        btn_send.click().run()
-        assert not at.exception
-        assert len(at.error) >= 1
-        assert "đã được thực thi trước đó" in at.error[-1].value
+            # Second click -> Duplicate suppression error
+            btn_send = next(b for b in at.button if getattr(b, "key", None) == "btn_send_col3")
+            btn_send.click().run()
+            assert not at.exception
+            assert len(at.error) >= 1
+            assert "đã được thực thi trước đó" in at.error[-1].value
+        finally:
+            if os.path.exists(outbox_file):
+                try:
+                    os.remove(outbox_file)
+                except Exception:
+                    pass
 
     def test_ui_modal_duplicate_warning_rendering(self):
         """Streamlit modal dialog detects pre-executed SHA-256 hash and renders duplicate warning."""

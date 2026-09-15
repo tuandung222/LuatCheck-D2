@@ -17,6 +17,9 @@ from src.memory.ledger import CaseLedgerManager
 from src.memory.sqlite_store import SQLiteEpisodicStore
 from src.security.guardrails import SecurityGuardrails
 from src.security.audit_logger import AuditLogger
+from src.config.app_config import AppConfig, load_config
+from src.interfaces.base import BaseRetriever, BaseLLMClient, BaseVerifier
+from src.agent.llm_client import OllamaLLMClient, MockRuleBasedLLMClient, CompositeLLMClient
 
 
 class LuatCheckAgent:
@@ -24,30 +27,46 @@ class LuatCheckAgent:
 
     def __init__(
         self,
-        model_name: str = "qwen2.5:3b",
-        ollama_url: str = "http://localhost:11434",
-        corpus_path: str = "data/corpus/labor_code_2019.json",
-        max_tool_calls: int = 5,
-        max_repairs: int = 2,
-        max_steps: int = 10,
-        verification_mode: str = "l1_only",
+        model_name: Optional[str] = None,
+        ollama_url: Optional[str] = None,
+        corpus_path: Optional[str] = None,
+        max_tool_calls: Optional[int] = None,
+        max_repairs: Optional[int] = None,
+        max_steps: Optional[int] = None,
+        verification_mode: Optional[str] = None,
         enable_verification: Optional[bool] = None,
-        l2_use_slm: bool = False
+        l2_use_slm: Optional[bool] = None,
+        # DATA SCIENTIST EXTENSION HOOKS (Dependency Injection)
+        config: Optional[AppConfig] = None,
+        retriever: Optional[BaseRetriever] = None,
+        llm_client: Optional[BaseLLMClient] = None,
+        verifier: Optional[BaseVerifier] = None,
+        l2_verifier: Optional[BaseVerifier] = None,
+        sqlite_store: Optional[SQLiteEpisodicStore] = None,
+        audit_logger: Optional[AuditLogger] = None,
+        outbox_path: Optional[str] = None
     ):
-        self.model_name = model_name
-        self.ollama_url = ollama_url
-        self.max_tool_calls = max_tool_calls
-        self.max_repairs = max_repairs
-        self.max_steps = max_steps
-        self.l2_use_slm = l2_use_slm
+        # 1. Nạp cấu hình tập trung từ AppConfig hoặc config.yaml
+        self.config = config or load_config()
+        self.model_name = model_name or self.config.model.name
+        self.ollama_url = ollama_url or self.config.model.endpoint
+        self.corpus_path = corpus_path or self.config.retrieval.corpus_path
+        self.l2_use_slm = l2_use_slm if l2_use_slm is not None else self.config.verifier.l2_use_slm
 
-        # Xử lý tương thích ngược giữa enable_verification và verification_mode
+        # 2. Ngân sách thực thi (Budgets)
+        self.max_tool_calls = max_tool_calls if max_tool_calls is not None else self.config.budgets.max_tool_calls
+        self.max_repairs = max_repairs if max_repairs is not None else self.config.budgets.max_repairs
+        self.max_steps = max_steps if max_steps is not None else self.config.budgets.max_steps
+        self.outbox_path = outbox_path or self.config.security.outbox_path
+
+        # 3. Xử lý tương thích ngược giữa enable_verification và verification_mode
+        chosen_mode = verification_mode if verification_mode is not None else self.config.verifier.mode
         if enable_verification is False:
             self.verification_mode = "off"
-        elif enable_verification is True and verification_mode == "off":
+        elif enable_verification is True and chosen_mode == "off":
             self.verification_mode = "l1_only"
         else:
-            self.verification_mode = verification_mode
+            self.verification_mode = chosen_mode
 
         if self.verification_mode not in self.VALID_MODES:
             raise ValueError(
@@ -57,157 +76,80 @@ class LuatCheckAgent:
 
         self.enable_verification = (self.verification_mode != "off")
 
-        # Khởi tạo các hệ thống con
-        self.tool_registry = LegalToolRegistry(corpus_path=corpus_path)
-        self.verifier = L1EvidenceVerifier(self.tool_registry.retriever.corpus)
-        self.l2_verifier = L2SemanticEntailmentVerifier(
-            self.tool_registry.retriever.corpus,
-            entailment_threshold=0.30,
-            use_slm=l2_use_slm
+        # 4. Dependency Injection cho Tool Registry & Retriever
+        if retriever:
+            self.tool_registry = LegalToolRegistry(
+                corpus_path=self.corpus_path,
+                outbox_path=self.outbox_path,
+                retriever=retriever
+            )
+        else:
+            self.tool_registry = LegalToolRegistry(
+                corpus_path=self.corpus_path,
+                outbox_path=self.outbox_path
+            )
+
+        # 5. Dependency Injection cho Verifiers
+        corpus_data = getattr(self.tool_registry.retriever, "corpus", [])
+        self.verifier = verifier or L1EvidenceVerifier(corpus_data)
+        self.l2_verifier = l2_verifier or L2SemanticEntailmentVerifier(
+            corpus_data,
+            entailment_threshold=self.config.verifier.l2_entailment_threshold,
+            ollama_url=self.ollama_url,
+            model_name=self.model_name,
+            use_slm=self.l2_use_slm
         )
-        self.sqlite_store = SQLiteEpisodicStore()
-        self.audit_logger = AuditLogger()
+
+        # 6. Dependency Injection cho Memory & Logger
+        self.sqlite_store = sqlite_store or SQLiteEpisodicStore(
+            db_path=self.config.memory.sqlite_path,
+            index_version=self.config.memory.index_version
+        )
+        self.audit_logger = audit_logger or AuditLogger(log_path=self.config.security.audit_log_path)
         self.ledger: Optional[CaseLedger] = None
 
+        # 7. Dependency Injection cho LLM Client (Tách rời LLM Engine)
+        self.mock_client = MockRuleBasedLLMClient(verification_mode=self.verification_mode)
+        if llm_client:
+            self.llm_client = llm_client
+        else:
+            self.llm_client = CompositeLLMClient(
+                primary_client=OllamaLLMClient(
+                    endpoint=self.ollama_url,
+                    model_name=self.model_name,
+                    temperature=self.config.model.temperature,
+                    timeout_seconds=self.config.model.timeout_seconds
+                ),
+                fallback_client=self.mock_client
+            )
+
+    @classmethod
+    def from_config(cls, config_path_or_obj: Any = "config/config.yaml", **kwargs) -> "LuatCheckAgent":
+        """Factory method: Khởi tạo LuatCheckAgent trực tiếp từ cấu hình YAML hoặc AppConfig object."""
+        if isinstance(config_path_or_obj, str):
+            cfg = load_config(config_path_or_obj)
+        elif isinstance(config_path_or_obj, AppConfig):
+            cfg = config_path_or_obj
+        else:
+            cfg = load_config()
+        return cls(config=cfg, **kwargs)
+
+    @classmethod
+    def default(cls) -> "LuatCheckAgent":
+        """Factory method: Khởi tạo LuatCheckAgent với cấu hình mặc định chuẩn."""
+        return cls.from_config()
+
     def _call_llm(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
-        """
-        Gọi Ollama API với format json và kiểm thực schema chặt chẽ
-        """
-        payload = {
-            "model": self.model_name,
-            "messages": messages,
-            "stream": False,
-            "format": "json",
-            "options": {
-                "temperature": 0.1,
-                "top_p": 0.9
-            }
-        }
-        valid_actions = {e.value for e in ActionType}
-        try:
-            resp = requests.post(f"{self.ollama_url}/api/chat", json=payload, timeout=45)
-            if resp.status_code == 200:
-                data = resp.json()
-                raw_content = data.get("message", {}).get("content", "{}")
-                try:
-                    parsed = json.loads(raw_content)
-                    if not isinstance(parsed, dict) or "action" not in parsed:
-                        if ledger:
-                            ledger.audit_events.append({
-                                "event": "parse_error",
-                                "details": f"InvalidSchema: Response must be JSON dict with 'action', got: {raw_content[:100]}"
-                            })
-                        return self._rule_based_fallback(messages)
-
-                    # Chuẩn hóa đối số tool_args luôn là dictionary
-                    if not isinstance(parsed.get("tool_args"), dict):
-                        parsed["tool_args"] = {}
-
-                    # Xác thực action phải thuộc ActionType hợp lệ
-                    act = str(parsed.get("action", ""))
-                    if act not in valid_actions:
-                        if ledger:
-                            ledger.audit_events.append({
-                                "event": "parse_error",
-                                "details": f"InvalidAction: '{act}' is not in {valid_actions}"
-                            })
-                        return self._rule_based_fallback(messages)
-
-                    return parsed
-                except json.JSONDecodeError as jde:
-                    if ledger:
-                        ledger.audit_events.append({
-                            "event": "parse_error",
-                            "details": f"JSONDecodeError: {str(jde)} | raw: {raw_content[:100]}"
-                        })
-                    return self._rule_based_fallback(messages)
-        except Exception:
-            # Fallback nếu Ollama mất kết nối
-            pass
-
-        return self._rule_based_fallback(messages)
+        """Ủy quyền sinh phản hồi cho LLM Client đã được mô-đun hóa."""
+        return self.llm_client.generate(messages, ledger=ledger)
 
     def step(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
         """Thực hiện một bước gọi mô hình suy luận và chuyển tiếp trạng thái ledger."""
         return self._call_llm(messages, ledger=ledger or self.ledger)
 
     def _rule_based_fallback(self, messages: List[Dict[str, str]]) -> Dict[str, Any]:
-        """
-        Bộ sinh suy luận dự phòng đảm bảo tính sẵn sàng cao (High Availability)
-        """
-        last_msg = messages[-1]["content"]
-        # Chỉ kiểm tra tin nhắn của assistant để xác định đã gọi search_law (tránh nhầm với system prompt)
-        has_search = any(
-            m.get("role") == "assistant" and "search_law" in m.get("content", "")
-            for m in messages
-        )
-        has_repair = any(
-            "CẢNH BÁO TỪ HỆ THỐNG" in m.get("content", "") or "CẢNH BÁO XÁC THỰC" in m.get("content", "")
-            for m in messages
-        )
-
-        if has_repair:
-            return {
-                "thought": "Hệ thống xác thực báo lỗi căn cứ pháp lý không đủ. Tôi từ chối đưa ra kết luận để tránh rủi ro.",
-                "action": "refuse",
-                "tool_args": {"reason": "Không đủ căn cứ pháp lý tin cậy trong các điều luật đã nạp."}
-            }
-
-        if not has_search:
-            # Lấy nội dung câu hỏi người dùng từ user message
-            first_user_content = next((m.get("content", "") for m in messages if m.get("role") == "user"), "")
-            clean_q = re.sub(r'\[/?UNTRUSTED_[A-Z_]+[^\]]*\]', '', first_user_content).strip()
-            return {
-                "thought": "Cần tra cứu quy định pháp luật liên quan đến câu hỏi của người dùng.",
-                "action": "search_law",
-                "tool_args": {"query": clean_q[:100], "top_k": 3}
-            }
-
-        # Trích xuất mã điều luật và nội dung trích đoạn từ kết quả tìm kiếm đã nạp
-        retrieved_ids = re.findall(r'"article_id":\s*"([^"]+)"', last_msg)
-        snippets = re.findall(r'"content_snippet":\s*"([^"]+)"', last_msg)
-
-        chosen_id = retrieved_ids[0] if retrieved_ids else "Dieu_25"
-        chosen_snippet = snippets[0] if snippets else ""
-
-        if self.verification_mode != "off" and len(retrieved_ids) > 1:
-            first_user_content = next((m.get("content", "") for m in messages if m.get("role") == "user"), "").lower()
-            for idx_cand, cand_id in enumerate(retrieved_ids):
-                norm_c = cand_id.lower()
-                if "người lao động" in first_user_content and "đơn phương" in first_user_content:
-                    if norm_c == "dieu_35" and "trái" not in first_user_content:
-                        chosen_id = cand_id
-                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
-                        break
-                    elif norm_c == "dieu_40" and "trái" in first_user_content:
-                        chosen_id = cand_id
-                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
-                        break
-                elif ("người sử dụng lao động" in first_user_content or "công ty" in first_user_content or "sa thải" in first_user_content) and "trái" in first_user_content:
-                    if norm_c == "dieu_41":
-                        chosen_id = cand_id
-                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
-                        break
-
-        # Lấy snippet tương ứng để đảm bảo span support overlap > 25%
-        if chosen_snippet:
-            clean_snippet = re.sub(r'[\r\n]+', ' ', chosen_snippet.replace('\\"', '"').replace('\\n', ' ')).strip()
-            first_clause = clean_snippet.split('.')[0].strip()
-            if len(first_clause) > 20:
-                answer_content = f"Căn cứ theo quy định pháp luật lao động: {first_clause}."
-            else:
-                answer_content = f"Căn cứ theo quy định tại {chosen_id}: {clean_snippet[:150]}."
-        else:
-            answer_content = f"Căn cứ theo quy định tại {chosen_id} Bộ luật Lao động 2019, quyền và nghĩa vụ của người lao động được quy định chi tiết theo điều luật."
-
-        return {
-            "thought": f"Đã có kết quả tra cứu điều luật {chosen_id}, tổng hợp câu trả lời có căn cứ.",
-            "action": "answer",
-            "tool_args": {
-                "content": answer_content,
-                "citations": [{"article_id": chosen_id, "law_name": "Bộ luật Lao động 2019"}]
-            }
-        }
+        """Duy trì tương thích ngược cho các bài test hoặc caller gọi trực tiếp rule-based fallback."""
+        return self.mock_client.generate(messages, ledger=self.ledger)
 
 
     def run(self, user_query: str, pasted_doc: Optional[str] = None, session_id: Optional[str] = None) -> CaseLedger:
