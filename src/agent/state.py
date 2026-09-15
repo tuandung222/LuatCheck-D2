@@ -50,6 +50,8 @@ class CaseLedger(BaseModel):
     max_tool_calls: int = 5
     repairs_count: int = 0
     max_repairs: int = 2
+    step_count: int = 0
+    max_steps: int = 10
     
     # State tracking
     is_terminal: bool = False
@@ -62,6 +64,12 @@ class CaseLedger(BaseModel):
 
     def can_repair(self) -> bool:
         return self.repairs_count < self.max_repairs
+
+    def can_step(self) -> bool:
+        return self.step_count < self.max_steps
+
+    def record_step(self):
+        self.step_count += 1
 
     def record_tool_call(self, tool_name: str, args: Dict[str, Any], result_summary: str):
         self.tool_calls_count += 1

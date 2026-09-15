@@ -20,6 +20,8 @@ from src.security.audit_logger import AuditLogger
 
 
 class LuatCheckAgent:
+    VALID_MODES = {"off", "l1", "l1_only", "l1_on", "l1_l2", "l1_l2_on"}
+
     def __init__(
         self,
         model_name: str = "qwen2.5:3b",
@@ -27,6 +29,7 @@ class LuatCheckAgent:
         corpus_path: str = "data/corpus/labor_code_2019.json",
         max_tool_calls: int = 5,
         max_repairs: int = 2,
+        max_steps: int = 10,
         verification_mode: str = "l1_only",
         enable_verification: Optional[bool] = None,
         l2_use_slm: bool = False
@@ -35,6 +38,7 @@ class LuatCheckAgent:
         self.ollama_url = ollama_url
         self.max_tool_calls = max_tool_calls
         self.max_repairs = max_repairs
+        self.max_steps = max_steps
         self.l2_use_slm = l2_use_slm
 
         # Xử lý tương thích ngược giữa enable_verification và verification_mode
@@ -44,6 +48,12 @@ class LuatCheckAgent:
             self.verification_mode = "l1_only"
         else:
             self.verification_mode = verification_mode
+
+        if self.verification_mode not in self.VALID_MODES:
+            raise ValueError(
+                f"Chế độ verification_mode '{self.verification_mode}' không hợp lệ. "
+                f"Bắt buộc phải là một trong các giá trị: {sorted(list(self.VALID_MODES))}"
+            )
 
         self.enable_verification = (self.verification_mode != "off")
 
@@ -61,7 +71,7 @@ class LuatCheckAgent:
 
     def _call_llm(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
         """
-        Gọi Ollama API với format json
+        Gọi Ollama API với format json và kiểm thực schema chặt chẽ
         """
         payload = {
             "model": self.model_name,
@@ -73,6 +83,7 @@ class LuatCheckAgent:
                 "top_p": 0.9
             }
         }
+        valid_actions = {e.value for e in ActionType}
         try:
             resp = requests.post(f"{self.ollama_url}/api/chat", json=payload, timeout=45)
             if resp.status_code == 200:
@@ -87,6 +98,21 @@ class LuatCheckAgent:
                                 "details": f"InvalidSchema: Response must be JSON dict with 'action', got: {raw_content[:100]}"
                             })
                         return self._rule_based_fallback(messages)
+
+                    # Chuẩn hóa đối số tool_args luôn là dictionary
+                    if not isinstance(parsed.get("tool_args"), dict):
+                        parsed["tool_args"] = {}
+
+                    # Xác thực action phải thuộc ActionType hợp lệ
+                    act = str(parsed.get("action", ""))
+                    if act not in valid_actions:
+                        if ledger:
+                            ledger.audit_events.append({
+                                "event": "parse_error",
+                                "details": f"InvalidAction: '{act}' is not in {valid_actions}"
+                            })
+                        return self._rule_based_fallback(messages)
+
                     return parsed
                 except json.JSONDecodeError as jde:
                     if ledger:
@@ -318,26 +344,52 @@ class LuatCheckAgent:
 
         # 4. Vòng lặp ReAct có ngân sách (Budgeted ReAct Loop)
         while not ledger.is_terminal:
-            # Kiểm tra ngân sách công cụ
-            if not ledger.can_call_tool():
+            # 1. Kiểm tra giới hạn tổng số bước suy luận (Step Budget Invariant)
+            if not ledger.can_step():
                 ledger.is_terminal = True
                 ledger.terminal_status = "refused"
                 ledger.final_output = {
                     "action": "refuse",
-                    "reason": f"Hệ thống đã sử dụng hết ngân sách {self.max_tool_calls} lượt gọi công cụ mà chưa hoàn tất xác thực.",
+                    "reason": f"Hệ thống đã sử dụng hết giới hạn tối đa {self.max_steps} bước suy luận mà chưa có kết luận.",
                     "citations": []
                 }
                 break
 
+            ledger.record_step()
+
             agent_resp = self._call_llm(messages, ledger=self.ledger)
-            action = agent_resp.get("action", "refuse")
-            thought = agent_resp.get("thought", "")
-            tool_args = agent_resp.get("tool_args", {})
+            if not isinstance(agent_resp, dict):
+                agent_resp = {"action": "refuse", "tool_args": {"reason": "Phản hồi từ mô hình không đúng định dạng JSON."}}
+
+            action = str(agent_resp.get("action", "refuse"))
+            thought = str(agent_resp.get("thought", ""))
+            tool_args = agent_resp.get("tool_args")
+            if not isinstance(tool_args, dict):
+                tool_args = {}
 
             # Xử lý các hành động
             if action == ActionType.SEARCH_LAW.value:
-                q = tool_args.get("query", user_query)
-                top_k = tool_args.get("top_k", 3)
+                if not ledger.can_call_tool():
+                    # Đã hết ngân sách gọi tool -> nhắc nhở model chuyển sang answer hoặc refuse
+                    messages.append({"role": "assistant", "content": json.dumps(agent_resp, ensure_ascii=False)})
+                    messages.append({"role": "user", "content": f"[LỖI_NGÂN_SÁCH] Đã sử dụng tối đa {self.max_tool_calls} lượt gọi công cụ. Bạn KHÔNG ĐƯỢC gọi thêm công cụ nữa. Hãy chuyển sang hành động 'answer' nếu đã đủ tài liệu, hoặc 'refuse' nếu chưa đủ căn cứ."})
+                    if ledger.step_count >= self.max_steps - 1:
+                        ledger.is_terminal = True
+                        ledger.terminal_status = "refused"
+                        ledger.final_output = {
+                            "action": "refuse",
+                            "reason": f"Hệ thống đã sử dụng hết ngân sách {self.max_tool_calls} lượt gọi công cụ.",
+                            "citations": []
+                        }
+                    continue
+
+                q = str(tool_args.get("query") or user_query)
+                raw_top_k = tool_args.get("top_k", 3)
+                try:
+                    top_k = int(raw_top_k)
+                except (ValueError, TypeError):
+                    top_k = 3
+
                 tool_res = self.tool_registry.search_law(q, top_k=top_k)
                 
                 # Lưu vào cache ledger
@@ -350,7 +402,20 @@ class LuatCheckAgent:
                 messages.append({"role": "user", "content": f"[OBSERVATION_TOOL_RESULT]\n{json.dumps(tool_res, ensure_ascii=False)}"})
 
             elif action == ActionType.GET_ARTICLE.value:
-                aid = tool_args.get("article_id", "")
+                if not ledger.can_call_tool():
+                    messages.append({"role": "assistant", "content": json.dumps(agent_resp, ensure_ascii=False)})
+                    messages.append({"role": "user", "content": f"[LỖI_NGÂN_SÁCH] Đã sử dụng tối đa {self.max_tool_calls} lượt gọi công cụ. Bạn KHÔNG ĐƯỢC gọi thêm công cụ nữa. Hãy chuyển sang hành động 'answer' hoặc 'refuse'."})
+                    if ledger.step_count >= self.max_steps - 1:
+                        ledger.is_terminal = True
+                        ledger.terminal_status = "refused"
+                        ledger.final_output = {
+                            "action": "refuse",
+                            "reason": f"Hệ thống đã sử dụng hết ngân sách {self.max_tool_calls} lượt gọi công cụ.",
+                            "citations": []
+                        }
+                    continue
+
+                aid = str(tool_args.get("article_id") or "")
                 tool_res = self.tool_registry.get_article(aid)
                 if tool_res.get("status") == "success":
                     CaseLedgerManager.add_retrieved_article(ledger, aid, tool_res.get("full_content", ""))
@@ -360,9 +425,21 @@ class LuatCheckAgent:
                 messages.append({"role": "user", "content": f"[OBSERVATION_TOOL_RESULT]\n{json.dumps(tool_res, ensure_ascii=False)}"})
 
             elif action == ActionType.ANSWER.value:
-                answer_content = tool_args.get("content", "")
+                answer_content = str(tool_args.get("content") or "")
                 raw_citations = tool_args.get("citations", [])
-                citations = [Citation(**c) if isinstance(c, dict) else Citation(article_id=str(c)) for c in raw_citations]
+                if not isinstance(raw_citations, list):
+                    raw_citations = []
+                citations = []
+                for c in raw_citations:
+                    if isinstance(c, dict):
+                        try:
+                            citations.append(Citation(**c))
+                        except Exception:
+                            aid = str(c.get("article_id") or "")
+                            if aid:
+                                citations.append(Citation(article_id=aid))
+                    elif isinstance(c, str) and c.strip():
+                        citations.append(Citation(article_id=c.strip()))
 
                 # BƯỚC XÁC THỰC CĂN CỨ PHÁP LÝ (3-WAY ABLATION CONTRACT)
                 verif_valid = True
@@ -407,13 +484,7 @@ class LuatCheckAgent:
                 if verif_valid:
                     ledger.is_terminal = True
                     ledger.terminal_status = "answered"
-                    # Nếu có xác thực, ưu tiên đưa các điều luật trích dẫn đã xác thực lên đầu retrieved_article_ids
-                    if self.verification_mode != "off":
-                        for c in reversed(citations):
-                            cid = c.article_id
-                            if cid in ledger.retrieved_article_ids:
-                                ledger.retrieved_article_ids.remove(cid)
-                                ledger.retrieved_article_ids.insert(0, cid)
+                    # Giữ nguyên thứ tự truy xuất khách quan, không xáo trộn danh sách retrieval
                     citations_dicts = [c.model_dump() if hasattr(c, "model_dump") else c.dict() for c in citations]
                     ledger.final_output = {
                         "action": "answer",
@@ -452,7 +523,7 @@ class LuatCheckAgent:
                 ledger.terminal_status = "clarified"
                 ledger.final_output = {
                     "action": "clarify",
-                    "question": tool_args.get("question", "Vui lòng làm rõ thêm chi tiết về tình huống của bạn."),
+                    "question": str(tool_args.get("question") or "Vui lòng làm rõ thêm chi tiết về tình huống của bạn."),
                     "citations": []
                 }
 
@@ -461,9 +532,29 @@ class LuatCheckAgent:
                 ledger.terminal_status = "refused"
                 ledger.final_output = {
                     "action": "refuse",
-                    "reason": tool_args.get("reason", "Hệ thống từ chối trả lời vì không có căn cứ pháp luật rõ ràng."),
+                    "reason": str(tool_args.get("reason") or "Hệ thống từ chối trả lời vì không có căn cứ pháp luật rõ ràng."),
                     "citations": []
                 }
+
+            else:
+                # Xử lý các action lạ/không hợp lệ (như {"action": "bogus"})
+                ledger.audit_events.append({
+                    "event": "invalid_action",
+                    "action": action,
+                    "step": ledger.step_count
+                })
+                if ledger.can_repair():
+                    ledger.record_repair(f"Hành động '{action}' không hợp lệ.")
+                    messages.append({"role": "assistant", "content": json.dumps(agent_resp, ensure_ascii=False)})
+                    messages.append({"role": "user", "content": f"[LỖI_HÀNH_ĐỘNG] Hành động '{action}' không được hỗ trợ. Hãy chỉ chọn một trong các hành động: search_law, get_article, answer, clarify, refuse."})
+                else:
+                    ledger.is_terminal = True
+                    ledger.terminal_status = "refused"
+                    ledger.final_output = {
+                        "action": "refuse",
+                        "reason": f"Mô hình sinh hành động không hợp lệ '{action}' vượt quá giới hạn sửa chữa.",
+                        "citations": []
+                    }
 
         elapsed_ms = (time.time() - start_time) * 1000
         self.audit_logger.log_event(

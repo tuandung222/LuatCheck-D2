@@ -303,19 +303,19 @@ We benchmark three system configurations across seeds 42, 123, and 2026:
 \toprule
 \textbf{Metric} & \textbf{Baseline (OFF)} & \textbf{LuatCheck (L1 ON)} & \textbf{LuatCheck (L1+L2 ON)} \\
 \midrule
-Recall@1 ($\uparrow$) & $0.800 \pm 0.000$ & $\mathbf{0.867 \pm 0.000}$ & $0.800 \pm 0.000$ \\
-Recall@5 ($\uparrow$) & $0.800 \pm 0.000$ & $0.867 \pm 0.000$ & $\mathbf{1.000 \pm 0.000}$ \\
-MRR ($\uparrow$) & $0.800 \pm 0.000$ & $0.867 \pm 0.000$ & $\mathbf{0.900 \pm 0.000}$ \\
-Citation Precision ($\uparrow$) & $0.600 \pm 0.000$ & $\mathbf{0.650 \pm 0.000}$ & $0.200 \pm 0.000$ \\
-Citation Recall ($\uparrow$) & $0.650 \pm 0.000$ & $\mathbf{0.700 \pm 0.000}$ & $0.175 \pm 0.000$ \\
-Answer Coverage ($\uparrow$) & $0.900$ & $\mathbf{0.900}$ & $0.200$ \\
-Unsupported-Sentence Rate ($\downarrow$) & $0.150$ & $\mathbf{0.000}$ & $\mathbf{0.000}$ \\
+Recall@1 ($\uparrow$) & $0.800 \pm 0.000$ & $0.800 \pm 0.000$ & $0.800 \pm 0.000$ \\
+Recall@5 ($\uparrow$) & $\mathbf{1.000 \pm 0.000}$ & $\mathbf{1.000 \pm 0.000}$ & $\mathbf{1.000 \pm 0.000}$ \\
+MRR ($\uparrow$) & $\mathbf{0.900 \pm 0.000}$ & $\mathbf{0.900 \pm 0.000}$ & $\mathbf{0.900 \pm 0.000}$ \\
+Citation Precision ($\uparrow$) & $0.600 \pm 0.000$ & $\mathbf{0.750 \pm 0.000}$ & $0.200 \pm 0.000$ \\
+Citation Recall ($\uparrow$) & $0.650 \pm 0.000$ & $\mathbf{0.775 \pm 0.000}$ & $0.175 \pm 0.000$ \\
+Answer Coverage ($\uparrow$) & $\mathbf{0.900 \pm 0.000}$ & $\mathbf{0.900 \pm 0.000}$ & $0.200 \pm 0.000$ \\
+Unsupported-Sentence Rate ($\downarrow$) & $0.150 \pm 0.000$ & $0.150 \pm 0.000$ & $\mathbf{0.000 \pm 0.000}$ \\
 \midrule
-Latency p50 / p95 (ms) & $12.15$ / $27.1$ & $\mathbf{6.83}$ / $\mathbf{17.4}$ & $15.39$ / $46.0$ \\
+Latency p50 / p95 (ms) & $5.51$ / $9.21$ & $\mathbf{5.49}$ / $14.59$ & $5.88$ / $\mathbf{8.12}$ \\
 Compute Spend (USD) & $\$0.00$ & $\$0.00$ & $\$0.00$ \\
 \bottomrule
 \end{tabularx}
-\caption{Three-way ablation performance across 3 seeds (42, 123, 2026) on the 20-task benchmark.}
+\caption{Three-way ablation performance across 3 seeds (42, 123, 2026) on the 20-task benchmark under cold-cache isolation.}
 \label{tab:d3-eval}
 \end{table}
 
@@ -329,8 +329,8 @@ Following Kapoor et al.~\citep{kapoor2024agentsmatter}, we categorize all execut
 \toprule
 \textbf{Failure Category} & \textbf{Baseline (OFF)} & \textbf{LuatCheck (L1 ON)} & \textbf{LuatCheck (L1+L2 ON)} \\
 \midrule
-Retrieval Miss (not in top-5) & 6 & 6 & \textbf{0} \\
-Wrong Provision Cited & 18 & 15 & \textbf{0} \\
+Retrieval Miss (not in top-5) & \textbf{0} & \textbf{0} & \textbf{0} \\
+Wrong Provision Cited & 18 & 9 & \textbf{0} \\
 Unsupported Claim Generated & 9 & 9 & \textbf{0} \\
 Over-Refusal & \textbf{0} & \textbf{0} & 33 \\
 Budget Exhausted ($\ge$ 5 calls) & \textbf{0} & \textbf{0} & \textbf{0} \\
@@ -341,7 +341,7 @@ Parse / Schema Error & \textbf{0} & \textbf{0} & \textbf{0} \\
 \label{tab:error-taxonomy}
 \end{table}
 
-The empirical findings confirm that the deterministic L1 verifier eliminates unsupported sentence claims (driving USR to $0.000$), while the L2 semantic entailment layer acts as an effective NLI filter eliminating subtle statutory contradictions, with a modest conservative trade-off in over-refusal on ambiguous queries.
+The empirical findings highlight a fundamental trade-off: L1 verification significantly enhances citation fidelity (boosting Citation Precision from 0.600 to \textbf{0.750} and Recall from 0.650 to \textbf{0.775}) while halving wrong provision citations (from 18 to 9). However, deterministic unigram overlap alone cannot verify semantic scope boundaries on unanswerable tasks (Tasks 16--18), yielding a USR of 0.150 for both Baseline and L1. Conversely, the LuatCheck L1+L2 pipeline eliminates 100\% of unsupported claims ($\mathbf{0.000}$ USR) and wrong citations, at the cost of conservative over-refusal (33 instances, 55.0\%) under heuristic NLI fallback in offline execution. Both pipelines maintain zero API cost ($\$0.00$) and low latency ($<15$\,ms p95).
 
 % =====================================================================
 % SECTION 6: SECURITY AND SAFETY ANALYSIS

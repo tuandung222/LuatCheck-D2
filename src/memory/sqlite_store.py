@@ -15,11 +15,10 @@ def sanitize_pii(text: str) -> str:
     """
     Khử khuẩn dữ liệu định danh cá nhân (PII Sanitization) tuân thủ Nghị định 13/2023/NĐ-CP & PDPL 2025:
     - Bảo toàn Mã số thuế doanh nghiệp 10 chữ số (và 13 chữ số chi nhánh) khi có nhãn mã số thuế/MST/MSDN.
-    - Khử khuẩn Số căn cước công dân (CCCD 12 chữ số theo các định dạng 3-3-3-3, 4-4-4, 3-1-2-6, tiền tố CCCD_)
-      và CMND 9 chữ số, có cơ chế loại trừ số tiền tệ lớn (>= 100 tỷ đồng, VNĐ, VND, đ,...) bằng negative lookahead.
-    - Khử khuẩn Số điện thoại di động và cố định Việt Nam (đầu số 03, 05, 07, 08, 09, 02x, +84, (+84)
-      kèm dấu cách, gạch nối, dấu chấm, ngoặc đơn).
-    - Khử khuẩn Địa chỉ email.
+    - Khử khuẩn Số căn cước công dân (CCCD 12 chữ số theo mọi biến thể phân cách khoảng trắng, dấu chấm, gạch ngang)
+      và CMND 9 chữ số, phòng vệ trước nỗ lực giả mạo đuôi tiền tệ.
+    - Khử khuẩn Số điện thoại di động và cố định (bàn) Việt Nam (đầu số di động 03, 05, 07, 08, 09, đầu số cố định 02x, +84, (+84)).
+    - Khử khuẩn Địa chỉ email RFC 5322.
     Thay thế toàn bộ thông tin cá nhân nhạy cảm bằng nhãn chuẩn [REDACTED_PII].
     """
     if not text:
@@ -28,8 +27,6 @@ def sanitize_pii(text: str) -> str:
     sanitized = text
 
     # 0. BẢO VỆ MÃ SỐ THUẾ DOANH NGHIỆP (Enterprise Tax Codes)
-    # Mã số thuế của pháp nhân/doanh nghiệp là thông tin công khai minh bạch, không phải PII cá nhân.
-    # Sử dụng kỹ thuật Masking Placeholder để ngăn regex SĐT (đầu 03x) hoặc CCCD nhận diện nhầm.
     tax_placeholders = {}
     tax_pattern = r"(?i)\b(?:mã\s+số\s+thuế|mst|mã\s+số\s+doanh\s+nghiệp|msdn|tax\s+code)\b[\s:._-]*([0-9]{10}(?:-[0-9]{3})?)\b"
 
@@ -43,38 +40,70 @@ def sanitize_pii(text: str) -> str:
 
     sanitized = re.sub(tax_pattern, _mask_tax, sanitized)
 
-    # 1. Email addresses (chuẩn RFC 5322 cơ bản, hỗ trợ subdomain nhiều cấp và tag dấu +)
+    # 0.1 BẢO VỆ SỐ TIỀN VÀ GIÁ TRỊ TÀI CHÍNH HỢP PHÁP (Legitimate Currency Amounts)
+    # Tuyệt đối không bảo vệ số bắt đầu bằng 0 (như 001203456789 đồng là thủ đoạn bypass CCCD)
+    currency_placeholders = {}
+    currency_pattern = (
+        r"(?<!\d)(?:[1-9]\d{0,2}(?:[.,]\d{3})+|[1-9]\d+)\s*"
+        r"(?i:(?:đồng|đ|vnđ|vnd|usd|eur|tỷ|tỉ|triệu))\b"
+    )
+
+    def _mask_currency(match: re.Match) -> str:
+        key = f"__PRESERVED_CURRENCY_{len(currency_placeholders)}__"
+        currency_placeholders[key] = match.group(0)
+        return key
+
+    sanitized = re.sub(currency_pattern, _mask_currency, sanitized)
+
+    # 1. Email addresses (chuẩn RFC 5322 cơ bản)
     email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
     sanitized = re.sub(email_pattern, '[REDACTED_PII]', sanitized)
 
-    # Biểu thức loại trừ các đơn vị tiền tệ phổ biến (không phân biệt hoa thường)
-    currency_exclusion = r'(?!\s*(?i:(?:đồng|đ|vnđ|vnd|usd|eur|tỷ|tỉ|triệu|nghìn|ngàn)\b))'
+    # 2. Rà soát nhãn định danh CCCD/CMND tường minh (bất kể dấu cách phân tách và có đuôi tiền tệ hay không)
+    explicit_id_pattern = r'(?i)\b(?:cccd|căn\s+cước(?:\s+công\s+dân)?|cmnd|chứng\s+minh\s+nhân\s+dân|số\s+định\s+danh)[\s:._-]*([0-9\s.\-]{9,22})\b'
+    def _redact_explicit_id(match: re.Match) -> str:
+        digits = re.sub(r'\D', '', match.group(1))
+        if len(digits) in (9, 12):
+            prefix = match.group(0)[:match.start(1) - match.start(0)]
+            return f"{prefix}[REDACTED_PII]"
+        return match.group(0)
+    sanitized = re.sub(explicit_id_pattern, _redact_explicit_id, sanitized)
 
-    # 2. Số Căn cước công dân 12 chữ số (CCCD) và phân cách định dạng chuẩn (3-3-3-3, 4-4-4)
-    # Loại trừ các số tiền tệ 12 chữ số (ví dụ: 100.000.000.000 đồng)
-    cccd_pattern = (
-        r'(?<![\d])(?:'
-        r'\d{12}'
-        r'|\d{3}[.\-\s]\d{3}[.\-\s]\d{3}[.\-\s]\d{3}'
-        r'|\d{4}[.\-\s]\d{4}[.\-\s]\d{4}'
-        r')(?![\d])' + currency_exclusion
-    )
-    sanitized = re.sub(cccd_pattern, '[REDACTED_PII]', sanitized)
+    # 3. Số Căn cước công dân 12 chữ số (chuỗi 12 chữ số với khoảng cách bất kỳ)
+    def _redact_12_digits(match: re.Match) -> str:
+        matched_str = match.group(0)
+        digits = re.sub(r'\D', '', matched_str)
+        if len(digits) == 12:
+            return '[REDACTED_PII]'
+        return matched_str
 
-    # 3. Số điện thoại di động Việt Nam (hỗ trợ +84, 84, 0; tiền tố (0912), (091), (09), (+84); dấu cách, chấm, gạch ngang)
-    # Loại trừ số tiền tệ (84.500.000.000 VNĐ, 0.900.000.000 đồng) và tránh nuốt số lớn hơn (184...)
+    sanitized = re.sub(r'(?<![\d])(?:\d[\s.\-]?){11}\d(?![\d])', _redact_12_digits, sanitized)
+
+    # 4. CMND 9 chữ số
+    def _redact_9_digits(match: re.Match) -> str:
+        matched_str = match.group(0)
+        digits = re.sub(r'\D', '', matched_str)
+        if len(digits) == 9:
+            return '[REDACTED_PII]'
+        return matched_str
+
+    sanitized = re.sub(r'(?<![\d])(?:\d[\s.\-]?){8}\d(?![\d])', _redact_9_digits, sanitized)
+
+    # 5. Số điện thoại di động & cố định Việt Nam (đầu số 03, 05, 07, 08, 09 và cố định 02x)
     phone_pattern = (
         r'(?<![\d])(?:'
         r'(?:(?:\+84|84|0|\(\+84\))[\s.\-]*(?:\(?0?(?:3|5|7|8|9)\)?))[\s.\-]*(?:[\s.\-]?\d){7,8}'
         r'|'
-        r'(?:\(0[35789]\d{2}\))[\s.\-]*(?:[\s.\-]?\d){6}'
+        r'(?:(?:\+84|84|0)[\s.\-]*2\d{1,2})[\s.\-]*(?:[\s.\-]?\d){7,8}'
         r'|'
-        r'(?:\(0[35789]\d?\))[\s.\-]*(?:[\s.\-]?\d){7,8}'
-        r')(?![\s.\-]?\d)' + currency_exclusion
+        r'(?:\(0[235789]\d{1,2}\))[\s.\-]*(?:[\s.\-]?\d){6,8}'
+        r')(?![\s.\-]?\d)'
     )
     sanitized = re.sub(phone_pattern, '[REDACTED_PII]', sanitized)
 
-    # 4. KHÔI PHỤC MÃ SỐ THUẾ DOANH NGHIỆP
+    # 6. KHÔI PHỤC TIỀN TỆ VÀ MÃ SỐ THUẾ DOANH NGHIỆP
+    for key, original_curr in currency_placeholders.items():
+        sanitized = sanitized.replace(key, original_curr)
     for key, original_tax in tax_placeholders.items():
         sanitized = sanitized.replace(key, original_tax)
 
@@ -122,7 +151,7 @@ class SQLiteEpisodicStore:
         CHÍNH SÁCH GHI (Write Policy):
         - Chỉ ghi khi kết quả đã VƯỢT QUA 100% kiểm tra L1 Verification.
         - Tuyệt đối không lưu câu hỏi/câu trả lời bị từ chối hoặc không được xác minh.
-        - Khử khuẩn toàn bộ PII (CCCD, SĐT, Email) trước khi lưu vào cơ sở dữ liệu.
+        - Khử khuẩn toàn bộ PII (CCCD, SĐT, Email) trong query, answer và citations_json.
         """
         if not is_l1_verified:
             return False
@@ -131,19 +160,24 @@ class SQLiteEpisodicStore:
         clean_query = sanitize_pii(query).strip().lower()
         clean_answer = sanitize_pii(answer)
 
-        # Trích xuất và định dạng mã điều luật
+        # Trích xuất và khử khuẩn cấu trúc citations
+        citations_sanitized = []
         if isinstance(citations, list):
             article_ids = ",".join([
                 c.get("article_id", "") if isinstance(c, dict) else getattr(c, "article_id", str(c))
                 for c in citations
             ])
-            citations_serializable = [
-                c if isinstance(c, dict) else (c.dict() if hasattr(c, "dict") else {"article_id": str(c)})
-                for c in citations
-            ]
+            for c in citations:
+                c_dict = c if isinstance(c, dict) else (c.model_dump() if hasattr(c, "model_dump") else (c.dict() if hasattr(c, "dict") else {"article_id": str(c)}))
+                clean_c = {}
+                for k, v in c_dict.items():
+                    if isinstance(v, str):
+                        clean_c[k] = sanitize_pii(v)
+                    else:
+                        clean_c[k] = v
+                citations_sanitized.append(clean_c)
         else:
             article_ids = ""
-            citations_serializable = []
 
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
@@ -156,7 +190,7 @@ class SQLiteEpisodicStore:
                 clean_query,
                 article_ids,
                 clean_answer,
-                json.dumps(citations_serializable, ensure_ascii=False),
+                json.dumps(citations_sanitized, ensure_ascii=False),
                 self.index_version,
                 datetime.now(timezone.utc).isoformat()
             ))

@@ -8,9 +8,9 @@
     ],
     "Recall@1_mean": 0.8,
     "Recall@1_std": 0.0,
-    "Recall@5_mean": 0.8,
+    "Recall@5_mean": 1.0,
     "Recall@5_std": 0.0,
-    "MRR_mean": 0.8,
+    "MRR_mean": 0.9,
     "MRR_std": 0.0,
     "Citation_Precision_mean": 0.6,
     "Citation_Precision_std": 0.0,
@@ -21,7 +21,7 @@
     "Unsupported_Rate_mean": 0.15,
     "Unsupported_Rate_std": 0.0,
     "Error_Taxonomy": {
-      "retrieval_miss": 6,
+      "retrieval_miss": 0,
       "wrong_provision_cited": 18,
       "unsupported_claim": 9,
       "over_refusal": 0,
@@ -31,9 +31,9 @@
     "Error_Taxonomy_Detailed": {
       "configuration": "off",
       "total_tasks_evaluated": 60,
-      "total_failure_instances": 33,
+      "total_failure_instances": 27,
       "counts": {
-        "retrieval_miss": 6,
+        "retrieval_miss": 0,
         "wrong_provision_cited": 18,
         "unsupported_claim": 9,
         "over_refusal": 0,
@@ -41,7 +41,7 @@
         "parse_error": 0
       },
       "frequencies_percent": {
-        "retrieval_miss": 10.0,
+        "retrieval_miss": 0.0,
         "wrong_provision_cited": 30.0,
         "unsupported_claim": 15.0,
         "over_refusal": 0.0,
@@ -49,101 +49,7 @@
         "parse_error": 0.0
       },
       "case_studies": {
-        "retrieval_miss": [
-          {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "retrieved": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "retrieved": [
-                "dieu_40"
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "retrieved": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "retrieved": [
-                "dieu_40"
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "retrieved": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "retrieved": [
-                "dieu_40"
-              ]
-            }
-          }
-        ],
+        "retrieval_miss": [],
         "wrong_provision_cited": [
           {
             "task_id": "VLQA_03_RESIGNATION_NOTICE_INDEFINITE",
@@ -534,13 +440,13 @@
         "parse_error": []
       }
     },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 33\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 10.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **18** | 30.0% | **VLQA_03_RESIGNATION_NOTICE_INDEFINITE**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **9** | 15.0% | **UNANSWERABLE_01_CRIMINAL_PENALTY**: Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expect... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 27\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **18** | 30.0% | **VLQA_03_RESIGNATION_NOTICE_INDEFINITE**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **9** | 15.0% | **UNANSWERABLE_01_CRIMINAL_PENALTY**: Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expect... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 12.15,
-      "p95_ms": 27.09
+      "p50_ms": 5.51,
+      "p95_ms": 9.21
     },
-    "Tokens_Per_Task_mean": 207.2,
-    "Total_Tokens": 12429,
+    "Tokens_Per_Task_mean": 208.2,
+    "Total_Tokens": 12495,
     "Compute_Cost_USD": 0.0
   },
   "luatcheck_l1_on": {
@@ -550,23 +456,23 @@
       123,
       2026
     ],
-    "Recall@1_mean": 0.8667,
+    "Recall@1_mean": 0.8,
     "Recall@1_std": 0.0,
-    "Recall@5_mean": 0.8667,
+    "Recall@5_mean": 1.0,
     "Recall@5_std": 0.0,
-    "MRR_mean": 0.8667,
+    "MRR_mean": 0.9,
     "MRR_std": 0.0,
-    "Citation_Precision_mean": 0.65,
+    "Citation_Precision_mean": 0.75,
     "Citation_Precision_std": 0.0,
-    "Citation_Recall_mean": 0.7,
+    "Citation_Recall_mean": 0.775,
     "Citation_Recall_std": 0.0,
     "Coverage_mean": 0.9,
     "Coverage_std": 0.0,
-    "Unsupported_Rate_mean": 0.0,
+    "Unsupported_Rate_mean": 0.15,
     "Unsupported_Rate_std": 0.0,
     "Error_Taxonomy": {
-      "retrieval_miss": 6,
-      "wrong_provision_cited": 15,
+      "retrieval_miss": 0,
+      "wrong_provision_cited": 9,
       "unsupported_claim": 9,
       "over_refusal": 0,
       "budget_exhausted": 0,
@@ -575,158 +481,27 @@
     "Error_Taxonomy_Detailed": {
       "configuration": "l1_on",
       "total_tasks_evaluated": 60,
-      "total_failure_instances": 30,
+      "total_failure_instances": 18,
       "counts": {
-        "retrieval_miss": 6,
-        "wrong_provision_cited": 15,
+        "retrieval_miss": 0,
+        "wrong_provision_cited": 9,
         "unsupported_claim": 9,
         "over_refusal": 0,
         "budget_exhausted": 0,
         "parse_error": 0
       },
       "frequencies_percent": {
-        "retrieval_miss": 10.0,
-        "wrong_provision_cited": 25.0,
+        "retrieval_miss": 0.0,
+        "wrong_provision_cited": 15.0,
         "unsupported_claim": 15.0,
         "over_refusal": 0.0,
         "budget_exhausted": 0.0,
         "parse_error": 0.0
       },
       "case_studies": {
-        "retrieval_miss": [
-          {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "retrieved": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "retrieved": [
-                "dieu_40"
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "retrieved": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "retrieved": [
-                "dieu_40"
-              ]
-            }
-          },
-          {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy xuất (['dieu_41'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "retrieved": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "retrieval_miss",
-            "what_failed": "Căn cứ pháp lý chuẩn ['dieu_41', 'dieu_46'] không xuất hiện trong top-k truy xuất (['dieu_40'])",
-            "why": "Bộ truy xuất kết hợp (BM25/Dense) không xếp hạng đúng điều luật cần thiết vào danh sách quan sát của agent.",
-            "details": {
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "retrieved": [
-                "dieu_40"
-              ]
-            }
-          }
-        ],
+        "retrieval_miss": [],
         "wrong_provision_cited": [
           {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "wrong_provision_cited",
-            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
-            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
-            "details": {
-              "cited": [
-                "dieu_41"
-              ],
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "invalid": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "wrong_provision_cited",
-            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
-            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
-            "details": {
-              "cited": [
-                "dieu_40"
-              ],
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "invalid": [
-                "dieu_40"
-              ]
-            }
-          },
-          {
             "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
             "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
             "failure_mode": "wrong_provision_cited",
@@ -766,43 +541,6 @@
             }
           },
           {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "wrong_provision_cited",
-            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
-            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
-            "details": {
-              "cited": [
-                "dieu_41"
-              ],
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "invalid": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "wrong_provision_cited",
-            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
-            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
-            "details": {
-              "cited": [
-                "dieu_40"
-              ],
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "invalid": [
-                "dieu_40"
-              ]
-            }
-          },
-          {
             "task_id": "UNANSWERABLE_01_CRIMINAL_PENALTY",
             "query": "Mức phạt tù đối với tội trốn đóng bảo hiểm xã hội theo Bộ luật Hình sự là bao nhiêu năm?",
             "failure_mode": "wrong_provision_cited",
@@ -839,43 +577,6 @@
                 "dieu_41"
               ],
               "ground_truth": []
-            }
-          },
-          {
-            "task_id": "VLQA_07_ILLEGAL_RESIGNATION_PENALTY",
-            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
-            "failure_mode": "wrong_provision_cited",
-            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
-            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
-            "details": {
-              "cited": [
-                "dieu_41"
-              ],
-              "ground_truth": [
-                "dieu_40"
-              ],
-              "invalid": [
-                "dieu_41"
-              ]
-            }
-          },
-          {
-            "task_id": "SYNTHESIS_02_ILLEGAL_DISMISSAL_REMEDIES",
-            "query": "Công ty sa thải tôi trái luật thì phải bồi thường những khoản tiền nào và nghĩa vụ cụ thể theo quy định ra sao?",
-            "failure_mode": "wrong_provision_cited",
-            "what_failed": "Trích dẫn sai điều luật: ['dieu_40'] (kỳ vọng: ['dieu_41', 'dieu_46'])",
-            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
-            "details": {
-              "cited": [
-                "dieu_40"
-              ],
-              "ground_truth": [
-                "dieu_41",
-                "dieu_46"
-              ],
-              "invalid": [
-                "dieu_40"
-              ]
             }
           },
           {
@@ -1024,13 +725,13 @@
         "parse_error": []
       }
     },
-    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 30\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **6** | 10.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Căn cứ pháp lý chuẩn ['dieu_40'] không xuất hiện trong top-k truy... |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **15** | 25.0% | **VLQA_07_ILLEGAL_RESIGNATION_PENALTY**: Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **9** | 15.0% | **UNANSWERABLE_01_CRIMINAL_PENALTY**: Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expect... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 18\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **9** | 15.0% | **UNANSWERABLE_01_CRIMINAL_PENALTY**: Tự ý trích dẫn điều luật ['dieu_41'] cho câu hỏi ngoài phạm vi đi... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **9** | 15.0% | **UNANSWERABLE_01_CRIMINAL_PENALTY**: Đưa ra câu trả lời khẳng định cho câu hỏi yêu cầu từ chối (expect... |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 6.83,
-      "p95_ms": 17.43
+      "p50_ms": 5.49,
+      "p95_ms": 14.59
     },
-    "Tokens_Per_Task_mean": 207.3,
-    "Total_Tokens": 12441,
+    "Tokens_Per_Task_mean": 208.4,
+    "Total_Tokens": 12507,
     "Compute_Cost_USD": 0.0
   },
   "luatcheck_l1_l2_on": {
@@ -1457,11 +1158,11 @@
     },
     "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_L2_ON`\n**Total Tasks Evaluated**: 60 | **Total Failure Instances**: 33\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **0** | 0.0% | *None observed (0 failures)* |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **33** | 55.0% | **VLQA_03_RESIGNATION_NOTICE_INDEFINITE**: Hệ thống từ chối hoặc làm rõ (refused) đối với câu hỏi hợp lệ có ... |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
     "Latency": {
-      "p50_ms": 15.39,
-      "p95_ms": 45.98
+      "p50_ms": 5.88,
+      "p95_ms": 8.12
     },
-    "Tokens_Per_Task_mean": 194.9,
-    "Total_Tokens": 11694,
+    "Tokens_Per_Task_mean": 196.0,
+    "Total_Tokens": 11760,
     "Compute_Cost_USD": 0.0
   }
 }

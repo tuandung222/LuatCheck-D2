@@ -75,8 +75,13 @@ class SecurityGuardrails:
     CORPUS_POISONING_PATTERNS = [
         # Thẻ văn bản giả mạo trong tài liệu
         r"(?i)\[\s*(văn\s+bản\s+quy\s+phạm\s+giả\s+mạo|trích\s+đoạn\s+luật\s+tải\s+về|luật\s+sửa\s+đổi\s+chưa\s+ban\s+hành)\b",
-        # Thử việc 0 đồng / không lương
-        r"(?i)\bthử\s+việc\b.{0,30}\b(0\s*(đồng|đ|vnd)|không\s+(trả\s+)?lương|miễn\s+phí)\b",
+        # Thử việc 0 đồng / không lương trong hợp đồng hoặc tài liệu đầu độc (loại trừ câu hỏi tư vấn quyền lợi công dân)
+        (
+            r"(?i)\bthử\s+việc\b"
+            r"(?:(?!(?:có\s+(?:được|đúng|hợp\s+pháp|trái|sai|phạm\s+luật)|bị|bắt|ép|khiếu\s+nại|tố\s+cáo|hỏi)).){0,30}"
+            r"\b(?:0\s*(?:đồng|đ|vnd)|không\s+(?:trả\s+)?lương|miễn\s+phí)\b"
+            r"(?!\s*(?:có\s+(?:được|đúng|hợp\s+pháp|trái|sai|phạm\s+luật)|không\b|\?))"
+        ),
         # Bãi bỏ trợ cấp thôi việc
         r"(?i)\bbãi\s+bỏ\b.{0,40}\b(trợ\s+cấp\s+thôi\s+việc|trợ\s+cấp\s+mất\s+việc)\b",
         # Điều luật không tồn tại trong BLLĐ 2019 (> 220 điều)

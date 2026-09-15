@@ -53,7 +53,8 @@ def run_benchmark(
         l2_use_slm=l2_use_slm,
         ollama_url=ollama_url
     )
-    # Cách ly bộ nhớ trong benchmark: không ghi đè ca mới vào SQLite trong quá trình đánh giá
+    # Cách ly bộ nhớ trong benchmark: không đọc cache cũ và không ghi đè ca mới vào SQLite để đo lường cold-start trung thực
+    agent.sqlite_store.retrieve_similar_case = lambda *args, **kwargs: None
     agent.sqlite_store.write_if_verified = lambda *args, **kwargs: False
 
     error_analyzer = ErrorDiagnosticAnalyzer(name=mode)
@@ -95,12 +96,9 @@ def run_benchmark(
                     if aid:
                         cit_ids.append(normalize_id(aid))
 
-            # 1. Đánh giá Retrieval
+            # 1. Đánh giá Retrieval (đánh giá khách quan trên toàn bộ ledger.retrieved_article_ids)
             if gt_ids:
                 ret_evaluated = ledger.retrieved_article_ids
-                if mode == "off" and cit_ids:
-                    # Baseline OFF không có kiểm chứng hồi quy, phạm vi điều luật dựa trên trích dẫn sơ khởi
-                    ret_evaluated = cit_ids[:1]
                 ret_metrics = calculate_retrieval_metrics(ret_evaluated, gt_ids)
                 seed_recalls_1.append(ret_metrics["Recall@1"])
                 seed_recalls_5.append(ret_metrics["Recall@5"])
@@ -119,12 +117,12 @@ def run_benchmark(
                 seed_citation_precisions.append(cit_metrics["citation_precision"])
                 seed_citation_recalls.append(cit_metrics["citation_recall"])
 
-            # 3. Tính toán Unsupported Sentence Rate (USR) động theo chuẩn ALCE
+            # 3. Tính toán Unsupported Sentence Rate (USR) động đối xứng theo chuẩn ALCE
             unsupported_claims_list = []
             if not is_answered:
                 usr = 0.0
-            elif mode == "off" and expected_behavior == "refuse":
-                # Baseline answered an unanswerable query -> zero statutory grounding under ALCE
+            elif expected_behavior == "refuse":
+                # Đối xứng mọi mode: Trả lời câu hỏi nằm ngoài phạm vi cần từ chối -> Phạt USR = 1.0 (zero statutory grounding)
                 usr = 1.0
                 unsupported_claims_list = [str(final_out.get("content", ""))]
             else:

@@ -34,12 +34,21 @@ class L1EvidenceVerifier:
         unsupported_claims = []
         retrieved_normalized = {self._normalize_id(aid) for aid in retrieved_article_ids}
 
+        # 0. Kiểm tra câu trả lời rỗng
+        if not answer_text or not answer_text.strip():
+            return L1VerificationResult(
+                is_valid=False,
+                unsupported_claims=["Câu trả lời rỗng hoặc không có nội dung."],
+                invalid_citations=[],
+                repair_feedback="Câu trả lời rỗng không cung cấp nội dung tư vấn pháp lý."
+            )
+
         # 1 & 2. Kiểm tra mã điều luật
-        if not citations and answer_text.strip():
+        if not citations:
             # Nếu có câu trả lời khẳng định nhưng không có trích dẫn nào
             return L1VerificationResult(
                 is_valid=False,
-                unsupported_claims=[answer_text],
+                unsupported_claims=[answer_text.strip()],
                 invalid_citations=["MISSING_CITATION"],
                 repair_feedback="Bạn đưa ra câu trả lời khẳng định nhưng không cung cấp bất kỳ mã điều luật trích dẫn (citation) nào làm căn cứ!"
             )
@@ -64,9 +73,6 @@ class L1EvidenceVerifier:
             )
 
         # 3. Span support check (Kiểm tra overlap ngữ nghĩa giữa các câu trả lời và văn bản điều luật)
-        # Tách câu trả lời thành từng câu đơn
-        sentences = [s.strip() for s in re.split(r'[.?!]\s+', answer_text) if len(s.strip()) > 15]
-        
         # Gom nội dung các điều luật trích dẫn
         cited_texts = []
         for c in citations:
@@ -76,18 +82,20 @@ class L1EvidenceVerifier:
                 cited_texts.append(doc["content"].lower())
         combined_law_text = " ".join(cited_texts)
         law_token_set = set(re.findall(r'\w+', combined_law_text))
+        # Tách câu trả lời thành từng mệnh đề / câu đơn (không bỏ qua câu ngắn)
+        raw_sentences = [s.strip() for s in re.split(r'[.?!;\n]+', answer_text) if s.strip()]
+        stop_words = {"là", "và", "các", "có", "được", "cho", "với", "trong", "khi", "theo", "quy", "định", "của", "tại", "này", "đó", "những"}
 
-        # Kiểm tra tỷ lệ từ khóa quan trọng trong câu có xuất hiện trong tập token điều luật
-        for sent in sentences:
+        for sent in raw_sentences:
             sent_words = set(re.findall(r'\w+', sent.lower()))
-            # Bỏ bớt stop words tiếng Việt phổ biến
-            stop_words = {"là", "và", "các", "có", "được", "cho", "với", "trong", "khi", "theo", "quy", "định", "của", "tại"}
-            meaningful_words = sent_words - stop_words
-            if not meaningful_words:
+            if not sent_words:
                 continue
 
-            # Sử dụng phép giao tập hợp token (Token Set Intersection) thay vì tìm chuỗi con (substring)
-            # Ngăn ngừa hoàn toàn hiện tượng false matches do từ đơn ngẫu nhiên trùng với âm tiết con (sub-syllable)
+            meaningful_words = sent_words - stop_words
+            if not meaningful_words:
+                meaningful_words = sent_words
+
+            # Sử dụng phép giao tập hợp token (Token Set Intersection)
             matches = sum(1 for w in meaningful_words if w in law_token_set)
             overlap_ratio = matches / len(meaningful_words)
 
