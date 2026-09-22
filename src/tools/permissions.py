@@ -6,9 +6,9 @@ from typing import Dict, Any, Tuple
 
 
 class PermissionLevel(str, Enum):
-    READ_ONLY = "READ_ONLY"                   # Hoàn toàn tự động
-    REVERSIBLE_WRITE = "REVERSIBLE_WRITE"     # Tự động ghi có nhật ký kiểm toán
-    IRREVERSIBLE_WRITE = "IRREVERSIBLE_WRITE" # Bắt buộc Human-in-the-loop confirmation
+    READ_ONLY = "READ_ONLY"                   # Fully automated read access
+    REVERSIBLE_WRITE = "REVERSIBLE_WRITE"     # Automated write with audit logging
+    IRREVERSIBLE_WRITE = "IRREVERSIBLE_WRITE" # Requires Human-in-the-loop confirmation
 
 
 TOOL_PERMISSIONS: Dict[str, PermissionLevel] = {
@@ -25,7 +25,7 @@ class PermissionError(Exception):
 
 class PermissionManager:
     """
-    Cơ chế gác cổng phân quyền tối thiểu (Least Privilege Gatekeeper)
+    Least-privilege gatekeeper enforcing authorization and human-in-the-loop guardrails.
     """
 
     @staticmethod

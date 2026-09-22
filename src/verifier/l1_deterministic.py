@@ -1,6 +1,8 @@
 """
-L1 Deterministic Evidence Verifier
-Bảo đảm 100% trích dẫn căn cứ pháp lý là có thực, đã được truy xuất và hỗ trợ phát biểu
+L1 Deterministic Evidence Verifier.
+
+Guarantees 100% statutory citations exist, were retrieved in the current session (provenance),
+and lexically support the claims made in the generated answer.
 """
 import re
 from typing import List, Dict, Any, Tuple
@@ -25,16 +27,16 @@ class L1EvidenceVerifier:
         retrieved_article_ids: List[str]
     ) -> L1VerificationResult:
         """
-        Kiểm tra 3 tầng xác thực L1:
-        1. Existence Check: Mã điều luật có tồn tại trong bộ luật hay không.
-        2. Provenance Check: Điều luật có nằm trong số tài liệu được truy xuất ở phiên này không.
-        3. Span Support Check: Các câu trả lời có được hỗ trợ bởi nội dung điều luật không.
+        Evaluate 3-tier L1 verification:
+        1. Existence Check: Article ID exists in statutory corpus.
+        2. Provenance Check: Article was retrieved during the current session.
+        3. Span Support Check: Answer sentences are supported by statutory text.
         """
         invalid_citations = []
         unsupported_claims = []
         retrieved_normalized = {self._normalize_id(aid) for aid in retrieved_article_ids}
 
-        # 0. Kiểm tra câu trả lời rỗng
+        # 0. Check for empty answer
         if not answer_text or not answer_text.strip():
             return L1VerificationResult(
                 is_valid=False,
@@ -43,9 +45,9 @@ class L1EvidenceVerifier:
                 repair_feedback="Câu trả lời rỗng không cung cấp nội dung tư vấn pháp lý."
             )
 
-        # 1 & 2. Kiểm tra mã điều luật
+        # 1 & 2. Check citation identifiers
         if not citations:
-            # Nếu có câu trả lời khẳng định nhưng không có trích dẫn nào
+            # If an affirmative answer is given without any citations
             return L1VerificationResult(
                 is_valid=False,
                 unsupported_claims=[answer_text.strip()],
@@ -55,10 +57,10 @@ class L1EvidenceVerifier:
 
         for c in citations:
             norm_id = self._normalize_id(c.article_id)
-            # Kiểm tra tồn tại
+            # Existence check
             if norm_id not in self.valid_article_ids:
                 invalid_citations.append(f"Mã điều luật '{c.article_id}' không tồn tại trong Bộ luật Lao động 2019.")
-            # Kiểm tra nguồn gốc truy xuất
+            # Provenance check
             elif norm_id not in retrieved_normalized:
                 invalid_citations.append(
                     f"Mã điều luật '{c.article_id}' tồn tại nhưng chưa từng được bạn tra cứu trong phiên làm việc này. Bị nghi ngờ là hallucination!"
@@ -72,8 +74,8 @@ class L1EvidenceVerifier:
                 repair_feedback="\n".join(invalid_citations)
             )
 
-        # 3. Span support check (Kiểm tra overlap ngữ nghĩa giữa các câu trả lời và văn bản điều luật)
-        # Gom nội dung các điều luật trích dẫn
+        # 3. Span support check (Lexical token overlap between answer clauses and cited statutory text)
+        # Aggregate cited statutory texts
         cited_texts = []
         for c in citations:
             norm_id = self._normalize_id(c.article_id)
@@ -82,7 +84,7 @@ class L1EvidenceVerifier:
                 cited_texts.append(doc["content"].lower())
         combined_law_text = " ".join(cited_texts)
         law_token_set = set(re.findall(r'\w+', combined_law_text))
-        # Tách câu trả lời thành từng mệnh đề / câu đơn (không bỏ qua câu ngắn)
+        # Segment answer into clauses/sentences (do not ignore short clauses)
         raw_sentences = [s.strip() for s in re.split(r'[.?!;\n]+', answer_text) if s.strip()]
         stop_words = {"là", "và", "các", "có", "được", "cho", "với", "trong", "khi", "theo", "quy", "định", "của", "tại", "này", "đó", "những"}
 
@@ -95,11 +97,11 @@ class L1EvidenceVerifier:
             if not meaningful_words:
                 meaningful_words = sent_words
 
-            # Sử dụng phép giao tập hợp token (Token Set Intersection)
+            # Token Set Intersection overlap ratio
             matches = sum(1 for w in meaningful_words if w in law_token_set)
             overlap_ratio = matches / len(meaningful_words)
 
-            if overlap_ratio < 0.25: # Nếu dưới 25% từ vựng xuất hiện trong luật
+            if overlap_ratio < 0.25: # If token overlap is below 25% threshold
                 unsupported_claims.append(sent)
 
         if unsupported_claims:

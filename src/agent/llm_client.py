@@ -1,10 +1,11 @@
 """
-Modular LLM Client Layer for LuatCheck
-Tách rời hoàn toàn tầng giao tiếp mô hình suy luận (LLM Engine) khỏi bộ điều khiển FSM (Controller).
-Cung cấp các chiến lược:
-1. OllamaLLMClient: Kết nối máy chủ Ollama cục bộ qua HTTP REST API.
-2. MockRuleBasedLLMClient: Bộ sinh suy luận dự phòng tất định phục vụ kiểm thử và offline benchmark.
-3. CompositeLLMClient: Kết hợp tự động — ưu tiên gọi mô hình, tự động fallback nếu offline/lỗi mạng.
+Modular LLM Client Layer for LuatCheck.
+
+Completely decouples the inference engine from the FSM controller loop.
+Provides the following strategies:
+1. OllamaLLMClient: Connects to a local Ollama server via HTTP REST API.
+2. MockRuleBasedLLMClient: Deterministic fallback inference engine for unit testing and offline benchmarking.
+3. CompositeLLMClient: Graceful fallback chain — attempts live inference first, automatically falls back on offline/error.
 """
 import json
 import re
@@ -15,13 +16,13 @@ from src.agent.state import ActionType, CaseLedger
 
 
 class MockRuleBasedLLMClient(BaseLLMClient):
-    """Bộ sinh suy luận mô phỏng dựa trên luật (Rule-based Fallback)."""
+    """Deterministic rule-based mock LLM inference client for offline evaluation and testing."""
 
     def __init__(self, verification_mode: str = "l1_only"):
         self.verification_mode = verification_mode
 
     def generate(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
-        """Sinh hành động ReAct dựa trên ngữ cảnh hội thoại hiện tại."""
+        """Generate next ReAct action based on conversation history."""
         last_msg = messages[-1]["content"] if messages else ""
         has_search = any(
             m.get("role") == "assistant" and "search_law" in m.get("content", "")
@@ -94,7 +95,7 @@ class MockRuleBasedLLMClient(BaseLLMClient):
 
 
 class OllamaLLMClient(BaseLLMClient):
-    """Gọi mô hình SLM cục bộ qua Ollama API."""
+    """Inference client invoking a local SLM/LLM via the Ollama HTTP API."""
 
     def __init__(
         self,
@@ -126,7 +127,7 @@ class OllamaLLMClient(BaseLLMClient):
             timeout=self.timeout_seconds
         )
         if resp.status_code != 200:
-            raise ConnectionError(f"Ollama trả mã lỗi HTTP {resp.status_code}: {resp.text}")
+            raise ConnectionError(f"Ollama server returned error status {resp.status_code}: {resp.text}")
 
         data = resp.json()
         raw_content = data.get("message", {}).get("content", "{}")
@@ -138,15 +139,15 @@ class OllamaLLMClient(BaseLLMClient):
                     "event": "parse_error",
                     "details": f"JSONDecodeError: {str(jde)} | raw: {raw_content[:100]}"
                 })
-            raise ValueError(f"Mô hình không trả JSON hợp lệ: {raw_content}")
+            raise ValueError(f"Model response is not valid JSON: {raw_content}")
 
         if not isinstance(parsed, dict) or "action" not in parsed:
             if ledger:
                 ledger.audit_events.append({
                     "event": "parse_error",
-                    "details": f"InvalidSchema: Phản hồi thiếu trường 'action': {raw_content[:100]}"
+                    "details": f"InvalidSchema: Response missing 'action' field: {raw_content[:100]}"
                 })
-            raise ValueError(f"Schema JSON không có action: {raw_content}")
+            raise ValueError(f"JSON response missing required 'action' field: {raw_content}")
 
         if not isinstance(parsed.get("tool_args"), dict):
             parsed["tool_args"] = {}
@@ -156,15 +157,15 @@ class OllamaLLMClient(BaseLLMClient):
             if ledger:
                 ledger.audit_events.append({
                     "event": "parse_error",
-                    "details": f"InvalidAction: '{act}' không thuộc {valid_actions}"
+                    "details": f"InvalidAction: '{act}' not in {valid_actions}"
                 })
-            raise ValueError(f"Hành động '{act}' không hợp lệ.")
+            raise ValueError(f"Invalid action '{act}'.")
 
         return parsed
 
 
 class CompositeLLMClient(BaseLLMClient):
-    """Client kết hợp: Thử gọi Ollama trước, nếu lỗi mạng/timeout thì tự động fallback về Mock."""
+    """Composite client: Attempts primary LLM inference, automatically falling back on mock client upon network/timeout errors."""
 
     def __init__(
         self,

@@ -1,12 +1,12 @@
 """
-LuatCheck MCP Server (Model Context Protocol)
-Cung cấp các công cụ pháp lý chuẩn MCP qua FastMCP
+LuatCheck MCP Server (Model Context Protocol).
+Provides standardized MCP legal tools via FastMCP.
 """
 from typing import Dict, Any, Optional
 from mcp.server.fastmcp import FastMCP
 from src.tools.legal_tools import LegalToolRegistry
 
-# Khởi tạo máy chủ FastMCP
+# Initialize FastMCP server
 mcp = FastMCP("LuatCheck-Legal-Server")
 registry = LegalToolRegistry()
 
@@ -14,7 +14,7 @@ registry = LegalToolRegistry()
 @mcp.tool()
 def search_law(query: str, top_k: int = 5) -> Dict[str, Any]:
     """
-    Tra cứu điều khoản pháp luật lao động theo câu hỏi hoặc từ khóa ngữ nghĩa.
+    Searches labor law articles by natural query or semantic keywords.
     [Read-Only Permission]
     """
     return registry.search_law(query=query, top_k=top_k)
@@ -23,7 +23,7 @@ def search_law(query: str, top_k: int = 5) -> Dict[str, Any]:
 @mcp.tool()
 def get_article(article_id: str) -> Dict[str, Any]:
     """
-    Lấy nguyên văn toàn văn một điều luật cụ thể theo mã định danh (ví dụ: 'Dieu_35').
+    Retrieves the verbatim statutory text of a specific article by identifier (e.g. 'Dieu_35').
     [Read-Only Permission]
     """
     return registry.get_article(article_id=article_id)
@@ -32,7 +32,7 @@ def get_article(article_id: str) -> Dict[str, Any]:
 @mcp.tool()
 def save_case(case_id: str, summary: str, client_name: str = "Anonymous") -> Dict[str, Any]:
     """
-    Lưu hồ sơ tư vấn vào bộ nhớ tạm.
+    Saves an advisory case record into episodic memory cache.
     [Reversible Write Permission]
     """
     return registry.save_case(case_id=case_id, summary=summary, client_name=client_name)
@@ -46,8 +46,8 @@ def send_summary(
     user_confirmed: bool = False
 ) -> Dict[str, Any]:
     """
-    Gửi tóm tắt tư vấn pháp lý qua kênh giao tiếp bên ngoài (Email/Webhook).
-    [Irreversible Write Permission - Yêu cầu xác nhận từ con người]
+    Dispatches a legal advisory summary via external communication channels (Email/Webhook).
+    [Irreversible Write Permission - Requires Human-in-the-loop confirmation]
     """
     return registry.send_summary(
         recipient=recipient,
@@ -58,5 +58,5 @@ def send_summary(
 
 
 if __name__ == "__main__":
-    # Khởi chạy qua stdio transport theo chuẩn MCP
+    # Launch stdio transport adhering to the MCP standard
     mcp.run(transport="stdio")

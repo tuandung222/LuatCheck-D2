@@ -21,7 +21,7 @@ class LegalToolRegistry:
         self.pending_proposals: Dict[str, Dict[str, Any]] = {}
         self.outbox_path = outbox_path
 
-        # Tải lại các khóa idempotency đã thực thi từ outbox bền vững nếu có chỉ định đường dẫn
+        # Reload executed idempotency keys from durable outbox if path is specified
         self._load_outbox()
 
     def _load_outbox(self):
@@ -40,7 +40,7 @@ class LegalToolRegistry:
 
     def search_law(self, query: str, top_k: int = 5) -> Dict[str, Any]:
         """
-        Tìm kiếm điều khoản pháp luật có liên quan đến câu hỏi hoặc tình huống.
+        Searches statutory articles relevant to the inquiry or scenario.
         """
         results = self.retriever.search(query, top_k=top_k)
         if not results:
@@ -69,7 +69,7 @@ class LegalToolRegistry:
 
     def get_article(self, article_id: str) -> Dict[str, Any]:
         """
-        Lấy nguyên văn toàn bộ nội dung một điều luật theo mã định danh (ví dụ: 'Dieu_35').
+        Retrieves the verbatim statutory text of a specific article by identifier (e.g. 'Dieu_35').
         """
         article = self.retriever.get_article_by_id(article_id)
         if not article:
@@ -87,7 +87,7 @@ class LegalToolRegistry:
 
     def save_case(self, case_id: str, summary: str, client_name: Optional[str] = "Anonymous") -> Dict[str, Any]:
         """
-        Lưu hồ sơ tư vấn vào bộ nhớ có thể hoàn tác (Reversible Action).
+        Saves advisory case to reversible storage (Reversible Action).
         """
         self.saved_cases[case_id] = {
             "case_id": case_id,
@@ -100,7 +100,7 @@ class LegalToolRegistry:
         }
 
     def create_summary_proposal(self, recipient: str, content: str, idempotency_key: str) -> Dict[str, Any]:
-        """Tạo proposal xác thực cấp server cho hành động gửi tóm tắt."""
+        """Creates server-validated proposal for dispatching advisory summary."""
         payload_hash = hashlib.sha256(f"{recipient}:{content}:{idempotency_key}".encode()).hexdigest()
         proposal_id = f"prop_{payload_hash[:16]}"
         token = f"tok_{hashlib.sha256(f'{proposal_id}:APPROVED_HITL'.encode()).hexdigest()[:16]}"
@@ -118,7 +118,7 @@ class LegalToolRegistry:
         return proposal
 
     def approve_proposal(self, proposal_id: str) -> bool:
-        """Phê duyệt proposal qua giao diện người dùng."""
+        """Approves proposal via user interaction interface."""
         if proposal_id in self.pending_proposals:
             self.pending_proposals[proposal_id]["approved"] = True
             return True
@@ -134,13 +134,13 @@ class LegalToolRegistry:
         approval_token: Optional[str] = None
     ) -> Dict[str, Any]:
         """
-        Gửi tóm tắt tư vấn pháp lý vào hàng đợi Outbox bền vững có kiểm soát HITL.
-        TÁC VỤ KHÔNG KHẢ HỒI: Bắt buộc phải có phê duyệt từ người dùng (Human-In-The-Loop Confirmation).
+        Dispatches legal advisory summary into durable outbox queue guarded by HITL verification.
+        IRREVERSIBLE ACTION: Requires explicit Human-In-The-Loop Confirmation prior to execution.
         """
         current_payload = f"{recipient}:{content}"
         content_hash = hashlib.sha256(f"{recipient}:{content}:{idempotency_key}".encode()).hexdigest()
 
-        # 1. Kiểm tra quyền và Human Confirmation
+        # 1. Authorization check and Human Confirmation
         if not user_confirmed:
             prop = self.create_summary_proposal(recipient, content, idempotency_key)
             is_auth, err_msg = PermissionManager.check_permission(
@@ -161,7 +161,7 @@ class LegalToolRegistry:
                 }
             }
 
-        # 2. Kiểm tra Idempotency chống lặp lại ngoài ý muốn qua mã SHA-256 hash
+        # 2. Idempotency verification preventing unintentional duplicates via SHA-256 hash
         if content_hash in self.executed_idempotency_keys:
             return {
                 "status": "duplicate_suppressed",
@@ -178,7 +178,7 @@ class LegalToolRegistry:
         }
         self.sent_summaries_log.append(entry)
 
-        # Lưu bền vững vào hàng đợi outbox nếu cấu hình đường dẫn outbox
+        # Persist to durable outbox queue if outbox path is configured
         if self.outbox_path:
             try:
                 out_dir = os.path.dirname(self.outbox_path)

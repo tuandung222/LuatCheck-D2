@@ -57,7 +57,7 @@ def test_agent_rule_based_fallback_end_to_end(clean_agent):
         ledger = clean_agent.run(unique_q, session_id="test_rule_based_e2e")
 
     assert ledger.is_terminal is True
-    # Chu trình: search_law -> answer/clarify/refuse
+    # Cycle: search_law -> answer/clarify/refuse
     assert ledger.tool_calls_count >= 1
     assert ledger.terminal_status in ["answered", "clarified", "refused"]
     if ledger.terminal_status == "answered":
@@ -150,11 +150,11 @@ def test_agent_ablation_mode_l1_l2_triggers_semantic_check():
     }
 
     with patch.object(agent, "_call_llm", return_value=contradictory_answer):
-        # Đảm bảo Dieu_25 nằm trong retrieved articles để vượt qua L1 Provenance
+        # Ensure Dieu_25 is within retrieved articles to satisfy L1 Provenance
         with patch.object(agent.tool_registry, "search_law", return_value={"articles": [{"article_id": "Dieu_25", "content_snippet": "Thử việc..."}]}):
             ledger = agent.run("Thời gian thử việc đại học là bao lâu?", session_id="test_l1_l2_reject")
             assert ledger.is_terminal is True
-            # Bị từ chối do L2 Semantic Verifier phát hiện mâu thuẫn
+            # Refused because L2 Semantic Verifier detected a contradiction
             assert ledger.terminal_status == "refused"
             assert ledger.repairs_count >= 1
 
@@ -229,7 +229,7 @@ def test_cache_hit_invalid_citation_fallback(clean_agent):
     with patch("requests.post", side_effect=requests.exceptions.ConnectionError("Offline")):
         ledger = clean_agent.run(query)
 
-    # Không được chấp nhận câu trả lời bịa đặt từ cache
+    # Fabricated cached answer must not be accepted
     assert ledger.final_output.get("from_cache") is not True
     if ledger.final_output.get("action") == "answer":
         assert "Dieu_999" not in [c.get("article_id") for c in ledger.final_output.get("citations", [])]
@@ -237,8 +237,8 @@ def test_cache_hit_invalid_citation_fallback(clean_agent):
 
 def test_cache_hit_ablation_mode_bypasses_l1(tmp_path):
     """
-    Kiểm tra khi verification_mode='off', cache hit vẫn trả về kết quả
-    và điền đầy đủ ledger.retrieved_article_ids.
+    Verifies that when verification_mode='off', cache hit returns the result
+    and populates ledger.retrieved_article_ids.
     """
     db_file = str(tmp_path / "test_memory_ablation.db")
     agent = LuatCheckAgent(verification_mode="off")

@@ -1,6 +1,7 @@
 """
-Dense Semantic Retrieval Engine for Legal Documents
-Sử dụng biểu diễn vector ngữ nghĩa TF-IDF n-gram / Dense embeddings và Cosine Similarity
+Dense Semantic Retrieval Engine for Legal Documents.
+
+Uses TF-IDF n-gram vector representations and Cosine Similarity.
 """
 from typing import List, Dict, Any, Tuple
 import numpy as np
@@ -16,7 +17,7 @@ class DenseSemanticRetriever:
             f"{doc.get('title', '')} {doc.get('content', '')}"
             for doc in corpus
         ]
-        # Sử dụng sublinear tf, n-gram 1-3 và phân tích ký tự n-gram để nắm bắt ngữ nghĩa tiếng Việt
+        # Use sublinear tf and n-gram (1, 3) to capture Vietnamese morphological semantics
         self.vectorizer = TfidfVectorizer(
             ngram_range=(1, 3),
             sublinear_tf=True,
@@ -26,7 +27,7 @@ class DenseSemanticRetriever:
 
     def search(self, query: str, top_k: int = 5) -> List[Tuple[str, float]]:
         """
-        Tìm kiếm tương đồng ngữ nghĩa bằng Cosine Similarity
+        Search for semantically similar articles using Cosine Similarity.
         """
         if not query.strip():
             return []

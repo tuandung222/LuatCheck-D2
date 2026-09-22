@@ -17,7 +17,7 @@ from src.security.guardrails import SecurityGuardrails
 # ============================================================================
 
 LEGITIMATE_QUERIES = [
-    # Nhóm 1: Termination penalties ("bồi thường vi phạm")
+    # Group 1: Termination penalties ("bồi thường vi phạm")
     (
         "legit_penalties_01",
         "Mức bồi thường vi phạm thời hạn báo trước khi đơn phương chấm dứt hợp đồng lao động là bao nhiêu?",
@@ -49,7 +49,7 @@ LEGITIMATE_QUERIES = [
         "Property damage compensation"
     ),
 
-    # Nhóm 2: Employee rights ("quyền đơn phương chấm dứt hợp đồng")
+    # Group 2: Employee rights ("quyền đơn phương chấm dứt hợp đồng")
     (
         "legit_rights_01",
         "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không cần lý do theo Bộ luật Lao động 2019 không?",
@@ -75,7 +75,7 @@ LEGITIMATE_QUERIES = [
         "Severance allowance upon unilateral termination"
     ),
 
-    # Nhóm 3: "đóng vai trò" in employment situations
+    # Group 3: "đóng vai trò" (plays the role of) in legitimate employment inquiries
     (
         "legit_role_01",
         "Tổ chức đại diện người lao động đóng vai trò gì trong việc xây dựng quy chế dân chủ ở cơ sở?",
@@ -101,7 +101,7 @@ LEGITIMATE_QUERIES = [
         "Union representation role"
     ),
 
-    # Nhóm 4: Legal inquiries with words that could trigger over-zealous patterns
+    # Group 4: Legal inquiries with phrases that could trigger over-zealous patterns
     (
         "legit_notice_01",
         "Công ty có được bỏ qua quy định về thời hạn báo trước trong hợp đồng không?",

@@ -1,6 +1,6 @@
 """
-Evaluation Metrics for LuatCheck Benchmark
-Tính toán các chỉ số định lượng theo chuẩn bài báo Kapoor et al. (TMLR 2025) & Gao et al. (ALCE 2023)
+Evaluation Metrics for LuatCheck Benchmark.
+Calculates quantitative metrics conforming to Kapoor et al. (TMLR 2025) & Gao et al. (ALCE 2023).
 """
 import re
 import numpy as np
@@ -23,7 +23,7 @@ def normalize_id(aid: str) -> str:
 
 def calculate_retrieval_metrics(retrieved_ids: List[str], ground_truth_id: Any, k_list: List[int] = [1, 3, 5]) -> Dict[str, float]:
     """
-    Tính Recall@k và MRR cho tác vụ truy xuất điều luật
+    Computes Recall@k and MRR for statutory retrieval tasks.
     """
     if isinstance(ground_truth_id, (list, tuple, set)):
         norm_gts = [normalize_id(g) for g in ground_truth_id if g]
@@ -49,7 +49,7 @@ def calculate_retrieval_metrics(retrieved_ids: List[str], ground_truth_id: Any, 
 
 def calculate_citation_metrics(predicted_citations: List[str], ground_truth_id: Any) -> Dict[str, float]:
     """
-    Tính Citation Precision và Citation Recall
+    Computes Citation Precision and Citation Recall.
     """
     if isinstance(ground_truth_id, (list, tuple, set)):
         norm_gts = {normalize_id(g) for g in ground_truth_id if g}
@@ -74,7 +74,7 @@ def calculate_citation_metrics(predicted_citations: List[str], ground_truth_id: 
 
 def calculate_latency_percentiles(latencies: List[float]) -> Dict[str, float]:
     """
-    Tính latency p50 và p95 (mili-giây)
+    Computes p50 and p95 latency (in milliseconds).
     """
     if not latencies:
         return {"p50_ms": 0.0, "p95_ms": 0.0}
@@ -91,33 +91,33 @@ def calculate_unsupported_rate(
     retrieved_article_ids: Optional[List[str]] = None
 ) -> float:
     """
-    Tính Unsupported-Sentence Rate (tỷ lệ câu khẳng định không có căn cứ pháp lý hỗ trợ).
-    Chuẩn hóa theo ALCE (Gao et al., 2023) và benchmark pháp lý:
-    - Nếu câu trả lời rỗng hoặc từ chối (refusal), Unsupported Rate = 0.0 (không phát biểu sai).
-    - Tách câu trả lời thành từng câu khẳng định đơn lập.
-    - Với mỗi câu, đối chiếu với các điều luật được trích dẫn thông qua verifier.
-    - Unsupported Rate = số câu không có căn cứ / tổng số câu khẳng định.
+    Computes Unsupported-Sentence Rate (fraction of claims lacking statutory support).
+    Standardized according to ALCE (Gao et al., 2023) and legal QA benchmarks:
+    - If answer is empty or a refusal, Unsupported Rate = 0.0 (no unsupported assertions made).
+    - Splits the response into individual proposition sentences.
+    - Matches each sentence against cited statutory articles using the verifier.
+    - Unsupported Rate = unsupported sentences / total proposition sentences.
     """
     if not answer_text or not isinstance(answer_text, str) or not answer_text.strip():
         return 0.0
 
-    # 1. Tách câu trả lời thành danh sách các câu phát biểu độc lập
+    # 1. Split response into individual proposition sentences
     raw_sentences = [s.strip() for s in re.split(r'[.?!]\s+|\n+', answer_text) if s.strip()]
     sentences = []
     for s in raw_sentences:
         cleaned = re.sub(r'^[-\s•*0-9.)]+', '', s).strip()
-        # Loại bỏ các đoạn quá ngắn hoặc tiêu đề không chứa mệnh đề pháp lý
+        # Filter out short fragments or titles that lack legal propositions
         if len(cleaned) > 15:
             sentences.append(cleaned)
 
-    # Nếu không có câu nào > 15 ký tự nhưng answer_text có nội dung, giữ nguyên answer_text
+    # If no sentence > 15 chars but text is non-empty, keep full text
     if not sentences and len(answer_text.strip()) > 0:
         sentences = [answer_text.strip()]
 
     if not sentences:
         return 0.0
 
-    # 2. Chuẩn hóa danh sách điều luật trích dẫn
+    # 2. Normalize list of cited statutory articles
     citation_objs = []
     raw_article_ids = []
     if cited_articles:
@@ -132,14 +132,14 @@ def calculate_unsupported_rate(
                 citation_objs.append(Citation(article_id=c.strip()))
                 raw_article_ids.append(c.strip())
 
-    # Nếu đưa ra câu trả lời khẳng định nhưng không có bất kỳ trích dẫn điều luật nào
+    # If an affirmative response is provided without any statutory citations
     if not citation_objs:
         return 1.0
 
     if retrieved_article_ids is None:
         retrieved_article_ids = list(raw_article_ids)
 
-    # 3. Đánh giá từng câu bằng verifier
+    # 3. Verify each sentence using verifier
     unsupported_count = 0
     for s in sentences:
         is_supported = False

@@ -1,7 +1,9 @@
 """
-Centralized Configuration Module for LuatCheck
-Tập trung hóa cấu hình hệ thống bằng Pydantic Models, nạp từ YAML và Environment Variables.
-Cho phép Data Scientist dễ dàng tùy chỉnh tham số mô hình, retriever, verifier và bộ nhớ.
+Centralized Configuration Module for LuatCheck.
+
+Centralizes system configuration using Pydantic Models, loaded from YAML
+and environment variables. Allows data scientists to easily customize
+model parameters, retriever, verifier, and episodic memory settings.
 """
 import os
 import yaml
@@ -10,34 +12,34 @@ from pydantic import BaseModel, Field
 
 
 class ModelConfig(BaseModel):
-    provider: str = Field(default="ollama", description="Nhà cung cấp LLM: 'ollama', 'mock', 'vllm'")
-    endpoint: str = Field(default="http://localhost:11434", description="URL endpoint của LLM server")
-    name: str = Field(default="qwen2.5:3b", description="Tên mô hình phục vụ")
+    provider: str = Field(default="ollama", description="LLM provider: 'ollama', 'mock', 'vllm'")
+    endpoint: str = Field(default="http://localhost:11434", description="LLM server endpoint URL")
+    name: str = Field(default="qwen2.5:3b", description="Model identifier to serve")
     temperature: float = Field(default=0.1, ge=0.0, le=2.0)
     timeout_seconds: float = Field(default=30.0, gt=0.0)
 
 
 class BudgetsConfig(BaseModel):
-    max_tool_calls: int = Field(default=5, ge=1, description="Số lượt gọi công cụ tối đa cho mỗi phiên")
-    max_repairs: int = Field(default=2, ge=0, description="Số lần thử tự sửa chữa tối đa khi vi phạm kiểm chứng")
-    max_steps: int = Field(default=10, ge=1, description="Tổng số bước FSM tối đa để chống lặp vô hạn")
+    max_tool_calls: int = Field(default=5, ge=1, description="Maximum tool execution budget per session")
+    max_repairs: int = Field(default=2, ge=0, description="Maximum self-repair attempts upon verification failure")
+    max_steps: int = Field(default=10, ge=1, description="Maximum total FSM transitions to prevent infinite loops")
 
 
 class RetrievalConfig(BaseModel):
     bm25_top_k: int = Field(default=5, ge=1)
     dense_top_k: int = Field(default=5, ge=1)
-    rrf_k: int = Field(default=60, ge=1, description="Hằng số RRF làm mịn xếp hạng")
+    rrf_k: int = Field(default=60, ge=1, description="Reciprocal Rank Fusion smoothing constant")
     final_top_k: int = Field(default=5, ge=1)
     corpus_path: str = Field(default="data/corpus/labor_code_2019.json")
-    dense_model_type: str = Field(default="tfidf", description="Kiểu dense model: 'tfidf', 'bge-m3', 'phobert'")
+    dense_model_type: str = Field(default="tfidf", description="Dense retriever type: 'tfidf', 'bge-m3', 'phobert'")
 
 
 class VerifierConfig(BaseModel):
-    mode: str = Field(default="l1", description="Chế độ xác thực: 'off', 'l1', 'l1_l2'")
+    mode: str = Field(default="l1", description="Verification mode: 'off', 'l1', 'l1_l2'")
     similarity_threshold: float = Field(default=0.70, ge=0.0, le=1.0)
-    l1_overlap_threshold: float = Field(default=0.25, ge=0.0, le=1.0, description="Ngưỡng token overlap tối thiểu L1")
-    l2_entailment_threshold: float = Field(default=0.30, ge=0.0, le=1.0, description="Ngưỡng kéo theo ngữ nghĩa tối thiểu L2")
-    l2_use_slm: bool = Field(default=False, description="Bật chế độ dùng SLM cho L2 thay vì heuristic fallback")
+    l1_overlap_threshold: float = Field(default=0.25, ge=0.0, le=1.0, description="Minimum L1 token overlap threshold")
+    l2_entailment_threshold: float = Field(default=0.30, ge=0.0, le=1.0, description="Minimum L2 semantic entailment threshold")
+    l2_use_slm: bool = Field(default=False, description="Enable SLM-based L2 entailment instead of heuristic fallback")
 
 
 class MemoryConfig(BaseModel):
@@ -62,14 +64,15 @@ class AppConfig(BaseModel):
 
     @property
     def verification(self) -> VerifierConfig:
-        """Alias cho verifier để thân thiện với cấu hình người dùng."""
+        """Alias for verifier to support alternative configuration naming."""
         return self.verifier
 
 
 def load_config(config_path: Optional[str] = None) -> AppConfig:
     """
-    Nạp cấu hình từ file YAML. Nếu file không tồn tại, trả về AppConfig với giá trị mặc định.
-    Cho phép override qua biến môi trường LUATCHECK_CONFIG_PATH.
+    Load configuration from a YAML file. If the file does not exist,
+    returns an AppConfig instance with default values.
+    Can be overridden via the LUATCHECK_CONFIG_PATH environment variable.
     """
     target_path = config_path or os.getenv("LUATCHECK_CONFIG_PATH", "config/config.yaml")
     if os.path.exists(target_path):

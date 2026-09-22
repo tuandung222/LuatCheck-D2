@@ -52,18 +52,18 @@ def test_ui_preset_scenarios_population():
     """Verify that selecting demo scenarios correctly populates query and document textareas."""
     at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
 
-    # Preset 1: Thử việc
+    # Preset 1: Probation period
     at.selectbox[0].select_index(1).run()
     assert not at.exception
     assert "Thời gian thử việc tối đa" in at.text_area[0].value
     assert at.text_area[1].value == ""
 
-    # Preset 2: Nợ lương
+    # Preset 2: Unpaid wages
     at.selectbox[0].select_index(2).run()
     assert not at.exception
     assert "chậm trả lương" in at.text_area[0].value
 
-    # Preset 3: Sa thải mang thai
+    # Preset 3: Pregnancy termination
     at.selectbox[0].select_index(3).run()
     assert not at.exception
     assert "mang thai" in at.text_area[0].value

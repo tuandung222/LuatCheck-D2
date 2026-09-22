@@ -1,7 +1,9 @@
 """
-Data Scientist Friendly Benchmark Runner for LuatCheck
-Cung cấp API Python hướng đối tượng, dễ dàng nạp và chạy trong Jupyter Notebook hoặc Scripts.
-Hỗ trợ xuất kết quả ra Pandas DataFrame để trực quan hóa, phân tích độ trễ và ma trận nhầm lẫn.
+Data Scientist Friendly Benchmark Runner for LuatCheck.
+
+Provides an object-oriented Python API for executing quantitative evaluations
+in Jupyter Notebooks or batch scripts. Supports exporting evaluation metrics
+and error taxonomy breakdown directly to Pandas DataFrames.
 """
 import json
 import time
@@ -24,7 +26,7 @@ from evaluation.error_analyzer import ErrorDiagnosticAnalyzer
 
 
 class BenchmarkRunner:
-    """Công cụ thực thi đánh giá định lượng thân thiện với Data Scientist."""
+    """Quantitative evaluation runner designed for data scientists and experimenters."""
 
     def __init__(
         self,
@@ -41,7 +43,7 @@ class BenchmarkRunner:
 
     def _load_tasks(self, path: str) -> List[Dict[str, Any]]:
         if not os.path.exists(path):
-            raise FileNotFoundError(f"Không tìm thấy file dataset nhiệm vụ tại: {path}")
+            raise FileNotFoundError(f"Evaluation dataset file not found at: {path}")
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
 
@@ -51,7 +53,7 @@ class BenchmarkRunner:
         mode: Optional[str] = None,
         verbose: bool = True
     ) -> Dict[str, Any]:
-        """Thực thi đánh giá đa seed và tổng hợp chỉ số."""
+        """Execute multi-seed evaluation and aggregate metrics."""
         target_mode = mode or self.agent.verification_mode
         self.agent.verification_mode = target_mode
         self.agent.enable_verification = (target_mode != "off")
@@ -69,7 +71,7 @@ class BenchmarkRunner:
             random.seed(seed)
             np.random.seed(seed)
             if verbose:
-                print(f"[BenchmarkRunner] Đang đánh giá Seed {seed} trên {len(self.tasks)} tác vụ...", flush=True)
+                print(f"[BenchmarkRunner] Evaluating Seed {seed} across {len(self.tasks)} tasks...", flush=True)
 
             seed_recalls_1 = []
             seed_recalls_5 = []
@@ -221,9 +223,9 @@ class BenchmarkRunner:
         return aggregated
 
     def get_metrics_dataframe(self) -> pd.DataFrame:
-        """Chuyển đổi kết quả chỉ số thành Pandas DataFrame để vẽ biểu đồ và phân tích."""
+        """Convert aggregated evaluation metrics into a Pandas DataFrame for plotting and analysis."""
         if not self.latest_results:
-            raise ValueError("Chưa có kết quả đánh giá. Hãy gọi runner.run() trước.")
+            raise ValueError("No evaluation results found. Please call runner.run() first.")
         res = self.latest_results
         data = [
             {"Metric": "Recall@1", "Mean": res["Recall@1_mean"], "Std": res["Recall@1_std"]},
@@ -237,9 +239,9 @@ class BenchmarkRunner:
         return pd.DataFrame(data)
 
     def get_error_taxonomy_dataframe(self) -> pd.DataFrame:
-        """Chuyển đổi thống kê lỗi thành Pandas DataFrame."""
+        """Convert error taxonomy distribution into a Pandas DataFrame."""
         if not self.latest_results:
-            raise ValueError("Chưa có kết quả đánh giá. Hãy gọi runner.run() trước.")
+            raise ValueError("No evaluation results found. Please call runner.run() first.")
         taxonomy = self.latest_results.get("Error_Taxonomy", {})
         data = [{"Failure Mode": k, "Count": v} for k, v in taxonomy.items()]
         return pd.DataFrame(data)

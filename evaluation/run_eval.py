@@ -1,10 +1,10 @@
 """
-Benchmark Evaluation Runner for LuatCheck D2 & D3
-Chạy đánh giá tự động đa seeds [42, 123, 2026], so sánh 3-Way Ablation Study:
+Benchmark Evaluation Runner for LuatCheck D2 & D3.
+Executes automated evaluations across multiple seeds [42, 123, 2026], evaluating a 3-Way Ablation Study:
 1. baseline_off: Verification OFF (Standard RAG baseline)
 2. luatcheck_l1_on: Verification ON (L1 Deterministic Verifier)
 3. luatcheck_l1_l2_on: Verification ON + L2 Semantic Entailment Verifier
-Tích hợp ErrorDiagnosticAnalyzer phân loại lỗi theo 6 failure modes chuẩn hóa.
+Integrates ErrorDiagnosticAnalyzer to classify errors across 6 standardized failure modes.
 """
 import argparse
 import json
@@ -53,7 +53,7 @@ def run_benchmark(
         l2_use_slm=l2_use_slm,
         ollama_url=ollama_url
     )
-    # Cách ly bộ nhớ trong benchmark: không đọc cache cũ và không ghi đè ca mới vào SQLite để đo lường cold-start trung thực
+    # Isolate memory in benchmark: disable cache reads and write-backs to SQLite to ensure fair cold-start measurement
     agent.sqlite_store.retrieve_similar_case = lambda *args, **kwargs: None
     agent.sqlite_store.write_if_verified = lambda *args, **kwargs: False
 
@@ -96,7 +96,7 @@ def run_benchmark(
                     if aid:
                         cit_ids.append(normalize_id(aid))
 
-            # 1. Đánh giá Retrieval (đánh giá khách quan trên toàn bộ ledger.retrieved_article_ids)
+            # 1. Evaluate Retrieval (objectively assessed across all ledger.retrieved_article_ids)
             if gt_ids:
                 ret_evaluated = ledger.retrieved_article_ids
                 ret_metrics = calculate_retrieval_metrics(ret_evaluated, gt_ids)
@@ -107,7 +107,7 @@ def run_benchmark(
             is_answered = (ledger.terminal_status == "answered")
             seed_coverage.append(1.0 if is_answered else 0.0)
 
-            # 2. Đánh giá Citation
+            # 2. Evaluate Citation
             if gt_ids:
                 cit_metrics = calculate_citation_metrics(cit_ids, gt_ids)
                 seed_citation_precisions.append(cit_metrics["citation_precision"])
@@ -117,12 +117,12 @@ def run_benchmark(
                 seed_citation_precisions.append(cit_metrics["citation_precision"])
                 seed_citation_recalls.append(cit_metrics["citation_recall"])
 
-            # 3. Tính toán Unsupported Sentence Rate (USR) động đối xứng theo chuẩn ALCE
+            # 3. Compute dynamic Unsupported Sentence Rate (USR) symmetrically adhering to ALCE standard
             unsupported_claims_list = []
             if not is_answered:
                 usr = 0.0
             elif expected_behavior == "refuse":
-                # Đối xứng mọi mode: Trả lời câu hỏi nằm ngoài phạm vi cần từ chối -> Phạt USR = 1.0 (zero statutory grounding)
+                # Symmetrical across modes: Answering unanswerable queries yields USR = 1.0 penalty (zero statutory grounding)
                 usr = 1.0
                 unsupported_claims_list = [str(final_out.get("content", ""))]
             else:
@@ -161,12 +161,12 @@ def run_benchmark(
 
             seed_unsupported_rates.append(usr)
 
-            # Ước tính Tokens cho mỗi task
+            # Estimate tokens per task
             prompt_tokens = int(len(query.split()) * 1.3) + 120
             out_tokens = int(len(str(final_out.get("content", "")).split()) * 1.3) if is_answered else 35
             total_token_counts.append(prompt_tokens + out_tokens)
 
-            # 4. Ghi nhận vào ErrorDiagnosticAnalyzer
+            # 4. Record into ErrorDiagnosticAnalyzer
             parse_error_detected = any(ev.get("event") == "parse_error" for ev in getattr(ledger, "audit_events", []))
             parse_error_details = None
             if parse_error_detected:
@@ -262,7 +262,7 @@ def main():
         results["luatcheck_l1_l2_on"] = res_l2
         analyzers["LuatCheck (L1+L2)"] = an_l2
 
-    # Lưu kết quả định lượng
+    # Save quantitative evaluation results
     os.makedirs("evaluation", exist_ok=True)
     if args.output:
         with open(args.output, "w", encoding="utf-8") as f:

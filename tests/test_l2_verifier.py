@@ -16,7 +16,7 @@ def sample_corpus():
 
 @pytest.fixture
 def verifier(sample_corpus):
-    # Sử dụng threshold 0.30 cho TF-IDF semantic comparator
+    # Uses threshold 0.30 for TF-IDF semantic comparator
     return L2SemanticEntailmentVerifier(sample_corpus, entailment_threshold=0.30, use_slm=False)
 
 
@@ -380,25 +380,25 @@ def test_article_25_probation_cong_nhan_ky_thuat_cap_30_days(verifier):
     Article 25 Khoản 3: Enforce 30-day cap for 'công nhân kỹ thuật', 'trung cấp', 'sơ cấp'
     even if 'kỹ thuật' is matched in the text.
     """
-    # 45 days for công nhân kỹ thuật -> CONTRADICTION (> 30 days)
+    # 45 days for technical worker ('công nhân kỹ thuật') -> CONTRADICTION (> 30 days)
     claim1 = "Thời gian thử việc đối với công nhân kỹ thuật là 45 ngày."
     is_ent, score, msg = verifier.verify_entailment(claim1, "Dieu_25")
     assert is_ent is False
     assert msg == "CONTRADICTION"
 
-    # 40 days for trình độ trung cấp -> CONTRADICTION (> 30 days)
+    # 40 days for intermediate degree ('trình độ trung cấp') -> CONTRADICTION (> 30 days)
     claim2 = "Thời gian thử việc đối với người có trình độ kỹ thuật trung cấp là 40 ngày."
     is_ent, score, msg = verifier.verify_entailment(claim2, "Dieu_25")
     assert is_ent is False
     assert msg == "CONTRADICTION"
 
-    # 35 days for sơ cấp -> CONTRADICTION (> 30 days)
+    # 35 days for elementary vocational ('sơ cấp') -> CONTRADICTION (> 30 days)
     claim3 = "Thời gian thử việc cho lao động có chứng chỉ sơ cấp là 35 ngày."
     is_ent, score, msg = verifier.verify_entailment(claim3, "Dieu_25")
     assert is_ent is False
     assert msg == "CONTRADICTION"
 
-    # 25 days for công nhân kỹ thuật -> NOT a contradiction (<= 30 days)
+    # 25 days for technical worker ('công nhân kỹ thuật') -> NOT a contradiction (<= 30 days)
     claim4 = "Thời gian thử việc đối với công nhân kỹ thuật là 25 ngày."
     is_ent, score, msg = verifier.verify_entailment(claim4, "Dieu_25")
     assert msg != "CONTRADICTION"

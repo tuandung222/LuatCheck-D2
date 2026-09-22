@@ -1,6 +1,7 @@
 """
-Short-term memory: Case Ledger
-Quản lý ngữ cảnh, ngân sách và dòng sự kiện của phiên tư vấn
+Short-term memory: Case Ledger Manager.
+
+Manages conversational context, execution budgets, and provenance tracking for legal advisory sessions.
 """
 from typing import List, Dict, Any, Optional
 from src.agent.state import CaseLedger
@@ -33,12 +34,12 @@ class CaseLedgerManager:
 
     @staticmethod
     def add_query(ledger: CaseLedger, query: str):
-        """Ghi nhận truy vấn tìm kiếm pháp luật được phát ra trong phiên"""
+        """Record a search query issued during the session."""
         ledger.queries_issued.append(query)
 
     @staticmethod
     def add_fact(ledger: CaseLedger, fact: str):
-        """Trích xuất và lưu trữ dữ kiện pháp lý từ câu hỏi của người dùng"""
+        """Record an extracted factual statement from the user inquiry."""
         if fact not in ledger.extracted_facts:
             ledger.extracted_facts.append(fact)
 
@@ -49,7 +50,7 @@ class CaseLedgerManager:
         article_ids: List[str],
         articles_cache: Optional[Dict[str, str]] = None
     ):
-        """Khôi phục và nạp căn cứ pháp lý từ episodic store vào ledger hiện tại"""
+        """Restore and hydrate statutory evidence provenance from episodic store into active ledger."""
         for aid in article_ids:
             if aid not in ledger.retrieved_article_ids:
                 ledger.retrieved_article_ids.append(aid)

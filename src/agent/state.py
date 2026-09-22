@@ -15,27 +15,27 @@ class ActionType(str, Enum):
 
 
 class Citation(BaseModel):
-    article_id: str = Field(description="Mã định danh điều luật, ví dụ: 'Dieu_35' hoặc 'Điều 35'")
-    law_name: str = Field(default="Bộ luật Lao động 2019", description="Tên văn bản luật")
-    exact_quote: Optional[str] = Field(default=None, description="Trích đoạn căn cứ pháp lý trực tiếp")
+    article_id: str = Field(description="Legal article identifier, e.g., 'Dieu_35' or 'Điều 35'")
+    law_name: str = Field(default="Bộ luật Lao động 2019", description="Statute title")
+    exact_quote: Optional[str] = Field(default=None, description="Direct statutory text quotation supporting the statement")
 
 
 class AgentAction(BaseModel):
-    thought: str = Field(description="Suy luận từng bước của Agent trước khi ra quyết định")
-    action: ActionType = Field(description="Hành động được chọn: search_law, get_article, answer, clarify, refuse")
-    tool_args: Dict[str, Any] = Field(default_factory=dict, description="Đối số truyền vào tool hoặc hành động")
+    thought: str = Field(description="Step-by-step agent reasoning before deciding an action")
+    action: ActionType = Field(description="Chosen action: search_law, get_article, answer, clarify, refuse")
+    tool_args: Dict[str, Any] = Field(default_factory=dict, description="Arguments passed to the chosen action or tool")
 
 
 class L1VerificationResult(BaseModel):
-    is_valid: bool = Field(description="True nếu toàn bộ căn cứ vượt qua kiểm tra L1")
-    unsupported_claims: List[str] = Field(default_factory=list, description="Các câu khẳng định không có căn cứ")
-    invalid_citations: List[str] = Field(default_factory=list, description="Các mã điều luật không tồn tại hoặc chưa retrieve")
-    repair_feedback: Optional[str] = Field(default=None, description="Chỉ dẫn sửa đổi gửi lại cho Agent nếu vi phạm")
+    is_valid: bool = Field(description="True if all claims and citations pass L1 verification checks")
+    unsupported_claims: List[str] = Field(default_factory=list, description="Claim sentences lacking statutory evidence")
+    invalid_citations: List[str] = Field(default_factory=list, description="Non-existent or un-retrieved article identifiers")
+    repair_feedback: Optional[str] = Field(default=None, description="Self-repair guidance fed back to the agent upon violation")
 
 
 class CaseLedger(BaseModel):
     """
-    Short-term memory duy trì trạng thái làm việc của phiên tư vấn
+    Short-term working memory ledger tracking state, budgets, and provenance of an advisory session.
     """
     session_id: str
     original_query: str

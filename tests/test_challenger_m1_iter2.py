@@ -186,7 +186,7 @@ class TestDynamicUnsupportedRateMetricStress:
 
     def test_grounded_advice_against_labor_code(self, verifier):
         """Fully supported advice citing correct statutory articles must return 0.0."""
-        # Grounded against Dieu_25 (Thời gian thử việc)
+        # Grounded against Dieu_25 (Probation duration)
         dieu_25_text = (
             "Thời gian thử việc không quá 60 ngày đối với công việc có chức danh nghề nghiệp "
             "cần trình độ chuyên môn kỹ thuật từ cao đẳng trở lên."
@@ -199,7 +199,7 @@ class TestDynamicUnsupportedRateMetricStress:
         )
         assert usr_25 == 0.0, f"Expected 0.0 for grounded Dieu_25, got {usr_25}"
 
-        # Grounded against Dieu_26 (Tiền lương thử việc)
+        # Grounded against Dieu_26 (Probation wage)
         dieu_26_text = (
             "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận "
             "nhưng ít nhất phải bằng 85% mức lương của công việc đó."
@@ -212,7 +212,7 @@ class TestDynamicUnsupportedRateMetricStress:
         )
         assert usr_26 == 0.0, f"Expected 0.0 for grounded Dieu_26, got {usr_26}"
 
-        # Grounded against Dieu_46 (Trợ cấp thôi việc)
+        # Grounded against Dieu_46 (Severance allowance)
         dieu_46_text = (
             "Khi hợp đồng lao động chấm dứt theo quy định, người sử dụng lao động có trách nhiệm "
             "trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên từ đủ 12 tháng trở lên."

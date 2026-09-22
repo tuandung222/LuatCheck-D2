@@ -1,13 +1,14 @@
 """
-L2 Semantic Entailment Verifier (Natural Language Inference Layer)
-Hardened Version for LuatCheck Deliverable 3 & 4 (Milestone 1 Iteration 2 Remediation)
-Kiểm tra quan hệ kéo theo ngữ nghĩa (Entailment) giữa câu khẳng định pháp lý và điều luật làm căn cứ.
-Triển khai kiến trúc phân tầng kép (Hierarchical Dual-Engine):
-1. Local SLM NLI Caller (Qwen2.5-3B qua Ollama với timeout 10.0s)
+L2 Semantic Entailment Verifier (Natural Language Inference Layer).
+
+Checks the directional semantic entailment relation between generated legal claim sentences
+and their cited statutory provisions.
+Implements a hierarchical dual-engine architecture:
+1. Local SLM NLI Caller (Qwen2.5-3B via Ollama with 10.0s timeout).
 2. Fast Offline Semantic Comparator:
-   - Robust sentence splitting & anti-vacuous approval (handles short sentences >= 3 chars)
-   - Dynamic numerical duration & quantifier clash detection (Article 20, 24, 25, 26, 35, 36)
-   - Negation / polarity contradiction detection & statutory rights protection (Article 17, 24, 26, 37, 122)
+   - Robust sentence segmentation and anti-vacuous approval (handles clauses >= 3 chars)
+   - Dynamic numerical duration & quantifier clash detection (Articles 20, 24, 25, 26, 35, 36)
+   - Negation / polarity contradiction detection & statutory rights protection (Articles 17, 24, 26, 37, 122)
    - TF-IDF cosine similarity & asymmetric recall fallback
 """
 import re
@@ -46,7 +47,7 @@ class L2SemanticEntailmentVerifier:
         self.use_slm = use_slm
         self.slm_timeout = slm_timeout
 
-        # Vectorizer fit trên toàn bộ nội dung corpus
+        # Fit TF-IDF vectorizer over the statutory corpus text
         self.vectorizer = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True)
         all_texts = [doc["content"] for doc in legal_corpus]
         if all_texts:
@@ -54,8 +55,8 @@ class L2SemanticEntailmentVerifier:
 
     def _normalize_id(self, article_id: str) -> str:
         """
-        Chuẩn hóa mã định danh điều luật hỗ trợ đa dạng định dạng:
-        'Dieu_25', 'dieu_25', 'Điều 25', 'điều_25', 'Điều_25' (NFC/NFD)
+        Normalize article identifier across variations:
+        'Dieu_25', 'dieu_25', 'Điều 25', 'điều_25', 'Điều_25' (NFC/NFD).
         """
         if not article_id:
             return ""
@@ -69,8 +70,8 @@ class L2SemanticEntailmentVerifier:
 
     def _extract_durations(self, text: str) -> List[Tuple[float, str, str]]:
         """
-        Trích xuất các mốc thời gian và quy đổi tương đối về số ngày để kiểm tra ràng buộc pháp lý:
-        Trả về list of tuples: (days: float, unit_type: str, raw_expression: str)
+        Extract temporal durations and normalize relatively to days:
+        Returns list of tuples: (days: float, unit_type: str, raw_expression: str)
         """
         text_lower = text.lower()
         durations = []
@@ -90,15 +91,15 @@ class L2SemanticEntailmentVerifier:
 
     def _extract_percentages(self, text: str) -> List[float]:
         """
-        Trích xuất tỷ lệ phần trăm trong phát biểu.
+        Extract percentage values from text.
         """
         matches = re.findall(r"(\d+(?:[.,]\d+)?)\s*%", text)
         return [float(m.replace(",", ".")) for m in matches]
 
     def _call_slm_nli(self, premise: str, hypothesis: str) -> Optional[Tuple[str, float]]:
         """
-        Engine 1: Local SLM (Qwen2.5-3B) NLI Caller với timeout mặc định 10.0s.
-        Trả về (verdict, confidence) hoặc None nếu SLM không khả dụng (offline fallback).
+        Engine 1: Local SLM (Qwen2.5-3B) NLI Caller with default 10.0s timeout.
+        Returns (verdict, confidence) or None if SLM is unreachable (offline fallback).
         """
         if not self.use_slm:
             return None
@@ -140,7 +141,7 @@ class L2SemanticEntailmentVerifier:
                 if verdict in ["ENTAILMENT", "CONTRADICTION", "NEUTRAL"]:
                     return verdict, confidence
         except Exception:
-            # Graceful fallback sang Fast Offline Semantic Comparator khi Ollama offline hoặc timeout
+            # Graceful fallback to Fast Offline Semantic Comparator when Ollama is offline or times out
             pass
 
         return None
@@ -152,23 +153,23 @@ class L2SemanticEntailmentVerifier:
         norm_id: str
     ) -> Optional[str]:
         """
-        Kiểm tra mâu thuẫn lượng từ, số liệu pháp định và cực tính phủ định/khẳng định:
-        Phát hiện các trường hợp bịa đặt số ngày, số tiền phạt hoặc đảo ngược quyền/nghĩa vụ.
+        Check for quantifier clash, numerical boundaries, and polarity contradiction.
+        Detects fabricated durations, unlawful penalties, or reversed rights/obligations.
         """
         claim_lower = claim.lower()
         premise_lower = premise.lower()
         durations = self._extract_durations(claim)
         percentages = self._extract_percentages(claim)
 
-        # 1. Mâu thuẫn Điều 25 (Thời gian thử việc)
+        # 1. Contradictions against Article 25 (Probation duration limits)
         if norm_id == "dieu_25":
-            # Chỉ kiểm tra ràng buộc thử việc nếu claim có đề cập tới thử việc
+            # Only check probation constraints if the claim mentions probation
             if "thử việc" in claim_lower:
-                # Tần suất thử việc: chỉ được thử việc 1 lần đối với một công việc
+                # Probation frequency: probation is allowed only once per position
                 if re.search(r"\bthử\s+việc\b.{0,25}\b(nhiều\s+lần|2\s+lần|hai\s+lần|lần\s+hai|từ\s+2\s+lần)\b", claim_lower):
                     return "CONTRADICTION: Điều 25 quy định chỉ được thử việc một lần đối với một công việc."
 
-                # Chức danh quản lý (vị trí/công việc người quản lý doanh nghiệp)
+                # Manager position (enterprise managerial positions/roles)
                 is_manager_job = any(w in claim_lower for w in [
                     "công việc của người quản lý", "chức danh quản lý", "vị trí quản lý",
                     "người quản lý doanh nghiệp", "người quản lý", "vị trí giám đốc", "làm giám đốc"
@@ -180,38 +181,38 @@ class L2SemanticEntailmentVerifier:
                     if days > 180:
                         return f"CONTRADICTION: Điều 25 quy định thời gian thử việc tối đa không quá 180 ngày (kể cả người quản lý doanh nghiệp), không thể là {raw_str}."
 
-                    # Trình độ trung cấp, công nhân kỹ thuật, sơ cấp: tối đa 30 ngày (enforce even if 'kỹ thuật' in text)
+                    # Intermediate degree, technical worker, elementary level: max 30 days (enforce even if 'kỹ thuật' in text)
                     has_vocational = any(w in claim_lower for w in ["công nhân kỹ thuật", "trung cấp", "sơ cấp", "công nhân", "nghiệp vụ"])
                     if has_vocational and not is_manager_job and days > 30:
                         return f"CONTRADICTION: Khoản 3 Điều 25 quy định thử việc trình độ trung cấp, công nhân kỹ thuật không quá 30 ngày, không thể là {raw_str}."
 
                     has_univ = any(w in claim_lower for w in ["đại học", "cao đẳng", "chuyên môn", "kỹ thuật", "văn phòng", "nhân viên", "cử nhân", "kỹ sư", "chuyên viên"])
 
-                    # Trình độ chuyên môn kỹ thuật từ cao đẳng trở lên: tối đa 60 ngày
+                    # Professional/technical qualification from college level up: max 60 days
                     if has_univ and not is_manager_job and days > 60:
                         return f"CONTRADICTION: Khoản 2 Điều 25 quy định thử việc trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên không quá 60 ngày, không thể là {raw_str}."
 
-                    # Công việc khác: tối đa 06 ngày làm việc
+                    # Other positions: max 6 working days
                     has_simple = any(w in claim_lower for w in ["công việc khác", "lao động phổ thông", "giản đơn"])
                     if has_simple and days > 6:
                         return f"CONTRADICTION: Khoản 4 Điều 25 quy định thử việc đối với công việc khác không quá 06 ngày làm việc, không thể là {raw_str}."
 
-                    # Mặc định: nếu không thuộc chức danh quản lý mà số ngày > 60
+                    # Default: if not an executive managerial position and duration > 60 days
                     if not is_manager_job and days > 60:
                         return f"CONTRADICTION: Điều 25 quy định thời gian thử việc thông thường không quá 60 ngày (chỉ công việc người quản lý doanh nghiệp tối đa 180 ngày), không thể là {raw_str}."
 
-        # 2. Mâu thuẫn Điều 20 (Loại hợp đồng lao động)
+        # 2. Contradiction against Article 20 (Labor contract categories & durations)
         if norm_id == "dieu_20":
             if any(w in claim_lower for w in ["xác định thời hạn", "hợp đồng lao động", "thời hạn hợp đồng"]):
                 for days, unit_type, raw_str in durations:
                     if (unit_type == "month" and days > 36 * 30) or (unit_type == "year" and days > 3 * 365) or days > 1095:
                         return f"CONTRADICTION: Điểm b khoản 1 Điều 20 quy định hợp đồng lao động xác định thời hạn có thời hạn không quá 36 tháng (3 năm), không cho phép {raw_str}."
 
-        # 3. Mâu thuẫn Điều 24 (Thử việc: Không áp dụng thử việc đối với HĐLĐ dưới 01 tháng)
+        # 3. Contradiction against Article 24 (Probation not applicable for contracts under 1 month)
         if norm_id == "dieu_24":
             has_under_1m = any(w in claim_lower for w in ["dưới 01 tháng", "dưới 1 tháng", "dưới 30 ngày", "dưới một tháng"])
 
-            # Phát hiện hợp đồng có thời hạn cụ thể < 30 ngày (e.g. 15 ngày, 2 tuần, 3 tuần)
+            # Detect contracts with specific duration < 30 days
             has_short_contract = False
             short_dur_desc = ""
             for days, unit_type, raw_str in durations:
@@ -224,13 +225,12 @@ class L2SemanticEntailmentVerifier:
                         break
 
             if (has_under_1m or has_short_contract) and "thử việc" in claim_lower:
-                # Nếu câu khẳng định được phép / áp dụng thử việc mà không có từ ngữ phủ định
                 if not re.search(r"\b(không\s+áp\s+dụng|không\s+được|nghiêm\s+cấm|cấm|không\s+thể)\b.{0,30}\bthử\s+việc\b", claim_lower) and \
                    not re.search(r"\bthử\s+việc\b.{0,30}\b(không\s+áp\s+dụng|không\s+được|bị\s+cấm)\b", claim_lower):
                     desc_str = f" ({short_dur_desc})" if short_dur_desc else ""
                     return f"CONTRADICTION: Khoản 3 Điều 24 quy định không áp dụng thử việc đối với người lao động giao kết hợp đồng lao động có thời hạn dưới 01 tháng{desc_str}."
 
-        # 4. Mâu thuẫn Điều 26 (Tiền lương thử việc: ít nhất 85%)
+        # 4. Contradiction against Article 26 (Probation wage: at least 85%)
         if norm_id == "dieu_26":
             for pct in percentages:
                 if pct < 85.0:
@@ -238,7 +238,7 @@ class L2SemanticEntailmentVerifier:
             if any(w in claim_lower for w in ["0 đồng", "không lương", "miễn phí", "không được trả lương", "không trả lương", "không có lương", "không cần trả lương", "làm việc không công"]):
                 return "CONTRADICTION: Điều 26 quy định tiền lương thử việc ít nhất phải bằng 85%, không cho phép làm việc không lương."
 
-        # 5. Mâu thuẫn Điều 35 (Thời hạn báo trước khi người lao động đơn phương chấm dứt)
+        # 5. Contradiction against Article 35 (Prior notice period for unilateral termination)
         if norm_id == "dieu_35":
             if "không xác định thời hạn" in claim_lower and not any(w in claim_lower for w in ["không cần báo trước", "khoản 2"]):
                 for days, unit_type, raw_str in durations:
@@ -249,7 +249,7 @@ class L2SemanticEntailmentVerifier:
                     if days < 30 and "không xác định" not in claim_lower and "dưới 12 tháng" not in claim_lower and "không cần báo trước" not in claim_lower and "thử việc" not in claim_lower:
                         return f"CONTRADICTION: Điểm b khoản 1 Điều 35 quy định hợp đồng xác định thời hạn (12-36 tháng) phải báo trước ít nhất 30 ngày."
 
-        # 6. Mâu thuẫn về các hành vi bị pháp luật lao động nghiêm cấm (Điều 17, 37, 122, 127)
+        # 6. Statutory prohibitions and fundamental rights (Articles 17, 37, 122, 127)
         illegal_patterns = [
             (r"\b(được|có\s+quyền|cho\s+phép)\b.{0,30}\b(phạt\s+tiền|cắt\s+lương|trừ\s+lương|khấu\s+trừ\s+lương\s+thay\s+kỷ\s+luật)\b", "Pháp luật lao động nghiêm cấm người sử dụng lao động phạt tiền hoặc cắt lương người lao động thay cho việc xử lý kỷ luật"),
             (r"\b(được|có\s+quyền|cho\s+phép|yêu\s+cầu)\b.{0,30}\b(giữ|thu\s+giữ|tạm\s+giữ)\b.{0,30}\b(bằng\s+cấp|văn\s+bằng|chứng\s+chỉ|giấy\s+tờ\s+tùy\s+thân|cccd|cmnd|hộ\s+chiếu)\b", "Điều 17 Bộ luật Lao động nghiêm cấm giữ bản chính giấy tờ tùy thân, văn bằng, chứng chỉ của người lao động"),
@@ -268,8 +268,8 @@ class L2SemanticEntailmentVerifier:
         cited_article_id: str
     ) -> Tuple[bool, float, str]:
         """
-        Đánh giá quan hệ kéo theo ngữ nghĩa (Entailment) giữa câu phát biểu và điều luật.
-        Trả về: (is_entailed: bool, score: float, verdict: str)
+        Evaluate directional semantic entailment between a claim sentence and cited article.
+        Returns: (is_entailed: bool, score: float, verdict: str)
         """
         if not claim_sentence or not claim_sentence.strip():
             return False, 0.0, "NEUTRAL_OR_UNSUPPORTED: Claim sentence is empty."
@@ -279,14 +279,14 @@ class L2SemanticEntailmentVerifier:
         if not premise_text:
             return False, 0.0, f"Mã điều luật '{cited_article_id}' không tồn tại để kiểm tra ngữ nghĩa."
 
-        # 1. Kiểm tra mâu thuẫn số liệu / lượng từ / quy định cấm
+        # 1. Contradiction check: Quantifiers, boundary conditions, and prohibitions
         contradiction_reason = self._check_quantifier_and_polarity_contradiction(
             claim_sentence, premise_text, norm_id
         )
         if contradiction_reason:
             return False, 0.15, "CONTRADICTION"
 
-        # 2. Engine 1: Thử nghiệm thẩm định qua Local SLM nếu khả dụng
+        # 2. Engine 1: Local SLM NLI evaluation if available
         slm_result = self._call_slm_nli(premise_text, claim_sentence)
         if slm_result:
             slm_verdict, slm_conf = slm_result
@@ -317,7 +317,7 @@ class L2SemanticEntailmentVerifier:
         else:
             asymmetric_recall = 0.0
 
-        # Điểm tổng hợp ngữ nghĩa: kết hợp tương đồng TF-IDF và độ phủ từ khóa định hướng
+        # Composite semantic score combining TF-IDF similarity and asymmetric keyword coverage
         if not claim_words or asymmetric_recall == 0.0:
             score = 0.0
         else:
@@ -337,10 +337,10 @@ class L2SemanticEntailmentVerifier:
         citation_ids: List[Any]
     ) -> Dict[str, Any]:
         """
-        Thẩm định ngữ nghĩa toàn bộ các câu trong văn bản trả lời đối chiếu với các điều luật được trích dẫn.
-        Khắc phục hoàn toàn lỗ hổng bypass câu ngắn (<= 15 ký tự) và chống phê duyệt rỗng (vacuous approval).
+        Verify directional semantic entailment for all clauses in the answer text against cited articles.
+        Guarantees protection against short clause bypass (<= 15 chars) and vacuous approvals.
         """
-        # Nếu câu trả lời rỗng hoặc chỉ có khoảng trắng
+        # If answer text is empty or whitespace-only
         if not answer_text or not answer_text.strip():
             return {
                 "is_entailed": False,
@@ -354,7 +354,7 @@ class L2SemanticEntailmentVerifier:
                 "total_sentences": 0
             }
 
-        # Chuẩn hóa danh sách citation_ids
+        # Normalize citation_ids list
         norm_cit_ids = []
         for c in citation_ids:
             if isinstance(c, str):
@@ -364,17 +364,17 @@ class L2SemanticEntailmentVerifier:
             elif isinstance(c, dict) and "article_id" in c:
                 norm_cit_ids.append(c["article_id"])
 
-        # Tách các câu khẳng định pháp lý: bảo vệ số thập phân (85.5%) và dấu chấm hàng nghìn (100.000)
+        # Segment legal claim sentences: protect decimals (85.5%) and thousands separators (100.000)
         raw_segments = re.split(r"(?:(?<=[?!;])\s*|(?<=[.])\s+|\n+)", answer_text)
         sentences = []
         for p in raw_segments:
-            # Loại bỏ bullet points, đánh số thứ tự đầu dòng
+            # Strip bullet points and leading enumeration markers
             s = re.sub(r"^(?:[-*•]|\d+[.)])\s*", "", p).strip().rstrip(".?!;")
-            # Giữ lại các phân đoạn có độ dài >= 3 ký tự và có chứa ký tự chữ/số
+            # Retain clauses with length >= 3 containing alphanumeric characters
             if len(s) >= 3 and re.search(r"[\w\d]", s):
                 sentences.append(s)
 
-        # Nếu văn bản có nội dung nhưng không tạo thành câu có nghĩa hợp lệ
+        # If text has content but produces no valid sentences
         if not sentences:
             return {
                 "is_entailed": False,
@@ -388,7 +388,7 @@ class L2SemanticEntailmentVerifier:
                 "total_sentences": 0
             }
 
-        # Nếu không có căn cứ điều luật nào được trích dẫn
+        # If no statutory citations were provided
         if not norm_cit_ids:
             return {
                 "is_entailed": False,
@@ -420,7 +420,7 @@ class L2SemanticEntailmentVerifier:
             max_sent_score = max(sent_scores) if sent_scores else 0.0
             scores.append(max_sent_score)
 
-            # Câu được coi là hợp lệ nếu có ít nhất một điều luật trích dẫn entail nó
+            # A sentence is considered valid if at least one cited article entails it
             any_entailed = any(status == "ENTAILMENT" for status in sent_statuses)
             if not any_entailed:
                 best_status = "CONTRADICTION" if "CONTRADICTION" in sent_statuses else "NEUTRAL_OR_UNSUPPORTED"

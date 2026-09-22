@@ -100,7 +100,7 @@ class CustomMockVerifier:
 # =========================================================================
 
 def test_custom_retriever_injection(tmp_path):
-    """Kiểm tra Data Scientist có thể thay thế bộ máy tìm kiếm (retriever) dễ dàng."""
+    """Verifies that a Data Scientist can easily inject a custom retriever."""
     custom_retriever = CustomMockRetriever()
     db_file = str(tmp_path / "test_custom_retriever.db")
     
@@ -112,16 +112,16 @@ def test_custom_retriever_injection(tmp_path):
     agent.sqlite_store.db_path = db_file
     agent.sqlite_store._init_db()
 
-    # Chạy query và xác nhận tool search sử dụng custom_retriever
+    # Execute query and verify that search tool utilizes custom_retriever
     ledger = agent.run("Tìm kiếm điều khoản tùy chỉnh", session_id="test_custom_retriever_sess")
     
-    # Custom retriever phải được gọi ít nhất 1 lần khi agent tìm kiếm
+    # Custom retriever must be called at least once during agent search
     assert len(custom_retriever.called_with) > 0
     assert custom_retriever.called_with[0][1] == 3  # default top_k from fallback search_law
 
 
 def test_custom_llm_client_injection(tmp_path):
-    """Kiểm tra Data Scientist có thể inject LLM Client tùy chỉnh (e.g. vLLM, HuggingFace, OpenAI)."""
+    """Verifies that a Data Scientist can inject a custom LLM Client (e.g. vLLM, HuggingFace, OpenAI)."""
     custom_llm = CustomMockLLMClient()
     db_file = str(tmp_path / "test_custom_llm.db")
 
@@ -142,7 +142,7 @@ def test_custom_llm_client_injection(tmp_path):
 
 
 def test_custom_verifier_injection(tmp_path):
-    """Kiểm tra Data Scientist có thể thay thế thuật toán kiểm chứng xác thực (verifier)."""
+    """Verifies that a Data Scientist can replace the verification algorithm (verifier)."""
     custom_verifier = CustomMockVerifier(is_valid=True)
     custom_llm = CustomMockLLMClient()
     db_file = str(tmp_path / "test_custom_verifier.db")
@@ -163,15 +163,15 @@ def test_custom_verifier_injection(tmp_path):
 
 
 def test_app_config_loading_and_override():
-    """Kiểm tra cấu hình tập trung AppConfig và nạp bằng file YAML."""
-    # Nạp file config chuẩn
+    """Verifies centralized AppConfig loading and overriding via YAML."""
+    # Load default configuration file
     config = load_config("config/config.yaml")
     assert config.model.name is not None
     assert config.budgets.max_tool_calls == 5
     assert config.budgets.max_steps == 10
     assert config.retrieval.final_top_k == 5
 
-    # Data Scientist override cấu hình để chạy thực nghiệm
+    # Data Scientist overrides config for experimental trials
     config.budgets.max_steps = 15
     config.model.temperature = 0.7
     config.verification.mode = "l1_l2"
@@ -183,8 +183,8 @@ def test_app_config_loading_and_override():
 
 
 def test_benchmark_runner_dataframe_export(tmp_path):
-    """Kiểm tra BenchmarkRunner xuất dữ liệu ra Pandas DataFrame phục vụ Notebook visualization."""
-    # Tạo dataset mini 2 task cho bài test
+    """Verifies BenchmarkRunner export to Pandas DataFrame for Notebook visualization."""
+    # Create 2-task mini dataset for testing
     mini_tasks = [
         {
             "id": "mini_1",
@@ -217,13 +217,13 @@ def test_benchmark_runner_dataframe_export(tmp_path):
     assert "Recall@1_mean" in results
     assert "Error_Taxonomy" in results
 
-    # Kiểm tra xuất DataFrame cho chỉ số đánh giá
+    # Verify DataFrame export for evaluation metrics
     df_metrics = runner.get_metrics_dataframe()
     assert isinstance(df_metrics, pd.DataFrame)
     assert list(df_metrics.columns) == ["Metric", "Mean", "Std"]
     assert len(df_metrics) == 7
 
-    # Kiểm tra xuất DataFrame cho phân loại lỗi (Error Taxonomy)
+    # Verify DataFrame export for error taxonomy
     df_taxonomy = runner.get_error_taxonomy_dataframe()
     assert isinstance(df_taxonomy, pd.DataFrame)
     assert list(df_taxonomy.columns) == ["Failure Mode", "Count"]

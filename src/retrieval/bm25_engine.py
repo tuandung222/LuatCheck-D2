@@ -9,10 +9,10 @@ from rank_bm25 import BM25Okapi
 
 def tokenize_vietnamese(text: str) -> List[str]:
     """
-    Tách từ cơ bản và chuẩn hóa văn bản pháp lý tiếng Việt
+    Basic tokenization and normalization for Vietnamese legal documents.
     """
     text = text.lower()
-    # Loại bỏ ký tự đặc biệt, giữ chữ tiếng Việt và số
+    # Remove punctuation, retain alphanumeric and Vietnamese characters
     text = re.sub(r'[^\w\s]', ' ', text)
     tokens = text.split()
     return tokens
@@ -30,7 +30,7 @@ class BM25Retriever:
 
     def search(self, query: str, top_k: int = 5) -> List[Tuple[str, float]]:
         """
-        Trả về danh sách (article_id, score) sắp xếp giảm dần theo điểm BM25
+        Return a list of (article_id, score) tuples sorted in descending order of BM25 score.
         """
         tokenized_query = tokenize_vietnamese(query)
         if not tokenized_query:

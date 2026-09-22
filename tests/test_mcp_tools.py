@@ -25,7 +25,7 @@ def test_get_article(registry):
 
 
 def test_send_summary_requires_confirmation(registry):
-    # Chưa xác nhận -> phải bị chặn
+    # Unconfirmed -> must be blocked
     res = registry.send_summary(
         recipient="test@example.com",
         content="Tóm tắt pháp lý",
@@ -35,7 +35,7 @@ def test_send_summary_requires_confirmation(registry):
     assert res["status"] == "blocked_by_permission_gate"
     assert res["requires_confirmation"] is True
 
-    # Đã xác nhận -> thành công
+    # Confirmed -> success
     res_ok = registry.send_summary(
         recipient="test@example.com",
         content="Tóm tắt pháp lý",
@@ -46,7 +46,7 @@ def test_send_summary_requires_confirmation(registry):
 
 
 def test_idempotency_suppression(registry):
-    # Gửi lần 1
+    # First send
     res1 = registry.send_summary(
         recipient="user@domain.com",
         content="Nội dung cần gửi",
@@ -55,7 +55,7 @@ def test_idempotency_suppression(registry):
     )
     assert res1["status"] == "success"
 
-    # Gửi lại với cùng key -> phải bị chặn tránh lặp
+    # Resend with identical key -> must be suppressed as duplicate
     res2 = registry.send_summary(
         recipient="user@domain.com",
         content="Nội dung cần gửi",

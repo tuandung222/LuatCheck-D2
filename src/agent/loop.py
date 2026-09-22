@@ -1,6 +1,8 @@
 """
-LuatCheck Budgeted ReAct Agent Loop
-Vòng lặp suy luận - hành động có giới hạn ngân sách và xác thực căn cứ pháp lý L1 & L2
+LuatCheck Budgeted ReAct Agent Loop.
+
+Finite-State Machine (FSM) control loop with strict execution budgets
+and multi-tier legal evidence verification (L1 Deterministic & L2 Semantic).
 """
 import json
 import time
@@ -46,20 +48,20 @@ class LuatCheckAgent:
         audit_logger: Optional[AuditLogger] = None,
         outbox_path: Optional[str] = None
     ):
-        # 1. Nạp cấu hình tập trung từ AppConfig hoặc config.yaml
+        # 1. Load centralized configuration from AppConfig or config.yaml
         self.config = config or load_config()
         self.model_name = model_name or self.config.model.name
         self.ollama_url = ollama_url or self.config.model.endpoint
         self.corpus_path = corpus_path or self.config.retrieval.corpus_path
         self.l2_use_slm = l2_use_slm if l2_use_slm is not None else self.config.verifier.l2_use_slm
 
-        # 2. Ngân sách thực thi (Budgets)
+        # 2. Execution budgets
         self.max_tool_calls = max_tool_calls if max_tool_calls is not None else self.config.budgets.max_tool_calls
         self.max_repairs = max_repairs if max_repairs is not None else self.config.budgets.max_repairs
         self.max_steps = max_steps if max_steps is not None else self.config.budgets.max_steps
         self.outbox_path = outbox_path or self.config.security.outbox_path
 
-        # 3. Xử lý tương thích ngược giữa enable_verification và verification_mode
+        # 3. Backward compatibility for enable_verification and verification_mode
         chosen_mode = verification_mode if verification_mode is not None else self.config.verifier.mode
         if enable_verification is False:
             self.verification_mode = "off"
@@ -76,7 +78,7 @@ class LuatCheckAgent:
 
         self.enable_verification = (self.verification_mode != "off")
 
-        # 4. Dependency Injection cho Tool Registry & Retriever
+        # 4. Dependency Injection for Tool Registry & Retriever
         if retriever:
             self.tool_registry = LegalToolRegistry(
                 corpus_path=self.corpus_path,
@@ -89,7 +91,7 @@ class LuatCheckAgent:
                 outbox_path=self.outbox_path
             )
 
-        # 5. Dependency Injection cho Verifiers
+        # 5. Dependency Injection for Verifiers
         corpus_data = getattr(self.tool_registry.retriever, "corpus", [])
         self.verifier = verifier or L1EvidenceVerifier(corpus_data)
         self.l2_verifier = l2_verifier or L2SemanticEntailmentVerifier(
@@ -100,7 +102,7 @@ class LuatCheckAgent:
             use_slm=self.l2_use_slm
         )
 
-        # 6. Dependency Injection cho Memory & Logger
+        # 6. Dependency Injection for Memory & Logger
         self.sqlite_store = sqlite_store or SQLiteEpisodicStore(
             db_path=self.config.memory.sqlite_path,
             index_version=self.config.memory.index_version
@@ -108,7 +110,7 @@ class LuatCheckAgent:
         self.audit_logger = audit_logger or AuditLogger(log_path=self.config.security.audit_log_path)
         self.ledger: Optional[CaseLedger] = None
 
-        # 7. Dependency Injection cho LLM Client (Tách rời LLM Engine)
+        # 7. Dependency Injection for LLM Client (Decoupled Inference Engine)
         self.mock_client = MockRuleBasedLLMClient(verification_mode=self.verification_mode)
         if llm_client:
             self.llm_client = llm_client
@@ -125,7 +127,7 @@ class LuatCheckAgent:
 
     @classmethod
     def from_config(cls, config_path_or_obj: Any = "config/config.yaml", **kwargs) -> "LuatCheckAgent":
-        """Factory method: Khởi tạo LuatCheckAgent trực tiếp từ cấu hình YAML hoặc AppConfig object."""
+        """Factory method: Initialize LuatCheckAgent directly from YAML config path or AppConfig object."""
         if isinstance(config_path_or_obj, str):
             cfg = load_config(config_path_or_obj)
         elif isinstance(config_path_or_obj, AppConfig):
@@ -136,19 +138,19 @@ class LuatCheckAgent:
 
     @classmethod
     def default(cls) -> "LuatCheckAgent":
-        """Factory method: Khởi tạo LuatCheckAgent với cấu hình mặc định chuẩn."""
+        """Factory method: Initialize LuatCheckAgent with standard default configuration."""
         return cls.from_config()
 
     def _call_llm(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
-        """Ủy quyền sinh phản hồi cho LLM Client đã được mô-đun hóa."""
+        """Delegate LLM response generation to modular LLM client."""
         return self.llm_client.generate(messages, ledger=ledger)
 
     def step(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
-        """Thực hiện một bước gọi mô hình suy luận và chuyển tiếp trạng thái ledger."""
+        """Execute one step of LLM inference and advance ledger state."""
         return self._call_llm(messages, ledger=ledger or self.ledger)
 
     def _rule_based_fallback(self, messages: List[Dict[str, str]]) -> Dict[str, Any]:
-        """Duy trì tương thích ngược cho các bài test hoặc caller gọi trực tiếp rule-based fallback."""
+        """Maintain backward compatibility for tests or callers invoking rule-based fallback directly."""
         return self.mock_client.generate(messages, ledger=self.ledger)
 
 
@@ -160,7 +162,7 @@ class LuatCheckAgent:
         ledger.max_repairs = self.max_repairs
         self.ledger = ledger
 
-        # 1. Gác cổng an ninh (Security Guardrails Check)
+        # 1. Security Guardrails Check
         is_safe, safety_msg = SecurityGuardrails.check_input_safety(user_query, pasted_doc)
         if not is_safe:
             ledger.is_terminal = True
@@ -173,10 +175,10 @@ class LuatCheckAgent:
             self.audit_logger.log_event(sid, "security_refusal", {"query": user_query, "reason": safety_msg})
             return ledger
 
-        # 2. Kiểm tra bộ nhớ dài hạn (Episodic Store Check) & Tái xác thực Cache
+        # 2. Episodic Store Check & Cache Re-Verification
         cached_case = self.sqlite_store.retrieve_similar_case(user_query)
         if cached_case:
-            # 2.1 Phục hồi danh sách điều luật đã truy xuất
+            # 2.1 Reconstruct retrieved articles list
             raw_article_ids = cached_case.get("article_ids", "")
             if isinstance(raw_article_ids, str):
                 cached_article_ids = [aid.strip() for aid in raw_article_ids.split(",") if aid.strip()]
@@ -185,25 +187,25 @@ class LuatCheckAgent:
             else:
                 cached_article_ids = []
 
-            # Chuẩn hóa trích dẫn thành đối tượng Citation để L1 verifier có thể đọc
+            # Normalize citations to Citation objects for L1 verifier
             raw_citations = cached_case.get("citations", [])
             cached_citations = [
                 Citation(**c) if isinstance(c, dict) else Citation(article_id=str(c))
                 for c in raw_citations
             ]
 
-            # Bổ sung các article_id từ citations vào danh sách retrieved nếu chưa có
+            # Append citation article_ids to retrieved list if missing
             for c in cached_citations:
                 if c.article_id and c.article_id not in cached_article_ids:
                     cached_article_ids.append(c.article_id)
 
-            # Nạp vào ledger short-term memory
+            # Populate ledger short-term working memory
             for aid in cached_article_ids:
                 art = self.tool_registry.retriever.get_article_by_id(aid)
                 content = art.get("content", "") if art else ""
                 CaseLedgerManager.add_retrieved_article(ledger, aid, content)
 
-            # 2.2 Tái xác thực căn cứ pháp lý L1 & L2 trước khi tái sử dụng (Cache Re-Verification)
+            # 2.2 Re-verify L1 & L2 legal evidence before reuse (Cache Re-Verification)
             is_cache_valid = True
             cache_feedback = None
 
@@ -239,7 +241,7 @@ class LuatCheckAgent:
                             + "\n".join(f"- \"{s}\"" for s in failed_sentences[:2])
                         )
 
-            # 2.3 Xử lý kết quả tái xác thực cache
+            # 2.3 Process cache re-verification result
             if is_cache_valid:
                 ledger.is_terminal = True
                 ledger.terminal_status = "answered"
@@ -264,7 +266,7 @@ class LuatCheckAgent:
                 )
                 return ledger
             else:
-                # Nếu xác thực thất bại: ghi log cảnh báo và Fallback sang vòng lặp ReAct bình thường
+                # If cache re-verification fails: log warning and fall back to regular ReAct loop
                 self.audit_logger.log_event(
                     sid,
                     "cache_verification_failed",
@@ -273,20 +275,20 @@ class LuatCheckAgent:
                         "feedback": cache_feedback
                     }
                 )
-                # Dọn sạch danh sách retrieved tạm thời để ReAct loop bắt đầu truy xuất mới
+                # Clear temporary retrieved state so ReAct loop starts fresh
                 ledger.retrieved_article_ids = []
                 ledger.retrieved_articles_cache = {}
 
-        # 3. Chuẩn bị ngữ cảnh cho LLM
+        # 3. Prepare context for LLM
         wrapped_input = SecurityGuardrails.wrap_untrusted_input(user_query, pasted_doc)
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": wrapped_input}
         ]
 
-        # 4. Vòng lặp ReAct có ngân sách (Budgeted ReAct Loop)
+        # 4. Budgeted ReAct Loop
         while not ledger.is_terminal:
-            # 1. Kiểm tra giới hạn tổng số bước suy luận (Step Budget Invariant)
+            # 1. Step Budget Invariant Check
             if not ledger.can_step():
                 ledger.is_terminal = True
                 ledger.terminal_status = "refused"
@@ -309,10 +311,10 @@ class LuatCheckAgent:
             if not isinstance(tool_args, dict):
                 tool_args = {}
 
-            # Xử lý các hành động
+            # Dispatch action
             if action == ActionType.SEARCH_LAW.value:
                 if not ledger.can_call_tool():
-                    # Đã hết ngân sách gọi tool -> nhắc nhở model chuyển sang answer hoặc refuse
+                    # Tool budget exhausted -> prompt model to switch to answer or refuse
                     messages.append({"role": "assistant", "content": json.dumps(agent_resp, ensure_ascii=False)})
                     messages.append({"role": "user", "content": f"[LỖI_NGÂN_SÁCH] Đã sử dụng tối đa {self.max_tool_calls} lượt gọi công cụ. Bạn KHÔNG ĐƯỢC gọi thêm công cụ nữa. Hãy chuyển sang hành động 'answer' nếu đã đủ tài liệu, hoặc 'refuse' nếu chưa đủ căn cứ."})
                     if ledger.step_count >= self.max_steps - 1:
@@ -334,7 +336,7 @@ class LuatCheckAgent:
 
                 tool_res = self.tool_registry.search_law(q, top_k=top_k)
                 
-                # Lưu vào cache ledger
+                # Cache into ledger working memory
                 for art in tool_res.get("articles", []):
                     CaseLedgerManager.add_retrieved_article(ledger, art["article_id"], art["content_snippet"])
                 CaseLedgerManager.add_query(ledger, q)
@@ -383,7 +385,7 @@ class LuatCheckAgent:
                     elif isinstance(c, str) and c.strip():
                         citations.append(Citation(article_id=c.strip()))
 
-                # BƯỚC XÁC THỰC CĂN CỨ PHÁP LÝ (3-WAY ABLATION CONTRACT)
+                # STATUTORY EVIDENCE VERIFICATION STEP (3-WAY ABLATION CONTRACT)
                 verif_valid = True
                 repair_feedback = None
 
@@ -426,7 +428,7 @@ class LuatCheckAgent:
                 if verif_valid:
                     ledger.is_terminal = True
                     ledger.terminal_status = "answered"
-                    # Giữ nguyên thứ tự truy xuất khách quan, không xáo trộn danh sách retrieval
+                    # Preserve objective retrieval order without scrambling list
                     citations_dicts = [c.model_dump() if hasattr(c, "model_dump") else c.dict() for c in citations]
                     ledger.final_output = {
                         "action": "answer",
@@ -434,7 +436,7 @@ class LuatCheckAgent:
                         "citations": citations_dicts,
                         "verified": (self.verification_mode != "off")
                     }
-                    # Lưu vào SQLite Episodic Store (chỉ ghi khi kết quả được xác thực)
+                    # Save to SQLite Episodic Store (persisted only when verified)
                     if self.verification_mode != "off":
                         self.sqlite_store.write_if_verified(
                             case_id=sid,
@@ -444,14 +446,14 @@ class LuatCheckAgent:
                             is_l1_verified=True
                         )
                 else:
-                    # Xử lý khi xác thực L1/L2 thất bại -> Kích hoạt Targeted Repair
+                    # Handle verification failure -> Trigger Targeted Self-Repair
                     if ledger.can_repair():
                         ledger.record_repair(repair_feedback)
                         repair_prompt = REPAIR_PROMPT_TEMPLATE.format(repair_feedback=repair_feedback)
                         messages.append({"role": "assistant", "content": json.dumps(agent_resp, ensure_ascii=False)})
                         messages.append({"role": "user", "content": repair_prompt})
                     else:
-                        # Đã hết ngân sách tự sửa chữa -> Fallback dứt khoát sang Refuse
+                        # Self-repair budget exhausted -> Fallback decisively to Refuse
                         ledger.is_terminal = True
                         ledger.terminal_status = "refused"
                         ledger.final_output = {
@@ -479,7 +481,7 @@ class LuatCheckAgent:
                 }
 
             else:
-                # Xử lý các action lạ/không hợp lệ (như {"action": "bogus"})
+                # Handle unknown or invalid action
                 ledger.audit_events.append({
                     "event": "invalid_action",
                     "action": action,

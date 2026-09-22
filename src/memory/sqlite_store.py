@@ -1,7 +1,7 @@
 """
 Long-term Episodic Store: SQLite
-Triển khai bộ nhớ dài hạn với chính sách Ghi (Write Policy), Đọc (Retrieval Policy)
-và Khử khuẩn Dữ liệu Định danh Cá nhân (PII Sanitization) tuân thủ Vietnam PDPL 2025
+Implements long-term episodic memory with Write Policy, Retrieval Policy,
+and Personally Identifiable Information (PII) Sanitization conforming to Vietnam PDPL 2025.
 """
 import sqlite3
 import json
@@ -13,20 +13,20 @@ from datetime import datetime, timezone
 
 def sanitize_pii(text: str) -> str:
     """
-    Khử khuẩn dữ liệu định danh cá nhân (PII Sanitization) tuân thủ Nghị định 13/2023/NĐ-CP & PDPL 2025:
-    - Bảo toàn Mã số thuế doanh nghiệp 10 chữ số (và 13 chữ số chi nhánh) khi có nhãn mã số thuế/MST/MSDN.
-    - Khử khuẩn Số căn cước công dân (CCCD 12 chữ số theo mọi biến thể phân cách khoảng trắng, dấu chấm, gạch ngang)
-      và CMND 9 chữ số, phòng vệ trước nỗ lực giả mạo đuôi tiền tệ.
-    - Khử khuẩn Số điện thoại di động và cố định (bàn) Việt Nam (đầu số di động 03, 05, 07, 08, 09, đầu số cố định 02x, +84, (+84)).
-    - Khử khuẩn Địa chỉ email RFC 5322.
-    Thay thế toàn bộ thông tin cá nhân nhạy cảm bằng nhãn chuẩn [REDACTED_PII].
+    Sanitizes personally identifiable information (PII) complying with Decree 13/2023/ND-CP & PDPL 2025:
+    - Preserves 10-digit enterprise tax codes (and 13-digit branch codes) when preceded by tax code markers.
+    - Redacts 12-digit Citizen Identity Card numbers (CCCD with spaces, dots, dashes)
+      and 9-digit ID cards (CMND), preventing currency suffix spoofing bypasses.
+    - Redacts Vietnamese mobile and landline telephone numbers (03, 05, 07, 08, 09 mobile, 02x landline, +84, (+84)).
+    - Redacts standard RFC 5322 email addresses.
+    Replaces all detected sensitive personal data with the standardized tag [REDACTED_PII].
     """
     if not text:
         return ""
 
     sanitized = text
 
-    # 0. BẢO VỆ MÃ SỐ THUẾ DOANH NGHIỆP (Enterprise Tax Codes)
+    # 0. Preserve Enterprise Tax Codes
     tax_placeholders = {}
     tax_pattern = r"(?i)\b(?:mã\s+số\s+thuế|mst|mã\s+số\s+doanh\s+nghiệp|msdn|tax\s+code)\b[\s:._-]*([0-9]{10}(?:-[0-9]{3})?)\b"
 
@@ -40,8 +40,8 @@ def sanitize_pii(text: str) -> str:
 
     sanitized = re.sub(tax_pattern, _mask_tax, sanitized)
 
-    # 0.1 BẢO VỆ SỐ TIỀN VÀ GIÁ TRỊ TÀI CHÍNH HỢP PHÁP (Legitimate Currency Amounts)
-    # Tuyệt đối không bảo vệ số bắt đầu bằng 0 (như 001203456789 đồng là thủ đoạn bypass CCCD)
+    # 0.1 Preserve legitimate currency amounts and financial figures
+    # Do not preserve numbers starting with 0 (e.g., 001203456789 đồng is a CCCD bypass attempt)
     currency_placeholders = {}
     currency_pattern = (
         r"(?<!\d)(?:[1-9]\d{0,2}(?:[.,]\d{3})+|[1-9]\d+)\s*"
@@ -55,11 +55,11 @@ def sanitize_pii(text: str) -> str:
 
     sanitized = re.sub(currency_pattern, _mask_currency, sanitized)
 
-    # 1. Email addresses (chuẩn RFC 5322 cơ bản)
+    # 1. Email addresses (basic RFC 5322 standard)
     email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
     sanitized = re.sub(email_pattern, '[REDACTED_PII]', sanitized)
 
-    # 2. Rà soát nhãn định danh CCCD/CMND tường minh (bất kể dấu cách phân tách và có đuôi tiền tệ hay không)
+    # 2. Inspect explicit CCCD/CMND identity labels (regardless of separators and currency suffixes)
     explicit_id_pattern = r'(?i)\b(?:cccd|căn\s+cước(?:\s+công\s+dân)?|cmnd|chứng\s+minh\s+nhân\s+dân|số\s+định\s+danh)[\s:._-]*([0-9\s.\-]{9,22})\b'
     def _redact_explicit_id(match: re.Match) -> str:
         digits = re.sub(r'\D', '', match.group(1))
@@ -69,7 +69,7 @@ def sanitize_pii(text: str) -> str:
         return match.group(0)
     sanitized = re.sub(explicit_id_pattern, _redact_explicit_id, sanitized)
 
-    # 3. Số Căn cước công dân 12 chữ số (chuỗi 12 chữ số với khoảng cách bất kỳ)
+    # 3. 12-digit Citizen Identity Card (CCCD) numbers with flexible separators
     def _redact_12_digits(match: re.Match) -> str:
         matched_str = match.group(0)
         digits = re.sub(r'\D', '', matched_str)
@@ -79,7 +79,7 @@ def sanitize_pii(text: str) -> str:
 
     sanitized = re.sub(r'(?<![\d])(?:\d[\s.\-]?){11}\d(?![\d])', _redact_12_digits, sanitized)
 
-    # 4. CMND 9 chữ số
+    # 4. 9-digit National ID Card (CMND) numbers
     def _redact_9_digits(match: re.Match) -> str:
         matched_str = match.group(0)
         digits = re.sub(r'\D', '', matched_str)
@@ -89,7 +89,7 @@ def sanitize_pii(text: str) -> str:
 
     sanitized = re.sub(r'(?<![\d])(?:\d[\s.\-]?){8}\d(?![\d])', _redact_9_digits, sanitized)
 
-    # 5. Số điện thoại di động & cố định Việt Nam (đầu số 03, 05, 07, 08, 09 và cố định 02x)
+    # 5. Vietnamese mobile and landline telephone numbers (prefixes 03, 05, 07, 08, 09 and landline 02x)
     phone_pattern = (
         r'(?<![\d])(?:'
         r'(?:(?:\+84|84|0|\(\+84\))[\s.\-]*(?:\(?0?(?:3|5|7|8|9)\)?))[\s.\-]*(?:[\s.\-]?\d){7,8}'
@@ -101,7 +101,7 @@ def sanitize_pii(text: str) -> str:
     )
     sanitized = re.sub(phone_pattern, '[REDACTED_PII]', sanitized)
 
-    # 6. KHÔI PHỤC TIỀN TỆ VÀ MÃ SỐ THUẾ DOANH NGHIỆP
+    # 6. Restore preserved currency and enterprise tax codes
     for key, original_curr in currency_placeholders.items():
         sanitized = sanitized.replace(key, original_curr)
     for key, original_tax in tax_placeholders.items():
@@ -148,19 +148,19 @@ class SQLiteEpisodicStore:
         is_l1_verified: bool
     ) -> bool:
         """
-        CHÍNH SÁCH GHI (Write Policy):
-        - Chỉ ghi khi kết quả đã VƯỢT QUA 100% kiểm tra L1 Verification.
-        - Tuyệt đối không lưu câu hỏi/câu trả lời bị từ chối hoặc không được xác minh.
-        - Khử khuẩn toàn bộ PII (CCCD, SĐT, Email) trong query, answer và citations_json.
+        WRITE POLICY:
+        - Only writes when the case has passed 100% of L1 Verification checks.
+        - Strictly drops rejected or unverified inquiries/responses.
+        - Sanitizes all PII (CCCD, phone, email) in query, answer, and citations_json.
         """
         if not is_l1_verified:
             return False
 
-        # Khử khuẩn PII tuân thủ PDPL 2025
+        # Sanitize PII adhering to PDPL 2025
         clean_query = sanitize_pii(query).strip().lower()
         clean_answer = sanitize_pii(answer)
 
-        # Trích xuất và khử khuẩn cấu trúc citations
+        # Extract and sanitize citations structure
         citations_sanitized = []
         if isinstance(citations, list):
             article_ids = ",".join([
@@ -204,11 +204,11 @@ class SQLiteEpisodicStore:
         threshold: float = 0.85
     ) -> Optional[Dict[str, Any]]:
         """
-        CHÍNH SÁCH TRUY XUẤT (Retrieval Policy):
-        - Chỉ tái sử dụng ca tư vấn cũ nếu khớp chính xác index_version.
-        - Khử khuẩn PII và làm sạch dấu câu trước khi tính Jaccard similarity.
-        - Trả về danh sách article_ids đã được parse (List[str]).
-        - Chỉ chấp nhận tương đồng >= threshold.
+        RETRIEVAL POLICY:
+        - Reuses past advisory cases only if index_version strictly matches.
+        - Sanitizes PII and normalizes punctuation before computing Jaccard similarity.
+        - Returns parsed article_ids as List[str].
+        - Only accepts cases with similarity >= threshold.
         """
         target_version = index_version or self.index_version
         clean_q = sanitize_pii(query).strip().lower()
@@ -243,7 +243,7 @@ class SQLiteEpisodicStore:
                     best_match = dict(row)
 
             if best_match:
-                # Parse danh sách article_ids
+                # Parse article_ids list
                 raw_aids = best_match.get("article_ids", "")
                 if isinstance(raw_aids, str):
                     parsed_aids = [aid.strip() for aid in raw_aids.split(",") if aid.strip()]

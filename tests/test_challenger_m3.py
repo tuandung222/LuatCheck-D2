@@ -282,7 +282,7 @@ def test_error_analyzer_markdown_and_json_serialization(tmp_path):
 
 
 # =========================================================================
-# SUITE 3: L2 VERIFIER — ARTICLE 25 KHOẢN 3 VOCATIONAL CAP BOUNDS
+# SUITE 3: L2 VERIFIER — ARTICLE 25 CLAUSE 3 VOCATIONAL CAP BOUNDS
 # =========================================================================
 
 def test_article_25_vocational_cap_cong_nhan_ky_thuat(verifier):
@@ -316,27 +316,27 @@ def test_article_25_vocational_cap_cong_nhan_ky_thuat(verifier):
     )
     assert msg != "CONTRADICTION"
 
-    # 1 tháng (30 days) -> NOT CONTRADICTION
+    # 1 month (30 days) -> NOT CONTRADICTION
     is_ent, score, msg = verifier.verify_entailment(
         "Thời gian thử việc đối với công nhân kỹ thuật là 1 tháng.", "Dieu_25"
     )
     assert msg != "CONTRADICTION"
 
-    # 1.5 tháng (45 days) -> CONTRADICTION
+    # 1.5 months (45 days) -> CONTRADICTION
     is_ent, score, msg = verifier.verify_entailment(
         "Thời gian thử việc đối với công nhân kỹ thuật là 1.5 tháng.", "Dieu_25"
     )
     assert is_ent is False
     assert msg == "CONTRADICTION"
 
-    # 5 tuần (35 days) -> CONTRADICTION
+    # 5 weeks (35 days) -> CONTRADICTION
     is_ent, score, msg = verifier.verify_entailment(
         "Thời gian thử việc đối với công nhân kỹ thuật là 5 tuần.", "Dieu_25"
     )
     assert is_ent is False
     assert msg == "CONTRADICTION"
 
-    # 4 tuần (28 days) -> NOT CONTRADICTION
+    # 4 weeks (28 days) -> NOT CONTRADICTION
     is_ent, score, msg = verifier.verify_entailment(
         "Thời gian thử việc đối với công nhân kỹ thuật là 4 tuần.", "Dieu_25"
     )
@@ -348,25 +348,25 @@ def test_article_25_vocational_cap_trung_cap_so_cap_nghiep_vu(verifier):
     Validates vocational categories: 'trung cấp', 'sơ cấp', 'công nhân', 'nghiệp vụ'.
     All strictly capped at 30 days.
     """
-    # trung cấp: 31 days vs 30 days
+    # intermediate vocational ('trung cấp'): 31 days vs 30 days
     _, _, msg31 = verifier.verify_entailment("Thời gian thử việc cho lao động trình độ trung cấp là 31 ngày.", "Dieu_25")
     assert msg31 == "CONTRADICTION"
     _, _, msg30 = verifier.verify_entailment("Thời gian thử việc cho lao động trình độ trung cấp là 30 ngày.", "Dieu_25")
     assert msg30 != "CONTRADICTION"
 
-    # sơ cấp: 31 days vs 30 days
+    # elementary vocational ('sơ cấp'): 31 days vs 30 days
     _, _, msg_so31 = verifier.verify_entailment("Thời gian thử việc cho người có chứng chỉ sơ cấp là 31 ngày.", "Dieu_25")
     assert msg_so31 == "CONTRADICTION"
     _, _, msg_so30 = verifier.verify_entailment("Thời gian thử việc cho người có chứng chỉ sơ cấp là 30 ngày.", "Dieu_25")
     assert msg_so30 != "CONTRADICTION"
 
-    # công nhân: 35 days vs 30 days
+    # production worker ('công nhân'): 35 days vs 30 days
     _, _, msg_cn35 = verifier.verify_entailment("Thời gian thử việc của công nhân sản xuất là 35 ngày.", "Dieu_25")
     assert msg_cn35 == "CONTRADICTION"
     _, _, msg_cn30 = verifier.verify_entailment("Thời gian thử việc của công nhân sản xuất là 30 ngày.", "Dieu_25")
     assert msg_cn30 != "CONTRADICTION"
 
-    # nghiệp vụ: 32 days vs 30 days
+    # technical staff ('nghiệp vụ'): 32 days vs 30 days
     _, _, msg_nv32 = verifier.verify_entailment("Thời gian thử việc của nhân viên nghiệp vụ là 32 ngày.", "Dieu_25")
     assert msg_nv32 == "CONTRADICTION"
     _, _, msg_nv30 = verifier.verify_entailment("Thời gian thử việc của nhân viên nghiệp vụ là 30 ngày.", "Dieu_25")
@@ -384,7 +384,7 @@ def test_article_25_manager_exclusion_allows_over_30_days(verifier):
 
 
 # =========================================================================
-# SUITE 4: L2 VERIFIER — ARTICLE 24 KHOẢN 3 SHORT CONTRACT PROHIBITIONS
+# SUITE 4: L2 VERIFIER — ARTICLE 24 CLAUSE 3 SHORT CONTRACT PROHIBITIONS
 # =========================================================================
 
 def test_article_24_explicit_short_contract_durations(verifier):

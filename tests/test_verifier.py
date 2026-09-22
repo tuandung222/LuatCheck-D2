@@ -41,7 +41,7 @@ def test_fake_article_id_fails(verifier):
 def test_unretrieved_article_fails(verifier):
     answer = "Người lao động có quyền đơn phương chấm dứt hợp đồng theo Điều 35."
     citations = [Citation(article_id="Dieu_35")]
-    retrieved = ["Dieu_13"]  # Chưa từng retrieve Dieu_35
+    retrieved = ["Dieu_13"]  # Dieu_35 was never retrieved in session
 
     res = verifier.verify(answer, citations, retrieved)
     assert res.is_valid is False

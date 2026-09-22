@@ -1,6 +1,6 @@
 """
-Automated Error Diagnostic Analyzer for LuatCheck Benchmark
-Phân loại lỗi định lượng tự động theo 6 failure modes chuẩn hóa:
+Automated Error Diagnostic Analyzer for LuatCheck Benchmark.
+Classifies quantitative errors across 6 standardized failure modes:
 1. retrieval_miss: Gold provision not in retrieved top-k
 2. wrong_provision_cited: Cited article is not in ground-truth article set
 3. unsupported_claim: Generated claim sentence is unsupported by cited text
@@ -16,7 +16,7 @@ from typing import Dict, Any, List, Optional, Set
 
 
 def normalize_id(aid: str) -> str:
-    """Chuẩn hóa mã điều luật: Dieu_25, dieu_25, Điều 25 -> dieu_25"""
+    """Normalizes statutory article identifier: Dieu_25, dieu_25, Điều 25 -> dieu_25"""
     if not aid:
         return ""
     norm = unicodedata.normalize("NFC", str(aid).strip().lower())
@@ -43,8 +43,8 @@ class CaseStudy:
 
 class ErrorDiagnosticAnalyzer:
     """
-    Automated Error Diagnostic Analyzer for LuatCheck Benchmark
-    Chẩn đoán định lượng và phân tích ca thất bại (case studies)
+    Automated Error Diagnostic Analyzer for LuatCheck Benchmark.
+    Performs quantitative diagnostics and failure mode case study analysis.
     """
     FAILURE_MODES = [
         "retrieval_miss",
@@ -81,8 +81,8 @@ class ErrorDiagnosticAnalyzer:
         parse_error_details: Optional[str] = None
     ) -> List[str]:
         """
-        Phân tích 1 task đã được agent xử lý, nhận diện các failure modes xuất hiện.
-        Trả về danh sách các failure modes phát hiện được trong task.
+        Analyzes a single task evaluated by the agent, identifying present failure modes.
+        Returns a list of detected failure modes for the task.
         """
         self.total_tasks_evaluated += 1
         detected_modes: List[str] = []
@@ -105,7 +105,7 @@ class ErrorDiagnosticAnalyzer:
         tool_calls_count = getattr(ledger, "tool_calls_count", 0) if ledger else 0
         repairs_count = getattr(ledger, "repairs_count", 0) if ledger else 0
 
-        # Trích xuất danh sách điều luật được trích dẫn
+        # Extract list of cited statutory articles
         cited_ids = []
         if citations:
             for c in citations:
@@ -149,7 +149,7 @@ class ErrorDiagnosticAnalyzer:
                     )
                     self.case_studies.append(cs)
             else:
-                # Query không có căn cứ (Unanswerable/Adversarial) nhưng vẫn bịa trích dẫn
+                # Unanswerable/Adversarial query fabricated statutory citations
                 detected_modes.append("wrong_provision_cited")
                 cs = CaseStudy(
                     task_id=task_id,
@@ -244,8 +244,7 @@ class ErrorDiagnosticAnalyzer:
 
     def get_statistics(self) -> Dict[str, Any]:
         """
-        Tính toán số lượng (counts), tần suất tỷ lệ phần trăm (frequencies),
-        và gom nhóm case studies theo từng failure mode.
+        Calculates counts, percentage frequencies, and groups case studies by failure mode.
         """
         counts = {m: 0 for m in self.FAILURE_MODES}
         for cs in self.case_studies:
@@ -275,7 +274,7 @@ class ErrorDiagnosticAnalyzer:
         return self.get_statistics()
 
     def export_json(self, filepath: Optional[str] = None, indent: int = 2) -> str:
-        """Xuất kết quả chẩn đoán lỗi sang chuỗi JSON và ghi ra file nếu có đường dẫn."""
+        """Exports error diagnostic results to JSON string and writes to file if path provided."""
         data = self.to_dict()
         json_str = json.dumps(data, ensure_ascii=False, indent=indent)
         if filepath:
@@ -286,7 +285,7 @@ class ErrorDiagnosticAnalyzer:
 
     def to_markdown_table(self) -> str:
         """
-        Sinh bảng Markdown báo cáo chẩn đoán lỗi chuyên nghiệp theo định dạng bài báo khoa học.
+        Generates a publication-grade Markdown table summarizing diagnostic error taxonomy.
         """
         stats = self.get_statistics()
         counts = stats["counts"]
@@ -318,7 +317,7 @@ class ErrorDiagnosticAnalyzer:
 
 def generate_comparative_markdown_table(analyzers: Dict[str, ErrorDiagnosticAnalyzer]) -> str:
     """
-    Sinh bảng so sánh tổng hợp Error Taxonomy giữa các cấu hình (Ablation Comparison).
+    Generates comparative Markdown summary table across ablation configurations.
     """
     lines = []
     lines.append("### Comparative Error Taxonomy Across Ablation Configurations")

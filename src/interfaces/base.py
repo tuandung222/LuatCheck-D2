@@ -1,38 +1,39 @@
 """
-Base Protocol Interfaces for LuatCheck Architecture
-Cung cấp các giao diện mở (Protocols / Abstract Base Classes) cho phép Data Scientist
-dễ dàng cắm các thành phần tùy biến (Custom Retriever, Custom LLM Backend, Custom Verifier).
+Base Protocol Interfaces for LuatCheck Architecture.
+
+Defines decoupled Strategy Protocols (Abstract Protocols) allowing Data Scientists
+to easily swap in custom components (Custom Retriever, Custom LLM Backend, Custom Verifier).
 """
 from typing import Protocol, runtime_checkable, List, Dict, Any, Optional, Tuple
 
 
 @runtime_checkable
 class BaseRetriever(Protocol):
-    """Giao diện chuẩn cho thành phần truy xuất pháp luật (Retriever Engine)."""
+    """Standard protocol interface for legal document retrieval engines."""
     corpus: List[Dict[str, Any]]
 
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
-        """Tìm kiếm điều luật liên quan đến query."""
+        """Search legal provisions relevant to the query."""
         ...
 
     def get_article_by_id(self, article_id: str) -> Optional[Dict[str, Any]]:
-        """Lấy chi tiết văn bản điều luật theo mã định danh."""
+        """Fetch verbatim article text by canonical article identifier."""
         ...
 
 
 @runtime_checkable
 class BaseLLMClient(Protocol):
-    """Giao diện chuẩn cho thành phần sinh suy luận (LLM Engine)."""
+    """Standard protocol interface for language model inference backends."""
 
     def generate(self, messages: List[Dict[str, str]], ledger: Optional[Any] = None) -> Dict[str, Any]:
-        """Sinh hành động tiếp theo cho ReAct agent (dưới dạng JSON dict hợp lệ)."""
+        """Generate the next ReAct action for the agent (as a validated JSON dict)."""
         ...
 
 
 @runtime_checkable
 class BaseVerifier(Protocol):
-    """Giao diện chuẩn cho thành phần kiểm chứng căn cứ (Evidence Verifier)."""
+    """Standard protocol interface for evidence verification modules."""
 
     def verify(self, answer_text: str, citations: List[Any], retrieved_article_ids: List[str]) -> Any:
-        """Kiểm chứng tính đúng đắn và căn cứ pháp lý của câu trả lời."""
+        """Verify factual correctness and statutory evidence grounding of the generated answer."""
         ...

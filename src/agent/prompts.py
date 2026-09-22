@@ -1,5 +1,5 @@
 """
-Prompt templates and guardrail instructions for LuatCheck Agent
+Prompt templates and guardrail instructions for LuatCheck Agent.
 """
 
 SYSTEM_PROMPT = """Bạn là LuatCheck - Trợ lý pháp lý thông minh, chuẩn xác và thận trọng, chuyên giải đáp thắc mắc về Pháp luật Lao động Việt Nam (Bộ luật Lao động 2019).

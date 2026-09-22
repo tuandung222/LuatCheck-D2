@@ -1,6 +1,8 @@
 """
-Hybrid Retrieval with Reciprocal Rank Fusion (RRF)
-Kết hợp BM25 (từ khóa pháp lý) và Dense Semantic Search (ngữ nghĩa tình huống)
+Hybrid Retrieval with Reciprocal Rank Fusion (RRF).
+
+Combines BM25 (lexical matching for legal citations) and Dense Semantic Search
+(semantic matching for situational queries) using Reciprocal Rank Fusion.
 """
 import json
 import os
@@ -24,12 +26,12 @@ class HybridLegalRetriever:
 
     def _load_corpus(self, path: str) -> List[Dict[str, Any]]:
         if not os.path.exists(path):
-            raise FileNotFoundError(f"Không tìm thấy file corpus tại {path}")
+            raise FileNotFoundError(f"Corpus file not found at {path}")
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
 
     def get_article_by_id(self, article_id: str) -> Optional[Dict[str, Any]]:
-        # Chuẩn hóa nếu người dùng truyền vào "Điều 35" hoặc "dieu_35"
+        # Normalize in case user passes "Điều 35" or "dieu_35"
         normalized_id = article_id.strip().replace(" ", "_")
         if normalized_id.lower().startswith("điều_"):
             normalized_id = "Dieu_" + normalized_id[5:]
@@ -43,22 +45,22 @@ class HybridLegalRetriever:
 
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         """
-        Tìm kiếm lai ghép BM25 + Dense kết hợp Reciprocal Rank Fusion
+        Hybrid search combining BM25 and Dense semantics via Reciprocal Rank Fusion (RRF).
         """
         bm25_results = self.bm25.search(query, top_k=top_k * 2)
         dense_results = self.dense.search(query, top_k=top_k * 2)
 
         rrf_scores = defaultdict(float)
 
-        # RRF cho BM25
+        # RRF for BM25
         for rank, (doc_id, _) in enumerate(bm25_results):
             rrf_scores[doc_id] += 1.0 / (self.rrf_k + (rank + 1))
 
-        # RRF cho Dense
+        # RRF for Dense
         for rank, (doc_id, _) in enumerate(dense_results):
             rrf_scores[doc_id] += 1.0 / (self.rrf_k + (rank + 1))
 
-        # Sắp xếp giảm dần theo điểm RRF
+        # Sort descending by RRF score
         sorted_doc_ids = sorted(rrf_scores.keys(), key=lambda d: rrf_scores[d], reverse=True)[:top_k]
 
         enriched_results = []

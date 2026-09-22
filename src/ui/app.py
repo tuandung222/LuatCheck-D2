@@ -1,11 +1,11 @@
 """
-Streamlit Live Demo UI for LuatCheck (Requirement R7)
-Giao diện trực quan 3 cột phục vụ bài thuyết trình 8' Live Demo CO5151:
-- Cột 1 (Trái): Case Ledger View (ngắn hạn) & Form nhập liệu người dùng (kèm 5 kịch bản mẫu)
-- Cột 2 (Giữa): Vết thực thi suy luận ReAct thời gian thực (Thought/Action/Observation), huy hiệu công cụ & Banner trạng thái
-- Cột 3 (Phải): Căn cứ pháp lý, Thẻ điều luật, Huy hiệu xác thực L1 (VALID/REJECTED/UNVERIFIED), Tô màu căn cứ từng câu & Cổng kiểm duyệt Egress HITL
-- Modal HITL: Dialog xác nhận người dùng có kiểm tra trùng lặp khóa Idempotency SHA-256 cho send_summary
-- Khay thanh tra: Real-time Audit Log Inspector (JSONL) toàn diện
+Streamlit Live Demo UI for LuatCheck (Requirement R7).
+3-column interactive layout for CO5151 8-minute Live Demo:
+- Column 1 (Left): Case Ledger View (short-term episodic trace) & User Input Form (with 5 sample scenarios)
+- Column 2 (Center): Real-time ReAct Reasoning Trace (Thought/Action/Observation), Tool Badges & Status Banners
+- Column 3 (Right): Evidence Grounding, Statutory Cards, L1 Verification Badges (VALID/REJECTED/UNVERIFIED), Sentence-Level Colorized Grounding & HITL Egress Gate
+- HITL Modal: Dialog for manual user confirmation with SHA-256 Idempotency duplicate check for send_summary
+- Bottom Drawer: Comprehensive Real-time Audit Log Inspector (JSONL)
 """
 import streamlit as st
 import json
@@ -16,7 +16,7 @@ import re
 import hashlib
 from typing import Dict, Any, List, Optional
 
-# Đảm bảo import được module từ src
+# Ensure modules can be imported from src
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 from src.agent.loop import LuatCheckAgent
@@ -32,7 +32,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS cho giao diện thẩm mỹ cao cấp, chuẩn hội nghị
+# Custom CSS for high-fidelity conference-ready UI
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
@@ -53,7 +53,7 @@ st.markdown("""
         margin-bottom: 12px;
     }
     
-    /* Huy hiệu trạng thái L1 */
+    /* L1 Status Badges */
     .badge-valid, .badge-verified {
         background-color: #e8f5e9;
         color: #2e7d32;
@@ -95,7 +95,7 @@ st.markdown("""
         font-size: 13px;
     }
 
-    /* Thẻ căn cứ pháp lý & câu khẳng định */
+    /* Statutory grounding and sentence cards */
     .sentence-supported {
         background-color: #f1f8e9;
         border-left: 4px solid #43a047;
@@ -130,7 +130,7 @@ st.markdown("""
         box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     
-    /* Vết suy luận ReAct */
+    /* ReAct Reasoning Trace */
     .trace-box {
         font-family: 'IBM Plex Mono', monospace;
         font-size: 12px;
@@ -186,13 +186,13 @@ st.markdown("""
 
 @st.cache_resource
 def get_agent_instance(verification_mode: str = "l1_only"):
-    return LuatCheckAgent(verification_mode=verification_mode)
+    return LuatCheckAgent.from_config(verification_mode=verification_mode)
 
 
-# Khởi tạo Audit Logger và Registry dùng chung
+# Initialize shared AuditLogger and Registry
 audit_logger = AuditLogger()
 
-# Khởi tạo session state nếu chưa có
+# Initialize session state defaults if absent
 if "current_ledger" not in st.session_state:
     st.session_state.current_ledger = None
 if "current_session_id" not in st.session_state:
@@ -210,17 +210,17 @@ if "show_egress_dialog" not in st.session_state:
 
 
 # =========================================================================
-# HELPER: PHÂN TÍCH VÀ ĐO ĐỘ CĂN CỨ TỪNG CÂU (SENTENCE-LEVEL GROUNDING)
+# HELPER: SENTENCE-LEVEL GROUNDING ANALYSIS
 # =========================================================================
 def analyze_grounding(answer_text: str, citations: List[Any], agent: LuatCheckAgent) -> Dict[str, Any]:
     """
-    Phân tích sentence-level span support tuân thủ thuật toán L1 Deterministic Verifier:
-    Tách câu, giao tập token với từng điều luật trích dẫn, tính tỷ lệ overlap và gán attribution.
+    Analyzes sentence-level span support conforming to the L1 Deterministic Verifier algorithm:
+    Splits sentences, computes token overlap against cited statutory articles, and assigns attribution.
     """
     if not answer_text or not answer_text.strip():
         return {"is_valid": False, "sentences_data": [], "grounded_ratio": 0.0}
 
-    # Chuẩn hóa citations
+    # Normalize citations
     norm_citations = []
     for c in citations:
         if isinstance(c, dict):
@@ -230,18 +230,18 @@ def analyze_grounding(answer_text: str, citations: List[Any], agent: LuatCheckAg
 
     retrieved_ids = [c.article_id for c in norm_citations]
     
-    # 1. Gọi L1 Verifier kiểm tra toàn diện
+    # 1. Invoke L1 Verifier for comprehensive check
     l1_res = agent.verifier.verify(
         answer_text=answer_text,
         citations=norm_citations,
         retrieved_article_ids=retrieved_ids
     )
 
-    # 2. Tách câu và phân tích token overlap chi tiết từng câu
+    # 2. Split sentences and analyze detailed token overlap per sentence
     raw_sentences = [s.strip() for s in re.split(r'[.?!]\s+', answer_text) if len(s.strip()) > 15]
     sentences_data = []
 
-    # Gom token từng điều luật để gán attribution chính xác
+    # Collect tokens per statutory article for accurate attribution assignment
     article_tokens: Dict[str, set] = {}
     for c in norm_citations:
         norm_id = agent.verifier._normalize_id(c.article_id)
@@ -266,7 +266,7 @@ def analyze_grounding(answer_text: str, citations: List[Any], agent: LuatCheckAg
         matches_total = sum(1 for w in meaningful_words if w in all_law_tokens)
         overlap_ratio = matches_total / len(meaningful_words) if meaningful_words else 0.0
 
-        # Tìm điều luật có độ khớp cao nhất (Attribution mapping)
+        # Identify statutory article with highest overlap (Attribution mapping)
         best_aid = None
         best_overlap = 0.0
         for aid, tokens in article_tokens.items():
@@ -315,15 +315,15 @@ def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent,
     recipient = st.text_input("Địa chỉ Email người nhận (Recipient):", value="hr_manager@company.vn", key="modal_rec")
     content = st.text_area("Nội dung tóm tắt pháp lý cần chuyển:", value=default_content, height=100, key="modal_content")
     
-    # Sinh hoặc cho phép người dùng tùy biến Idempotency Key
+    # Generate or allow user customization of Idempotency Key
     default_key = f"key_{session_id}" if session_id else f"key_{int(time.time())}"
     idempotency_key = st.text_input("Idempotency Key:", value=default_key, key="modal_key")
 
-    # Tính toán trực tiếp mã băm SHA-256
+    # Calculate SHA-256 hash directly
     hash_payload = f"{recipient}:{content}:{idempotency_key}"
     sha256_hash = hashlib.sha256(hash_payload.encode("utf-8")).hexdigest()
 
-    # Kiểm tra trùng lặp thời gian thực với registry
+    # Real-time duplicate check with registry
     is_duplicate = sha256_hash in agent_instance.tool_registry.executed_idempotency_keys
 
     st.markdown(f"**Mã băm SHA-256 Idempotency:**")
@@ -359,7 +359,7 @@ def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent,
             )
             st.session_state.egress_last_result = res
             
-            # Ghi nhận audit log cho hành động Egress
+            # Record audit log for Egress action
             audit_logger.log_event(
                 session_id=session_id or "manual_egress",
                 event_type="egress_action",
@@ -381,7 +381,7 @@ def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent,
 
 
 # =========================================================================
-# HEADER TRANG CHỦ
+# MAIN HEADER
 # =========================================================================
 col_logo, col_title = st.columns([1, 7])
 with col_logo:
@@ -392,21 +392,21 @@ with col_title:
 
 st.divider()
 
-# Khởi tạo agent theo mode đang chọn
+# Initialize agent with currently selected mode
 active_agent = get_agent_instance(verification_mode=st.session_state.selected_mode)
 
 # =========================================================================
-# BỐ CỤC 3 CỘT (3-COLUMN MAIN LAYOUT)
+# 3-COLUMN MAIN LAYOUT
 # =========================================================================
 col1, col2, col3 = st.columns([3.2, 4.3, 3.5])
 
 # =========================================================================
-# CỘT 1: CASE LEDGER VIEW & USER INPUT FORM
+# COLUMN 1: CASE LEDGER VIEW & USER INPUT FORM
 # =========================================================================
 with col1:
     st.subheader("1. Tình Huống Pháp Lý & Case Ledger")
     
-    # --- PHẦN 1.1: SỔ CÁI PHIÊN (CASE LEDGER VIEW) ---
+    # --- SECTION 1.1: CASE LEDGER VIEW ---
     current_ledger: Optional[CaseLedger] = st.session_state.current_ledger
     
     with st.container():
@@ -416,7 +416,7 @@ with col1:
         sid_display = current_ledger.session_id if current_ledger else "Chưa khởi tạo phiên"
         st.caption(f"Session ID: `{sid_display}`")
         
-        # Đồng hồ ngân sách (Luôn hiển thị metrics trên giao diện)
+        # Budget meter (persistent metrics display)
         m1, m2 = st.columns(2)
         tc = current_ledger.tool_calls_count if current_ledger else 0
         max_tc = current_ledger.max_tool_calls if current_ledger else 5
@@ -431,19 +431,19 @@ with col1:
             st.progress(min(rc / max(max_rc, 1), 1.0))
 
         if current_ledger:
-            # Truy vấn đã phát ra
+            # Emitted queries
             if current_ledger.queries_issued:
                 st.markdown("<div style='font-size: 12px; margin-top: 6px;'><strong>Truy vấn đã phát:</strong></div>", unsafe_allow_html=True)
                 for q in current_ledger.queries_issued:
                     st.markdown(f"<span class='pill pill-blue'>🔍 {q}</span>", unsafe_allow_html=True)
 
-            # Điều luật đã nạp trong phiên
+            # Loaded articles in session (provenance)
             if current_ledger.retrieved_article_ids:
                 st.markdown("<div style='font-size: 12px; margin-top: 6px;'><strong>Điều luật đã nạp (Provenance):</strong></div>", unsafe_allow_html=True)
                 pills_html = "".join([f"<span class='pill pill-green'>📖 {aid}</span>" for aid in current_ledger.retrieved_article_ids])
                 st.markdown(pills_html, unsafe_allow_html=True)
 
-            # Đính kèm văn bản không tin cậy
+            # Attached untrusted document
             if current_ledger.untrusted_documents:
                 st.markdown("<div style='font-size: 12px; margin-top: 6px;'><span class='pill pill-orange'>⚠️ Kèm Untrusted Doc</span></div>", unsafe_allow_html=True)
         else:
@@ -451,7 +451,7 @@ with col1:
             
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # --- PHẦN 1.2: FORM NHẬP LIỆU NGƯỜI DÙNG ---
+    # --- SECTION 1.2: USER INPUT FORM ---
     st.markdown("**Nhập Tình Huống Pháp Lý:**")
 
     scenario_options = [
@@ -483,7 +483,7 @@ with col1:
     user_query = st.text_area("Câu hỏi của bạn:", value=preset_query, height=90, placeholder="Nhập câu hỏi liên quan đến Bộ luật Lao động 2019...")
     pasted_doc = st.text_area("Văn bản/Hợp đồng dán kèm (Untrusted Document):", value=preset_doc, height=110, placeholder="Dán nội dung hợp đồng, quy chế công ty...")
 
-    # Chế độ xác thực (Ablation Mode)
+    # Ablation Verification Mode
     mode_options = {
         "l1_only": "1. L1 Deterministic Verifier (Chuẩn D2)",
         "l1_l2": "2. L1 + L2 Semantic Entailment (Hardened D3)",
@@ -512,14 +512,14 @@ with col1:
         st.session_state.egress_last_result = None
         st.rerun()
 
-    # Kích hoạt chạy Agent
+    # Trigger Agent execution
     if btn_run and user_query.strip():
         sid = f"demo_{int(time.time())}"
         st.session_state.current_session_id = sid
         st.session_state.last_query = user_query
         st.session_state.last_doc = pasted_doc
         
-        # Tạo agent mới với mode được chọn
+        # Instantiate new agent with selected mode
         agent_to_run = get_agent_instance(verification_mode=selected_mode_key)
         
         with st.spinner("LuatCheck Agent đang thực thi vòng lặp ReAct và xác thực căn cứ..."):
@@ -529,7 +529,7 @@ with col1:
 
 
 # =========================================================================
-# CỘT 2: LIVE REASONING TRACE & TERMINAL STATUS BANNER
+# COLUMN 2: LIVE REASONING TRACE & TERMINAL STATUS BANNER
 # =========================================================================
 with col2:
     st.subheader("2. Luồng Suy Luận & Căn Cứ Pháp Lý")
@@ -540,7 +540,7 @@ with col2:
         status = ledger.terminal_status
         final_out = ledger.final_output or {}
 
-        # --- 2.1 BANNER TRẠNG THÁI KẾT THÚC ---
+        # --- 2.1 TERMINAL STATUS BANNER ---
         if status == "answered":
             is_verified = final_out.get("verified", True)
             if is_verified:
@@ -558,11 +558,11 @@ with col2:
                 </div>
                 """, unsafe_allow_html=True)
 
-            # Hiển thị nội dung trả lời tổng hợp
+            # Display synthesized response content
             st.markdown("**Kết Quả Tư Vấn:**")
             st.success(final_out.get("content", ""))
 
-            # Nút mở Modal HITL Egress để gửi tóm tắt ra ngoài
+            # Button to trigger HITL Egress Modal
             if st.button("📤 Gửi Tóm Tắt Này Qua Email (Yêu cầu HITL)", use_container_width=True, key="btn_open_hitl_c2"):
                 st.session_state.show_egress_dialog = True
 
@@ -578,7 +578,7 @@ with col2:
         elif status == "clarified":
             st.info(f"ℹ️ **Yêu cầu làm rõ thêm:** {final_out.get('question', 'Vui lòng cung cấp thêm thông tin chi tiết.')}")
 
-        # Hiển thị kết quả thao tác Egress vừa thực hiện (nếu có)
+        # Display latest egress action result (if present)
         if st.session_state.egress_last_result:
             eg = st.session_state.egress_last_result
             if eg.get("status") == "success":
@@ -586,7 +586,7 @@ with col2:
             else:
                 st.warning(f"Egress: {eg.get('message')}")
 
-        # --- 2.2 VẾT SUY LUẬN REACT (TIMELINE & HUY HIỆU CÔNG CỤ) ---
+        # --- 2.2 REACT REASONING TRACE (TIMELINE & TOOL BADGES) ---
         st.markdown("#### 🔍 ReAct Reasoning Trace")
 
         trace_logs = []
@@ -624,7 +624,7 @@ with col2:
 
 
 # =========================================================================
-# CỘT 3: EVIDENCE GROUNDING & STATUTORY CARDS
+# COLUMN 3: EVIDENCE GROUNDING & STATUTORY CARDS
 # =========================================================================
 with col3:
     st.subheader("3. Kiểm Soát Quyền & Căn Cứ Pháp Lý")
@@ -634,7 +634,7 @@ with col3:
         citations = final_out.get("citations", [])
         content_text = final_out.get("content", "")
 
-        # 1. Huy hiệu xác thực L1 tổng quát
+        # 1. Overall L1 verification badge
         st.markdown("**Huy Hiệu Xác Thực Căn Cứ L1:**")
         if ledger.terminal_status == "refused":
             st.markdown("<span class='badge-rejected badge-refused'>🛑 REJECTED: CĂN CỨ BỊ TỪ CHỐI</span>", unsafe_allow_html=True)
@@ -689,7 +689,7 @@ with col3:
 
             st.markdown("---")
 
-        # 3. Thẻ Điều Luật Trích Dẫn (Statutory Text Cards)
+        # 3. Cited Statutory Text Cards
         st.markdown("**Thẻ Căn Cứ Pháp Luật (Statutory Provisions):**")
         if not citations:
             st.caption("Không có điều luật nào được trích dẫn.")
@@ -704,7 +704,7 @@ with col3:
                 else:
                     st.warning(f"Điều luật {aid} không tìm thấy trong dữ liệu tĩnh.")
 
-    # 4. Kiểm soát quyền Egress (send_summary) & HITL
+    # 4. Egress Permission Gate (send_summary) & HITL
     st.markdown("---")
     st.markdown("**Kiểm Soát Egress (send_summary & HITL):**")
     st.caption("Tác vụ gửi tóm tắt pháp lý ra email bên ngoài bắt buộc phải có xác nhận trực tiếp từ người dùng và kiểm tra Idempotency SHA-256.")
@@ -758,7 +758,7 @@ with col3:
 
 
 # =========================================================================
-# HIỂN THỊ MODAL DIALOG NẾU ĐƯỢC KÍCH HOẠT
+# RENDER MODAL DIALOG IF TRIGGERED
 # =========================================================================
 if st.session_state.get("show_egress_dialog", False):
     content_to_pass = ""
@@ -771,7 +771,7 @@ if st.session_state.get("show_egress_dialog", False):
 
 
 # =========================================================================
-# KHAY DƯỚI: REAL-TIME AUDIT LOG INSPECTOR (JSONL)
+# BOTTOM DRAWER: REAL-TIME AUDIT LOG INSPECTOR (JSONL)
 # =========================================================================
 st.markdown("---")
 st.subheader("4. Nhật Ký Kiểm Toán Thời Gian Thực (Audit Log Inspector - JSONL)")
@@ -779,10 +779,10 @@ st.subheader("4. Nhật Ký Kiểm Toán Thời Gian Thực (Audit Log Inspector
 with st.container(border=True):
     col_ctrl1, col_ctrl2, col_ctrl3, col_ctrl4 = st.columns([3, 3, 2, 2])
     
-    # Đọc logs gần nhất từ file audit_log.jsonl
+    # Load recent logs from audit_log.jsonl
     raw_logs = audit_logger.get_recent_logs(limit=100)
     
-    # Lấy danh sách session_id và event_type duy nhất
+    # Extract unique session_ids and event_types
     session_set = sorted(list({lg.get("session_id") for lg in raw_logs if lg.get("session_id")}))
     event_set = sorted(list({lg.get("event_type") for lg in raw_logs if lg.get("event_type")}))
 
@@ -797,7 +797,7 @@ with st.container(border=True):
         if st.button("🔄 Làm mới nhật ký", use_container_width=True):
             st.rerun()
 
-    # Lọc dữ liệu logs
+    # Filter audit logs
     filtered_logs = raw_logs
     if sel_session != "Tất cả (All)":
         filtered_logs = [lg for lg in filtered_logs if lg.get("session_id") == sel_session]
@@ -805,9 +805,9 @@ with st.container(border=True):
         filtered_logs = [lg for lg in filtered_logs if lg.get("event_type") == sel_event]
 
     display_logs = filtered_logs[-max_display:]
-    display_logs.reverse() # Bản ghi mới nhất hiển thị trên cùng
+    display_logs.reverse() # Latest records appear on top
 
-    # Thống kê nhanh
+    # Quick summary stats
     st.markdown(f"**Tổng số bản ghi:** `{len(raw_logs)}` | **Đang hiển thị:** `{len(display_logs)}` bản ghi khớp bộ lọc.")
 
     if display_logs:

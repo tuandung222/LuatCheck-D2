@@ -1,6 +1,6 @@
 """
-Structured Audit Logger for LuatCheck
-Ghi nhận toàn bộ vết kiểm toán (Audit Trail) định dạng JSON Lines
+Structured Audit Logger for LuatCheck.
+Records comprehensive audit trails formatted as JSON Lines.
 """
 import json
 import os

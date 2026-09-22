@@ -82,7 +82,7 @@ def test_sqlite_write_and_retrieve_with_pii_sanitization(tmp_path):
     )
     assert saved is True
 
-    # Kiểm tra trực tiếp trong SQLite để chắc chắn PII đã bị scrub trước khi lưu
+    # Check directly in SQLite to ensure PII was scrubbed prior to storage
     with sqlite3.connect(db_file) as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT normalized_query, answer, article_ids FROM episodic_memory WHERE case_id = 'case_pii_01'")
@@ -95,7 +95,7 @@ def test_sqlite_write_and_retrieve_with_pii_sanitization(tmp_path):
         assert "hr@legal.vn" not in stored_a
         assert "[REDACTED_PII]" in stored_a
 
-    # Truy xuất bằng câu hỏi cùng người hỏi nhưng khác thông tin liên lạc (khác SĐT, khác CCCD)
+    # Retrieve using query from same user but different contact details (different phone, different CCCD)
     query_lookup = "Tôi là Nguyễn Văn A, SĐT 0987654321, CCCD 012345678901, hỏi về thời gian thử việc đại học?"
     match = store.retrieve_similar_case(query_lookup)
 
@@ -116,11 +116,11 @@ def test_sqlite_version_matching(tmp_path):
 
     store_v1.write_if_verified("case_v1", query, answer, citations, is_l1_verified=True)
 
-    # v1 retrieve thành công
+    # v1 retrieval succeeds
     match_v1 = store_v1.retrieve_similar_case(query)
     assert match_v1 is not None
 
-    # v2 retrieve thất bại do lệch index_version
+    # v2 retrieval fails due to mismatched index_version
     match_v2 = store_v2.retrieve_similar_case(query)
     assert match_v2 is None
 
@@ -134,7 +134,7 @@ def test_case_ledger_helper_methods():
 
     CaseLedgerManager.add_fact(ledger, "Người lao động tốt nghiệp đại học")
     assert len(ledger.extracted_facts) == 1
-    # Không thêm duplicate fact
+    # Do not add duplicate fact
     CaseLedgerManager.add_fact(ledger, "Người lao động tốt nghiệp đại học")
     assert len(ledger.extracted_facts) == 1
 
