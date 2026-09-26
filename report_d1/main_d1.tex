@@ -1,0 +1,279 @@
+\documentclass[a4paper,11pt]{article}
+
+% ---------------------------------------------------------------------
+% Language and page layout
+% ---------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={168mm,248mm},
+    left=23mm,
+    top=25mm
+}
+\usepackage{setspace}
+\usepackage{indentfirst}
+
+% ---------------------------------------------------------------------
+% Core packages retained from the original template
+% ---------------------------------------------------------------------
+\usepackage{float}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tablefootnote}
+\usepackage{amsmath,amssymb,amsthm,amscd}
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows,backgrounds,positioning}
+\usepackage{pgf-pie}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[normalem]{ulem}
+\usepackage[makeroom]{cancel}
+\usepackage{enumitem}
+\usepackage{lastpage}
+\usepackage{subfiles}
+
+% ---------------------------------------------------------------------
+% Hyperlinks
+% ---------------------------------------------------------------------
+\usepackage[unicode,breaklinks,plainpages=false,pdfpagelabels]{hyperref}
+\hypersetup{
+    urlcolor=black,
+    linkcolor=black,
+    citecolor=black,
+    colorlinks=true
+}
+
+% ---------------------------------------------------------------------
+% Glossary / nomenclature
+% ---------------------------------------------------------------------
+\usepackage{etoolbox,ragged2e}
+
+% ---------------------------------------------------------------------
+% Bibliography
+% ---------------------------------------------------------------------
+\usepackage[
+    sorting=none,
+    backend=bibtex,
+    natbib=true
+]{biblatex}
+
+% Bibliography database
+\addbibresource{References/refs.bib}
+
+\makeatletter
+\def\blx@maxline{77}
+\makeatother
+
+% ---------------------------------------------------------------------
+% English document labels
+% ---------------------------------------------------------------------
+\AtBeginDocument{%
+    \addtocontents{toc}{\protect\thispagestyle{empty}}%
+    \renewcommand{\contentsname}{Table of Contents}%
+    \renewcommand{\listtablename}{List of Tables}%
+    \renewcommand{\tablename}{Table}%
+    \renewcommand{\listfigurename}{List of Figures}%
+    \renewcommand{\figurename}{Figure}%
+}
+
+
+% ---------------------------------------------------------------------
+% Header / footer
+% ---------------------------------------------------------------------
+\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+        \put(0,-8){\includegraphics[width=8mm]{Images/hcmut.png}}
+    \end{picture}
+    &
+    \begin{tabular}{l}
+        \textbf{\ttfamily VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY}\\
+        \textbf{\ttfamily HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY}
+    \end{tabular}
+ \end{tabular}
+}
+\fancyhead[R]{}
+
+\fancyfoot{}
+\fancyfoot[L]{%
+    \scriptsize\ttfamily
+    Advanced Agentic Artificial Intelligence
+}
+\fancyfoot[R]{%
+    \scriptsize\ttfamily
+    Page {\thepage}/\pageref{LastPage}
+}
+
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+% ---------------------------------------------------------------------
+% Float spacing and captions
+% ---------------------------------------------------------------------
+\sloppy
+\everymath{\color{black}}
+
+\captionsetup[figure]{
+    labelfont={small,bf},
+    textfont={small},
+    belowskip=0pt,
+    aboveskip=6pt
+}
+
+\captionsetup[table]{
+    labelfont={small,bf},
+    textfont={small},
+    belowskip=-1pt,
+    aboveskip=7pt
+}
+
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+
+% ---------------------------------------------------------------------
+% Dynamic English month name without extra packages
+% ---------------------------------------------------------------------
+\newcommand{\EnglishMonth}{%
+    \ifcase\month
+    \or January%
+    \or February%
+    \or March%
+    \or April%
+    \or May%
+    \or June%
+    \or July%
+    \or August%
+    \or September%
+    \or October%
+    \or November%
+    \or December%
+    \fi
+}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+
+% =====================================================================
+% TITLE PAGE
+% =====================================================================
+\begin{titlepage}
+
+\begin{center}
+    \color{black}
+    \textbf{VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY}\\
+    \textbf{HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY}\\
+    \textbf{FACULTY OF COMPUTER SCIENCE AND ENGINEERING}
+\end{center}
+
+\vspace{1cm}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=4cm]{Images/hcmut.png}
+\end{figure}
+
+\vspace{1cm}
+
+\begin{center}
+
+    % Course title
+    \textbf{\Large ADVANCED AGENTIC ARTIFICIAL INTELLIGENCE}\\
+
+    \rule{0.8\textwidth}{0.4pt}\\[16pt]
+
+    % Project title
+    \parbox{0.88\textwidth}{
+        \centering
+        \textbf{\Huge D1 Proposal}\\[7pt]
+        \textbf{\Large A Local, Evidence-Grounded}\\[2pt]
+        \textbf{\Large Vietnamese Legal Assistant}
+    }\\[16pt]
+
+    \rule{0.8\textwidth}{0.4pt}
+
+\end{center}
+
+\vspace{0.6cm}
+
+\begin{table}[h]
+\hspace{1.7cm}
+\begin{tabular}{rrl}
+
+    & \textbf{Supervisor:} &
+    \textbf{Lê Xuân Bách} \\
+
+    \\[-2pt]
+
+    & \textbf{Group:} &
+    8, Theme 9, Application Track \\
+
+    \\[3pt]
+
+    & \textbf{Students:} &
+    Lê Trí Quyền (Leader), 2470740 \\
+
+    & &
+    Võ Phạm Tuấn Dũng, 2570015 \\
+
+    & &
+    Nguyễn Hoàng Phong, 2570477 \\
+
+
+
+\end{tabular}
+\end{table}
+
+\vfill
+
+\begin{center}
+    {\footnotesize
+    HO CHI MINH CITY, \MakeUppercase{\EnglishMonth} \the\year
+    }
+\end{center}
+
+\end{titlepage}
+
+% =====================================================================
+% FRONT MATTER
+% =====================================================================
+\clearpage
+\hypersetup{pageanchor=true}
+
+% =====================================================================
+% MAIN CONTENT
+% =====================================================================
+\pagenumbering{arabic}
+\input{chap1}
+
+% =====================================================================
+% REFERENCES
+% =====================================================================
+\clearpage
+
+\printbibliography[
+    title={References},
+    heading=bibintoc
+]
+\thispagestyle{fancy}
+
+\end{document}

@@ -1,0 +1,106 @@
+% =====================================================================
+% 1page.tex -- CO5151 project idea 1-pager
+% Based on Le Tri Quyen's original draft (commit 55bb16d).
+% Changes are limited to what the brief requires:
+%   (1) exactly one page: title page, table of contents and the empty
+%       references section are replaced by a compact header block;
+%   (2) USERS gains the three usage situations the brief asks for;
+%   (3) one sentence in the Memory axis: the long-term store is required
+%       by R3, so it is no longer described as optional.
+% All other wording is the original author's, unchanged.
+% Preamble slimmed to what a single page needs, so the file builds on a
+% minimal TeX Live installation.
+% =====================================================================
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage{geometry}
+\geometry{a4paper, total={168mm,242mm}, left=21mm, top=26mm}
+
+% ---------------------------------------------------------------------
+% Header and footer, as in the original template
+% ---------------------------------------------------------------------
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{%
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+        \put(0,-8){\includegraphics[width=8mm]{Images/hcmut.png}}
+    \end{picture}
+    &
+    \begin{tabular}{l}
+        \textbf{\ttfamily VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY}\\
+        \textbf{\ttfamily HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY}
+    \end{tabular}
+ \end{tabular}
+}
+\fancyhead[R]{}
+\fancyfoot{}
+\fancyfoot[L]{\scriptsize\ttfamily Advanced Agentic Artificial Intelligence}
+\fancyfoot[R]{\scriptsize\ttfamily Page {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\newcommand{\block}[1]{\vspace{3pt}{\bfseries\large #1}\par\vspace{0pt}}
+
+\begin{document}
+
+% ---------------------------------------------------------------------
+% Identification block (replaces the title page and table of contents)
+% ---------------------------------------------------------------------
+\begin{center}
+{\large\bfseries 1-Pager: LuatCheck}\\[2pt]
+{\bfseries A Local, Evidence-Grounded Vietnamese Legal Assistant}
+\end{center}
+
+\vspace{-2pt}
+{\small\textbf{Supervisor:} Dr. Le Xuan Bach \hfill \textbf{Group:} 8, Theme 9, Application Track}\par
+{\small\textbf{Students:} Le Tri Quyen (Leader) 2470740, Vo Pham Tuan Dung 2570015, Nguyen Hoang Phong 2570477}\par
+
+\vspace{2pt}
+\hrule
+
+% ---------------------------------------------------------------------
+\block{PROBLEM}
+Public legal chatbots may expose sensitive data and generate unsupported legal claims. LuatCheck is a privacy-sensitive Vietnamese legal assistant that retrieves relevant legal provisions, verifies whether claims are supported, and provides traceable citations. When evidence is insufficient or the question is ambiguous, it asks for clarification or refuses to answer.
+
+The project combines local or organization-hosted deployment, evidence-grounded generation, clarification and refusal, controlled tool use, and security-aware permissions. It does not propose a new foundation model or retriever.
+
+% ---------------------------------------------------------------------
+\block{USERS}
+The target users are Vietnamese non-lawyers, especially employees, small-business owners, and SME administrative or HR staff who need understandable answers with inspectable legal evidence. Three representative situations:
+
+\begin{enumerate}[leftmargin=17pt,itemsep=1pt,topsep=2pt,parsep=0pt]
+\item An employee facing termination checks the notice period she is entitled to, and receives the answer together with the supporting provision.
+\item SME HR staff ask a sensitive employment question without uploading the contract to a public chatbot.
+\item A user pastes an untrusted document containing injected instructions, or asks how to evade a legal obligation, testing the security boundary and the refusal path.
+\end{enumerate}
+
+% ---------------------------------------------------------------------
+\block{WHY AN AGENT}
+Legal questions may require query reformulation, additional retrieval, clarification, evidence verification, answering, or refusal. A fixed workflow cannot determine the correct action for every question.
+
+LuatCheck uses a bounded ReAct-style loop and a structured case ledger containing user facts, searches, retrieved article IDs, and the remaining tool budget. \texttt{search\_law} and \texttt{get\_article} are read-only; \texttt{save\_case} is reversible; and \texttt{send\_summary} requires explicit human confirmation. The agent terminates with an answer, clarification request, or refusal.
+
+% ---------------------------------------------------------------------
+\block{CANDIDATE AXES}
+The project will integrate:
+\begin{itemize}[leftmargin=17pt,itemsep=1pt,topsep=2pt,parsep=0pt]
+\item Planning and search: Hybrid BM25 and dense retrieval, RRF, reranking, and query reformulation.
+\item Reflection and verification: Claim-level citation checks, targeted repair, and refusal when evidence is insufficient.
+\item Guardrails and security: Untrusted-data isolation, permissioned tools, hard budgets, controlled egress, human confirmation, and audit logs.
+\item Memory: A short-term case ledger preserving facts, searches, article IDs, and budget. A long-term SQLite store keeps verified outcomes.
+\item Evaluation: Recall@5, Recall@20, MRR, unsupported-sentence rate, answer coverage, citation precision and recall, attack-success rate, and latency.
+\end{itemize}
+
+\end{document}
