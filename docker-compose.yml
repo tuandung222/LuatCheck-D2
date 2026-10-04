@@ -1,19 +1,45 @@
 version: '3.8'
 
+# ==============================================================================
+# LuatCheck (Local-SLM-CPU) - Universal Multi-Platform Docker Compose
+# Compatible across macOS (Apple Silicon M1-M4 & Intel), Windows 10/11, and Linux
+# ==============================================================================
+
 services:
   local-slm-cpu:
     container_name: local-slm-cpu
     build:
       context: .
       dockerfile: Dockerfile
-    # network_mode: host allows direct communication with 127.0.0.1:11434 on Linux server
-    network_mode: "host"
+    ports:
+      - "8501:8501"
     environment:
-      - MODEL_PROVIDER=ollama # "ollama", "llamacpp", or "mock"
-      - MODEL_NAME=qwen2.5:3b # recommended 4-bit SLM
-      - MODEL_ENDPOINT=http://127.0.0.1:11434
+      - MODEL_PROVIDER=ollama
+      - MODEL_NAME=qwen2.5:3b
+      - MODEL_ENDPOINT=http://host.docker.internal:11434
       - STREAMLIT_SERVER_PORT=8501
       - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./data:/app/data
     restart: unless-stopped
+
+  # ============================================================================
+  # Optional Full-Stack Profile: Self-contained Ollama inside Docker
+  # Usage: docker compose --profile fullstack up -d
+  # ============================================================================
+  ollama:
+    image: ollama/ollama:latest
+    container_name: local-slm-ollama
+    profiles:
+      - fullstack
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_models:
