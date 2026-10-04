@@ -31,56 +31,18 @@
 
 ---
 
-## System Architecture
+## System Workflow Pipeline
 
-```mermaid
-flowchart TD
-    UserQuery["User Query / Pasted Document"] --> Guardrails["Security Guardrails & Sanitizer<br/>(Prompt Injection, Unicode Smuggling, Untrusted Tagging)"]
-    Guardrails --> EpisodicCheck{"SQLite Episodic Memory<br/>(Strict Verification Gated)"}
-    
-    EpisodicCheck -- "Cache Hit (Verified)" --> ReturnCached["Return Cached Grounded Answer"]
-    EpisodicCheck -- "Cache Miss" --> AgentLoop["Search-First Agentic ReAct Loop<br/>(Finite Budget: 5 Tool Calls, 2 Repairs)"]
-    
-    AgentLoop --> HybridRetrieval["CPU Hybrid Retrieval Engine"]
-    subgraph RetrievalEngine ["CPU Hybrid Retrieval Engine (RRF k=60)"]
-        BM25["BM25 Lexical Retriever<br/>(rank-bm25)"]
-        Dense["Local CPU Neural Dense Retriever<br/>(all-minilm / bge-m3 via Ollama)"]
-        Fallback["TF-IDF Cosine Similarity<br/>(Offline Fallback)"]
-        Dense -. Fallback .-> Fallback
-        BM25 --> RRF["Reciprocal Rank Fusion (RRF)"]
-        Dense --> RRF
-        Fallback --> RRF
-    end
-    
-    HybridRetrieval --> Corpi[("Corpus Shards<br/>(Labor Code 2019 / Tech SOPs)")]
-    Corpi --> HybridRetrieval
-    HybridRetrieval --> Observation["Candidate Statutory Provisions (Top-K)"]
-    Observation --> AgentLoop
-    
-    AgentLoop --> DraftAnswer["Draft Answer & Citations<br/>(Structured Pydantic Contract)"]
-    DraftAnswer --> VerifPipeline["Decoupled Multi-Stage Verification Pipeline"]
-    
-    subgraph VerificationPipelineDetails ["Verification Pipeline (VerificationPipeline)"]
-        Stage1["Stage 1: LexicalGroundingVerifier (L1)<br/>• Provenance Check (In Retrieved History?)<br/>• Article Existence in Corpus<br/>• N-Gram Overlap Check (>25%)"]
-        Stage2["Stage 2: SemanticNLIVerifier (L2)<br/>• Sentence-Level Entailment (Premise vs Hypothesis)<br/>• Contradiction & Penalty Inversion Detection<br/>• Numerical & Temporal Consistency"]
-        Stage1 --> Stage2
-    end
-    
-    VerifPipeline --> VerifCheck{"Verification Passed?"}
-    VerifCheck -- "No (Repairs Available)" --> AutoRepair["Inject Repair Feedback to Agent Loop"]
-    AutoRepair --> AgentLoop
-    VerifCheck -- "No (Budget Exhausted)" --> Refusal["Safe Statutory Refusal<br/>('Unable to confirm valid basis')"]
-    
-    VerifCheck -- "Yes (Fully Grounded)" --> HITLCheck{"Action Requires External Egress?"}
-    HITLCheck -- "Yes (send_summary / webhook)" --> HITLModal["Human-in-the-Loop Confirmation<br/>(SHA-256 Idempotency Cache)"]
-    HITLModal -- "User Approved" --> ExecAction["Execute Action & Write to Outbox"]
-    HITLModal -- "User Rejected" --> HaltAction["Halt Egress"]
-    
-    HITLCheck -- "No (Standard Legal Advice)" --> FinalOut["Render Answer & Grounding Attribution Cards"]
-    ExecAction --> FinalOut
-    FinalOut --> StoreEpisodic["Write to SQLite Episodic Memory<br/>(Only Verified Answers)"]
-    FinalOut --> AuditLog["Append Tamper-Evident Audit Event (JSONL)"]
-```
+LuatCheck enforces a disciplined, verifiable pipeline designed to prevent hallucination at every transition:
+
+1. **Input Sanitization & Guardrails**: Inspects inputs for prompt injection, untrusted characters, or document smuggling, wrapping external content in `<untrusted_input>` boundaries.
+2. **Episodic Cache Lookup**: Inspects local SQLite storage for previously verified query hashes to deliver instant, verifiable responses.
+3. **Search-First ReAct Agent Loop**: Bounded by finite budgets (max 5 tool calls, 2 repair retries), retrieving statutory articles via CPU Hybrid Retrieval (BM25 + Neural Dense + RRF $k=60$).
+4. **Two-Stage Evidence Verification**:
+   - **Stage 1 (Lexical Grounding)**: Verifies that cited provisions exist in the corpus, were retrieved in the current session, and satisfy token overlap thresholds.
+   - **Stage 2 (Semantic Entailment)**: Performs sentence-level NLI checking to verify that claims logically follow from cited premises and do not distort statutory terms.
+5. **Human-in-the-Loop (HITL) Safety Gate**: External actions (`send_summary`, email/webhook egress) trigger an interactive modal backed by SHA-256 idempotency deduplication.
+6. **Audit Trail & Safe Persistence**: Appends immutable records to `data/audit_log.jsonl` and commits only fully verified answers to SQLite memory.
 
 ---
 
