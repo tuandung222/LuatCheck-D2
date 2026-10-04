@@ -1,0 +1,23 @@
+[
+  {
+    "doc_id": "SOP_SEC_01",
+    "collection_id": "enterprise_sop",
+    "source_name": "Quy trình An toàn Thông tin Doanh nghiệp",
+    "section_title": "SOP 01: Quy trình Ứng phó Sự cố An ninh Mạng",
+    "content": "Khi phát hiện dấu hiệu xâm nhập trái phép hoặc rò rỉ dữ liệu, nhân viên trực ban phải lập tức cách ly máy chủ bị ảnh hưởng khỏi mạng nội bộ trong vòng 15 phút. Tuyệt đối không được tắt nguồn đột ngột để bảo toàn chứng cứ số trong RAM. Báo cáo khẩn cấp cho Trưởng ban An ninh mạng trong vòng 30 phút."
+  },
+  {
+    "doc_id": "SOP_DEPLOY_02",
+    "collection_id": "enterprise_sop",
+    "source_name": "Quy trình Vận hành Kỹ thuật",
+    "section_title": "SOP 02: Quy trình Triển khai Không Gián đoạn (Zero-Downtime)",
+    "content": "Mọi phiên bản phát hành mới phải vượt qua 100% các bài kiểm thử tự động (Unit Test, Integration Test và Security Scan). Triển khai áp dụng chiến lược Rolling Update hoặc Blue-Green Deployment, duy trì tối thiểu 50% số lượng container hoạt động trong suốt quá trình nâng cấp."
+  },
+  {
+    "doc_id": "SOP_BACKUP_03",
+    "collection_id": "enterprise_sop",
+    "source_name": "Quy trình Quản trị Cơ sở Dữ liệu",
+    "section_title": "SOP 03: Sao lưu và Phục hồi Thảm họa",
+    "content": "Cơ sở dữ liệu sản xuất phải được sao lưu tự động hàng ngày lúc 02:00 sáng. Định kỳ vào ngày 01 hàng tháng, đội ngũ DevOps phải thực hiện diễn tập khôi phục dữ liệu từ bản sao lưu sang môi trường Staging và đo thời gian RTO (không quá 60 phút) và RPO (không quá 24 giờ)."
+  }
+]

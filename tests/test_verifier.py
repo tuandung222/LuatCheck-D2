@@ -3,7 +3,7 @@ Unit tests for L1 Evidence Verifier
 """
 import pytest
 import json
-from src.verifier.l1_deterministic import L1EvidenceVerifier
+from src.verifier.lexical_grounding import LexicalGroundingVerifier
 from src.agent.state import Citation
 
 
@@ -15,7 +15,7 @@ def sample_corpus():
 
 @pytest.fixture
 def verifier(sample_corpus):
-    return L1EvidenceVerifier(sample_corpus)
+    return LexicalGroundingVerifier(sample_corpus)
 
 
 def test_valid_citation_pass(verifier):
@@ -49,8 +49,8 @@ def test_unretrieved_article_fails(verifier):
 
 
 def test_l2_semantic_entailment(sample_corpus):
-    from src.verifier.l2_semantic import L2SemanticEntailmentVerifier
-    l2_ver = L2SemanticEntailmentVerifier(sample_corpus, entailment_threshold=0.30)
+    from src.verifier.semantic_nli import SemanticNLIVerifier
+    l2_ver = SemanticNLIVerifier(sample_corpus, entailment_threshold=0.30)
 
     # Entailed statement (matching Dieu_25 probation rules)
     claim = "Thời gian thử việc đối với người làm công việc có chức danh nghề nghiệp cần trình độ cao đẳng trở lên không quá 60 ngày."

@@ -2,7 +2,7 @@
 LuatCheck Budgeted ReAct Agent Loop.
 
 Finite-State Machine (FSM) control loop with strict execution budgets
-and multi-tier legal evidence verification (L1 Deterministic & L2 Semantic).
+and multi-tier evidence verification (Lexical Grounding & Semantic NLI).
 """
 import json
 import time
@@ -13,19 +13,25 @@ from typing import Dict, Any, Optional, List, Tuple, Literal
 from src.agent.state import ActionType, AgentAction, CaseLedger, Citation
 from src.agent.prompts import SYSTEM_PROMPT, REPAIR_PROMPT_TEMPLATE
 from src.tools.legal_tools import LegalToolRegistry
-from src.verifier.l1_deterministic import L1EvidenceVerifier
-from src.verifier.l2_semantic import L2SemanticEntailmentVerifier
+from src.verifier.lexical_grounding import LexicalGroundingVerifier
+from src.verifier.semantic_nli import SemanticNLIVerifier
+from src.verifier.pipeline import VerificationPipeline
 from src.memory.ledger import CaseLedgerManager
 from src.memory.sqlite_store import SQLiteEpisodicStore
 from src.security.guardrails import SecurityGuardrails
 from src.security.audit_logger import AuditLogger
 from src.config.app_config import AppConfig, load_config
 from src.interfaces.base import BaseRetriever, BaseLLMClient, BaseVerifier
-from src.agent.llm_client import OllamaLLMClient, MockRuleBasedLLMClient, CompositeLLMClient
+from src.agent.llm_client import (
+    OllamaLLMClient,
+    LlamaCppLLMClient,
+    MockRuleBasedLLMClient,
+    CompositeLLMClient
+)
 
 
 class LuatCheckAgent:
-    VALID_MODES = {"off", "l1", "l1_only", "l1_on", "l1_l2", "l1_l2_on"}
+    VALID_MODES = VerificationPipeline.VALID_MODES
 
     def __init__(
         self,
@@ -44,6 +50,9 @@ class LuatCheckAgent:
         llm_client: Optional[BaseLLMClient] = None,
         verifier: Optional[BaseVerifier] = None,
         l2_verifier: Optional[BaseVerifier] = None,
+        lexical_grounding_verifier: Optional[BaseVerifier] = None,
+        semantic_nli_verifier: Optional[BaseVerifier] = None,
+        verification_pipeline: Optional[VerificationPipeline] = None,
         sqlite_store: Optional[SQLiteEpisodicStore] = None,
         audit_logger: Optional[AuditLogger] = None,
         outbox_path: Optional[str] = None
@@ -61,12 +70,12 @@ class LuatCheckAgent:
         self.max_steps = max_steps if max_steps is not None else self.config.budgets.max_steps
         self.outbox_path = outbox_path or self.config.security.outbox_path
 
-        # 3. Backward compatibility for enable_verification and verification_mode
+        # 3. Verification mode configuration
         chosen_mode = verification_mode if verification_mode is not None else self.config.verifier.mode
         if enable_verification is False:
             self.verification_mode = "off"
         elif enable_verification is True and chosen_mode == "off":
-            self.verification_mode = "l1_only"
+            self.verification_mode = "lexical_grounding"
         else:
             self.verification_mode = chosen_mode
 
@@ -91,16 +100,28 @@ class LuatCheckAgent:
                 outbox_path=self.outbox_path
             )
 
-        # 5. Dependency Injection for Verifiers
+        # 5. Dependency Injection for Verification Pipeline & Verifiers
         corpus_data = getattr(self.tool_registry.retriever, "corpus", [])
-        self.verifier = verifier or L1EvidenceVerifier(corpus_data)
-        self.l2_verifier = l2_verifier or L2SemanticEntailmentVerifier(
-            corpus_data,
-            entailment_threshold=self.config.verifier.l2_entailment_threshold,
-            ollama_url=self.ollama_url,
-            model_name=self.model_name,
-            use_slm=self.l2_use_slm
-        )
+        if verification_pipeline:
+            self.verification_pipeline = verification_pipeline
+            self.lexical_verifier = getattr(verification_pipeline, "lexical_verifier", verification_pipeline.verifier)
+            self.semantic_verifier = getattr(verification_pipeline, "semantic_verifier", verification_pipeline.l2_verifier)
+        else:
+            self.lexical_verifier = lexical_grounding_verifier or verifier or LexicalGroundingVerifier(corpus_data)
+            self.semantic_verifier = semantic_nli_verifier or l2_verifier or SemanticNLIVerifier(
+                corpus_data,
+                entailment_threshold=self.config.verifier.l2_entailment_threshold,
+                ollama_url=self.ollama_url,
+                model_name=self.model_name,
+                use_slm=self.l2_use_slm
+            )
+            self.verification_pipeline = VerificationPipeline(
+                lexical_verifier=self.lexical_verifier,
+                semantic_verifier=self.semantic_verifier,
+                mode=self.verification_mode
+            )
+        self.verifier = self.lexical_verifier
+        self.l2_verifier = self.semantic_verifier
 
         # 6. Dependency Injection for Memory & Logger
         self.sqlite_store = sqlite_store or SQLiteEpisodicStore(
@@ -114,6 +135,18 @@ class LuatCheckAgent:
         self.mock_client = MockRuleBasedLLMClient(verification_mode=self.verification_mode)
         if llm_client:
             self.llm_client = llm_client
+        elif self.config.model.provider in ["llamacpp", "llama.cpp", "openai"]:
+            self.llm_client = CompositeLLMClient(
+                primary_client=LlamaCppLLMClient(
+                    endpoint=self.ollama_url,
+                    model_name=self.model_name,
+                    temperature=self.config.model.temperature,
+                    timeout_seconds=self.config.model.timeout_seconds
+                ),
+                fallback_client=self.mock_client
+            )
+        elif self.config.model.provider == "mock":
+            self.llm_client = self.mock_client
         else:
             self.llm_client = CompositeLLMClient(
                 primary_client=OllamaLLMClient(
@@ -150,7 +183,7 @@ class LuatCheckAgent:
         return self._call_llm(messages, ledger=ledger or self.ledger)
 
     def _rule_based_fallback(self, messages: List[Dict[str, str]]) -> Dict[str, Any]:
-        """Maintain backward compatibility for tests or callers invoking rule-based fallback directly."""
+        """Offline deterministic fallback generator for testing and offline environments."""
         return self.mock_client.generate(messages, ledger=self.ledger)
 
 
@@ -385,45 +418,14 @@ class LuatCheckAgent:
                     elif isinstance(c, str) and c.strip():
                         citations.append(Citation(article_id=c.strip()))
 
-                # STATUTORY EVIDENCE VERIFICATION STEP (3-WAY ABLATION CONTRACT)
-                verif_valid = True
-                repair_feedback = None
-
-                if self.verification_mode == "off":
-                    verif_valid = True
-                    repair_feedback = None
-                elif self.verification_mode in ["l1", "l1_only", "l1_on"]:
-                    l1_res = self.verifier.verify(
-                        answer_text=answer_content,
-                        citations=citations,
-                        retrieved_article_ids=ledger.retrieved_article_ids
-                    )
-                    verif_valid = l1_res.is_valid
-                    repair_feedback = l1_res.repair_feedback
-                elif self.verification_mode in ["l1_l2", "l1_l2_on"]:
-                    l1_res = self.verifier.verify(
-                        answer_text=answer_content,
-                        citations=citations,
-                        retrieved_article_ids=ledger.retrieved_article_ids
-                    )
-                    if not l1_res.is_valid:
-                        verif_valid = False
-                        repair_feedback = l1_res.repair_feedback
-                    else:
-                        cit_ids = [c.article_id for c in citations]
-                        l2_res = self.l2_verifier.verify_all_claims(answer_content, cit_ids)
-                        if not l2_res.get("is_entailed", False):
-                            verif_valid = False
-                            failed_claims = l2_res.get("failed_claims", [])
-                            failed_sentences = [f["sentence"] for f in failed_claims]
-                            repair_feedback = (
-                                f"CẢNH BÁO XÁC THỰC L2 (Ngữ nghĩa): Phát hiện {len(failed_sentences)} câu khẳng định "
-                                f"chưa đạt căn cứ kéo theo ngữ nghĩa (entailment score < {self.l2_verifier.entailment_threshold}):\n"
-                                + "\n".join(f"- \"{s}\"" for s in failed_sentences[:2])
-                            )
-                        else:
-                            verif_valid = True
-                            repair_feedback = None
+                # STATUTORY EVIDENCE VERIFICATION STEP (DECOUPLED VERIFICATION PIPELINE)
+                v_res = self.verification_pipeline.verify(
+                    answer_text=answer_content,
+                    citations=citations,
+                    retrieved_article_ids=ledger.retrieved_article_ids
+                )
+                verif_valid = v_res.is_valid
+                repair_feedback = v_res.repair_feedback
 
                 if verif_valid:
                     ledger.is_terminal = True
@@ -514,3 +516,6 @@ class LuatCheckAgent:
             latency_ms=elapsed_ms
         )
         return ledger
+
+
+LocalSLMAgent = LuatCheckAgent

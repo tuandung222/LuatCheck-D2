@@ -26,11 +26,15 @@ class AgentAction(BaseModel):
     tool_args: Dict[str, Any] = Field(default_factory=dict, description="Arguments passed to the chosen action or tool")
 
 
-class L1VerificationResult(BaseModel):
-    is_valid: bool = Field(description="True if all claims and citations pass L1 verification checks")
-    unsupported_claims: List[str] = Field(default_factory=list, description="Claim sentences lacking statutory evidence")
+class GroundingVerificationResult(BaseModel):
+    is_valid: bool = Field(description="True if all claims and citations pass lexical grounding verification checks")
+    unsupported_claims: List[str] = Field(default_factory=list, description="Claim sentences lacking source evidence")
     invalid_citations: List[str] = Field(default_factory=list, description="Non-existent or un-retrieved article identifiers")
     repair_feedback: Optional[str] = Field(default=None, description="Self-repair guidance fed back to the agent upon violation")
+
+
+L1VerificationResult = GroundingVerificationResult
+
 
 
 class CaseLedger(BaseModel):

@@ -21,9 +21,12 @@ def tokenize_vietnamese(text: str) -> List[str]:
 class BM25Retriever:
     def __init__(self, corpus: List[Dict[str, Any]]):
         self.corpus = corpus
-        self.doc_ids = [doc["article_id"] for doc in corpus]
+        self.doc_ids = [
+            str(doc.get("doc_id") or doc.get("article_id") or doc.get("id") or "")
+            for doc in corpus
+        ]
         self.tokenized_corpus = [
-            tokenize_vietnamese(f"{doc.get('title', '')} {doc.get('content', '')}")
+            tokenize_vietnamese(f"{doc.get('title') or doc.get('section_title', '')} {doc.get('content', '')}")
             for doc in corpus
         ]
         self.bm25 = BM25Okapi(self.tokenized_corpus)

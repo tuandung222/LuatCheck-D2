@@ -74,15 +74,16 @@ class MockRuleBasedLLMClient(BaseLLMClient):
                         chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
                         break
 
+        chosen_display = chosen_id.replace("Dieu_", "Điều ").replace("dieu_", "Điều ")
         if chosen_snippet:
             clean_snippet = re.sub(r'[\r\n]+', ' ', chosen_snippet.replace('\\"', '"').replace('\\n', ' ')).strip()
             first_clause = clean_snippet.split('.')[0].strip()
             if len(first_clause) > 20:
-                answer_content = f"Căn cứ theo quy định pháp luật lao động: {first_clause}."
+                answer_content = f"Căn cứ theo quy định tại {chosen_display} Bộ luật Lao động 2019: {first_clause}."
             else:
-                answer_content = f"Căn cứ theo quy định tại {chosen_id}: {clean_snippet[:150]}."
+                answer_content = f"Căn cứ theo quy định tại {chosen_display} ({chosen_id}): {clean_snippet[:150]}."
         else:
-            answer_content = f"Căn cứ theo quy định tại {chosen_id} Bộ luật Lao động 2019, quyền và nghĩa vụ của người lao động được quy định chi tiết theo điều luật."
+            answer_content = f"Căn cứ theo quy định tại {chosen_display} ({chosen_id}) Bộ luật Lao động 2019, quyền và nghĩa vụ của người lao động được quy định chi tiết theo điều luật."
 
         return {
             "thought": f"Đã có kết quả tra cứu điều luật {chosen_id}, tổng hợp câu trả lời có căn cứ.",
@@ -131,6 +132,69 @@ class OllamaLLMClient(BaseLLMClient):
 
         data = resp.json()
         raw_content = data.get("message", {}).get("content", "{}")
+        try:
+            parsed = json.loads(raw_content)
+        except json.JSONDecodeError as jde:
+            if ledger:
+                ledger.audit_events.append({
+                    "event": "parse_error",
+                    "details": f"JSONDecodeError: {str(jde)} | raw: {raw_content[:100]}"
+                })
+            raise ValueError(f"Model response is not valid JSON: {raw_content}")
+
+        if not isinstance(parsed, dict) or "action" not in parsed:
+            if ledger:
+                ledger.audit_events.append({
+                    "event": "parse_error",
+                    "details": f"InvalidSchema: Response missing 'action' field: {raw_content[:100]}"
+                })
+            raise ValueError(f"JSON response missing required 'action' field: {raw_content}")
+
+        if not isinstance(parsed.get("tool_args"), dict):
+            parsed["tool_args"] = {}
+
+        act = str(parsed.get("action", ""))
+        if act not in valid_actions:
+            if ledger:
+                ledger.audit_events.append({
+                    "event": "parse_error",
+                    "details": f"InvalidAction: '{act}' not in {valid_actions}"
+                })
+            raise ValueError(f"Invalid action '{act}'.")
+
+        return parsed
+
+
+class LlamaCppLLMClient(BaseLLMClient):
+    """Inference client invoking a local SLM/LLM via llama.cpp or OpenAI-compatible server."""
+
+    def __init__(
+        self,
+        endpoint: str = "http://localhost:8080/v1",
+        model_name: str = "qwen2.5:3b",
+        temperature: float = 0.1,
+        timeout_seconds: float = 30.0
+    ):
+        self.endpoint = endpoint.rstrip("/")
+        self.model_name = model_name
+        self.temperature = temperature
+        self.timeout_seconds = timeout_seconds
+
+    def generate(self, messages: List[Dict[str, str]], ledger: Optional[CaseLedger] = None) -> Dict[str, Any]:
+        valid_actions = {e.value for e in ActionType}
+        url = self.endpoint if self.endpoint.endswith("/chat/completions") else f"{self.endpoint}/chat/completions"
+        payload = {
+            "model": self.model_name,
+            "messages": messages,
+            "temperature": self.temperature,
+            "response_format": {"type": "json_object"}
+        }
+        resp = requests.post(url, json=payload, timeout=self.timeout_seconds)
+        if resp.status_code != 200:
+            raise ConnectionError(f"llama.cpp server returned error status {resp.status_code}: {resp.text}")
+
+        data = resp.json()
+        raw_content = data.get("choices", [{}])[0].get("message", {}).get("content", "{}")
         try:
             parsed = json.loads(raw_content)
         except json.JSONDecodeError as jde:

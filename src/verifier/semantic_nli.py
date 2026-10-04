@@ -1,14 +1,14 @@
 """
-L2 Semantic Entailment Verifier (Natural Language Inference Layer).
+Semantic NLI Entailment Verifier (Natural Language Inference Layer).
 
-Checks the directional semantic entailment relation between generated legal claim sentences
-and their cited statutory provisions.
+Checks the directional semantic entailment relation between generated claim sentences
+and their cited knowledge provisions.
 Implements a hierarchical dual-engine architecture:
-1. Local SLM NLI Caller (Qwen2.5-3B via Ollama with 10.0s timeout).
+1. Local SLM NLI Caller (Qwen2.5-3B via Ollama).
 2. Fast Offline Semantic Comparator:
-   - Robust sentence segmentation and anti-vacuous approval (handles clauses >= 3 chars)
-   - Dynamic numerical duration & quantifier clash detection (Articles 20, 24, 25, 26, 35, 36)
-   - Negation / polarity contradiction detection & statutory rights protection (Articles 17, 24, 26, 37, 122)
+   - Robust sentence segmentation and anti-vacuous approval
+   - Dynamic numerical duration & quantifier clash detection
+   - Negation / polarity contradiction detection
    - TF-IDF cosine similarity & asymmetric recall fallback
 """
 import re
@@ -27,7 +27,7 @@ class VerdictType(str, Enum):
     NEUTRAL = "NEUTRAL_OR_UNSUPPORTED"
 
 
-class L2SemanticEntailmentVerifier:
+class SemanticNLIVerifier:
     def __init__(
         self,
         legal_corpus: List[Dict[str, Any]],
@@ -38,7 +38,7 @@ class L2SemanticEntailmentVerifier:
         slm_timeout: float = 10.0
     ):
         self.corpus_lookup = {
-            self._normalize_id(doc["article_id"]): doc["content"]
+            self._normalize_id(str(doc.get("doc_id") or doc.get("article_id") or doc.get("id") or "")): doc.get("content", "")
             for doc in legal_corpus
         }
         self.entailment_threshold = entailment_threshold
@@ -445,3 +445,10 @@ class L2SemanticEntailmentVerifier:
             "failed_claims": failed_claims,
             "total_sentences": len(sentences)
         }
+
+
+# Compatibility aliases
+SemanticEntailmentVerifier = SemanticNLIVerifier
+L2SemanticEntailmentVerifier = SemanticNLIVerifier
+
+

@@ -18,8 +18,8 @@ import numpy as np
 
 from src.agent.loop import LuatCheckAgent
 from src.agent.state import Citation, L1VerificationResult
-from src.verifier.l1_deterministic import L1EvidenceVerifier
-from src.verifier.l2_semantic import L2SemanticEntailmentVerifier
+from src.verifier.lexical_grounding import LexicalGroundingVerifier, LexicalGroundingVerifier as L1EvidenceVerifier
+from src.verifier.semantic_nli import SemanticNLIVerifier, SemanticNLIVerifier as L2SemanticEntailmentVerifier
 from src.memory.sqlite_store import SQLiteEpisodicStore
 from src.security.guardrails import SecurityGuardrails
 

@@ -31,6 +31,11 @@ EVAL_RESULTS_FILE = (
 )
 REDTEAM_RESULTS_FILE = os.path.join(REPO_ROOT, "redteam", "redteam_results.json")
 
+pytestmark = pytest.mark.skipif(
+    not os.path.exists(REPORT_DIR),
+    reason="LaTeX report_d2 directory not present in runtime environment"
+)
+
 
 class TestCleanCompilationStress:
     """Empirical challenge of LaTeX compilation from a completely clean state."""

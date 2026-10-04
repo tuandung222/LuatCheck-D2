@@ -1,36 +1,44 @@
 """
-L1 Deterministic Evidence Verifier.
+Lexical Grounding and Citation Provenance Verifier.
 
-Guarantees 100% statutory citations exist, were retrieved in the current session (provenance),
+Guarantees 100% citations exist, were retrieved in the current session (provenance),
 and lexically support the claims made in the generated answer.
 """
 import re
 from typing import List, Dict, Any, Tuple
-from src.agent.state import L1VerificationResult, Citation
+from src.agent.state import GroundingVerificationResult, Citation
 
 
-class L1EvidenceVerifier:
-    def __init__(self, legal_corpus: List[Dict[str, Any]], similarity_threshold: float = 0.65):
-        self.valid_article_ids = {doc["article_id"].lower(): doc for doc in legal_corpus}
+class LexicalGroundingVerifier:
+    """
+    Deterministic evidence grounding verifier.
+    Performs 3-stage validation:
+    1. Existence Check: Document ID exists in knowledge corpus.
+    2. Provenance Check: Document was actually retrieved in the current session.
+    3. Span Support Check: Answer sentences have token overlap with cited source text.
+    """
+
+    def __init__(self, corpus: List[Dict[str, Any]], similarity_threshold: float = 0.65):
+        self.valid_article_ids = {
+            str(doc.get("doc_id") or doc.get("article_id") or doc.get("id") or "").lower(): doc
+            for doc in corpus
+        }
         self.similarity_threshold = similarity_threshold
 
-    def _normalize_id(self, article_id: str) -> str:
-        aid = article_id.strip().replace(" ", "_").lower()
-        if aid.startswith("điều_"):
-            aid = "dieu_" + aid[5:]
-        return aid
+    def _normalize_id(self, doc_id: str) -> str:
+        did = str(doc_id).strip().replace(" ", "_").lower()
+        if did.startswith("điều_"):
+            did = "dieu_" + did[5:]
+        return did
 
     def verify(
         self,
         answer_text: str,
         citations: List[Citation],
         retrieved_article_ids: List[str]
-    ) -> L1VerificationResult:
+    ) -> GroundingVerificationResult:
         """
-        Evaluate 3-tier L1 verification:
-        1. Existence Check: Article ID exists in statutory corpus.
-        2. Provenance Check: Article was retrieved during the current session.
-        3. Span Support Check: Answer sentences are supported by statutory text.
+        Evaluate 3-stage lexical grounding verification.
         """
         invalid_citations = []
         unsupported_claims = []
@@ -38,28 +46,27 @@ class L1EvidenceVerifier:
 
         # 0. Check for empty answer
         if not answer_text or not answer_text.strip():
-            return L1VerificationResult(
+            return GroundingVerificationResult(
                 is_valid=False,
                 unsupported_claims=["Câu trả lời rỗng hoặc không có nội dung."],
                 invalid_citations=[],
-                repair_feedback="Câu trả lời rỗng không cung cấp nội dung tư vấn pháp lý."
+                repair_feedback="Câu trả lời rỗng không cung cấp nội dung tư vấn có căn cứ."
             )
 
         # 1 & 2. Check citation identifiers
         if not citations:
-            # If an affirmative answer is given without any citations
-            return L1VerificationResult(
+            return GroundingVerificationResult(
                 is_valid=False,
                 unsupported_claims=[answer_text.strip()],
                 invalid_citations=["MISSING_CITATION"],
-                repair_feedback="Bạn đưa ra câu trả lời khẳng định nhưng không cung cấp bất kỳ mã điều luật trích dẫn (citation) nào làm căn cứ!"
+                repair_feedback="Bạn đưa ra câu trả lời khẳng định nhưng không cung cấp bất kỳ trích dẫn nguồn (citation) nào làm căn cứ!"
             )
 
         for c in citations:
             norm_id = self._normalize_id(c.article_id)
             # Existence check
             if norm_id not in self.valid_article_ids:
-                invalid_citations.append(f"Mã điều luật '{c.article_id}' không tồn tại trong Bộ luật Lao động 2019.")
+                invalid_citations.append(f"Mã tài liệu trích dẫn '{c.article_id}' không tồn tại trong cơ sở tri thức.")
             # Provenance check
             elif norm_id not in retrieved_normalized:
                 invalid_citations.append(
@@ -67,24 +74,23 @@ class L1EvidenceVerifier:
                 )
 
         if invalid_citations:
-            return L1VerificationResult(
+            return GroundingVerificationResult(
                 is_valid=False,
                 unsupported_claims=[],
                 invalid_citations=invalid_citations,
                 repair_feedback="\n".join(invalid_citations)
             )
 
-        # 3. Span support check (Lexical token overlap between answer clauses and cited statutory text)
-        # Aggregate cited statutory texts
+        # 3. Span support check (Lexical token overlap between answer clauses and cited text)
         cited_texts = []
         for c in citations:
             norm_id = self._normalize_id(c.article_id)
             doc = self.valid_article_ids.get(norm_id)
             if doc:
-                cited_texts.append(doc["content"].lower())
-        combined_law_text = " ".join(cited_texts)
-        law_token_set = set(re.findall(r'\w+', combined_law_text))
-        # Segment answer into clauses/sentences (do not ignore short clauses)
+                content = doc.get("content") or doc.get("full_content") or ""
+                cited_texts.append(content.lower())
+        combined_source_text = " ".join(cited_texts)
+        source_token_set = set(re.findall(r'\w+', combined_source_text))
         raw_sentences = [s.strip() for s in re.split(r'[.?!;\n]+', answer_text) if s.strip()]
         stop_words = {"là", "và", "các", "có", "được", "cho", "với", "trong", "khi", "theo", "quy", "định", "của", "tại", "này", "đó", "những"}
 
@@ -98,27 +104,33 @@ class L1EvidenceVerifier:
                 meaningful_words = sent_words
 
             # Token Set Intersection overlap ratio
-            matches = sum(1 for w in meaningful_words if w in law_token_set)
+            matches = sum(1 for w in meaningful_words if w in source_token_set)
             overlap_ratio = matches / len(meaningful_words)
 
-            if overlap_ratio < 0.25: # If token overlap is below 25% threshold
+            if overlap_ratio < 0.25:
                 unsupported_claims.append(sent)
 
         if unsupported_claims:
             feedback = (
-                f"Phát hiện {len(unsupported_claims)} câu khẳng định chưa tìm thấy căn cứ đối ứng trong điều luật trích dẫn:\n"
+                f"Phát hiện {len(unsupported_claims)} câu khẳng định chưa tìm thấy căn cứ đối ứng trong tài liệu trích dẫn:\n"
                 + "\n".join(f"- \"{c}\"" for c in unsupported_claims[:2])
             )
-            return L1VerificationResult(
+            return GroundingVerificationResult(
                 is_valid=False,
                 unsupported_claims=unsupported_claims,
                 invalid_citations=[],
                 repair_feedback=feedback
             )
 
-        return L1VerificationResult(
+        return GroundingVerificationResult(
             is_valid=True,
             unsupported_claims=[],
             invalid_citations=[],
             repair_feedback=None
         )
+
+
+CitationGroundingVerifier = LexicalGroundingVerifier
+L1EvidenceVerifier = LexicalGroundingVerifier
+
+__all__ = ["LexicalGroundingVerifier", "CitationGroundingVerifier", "L1EvidenceVerifier"]

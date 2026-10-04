@@ -5,7 +5,7 @@ Validates entailment, contradiction, neutral, and fallback behaviors.
 import pytest
 import json
 from unittest.mock import patch
-from src.verifier.l2_semantic import L2SemanticEntailmentVerifier
+from src.verifier.semantic_nli import SemanticNLIVerifier, SemanticNLIVerifier as L2SemanticEntailmentVerifier
 
 
 @pytest.fixture

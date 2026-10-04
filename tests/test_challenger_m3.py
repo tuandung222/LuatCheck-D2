@@ -11,7 +11,7 @@ from evaluation.error_analyzer import (
     normalize_id,
     generate_comparative_markdown_table
 )
-from src.verifier.l2_semantic import L2SemanticEntailmentVerifier
+from src.verifier.semantic_nli import SemanticNLIVerifier, SemanticNLIVerifier as L2SemanticEntailmentVerifier
 
 
 class MockLedger:

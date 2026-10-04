@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from src.memory.sqlite_store import sanitize_pii
 from evaluation.metrics import calculate_unsupported_rate
-from src.verifier.l1_deterministic import L1EvidenceVerifier
+from src.verifier.lexical_grounding import LexicalGroundingVerifier, LexicalGroundingVerifier as L1EvidenceVerifier
 from src.agent.state import Citation
 
 

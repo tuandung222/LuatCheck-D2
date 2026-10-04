@@ -13,9 +13,13 @@ class PermissionLevel(str, Enum):
 
 TOOL_PERMISSIONS: Dict[str, PermissionLevel] = {
     "search_law": PermissionLevel.READ_ONLY,
+    "search_knowledge": PermissionLevel.READ_ONLY,
     "get_article": PermissionLevel.READ_ONLY,
+    "get_document": PermissionLevel.READ_ONLY,
     "save_case": PermissionLevel.REVERSIBLE_WRITE,
+    "record_case": PermissionLevel.REVERSIBLE_WRITE,
     "send_summary": PermissionLevel.IRREVERSIBLE_WRITE,
+    "dispatch_external_action": PermissionLevel.IRREVERSIBLE_WRITE,
 }
 
 

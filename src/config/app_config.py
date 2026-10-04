@@ -43,7 +43,7 @@ class VerifierConfig(BaseModel):
 
 
 class MemoryConfig(BaseModel):
-    sqlite_path: str = Field(default="data/db/luatcheck_memory.db")
+    sqlite_path: str = Field(default="data/db/local_slm_memory.db")
     similarity_threshold: float = Field(default=0.85, ge=0.0, le=1.0)
     index_version: str = Field(default="v2026.1")
 
@@ -72,14 +72,32 @@ def load_config(config_path: Optional[str] = None) -> AppConfig:
     """
     Load configuration from a YAML file. If the file does not exist,
     returns an AppConfig instance with default values.
-    Can be overridden via the LUATCHECK_CONFIG_PATH environment variable.
+    Can be overridden via the LOCAL_SLM_CONFIG_PATH or LUATCHECK_CONFIG_PATH environment variable,
+    with dynamic environment variable overrides for MODEL_NAME, MODEL_ENDPOINT, MODEL_PROVIDER.
     """
-    target_path = config_path or os.getenv("LUATCHECK_CONFIG_PATH", "config/config.yaml")
+    target_path = (
+        config_path
+        or os.getenv("LOCAL_SLM_CONFIG_PATH")
+        or os.getenv("LUATCHECK_CONFIG_PATH", "config/config.yaml")
+    )
+    raw_data = {}
     if os.path.exists(target_path):
         try:
             with open(target_path, "r", encoding="utf-8") as f:
                 raw_data = yaml.safe_load(f) or {}
-            return AppConfig(**raw_data)
         except Exception:
-            return AppConfig()
-    return AppConfig()
+            raw_data = {}
+
+    cfg = AppConfig(**raw_data)
+
+    # Dynamic environment variable overrides
+    if os.getenv("MODEL_ENDPOINT"):
+        cfg.model.endpoint = os.getenv("MODEL_ENDPOINT")
+    elif os.getenv("OLLAMA_ENDPOINT"):
+        cfg.model.endpoint = os.getenv("OLLAMA_ENDPOINT")
+    if os.getenv("MODEL_NAME"):
+        cfg.model.name = os.getenv("MODEL_NAME")
+    if os.getenv("MODEL_PROVIDER"):
+        cfg.model.provider = os.getenv("MODEL_PROVIDER")
+
+    return cfg

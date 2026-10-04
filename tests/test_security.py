@@ -161,11 +161,11 @@ def test_delimiter_sanitization_comprehensive(tag, desc):
 def test_calculate_unsupported_rate_grounded_and_refusal():
     from evaluation.metrics import calculate_unsupported_rate
     import json
-    from src.verifier.l1_deterministic import L1EvidenceVerifier
+    from src.verifier.lexical_grounding import LexicalGroundingVerifier
 
     with open("data/corpus/labor_code_2019.json", "r", encoding="utf-8") as f:
         corpus = json.load(f)
-    verifier = L1EvidenceVerifier(corpus)
+    verifier = LexicalGroundingVerifier(corpus)
 
     # 1. Grounded answer
     answer = "Thời gian thử việc đối với người có trình độ cao đẳng trở lên không quá 60 ngày theo quy định."

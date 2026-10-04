@@ -15,19 +15,22 @@ Tests:
 12. Sentence-level grounding attribution calculation & visualization
 """
 import pytest
+from pathlib import Path
 from unittest.mock import patch
 import requests
 from streamlit.testing.v1 import AppTest
 from src.ui.app import analyze_grounding, get_agent_instance
 
+APP_FILE = str((Path(__file__).parent.parent / "src/ui/app.py").resolve())
+
 
 def test_ui_initial_page_structure():
     """Verify 3-column layout, headers, metrics, and interactive widgets."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
     assert not at.exception
 
     # Header and title
-    assert any("LuatCheck" in m.value for m in at.markdown)
+    assert any("Local SLM CPU" in m.value for m in at.markdown)
 
     # 3-column subheaders + audit inspector
     subheaders = [h.value for h in at.subheader]
@@ -50,7 +53,7 @@ def test_ui_initial_page_structure():
 
 def test_ui_preset_scenarios_population():
     """Verify that selecting demo scenarios correctly populates query and document textareas."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
 
     # Preset 1: Probation period
     at.selectbox[0].select_index(1).run()
@@ -82,7 +85,7 @@ def test_ui_preset_scenarios_population():
 
 def test_ui_empty_and_whitespace_query_handling():
     """Clicking Run Agent with empty or whitespace-only query should not crash or trigger execution."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
 
     # Empty query
     at.button[0].click().run()
@@ -100,7 +103,7 @@ def test_ui_empty_and_whitespace_query_handling():
 
 def test_ui_direct_injection_safety_refusal():
     """Direct prompt injection triggers safety refusal badge and warning in UI."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
     at.selectbox[0].select_index(4).run()
     at.button[0].click().run()
 
@@ -115,7 +118,7 @@ def test_ui_direct_injection_safety_refusal():
 
 def test_ui_indirect_injection_safety_refusal():
     """Indirect prompt injection in attached contract triggers safety refusal in UI."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
     at.selectbox[0].select_index(5).run()
     at.button[0].click().run()
 
@@ -128,7 +131,7 @@ def test_ui_indirect_injection_safety_refusal():
 
 def test_ui_hitl_egress_unconfirmed_blocked():
     """Submitting send_summary without confirmation checkbox is strictly blocked by HITL guard."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
     btn_send = next(b for b in at.button if "Gửi Tóm Tắt (Egress)" in b.label)
     btn_send.click().run()
 
@@ -140,7 +143,7 @@ def test_ui_hitl_egress_unconfirmed_blocked():
 
 def test_ui_hitl_egress_confirmed_success():
     """Submitting send_summary with confirmation checkbox succeeds and displays confirmation."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
     at.checkbox[0].check().run()
     btn_send = next(b for b in at.button if "Gửi Tóm Tắt (Egress)" in b.label)
     btn_send.click().run()
@@ -153,7 +156,7 @@ def test_ui_hitl_egress_confirmed_success():
 
 def test_ui_valid_query_execution_with_grounding():
     """Running standard legal query (Scenario 1) renders verified badge and statutory citations."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
     at.selectbox[0].select_index(1).run()
     at.button[0].click().run()
 
@@ -171,7 +174,7 @@ def test_ui_custom_query_offline_fallback():
     """Novel custom query executes ReAct loop with offline fallback and tracks tool metric."""
     with patch("requests.post", side_effect=requests.exceptions.ConnectionError("Offline")), \
          patch("src.memory.sqlite_store.SQLiteEpisodicStore.retrieve_similar_case", return_value=None):
-        at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+        at = AppTest.from_file(APP_FILE, default_timeout=30).run()
         at.text_area[0].input("Quy định về thời giờ làm việc bình thường của người lao động?")
         at.button[0].click().run()
 
@@ -184,14 +187,14 @@ def test_ui_custom_query_offline_fallback():
 
 def test_ui_audit_log_inspector():
     """Audit logger inspector component renders structured JSONL records."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
     assert not at.exception
     assert len(at.json) >= 1 or any("Nhật Ký Kiểm Toán" in m.value for m in at.markdown)
 
 
 def test_ui_hitl_modal_dialog_interaction():
     """Test dedicated @st.dialog modal for HITL egress with SHA-256 idempotency check."""
-    at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+    at = AppTest.from_file(APP_FILE, default_timeout=30).run()
     btn_modal = next(b for b in at.button if "Mở Modal HITL" in b.label)
     btn_modal.click().run()
 

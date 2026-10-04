@@ -1,8 +1,8 @@
-# LuatCheck System Configuration
+# Local SLM CPU System Configuration
 model:
-  provider: "ollama" # "ollama" or "mock"
+  provider: "ollama" # "ollama", "llamacpp", or "mock"
   endpoint: "http://localhost:11434"
-  name: "qwen2.5:7b-instruct"
+  name: "qwen2.5:3b"
   temperature: 0.1
   timeout_seconds: 30
 
@@ -22,7 +22,7 @@ verifier:
   min_supported_ratio: 0.80
 
 memory:
-  sqlite_path: "data/db/luatcheck_memory.db"
+  sqlite_path: "data/db/local_slm_memory.db"
   similarity_threshold: 0.88
   index_version: "v2026.1"
 

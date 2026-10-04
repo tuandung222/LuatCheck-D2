@@ -4,8 +4,8 @@ Offline & Air-Gap Deployment Integrity Verification (Requirement R4)
 """
 import pytest
 import json
-from src.verifier.l1_deterministic import L1EvidenceVerifier
-from src.verifier.l2_semantic import L2SemanticEntailmentVerifier
+from src.verifier.lexical_grounding import LexicalGroundingVerifier, LexicalGroundingVerifier as L1EvidenceVerifier
+from src.verifier.semantic_nli import SemanticNLIVerifier, SemanticNLIVerifier as L2SemanticEntailmentVerifier
 from src.memory.sqlite_store import SQLiteEpisodicStore
 from src.retrieval.hybrid_rrf import HybridLegalRetriever
 from src.agent.state import Citation

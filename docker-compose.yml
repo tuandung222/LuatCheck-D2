@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  local-slm-cpu:
+    container_name: local-slm-cpu
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # network_mode: host allows direct communication with 127.0.0.1:11434 on Linux server
+    network_mode: "host"
+    environment:
+      - MODEL_PROVIDER=ollama # "ollama", "llamacpp", or "mock"
+      - MODEL_NAME=qwen2.5:3b # recommended 4-bit SLM
+      - MODEL_ENDPOINT=http://127.0.0.1:11434
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

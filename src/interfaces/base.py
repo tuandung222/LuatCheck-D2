@@ -37,3 +37,26 @@ class BaseVerifier(Protocol):
     def verify(self, answer_text: str, citations: List[Any], retrieved_article_ids: List[str]) -> Any:
         """Verify factual correctness and statutory evidence grounding of the generated answer."""
         ...
+
+
+# Self-documenting domain-agnostic protocol aliases
+BaseGroundingVerifier = BaseVerifier
+
+
+@runtime_checkable
+class BaseNLIVerifier(Protocol):
+    """Standard protocol interface for semantic natural language inference (NLI) entailment."""
+
+    def verify_all_claims(self, answer_text: str, retrieved_article_ids: List[str]) -> Dict[str, Any]:
+        """Verify semantic entailment across all constituent claim statements."""
+        ...
+
+
+
+@runtime_checkable
+class BaseDenseRetriever(Protocol):
+    """Standard protocol interface for dense neural embedding retrieval engines."""
+
+    def search(self, query: str, top_k: int = 5) -> List[Tuple[str, float]]:
+        """Search articles by dense vector cosine similarity, returning list of (article_id, score)."""
+        ...

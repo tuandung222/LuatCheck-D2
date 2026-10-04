@@ -25,8 +25,11 @@ import hashlib
 import re
 from unittest.mock import patch
 import requests
+from pathlib import Path
 import streamlit as st
 from streamlit.testing.v1 import AppTest
+
+APP_FILE = str((Path(__file__).parent.parent / "src/ui/app.py").resolve())
 
 from src.agent.loop import LuatCheckAgent
 from src.agent.state import Citation, CaseLedger
@@ -40,7 +43,8 @@ from src.ui.app import analyze_grounding, get_agent_instance
 
 class TestGroundingAttributionEdgeCases:
     @pytest.fixture(scope="class")
-    def agent(self):
+    @classmethod
+    def agent(cls):
         st.cache_resource.clear()
         return get_agent_instance("l1_only")
 
@@ -237,7 +241,7 @@ class TestHitlSha256Idempotency:
             st.cache_resource.clear()
             st.cache_data.clear()
             st.session_state.clear()
-            at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+            at = AppTest.from_file(APP_FILE, default_timeout=30).run()
             
             # Check confirmation checkbox
             chk = next(c for c in at.checkbox if getattr(c, "key", None) == "col3_chk")
@@ -281,7 +285,7 @@ class TestHitlSha256Idempotency:
             self.executed_idempotency_keys.add(pre_hash)
 
         with patch.object(LegalToolRegistry, "__init__", injected_init):
-            at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+            at = AppTest.from_file(APP_FILE, default_timeout=30).run()
             btn_modal = next(b for b in at.button if "Mở Modal HITL" in b.label)
             btn_modal.click().run()
 
@@ -356,7 +360,7 @@ class TestAttackPromptUiRenderingStability:
     def test_adversarial_queries_render_gracefully(self, attack_query, attack_doc, attack_name):
         """Adversarial queries must render safely without crashing AppTest and trigger safety refusal where applicable."""
         with patch("requests.post", side_effect=requests.exceptions.ConnectionError("Offline")):
-            at = AppTest.from_file("src/ui/app.py", default_timeout=30).run()
+            at = AppTest.from_file(APP_FILE, default_timeout=30).run()
             assert not at.exception
 
             # Input attack query and doc

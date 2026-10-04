@@ -23,11 +23,10 @@ from src.agent.loop import LuatCheckAgent
 from src.agent.state import CaseLedger, Citation
 from src.tools.legal_tools import LegalToolRegistry
 from src.security.audit_logger import AuditLogger
-from src.verifier.l1_deterministic import L1EvidenceVerifier
 
 st.set_page_config(
-    page_title="LuatCheck - Trợ Lý Pháp Lý Bằng Chứng",
-    page_icon="⚖️",
+    page_title="Local SLM CPU - Intelligent Assistant",
+    page_icon="💻",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -185,7 +184,7 @@ st.markdown("""
 
 
 @st.cache_resource
-def get_agent_instance(verification_mode: str = "l1_only"):
+def get_agent_instance(verification_mode: str = "lexical_grounding"):
     return LuatCheckAgent.from_config(verification_mode=verification_mode)
 
 
@@ -202,7 +201,7 @@ if "last_query" not in st.session_state:
 if "last_doc" not in st.session_state:
     st.session_state.last_doc = ""
 if "selected_mode" not in st.session_state:
-    st.session_state.selected_mode = "l1_only"
+    st.session_state.selected_mode = "lexical_grounding"
 if "egress_last_result" not in st.session_state:
     st.session_state.egress_last_result = None
 if "show_egress_dialog" not in st.session_state:
@@ -210,93 +209,10 @@ if "show_egress_dialog" not in st.session_state:
 
 
 # =========================================================================
-# HELPER: SENTENCE-LEVEL GROUNDING ANALYSIS
+# HELPER: SENTENCE-LEVEL GROUNDING ANALYSIS (DELEGATED TO VERIFIER MODULE)
 # =========================================================================
-def analyze_grounding(answer_text: str, citations: List[Any], agent: LuatCheckAgent) -> Dict[str, Any]:
-    """
-    Analyzes sentence-level span support conforming to the L1 Deterministic Verifier algorithm:
-    Splits sentences, computes token overlap against cited statutory articles, and assigns attribution.
-    """
-    if not answer_text or not answer_text.strip():
-        return {"is_valid": False, "sentences_data": [], "grounded_ratio": 0.0}
+from src.verifier.grounding_analyzer import analyze_grounding
 
-    # Normalize citations
-    norm_citations = []
-    for c in citations:
-        if isinstance(c, dict):
-            norm_citations.append(Citation(**c))
-        elif isinstance(c, Citation):
-            norm_citations.append(c)
-
-    retrieved_ids = [c.article_id for c in norm_citations]
-    
-    # 1. Invoke L1 Verifier for comprehensive check
-    l1_res = agent.verifier.verify(
-        answer_text=answer_text,
-        citations=norm_citations,
-        retrieved_article_ids=retrieved_ids
-    )
-
-    # 2. Split sentences and analyze detailed token overlap per sentence
-    raw_sentences = [s.strip() for s in re.split(r'[.?!]\s+', answer_text) if len(s.strip()) > 15]
-    sentences_data = []
-
-    # Collect tokens per statutory article for accurate attribution assignment
-    article_tokens: Dict[str, set] = {}
-    for c in norm_citations:
-        norm_id = agent.verifier._normalize_id(c.article_id)
-        doc = agent.verifier.valid_article_ids.get(norm_id)
-        if doc:
-            article_tokens[c.article_id] = set(re.findall(r'\w+', doc["content"].lower()))
-
-    combined_law_text = " ".join(
-        [agent.verifier.valid_article_ids.get(agent.verifier._normalize_id(c.article_id), {}).get("content", "").lower()
-         for c in norm_citations if agent.verifier.valid_article_ids.get(agent.verifier._normalize_id(c.article_id))]
-    )
-    all_law_tokens = set(re.findall(r'\w+', combined_law_text))
-    stop_words = {"là", "và", "các", "có", "được", "cho", "với", "trong", "khi", "theo", "quy", "định", "của", "tại"}
-
-    supported_count = 0
-    for sent in raw_sentences:
-        sent_words = set(re.findall(r'\w+', sent.lower()))
-        meaningful_words = sent_words - stop_words
-        if not meaningful_words:
-            continue
-
-        matches_total = sum(1 for w in meaningful_words if w in all_law_tokens)
-        overlap_ratio = matches_total / len(meaningful_words) if meaningful_words else 0.0
-
-        # Identify statutory article with highest overlap (Attribution mapping)
-        best_aid = None
-        best_overlap = 0.0
-        for aid, tokens in article_tokens.items():
-            m = sum(1 for w in meaningful_words if w in tokens)
-            r = m / len(meaningful_words) if meaningful_words else 0.0
-            if r > best_overlap:
-                best_overlap = r
-                best_aid = aid
-
-        is_supported = (overlap_ratio >= 0.25)
-        if is_supported:
-            supported_count += 1
-
-        sentences_data.append({
-            "sentence": sent,
-            "overlap_ratio": overlap_ratio,
-            "is_supported": is_supported,
-            "best_article_id": best_aid or (norm_citations[0].article_id if norm_citations else "N/A"),
-            "best_overlap": best_overlap
-        })
-
-    ratio = (supported_count / len(sentences_data)) if sentences_data else (1.0 if l1_res.is_valid else 0.0)
-
-    return {
-        "is_valid": l1_res.is_valid,
-        "unsupported_claims": l1_res.unsupported_claims,
-        "invalid_citations": l1_res.invalid_citations,
-        "sentences_data": sentences_data,
-        "grounded_ratio": ratio
-    }
 
 
 # =========================================================================
@@ -385,10 +301,10 @@ def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent,
 # =========================================================================
 col_logo, col_title = st.columns([1, 7])
 with col_logo:
-    st.markdown("<div style='font-size: 42px; text-align: center;'>⚖️</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size: 42px; text-align: center;'>💻</div>", unsafe_allow_html=True)
 with col_title:
-    st.markdown("<h2 class='main-header'>LuatCheck: A Local, Evidence-Grounded Legal Assistant</h2>", unsafe_allow_html=True)
-    st.markdown("<div class='sub-header'>CO5151: Advanced Agentic AI · Nhóm 8 (HCMUT) · Giảng viên: TS. Lê Xuân Bách · Deliverable 2/3 Interactive Demo (R7)</div>", unsafe_allow_html=True)
+    st.markdown("<h2 class='main-header'>Local SLM CPU</h2>", unsafe_allow_html=True)
+    st.markdown("<div class='sub-header'>Local Small Language Model &amp; Evidence-Grounded Verification · 100% Offline CPU Execution</div>", unsafe_allow_html=True)
 
 st.divider()
 
@@ -485,12 +401,13 @@ with col1:
 
     # Ablation Verification Mode
     mode_options = {
-        "l1_only": "1. L1 Deterministic Verifier (Chuẩn D2)",
-        "l1_l2": "2. L1 + L2 Semantic Entailment (Hardened D3)",
-        "off": "3. Verification OFF (RAG Baseline Đối chứng)"
+        "lexical_grounding": "1. Lexical Grounding Verifier (Đối soát từ vựng & xuất xứ)",
+        "semantic_entailment": "2. Semantic Entailment Verifier (Đối soát suy luận ngữ nghĩa)",
+        "off": "3. Tắt xác thực (Ablation Baseline - Raw LLM)"
     }
     mode_keys = list(mode_options.keys())
-    cur_idx = mode_keys.index(st.session_state.selected_mode) if st.session_state.selected_mode in mode_keys else 0
+    norm_sel = "lexical_grounding" if st.session_state.selected_mode in ["l1_only", "l1"] else ("semantic_entailment" if st.session_state.selected_mode in ["l1_l2"] else st.session_state.selected_mode)
+    cur_idx = mode_keys.index(norm_sel) if norm_sel in mode_keys else 0
     
     selected_mode_key = st.selectbox(
         "Chế độ Xác thực (Ablation Mode):",
@@ -522,7 +439,7 @@ with col1:
         # Instantiate new agent with selected mode
         agent_to_run = get_agent_instance(verification_mode=selected_mode_key)
         
-        with st.spinner("LuatCheck Agent đang thực thi vòng lặp ReAct và xác thực căn cứ..."):
+        with st.spinner("Local SLM CPU Agent đang thực thi vòng lặp ReAct và xác thực căn cứ..."):
             ledger_result = agent_to_run.run(user_query, pasted_doc=pasted_doc, session_id=sid)
             st.session_state.current_ledger = ledger_result
             st.rerun()
@@ -546,14 +463,14 @@ with col2:
             if is_verified:
                 st.markdown("""
                 <div style='background-color: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px; padding: 12px; margin-bottom: 12px;'>
-                    <span class='badge-valid badge-verified'>✅ L1 VERIFIED: HOÀN TẤT TƯ VẤN CÓ CĂN CỨ 100%</span>
-                    <div style='font-size: 11px; color: #388e3c; margin-top: 4px;'>Đã kiểm tra 100% điều luật tồn tại, có nguồn gốc truy xuất và hỗ trợ phát biểu.</div>
+                    <span class='badge-valid badge-verified'>✅ GROUNDING VERIFIED: HOÀN TẤT TƯ VẤN CÓ CĂN CỨ 100%</span>
+                    <div style='font-size: 11px; color: #388e3c; margin-top: 4px;'>Đã kiểm tra 100% tài liệu trích dẫn tồn tại, có xuất xứ tra cứu và đối soát ngữ nghĩa.</div>
                 </div>
                 """, unsafe_allow_html=True)
             else:
                 st.markdown("""
                 <div style='background-color: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 12px; margin-bottom: 12px;'>
-                    <span class='badge-unverified'>⚠️ ABLATION BASELINE: CHƯA KIỂM TRA L1</span>
+                    <span class='badge-unverified'>⚠️ ABLATION BASELINE: CHƯA KIỂM ĐỊNH</span>
                     <div style='font-size: 11px; color: #f57f17; margin-top: 4px;'>Chế độ Verification OFF - Câu trả lời chưa qua bộ lọc gác cổng.</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -603,7 +520,7 @@ with col2:
                     trace_logs.append(f"[OBSERVATION] {summary}")
                 elif ev_type == "repair":
                     feedback = ev.get("feedback", "")
-                    trace_logs.append(f"[BƯỚC {i+1}] ⚠️ [L1 REPAIR TRIGGERED] Phản hồi lỗi: {feedback}")
+                    trace_logs.append(f"[BƯỚC {i+1}] ⚠️ [GROUNDING REPAIR TRIGGERED] Phản hồi lỗi: {feedback}")
                 elif ev_type == "cache_hit":
                     cid = ev.get("case_id", "")
                     aids = ev.get("article_ids", [])
@@ -617,7 +534,7 @@ with col2:
         st.markdown("""
         <div style='background-color: #fafafa; border: 1px dashed #b0bec5; border-radius: 8px; padding: 25px; text-align: center; color: #78909c;'>
             <div style='font-size: 36px; margin-bottom: 8px;'>🤖</div>
-            <strong>Trợ lý LuatCheck đang sẵn sàng.</strong><br>
+            <strong>Trợ lý Local SLM CPU đang sẵn sàng.</strong><br>
             Vui lòng chọn một kịch bản mẫu ở Cột 1 hoặc nhập câu hỏi pháp lý và nhấn <strong>'Tham Vấn Pháp Lý'</strong> để bắt đầu theo dõi vết suy luận từng bước.
         </div>
         """, unsafe_allow_html=True)
@@ -634,8 +551,8 @@ with col3:
         citations = final_out.get("citations", [])
         content_text = final_out.get("content", "")
 
-        # 1. Overall L1 verification badge
-        st.markdown("**Huy Hiệu Xác Thực Căn Cứ L1:**")
+        # 1. Overall verification badge
+        st.markdown("**Huy Hiệu Xác Thực Căn Cứ:**")
         if ledger.terminal_status == "refused":
             st.markdown("<span class='badge-rejected badge-refused'>🛑 REJECTED: CĂN CỨ BỊ TỪ CHỐI</span>", unsafe_allow_html=True)
         elif final_out.get("verified") is False:
@@ -719,7 +636,7 @@ with col3:
     # SHA-256 Idempotency Check
     if "col3_key" not in st.session_state:
         st.session_state.col3_key = f"demo_key_{int(time.time())}"
-    egress_idempotency_key = st.text_input("Idempotency Key:", value=st.session_state.col3_key, key="col3_key")
+    egress_idempotency_key = st.text_input("Idempotency Key:", key="col3_key")
     hash_payload = f"{rec_email}:{summary_txt}:{egress_idempotency_key}"
     sha256_hash = hashlib.sha256(hash_payload.encode("utf-8")).hexdigest()
     st.caption(f"SHA-256 Hash: `{sha256_hash[:24]}...`")

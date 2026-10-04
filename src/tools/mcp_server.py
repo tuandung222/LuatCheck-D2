@@ -1,5 +1,5 @@
 """
-LuatCheck MCP Server (Model Context Protocol).
+Local SLM CPU - MCP Server (Model Context Protocol).
 Provides standardized MCP legal tools via FastMCP.
 """
 from typing import Dict, Any, Optional
@@ -7,7 +7,7 @@ from mcp.server.fastmcp import FastMCP
 from src.tools.legal_tools import LegalToolRegistry
 
 # Initialize FastMCP server
-mcp = FastMCP("LuatCheck-Legal-Server")
+mcp = FastMCP("local-slm-cpu-server")
 registry = LegalToolRegistry()
 
 
