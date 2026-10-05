@@ -135,7 +135,7 @@ class LuatCheckAgent:
         self.mock_client = MockRuleBasedLLMClient(verification_mode=self.verification_mode)
         if llm_client:
             self.llm_client = llm_client
-        elif self.config.model.provider in ["llamacpp", "llama.cpp", "openai"]:
+        elif self.config.model.provider in ["llamacpp", "llama.cpp", "openai", "prism", "prism_llamacpp", "prism-llamacpp", "prismml"]:
             self.llm_client = CompositeLLMClient(
                 primary_client=LlamaCppLLMClient(
                     endpoint=self.ollama_url,

@@ -141,3 +141,19 @@ def test_agent_initialization_with_llamacpp_config():
     assert isinstance(agent.llm_client.primary_client, LlamaCppLLMClient)
     assert agent.llm_client.primary_client.endpoint == "http://localhost:8080/v1"
     assert agent.llm_client.primary_client.model_name == "qwen3.5:4b"
+
+
+def test_agent_initialization_with_prism_provider():
+    """LuatCheckAgent must properly recognize 'prism' and 'prism_llamacpp' as LlamaCpp provider."""
+    for provider_name in ["prism", "prism_llamacpp", "prism-llamacpp", "prismml"]:
+        cfg = AppConfig()
+        cfg.model = ModelConfig(
+            provider=provider_name,
+            endpoint="http://localhost:8080/v1",
+            name="bonsai-27b"
+        )
+        agent = LuatCheckAgent(config=cfg)
+        assert isinstance(agent.llm_client, CompositeLLMClient)
+        assert isinstance(agent.llm_client.primary_client, LlamaCppLLMClient)
+        assert agent.llm_client.primary_client.model_name == "bonsai-27b"
+
