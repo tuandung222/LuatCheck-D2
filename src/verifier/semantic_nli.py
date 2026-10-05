@@ -132,16 +132,37 @@ class SemanticNLIVerifier:
         }
 
         try:
-            resp = requests.post(f"{self.ollama_url}/api/chat", json=payload, timeout=self.slm_timeout)
-            if resp.status_code == 200:
-                data = resp.json()
-                raw_json = json.loads(data.get("message", {}).get("content", "{}"))
-                verdict = raw_json.get("verdict", "").strip().upper()
-                confidence = float(raw_json.get("confidence", 0.8))
-                if verdict in ["ENTAILMENT", "CONTRADICTION", "NEUTRAL"]:
-                    return verdict, confidence
+            # 1. Support llama.cpp / OpenAI-compatible endpoint (/v1/chat/completions)
+            if self.ollama_url and ("/v1" in self.ollama_url or ":8080" in self.ollama_url):
+                url = self.ollama_url.rstrip("/")
+                endpoint = f"{url}/chat/completions" if not url.endswith("/chat/completions") else url
+                openai_payload = {
+                    "model": self.model_name,
+                    "messages": messages,
+                    "temperature": 0.0,
+                    "response_format": {"type": "json_object"}
+                }
+                resp = requests.post(endpoint, json=openai_payload, timeout=self.slm_timeout)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    raw_content = data.get("choices", [{}])[0].get("message", {}).get("content", "{}")
+                    raw_json = json.loads(raw_content)
+                    verdict = raw_json.get("verdict", "").strip().upper()
+                    confidence = float(raw_json.get("confidence", 0.8))
+                    if verdict in ["ENTAILMENT", "CONTRADICTION", "NEUTRAL"]:
+                        return verdict, confidence
+            else:
+                # 2. Support native Ollama endpoint (/api/chat)
+                resp = requests.post(f"{self.ollama_url}/api/chat", json=payload, timeout=self.slm_timeout)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    raw_json = json.loads(data.get("message", {}).get("content", "{}"))
+                    verdict = raw_json.get("verdict", "").strip().upper()
+                    confidence = float(raw_json.get("confidence", 0.8))
+                    if verdict in ["ENTAILMENT", "CONTRADICTION", "NEUTRAL"]:
+                        return verdict, confidence
         except Exception:
-            # Graceful fallback to Fast Offline Semantic Comparator when Ollama is offline or times out
+            # Graceful fallback to Fast Offline Semantic Comparator when server is offline or times out
             pass
 
         return None
