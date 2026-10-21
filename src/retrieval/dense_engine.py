@@ -113,8 +113,8 @@ class NeuralDenseRetriever(BaseDenseRetriever):
         if not text.strip():
             return None
 
-        # Truncate text to fit model context window (minilm ~400 chars, bge-m3 ~3000 chars)
-        max_chars = 400 if "minilm" in self.model_name.lower() else 3000
+        # Truncate text to fit model context window (minilm ~1500 chars, bge-m3 ~3000 chars)
+        max_chars = 1500 if "minilm" in self.model_name.lower() else 3000
         clean_text = text[:max_chars]
 
         # 1. Try Ollama native embedding endpoint: /api/embeddings

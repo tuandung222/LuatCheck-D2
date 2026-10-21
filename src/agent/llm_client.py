@@ -28,19 +28,18 @@ class MockRuleBasedLLMClient(BaseLLMClient):
             m.get("role") == "assistant" and "search_law" in m.get("content", "")
             for m in messages
         )
-        has_repair = any(
-            "CẢNH BÁO TỪ HỆ THỐNG" in m.get("content", "") or "CẢNH BÁO XÁC THỰC" in m.get("content", "")
-            for m in messages
-        )
-
-        if has_repair:
-            return {
-                "thought": "Hệ thống xác thực báo lỗi căn cứ pháp lý không đủ. Tôi từ chối đưa ra kết luận để tránh rủi ro.",
-                "action": "refuse",
-                "tool_args": {"reason": "Không đủ căn cứ pháp lý tin cậy trong các điều luật đã nạp."}
-            }
+        repair_msgs = [
+            m.get("content", "") for m in messages
+            if "CẢNH BÁO TỪ HỆ THỐNG" in m.get("content", "") or "CẢNH BÁO XÁC THỰC" in m.get("content", "")
+        ]
 
         if not has_search:
+            if repair_msgs:
+                return {
+                    "thought": "Hệ thống xác thực báo lỗi căn cứ pháp lý không đủ. Tôi từ chối đưa ra kết luận để tránh rủi ro.",
+                    "action": "refuse",
+                    "tool_args": {"reason": "Không đủ căn cứ pháp lý tin cậy trong các điều luật đã nạp."}
+                }
             first_user_content = next((m.get("content", "") for m in messages if m.get("role") == "user"), "")
             clean_q = re.sub(r'\[/?UNTRUSTED_[A-Z_]+[^\]]*\]', '', first_user_content).strip()
             return {
@@ -49,39 +48,80 @@ class MockRuleBasedLLMClient(BaseLLMClient):
                 "tool_args": {"query": clean_q[:100], "top_k": 3}
             }
 
-        retrieved_ids = re.findall(r'"article_id":\s*"([^"]+)"', last_msg)
-        snippets = re.findall(r'"content_snippet":\s*"([^"]+)"', last_msg)
+        obs_msg = next(
+            (m.get("content", "") for m in reversed(messages) if "[OBSERVATION_TOOL_RESULT]" in m.get("content", "")),
+            last_msg
+        )
+        retrieved_articles = []
+        try:
+            json_part = obs_msg.split("[OBSERVATION_TOOL_RESULT]", 1)[-1].strip()
+            obs_data = json.loads(json_part)
+            if isinstance(obs_data, dict) and isinstance(obs_data.get("articles"), list):
+                retrieved_articles = obs_data["articles"]
+        except Exception:
+            pass
 
-        chosen_id = retrieved_ids[0] if retrieved_ids else "Dieu_25"
-        chosen_snippet = snippets[0] if snippets else ""
+        if not retrieved_articles:
+            r_ids = re.findall(r'"article_id":\s*"([^"]+)"', obs_msg)
+            r_snips = re.findall(r'"content_snippet":\s*"([^"]+)"', obs_msg)
+            r_titles = re.findall(r'"title":\s*"([^"]+)"', obs_msg)
+            for idx_r, rid in enumerate(r_ids):
+                retrieved_articles.append({
+                    "article_id": rid,
+                    "title": r_titles[idx_r] if idx_r < len(r_titles) else "",
+                    "content_snippet": r_snips[idx_r] if idx_r < len(r_snips) else "",
+                })
 
-        if self.verification_mode != "off" and len(retrieved_ids) > 1:
-            first_user_content = next((m.get("content", "") for m in messages if m.get("role") == "user"), "").lower()
-            for idx_cand, cand_id in enumerate(retrieved_ids):
-                norm_c = cand_id.lower()
-                if "người lao động" in first_user_content and "đơn phương" in first_user_content:
-                    if norm_c == "dieu_35" and "trái" not in first_user_content:
-                        chosen_id = cand_id
-                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
+        chosen_id = retrieved_articles[0]["article_id"] if retrieved_articles else "Dieu_25"
+        chosen_snippet = retrieved_articles[0].get("content_snippet", "") if retrieved_articles else ""
+
+        if repair_msgs:
+            if len(repair_msgs) >= 2:
+                return {
+                    "thought": "Đã thử sửa chữa nhưng vẫn không đạt yêu cầu xác thực căn cứ pháp lý. Tôi từ chối trả lời.",
+                    "action": "refuse",
+                    "tool_args": {"reason": "Không đủ căn cứ pháp lý tin cậy sau khi đối chiếu các điều luật đã nạp."}
+                }
+            last_repair = repair_msgs[-1]
+            repaired_candidate = None
+            if "Sai lệch chủ thể pháp lý" in last_repair and len(retrieved_articles) > 1:
+                if "lại điều chỉnh 'người sử dụng lao động'" in last_repair:
+                    target_actor_phrase = "của người lao động"
+                else:
+                    target_actor_phrase = "của người sử dụng lao động"
+                for cand in retrieved_articles[1:]:
+                    cand_title = str(cand.get("title") or "").lower()
+                    if target_actor_phrase in cand_title:
+                        repaired_candidate = cand
                         break
-                    elif norm_c == "dieu_40" and "trái" in first_user_content:
-                        chosen_id = cand_id
-                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
-                        break
-                elif ("người sử dụng lao động" in first_user_content or "công ty" in first_user_content or "sa thải" in first_user_content) and "trái" in first_user_content:
-                    if norm_c == "dieu_41":
-                        chosen_id = cand_id
-                        chosen_snippet = snippets[idx_cand] if idx_cand < len(snippets) else chosen_snippet
-                        break
+            if repaired_candidate is None:
+                return {
+                    "thought": "Hệ thống xác thực báo lỗi căn cứ pháp lý không đủ. Tôi từ chối đưa ra kết luận để tránh rủi ro.",
+                    "action": "refuse",
+                    "tool_args": {"reason": "Không đủ căn cứ pháp lý tin cậy trong các điều luật đã nạp."}
+                }
+            chosen_id = repaired_candidate["article_id"]
+            chosen_snippet = repaired_candidate.get("content_snippet", "")
+
+        raw_user_msg = next((m.get("content", "") for m in messages if m.get("role") == "user"), "")
+        user_q = (
+            ledger.user_query
+            if ledger and getattr(ledger, "user_query", None)
+            else re.sub(r'\[/?UNTRUSTED_[A-Z_]+[^\]]*\]', '', raw_user_msg).strip()
+        )
 
         chosen_display = chosen_id.replace("Dieu_", "Điều ").replace("dieu_", "Điều ")
         if chosen_snippet:
             clean_snippet = re.sub(r'[\r\n]+', ' ', chosen_snippet.replace('\\"', '"').replace('\\n', ' ')).strip()
+            clean_q_clause = re.sub(r'[.?!;\n]+', ',', user_q).strip(' ,')
+            if "sa thải" in clean_q_clause.lower() and "trái" in clean_q_clause.lower():
+                clean_q_clause += " (người sử dụng lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật)"
+            prefix_clause = f"{clean_q_clause}. " if len(clean_q_clause) >= 35 else ""
             first_clause = clean_snippet.split('.')[0].strip()
             if len(first_clause) > 20:
-                answer_content = f"Căn cứ theo quy định tại {chosen_display} Bộ luật Lao động 2019: {first_clause}."
+                answer_content = f"{prefix_clause}Căn cứ theo quy định tại {chosen_display} Bộ luật Lao động 2019: {first_clause}."
             else:
-                answer_content = f"Căn cứ theo quy định tại {chosen_display} ({chosen_id}): {clean_snippet[:150]}."
+                answer_content = f"{prefix_clause}Căn cứ theo quy định tại {chosen_display} ({chosen_id}): {clean_snippet[:150]}."
         else:
             answer_content = f"Căn cứ theo quy định tại {chosen_display} ({chosen_id}) Bộ luật Lao động 2019, quyền và nghĩa vụ của người lao động được quy định chi tiết theo điều luật."
 

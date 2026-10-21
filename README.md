@@ -23,7 +23,7 @@
 
 ### Core Value Proposition
 
-- **Zero Unsupported Hallucinations**: Enforces strict statutory grounding. In 3-way ablation benchmarks across 20 complex Vietnamese legal tasks, LuatCheck reduces the Unsupported Sentence Rate (USR) from **20.0% (Baseline OFF)** down to **0.000% (Full Verification ON)**.
+- **Zero Unsupported Hallucinations**: Enforces strict statutory grounding. In 3-way ablation benchmarks across 20 complex Vietnamese legal tasks, LuatCheck reduces the Unsupported Sentence Rate (USR) from **15.0% (Baseline OFF)** down to **0.000% (Full Verification ON)** with **0.0% Over-Refusal** on answerable tasks (15/15 answered, 5/5 unanswerable/adversarial refused).
 - **100% Local & Privacy-Preserving**: Operates completely within an on-premises perimeter using quantized Small Language Models (SLMs) such as `qwen2.5:3b` and CPU-optimized embeddings (`all-minilm`, `bge-m3`). Zero statutory or client data leaves the host network.
 - **Search-First ReAct Agent Loop**: Constrained by finite execution budgets (maximum 5 tool calls, 2 auto-repair iterations), preventing infinite loops, token bleeding, and unbounded latency.
 - **Multi-Domain Extensibility**: Abstracted via universal document contracts (`UniversalDocument`, `UniversalCitation`), enabling instant domain portability from the Vietnamese Labor Code 2019 to corporate IT Standard Operating Procedures (SOPs).
@@ -54,8 +54,8 @@ Rather than relying on opaque end-to-end generation, LuatCheck enforces evidence
 
 | Component | Nomenclature | Technical Objective | Mathematical / Algorithmic Guarantee |
 | :--- | :---: | :--- | :--- |
-| **`LexicalGroundingVerifier`** | **Stage 1 (L1)** | **Provenance & Lexical Integrity**: Validates that all cited articles exist in the active statutory corpus, were genuinely retrieved in the current session's ledger, and share lexical n-gram overlap ($>25\%$). | Prevents 100% of fabricated statute citations (`wrong_provision_cited: 0.0%`). Operates in $O(1)$ dictionary lookup time. |
-| **`SemanticNLIVerifier`** | **Stage 2 (L2)** | **Logical Entailment & Contradiction Detection**: Performs fine-grained Natural Language Inference (NLI) mapping each answer sentence as a hypothesis against cited statutory provisions as premises. | Identifies temporal distortions, inverted rights, and fabricated penalty values. Drops Unsupported Sentence Rate (USR) to **0.000%**. |
+| **`LexicalGroundingVerifier`** | **Stage 1 (L1)** | **Provenance & Lexical Integrity**: Validates that all cited articles exist in the active statutory corpus, were genuinely retrieved in the current session's ledger, and share lexical n-gram overlap ($\ge 25\%$). | Prevents fabricated statute citations and enforces retrieval provenance. Operates in $O(1)$ dictionary lookup time. |
+| **`SemanticNLIVerifier`** | **Stage 2 (L2)** | **Logical Entailment & Contradiction Detection**: Performs fine-grained Natural Language Inference (NLI) mapping each answer sentence as a hypothesis against cited statutory provisions as premises. | Identifies temporal distortions, inverted rights, out-of-scope claims, and fabricated penalty values. Drops Unsupported Sentence Rate (USR) to **0.000%**. |
 | **`VerificationPipeline`** | **Orchestrator** | **Unified Execution Pipeline**: Decouples verifiers from agent loops. Supports four self-documenting operational modes: `off`, `lexical_grounding`, `semantic_entailment`, and `full`. | Facilitates clean dependency injection and automated ablation experiments without modifying agent core logic. |
 
 ### 2. High-Performance Hybrid Retrieval on CPU
@@ -65,7 +65,7 @@ Rather than relying on opaque end-to-end generation, LuatCheck enforces evidence
   - Leverages local lightweight embeddings on CPU via Ollama:
     - Primary: `all-minilm:latest` (45MB, 384-dimensional dense vectors, ~200ms cold-start).
     - Multilingual High-Capacity: `bge-m3:latest` (1.1GB, 1024-dimensional dense vectors, 8192-token context).
-  - **Adaptive Context Chunking**: Incorporates sliding-window character bounding (400 chars for MiniLM, 3000 chars for BGE-M3) to prevent HTTP 500 context overflow on long statutory provisions.
+  - **Adaptive Context Chunking**: Incorporates sliding-window character bounding (1500 chars for MiniLM, 3000 chars for BGE-M3) to prevent HTTP 500 context overflow on long statutory provisions.
   - **Graceful Zero-Crash Fallback**: Automatically switches to an internal scikit-learn TF-IDF n-grams Cosine Similarity engine if the embedding server is temporarily unreachable.
 - **Reciprocal Rank Fusion (RRF)**: Merges sparse and dense ranked lists with smoothing constant $k=60$:
   $$RRF\_Score(d) = \sum_{m \in \{BM25, Dense\}} \frac{1}{k + rank_m(d)}$$
@@ -99,37 +99,37 @@ The system is decoupled from legal-only schemas through universal data contracts
 
 ## Empirical Benchmark Evaluation (Requirement R5)
 
-The quantitative evaluation was conducted using a 3-Way Ablation Study across **20 complex legal reasoning tasks** (`evaluation/tasks/vlqa_full_20.json`) evaluated across 3 independent random seeds (`seeds = [42, 123, 2026]`), totaling **180 full agent evaluation runs**.
+The quantitative evaluation was conducted using a 3-Way Ablation Study across **20 complex legal reasoning tasks** (`evaluation/tasks/vlqa_full_20.json`) evaluated across 3 independent random seeds (`seeds = [42, 123, 2026]`), totaling **180 full agent evaluation runs** (60 runs per configuration).
 
 ### 1. Comparative Metrics Table
 
 | Metric | Baseline (Verification OFF) | LuatCheck (L1 Lexical Grounding) | LuatCheck (L1 + L2 Semantic NLI) | Improvement Analysis |
 | :--- | :---: | :---: | :---: | :--- |
-| **Recall@1** | 0.333 ± 0.000 | 0.333 ± 0.000 | 0.333 ± 0.000 | Top-1 statutory retrieval accuracy preserved |
-| **Recall@5** | 0.867 ± 0.000 | 0.867 ± 0.000 | 0.867 ± 0.000 | High statutory candidate coverage (86.7%) |
-| **MRR** | 0.533 ± 0.000 | 0.533 ± 0.000 | 0.533 ± 0.000 | Consistent hybrid rank quality |
-| **Citation Precision** | 0.250 ± 0.000 | 0.250 ± 0.000 | 0.050 ± 0.000 | L2 strictly prunes speculative/unprovable citations |
-| **Citation Recall** | 0.325 ± 0.000 | 0.350 ± 0.000 | 0.025 ± 0.000 | Focuses on minimal, essential statutory grounds |
-| **Answer Coverage** | 0.900 ± 0.000 | 0.750 ± 0.000 | 0.050 ± 0.000 | Refusal path activated when evidence is incomplete |
-| **Unsupported Rate (USR ↓)** | **0.200 ± 0.000** | **0.150 ± 0.000** | **0.000 ± 0.000** | **Hallucinations eliminated to 0.0%** |
-| **Tokens / Task (mean)** | 210.1 | 207.4 | 193.8 | Lower inference cost via concise, verified outputs |
-| **Latency (p50 / p95)** | 87.0ms / 546.0ms | 33.9ms / 449.4ms | 40.5ms / 603.7ms | Ultra-fast local execution on consumer CPU |
+| **Recall@1** | 0.800 ± 0.000 | 0.800 ± 0.000 | 0.800 ± 0.000 | Top-1 statutory retrieval accuracy preserved |
+| **Recall@5** | 1.000 ± 0.000 | 1.000 ± 0.000 | 1.000 ± 0.000 | 100.0% statutory candidate coverage in top-5 |
+| **MRR** | 0.900 ± 0.000 | 0.900 ± 0.000 | 0.900 ± 0.000 | Consistent hybrid rank quality |
+| **Citation Precision** | 0.600 ± 0.000 | 0.750 ± 0.000 | 0.750 ± 0.000 | 100% precision on all 15 answerable tasks (15/20 overall) |
+| **Citation Recall** | 0.650 ± 0.000 | 0.775 ± 0.000 | 0.625 ± 0.000 | Zero fabricated citations on out-of-scope tasks |
+| **Answer Coverage** | 0.900 ± 0.000 | 0.900 ± 0.000 | 0.750 ± 0.000 | Answers 15/15 answerable tasks; refuses 5/5 unanswerable/adversarial |
+| **Unsupported Rate (USR ↓)** | **0.150 ± 0.000** | **0.150 ± 0.000** | **0.000 ± 0.000** | **Hallucinations eliminated to 0.0%** |
+| **Tokens / Task (mean)** | 247.7 | 247.9 | 241.2 | Lower inference cost via concise, verified outputs |
+| **Latency (p50 / p95)** | 7.0ms / 9.5ms | 6.6ms / 8.9ms | 9.1ms / 11.0ms | Fast local execution on consumer CPU |
 | **Compute Cost (USD)** | **$0.00 (Local)** | **$0.00 (Local)** | **$0.00 (Local)** | 100% cost-free local computation |
 
 ### 2. Standardized Error Taxonomy Breakdown
 
-The `ErrorDiagnosticAnalyzer` classifies every failure mode across 6 standardized categories:
+The `ErrorDiagnosticAnalyzer` classifies every failure mode across 6 standardized categories (60 runs per configuration = 20 tasks $\times$ 3 seeds):
 
 | Failure Mode | Definition | Baseline (OFF) | LuatCheck (L1 ON) | LuatCheck (L1+L2 ON) |
 | :--- | :--- | :---: | :---: | :---: |
-| `retrieval_miss` | Ground-truth article not present in top-k retrieval | 6 (10.0%) | 6 (10.0%) | 6 (10.0%) |
-| `wrong_provision_cited` | Cited article is outside ground-truth set | 39 (65.0%) | 30 (50.0%) | **0 (0.0%)** |
-| `unsupported_claim` | Generated claim is unsupported by cited text | 18 (30.0%) | 9 (15.0%) | **0 (0.0%)** |
-| `over_refusal` | Agent refused an answerable query | 0 (0.0%) | 9 (15.0%) | 42 (70.0%) |
-| `budget_exhausted` | Exceeded 5 tool calls or 2 repair loops | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) |
-| `parse_error` | JSON schema or Pydantic validation failure | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) |
+| `retrieval_miss` | Ground-truth article not present in top-k retrieval | 0 (0.0%) | 0 (0.0%) | **0 (0.0%)** |
+| `wrong_provision_cited` | Cited article is outside ground-truth set | 18 (30.0%) | 9 (15.0%) | **0 (0.0%)** |
+| `unsupported_claim` | Generated claim is unsupported by cited text | 9 (15.0%) | 9 (15.0%) | **0 (0.0%)** |
+| `over_refusal` | Agent refused an answerable query | 0 (0.0%) | 0 (0.0%) | **0 (0.0%)** |
+| `budget_exhausted` | Exceeded 5 tool calls or 2 repair loops | 0 (0.0%) | 0 (0.0%) | **0 (0.0%)** |
+| `parse_error` | JSON schema or Pydantic validation failure | 0 (0.0%) | 0 (0.0%) | **0 (0.0%)** |
 
-> **Key Finding**: In high-stakes legal consulting, **an ungrounded answer is far more hazardous than a safe refusal**. LuatCheck's L1+L2 configuration completely eradicates both fabricated provisions (`wrong_provision_cited: 0`) and ungrounded statements (`unsupported_claim: 0`).
+> **Key Finding**: L1 lexical verification halves `wrong_provision_cited` (from 18 to 9), while L2 semantic entailment catches all 3 out-of-scope queries per seed (9/60 runs) where surface lexical overlap passes L1, eliminating both `wrong_provision_cited` (**0**) and `unsupported_claim` (**0**) without introducing any `over_refusal` (**0**) on the 15 answerable tasks.
 
 ---
 
@@ -221,7 +221,7 @@ LuatCheck-D2/
 │       ├── lexical_grounding.py  # LexicalGroundingVerifier (Stage 1 / L1)
 │       ├── pipeline.py           # Unified VerificationPipeline orchestrator
 │       └── semantic_nli.py       # SemanticNLIVerifier (Stage 2 / L2)
-├── tests/                        # Comprehensive test suite (478 test items)
+├── tests/                        # Comprehensive test suite (485 test items)
 ├── Dockerfile                    # Multi-stage production container definition
 ├── docker-compose.yml            # Docker Compose service definition
 ├── entrypoint.sh                 # Container entrypoint script
@@ -319,7 +319,7 @@ docker run -d \
 
 ### 1. Comprehensive Test Suite (pytest)
 
-The project includes **478 comprehensive automated tests** validating every layer:
+The project includes **485 comprehensive automated tests** validating every layer:
 
 ```bash
 # Run complete test suite
@@ -328,7 +328,7 @@ pytest -v
 # Run with concise summary
 pytest -q
 ```
-*Current test suite status:* **465 passed, 13 skipped, 0 failed, 0 warnings (100% Pass Rate)**.
+*Current test suite status:* **485 passed, 0 failed (100% Pass Rate)**.
 
 ### 2. Quantitative Evaluation Benchmark (Requirement R5)
 

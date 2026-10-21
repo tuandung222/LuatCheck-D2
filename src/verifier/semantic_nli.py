@@ -38,7 +38,9 @@ class SemanticNLIVerifier:
         slm_timeout: float = 10.0
     ):
         self.corpus_lookup = {
-            self._normalize_id(str(doc.get("doc_id") or doc.get("article_id") or doc.get("id") or "")): doc.get("content", "")
+            self._normalize_id(str(doc.get("doc_id") or doc.get("article_id") or doc.get("id") or "")): (
+                f"{doc.get('title', '')}. {doc.get('content', '')}" if doc.get("title") else doc.get("content", "")
+            )
             for doc in legal_corpus
         }
         self.entailment_threshold = entailment_threshold
@@ -49,7 +51,7 @@ class SemanticNLIVerifier:
 
         # Fit TF-IDF vectorizer over the statutory corpus text
         self.vectorizer = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True)
-        all_texts = [doc["content"] for doc in legal_corpus]
+        all_texts = list(self.corpus_lookup.values())
         if all_texts:
             self.vectorizer.fit(all_texts)
 
@@ -167,6 +169,151 @@ class SemanticNLIVerifier:
 
         return None
 
+    def _extract_clause_bounds(self, premise: str) -> List[Dict[str, Any]]:
+        """
+        Dynamically extract quantitative bounds (MAX, MIN, PROHIBITED_UNDER, ONCE_ONLY, PCT_MIN, PCT_MAX)
+        directly from the clauses of any statutory/SOP premise text without hardcoding article IDs.
+        """
+        clauses = [c.strip() for c in re.split(r"[\n;]+", premise) if c.strip()]
+        bounds: List[Dict[str, Any]] = []
+
+        unit_pat = r"(ngày\s+làm\s+việc|ngày|tháng|năm|tuần|giờ|phút)"
+
+        def _to_days(val: float, unit: str) -> float:
+            u = unit.strip().lower()
+            if "ngày" in u:
+                return val
+            if "tháng" in u:
+                return val * 30.0
+            if "năm" in u:
+                return val * 365.0
+            if "tuần" in u:
+                return val * 7.0
+            if "giờ" in u:
+                return val / 24.0
+            if "phút" in u:
+                return val / 1440.0
+            return val
+
+        for clause in clauses:
+            c_low = clause.lower()
+
+            # 1. Single-occurrence constraint: "chỉ được <action> một lần"
+            m_once = re.search(r"chỉ\s+được\s+([^,.;\n]{3,30}?)\s+(?:một|01|1)\s+lần", c_low)
+            if m_once:
+                bounds.append({
+                    "type": "ONCE_ONLY",
+                    "topic": m_once.group(1).strip(),
+                    "clause": c_low
+                })
+
+            # 2. Scope exclusion under duration threshold: "không áp dụng <topic> đối với ... dưới X <unit>"
+            m_prohib = re.search(
+                rf"(?:không\s+áp\s+dụng|không\s+được(?:\s+áp\s+dụng)?|nghiêm\s+cấm)\s+([^,.;\n]{{3,30}}?)\s+đối\s+với\s+[^.;\n]*?\b(?:dưới|ít\s+hơn)\s+(\d+(?:[.,]\d+)?)\s*{unit_pat}",
+                c_low
+            )
+            if m_prohib:
+                val = float(m_prohib.group(2).replace(",", "."))
+                bounds.append({
+                    "type": "PROHIBITED_UNDER",
+                    "topic": m_prohib.group(1).strip(),
+                    "days": _to_days(val, m_prohib.group(3)),
+                    "raw": f"{m_prohib.group(2)} {m_prohib.group(3)}",
+                    "clause": c_low
+                })
+
+            # 3. Percentage lower bounds: "ít nhất (phải bằng)? X%" or "tối thiểu X%"
+            for m_pmin in re.finditer(r"(?:ít\s+nhất(?:\s+phải\s+bằng)?|tối\s+thiểu)\s+(\d+(?:[.,]\d+)?)\s*%", c_low):
+                bounds.append({
+                    "type": "PCT_MIN",
+                    "pct": float(m_pmin.group(1).replace(",", ".")),
+                    "clause": c_low
+                })
+
+            # 4. Percentage upper bounds: "không quá X%" or "tối đa X%"
+            for m_pmax in re.finditer(r"(?:không\s+quá|tối\s+đa)\s+(\d+(?:[.,]\d+)?)\s*%", c_low):
+                bounds.append({
+                    "type": "PCT_MAX",
+                    "pct": float(m_pmax.group(1).replace(",", ".")),
+                    "clause": c_low
+                })
+
+            # 5. Duration upper bounds: "không quá X <unit>" or "tối đa X <unit>"
+            for m_max in re.finditer(rf"(?:không\s+quá|tối\s+đa)\s+(\d+(?:[.,]\d+)?)\s*{unit_pat}", c_low):
+                val = float(m_max.group(1).replace(",", "."))
+                bounds.append({
+                    "type": "DURATION_MAX",
+                    "days": _to_days(val, m_max.group(2)),
+                    "raw": f"{m_max.group(1)} {m_max.group(2)}",
+                    "clause": c_low
+                })
+
+            # 6. Duration lower bounds: "ít nhất X <unit>" or "tối thiểu X <unit>"
+            for m_min in re.finditer(rf"(?:ít\s+nhất|tối\s+thiểu)\s+(\d+(?:[.,]\d+)?)\s*{unit_pat}", c_low):
+                val = float(m_min.group(1).replace(",", "."))
+                bounds.append({
+                    "type": "DURATION_MIN",
+                    "days": _to_days(val, m_min.group(2)),
+                    "raw": f"{m_min.group(1)} {m_min.group(2)}",
+                    "clause": c_low
+                })
+
+        return bounds
+
+    @staticmethod
+    def _match_clause_qualifier(claim_lower: str, clause_lower: str) -> Tuple[bool, int]:
+        """
+        Determines whether a premise clause's qualification/condition matches the claim's subject,
+        returning (matched: bool, priority: int) based on lexical and domain qualification alignment.
+        """
+        is_manager_claim = any(w in claim_lower for w in [
+            "công việc của người quản lý", "chức danh quản lý", "vị trí quản lý",
+            "người quản lý doanh nghiệp", "người quản lý", "vị trí giám đốc", "làm giám đốc", "giám đốc điều hành"
+        ])
+        is_vocational_claim = any(w in claim_lower for w in [
+            "công nhân kỹ thuật", "trung cấp", "sơ cấp", "công nhân", "nghiệp vụ"
+        ])
+        is_college_claim = any(w in claim_lower for w in [
+            "đại học", "cao đẳng", "chuyên môn", "kỹ thuật", "văn phòng", "nhân viên", "cử nhân", "kỹ sư", "chuyên viên"
+        ])
+        is_simple_claim = any(w in claim_lower for w in [
+            "công việc khác", "lao động phổ thông", "giản đơn"
+        ])
+
+        # Qualification tier matching against premise clause text
+        if "quản lý doanh nghiệp" in clause_lower:
+            return (is_manager_claim, 4 if is_manager_claim else 0)
+        if "trung cấp" in clause_lower or "công nhân kỹ thuật" in clause_lower:
+            matched = is_vocational_claim and not is_manager_claim
+            return (matched, 3 if matched else 0)
+        if "cao đẳng trở lên" in clause_lower:
+            matched = is_college_claim and not is_vocational_claim and not is_manager_claim
+            return (matched, 2 if matched else 0)
+        if "công việc khác" in clause_lower:
+            matched = is_simple_claim and not is_manager_claim
+            return (matched, 3 if matched else 0)
+
+        # Contract term type matching against premise clause text
+        if "không xác định thời hạn" in clause_lower:
+            matched = "không xác định thời hạn" in claim_lower
+            return (matched, 3 if matched else 0)
+        if "từ 12 tháng đến 36 tháng" in clause_lower:
+            matched = (
+                ("từ 12 tháng đến 36 tháng" in claim_lower or "xác định thời hạn" in claim_lower)
+                and "không xác định" not in claim_lower
+                and "dưới 12 tháng" not in claim_lower
+            )
+            return (matched, 2 if matched else 0)
+        if "xác định thời hạn" in clause_lower and "không xác định" not in clause_lower:
+            matched = "xác định thời hạn" in claim_lower and "không xác định" not in claim_lower
+            return (matched, 2 if matched else 0)
+
+        # General lexical overlap fallback for single-clause or arbitrary domain bounds
+        clause_tokens = set(re.findall(r"\w+", clause_lower))
+        claim_tokens = set(re.findall(r"\w+", claim_lower))
+        overlap = len(clause_tokens & claim_tokens)
+        return (overlap >= 3, 1 if overlap >= 3 else 0)
+
     def _check_quantifier_and_polarity_contradiction(
         self,
         claim: str,
@@ -174,107 +321,119 @@ class SemanticNLIVerifier:
         norm_id: str
     ) -> Optional[str]:
         """
-        Check for quantifier clash, numerical boundaries, and polarity contradiction.
-        Detects fabricated durations, unlawful penalties, or reversed rights/obligations.
+        Check for quantifier clash, numerical boundaries, and polarity contradiction
+        dynamically against the extracted constraints of `premise` (no hardcoded article IDs).
         """
         claim_lower = claim.lower()
         premise_lower = premise.lower()
         durations = self._extract_durations(claim)
         percentages = self._extract_percentages(claim)
+        bounds = self._extract_clause_bounds(premise)
 
-        # 1. Contradictions against Article 25 (Probation duration limits)
-        if norm_id == "dieu_25":
-            # Only check probation constraints if the claim mentions probation
-            if "thử việc" in claim_lower:
-                # Probation frequency: probation is allowed only once per position
-                if re.search(r"\bthử\s+việc\b.{0,25}\b(nhiều\s+lần|2\s+lần|hai\s+lần|lần\s+hai|từ\s+2\s+lần)\b", claim_lower):
-                    return "CONTRADICTION: Điều 25 quy định chỉ được thử việc một lần đối với một công việc."
+        # 1. Check ONCE_ONLY constraints extracted from premise
+        for b in bounds:
+            if b["type"] == "ONCE_ONLY":
+                topic = b["topic"]
+                if topic in claim_lower and re.search(
+                    rf"\b{re.escape(topic)}\b.{{0,25}}\b(nhiều\s+lần|2\s+lần|hai\s+lần|lần\s+hai|từ\s+2\s+lần)\b",
+                    claim_lower
+                ):
+                    return f"CONTRADICTION: Văn bản gốc quy định chỉ được {topic} một lần."
 
-                # Manager position (enterprise managerial positions/roles)
-                is_manager_job = any(w in claim_lower for w in [
-                    "công việc của người quản lý", "chức danh quản lý", "vị trí quản lý",
-                    "người quản lý doanh nghiệp", "người quản lý", "vị trí giám đốc", "làm giám đốc"
-                ])
+        # 2. Check PROHIBITED_UNDER scope exclusions extracted from premise
+        for b in bounds:
+            if b["type"] == "PROHIBITED_UNDER":
+                topic = b["topic"]
+                thresh_days = b["days"]
+                if topic in claim_lower:
+                    has_under_phrase = any(
+                        w in claim_lower
+                        for w in ["dưới 01 tháng", "dưới 1 tháng", "dưới 30 ngày", "dưới một tháng"]
+                    )
+                    has_short_contract = False
+                    short_dur_desc = ""
+                    for days, unit_type, raw_str in durations:
+                        if 0 < days < thresh_days:
+                            pat1 = rf"\b(hợp\s+đồng|hđlđ|hđ|giao\s+kết)\b(?:(?!\b{re.escape(topic)}\b).){{0,25}}\b{re.escape(raw_str)}"
+                            pat2 = rf"{re.escape(raw_str)}\s+(?:hợp\s+đồng|hđlđ|hđ)"
+                            if re.search(pat1, claim_lower) or re.search(pat2, claim_lower):
+                                has_short_contract = True
+                                short_dur_desc = raw_str
+                                break
+
+                    if has_under_phrase or has_short_contract:
+                        neg_before = rf"\b(không\s+áp\s+dụng|không\s+được|nghiêm\s+cấm|cấm|không\s+thể)\b.{{0,30}}\b{re.escape(topic)}\b"
+                        neg_after = rf"\b{re.escape(topic)}\b.{{0,30}}\b(không\s+áp\s+dụng|không\s+được|bị\s+cấm)\b"
+                        if not re.search(neg_before, claim_lower) and not re.search(neg_after, claim_lower):
+                            desc_str = f" ({short_dur_desc})" if short_dur_desc else ""
+                            return f"CONTRADICTION: Văn bản gốc quy định không áp dụng {topic} đối với thời hạn dưới {b['raw']}{desc_str}."
+
+        # 3. Check PCT_MIN and PCT_MAX bounds extracted from premise
+        for b in bounds:
+            if b["type"] == "PCT_MIN":
+                min_pct = b["pct"]
+                for pct in percentages:
+                    if pct < min_pct:
+                        return f"CONTRADICTION: Văn bản gốc quy định mức tối thiểu {min_pct}%, không thể là {pct}%."
+                if any(w in claim_lower for w in [
+                    "0 đồng", "không lương", "miễn phí", "không được trả lương",
+                    "không trả lương", "không có lương", "không cần trả lương", "làm việc không công"
+                ]):
+                    return f"CONTRADICTION: Văn bản gốc quy định mức hưởng tối thiểu {min_pct}%, không cho phép không trả lương."
+            elif b["type"] == "PCT_MAX":
+                max_pct = b["pct"]
+                for pct in percentages:
+                    if pct > max_pct:
+                        return f"CONTRADICTION: Văn bản gốc quy định mức tối đa {max_pct}%, không thể là {pct}%."
+
+        # 4. Check DURATION_MAX bounds extracted from premise
+        max_bounds = [b for b in bounds if b["type"] == "DURATION_MAX"]
+        if max_bounds and durations:
+            # Check if premise is about probation ("thử việc") and ensure claim also discusses the same topic
+            premise_is_probation = "thời gian thử việc" in premise_lower and len(max_bounds) > 1
+            if not premise_is_probation or "thử việc" in claim_lower:
+                global_max_days = max(b["days"] for b in max_bounds)
+                # Find best-matching clause bound for the claim's subject
+                matched_candidates = []
+                for b in max_bounds:
+                    is_match, prio = self._match_clause_qualifier(claim_lower, b["clause"])
+                    if is_match:
+                        matched_candidates.append((prio, b["days"], b))
 
                 for days, unit_type, raw_str in durations:
                     if days <= 0:
-                        return f"CONTRADICTION: Điều 25 không quy định thời gian thử việc {raw_str}."
-                    if days > 180:
-                        return f"CONTRADICTION: Điều 25 quy định thời gian thử việc tối đa không quá 180 ngày (kể cả người quản lý doanh nghiệp), không thể là {raw_str}."
+                        return f"CONTRADICTION: Thời hạn {raw_str} không hợp lệ so với quy định."
+                    if days > global_max_days:
+                        return f"CONTRADICTION: Thời hạn {raw_str} vượt quá mức tối đa tuyệt đối ({global_max_days:.0f} ngày) trong điều luật."
+                    if matched_candidates:
+                        # Sort by highest specificity priority, then tightest bound
+                        matched_candidates.sort(key=lambda x: (-x[0], x[1]))
+                        best_bound = matched_candidates[0][2]
+                        if days > best_bound["days"]:
+                            return f"CONTRADICTION: Thời hạn {raw_str} vượt quá giới hạn không quá {best_bound['raw']} của khoản tương ứng."
+                    elif premise_is_probation:
+                        # Non-managerial default probation cap (second highest cap in probation schedule, e.g. 60 days)
+                        non_mgr_bounds = [b["days"] for b in max_bounds if "quản lý doanh nghiệp" not in b["clause"]]
+                        if non_mgr_bounds and days > max(non_mgr_bounds):
+                            return f"CONTRADICTION: Thời hạn {raw_str} vượt quá giới hạn thử việc thông thường ({max(non_mgr_bounds):.0f} ngày)."
 
-                    # Intermediate degree, technical worker, elementary level: max 30 days (enforce even if 'kỹ thuật' in text)
-                    has_vocational = any(w in claim_lower for w in ["công nhân kỹ thuật", "trung cấp", "sơ cấp", "công nhân", "nghiệp vụ"])
-                    if has_vocational and not is_manager_job and days > 30:
-                        return f"CONTRADICTION: Khoản 3 Điều 25 quy định thử việc trình độ trung cấp, công nhân kỹ thuật không quá 30 ngày, không thể là {raw_str}."
+        # 5. Check DURATION_MIN bounds extracted from premise
+        min_bounds = [b for b in bounds if b["type"] == "DURATION_MIN"]
+        if min_bounds and durations:
+            has_no_notice_exception = any(w in claim_lower for w in ["không cần báo trước", "không phải báo trước", "khoản 2"])
+            if not has_no_notice_exception and "thử việc" not in claim_lower:
+                for b in min_bounds:
+                    is_match, prio = self._match_clause_qualifier(claim_lower, b["clause"])
+                    if is_match and prio >= 2:
+                        for days, unit_type, raw_str in durations:
+                            if days < b["days"]:
+                                return f"CONTRADICTION: Thời hạn {raw_str} thấp hơn mức tối thiểu ít nhất {b['raw']} trong điều luật."
 
-                    has_univ = any(w in claim_lower for w in ["đại học", "cao đẳng", "chuyên môn", "kỹ thuật", "văn phòng", "nhân viên", "cử nhân", "kỹ sư", "chuyên viên"])
-
-                    # Professional/technical qualification from college level up: max 60 days
-                    if has_univ and not is_manager_job and days > 60:
-                        return f"CONTRADICTION: Khoản 2 Điều 25 quy định thử việc trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên không quá 60 ngày, không thể là {raw_str}."
-
-                    # Other positions: max 6 working days
-                    has_simple = any(w in claim_lower for w in ["công việc khác", "lao động phổ thông", "giản đơn"])
-                    if has_simple and days > 6:
-                        return f"CONTRADICTION: Khoản 4 Điều 25 quy định thử việc đối với công việc khác không quá 06 ngày làm việc, không thể là {raw_str}."
-
-                    # Default: if not an executive managerial position and duration > 60 days
-                    if not is_manager_job and days > 60:
-                        return f"CONTRADICTION: Điều 25 quy định thời gian thử việc thông thường không quá 60 ngày (chỉ công việc người quản lý doanh nghiệp tối đa 180 ngày), không thể là {raw_str}."
-
-        # 2. Contradiction against Article 20 (Labor contract categories & durations)
-        if norm_id == "dieu_20":
-            if any(w in claim_lower for w in ["xác định thời hạn", "hợp đồng lao động", "thời hạn hợp đồng"]):
-                for days, unit_type, raw_str in durations:
-                    if (unit_type == "month" and days > 36 * 30) or (unit_type == "year" and days > 3 * 365) or days > 1095:
-                        return f"CONTRADICTION: Điểm b khoản 1 Điều 20 quy định hợp đồng lao động xác định thời hạn có thời hạn không quá 36 tháng (3 năm), không cho phép {raw_str}."
-
-        # 3. Contradiction against Article 24 (Probation not applicable for contracts under 1 month)
-        if norm_id == "dieu_24":
-            has_under_1m = any(w in claim_lower for w in ["dưới 01 tháng", "dưới 1 tháng", "dưới 30 ngày", "dưới một tháng"])
-
-            # Detect contracts with specific duration < 30 days
-            has_short_contract = False
-            short_dur_desc = ""
-            for days, unit_type, raw_str in durations:
-                if 0 < days < 30.0:
-                    pat1 = rf"\b(hợp\s+đồng|hđlđ|hđ|giao\s+kết)\b(?:(?!\bthử\s+việc\b).){{0,25}}\b{re.escape(raw_str)}"
-                    pat2 = rf"{re.escape(raw_str)}\s+(?:hợp\s+đồng|hđlđ|hđ)"
-                    if re.search(pat1, claim_lower) or re.search(pat2, claim_lower):
-                        has_short_contract = True
-                        short_dur_desc = raw_str
-                        break
-
-            if (has_under_1m or has_short_contract) and "thử việc" in claim_lower:
-                if not re.search(r"\b(không\s+áp\s+dụng|không\s+được|nghiêm\s+cấm|cấm|không\s+thể)\b.{0,30}\bthử\s+việc\b", claim_lower) and \
-                   not re.search(r"\bthử\s+việc\b.{0,30}\b(không\s+áp\s+dụng|không\s+được|bị\s+cấm)\b", claim_lower):
-                    desc_str = f" ({short_dur_desc})" if short_dur_desc else ""
-                    return f"CONTRADICTION: Khoản 3 Điều 24 quy định không áp dụng thử việc đối với người lao động giao kết hợp đồng lao động có thời hạn dưới 01 tháng{desc_str}."
-
-        # 4. Contradiction against Article 26 (Probation wage: at least 85%)
-        if norm_id == "dieu_26":
-            for pct in percentages:
-                if pct < 85.0:
-                    return f"CONTRADICTION: Điều 26 quy định tiền lương thử việc ít nhất phải bằng 85% mức lương của công việc đó, không thể là {pct}%."
-            if any(w in claim_lower for w in ["0 đồng", "không lương", "miễn phí", "không được trả lương", "không trả lương", "không có lương", "không cần trả lương", "làm việc không công"]):
-                return "CONTRADICTION: Điều 26 quy định tiền lương thử việc ít nhất phải bằng 85%, không cho phép làm việc không lương."
-
-        # 5. Contradiction against Article 35 (Prior notice period for unilateral termination)
-        if norm_id == "dieu_35":
-            if "không xác định thời hạn" in claim_lower and not any(w in claim_lower for w in ["không cần báo trước", "khoản 2"]):
-                for days, unit_type, raw_str in durations:
-                    if days < 45 and "thử việc" not in claim_lower:
-                        return f"CONTRADICTION: Điểm a khoản 1 Điều 35 quy định hợp đồng không xác định thời hạn phải báo trước ít nhất 45 ngày, không thể là {raw_str}."
-            if "từ 12 tháng đến 36 tháng" in claim_lower or "xác định thời hạn" in claim_lower:
-                for days, unit_type, raw_str in durations:
-                    if days < 30 and "không xác định" not in claim_lower and "dưới 12 tháng" not in claim_lower and "không cần báo trước" not in claim_lower and "thử việc" not in claim_lower:
-                        return f"CONTRADICTION: Điểm b khoản 1 Điều 35 quy định hợp đồng xác định thời hạn (12-36 tháng) phải báo trước ít nhất 30 ngày."
-
-        # 6. Statutory prohibitions and fundamental rights (Articles 17, 37, 122, 127)
+        # 6. Statutory prohibitions and fundamental rights polarity inversion
         illegal_patterns = [
             (r"\b(được|có\s+quyền|cho\s+phép)\b.{0,30}\b(phạt\s+tiền|cắt\s+lương|trừ\s+lương|khấu\s+trừ\s+lương\s+thay\s+kỷ\s+luật)\b", "Pháp luật lao động nghiêm cấm người sử dụng lao động phạt tiền hoặc cắt lương người lao động thay cho việc xử lý kỷ luật"),
-            (r"\b(được|có\s+quyền|cho\s+phép|yêu\s+cầu)\b.{0,30}\b(giữ|thu\s+giữ|tạm\s+giữ)\b.{0,30}\b(bằng\s+cấp|văn\s+bằng|chứng\s+chỉ|giấy\s+tờ\s+tùy\s+thân|cccd|cmnd|hộ\s+chiếu)\b", "Điều 17 Bộ luật Lao động nghiêm cấm giữ bản chính giấy tờ tùy thân, văn bằng, chứng chỉ của người lao động"),
-            (r"\b(đuổi\s+việc|sa\s+thải|xử\s+lý\s+kỷ\s+luật|chấm\s+dứt)\b.{0,30}\b(mang\s+thai|thai\s+sản|nuôi\s+con\s+(?:dưới\s+12\s+tháng|nhỏ))\b", "Khoản 4 Điều 122 và khoản 3 Điều 37 nghiêm cấm sa thải hoặc xử lý kỷ luật lao động đối với lao động nữ mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi"),
+            (r"\b(được|có\s+quyền|cho\s+phép|yêu\s+cầu)\b.{0,30}\b(giữ|thu\s+giữ|tạm\s+giữ)\b.{0,30}\b(bằng\s+cấp|văn\s+bằng|chứng\s+chỉ|giấy\s+tờ\s+tùy\s+thân|cccd|cmnd|hộ\s+chiếu)\b", "Bộ luật Lao động nghiêm cấm giữ bản chính giấy tờ tùy thân, văn bằng, chứng chỉ của người lao động"),
+            (r"\b(đuổi\s+việc|sa\s+thải|xử\s+lý\s+kỷ\s+luật|chấm\s+dứt)\b.{0,30}\b(mang\s+thai|thai\s+sản|nuôi\s+con\s+(?:dưới\s+12\s+tháng|nhỏ))\b", "Nghiêm cấm sa thải hoặc xử lý kỷ luật lao động đối với lao động nữ mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi"),
             (r"\b(được|có\s+quyền)\b.{0,30}\b(sa\s+thải|đuổi\s+việc)\b.{0,30}\b(mang\s+thai|thai\s+sản)\b", "Pháp luật lao động nghiêm cấm sa thải lao động nữ mang thai")
         ]
         for pat, desc in illegal_patterns:
@@ -385,8 +544,8 @@ class SemanticNLIVerifier:
             elif isinstance(c, dict) and "article_id" in c:
                 norm_cit_ids.append(c["article_id"])
 
-        # Segment legal claim sentences: protect decimals (85.5%) and thousands separators (100.000)
-        raw_segments = re.split(r"(?:(?<=[?!;])\s*|(?<=[.])\s+|\n+)", answer_text)
+        # Segment legal claim sentences: protect decimals (85.5%), thousands separators (100.000), and clause numbers (1. )
+        raw_segments = re.split(r"(?:(?<=[?!;])\s*|(?<!\b\d[.])(?<=[.])\s+|\n+)", answer_text)
         sentences = []
         for p in raw_segments:
             # Strip bullet points and leading enumeration markers

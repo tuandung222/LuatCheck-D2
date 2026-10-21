@@ -84,10 +84,10 @@ class SecurityGuardrails:
         ),
         # Abolition of severance allowance
         r"(?i)\bbãi\s+bỏ\b.{0,40}\b(trợ\s+cấp\s+thôi\s+việc|trợ\s+cấp\s+mất\s+việc)\b",
-        # Non-existent statutory article in Labor Code 2019 (> 220 articles)
-        r"(?i)\bđiều\s+([3-9]\d{2,}|2[3-9]\d|22[1-9])\b.{0,30}\b(bộ\s+luật\s+lao\s+động|bllđ|luật\s+lao\s+động)\b",
-        r"(?i)\bđiều\s+999\b",
-        r"(?i)\bnghị\s+định\s+9\d{3,}\b",
+        # Non-existent statutory article in Labor Code 2019 (valid range: Điều 1..220) or fabricated 4+ digit Decree numbers
+        r"(?i)\bđiều\s+(0\b|[3-9]\d{2,}|2[3-9]\d|22[1-9]|\d+[a-z])\b.{0,40}\b(bộ\s+luật\s+lao\s+động|bllđ|luật\s+lao\s+động)\b",
+        r"(?i)\bđiều\s+[5-9]\d{2,}\b",
+        r"(?i)\bnghị\s+định\s+[1-9]\d{3,}\b",
     ]
 
     ALL_PATTERNS = (

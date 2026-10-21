@@ -97,7 +97,8 @@ class LuatCheckAgent:
         else:
             self.tool_registry = LegalToolRegistry(
                 corpus_path=self.corpus_path,
-                outbox_path=self.outbox_path
+                outbox_path=self.outbox_path,
+                dense_endpoint=self.ollama_url
             )
 
         # 5. Dependency Injection for Verification Pipeline & Verifiers
@@ -241,8 +242,9 @@ class LuatCheckAgent:
             # 2.2 Re-verify L1 & L2 legal evidence before reuse (Cache Re-Verification)
             is_cache_valid = True
             cache_feedback = None
+            norm_cache_mode = self.verification_pipeline._normalize_mode(self.verification_mode)
 
-            if self.verification_mode in ["l1", "l1_only", "l1_on"]:
+            if norm_cache_mode == "lexical_grounding":
                 l1_res = self.verifier.verify(
                     answer_text=cached_case["answer"],
                     citations=cached_citations,
@@ -252,7 +254,7 @@ class LuatCheckAgent:
                     is_cache_valid = False
                     cache_feedback = l1_res.repair_feedback
 
-            elif self.verification_mode in ["l1_l2", "l1_l2_on"]:
+            elif norm_cache_mode == "semantic_entailment":
                 l1_res = self.verifier.verify(
                     answer_text=cached_case["answer"],
                     citations=cached_citations,

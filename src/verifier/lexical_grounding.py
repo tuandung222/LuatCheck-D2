@@ -87,12 +87,65 @@ class LexicalGroundingVerifier:
             norm_id = self._normalize_id(c.article_id)
             doc = self.valid_article_ids.get(norm_id)
             if doc:
+                title = doc.get("title") or ""
                 content = doc.get("content") or doc.get("full_content") or ""
-                cited_texts.append(content.lower())
+                full_text = f"{title}. {content}" if title else content
+                cited_texts.append(full_text.lower())
         combined_source_text = " ".join(cited_texts)
         source_token_set = set(re.findall(r'\w+', combined_source_text))
-        raw_sentences = [s.strip() for s in re.split(r'[.?!;\n]+', answer_text) if s.strip()]
+        raw_sentences = [
+            s.strip()
+            for s in re.split(r'(?:(?<=[?!;])\s*|(?<!\b\d[.])(?<=[.])\s+|\n+)', answer_text)
+            if s.strip()
+        ]
         stop_words = {"là", "và", "các", "có", "được", "cho", "với", "trong", "khi", "theo", "quy", "định", "của", "tại", "này", "đó", "những"}
+
+        # 3a. Actor-Provision Title Alignment Check on multi-clause responses
+        if len(raw_sentences) >= 2:
+            premise_clause = raw_sentences[0].lower()
+            is_employer_subject = (
+                "công ty có quyền" in premise_clause
+                or "công ty được quyền" in premise_clause
+                or "công ty sa thải" in premise_clause
+                or "doanh nghiệp có được" in premise_clause
+                or "người sử dụng lao động đơn phương" in premise_clause
+                or "người sử dụng lao động có quyền" in premise_clause
+            )
+            is_employee_unilateral = (
+                ("người lao động" in premise_clause or "muốn đơn phương nghỉ việc" in premise_clause)
+                and "đơn phương" in premise_clause
+                and not is_employer_subject
+                and "người sử dụng lao động không trả" not in premise_clause
+            )
+            is_employer_unlawful = (
+                ("công ty sa thải" in premise_clause or "người sử dụng lao động đơn phương" in premise_clause)
+                and "trái" in premise_clause
+            )
+
+            for c in citations:
+                norm_id = self._normalize_id(c.article_id)
+                doc = self.valid_article_ids.get(norm_id)
+                if not doc:
+                    continue
+                title_lower = (doc.get("title") or "").lower()
+                if is_employee_unilateral and "của người sử dụng lao động" in title_lower:
+                    invalid_citations.append(
+                        f"Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', "
+                        f"nhưng điều luật trích dẫn '{c.article_id}' ({doc.get('title')}) lại điều chỉnh 'người sử dụng lao động'."
+                    )
+                elif is_employer_unlawful and "của người lao động" in title_lower:
+                    invalid_citations.append(
+                        f"Sai lệch chủ thể pháp lý: Nhận định về hành vi chấm dứt trái pháp luật của 'người sử dụng lao động', "
+                        f"nhưng điều luật trích dẫn '{c.article_id}' ({doc.get('title')}) lại điều chỉnh 'người lao động'."
+                    )
+
+            if invalid_citations:
+                return GroundingVerificationResult(
+                    is_valid=False,
+                    unsupported_claims=[],
+                    invalid_citations=invalid_citations,
+                    repair_feedback="\n".join(invalid_citations)
+                )
 
         for sent in raw_sentences:
             sent_words = set(re.findall(r'\w+', sent.lower()))

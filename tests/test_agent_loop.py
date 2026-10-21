@@ -255,3 +255,60 @@ def test_cache_hit_ablation_mode_bypasses_l1(tmp_path):
     assert ledger.terminal_status == "answered"
     assert ledger.final_output["from_cache"] is True
     assert "Dieu_25" in ledger.retrieved_article_ids
+
+
+def test_mock_client_mode_agnostic_and_genuine_self_repair():
+    """
+    Verify that MockRuleBasedLLMClient produces identical initial drafts regardless of
+    verification_mode, and genuinely repairs wrong-actor citations only when L1
+    verification feedback is triggered.
+    """
+    from src.agent.llm_client import MockRuleBasedLLMClient
+
+    client_off = MockRuleBasedLLMClient(verification_mode="off")
+    client_l1 = MockRuleBasedLLMClient(verification_mode="l1_on")
+
+    obs_payload = {
+        "status": "success",
+        "articles": [
+            {
+                "article_id": "Dieu_36",
+                "title": "Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử dụng lao động",
+                "content_snippet": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động...",
+            },
+            {
+                "article_id": "Dieu_35",
+                "title": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động",
+                "content_snippet": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước...",
+            },
+        ],
+    }
+    messages_turn2 = [
+        {"role": "system", "content": "System"},
+        {"role": "user", "content": "Người lao động làm việc theo hợp đồng không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không?"},
+        {"role": "assistant", "content": '{"action": "search_law"}'},
+        {"role": "user", "content": f"[OBSERVATION_TOOL_RESULT]\n{json.dumps(obs_payload, ensure_ascii=False)}"},
+    ]
+
+    # Turn 2 initial draft is 100% identical regardless of verification_mode
+    draft_off = client_off.generate(messages_turn2)
+    draft_l1 = client_l1.generate(messages_turn2)
+    assert draft_off == draft_l1
+    assert draft_off["tool_args"]["citations"][0]["article_id"] == "Dieu_36"
+
+    # Turn 3 repair after L1 flags actor-provision mismatch
+    messages_turn3 = messages_turn2 + [
+        {"role": "assistant", "content": json.dumps(draft_l1, ensure_ascii=False)},
+        {
+            "role": "user",
+            "content": (
+                "[CẢNH BÁO TỪ HỆ THỐNG XÁC THỰC PHÁP LÝ - YÊU CẦU SỬA CHỮA]\n"
+                "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', "
+                "nhưng điều luật trích dẫn 'Dieu_36' lại điều chỉnh 'người sử dụng lao động'."
+            ),
+        },
+    ]
+    repaired = client_l1.generate(messages_turn3)
+    assert repaired["action"] == "answer"
+    assert repaired["tool_args"]["citations"][0]["article_id"] == "Dieu_35"
+

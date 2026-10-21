@@ -24,5 +24,6 @@ data/outbox/
 # Env
 .env
 venv/
+.venv/
 .agents/
 .DS_Store

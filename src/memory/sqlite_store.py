@@ -9,6 +9,8 @@ import os
 import re
 from typing import Optional, Dict, Any, List
 from datetime import datetime, timezone
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 def sanitize_pii(text: str) -> str:
@@ -206,7 +208,7 @@ class SQLiteEpisodicStore:
         """
         RETRIEVAL POLICY:
         - Reuses past advisory cases only if index_version strictly matches.
-        - Sanitizes PII and normalizes punctuation before computing Jaccard similarity.
+        - Sanitizes PII and normalizes punctuation before computing hybrid TF-IDF cosine + Jaccard similarity.
         - Returns parsed article_ids as List[str].
         - Only accepts cases with similarity >= threshold.
         """
@@ -227,19 +229,32 @@ class SQLiteEpisodicStore:
             """, (target_version,))
             rows = cursor.fetchall()
 
-            best_match = None
-            best_overlap = 0.0
+            if not rows:
+                return None
 
-            for row in rows:
+            stored_queries = [row["normalized_query"] for row in rows]
+            try:
+                vec = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True)
+                mat = vec.fit_transform([clean_q] + stored_queries)
+                cosine_scores = cosine_similarity(mat[0:1], mat[1:])[0]
+            except Exception:
+                cosine_scores = [0.0] * len(rows)
+
+            best_match = None
+            best_score = 0.0
+
+            for idx, row in enumerate(rows):
                 stored_words = set(re.findall(r'\w+', row["normalized_query"]))
                 if not stored_words:
                     continue
                 intersection = len(q_words & stored_words)
                 union = len(q_words | stored_words)
-                jaccard = intersection / union if union > 0 else 0
+                jaccard = intersection / union if union > 0 else 0.0
+                tfidf_cos = float(cosine_scores[idx]) if idx < len(cosine_scores) else 0.0
+                hybrid_sim = max(jaccard, 0.5 * jaccard + 0.5 * tfidf_cos)
 
-                if jaccard >= threshold and jaccard > best_overlap:
-                    best_overlap = jaccard
+                if hybrid_sim >= threshold and hybrid_sim > best_score:
+                    best_score = hybrid_sim
                     best_match = dict(row)
 
             if best_match:
@@ -254,6 +269,7 @@ class SQLiteEpisodicStore:
 
                 best_match["article_ids"] = parsed_aids
                 best_match["citations"] = json.loads(best_match["citations_json"])
+                best_match["similarity_score"] = round(best_score, 4)
                 return best_match
 
         return None

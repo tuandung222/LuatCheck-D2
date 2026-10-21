@@ -25,9 +25,15 @@ class DomainKnowledgeRegistry:
         self,
         corpus_path: str = "data/corpus/labor_code_2019.json",
         outbox_path: Optional[str] = None,
-        retriever: Optional[Any] = None
+        retriever: Optional[Any] = None,
+        dense_endpoint: Optional[str] = None,
+        dense_model_name: str = "all-minilm"
     ):
-        self.retriever = retriever or HybridDomainRetriever(corpus_path=corpus_path)
+        self.retriever = retriever or HybridDomainRetriever(
+            corpus_path=corpus_path,
+            dense_endpoint=dense_endpoint,
+            dense_model_name=dense_model_name
+        )
         self.saved_cases: Dict[str, Dict[str, Any]] = {}
         self.sent_summaries_log: List[Dict[str, Any]] = []
         self.executed_idempotency_keys: set = set()

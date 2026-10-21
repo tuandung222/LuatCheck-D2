@@ -431,3 +431,47 @@ def test_article_24_explicit_short_contract_durations(verifier):
     claim4 = "Không áp dụng thử việc đối với hợp đồng lao động 15 ngày."
     is_ent, score, msg = verifier.verify_entailment(claim4, "Dieu_24")
     assert msg != "CONTRADICTION"
+
+
+def test_corpus_driven_dynamic_bound_extraction_unseen_articles():
+    """
+    Verify that SemanticNLIVerifier dynamically extracts quantitative bounds
+    directly from any statutory/SOP premise text without hardcoded article IDs.
+    """
+    synthetic_corpus = [
+        {
+            "article_id": "SOP_SEC_901",
+            "title": "Quy định thời gian xử lý sự cố và mức đền bù SLA",
+            "content": (
+                "1. Thời gian phản hồi sự cố khẩn cấp chỉ được gia hạn một lần đối với một sự cố. "
+                "2. Không quá 15 ngày đối với quy trình rà soát an ninh định kỳ. "
+                "3. Mức bồi hoàn dịch vụ ít nhất phải bằng 90% giá trị gói cước tháng đó."
+            ),
+        }
+    ]
+    custom_verifier = L2SemanticEntailmentVerifier(synthetic_corpus, entailment_threshold=0.30)
+
+    # 1. Violates "chỉ được ... một lần" -> CONTRADICTION
+    is_ent_1, _, msg_1 = custom_verifier.verify_entailment(
+        "Thời gian phản hồi sự cố khẩn cấp được gia hạn 2 lần đối với một sự cố.",
+        "SOP_SEC_901",
+    )
+    assert is_ent_1 is False
+    assert msg_1 == "CONTRADICTION"
+
+    # 2. Violates "Không quá 15 ngày" -> CONTRADICTION
+    is_ent_2, _, msg_2 = custom_verifier.verify_entailment(
+        "Thời hạn tối đa là 30 ngày đối với quy trình rà soát an ninh định kỳ.",
+        "SOP_SEC_901",
+    )
+    assert is_ent_2 is False
+    assert msg_2 == "CONTRADICTION"
+
+    # 3. Violates "ít nhất phải bằng 90%" -> CONTRADICTION
+    is_ent_3, _, msg_3 = custom_verifier.verify_entailment(
+        "Mức bồi hoàn dịch vụ bằng 75% giá trị gói cước tháng đó.",
+        "SOP_SEC_901",
+    )
+    assert is_ent_3 is False
+    assert msg_3 == "CONTRADICTION"
+
