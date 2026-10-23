@@ -36,3 +36,4 @@ data/db/*.sqlite3
 logs/
 data/demo_audit_log*.jsonl
 PROVENANCE.json
+data/db/*.sqlite3-*

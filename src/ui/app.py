@@ -13,16 +13,13 @@ import json
 import time
 import os
 import sys
-import re
-import hashlib
-from typing import Dict, Any, List, Optional
+from typing import Optional
 
 # Ensure modules can be imported from src
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 from src.agent.loop import LuatCheckAgent
-from src.agent.state import CaseLedger, Citation
-from src.tools.legal_tools import LegalToolRegistry
+from src.agent.state import CaseLedger
 from src.security.audit_logger import AuditLogger
 from src.config.app_config import load_config
 

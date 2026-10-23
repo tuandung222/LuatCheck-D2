@@ -1,24 +1,32 @@
 # LuatCheck — D2 working draft
 
-CO5151, Group 8. Local Vietnamese labour-law assistant with a bounded action loop,
-source lookup and optional evidence checks.
+CO5151, Group 8. A local, grounded question-answering agent for Vietnamese regulations: a bounded
+action loop searches and reads a document corpus, answers with citations, checks them (L1), and
+refuses or asks for clarification when the sources do not answer.
 
-**Current status (22 October 2026):** main collection completed with 60 real
-native trials and 264 model calls in `evaluation/runs/bll2019-main-v2`.
-All 12 model-output errors are retained and counted. The interrupted 10-trial
-batch in `bll2019-main-v1` remains excluded from main aggregates.
-Independent artifact arithmetic/hash checks passed; the current real-system
-suite passed 11 tests after fail-fast cleanup. DeepSeek Flash gateway judging
-accepted 60/60 judgments after retained retries/revalidation; no outcomes remain
-unknown. Strict-success estimates are OFF 10/30 and ON 11/30. These are uncalibrated LLM estimates. A 12-output human audit
-package is prepared with blank labels. The D2 PDF is still a draft.
+**Current status (24 October 2026):** the D2 system and evaluation are frozen and ready to run; the
+main results have **not** been collected yet.
+
+- Controller: Ternary Bonsai 2B (GGUF PQ2_0, prism llama.cpp) for both the reported numbers and the demo.
+- Reranker: AITeamVN/Vietnamese_Reranker, GGUF f16 on the Mac and torch fp16 on CUDA, one shared input
+  policy; parity in `evaluation/runs/reranker-parity-2026-10-23/report.md`.
+- Benchmarks: `hcmut_v1` and `labour_vi_v1` (50 tasks each, frozen and hash-locked; quality audit in
+  `docs/reviews/benchmark_quality_2026-10-23.md`).
+- Matrix: variants OFF / L1 / L1+rerank x seeds 42, 123, 2026, plus closed-book and oracle diagnostic
+  baselines (seed 42). Accuracy on a CUDA server, latency on the Mac. How to run: `docs/RUNBOOK_D2.md`.
+- The earlier Qwen2.5-3B pilot on `bll2019_v1` (`evaluation/runs/bll2019-main-v2`) is historical and is
+  not used in the D2 report.
 
 ## Report and reference materials
 
 - [Revised D2 PDF](report_d2/main_d2.pdf) and [LaTeX source](report_d2/main_d2.tex)
 - [Teacher requirements](report_d2/D2_REQUIREMENTS.md)
-- [Experiment and report completion plan](report_d2/D2_EXPERIMENT_PLAN.md)
+- [D2 runbook](docs/RUNBOOK_D2.md), [completion plan](docs/plans/D2_COMPLETION_PLAN.md), [requirements gap review](docs/reviews/d2_requirements_gap_2026-10-23.md)
+- Reviews: [benchmark quality](docs/reviews/benchmark_quality_2026-10-23.md), [metrics](docs/reviews/metrics_review_2026-10-23.md), [reranker](docs/plans/reranker.md), [public Vietnamese legal benchmarks](docs/reviews/public_vn_legal_benchmarks_2026-10-23.md)
+- Presentation: [slide outline](docs/presentation/D2_SLIDES_OUTLINE.md), [demo script](docs/presentation/DEMO_SCRIPT.md)
+- [Historical experiment plan (Qwen pilot)](report_d2/D2_EXPERIMENT_PLAN.md)
 - [Original teacher materials](docs/materials/d2/README.md)
+- [Architecture and module map](docs/architecture.md), [configuration guide](config/README.md)
 - [Historical gap review](report_d2/D2_GAP_REVIEW.md)
 - [Historical results status](evaluation/RESULTS_STATUS.md)
 - Historical, not current evidence: [redteam/](redteam/README.md), [report_d3/](report_d3/README.md), `TEST_READY.md`, `TEST_INFRA.md`
@@ -54,6 +62,47 @@ walkthrough date, contribution evidence and final commit/access remain pending.
   doubles, injected stand-ins and monkeypatching are forbidden, including in tests.
 
 See [AGENTS.md](AGENTS.md) for repository integrity rules.
+
+## Quickstart
+
+~~~sh
+.venv/bin/pip install -r requirements.txt
+make prism-setup                 # once: build the llama.cpp fork and download the 2B GGUF (see "Development commands")
+make prism-server                # model server on 127.0.0.1:8081 (leave running)
+.venv/bin/python -m src.pipeline # show which components the default config switches on; loads nothing
+make rerank-server-mac         # reranker server on 127.0.0.1:8082 (leave running; needed by the demo profiles)
+make demo-web                    # D2 demo UI on 127.0.0.1:8000 with a HCMUT / labour corpus switch (or: make web for one default config, make demo for Streamlit)
+~~~
+
+From Python:
+
+~~~python
+from src.agent.loop import LuatCheckAgent
+
+agent = LuatCheckAgent.from_config("config/config.yaml")     # builds every component the config enables
+ledger = agent.run("Thời gian thử việc tối đa là bao lâu?")
+print(ledger.terminal_status, ledger.final_output)           # answered | clarified | refused | error
+~~~
+
+## Architecture and configuration
+
+One controller loop, five optional parts, each switched in YAML (full list: [config/reference.yaml](config/reference.yaml),
+guide: [config/README.md](config/README.md), module map and data flow: [docs/architecture.md](docs/architecture.md)):
+
+| Part | Key | Default in `config/config.yaml` |
+|---|---|---|
+| Controller model | `model.provider` (`ollama`, `mlx`, `llamacpp`, `gateway`) | `llamacpp` |
+| Retrieval | `retrieval.mode` (`bm25_tfidf`, `hybrid_index`), `retrieval.dense_model_type` | BM25 + TF-IDF/RRF |
+| Reranker | `retrieval.reranker.enabled`, `.backend` | off |
+| Verification | `verifier.mode` (`off`, `l1`, `l1_l2`), `verifier.nli.enabled`, `.backend` | `l1`, NLI off |
+| Memory | `memory.enabled`, `memory.reuse_answers` | store on, reuse off |
+| Guardrails | `security.guardrails.enabled` | on |
+| Domain | `domain.profile` (`config/domains/<id>.yaml`) | `labour_vi_2019` |
+
+`src/pipeline/builder.py` is the single place that turns these keys into components; `LuatCheckAgent` only orchestrates.
+A config is validated when loaded and a wrong value names its key. Example, a reranked run with the NLI step:
+`LUATCHECK_CONFIG_PATH=config/profiles/local-full.yaml` (check with `python -m src.pipeline config/profiles/local-full.yaml`).
+The frozen `config/d2_*.yaml` and `config/benchmark/` files keep their meaning.
 
 ## Development commands
 
@@ -114,8 +163,9 @@ make prism-server  # OpenAI-compatible server on 127.0.0.1:8081
 
 Decoding is constrained to the action JSON schema and responses are still validated;
 thinking is disabled per request. MLX alternative: `make mlx-server` with
-`LUATCHECK_CONFIG_PATH=config/d2_mlx2b_diagnostic.yaml`. Frozen D2 model:
-`LUATCHECK_CONFIG_PATH=config/d2_native.yaml` (Qwen2.5-3B via Ollama).
+`LUATCHECK_CONFIG_PATH=config/d2_mlx2b_diagnostic.yaml`. D2 demo (same system as the L1+rerank
+variant, reranker server via `make rerank-server-mac`): `make demo-web` serves both profiles (`config/profiles/demo-hcmut.yaml`,
+`config/profiles/demo-labour.yaml`) in one web UI with a corpus switch; one profile only: `LUATCHECK_CONFIG_PATH=<profile> make web`. The historical Qwen2.5-3B pilot config is `config/d2_native.yaml`.
 
 The UI needs a real configured model server to answer. An unavailable server is
 an error. Configure config/config.yaml or LUATCHECK_CONFIG_PATH; an explicit
@@ -125,31 +175,17 @@ embedding service is unavailable.
 
 ## Native experiments
 
-`make all` includes the real inference test; it does not start the main benchmark.
-`make eval` and `make redteam` do not collect results. The historical
-red-team scorer is disabled because refusal/keyword matching does not establish
-attack success.
+All D2 numbers come from `evaluation/run_d2.py` (one command per machine, resumable, with preflight
+checks of benchmark locks, model files and servers):
 
-The frozen Mac configuration is cached Qwen2.5:3B Q4_K_M on an Apple M4 with
-16 GiB unified memory, Metal, context 8192, output cap 768, one task at a time.
-The main workload is 60 trials (10 tasks × 2 modes × 3 seeds), excluding the
-8-trial first pilot and 4-trial interface pilot. All model errors are retained.
+~~~sh
+make benchmark-preflight          # checks only
+make benchmark-smoke              # a few tasks per variant, judge included
+make benchmark-d2-gpu             # accuracy matrix on a CUDA server (see docs/RUNBOOK_D2.md)
+make benchmark-d2-mac             # latency on the Mac
+~~~
 
-Follow the [full plan](report_d2/D2_EXPERIMENT_PLAN.md) before collecting data.
-The main runner requires explicit --execute, a fresh output directory and an
-source-review manifest matching the frozen task and corpus hashes. The current
-source reviewer is AI, explicitly not a legal expert. Native usage, errors, full
-ledgers and artifact hashes are recorded. Correctness requires independent
-semantic review; judge reliability requires actual human labels. Missing
-token/compute data stay unknown.
-
-See `evaluation/benchmarks/bll2019_v1/SEMANTIC_JUDGING.md` for the frozen
-pre-judging protocol snapshot. Current estimates, retry provenance and the
-human audit package are in `evaluation/runs/deepseek-judge-main-v1/analysis-retry-v2/`.
-The gateway's legacy Flash alias is documented upstream as V4.1-Flash-1017;
-an immutable upstream revision is not independently attested.
-Raw usage/cost anomalies are retained; gateway-reported subtotals are not invoices.
-
-Changes to old interfaces are intentional: offline=True and injected unit
-agents cannot produce empirical results. Old notebooks/JSONs and the D3 draft
-are historical material until reviewed and regenerated under a native protocol.
+Execution errors are results and count as failures. Judge scores are LLM estimates until checked
+against the team's human audit (`evaluation/score_benchmark_audit.py`). Metric definitions and their
+limits are in `docs/reviews/metrics_review_2026-10-23.md`. Earlier notebooks, JSON results and the
+`bll2019_v1` pilot are historical material and are not D2 evidence.

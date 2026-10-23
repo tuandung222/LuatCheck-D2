@@ -6,6 +6,7 @@ import asyncio
 import hashlib
 import ipaddress
 import json
+import logging
 import os
 import queue
 import secrets
@@ -34,8 +35,18 @@ from src.services.web_contract import (
     normalize_snapshot,
 )
 from src.services.web_store import WebStore
+from src.api.runtime import (
+    ProfileRuntime,
+    default_runtime,
+    describe_runtime,
+    load_profile_runtimes,
+    load_ui_hints,
+    make_event_sink,
+    reranker_endpoint_status,
+)
 from src.tools.legal_tools import LegalToolRegistry
 from src.verifier.grounding_analyzer import analyze_grounding
+from src.verifier.modes import LEXICAL_GROUNDING, OFF, SEMANTIC_ENTAILMENT, canonical_mode
 
 
 MAX_QUERY_CHARS = int(os.getenv("LUATCHECK_WEB_MAX_QUERY_CHARS", "8000"))
@@ -43,6 +54,7 @@ MAX_DOCUMENT_CHARS = int(os.getenv("LUATCHECK_WEB_MAX_DOCUMENT_CHARS", "100000")
 MAX_SUMMARY_CHARS = int(os.getenv("LUATCHECK_WEB_MAX_SUMMARY_CHARS", "40000"))
 MAX_QUEUE_SIZE = max(1, int(os.getenv("LUATCHECK_WEB_QUEUE_SIZE", "2")))
 API_PREFIX = "/api/v1"
+logger = logging.getLogger("luatcheck.web")
 
 
 class RunRequest(BaseModel):
@@ -50,6 +62,7 @@ class RunRequest(BaseModel):
     query: str = Field(min_length=1, max_length=MAX_QUERY_CHARS)
     pasted_document: Optional[str] = Field(default=None, max_length=MAX_DOCUMENT_CHARS)
     verification_mode: str = Field(default="lexical_grounding", max_length=40)
+    profile: Optional[str] = Field(default=None, max_length=80, description="Domain profile id; default = first available")
 
 
 class ProposalRequest(BaseModel):
@@ -140,7 +153,8 @@ def _source_matched_quote(model_quote: Any, article: Optional[Dict[str, Any]]) -
     return model_quote if quote and quote in source else None
 
 
-def _ledger_snapshot(ledger: Any, agent: LuatCheckAgent, started_at: float) -> Dict[str, Any]:
+def _ledger_snapshot(ledger: Any, agent: LuatCheckAgent, started_at: float,
+                     runtime: Optional[ProfileRuntime] = None, sink_state: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     output = ledger.final_output or {}
     citations = []
     article_ids = []
@@ -176,6 +190,15 @@ def _ledger_snapshot(ledger: Any, agent: LuatCheckAgent, started_at: float) -> D
         if key in output:
             final_output[key] = output[key]
 
+    refusal_kind = None
+    if ledger.terminal_status == "refused":
+        if output.get("pre_model_policy_refusal"):
+            refusal_kind = "guardrail"
+        elif sink_state and sink_state.get("last_verification_passed") is False:
+            refusal_kind = "verification_failed"
+        else:
+            refusal_kind = "model"
+
     grounding = None
     if output.get("action") == "answer" and output.get("content"):
         analysis = analyze_grounding(
@@ -203,6 +226,8 @@ def _ledger_snapshot(ledger: Any, agent: LuatCheckAgent, started_at: float) -> D
         "terminal_status": ledger.terminal_status,
         "final_output": final_output,
         "verification_mode": agent.verification_mode,
+        "refusal_kind": refusal_kind,
+        "profile": {"id": runtime.key, "display_name": getattr(runtime.profile, "display_name", None)} if runtime else None,
         "budgets": {
             "tool_calls": {"used": ledger.tool_calls_count, "limit": ledger.max_tool_calls},
             "repairs": {"used": ledger.repairs_count, "limit": ledger.max_repairs},
@@ -235,11 +260,18 @@ def _run_worker(app: FastAPI) -> None:
         started_at = time.monotonic()
         try:
             config = AppConfig.model_validate(job["config"])
-            agent = LuatCheckAgent(
-                config=config,
-                tool_registry=app.state.registry,
-                event_sink=lambda name, data: _event(app, run_id, name, data),
-            )
+            runtime = app.state.profiles.get(job.get("profile"))
+            if runtime is None or not runtime.available:
+                raise RuntimeError(f"Profile {job.get('profile')!r} is not loaded.")
+            holder: Dict[str, Any] = {}
+
+            def title_of(article_id: str, _registry=runtime.registry) -> str:
+                dto = _article_dto(_registry, article_id)
+                return (dto or {}).get("title", "") if dto else ""
+
+            sink = make_event_sink(lambda name, data: _event(app, run_id, name, data), holder, title_of)
+            agent = LuatCheckAgent(config=config, tool_registry=runtime.registry, event_sink=sink)
+            holder["agent"] = agent
             ledger = agent.run(job["query"], pasted_doc=job.get("pasted_document"), session_id=run_id)
             if ledger.terminal_status not in {"answered", "clarified", "refused", "error"}:
                 ledger.terminal_status = "error"
@@ -249,7 +281,7 @@ def _run_worker(app: FastAPI) -> None:
                     "error_kind": "invalid_terminal_state", "citations": [], "verified": False,
                 }
             snapshot = normalize_snapshot(
-                _ledger_snapshot(ledger, agent, started_at),
+                _ledger_snapshot(ledger, agent, started_at, runtime, holder.get("state")),
                 persisted_mode=job["verification_mode"],
                 persisted_terminal=ledger.terminal_status,
             )
@@ -258,10 +290,11 @@ def _run_worker(app: FastAPI) -> None:
         except Exception as exc:
             # Application, retrieval, config, and backend failures remain execution errors.
             error_kind = getattr(exc, "kind", None) or type(exc).__name__
+            logger.exception("run %s failed", run_id)
             snapshot = make_error_snapshot(
                 job["verification_mode"],
                 str(error_kind),
-                "Tác vụ thất bại do lỗi thực thi. Kiểm tra log cục bộ để biết chi tiết.",
+                f"Tác vụ thất bại do lỗi thực thi ({type(exc).__name__}: {str(exc)[:240]}). Xem log của API để biết chi tiết.",
                 round((time.monotonic() - started_at) * 1000, 1),
             )
             app.state.store.update_run_status(run_id, "finished", "error", snapshot)
@@ -283,20 +316,20 @@ async def lifespan(app: FastAPI):
     app.state.config_error = None
     app.state.registry = None
     app.state.corpus_available = False
+    app.state.hints = load_ui_hints()
+    app.state.profiles = {}
+    app.state.default_profile = None
     try:
-        config = load_config()
-        app.state.config = config
-        if os.path.isfile(config.retrieval.corpus_path):
-            app.state.registry = LegalToolRegistry(
-                corpus_path=config.retrieval.corpus_path,
-                outbox_path=config.security.outbox_path,
-                dense_endpoint=config.model.endpoint,
-                retrieval_mode=config.retrieval.dense_model_type,
-                rrf_k=config.retrieval.rrf_k,
-            )
-            app.state.corpus_available = True
-        else:
-            app.state.config_error = "Configured corpus file is unavailable."
+        app.state.profiles = load_profile_runtimes()
+        default = default_runtime(app.state.profiles)
+        if default is not None:
+            app.state.default_profile = default.key
+            app.state.config = default.config
+            app.state.registry = default.registry
+            app.state.corpus_available = default.available
+            app.state.config_error = default.error
+        if not any(r.available for r in app.state.profiles.values()) and app.state.config_error is None:
+            app.state.config_error = "No domain profile could be loaded."
     except Exception as exc:
         app.state.config_error = f"{type(exc).__name__}: {exc}"
     app.state.worker = threading.Thread(target=_run_worker, args=(app,), name="luatcheck-inference-worker", daemon=True)
@@ -385,6 +418,7 @@ def _public_run(row: Dict[str, Any], *, include_document: bool = False) -> Dict[
         "created_at": row["created_at"],
         "updated_at": row["updated_at"],
         "snapshot": snapshot,
+        "profile_id": ((row.get("config") or {}).get("domain") or {}).get("profile") if isinstance(row.get("config"), dict) else None,
     }
     if include_document:
         payload["pasted_document"] = row.get("pasted_document")
@@ -406,6 +440,7 @@ def health(request: Request):
         "configuration": "available" if config and not request.app.state.config_error else "error",
         "corpus": "available" if request.app.state.corpus_available else "unavailable",
         "model": _safe_model_status(config),
+        "reranker": reranker_endpoint_status(config),
         "active_run": bool(request.app.state.active_run_id),
         "queued_runs": request.app.state.jobs.qsize(),
     }
@@ -414,21 +449,32 @@ def health(request: Request):
 @app.get("/api/v1/capabilities")
 def capabilities(request: Request):
     config: Optional[AppConfig] = request.app.state.config
-    if config is None:
-        return JSONResponse(status_code=200, content={"available": False, "reason": "Cấu hình inference không đọc được.", "verification_modes": []})
-    semantic_available = bool(config.verifier.l2_use_slm)
+    runtimes: Dict[str, ProfileRuntime] = request.app.state.profiles
+    if config is None and not runtimes:
+        return JSONResponse(status_code=200, content={"available": False, "reason": request.app.state.config_error or "Cấu hình inference không đọc được.", "verification_modes": [], "profiles": []})
+    default = runtimes.get(request.app.state.default_profile) if request.app.state.default_profile else None
+    semantic_available = bool(config and config.verifier.l2_use_slm)
     modes = ["off", "lexical_grounding"]
     if semantic_available:
         modes.append("semantic_entailment")
+    profiles = [describe_runtime(runtime, request.app.state.hints) for runtime in runtimes.values()]
+    default_info = next((p for p in profiles if p["id"] == request.app.state.default_profile), None)
+    configured_mode = canonical_mode(config.verifier.mode) if config else OFF
+    default_mode = configured_mode if configured_mode in modes else LEXICAL_GROUNDING
+    any_available = any(p["available"] for p in profiles)
+    reason = None if any_available else (request.app.state.config_error or "Không có profile miền nào sẵn sàng.")
     return {
-        "available": not bool(request.app.state.config_error) and bool(request.app.state.corpus_available),
-        "reason": request.app.state.config_error,
-        "model": {"provider": config.model.provider, "name": config.model.name},
+        "available": any_available,
+        "reason": reason,
+        "model": {"provider": config.model.provider, "name": config.model.name, "endpoint": config.model.endpoint} if config else None,
+        "profiles": profiles,
+        "default_profile": request.app.state.default_profile,
+        "default_verification_mode": default_mode,
         "corpus": {
             "available": bool(request.app.state.corpus_available),
-            "name": "Bộ luật Lao động 2019",
-            "scope": "Văn bản gốc, không phải bản hợp nhất hiện hành năm 2026.",
-            "retrieval": config.retrieval.dense_model_type,
+            "name": (default_info or {}).get("display_name") or (default_info or {}).get("id") or "",
+            "scope": (default_info or {}).get("scope_note") or "",
+            "retrieval": config.retrieval.dense_model_type if config else "",
         },
         "verification_modes": modes,
         "semantic_unavailable_reason": None if semantic_available else "Native semantic verifier chưa được bật trong cấu hình.",
@@ -437,7 +483,7 @@ def capabilities(request: Request):
             "max_repairs": config.budgets.max_repairs,
             "max_steps": config.budgets.max_steps,
             "wall_seconds": config.budgets.wall_seconds,
-        },
+        } if config else None,
         "queue": {"waiting_limit": MAX_QUEUE_SIZE, "single_inference_worker": True},
         "web_storage": {
             "retention_days": _retention_days(),
@@ -455,9 +501,14 @@ def create_run(
 ):
     session = _session(request)
     _check_origin_and_csrf(request, session)
-    base_config = _config_or_503(request)
-    if request.app.state.registry is None:
-        raise HTTPException(status_code=503, detail="Corpus retrieval is not available.")
+    _config_or_503(request)
+    profile_key = body.profile or request.app.state.default_profile
+    runtime = request.app.state.profiles.get(profile_key) if profile_key else None
+    if runtime is None:
+        raise HTTPException(status_code=422, detail="Unknown domain profile.")
+    if not runtime.available:
+        raise HTTPException(status_code=503, detail=f"Domain profile is unavailable: {runtime.error}")
+    base_config = runtime.config
     requested_mode = body.verification_mode
     if requested_mode not in {"off", "lexical_grounding", "semantic_entailment"}:
         raise HTTPException(status_code=422, detail="Unsupported verification mode.")
@@ -465,7 +516,8 @@ def create_run(
         raise HTTPException(status_code=422, detail="Native semantic verification is not enabled in the configured backend.")
     config = base_config.model_copy(deep=True)
     config.verifier.mode = requested_mode
-    canonical = {"query": body.query, "pasted_document": body.pasted_document, "verification_mode": requested_mode}
+    canonical = {"query": body.query, "pasted_document": body.pasted_document, "verification_mode": requested_mode,
+                 "profile": runtime.key}
     request_sha = hashlib.sha256(json.dumps(canonical, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
 
     with request.app.state.enqueue_lock:
@@ -488,6 +540,7 @@ def create_run(
                 "query": body.query,
                 "pasted_document": body.pasted_document,
                 "verification_mode": requested_mode,
+                "profile": runtime.key,
                 "config": config.model_dump(mode="json"),
             }
             request.app.state.jobs.put_nowait(job)
@@ -558,14 +611,16 @@ def get_article(run_id: str, article_id: str, request: Request):
     row = request.app.state.store.get_run(session["session_id"], run_id)
     if not row:
         raise HTTPException(status_code=404, detail="Run không tồn tại trong browser session hiện tại.")
-    if request.app.state.registry is None:
+    run_profile = ((row.get("config") or {}).get("domain") or {}).get("profile") if isinstance(row.get("config"), dict) else None
+    runtime = request.app.state.profiles.get(run_profile) or request.app.state.profiles.get(request.app.state.default_profile)
+    if runtime is None or runtime.registry is None:
         raise HTTPException(status_code=503, detail="Corpus retrieval is not available.")
     snapshot = row.get("snapshot") or {}
     if article_id not in set(snapshot.get("retrieved_article_ids", [])):
-        raise HTTPException(status_code=404, detail="Điều luật này không thuộc các điều luật được truy xuất trong run.")
-    article = _article_dto(request.app.state.registry, article_id)
+        raise HTTPException(status_code=404, detail="Mục này không thuộc các mục được truy xuất trong run.")
+    article = _article_dto(runtime.registry, article_id)
     if article is None:
-        raise HTTPException(status_code=404, detail="Điều luật không có trong corpus của phiên bản này.")
+        raise HTTPException(status_code=404, detail="Mục không có trong corpus của phiên bản này.")
     return article
 
 
@@ -663,7 +718,7 @@ def confirm_summary_proposal(proposal_id: str, body: ConfirmRequest, request: Re
 def root(request: Request):
     index = Path("frontend/dist/index.html")
     if index.is_file():
-        return FileResponse(index)
+        return FileResponse(index, headers={"Cache-Control": "no-store"})
     return {"service": "LuatCheck Local API", "frontend": "Run `npm --prefix frontend run dev` during development."}
 
 
@@ -675,7 +730,7 @@ def frontend_asset(asset_path: str):
         return FileResponse(target)
     index = Path("frontend/dist/index.html")
     if index.is_file():
-        return FileResponse(index)
+        return FileResponse(index, headers={"Cache-Control": "no-store"})
     raise HTTPException(status_code=404, detail="Frontend build not found.")
 
 

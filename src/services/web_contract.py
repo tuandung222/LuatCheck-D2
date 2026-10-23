@@ -37,6 +37,7 @@ class FinalOutputSnapshot(ContractModel):
     error_kind: Optional[str] = None
     verified: Optional[bool] = None
     from_cache: Optional[bool] = None
+    pre_model_policy_refusal: Optional[bool] = None
     citations: List[CitationSnapshot] = Field(default_factory=list)
 
 
@@ -73,8 +74,18 @@ class GroundingSnapshot(ContractModel):
     invalid_citations: List[str] = Field(default_factory=list)
 
 
+class ProfileRef(ContractModel):
+    id: str
+    display_name: Optional[str] = None
+
+
+RefusalKind = Literal["guardrail", "verification_failed", "model"]
+
+
 class RunSnapshot(ContractModel):
     terminal_status: TerminalStatus
+    refusal_kind: Optional[RefusalKind] = None
+    profile: Optional[ProfileRef] = None
     final_output: FinalOutputSnapshot = Field(default_factory=FinalOutputSnapshot)
     verification_mode: Optional[VerificationMode] = None
     budgets: Optional[RunBudgets] = None
@@ -90,6 +101,7 @@ class RunSummaryResponse(ContractModel):
     verification_mode: VerificationMode
     job_status: JobStatus
     terminal_status: Optional[TerminalStatus] = None
+    profile_id: Optional[str] = None
     created_at: float
     updated_at: float
     snapshot: Optional[RunSnapshot] = None
@@ -223,6 +235,12 @@ def normalize_snapshot(
             if key in {"model_call_count", "input_tokens", "output_tokens", "model_wall_ms"}
         }
 
+    profile_ref = raw.get("profile")
+    if not (isinstance(profile_ref, dict) and isinstance(profile_ref.get("id"), str)):
+        profile_ref = None
+    else:
+        profile_ref = {"id": profile_ref["id"], "display_name": profile_ref.get("display_name") if isinstance(profile_ref.get("display_name"), str) else None}
+
     elapsed_ms = raw.get("elapsed_ms")
     if not isinstance(elapsed_ms, (int, float)) or not math.isfinite(float(elapsed_ms)) or elapsed_ms < 0:
         elapsed_ms = None
@@ -231,6 +249,8 @@ def normalize_snapshot(
         "terminal_status": status,
         "final_output": final_output,
         "verification_mode": _valid_mode(raw.get("verification_mode")) or _valid_mode(persisted_mode),
+        "refusal_kind": raw.get("refusal_kind") if raw.get("refusal_kind") in {"guardrail", "verification_failed", "model"} else None,
+        "profile": profile_ref,
         "budgets": budgets,
         "retrieved_article_ids": retrieved_ids,
         "grounding": grounding,

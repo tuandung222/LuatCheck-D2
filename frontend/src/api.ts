@@ -1,4 +1,4 @@
-import type { ActivityEvent, Article, Capabilities, Proposal, RunRecord, VerificationMode } from "./types";
+import type { ActivityEvent, Article, Capabilities, Health, Proposal, RunRecord, VerificationMode } from "./types";
 
 let csrfToken = "";
 
@@ -33,25 +33,18 @@ export async function initialize(): Promise<void> {
 }
 
 export const getCapabilities = () => request<Capabilities>("/api/v1/capabilities");
-export const getHealth = () => request<{
-  api: string;
-  configuration: string;
-  corpus: string;
-  model: { status: string; reachable: boolean | null; configured_model_present: boolean | null };
-  active_run: boolean;
-  queued_runs: number;
-}>("/api/v1/health");
+export const getHealth = () => request<Health>("/api/v1/health");
 
 export const listRuns = () => request<{ items: RunRecord[]; total: number }>("/api/v1/runs?limit=30");
 export const getRun = (runId: string) => request<RunRecord>(`/api/v1/runs/${encodeURIComponent(runId)}`);
 export const getArticle = (runId: string, articleId: string) =>
   request<Article>(`/api/v1/runs/${encodeURIComponent(runId)}/articles/${encodeURIComponent(articleId)}`);
 
-export async function createRun(query: string, pastedDocument: string, verificationMode: VerificationMode, idempotencyKey: string) {
+export async function createRun(query: string, pastedDocument: string, verificationMode: VerificationMode, idempotencyKey: string, profile?: string) {
   return request<{ run_id: string; job_status: string; replayed: boolean }>("/api/v1/runs", {
     method: "POST",
     headers: { "Idempotency-Key": idempotencyKey },
-    body: JSON.stringify({ query, pasted_document: pastedDocument || null, verification_mode: verificationMode }),
+    body: JSON.stringify({ query, pasted_document: pastedDocument || null, verification_mode: verificationMode, profile: profile ?? null }),
   });
 }
 
