@@ -1,0 +1,315 @@
+{
+  "evaluation_type": "LLM-judge estimates (not human labels); retrieval/citation/latency/token metrics are measured",
+  "run_id": "bench-smoke-20261023-044250",
+  "phase": "smoke",
+  "run_status": "collected",
+  "run_profile": "mac-latency",
+  "latency_reportable": true,
+  "report_eligible": false,
+  "judge_model": {
+    "requested": "deepseek/deepseek-v4-flash",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 24000,
+    "revision_pinned": false,
+    "returned_model_ids": {
+      "deepseek/deepseek-v4-flash": 7
+    }
+  },
+  "human_labels_received": false,
+  "human_judge_agreement": null,
+  "runs_sha256": "24a08b7a4204af14b78f406ecb3a3dfd7bd4bffbc6989995b3f636cc0e5a54f2",
+  "peak_memory_mb": {
+    "runner_rss_sampled": 270.53,
+    "runner_ru_maxrss": 395.39,
+    "llama_server_rss_sampled": 529.59,
+    "note": "Sampled with `ps` every 0.5 s on this machine (mac-latency, local server only); null = not measured."
+  },
+  "cells": {
+    "hcmut_v1/l1": {
+      "benchmark": "hcmut_v1",
+      "variant": "l1",
+      "trials_planned": 3,
+      "trials_recorded": 3,
+      "trials_missing": 0,
+      "seeds": [
+        42
+      ],
+      "tasks": 3,
+      "counts": {
+        "answered": 0,
+        "refused": 1,
+        "clarified": 1,
+        "execution_errors": 1,
+        "error_kinds": {
+          "model_output_error": 1
+        },
+        "pre_model_policy_refusals": 0,
+        "retried_attempts_superseded": 0
+      },
+      "judging": {
+        "judged_valid": 1,
+        "judgeable": 1,
+        "unjudgeable": 0,
+        "judge_invalid_or_pending": 1,
+        "not_judged_execution_errors": 1
+      },
+      "strict_success": {
+        "successes": 0,
+        "trials": 3,
+        "unknown": 1,
+        "rate_lower_bound": 0.0,
+        "rate_upper_bound": 0.3333333333333333,
+        "rate_known_only": 0.0,
+        "known": 2,
+        "ci95_task_bootstrap_lower_bound": [
+          0.0,
+          0.0
+        ],
+        "note": "Errors count as failures; unknown (judge invalid/unjudgeable/missing) counts as failure in the lower bound."
+      },
+      "behaviour_appropriate": {
+        "count": 0,
+        "known": 2,
+        "rate": 0.0
+      },
+      "claim_faithfulness": {
+        "claims": 1,
+        "supported": 0,
+        "contradicted": 1,
+        "not_established": 0,
+        "rate": 0.0
+      },
+      "retrieval": {
+        "answerable_trials": 2,
+        "Recall@1": 0.5,
+        "Recall@3": 0.5,
+        "Recall@5": 0.5,
+        "Hit@5": 0.5,
+        "MRR": 0.5,
+        "note": "Trajectory retrieval: IDs surfaced by the agent's searches/reads; execution errors included as recorded."
+      },
+      "citation_id": {
+        "answerable_trials": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "note": "Set match of cited IDs to gold IDs (evaluation/metrics.py); zero when nothing is cited. Not answer correctness."
+      },
+      "refusal_behaviour": {
+        "expected_refuse_trials": 1,
+        "refused": 1,
+        "answered_instead": 0
+      },
+      "latency": {
+        "reportable": true,
+        "trial_p50_s": 9.063051,
+        "trial_p95_s": 9.7985391,
+        "model_call_p50_s": 4.958189000000001,
+        "model_call_p95_s": 15.81958795,
+        "trials_measured": 2,
+        "model_calls_measured": 8,
+        "non_model_ms_mean": 63.417,
+        "note": "Sequential single-request Mac latency; execution-error trials excluded."
+      },
+      "tokens": {
+        "trials_with_complete_usage": 3,
+        "trials_incomplete": 0,
+        "input_per_trial": 5650.333333333333,
+        "output_per_trial": 661.6666666666666,
+        "input_total": 16951,
+        "output_total": 1985,
+        "native_calls_per_trial": 2.6666666666666665,
+        "tool_calls_per_trial": 1.0,
+        "repairs_total": 2
+      },
+      "lexical_proxy": {
+        "unsupported_sentence_rate_answered_only": null,
+        "note": "Lexical proxy of the agent's L1 verifier. Not semantic correctness."
+      },
+      "judge_cost": {
+        "attempts": 4,
+        "gateway_reported_usd_body": 0.0037586964799999996,
+        "gateway_reported_usd_header": 0.00393057536,
+        "attempts_without_reported_cost": 0,
+        "prompt_tokens": 7628,
+        "completion_tokens": 16870,
+        "note": "Gateway-reported cost over all retained attempts (not an invoice); missing cost is unknown, not zero."
+      },
+      "per_seed": {
+        "42": {
+          "trials": 3,
+          "strict_success_lower": 0.0
+        }
+      },
+      "by_category": {
+        "multi": {
+          "trials": 1,
+          "strict_success_lower": 0.0
+        },
+        "out_of_scope": {
+          "trials": 1,
+          "strict_success_lower": 0.0
+        },
+        "single": {
+          "trials": 1,
+          "strict_success_lower": 0.0
+        }
+      }
+    },
+    "hcmut_v1/off": {
+      "benchmark": "hcmut_v1",
+      "variant": "off",
+      "trials_planned": 3,
+      "trials_recorded": 3,
+      "trials_missing": 0,
+      "seeds": [
+        42
+      ],
+      "tasks": 3,
+      "counts": {
+        "answered": 3,
+        "refused": 0,
+        "clarified": 0,
+        "execution_errors": 0,
+        "error_kinds": {},
+        "pre_model_policy_refusals": 0,
+        "retried_attempts_superseded": 0
+      },
+      "judging": {
+        "judged_valid": 3,
+        "judgeable": 3,
+        "unjudgeable": 0,
+        "judge_invalid_or_pending": 0,
+        "not_judged_execution_errors": 0
+      },
+      "strict_success": {
+        "successes": 0,
+        "trials": 3,
+        "unknown": 0,
+        "rate_lower_bound": 0.0,
+        "rate_upper_bound": 0.0,
+        "rate_known_only": 0.0,
+        "known": 3,
+        "ci95_task_bootstrap_lower_bound": [
+          0.0,
+          0.0
+        ],
+        "note": "Errors count as failures; unknown (judge invalid/unjudgeable/missing) counts as failure in the lower bound."
+      },
+      "behaviour_appropriate": {
+        "count": 2,
+        "known": 3,
+        "rate": 0.6666666666666666
+      },
+      "claim_faithfulness": {
+        "claims": 10,
+        "supported": 6,
+        "contradicted": 1,
+        "not_established": 3,
+        "rate": 0.6
+      },
+      "retrieval": {
+        "answerable_trials": 2,
+        "Recall@1": 0.75,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "Hit@5": 1.0,
+        "MRR": 1.0,
+        "note": "Trajectory retrieval: IDs surfaced by the agent's searches/reads; execution errors included as recorded."
+      },
+      "citation_id": {
+        "answerable_trials": 2,
+        "precision": 1.0,
+        "recall": 0.75,
+        "note": "Set match of cited IDs to gold IDs (evaluation/metrics.py); zero when nothing is cited. Not answer correctness."
+      },
+      "refusal_behaviour": {
+        "expected_refuse_trials": 1,
+        "refused": 0,
+        "answered_instead": 1
+      },
+      "latency": {
+        "reportable": true,
+        "trial_p50_s": 11.369594,
+        "trial_p95_s": 24.467728700000002,
+        "model_call_p50_s": 5.905654,
+        "model_call_p95_s": 11.734680399999997,
+        "trials_measured": 3,
+        "model_calls_measured": 7,
+        "non_model_ms_mean": 52.05766666666667,
+        "note": "Sequential single-request Mac latency; execution-error trials excluded."
+      },
+      "tokens": {
+        "trials_with_complete_usage": 3,
+        "trials_incomplete": 0,
+        "input_per_trial": 4609.333333333333,
+        "output_per_trial": 424.0,
+        "input_total": 13828,
+        "output_total": 1272,
+        "native_calls_per_trial": 2.3333333333333335,
+        "tool_calls_per_trial": 1.3333333333333333,
+        "repairs_total": 0
+      },
+      "lexical_proxy": {
+        "unsupported_sentence_rate_answered_only": 0.6666666666666666,
+        "note": "Lexical proxy of the agent's L1 verifier. Not semantic correctness."
+      },
+      "judge_cost": {
+        "attempts": 3,
+        "gateway_reported_usd_body": 0.005913615148,
+        "gateway_reported_usd_header": 0.005913615148,
+        "attempts_without_reported_cost": 0,
+        "prompt_tokens": 7036,
+        "completion_tokens": 15030,
+        "note": "Gateway-reported cost over all retained attempts (not an invoice); missing cost is unknown, not zero."
+      },
+      "per_seed": {
+        "42": {
+          "trials": 3,
+          "strict_success_lower": 0.0
+        }
+      },
+      "by_category": {
+        "multi": {
+          "trials": 1,
+          "strict_success_lower": 0.0
+        },
+        "out_of_scope": {
+          "trials": 1,
+          "strict_success_lower": 0.0
+        },
+        "single": {
+          "trials": 1,
+          "strict_success_lower": 0.0
+        }
+      }
+    }
+  },
+  "claims_note": "Micro-average over factual claims in valid judgeable outputs, refusals included.",
+  "judge_cost_total": {
+    "attempts": 7,
+    "valid_attempts": 4,
+    "gateway_reported_usd_body": 0.009672311628,
+    "gateway_reported_usd_header": 0.009844190508,
+    "attempts_without_reported_cost": 0,
+    "actual_invoiced_charge_usd": null,
+    "note": "Gateway-reported usage cost, retained failed attempts included; not an independently verified invoice."
+  },
+  "coverage": {
+    "planned": 6,
+    "recorded": 6,
+    "judged_or_error": 5
+  },
+  "report_eligible_note": "Not eligible: smoke/unfrozen run, incomplete collection, or trials missing judgments.",
+  "human_audit_sample": {
+    "count": 4,
+    "review_ids": [
+      "119ce27599bd12b7a9b0eca3",
+      "31151c029b36902fbc419ecf",
+      "b8911c519e7fdaf4aa47f34e",
+      "ff8ef9321cb3d80e1aa4fb75"
+    ]
+  }
+}

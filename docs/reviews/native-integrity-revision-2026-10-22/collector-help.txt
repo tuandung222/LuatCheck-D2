@@ -1,0 +1,21 @@
+usage: python -m evaluation.run_eval [-h] [--config CONFIG] [--tasks TASKS]
+                                     [--seeds SEEDS [SEEDS ...]]
+                                     [--ablation {both,on,off}]
+                                     [--phase {pilot,main}]
+                                     [--task-review TASK_REVIEW]
+                                     [--output OUTPUT] [--preflight-only]
+                                     [--execute]
+
+Native-only D2 collection. No inference runs without --execute.
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --tasks TASKS
+  --seeds SEEDS [SEEDS ...]
+  --ablation {both,on,off}
+  --phase {pilot,main}
+  --task-review TASK_REVIEW
+  --output OUTPUT       A new directory; existing paths are refused.
+  --preflight-only      Read model/version metadata; no generation.
+  --execute             Explicit permission to start native inference.

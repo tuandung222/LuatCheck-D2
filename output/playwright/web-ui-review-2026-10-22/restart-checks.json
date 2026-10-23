@@ -1,0 +1,55 @@
+{
+  "restarted_run_snapshot_keys": [
+    {
+      "run_id": "54d8398d-ea87-445a-941b-cc08321e1838",
+      "terminal_status": "error",
+      "snapshot_keys": [
+        "terminal_status",
+        "final_output"
+      ]
+    },
+    {
+      "run_id": "eed1cce8-d8f5-4569-8346-50bfb012206b",
+      "terminal_status": "error",
+      "snapshot_keys": [
+        "terminal_status",
+        "final_output"
+      ]
+    },
+    {
+      "run_id": "fab30bc5-d7b8-43a2-bfdb-335e29eb888a",
+      "terminal_status": "error",
+      "snapshot_keys": [
+        "terminal_status",
+        "final_output"
+      ]
+    },
+    {
+      "run_id": "ade8f337-ecb2-4c7d-9af7-fe5fe1024e58",
+      "terminal_status": "answered",
+      "snapshot_keys": [
+        "terminal_status",
+        "final_output",
+        "verification_mode",
+        "budgets",
+        "retrieved_article_ids",
+        "grounding",
+        "usage",
+        "elapsed_ms"
+      ]
+    }
+  ],
+  "renew_expired_proposal": {
+    "http_status": 200,
+    "old_id": "prop_3cf6a72de0c3d1f1",
+    "result": {
+      "proposal_id": "prop_3cf6a72de0c3d1f1",
+      "recipient": "restart-review@example.invalid",
+      "content": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó. Điều này được quy định tại Điều 26 của Bộ luật Lao động 2019.",
+      "payload_hash": "3cf6a72de0c3d1f11df97a3ff6725bf619b0f197757d83b49f60d411cb0646af",
+      "status": "expired",
+      "delivery": "Local outbox only; not sent."
+    }
+  },
+  "outbox_rows": 2
+}

@@ -1,0 +1,1 @@
+{"backend": "lancedb", "dim": 1024, "metric": "cosine"}

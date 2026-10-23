@@ -1,0 +1,32 @@
+{
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "python": "3.14.4",
+  "ollama_version": {
+    "version": "0.34.4"
+  },
+  "model_placement": {
+    "models": [
+      {
+        "name": "qwen2.5:3b",
+        "model": "qwen2.5:3b",
+        "size": 2310358957,
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-10-22T17:11:29.301405+07:00",
+        "size_vram": 2310358957,
+        "context_length": 8192
+      }
+    ]
+  },
+  "packages_sha256": "451ed31f3fefd7e7d501e806252134ed4a897d17ca2be26c60ecd9c99a9f7146",
+  "note": "Read-only snapshot during main collection. Model placement is not GPU-active-time telemetry."
+}

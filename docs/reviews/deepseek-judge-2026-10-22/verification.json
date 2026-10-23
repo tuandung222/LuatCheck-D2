@@ -1,0 +1,77 @@
+{
+  "status": "artifact_integrity_passed_with_provider_accounting_anomalies",
+  "judge_trials": 60,
+  "api_attempts": 83,
+  "provider_nonstream_cost_fields_consistent": false,
+  "provider_nonstream_cost_conflicts": [
+    {
+      "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+      "attempt": 2,
+      "header_cost": 0.0022722045,
+      "body_usage_cost": 0.00394285
+    },
+    {
+      "review_id": "6ca79b2c862614767055bc4d",
+      "attempt": 2,
+      "header_cost": 0.0020643983,
+      "body_usage_cost": 0.00391725
+    },
+    {
+      "review_id": "b17de6a27d7656149e80a45d",
+      "attempt": 2,
+      "header_cost": 0.0020203599,
+      "body_usage_cost": 0.00389485
+    },
+    {
+      "review_id": "dbd45deb49ef72c38f4b0b01",
+      "attempt": 2,
+      "header_cost": 0.0021249511,
+      "body_usage_cost": 0.0016624062
+    },
+    {
+      "review_id": "e07c5760529528b8b221fcb7",
+      "attempt": 2,
+      "header_cost": 0.0023196834,
+      "body_usage_cost": 0.0039706
+    },
+    {
+      "review_id": "e1fd4353ad8dd1205dc6b290",
+      "attempt": 2,
+      "header_cost": 0.0022099806,
+      "body_usage_cost": 0.0039436
+    },
+    {
+      "review_id": "e74d36035dd3dde9b5c7277a",
+      "attempt": 2,
+      "header_cost": 0.0022526428,
+      "body_usage_cost": 0.0039327
+    },
+    {
+      "review_id": "e9f42b6509c3f04c8fec3aba",
+      "attempt": 2,
+      "header_cost": 0.0021702674,
+      "body_usage_cost": 0.0039188
+    }
+  ],
+  "provider_usage_consistency_anomaly_count": 13,
+  "valid_streamed_recovery_judgments_verified": 7,
+  "unaltered_raw_judgments_restored_by_parser_correction": 1,
+  "judgments_sha256": "834e27ef6bfb253a4119ef7bfda100b86f0ec06408b301d5d775c697e20976db",
+  "human_audit_sample": 12,
+  "human_labels_present": false,
+  "checks": [
+    "all frozen input and attempt hashes",
+    "60 unique blinded packets",
+    "actual API body-to-judgment match",
+    "raw usage/body retention with cost disagreements explicitly flagged",
+    "SSE chunk-to-judgment replay if recovery used",
+    "strict success and claim-count arithmetic",
+    "blank human audit labels"
+  ],
+  "not_validated": [
+    "semantic judge reliability",
+    "human/expert correctness",
+    "immutable upstream model revision",
+    "actual invoice"
+  ]
+}

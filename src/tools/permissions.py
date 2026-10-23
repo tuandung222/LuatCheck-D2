@@ -16,6 +16,9 @@ TOOL_PERMISSIONS: Dict[str, PermissionLevel] = {
     "search_knowledge": PermissionLevel.READ_ONLY,
     "get_article": PermissionLevel.READ_ONLY,
     "get_document": PermissionLevel.READ_ONLY,
+    # Generic model-facing names (domain profiles without the labour-law vocabulary)
+    "search": PermissionLevel.READ_ONLY,
+    "read_document": PermissionLevel.READ_ONLY,
     "save_case": PermissionLevel.REVERSIBLE_WRITE,
     "record_case": PermissionLevel.REVERSIBLE_WRITE,
     "send_summary": PermissionLevel.IRREVERSIBLE_WRITE,

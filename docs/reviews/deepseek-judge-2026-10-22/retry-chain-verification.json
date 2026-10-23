@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "accepted": 60,
+  "attempts": 86,
+  "phases": [
+    {
+      "phase": "evaluation/runs/deepseek-judge-main-v1",
+      "accepted_cumulative": 49
+    },
+    {
+      "phase": "evaluation/runs/deepseek-judge-recovery-v1",
+      "accepted_cumulative": 57
+    },
+    {
+      "phase": "evaluation/runs/deepseek-judge-recovery-v2",
+      "accepted_cumulative": 60
+    }
+  ],
+  "previous_57_accepted_judgments_unchanged": true,
+  "human_labels_generated": false,
+  "accounting_anomalies_remain_disclosed": true
+}

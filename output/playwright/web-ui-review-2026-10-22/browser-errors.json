@@ -1,0 +1,14 @@
+[
+  {
+    "level": "error",
+    "message": "TypeError: Cannot read properties of undefined (reading 'length')\n    at Vf (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:190:29641)\n    at ds (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:38:17041)\n    at Oa (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:44290)\n    at Ta (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:39965)\n    at Vd (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:39893)\n    at bl (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:39747)\n    at Fs (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:36088)\n    at Ca (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:35036)\n    at xe (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:25:1614)\n    at MessagePort.Ke (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:25:1990)",
+    "timestamp": "2026-10-22T14:43:25.961Z",
+    "url": "http://127.0.0.1:8011/assets/index-CU5RhWhG.js"
+  },
+  {
+    "level": "error",
+    "message": "TypeError: Cannot read properties of undefined (reading 'length')\n    at Vf (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:190:29641)\n    at ds (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:38:17041)\n    at Oa (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:44290)\n    at Ta (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:39965)\n    at Vd (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:39893)\n    at bl (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:39747)\n    at Fs (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:36088)\n    at Ca (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:40:35036)\n    at xe (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:25:1614)\n    at MessagePort.Ke (http://127.0.0.1:8011/assets/index-CU5RhWhG.js:25:1990)",
+    "timestamp": "2026-10-22T14:43:25.961Z",
+    "url": "http://127.0.0.1:8011/assets/index-CU5RhWhG.js"
+  }
+]

@@ -1,0 +1,14 @@
+usage: python -m evaluation.score_reviewed_runs [-h] --run-dir RUN_DIR
+                                                --labels LABELS
+                                                [--create-template]
+                                                [--output OUTPUT]
+
+Recompute summaries from native artifacts and completed human labels; no
+inference.
+
+options:
+  -h, --help         show this help message and exit
+  --run-dir RUN_DIR
+  --labels LABELS
+  --create-template
+  --output OUTPUT

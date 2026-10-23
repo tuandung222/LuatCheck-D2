@@ -1,0 +1,50 @@
+[
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 200,
+    "body": "{\"proposal_id\":\"prop_59be41b5bbf0bbf6\",\"recipient\":\"concurrent-round2@example.invalid\",\"content\":\"Ti"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "status": 500,
+    "body": "Internal Server Error"
+  }
+]

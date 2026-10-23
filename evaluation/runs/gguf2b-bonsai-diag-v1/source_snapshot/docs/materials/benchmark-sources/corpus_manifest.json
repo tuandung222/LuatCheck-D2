@@ -1,0 +1,10 @@
+{
+  "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+  "pdf_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+  "records": 220,
+  "corpus_sha256": "8df39799441508ef17f94123393497c56d48ed071d99fd3cc7e16d283bf88c94",
+  "coverage": "Articles 1 through 220, no missing or duplicate article number",
+  "snapshot_scope": "Original 2019 enactment, not a consolidated statement of current 2026 law",
+  "not_a_public_QA_benchmark": true,
+  "extractor": "docs/materials/benchmark-sources/extract_official_corpus.py"
+}

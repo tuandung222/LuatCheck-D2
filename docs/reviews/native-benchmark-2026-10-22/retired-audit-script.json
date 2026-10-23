@@ -1,0 +1,6 @@
+{
+  "old_path": "docs/reviews/d2-gap-review-2026-10-21/review_checks.py",
+  "historical_text_path": "docs/reviews/d2-gap-review-2026-10-21/review_checks.historical-source.txt",
+  "sha256": "f3f2b4627a396a792611e10c0a70a4c7ccd6e837b6028b77a7684758b239ace4",
+  "reason": "Historical audit used component substitution; retired from executable Python sources. Retained only as historical evidence, excluded from current evaluation."
+}

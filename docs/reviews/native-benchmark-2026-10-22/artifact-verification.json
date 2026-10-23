@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "trials": 60,
+  "native_calls": 264,
+  "runs_sha256": "631480b2989859bd95d39bc8b7754caa1687a221cfd3858210c7129d0920b06e",
+  "checks": [
+    "full Cartesian coverage",
+    "all snapshot file hashes",
+    "retrieval arithmetic",
+    "citation-ID arithmetic",
+    "native request hashes",
+    "raw native usage",
+    "no answer-cache hits"
+  ],
+  "semantic_correctness_validated": false,
+  "undefined_metrics": "Citation-ID fractions on empty-gold foreign-scope trials are inapplicable; frozen raw rows retain a legacy convention. They are excluded from report aggregates. MRR uses the full ordered unique tool trajectory; Recall/Hit@5 use its first five IDs.",
+  "note": "Arithmetic and recorded provenance checks; not backend attestation, legal expert review or human labels. The manifest model.inference_executed=false is the preflight snapshot, not a count of collection invocations."
+}

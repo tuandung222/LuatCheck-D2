@@ -1,0 +1,115 @@
+{
+  "lexical_accepts_wrong_number": true,
+  "self_scored_USR": 0.0,
+  "mcp_get_article": {
+    "not_executed": "MCP module import failed; direct alias keyword failure is recorded separately."
+  },
+  "hitl_result": {
+    "status": "success",
+    "message": "Đã gửi thành công bản tóm tắt pháp lý tới 'synthetic-review@example.invalid'.",
+    "hash": "da3a4a16d3782623074148716b26f7c4698d0c5045d678d9e04c549d2752c262"
+  },
+  "mcp_import": {
+    "mcp_version": "2.3.0",
+    "error": "ModuleNotFoundError: No module named 'mcp.server.fastmcp'. This is mcp 2.x, where FastMCP was renamed to MCPServer (from mcp.server.mcpserver import MCPServer) and other APIs changed; see the migration guide at https://py.sdk.modelcontextprotocol.io/v2/migration/#fastmcp-renamed-to-mcpserver or pin 'mcp<2' to keep running v1 code."
+  },
+  "raw_synthetic_email_in_audit": true,
+  "benchmark_instrumentation": {
+    "primary_calls": 129,
+    "primary_successes": 0,
+    "primary_errors": 129,
+    "fallback_calls": 129,
+    "agents": [
+      {
+        "mode": "off",
+        "endpoint": "http://127.0.0.1:1",
+        "embedding_neural_online": false,
+        "primary_type": "OllamaLLMClient",
+        "fallback_type": "MockRuleBasedLLMClient"
+      },
+      {
+        "mode": "l1_on",
+        "endpoint": "http://127.0.0.1:1",
+        "embedding_neural_online": false,
+        "primary_type": "OllamaLLMClient",
+        "fallback_type": "MockRuleBasedLLMClient"
+      }
+    ]
+  },
+  "metrics": {
+    "off": {
+      "mode": "off",
+      "seeds": [
+        42,
+        123,
+        2026
+      ],
+      "Recall@1_mean": 0.7,
+      "Recall@1_std": 0.0,
+      "Recall@5_mean": 1.0,
+      "Recall@5_std": 0.0,
+      "MRR_mean": 0.8333,
+      "MRR_std": 0.0,
+      "Citation_Precision_mean": 0.7,
+      "Citation_Precision_std": 0.0,
+      "Citation_Recall_mean": 0.7,
+      "Citation_Recall_std": 0.0,
+      "Coverage_mean": 1.0,
+      "Coverage_std": 0.0,
+      "Unsupported_Rate_mean": 0.0,
+      "Unsupported_Rate_std": 0.0,
+      "Error_Taxonomy": {
+        "retrieval_miss": 0,
+        "wrong_provision_cited": 9,
+        "unsupported_claim": 0,
+        "over_refusal": 0,
+        "budget_exhausted": 0,
+        "parse_error": 0
+      },
+      "Latency": {
+        "p50_ms": 8.28,
+        "p95_ms": 12.33
+      },
+      "Tokens_Per_Task_mean": 255.6,
+      "Total_Tokens": 7668,
+      "Compute_Cost_USD": 0.0
+    },
+    "l1_on": {
+      "mode": "l1_on",
+      "seeds": [
+        42,
+        123,
+        2026
+      ],
+      "Recall@1_mean": 0.7,
+      "Recall@1_std": 0.0,
+      "Recall@5_mean": 1.0,
+      "Recall@5_std": 0.0,
+      "MRR_mean": 0.8333,
+      "MRR_std": 0.0,
+      "Citation_Precision_mean": 1.0,
+      "Citation_Precision_std": 0.0,
+      "Citation_Recall_mean": 1.0,
+      "Citation_Recall_std": 0.0,
+      "Coverage_mean": 1.0,
+      "Coverage_std": 0.0,
+      "Unsupported_Rate_mean": 0.0,
+      "Unsupported_Rate_std": 0.0,
+      "Error_Taxonomy": {
+        "retrieval_miss": 0,
+        "wrong_provision_cited": 0,
+        "unsupported_claim": 0,
+        "over_refusal": 0,
+        "budget_exhausted": 0,
+        "parse_error": 0
+      },
+      "Latency": {
+        "p50_ms": 7.94,
+        "p95_ms": 11.68
+      },
+      "Tokens_Per_Task_mean": 256.2,
+      "Total_Tokens": 7686,
+      "Compute_Cost_USD": 0.0
+    }
+  }
+}

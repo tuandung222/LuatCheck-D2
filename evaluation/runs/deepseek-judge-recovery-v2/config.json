@@ -1,0 +1,29 @@
+{
+  "base_url": "https://ai-gateway01.qualgo.ai/v1",
+  "credential_env": "LUATCHECK_JUDGE_API_KEY",
+  "model": "deepseek/deepseek-v4-flash",
+  "requested_family": "DeepSeek V4.1 Flash",
+  "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+  "revision_pinned": false,
+  "allowed_returned_models": [
+    "deepseek/deepseek-v4-flash",
+    "deepseek-v4-flash",
+    "deepseek-flash",
+    "deepseek-v4.1-flash",
+    "deepseek-v4.1-flash-1017"
+  ],
+  "model_identity_note": "Gateway /model/info identifies provider deepseek and upstream deepseek/deepseek-v4-flash. Official DeepSeek documentation maps the legacy deepseek-v4-flash alias to V4.1-Flash-1017. Actual gateway routing is not independently attested; preserve returned model IDs.",
+  "model_identity_source": "https://api-docs.deepseek.com/",
+  "thinking": {
+    "type": "enabled"
+  },
+  "reasoning_effort": "high",
+  "max_tokens": 32768,
+  "timeout_seconds": 180,
+  "max_attempts": 3,
+  "concurrency": 1,
+  "temperature": null,
+  "seed": null,
+  "billing_note": "Use real gateway usage and cost headers if present. Actual invoiced charges are unknown unless separately obtained; do not apply official direct-API prices to a gateway.",
+  "stream": true
+}

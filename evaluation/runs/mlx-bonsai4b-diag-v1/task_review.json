@@ -1,0 +1,90 @@
+{
+  "status": "approved",
+  "review_kind": "AI_source_review_not_human_expert",
+  "tasks_sha256": "8b84c4f395b25b34e7c8fd76758501ea070c456d7db288d8c943167bbb46d9dc",
+  "corpus_sha256": "8df39799441508ef17f94123393497c56d48ed071d99fd3cc7e16d283bf88c94",
+  "tasks": [
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [11, 12]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [12]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [15, 16]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [16, 17]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [18]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [18]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [15, 16, 21]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [18, 19]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Official Gazette PDF pages [8]",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "status": "approved",
+      "reviewer": "OpenAI Codex (AI source review; not a human legal expert)",
+      "source_note": "Corpus scope: original Vietnamese Labour Code only, no California law.",
+      "gold_check": "All supporting excerpts checked as exact substrings of source-extracted articles; question conditions and terminology revised before inference.",
+      "expert_review": "pending"
+    }
+  ],
+  "public_benchmark_claim": false,
+  "human_expert_review": "pending"
+}

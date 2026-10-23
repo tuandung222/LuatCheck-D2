@@ -1,0 +1,16 @@
+{
+  "check": "real_local_MCP_stdio_transport",
+  "tools": [
+    "get_article",
+    "save_case",
+    "search_law",
+    "send_summary"
+  ],
+  "article_lookup": "success",
+  "search": "success",
+  "unverified_write": "blocked_unverified_write",
+  "summary": "blocked_by_permission_gate",
+  "inference_executed": false,
+  "external_delivery": false,
+  "empirical_model_evidence": false
+}

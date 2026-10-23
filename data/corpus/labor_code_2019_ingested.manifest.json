@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "luatcheck-ingestion",
+    "version": "0.1.0"
+  },
+  "status": "ok",
+  "config": {
+    "path": "config/ingestion/labor_code_2019.yaml",
+    "sha256": "40ee5fcfa0e7d45230055ba5e691c3df520c5cfc1773e4266670e4e01b2e71f3",
+    "output": {
+      "corpus": "data/corpus/labor_code_2019_ingested.json",
+      "manifest": "data/corpus/labor_code_2019_ingested.manifest.json"
+    },
+    "defaults": {}
+  },
+  "environment": {
+    "python": "3.14.4",
+    "libraries": {
+      "PyYAML": "6.0.3",
+      "pypdf": "6.21.1"
+    }
+  },
+  "sources": [
+    {
+      "index": 0,
+      "path": "docs/materials/benchmark-sources/bll2019-congbao.pdf",
+      "sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+      "bytes": 1352965,
+      "format": "pdf",
+      "doc_code": "BLL2019",
+      "collection_id": "labor_code_2019",
+      "source_name": "Bộ luật Lao động 2019",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+      "document_number": "45/2019/QH14",
+      "issued_date": null,
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^CHỦ TỊCH QUỐC HỘI"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 94,
+          "pages_without_text": [
+            94
+          ]
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{prefix}{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{series_tag}PhuLuc_{num_ascii}",
+          "article": "Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": true
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 93,
+      "normalized_chars": 189185,
+      "normalized_sha256": "5ff577416717e7bc993b87239cd69a90be65e7d423e4fdf2592c2079df331a72",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 47,
+          "sample": "CÔNG BÁO/Số 993 + 994/Ngày 26-12-2019 3"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# CÔNG BÁO/Số # + #/Ngày #-#-#",
+          "count": 46,
+          "sample": "4 CÔNG BÁO/Số 993 + 994/Ngày 26-12-2019"
+        }
+      ],
+      "removed_lines_total": 93,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 220,
+          "chapter": 17,
+          "clause": 640,
+          "muc": 24,
+          "point": 275
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 5,
+            "samples": [
+              "@181188: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của",
+              "@183781: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của",
+              "@184626: 2. Người lao động quy định tại điểm đ và điểm e khoản 1 Điều 2 của Luật này",
+              "@185479: 2. Sửa đổi, bổ sung Điều 32 của Bộ luật Tố tụng dân sự số 92/2015/QH13",
+              "@185769: 1. Tranh chấp lao động cá nhân giữa người lao động với người sử dụng lao"
+            ]
+          },
+          "point": {
+            "count": 12,
+            "samples": [
+              "@181450: a) Đủ tuổi theo quy định tại khoản 2 Điều 169 của Bộ luật Lao động;",
+              "@183677: b) Sửa đổi, bổ sung Điều 55 như sau:",
+              "@184987: a) Có tuổi thấp hơn tối đa 10 tuổi so với tuổi nghỉ hưu quy định tại khoản 2",
+              "@185095: b) Có đủ 15 năm trở lên làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy",
+              "@185244: c) Sửa đổi, bổ sung khoản 1 Điều 73 như sau:"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 220,
+        "by_level": {
+          "article": 220
+        }
+      },
+      "validation": {
+        "chunks": 220,
+        "verbatim_chunks": 220,
+        "chunks_with_unemitted_parent": 220,
+        "coverage": {
+          "source_chars": 189185,
+          "covered_chars": 186770,
+          "char_fraction": 0.987235,
+          "source_non_whitespace_chars": 147583,
+          "covered_non_whitespace_chars": 145876,
+          "non_whitespace_fraction": 0.988434,
+          "uncovered_stretches_with_text": 36,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 238,
+              "non_whitespace_chars": 185,
+              "preview": "QUỐC HỘI CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc Bộ luật số: 45/2019/QH14 BỘ "
+            },
+            {
+              "start": 10228,
+              "end": 10280,
+              "non_whitespace_chars": 40,
+              "preview": "Chương II VIỆC LÀM, TUYỂN DỤNG VÀ QUẢN LÝ LAO ĐỘNG"
+            },
+            {
+              "start": 11714,
+              "end": 11777,
+              "non_whitespace_chars": 48,
+              "preview": "Chương III HỢP ĐỒNG LAO ĐỘNG Mục 1 GIAO KẾT HỢP ĐỒNG LAO ĐỘNG"
+            },
+            {
+              "start": 22675,
+              "end": 22710,
+              "non_whitespace_chars": 26,
+              "preview": "Mục 2 THỰC HIỆN HỢP ĐỒNG LAO ĐỘNG"
+            },
+            {
+              "start": 27596,
+              "end": 27630,
+              "non_whitespace_chars": 25,
+              "preview": "Mục 3 CHẤM DỨT HỢP ĐỒNG LAO ĐỘNG"
+            },
+            {
+              "start": 44257,
+              "end": 44290,
+              "non_whitespace_chars": 24,
+              "preview": "Mục 4 HỢP ĐỒNG LAO ĐỘNG VÔ HIỆU"
+            },
+            {
+              "start": 45640,
+              "end": 45669,
+              "non_whitespace_chars": 21,
+              "preview": "Mục 5 CHO THUÊ LẠI LAO ĐỘNG"
+            },
+            {
+              "start": 51593,
+              "end": 51652,
+              "non_whitespace_chars": 46,
+              "preview": "Chương IV GIÁO DỤC NGHỀ NGHIỆP VÀ PHÁT TRIỂN KỸ NĂNG NGHỀ"
+            },
+            {
+              "start": 55910,
+              "end": 56029,
+              "non_whitespace_chars": 92,
+              "preview": "Chương V ĐỐI THOẠI TẠI NƠI LÀM VIỆC, THƯƠNG LƯỢNG TẬP THỂ, THỎA ƯỚC LAO ĐỘNG TẬP THỂ Mục 1 ĐỐI THOẠI"
+            },
+            {
+              "start": 57705,
+              "end": 57733,
+              "non_whitespace_chars": 21,
+              "preview": "Mục 2 THƯƠNG LƯỢNG TẬP THỂ"
+            },
+            {
+              "start": 67726,
+              "end": 67759,
+              "non_whitespace_chars": 24,
+              "preview": "Mục 3 THỎA ƯỚC LAO ĐỘNG TẬP THỂ"
+            },
+            {
+              "start": 79037,
+              "end": 79059,
+              "non_whitespace_chars": 17,
+              "preview": "Chương VI TIỀN LƯƠNG"
+            },
+            {
+              "start": 89213,
+              "end": 89287,
+              "non_whitespace_chars": 57,
+              "preview": "Chương VII THỜI GIỜ LÀM VIỆC, THỜI GIỜ NGHỈ NGƠI Mục 1 THỜI GIỜ LÀM VIỆC"
+            },
+            {
+              "start": 92620,
+              "end": 92646,
+              "non_whitespace_chars": 19,
+              "preview": "Mục 2 THỜI GIỜ NGHỈ NGƠI"
+            },
+            {
+              "start": 97295,
+              "end": 97390,
+              "non_whitespace_chars": 73,
+              "preview": "Mục 3 THỜI GIỜ LÀM VIỆC, THỜI GIỜ NGHỈ NGƠI ĐỐI VỚI NGƯỜI LÀM CÔNG VIỆC CÓ TÍNH CHẤT ĐẶC BIỆT"
+            },
+            {
+              "start": 98277,
+              "end": 98352,
+              "non_whitespace_chars": 58,
+              "preview": "Chương VIII KỶ LUẬT LAO ĐỘNG, TRÁCH NHIỆM VẬT CHẤT Mục 1 KỶ LUẬT LAO ĐỘNG"
+            },
+            {
+              "start": 107474,
+              "end": 107502,
+              "non_whitespace_chars": 21,
+              "preview": "Mục 2 TRÁCH NHIỆM VẬT CHẤT"
+            },
+            {
+              "start": 109406,
+              "end": 109443,
+              "non_whitespace_chars": 28,
+              "preview": "Chương IX AN TOÀN, VỆ SINH LAO ĐỘNG"
+            },
+            {
+              "start": 110404,
+              "end": 110481,
+              "non_whitespace_chars": 59,
+              "preview": "Chương X NHỮNG QUY ĐỊNH RIÊNG ĐỐI VỚI LAO ĐỘNG NỮ VÀ BẢO ĐẢM BÌNH ĐẲNG GIỚI"
+            },
+            {
+              "start": 117613,
+              "end": 117733,
+              "non_whitespace_chars": 93,
+              "preview": "Chương XI NHỮNG QUY ĐỊNH RIÊNG ĐỐI VỚI LAO ĐỘNG CHƯA THÀNH NIÊN VÀ MỘT SỐ LAO ĐỘNG KHÁC Mục 1 LAO ĐỘ"
+            },
+            {
+              "start": 122059,
+              "end": 122090,
+              "non_whitespace_chars": 23,
+              "preview": "Mục 2 NGƯỜI LAO ĐỘNG CAO TUỔI"
+            },
+            {
+              "start": 123386,
+              "end": 123553,
+              "non_whitespace_chars": 129,
+              "preview": "Mục 3 NGƯỜI LAO ĐỘNG VIỆT NAM ĐI LÀM VIỆC Ở NƯỚC NGOÀI, LAO ĐỘNG CHO CÁC TỔ CHỨC, CÁ NHÂN NƯỚC NGOÀI"
+            },
+            {
+              "start": 129507,
+              "end": 129543,
+              "non_whitespace_chars": 27,
+              "preview": "Mục 4 LAO ĐỘNG LÀ NGƯỜI KHUYẾT TẬT"
+            },
+            {
+              "start": 130885,
+              "end": 130929,
+              "non_whitespace_chars": 33,
+              "preview": "Mục 5 LAO ĐỘNG LÀ NGƯỜI GIÚP VIỆC GIA ĐÌNH"
+            },
+            {
+              "start": 133541,
+              "end": 133569,
+              "non_whitespace_chars": 20,
+              "preview": "Mục 6 MỘT SỐ LAO ĐỘNG KHÁC"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "5 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@181188: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của', '@183781: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của']",
+          "12 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@181450: a) Đủ tuổi theo quy định tại khoản 2 Điều 169 của Bộ luật Lao động;', '@183677: b) Sửa đổi, bổ sung Điều 55 như sau:']",
+          "1 of 94 pages have (almost) no text layer and contribute nothing: pages [94]"
+        ]
+      }
+    }
+  ],
+  "totals": {
+    "sources": 1,
+    "records": 220,
+    "by_level": {
+      "article": 220
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "source 0 (docs/materials/benchmark-sources/bll2019-congbao.pdf): 5 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@181188: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của', '@183781: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của']",
+    "source 0 (docs/materials/benchmark-sources/bll2019-congbao.pdf): 12 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@181450: a) Đủ tuổi theo quy định tại khoản 2 Điều 169 của Bộ luật Lao động;', '@183677: b) Sửa đổi, bổ sung Điều 55 như sau:']",
+    "source 0 (docs/materials/benchmark-sources/bll2019-congbao.pdf): 1 of 94 pages have (almost) no text layer and contribute nothing: pages [94]"
+  ],
+  "output": {
+    "corpus": "data/corpus/labor_code_2019_ingested.json",
+    "records": 220,
+    "corpus_sha256": "6d00155323fbac07c68fc3a1f39de6d2caf560ee63cb43be9d15f0bdc64bcc1e"
+  }
+}

@@ -1,0 +1,13 @@
+# Optional model backends for src/retrieval/rerankers.py and src/verifier/nli_backends.py
+# Install: uv pip install --python .venv/bin/python -r requirements-model-backends.txt
+# (kept separate from requirements.txt on purpose; verified on Python 3.14 / Apple M4)
+torch>=2.6
+transformers>=5.0      # Qwen3.5 (OneJev decision models) needs transformers 5.x
+sentencepiece>=0.2     # mDeBERTa / XLM-R tokenizers
+protobuf>=4            # tokenizer conversion fallbacks
+huggingface_hub>=1.0   # snapshot checks in tests
+# Weights are fetched on demand into ~/.cache/huggingface; download explicitly with e.g.
+#   hf download MoritzLaurer/mDeBERTa-v3-base-mnli-xnli
+#   hf download AITeamVN/Vietnamese_Reranker
+#   hf download Qwen/Qwen3-Reranker-0.6B
+#   hf download OmniJev/OneJev1.6-0.8B

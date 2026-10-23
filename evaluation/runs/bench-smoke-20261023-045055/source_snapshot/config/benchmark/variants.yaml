@@ -1,0 +1,25 @@
+# D2 variants, selected through configuration only. `verification_mode` is passed to LuatCheckAgent;
+# `overrides` is deep-merged into the AppConfig dump before validation. The runner refuses to run a variant whose
+# overrides are not honoured by the installed src/ config (e.g. an unsupported retrieval.reranker): there is no
+# runner-side emulation.
+variants:
+  "off":
+    description: Verification off (L1 and repair disabled)
+    verification_mode: "off"
+    overrides: {}
+  l1:
+    description: L1 lexical grounding verification on, with repair
+    verification_mode: l1_on
+    overrides: {}
+  l1_rerank:
+    description: L1 on plus cross-encoder reranking of the first-stage candidates
+    verification_mode: l1_on
+    overrides:
+      retrieval:
+        reranker:
+          enabled: true
+          backend: cross_encoder
+          model: AITeamVN/Vietnamese_Reranker
+          top_k_in: 20
+          top_k_out: 5
+          max_length: 1024

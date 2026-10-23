@@ -1,0 +1,20 @@
+{
+  ".answer-content": {
+    "color": "rgb(52, 70, 78)",
+    "fontSize": "15px"
+  },
+  ".article-text": null,
+  ".citation-copy b": {
+    "color": "rgb(52, 70, 78)",
+    "fontSize": "10px"
+  },
+  ".panel-kicker": {
+    "color": "rgb(155, 167, 170)",
+    "fontSize": "8px"
+  },
+  ".source-banner b": {
+    "color": "rgb(52, 70, 78)",
+    "fontSize": "10px"
+  },
+  ".welcome-footnote": null
+}

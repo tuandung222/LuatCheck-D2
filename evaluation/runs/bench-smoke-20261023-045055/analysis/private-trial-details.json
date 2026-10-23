@@ -1,0 +1,210 @@
+[
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "06c2ae6cb3bc542cf38d1893",
+    "state": "judged",
+    "judgment": {
+      "review_id": "06c2ae6cb3bc542cf38d1893",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi yêu cầu số học kỳ chính tối đa cho chương trình PFIEV. Câu trả lời của thí sinh không cung cấp con số tối đa; thay vào đó cho rằng văn bản không có quy định cụ thể và ngầm loại PFIEV ra khỏi nhóm có mức 10-14. Tài liệu nguồn HCMUT_HVDT1260_Dieu_1_S3_1 có bảng rõ ràng: PFIEV có tối đa 14 học kỳ (hàng '... PFIEV 10 10 14'). Do đó, câu trả lời chứa ít nhất hai tuyên bố sai (phủ nhận mục tối đa, loại PFIEV khỏi nhóm 10-14) và thiếu thông tin đúng. Vì vậy, correctness = 0, completeness = 0, behaviour_appropriate = true (vì có trả lời, không từ chối).",
+      "claims": [
+        {
+          "answer_quote": "Đối với chương trình PFIEV (Kỹ sư Việt-Pháp), thời gian đào tạo chuẩn được quy định là 10 học kỳ.",
+          "support": "supported",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "Nguồn thể hiện cột Chuẩn cho PFIEV là 10."
+        },
+        {
+          "answer_quote": "các loại khác như song ngành hoặc miễn trừ có 10-14 học kỳ",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "Nguồn cho thấy PFIEV cũng có tối đa 14, không chỉ riêng song ngành hay miễn trừ; do đó nhận định 'các loại khác' có 10-14 trong khi PFIEV không là mâu thuẫn."
+        },
+        {
+          "answer_quote": "Nếu không có điều khoản cụ thể 'tối đa X' trong văn bản đã nạp, thông tin này chỉ dựa trên quy định chuẩn.",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "Văn bản có quy định cụ thể về tối đa cho PFIEV (cột Tối đa = 14), trái với tuyên bố rằng không có điều khoản 'tối đa X'."
+        },
+        {
+          "answer_quote": "thời gian đào tạo chuẩn được ghi là 10 học kỳ",
+          "support": "supported",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "Xác nhận thời gian đào tạo chuẩn là 10."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "3a6f2f999931142b2ea38599",
+    "state": "judged",
+    "judgment": {
+      "review_id": "3a6f2f999931142b2ea38599",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The question asks about the maximum number of học kỳ chính for the PFIEV program under Quyết định 1260/QĐ-ĐHBK. The source article HCMUT_HVDT1260_Dieu_1_S3_1 contains the table specifying 'Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14', meaning the maximum is 14 học kỳ chính. The candidate refused, claiming the full document could not be found and thus could not confirm. However, the relevant information is present in the supplied source. Therefore, the refusal is unjustified, and the candidate's factual claim that the answer cannot be determined is contradicted by the evidence. The candidate provided no correct answer, so correctness=0 and completeness=0.",
+      "claims": [
+        {
+          "answer_quote": "Không tìm thấy văn bản đầy đủ trong cơ sở dữ liệu (full_content_chars < 808) để khẳng định chính xác về số học kỳ tối đa, do đó không thể đưa ra thông tin dựa trên nội dung trích dẫn.",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "The source article explicitly shows the PFIEV program's maximum number of học kỳ chính is 14, directly contradicting the claim that the database lacks sufficient content to determine this number."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "6c6467ea928778442309fc3a",
+    "state": "judged",
+    "judgment": {
+      "review_id": "6c6467ea928778442309fc3a",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate không trả lời câu hỏi mà đặt câu hỏi lại, không cung cấp bất kỳ thông tin thực tế nào. Câu hỏi có thể trả lời từ các điều khoản được cung cấp (Điều 7 và 8). Hành vi không phù hợp với expected_behavior là 'answer'. Do đó, behaviour_appropriate = false, correctness = 0, completeness = 0.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "clarified",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "c8bfcfb9384c9a4d6fe52dc5",
+    "state": "judged",
+    "judgment": {
+      "review_id": "c8bfcfb9384c9a4d6fe52dc5",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate answer is a clarification question that does not answer the query. It repeats the question instead of providing the requested information from the provided sources. Since the question is answerable from the supplied articles (Điều 7 and Điều 8), the candidate should have answered. Thus behaviour is inappropriate, and there are no correct or complete assertions.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "clarified",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "expected_behavior": "refuse",
+    "recorded": true,
+    "review_id": "bb71544db495ab657026b37f",
+    "state": "judged",
+    "judgment": {
+      "review_id": "bb71544db495ab657026b37f",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The question asks for a specific tuition fee per credit for the 2026–2027 academic year, which is outside the knowledge-base scope. The expected behaviour is a clear refusal with a suggestion to contact the training unit. The candidate did not refuse; instead it made unsupported claims about two specific documents (2933/QĐ-ĐHBK and 1260/QĐ-ĐHBK) that cannot be verified because no source articles were provided. The answer does not supply the requested fee, so completeness and correctness are both 0. The behaviour is inappropriate because the assistant should have refused to answer and pointed out the scope limitation.",
+      "claims": [
+        {
+          "answer_quote": "Quy định số 2933/QĐ-ĐHBK và Quyết định số 1260/QĐ-ĐHBK",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "No source articles provided to verify the existence of these documents in the corpus."
+        },
+        {
+          "answer_quote": "chúng không nêu rõ trực tiếp giá trị học phí cho từng tín chỉ năm học",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "No source articles provided to verify the content of the cited documents."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "expected_behavior": "refuse",
+    "recorded": true,
+    "review_id": "6b9b8567ea129441f0a98c0d",
+    "state": "judged",
+    "judgment": {
+      "review_id": "6b9b8567ea129441f0a98c0d",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Candidate correctly refused the question, as expected. The answer states that no basis was found in the searched documents, which is consistent with the scope (question outside the knowledge base). No factual legal claims are made that require verification from source articles; the candidate merely reports the outcome of the search. Therefore, all criteria are satisfied.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": true,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  }
+]

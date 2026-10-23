@@ -1,0 +1,357 @@
+{
+  "run_dir": "evaluation/runs/bll2019-pilot-v1",
+  "phase": "pilot",
+  "trials": 8,
+  "collection_manifest_sha256": "d918ec1c484ebb1536d55c3887cdcfe5777abf5180bb417aab6cd353f22ea8d8",
+  "runs_sha256": "eb71621e575cdaa91e8bd5acdb079a4806915caff875f685a8e022320c5c9c35",
+  "tasks_sha256": "cb88d1237e94e171a3c30fcc62a5f9926d2291dd9d354764b06a23e1e12c02da",
+  "semantic_task_success": null,
+  "semantic_unsupported_claim_rate": null,
+  "human_judge_agreement": null,
+  "hardware_GPU_active_hours": null,
+  "note": "Measured operations and citation-ID/lexical diagnostics. No semantic or expert correctness score is inferred.",
+  "modes": {
+    "off": {
+      "trials": 4,
+      "answered": 1,
+      "refused": 2,
+      "clarified": 1,
+      "execution_errors": 0,
+      "error_types": {},
+      "answer_coverage": 0.25,
+      "answerable_trials": 3,
+      "answerable_answer_coverage": 0.3333333333333333,
+      "answerable_non_answers": 2,
+      "terminal_behavior_agreement_not_correctness": 0.5,
+      "latency_p50_seconds": 46.338837000000005,
+      "latency_p95_seconds": 57.3241078,
+      "task_wall_hours_sum": 0.046501591111111115,
+      "native_service_hours": 0.04640881236166667,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 23,
+      "input_tokens": 107955,
+      "output_tokens": 2693,
+      "tokens_per_trial": 27662.0,
+      "tools_per_trial_mean": 4.0,
+      "repairs_total": 0,
+      "trajectory_recall5": 0.5,
+      "trajectory_hit5": 0.6666666666666666,
+      "trajectory_mrr": 0.6666666666666666,
+      "citation_id_precision": 0.3333333333333333,
+      "citation_id_recall": 0.16666666666666666,
+      "reference_token_f1_diagnostic": 0.14666666666666664,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.0,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 0.5,
+          "citation_precision": 0.3333333333333333,
+          "citation_recall": 0.16666666666666666
+        }
+      ],
+      "budget_violations": []
+    },
+    "l1_on": {
+      "trials": 4,
+      "answered": 1,
+      "refused": 2,
+      "clarified": 1,
+      "execution_errors": 0,
+      "error_types": {},
+      "answer_coverage": 0.25,
+      "answerable_trials": 3,
+      "answerable_answer_coverage": 0.3333333333333333,
+      "answerable_non_answers": 2,
+      "terminal_behavior_agreement_not_correctness": 0.5,
+      "latency_p50_seconds": 46.4379505,
+      "latency_p95_seconds": 64.17485769999999,
+      "task_wall_hours_sum": 0.04758110388888889,
+      "native_service_hours": 0.047496613796111115,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 23,
+      "input_tokens": 107955,
+      "output_tokens": 2707,
+      "tokens_per_trial": 27665.5,
+      "tools_per_trial_mean": 4.0,
+      "repairs_total": 0,
+      "trajectory_recall5": 0.5,
+      "trajectory_hit5": 0.6666666666666666,
+      "trajectory_mrr": 0.6666666666666666,
+      "citation_id_precision": 0.3333333333333333,
+      "citation_id_recall": 0.16666666666666666,
+      "reference_token_f1_diagnostic": 0.14666666666666664,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.0,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 0.5,
+          "citation_precision": 0.3333333333333333,
+          "citation_recall": 0.16666666666666666
+        }
+      ],
+      "budget_violations": []
+    }
+  },
+  "details": [
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_4",
+        "Dieu_151"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 16.723812000000002,
+      "input_tokens": 3726,
+      "output_tokens": 301,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc không quá bao nhiêu ngày đối với công việc của người quản lý doanh nghiệp? Thời gian thử việc cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên có quy định cụ thể không?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_4",
+        "Dieu_151"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 12.481973,
+      "input_tokens": 3726,
+      "output_tokens": 315,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc không quá bao nhiêu ngày đối với công việc của người quản lý doanh nghiệp? Thời gian thử việc cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên chưa được xác định. Tôi cần thông tin cụ thể về thời gian thử việc cho loại công việc này.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.43999999999999995
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47"
+      ],
+      "citation_ids": [
+        "Dieu_46"
+      ],
+      "wall_seconds": 54.205818,
+      "input_tokens": 35436,
+      "output_tokens": 1098,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 46 của Bộ luật Lao động 2019, thời gian báo trước để chấm dứt hợp đồng lao động là tổng thời gian làm việc thực tế cho người sử dụng lao động trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề trước khi người lao động thôi việc. Chính phủ sẽ quy định chi tiết về thời gian báo trước trong Điều này.",
+        "citations": [
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này. 2. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc. 4. Chính phủ quy định chi tiết Điều này."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.43999999999999995
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47"
+      ],
+      "citation_ids": [
+        "Dieu_46"
+      ],
+      "wall_seconds": 58.004242,
+      "input_tokens": 35436,
+      "output_tokens": 1098,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 46 của Bộ luật Lao động 2019, thời gian báo trước để chấm dứt hợp đồng lao động là tổng thời gian làm việc thực tế cho người sử dụng lao động trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề trước khi người lao động thôi việc. Chính phủ sẽ quy định chi tiết về thời gian báo trước trong Điều này.",
+        "citations": [
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này. 2. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc. 4. Chính phủ quy định chi tiết Điều này."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_220",
+        "Dieu_45",
+        "Dieu_109",
+        "Dieu_41",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 53.470014000000006,
+      "input_tokens": 34381,
+      "output_tokens": 609,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Đã sử dụng tối đa số lượt gọi công cụ và vẫn chưa tìm thấy tài liệu liên quan đến vấn đề tiền đặt cọc trong Bộ luật Lao động 2019.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_220",
+        "Dieu_45",
+        "Dieu_109",
+        "Dieu_41",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 38.670083,
+      "input_tokens": 34381,
+      "output_tokens": 609,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Đã sử dụng tối đa số lượt gọi công cụ và vẫn chưa tìm thấy tài liệu liên quan đến vấn đề tiền đặt cọc trong Bộ luật Lao động 2019.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_108",
+        "Dieu_117",
+        "Dieu_107",
+        "Dieu_98",
+        "Dieu_219"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 65.9341,
+      "input_tokens": 34412,
+      "output_tokens": 685,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_108",
+        "Dieu_117",
+        "Dieu_107",
+        "Dieu_98",
+        "Dieu_219"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 39.207660000000004,
+      "input_tokens": 34412,
+      "output_tokens": 685,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.",
+        "citations": []
+      }
+    }
+  ]
+}

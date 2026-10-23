@@ -1,0 +1,42 @@
+[
+  {
+    "run_id": "7b829e78-b8a8-4a23-a486-251d370950ea",
+    "job_status": "finished",
+    "terminal_status": "error",
+    "snapshot": {
+      "terminal_status": "error",
+      "final_output": {
+        "action": "error",
+        "citations": [],
+        "verified": false,
+        "from_cache": false,
+        "reason": "ollama inference failed: ConnectionError",
+        "error_kind": "backend_error"
+      },
+      "verification_mode": "lexical_grounding",
+      "budgets": {
+        "tool_calls": {
+          "used": 0,
+          "limit": 5
+        },
+        "repairs": {
+          "used": 0,
+          "limit": 2
+        },
+        "steps": {
+          "used": 1,
+          "limit": 10
+        }
+      },
+      "retrieved_article_ids": [],
+      "grounding": null,
+      "usage": {
+        "model_call_count": 1,
+        "input_tokens": null,
+        "output_tokens": null,
+        "model_wall_ms": 6.17
+      },
+      "elapsed_ms": 56.5
+    }
+  }
+]

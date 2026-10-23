@@ -1,0 +1,40 @@
+id: 1
+event: run_queued
+data: {"created_at":1792679918.322007}
+
+id: 2
+event: run_started
+data: {"created_at":1792679918.336085}
+
+id: 3
+event: model_call_started
+data: {"step":1,"created_at":1792679918.349741}
+
+id: 4
+event: tool_completed
+data: {"tool":"search_law","article_ids":["Dieu_26","Dieu_24","Dieu_27"],"result_count":3,"created_at":1792679925.639346}
+
+id: 5
+event: model_call_started
+data: {"step":2,"created_at":1792679925.640197}
+
+id: 6
+event: verification_completed
+data: {"mode":"lexical_grounding","passed":true,"created_at":1792679934.675812}
+
+id: 7
+event: run_finished
+data: {"terminal_status":"answered","created_at":1792679934.678515}
+
+id: 8
+event: run_persisted
+data: {"terminal_status":"answered","created_at":1792679934.6910021}
+
+id: 9
+event: summary_proposal_created
+data: {"proposal_id":"prop_b63093f21334dfc2","created_at":1792679987.870962}
+
+id: 10
+event: summary_proposal_completed
+data: {"status":"queued_locally","created_at":1792679997.8207371}
+

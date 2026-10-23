@@ -1,0 +1,6 @@
+# Run profile for reportable latency on the Mac: strictly sequential, one request at a time, one agent instance.
+name: mac-latency
+workers: 1
+latency_reportable: true
+record_memory: true
+description: Sequential, one agent, one in-flight request. Per-trial and per-call latency and process memory are recorded and reportable for this device.

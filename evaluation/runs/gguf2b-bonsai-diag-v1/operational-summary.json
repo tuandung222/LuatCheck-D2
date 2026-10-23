@@ -1,0 +1,754 @@
+{
+  "run_dir": "evaluation/runs/gguf2b-bonsai-diag-v1",
+  "phase": "pilot",
+  "trials": 20,
+  "collection_manifest_sha256": "669ba7d1d865daa267e8ddd34d378b832a59fa8b1ad1922a5e25b2d29af32490",
+  "runs_sha256": "9de1149c1d964a92b5e2f23eb3f8070b4196c40d5565f4ce6bca50e63537e82e",
+  "tasks_sha256": "8b84c4f395b25b34e7c8fd76758501ea070c456d7db288d8c943167bbb46d9dc",
+  "semantic_task_success": null,
+  "semantic_unsupported_claim_rate": null,
+  "human_judge_agreement": null,
+  "hardware_GPU_active_hours": null,
+  "note": "Measured operations and citation-ID/lexical diagnostics. No semantic or expert correctness score is inferred.",
+  "modes": {
+    "off": {
+      "trials": 10,
+      "answered": 6,
+      "refused": 3,
+      "clarified": 1,
+      "execution_errors": 0,
+      "error_types": {},
+      "answer_coverage": 0.6,
+      "answerable_trials": 9,
+      "answerable_answer_coverage": 0.6666666666666666,
+      "answerable_non_answers": 3,
+      "terminal_behavior_agreement_not_correctness": 0.7,
+      "latency_p50_seconds": 7.304908,
+      "latency_p95_seconds": 21.20785874999998,
+      "task_wall_hours_sum": 0.02556835611111111,
+      "native_service_hours": null,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 25,
+      "input_tokens": 51825,
+      "output_tokens": 5273,
+      "tokens_per_trial": 5709.8,
+      "tools_per_trial_mean": 1.4,
+      "repairs_total": 0,
+      "trajectory_recall5": 0.5,
+      "trajectory_hit5": 0.5555555555555556,
+      "trajectory_mrr": 0.3981444444444444,
+      "citation_id_precision": 0.2222222222222222,
+      "citation_id_recall": 0.2222222222222222,
+      "reference_token_f1_diagnostic": 0.2024587137604337,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.3888833333333333,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 0.5,
+          "citation_precision": 0.2222222222222222,
+          "citation_recall": 0.2222222222222222
+        }
+      ],
+      "budget_violations": []
+    },
+    "l1_on": {
+      "trials": 10,
+      "answered": 3,
+      "refused": 6,
+      "clarified": 1,
+      "execution_errors": 0,
+      "error_types": {},
+      "answer_coverage": 0.3,
+      "answerable_trials": 9,
+      "answerable_answer_coverage": 0.3333333333333333,
+      "answerable_non_answers": 6,
+      "terminal_behavior_agreement_not_correctness": 0.4,
+      "latency_p50_seconds": 8.204499,
+      "latency_p95_seconds": 26.435553399999982,
+      "task_wall_hours_sum": 0.029234982500000003,
+      "native_service_hours": null,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 29,
+      "input_tokens": 65894,
+      "output_tokens": 6062,
+      "tokens_per_trial": 7195.6,
+      "tools_per_trial_mean": 1.4,
+      "repairs_total": 4,
+      "trajectory_recall5": 0.5,
+      "trajectory_hit5": 0.5555555555555556,
+      "trajectory_mrr": 0.3981444444444444,
+      "citation_id_precision": 0.2222222222222222,
+      "citation_id_recall": 0.2222222222222222,
+      "reference_token_f1_diagnostic": 0.1327065335734709,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.0,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 0.5,
+          "citation_precision": 0.2222222222222222,
+          "citation_recall": 0.2222222222222222
+        }
+      ],
+      "budget_violations": []
+    }
+  },
+  "details": [
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_53",
+        "Dieu_107"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 5.896469,
+      "input_tokens": 3079,
+      "output_tokens": 299,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc có trình độ chuyên môn, kỹ thuật cao đẳng là bao nhiêu ngày?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_53",
+        "Dieu_107"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 5.74611,
+      "input_tokens": 3079,
+      "output_tokens": 299,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc có trình độ chuyên môn, kỹ thuật cao đẳng là bao nhiêu ngày?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.5882352941176471
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_90",
+        "Dieu_91"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 8.739504,
+      "input_tokens": 3051,
+      "output_tokens": 517,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.5882352941176471
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_90",
+        "Dieu_91"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 9.320387,
+      "input_tokens": 3051,
+      "output_tokens": 517,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.034782608695652174
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_38",
+        "Dieu_39",
+        "Dieu_45",
+        "Dieu_35",
+        "Dieu_41",
+        "Dieu_20",
+        "Dieu_48"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 30.584412,
+      "input_tokens": 23663,
+      "output_tokens": 1716,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Bộ luật Lao động 2019 (Điều 46), thời hạn báo trước và thời gian chấm dứt hợp đồng lao động thường được quy định theo quy định của Chính phủ. Tuy nhiên, các điều khoản trong Luật hiện tại (như Điều 35, 38, 45, 46...) chưa ghi rõ con số 'ngày' cụ thể cho thời hạn này trong văn bản chính thức. Thông thường, quy định về thời hạn báo trước và chấm dứt hợp đồng lao động được áp dụng theo hướng dẫn của Bộ Lao động hoặc các Thông tư. Nếu bạn cần thông tin chi tiết về ngày cụ thể, vui lòng cung cấp thêm yêu cầu.",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_38",
+        "Dieu_39",
+        "Dieu_45",
+        "Dieu_35",
+        "Dieu_41",
+        "Dieu_20",
+        "Dieu_48"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 34.046623,
+      "input_tokens": 29619,
+      "output_tokens": 1929,
+      "tool_calls": 5,
+      "repairs": 1,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không có tài liệu trong cơ sở dữ liệu đã cung cấp chính xác con số ngày cụ thể cho thời hạn báo trước/chiết khấu trong Luật Lao động 2019, do các snippet chỉ trích dẫn 'thường' hoặc 'quy định chung' không có mã điều luật rõ ràng. Cần chuyển sang refusal để đảm bảo tính chính xác về nguồn gốc.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_45",
+        "Dieu_35",
+        "Dieu_40"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 10.046327999999999,
+      "input_tokens": 5513,
+      "output_tokens": 598,
+      "tool_calls": 1,
+      "repairs": 1,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy các điều khoản trong file source (cơ sở dữ liệu đã nạp) để khẳng định chính xác nội dung pháp lý.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.22727272727272727
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_45",
+        "Dieu_35",
+        "Dieu_40"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 7.082701,
+      "input_tokens": 3125,
+      "output_tokens": 420,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có quyền đơn phương chấm dứt hợp đồng nhưng phải báo trước cho người sử dụng lao động trong trường hợp cá nhân. Tuy nhiên, điều này không bao gồm toàn bộ các tình huống mà người dùng đề cập (ví dụ: việc không có lý do chính đáng hoặc từ 05 ngày liên tục). Việc báo trước chỉ áp dụng nếu quy định cụ thể.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động [...] 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.19148936170212766
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_138",
+        "Dieu_22",
+        "Dieu_139"
+      ],
+      "citation_ids": [
+        "Dieu_138"
+      ],
+      "wall_seconds": 8.971775,
+      "input_tokens": 3257,
+      "output_tokens": 538,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Dựa trên Điều 138 của Bộ luật Lao động 2019, lao động nữ mang thai có quyền đơn phương chấm dứt hợp đồng lao động nếu có xác nhận của cơ sở khám bệnh, chữa bệnh có thẩm quyền. Tuy nhiên, điều khoản này chỉ áp dụng trong trường hợp cụ thể khi xác định rõ con số thời gian nghỉ ngơi để tiếp tục làm việc. Người sử dụng lao động cũng phải thông báo trước và đồng ý.",
+        "citations": [
+          {
+            "article_id": "Dieu_138",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 138. Quyền đơn phương chấm dứt, tạm hoãn hợp đồng lao động của lao động nữ mang thai"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.19148936170212766
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_138",
+        "Dieu_22",
+        "Dieu_139"
+      ],
+      "citation_ids": [
+        "Dieu_138"
+      ],
+      "wall_seconds": 9.167857,
+      "input_tokens": 3257,
+      "output_tokens": 538,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Dựa trên Điều 138 của Bộ luật Lao động 2019, lao động nữ mang thai có quyền đơn phương chấm dứt hợp đồng lao động nếu có xác nhận của cơ sở khám bệnh, chữa bệnh có thẩm quyền. Tuy nhiên, điều khoản này chỉ áp dụng trong trường hợp cụ thể khi xác định rõ con số thời gian nghỉ ngơi để tiếp tục làm việc. Người sử dụng lao động cũng phải thông báo trước và đồng ý.",
+        "citations": [
+          {
+            "article_id": "Dieu_138",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 138. Quyền đơn phương chấm dứt, tạm hoãn hợp đồng lao động của lao động nữ mang thai"
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.41463414634146345
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_39",
+        "Dieu_41"
+      ],
+      "citation_ids": [
+        "Dieu_40"
+      ],
+      "wall_seconds": 7.669493999999999,
+      "input_tokens": 3093,
+      "output_tokens": 436,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 40 của Bộ luật Lao động 2019, khi người lao động chấm dứt hợp đồng trái pháp luật, trợ cấp thôi việc không được hưởng. Người lao động phải bồi thường cho người sử dụng lao động: nửa tháng tiền lương theo hợp đồng và một khoản tương ứng với tiền lương trong những ngày không báo trước, trừ khoản tiền báo trước.",
+        "citations": [
+          {
+            "article_id": "Dieu_40",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.41463414634146345
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_39",
+        "Dieu_41"
+      ],
+      "citation_ids": [
+        "Dieu_40"
+      ],
+      "wall_seconds": 7.527115,
+      "input_tokens": 3093,
+      "output_tokens": 436,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 40 của Bộ luật Lao động 2019, khi người lao động chấm dứt hợp đồng trái pháp luật, trợ cấp thôi việc không được hưởng. Người lao động phải bồi thường cho người sử dụng lao động: nửa tháng tiền lương theo hợp đồng và một khoản tương ứng với tiền lương trong những ngày không báo trước, trừ khoản tiền báo trước.",
+        "citations": [
+          {
+            "article_id": "Dieu_40",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [],
+      "citation_ids": [],
+      "wall_seconds": 3.794174,
+      "input_tokens": 1262,
+      "output_tokens": 217,
+      "tool_calls": 0,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy tài liệu chính xác về Bộ luật Lao động 45/2019/QH14 trong cơ sở dữ liệu. Cần lưu ý rằng theo pháp luật Việt Nam, quy định về nghỉ việc và trợ cấp thường dựa trên Luật Lao động 2019.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [],
+      "citation_ids": [],
+      "wall_seconds": 2.8784490000000003,
+      "input_tokens": 1262,
+      "output_tokens": 217,
+      "tool_calls": 0,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy tài liệu chính xác về Bộ luật Lao động 45/2019/QH14 trong cơ sở dữ liệu. Cần lưu ý rằng theo pháp luật Việt Nam, quy định về nghỉ việc và trợ cấp thường dựa trên Luật Lao động 2019.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_45",
+        "Dieu_41"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 17.133135,
+      "input_tokens": 8959,
+      "output_tokens": 1011,
+      "tool_calls": 1,
+      "repairs": 2,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không thể xác thực căn cứ pháp lý sau 2 lần thử sửa chữa. Chi tiết vi phạm: Bạn đưa ra câu trả lời khẳng định nhưng không cung cấp bất kỳ trích dẫn nguồn (citation) nào làm căn cứ!",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3657142857142857
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_45",
+        "Dieu_41"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 9.747627,
+      "input_tokens": 3234,
+      "output_tokens": 613,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Bộ luật Lao động 2019, khi người lao động chấm dứt hợp đồng trái pháp luật:\n1. Không được trợ cấp thôi việc (Điều 40).\n2. Phải trả tiền lương theo quy định trong hợp đồng và khoản tiền tương ứng với ngày không báo trước (Điều 40).\n3. Nếu người lao động không muốn tiếp tục làm việc, bên sử dụng phải trả trợ cấp tối thiểu bằng 2 tháng lương (Dưới đây là phân tích chi tiết: Điều 46 quy định về trợ cấp khi chấm dứt hợp đồng, thường áp dụng cho trường hợp không muốn tiếp tục làm việc để chấm dứt. Trong trường hợp 'chấm dứt', thông tin cụ thể trong Luật cần kiểm tra kỹ hơn.",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_13",
+        "Dieu_40",
+        "Dieu_119",
+        "Dieu_102",
+        "Dieu_77"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 6.615772,
+      "input_tokens": 5560,
+      "output_tokens": 320,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy điều khoản trong Bộ luật Lao động 2019 QH14 xác định rõ quy định về việc người lao động nộp tiền đặt cọc để bảo đảm hợp đồng.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_13",
+        "Dieu_40",
+        "Dieu_119",
+        "Dieu_102",
+        "Dieu_77"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 6.613555,
+      "input_tokens": 5560,
+      "output_tokens": 320,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy điều khoản trong Bộ luật Lao động 2019 QH14 xác định rõ quy định về việc người lao động nộp tiền đặt cọc để bảo đảm hợp đồng.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [],
+      "citation_ids": [],
+      "wall_seconds": 3.204882,
+      "input_tokens": 2501,
+      "output_tokens": 197,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy tài liệu pháp lý trong cơ sở dữ liệu cung cấp về quy định giờ làm thêm của bang California.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [],
+      "citation_ids": [],
+      "wall_seconds": 2.50565,
+      "input_tokens": 2501,
+      "output_tokens": 197,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy tài liệu pháp lý trong cơ sở dữ liệu cung cấp về quy định giờ làm thêm của bang California.",
+        "citations": []
+      }
+    }
+  ]
+}

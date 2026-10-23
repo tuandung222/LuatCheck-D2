@@ -1,0 +1,299 @@
+{
+  "off": {
+    "mode": "off",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.7,
+    "Recall@1_std": 0.0,
+    "Recall@5_mean": 1.0,
+    "Recall@5_std": 0.0,
+    "MRR_mean": 0.8333,
+    "MRR_std": 0.0,
+    "Citation_Precision_mean": 0.7,
+    "Citation_Precision_std": 0.0,
+    "Citation_Recall_mean": 0.7,
+    "Citation_Recall_std": 0.0,
+    "Coverage_mean": 1.0,
+    "Coverage_std": 0.0,
+    "Unsupported_Rate_mean": 0.0,
+    "Unsupported_Rate_std": 0.0,
+    "Error_Taxonomy": {
+      "retrieval_miss": 0,
+      "wrong_provision_cited": 9,
+      "unsupported_claim": 0,
+      "over_refusal": 0,
+      "budget_exhausted": 0,
+      "parse_error": 0
+    },
+    "Error_Taxonomy_Detailed": {
+      "configuration": "off",
+      "total_tasks_evaluated": 30,
+      "total_failure_instances": 9,
+      "counts": {
+        "retrieval_miss": 0,
+        "wrong_provision_cited": 9,
+        "unsupported_claim": 0,
+        "over_refusal": 0,
+        "budget_exhausted": 0,
+        "parse_error": 0
+      },
+      "frequencies_percent": {
+        "retrieval_miss": 0.0,
+        "wrong_provision_cited": 30.0,
+        "unsupported_claim": 0.0,
+        "over_refusal": 0.0,
+        "budget_exhausted": 0.0,
+        "parse_error": 0.0
+      },
+      "case_studies": {
+        "retrieval_miss": [],
+        "wrong_provision_cited": [
+          {
+            "task_id": "VLQA_LABOR_003",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_004",
+            "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_003",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_004",
+            "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_003",
+            "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_004",
+            "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_36"
+              ],
+              "ground_truth": [
+                "dieu_35"
+              ],
+              "invalid": [
+                "dieu_36"
+              ]
+            }
+          },
+          {
+            "task_id": "VLQA_LABOR_007",
+            "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+            "failure_mode": "wrong_provision_cited",
+            "what_failed": "Trích dẫn sai điều luật: ['dieu_41'] (kỳ vọng: ['dieu_40'])",
+            "why": "Agent đưa ra kết luận dựa trên điều luật không thuộc căn cứ chuẩn hoặc gán nhầm điều luật tương tự.",
+            "details": {
+              "cited": [
+                "dieu_41"
+              ],
+              "ground_truth": [
+                "dieu_40"
+              ],
+              "invalid": [
+                "dieu_41"
+              ]
+            }
+          }
+        ],
+        "unsupported_claim": [],
+        "over_refusal": [],
+        "budget_exhausted": [],
+        "parse_error": []
+      }
+    },
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `OFF`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 9\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **9** | 30.0% | **VLQA_LABOR_003**: Trích dẫn sai điều luật: ['dieu_36'] (kỳ vọng: ['dieu_35'])... |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Latency": {
+      "p50_ms": 8.28,
+      "p95_ms": 12.33
+    },
+    "Tokens_Per_Task_mean": 255.6,
+    "Total_Tokens": 7668,
+    "Compute_Cost_USD": 0.0
+  },
+  "l1_on": {
+    "mode": "l1_on",
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "Recall@1_mean": 0.7,
+    "Recall@1_std": 0.0,
+    "Recall@5_mean": 1.0,
+    "Recall@5_std": 0.0,
+    "MRR_mean": 0.8333,
+    "MRR_std": 0.0,
+    "Citation_Precision_mean": 1.0,
+    "Citation_Precision_std": 0.0,
+    "Citation_Recall_mean": 1.0,
+    "Citation_Recall_std": 0.0,
+    "Coverage_mean": 1.0,
+    "Coverage_std": 0.0,
+    "Unsupported_Rate_mean": 0.0,
+    "Unsupported_Rate_std": 0.0,
+    "Error_Taxonomy": {
+      "retrieval_miss": 0,
+      "wrong_provision_cited": 0,
+      "unsupported_claim": 0,
+      "over_refusal": 0,
+      "budget_exhausted": 0,
+      "parse_error": 0
+    },
+    "Error_Taxonomy_Detailed": {
+      "configuration": "l1_on",
+      "total_tasks_evaluated": 30,
+      "total_failure_instances": 0,
+      "counts": {
+        "retrieval_miss": 0,
+        "wrong_provision_cited": 0,
+        "unsupported_claim": 0,
+        "over_refusal": 0,
+        "budget_exhausted": 0,
+        "parse_error": 0
+      },
+      "frequencies_percent": {
+        "retrieval_miss": 0.0,
+        "wrong_provision_cited": 0.0,
+        "unsupported_claim": 0.0,
+        "over_refusal": 0.0,
+        "budget_exhausted": 0.0,
+        "parse_error": 0.0
+      },
+      "case_studies": {
+        "retrieval_miss": [],
+        "wrong_provision_cited": [],
+        "unsupported_claim": [],
+        "over_refusal": [],
+        "budget_exhausted": [],
+        "parse_error": []
+      }
+    },
+    "Markdown_Taxonomy": "### Error Diagnostic Taxonomy — `L1_ON`\n**Total Tasks Evaluated**: 30 | **Total Failure Instances**: 0\n\n| Failure Mode | Description | Count | Frequency (%) | Exemplar Case Study |\n| :--- | :--- | :---: | :---: | :--- |\n| `retrieval_miss` | Gold provision not in retrieved top-k | **0** | 0.0% | *None observed (0 failures)* |\n| `wrong_provision_cited` | Cited article is not in ground-truth article set | **0** | 0.0% | *None observed (0 failures)* |\n| `unsupported_claim` | Generated claim sentence is unsupported by cited text | **0** | 0.0% | *None observed (0 failures)* |\n| `over_refusal` | Refused on an answerable task | **0** | 0.0% | *None observed (0 failures)* |\n| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | **0** | 0.0% | *None observed (0 failures)* |\n| `parse_error` | Structured parse/JSON validation failure | **0** | 0.0% | *None observed (0 failures)* |",
+    "Latency": {
+      "p50_ms": 7.94,
+      "p95_ms": 11.68
+    },
+    "Tokens_Per_Task_mean": 256.2,
+    "Total_Tokens": 7686,
+    "Compute_Cost_USD": 0.0
+  }
+}

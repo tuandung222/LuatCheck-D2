@@ -1,0 +1,114 @@
+
+==================================================
+BẮT ĐẦU CHẠY BENCHMARK: OFF
+Số lượng tasks: 10 | Seeds: [42, 123, 2026] | Offline: True | L2 SLM: False
+==================================================
+
+--- Đang chạy Seed: 42 ---
+ Task 01 [VLQA_LABOR_001              ]: ✅ | Ret:['Dieu_25', 'Dieu_27'] | GT:['Dieu_25'] | USR:0.000 | Latency:5.7ms
+ Task 02 [VLQA_LABOR_002              ]: ✅ | Ret:['Dieu_26', 'Dieu_27'] | GT:['Dieu_26'] | USR:0.000 | Latency:9.0ms
+ Task 03 [VLQA_LABOR_003              ]: ✅ | Ret:['Dieu_36', 'Dieu_35'] | GT:['Dieu_35'] | USR:0.000 | Latency:8.9ms
+ Task 04 [VLQA_LABOR_004              ]: ✅ | Ret:['Dieu_36', 'Dieu_34'] | GT:['Dieu_35'] | USR:0.000 | Latency:8.2ms
+ Task 05 [VLQA_LABOR_005              ]: ✅ | Ret:['Dieu_36', 'Dieu_125'] | GT:['Dieu_36'] | USR:0.000 | Latency:7.0ms
+ Task 06 [VLQA_LABOR_006              ]: ✅ | Ret:['Dieu_37', 'Dieu_35'] | GT:['Dieu_37'] | USR:0.000 | Latency:6.8ms
+ Task 07 [VLQA_LABOR_007              ]: ✅ | Ret:['Dieu_41', 'Dieu_40'] | GT:['Dieu_40'] | USR:0.000 | Latency:7.4ms
+ Task 08 [VLQA_LABOR_008              ]: ✅ | Ret:['Dieu_46', 'Dieu_41'] | GT:['Dieu_46'] | USR:0.000 | Latency:8.2ms
+ Task 09 [VLQA_LABOR_009              ]: ✅ | Ret:['Dieu_125', 'Dieu_122'] | GT:['Dieu_125'] | USR:0.000 | Latency:9.0ms
+ Task 10 [VLQA_LABOR_010              ]: ✅ | Ret:['Dieu_122', 'Dieu_37'] | GT:['Dieu_122'] | USR:0.000 | Latency:8.5ms
+
+--- Đang chạy Seed: 123 ---
+ Task 01 [VLQA_LABOR_001              ]: ✅ | Ret:['Dieu_25', 'Dieu_27'] | GT:['Dieu_25'] | USR:0.000 | Latency:9.2ms
+ Task 02 [VLQA_LABOR_002              ]: ✅ | Ret:['Dieu_26', 'Dieu_27'] | GT:['Dieu_26'] | USR:0.000 | Latency:8.1ms
+ Task 03 [VLQA_LABOR_003              ]: ✅ | Ret:['Dieu_36', 'Dieu_35'] | GT:['Dieu_35'] | USR:0.000 | Latency:7.8ms
+ Task 04 [VLQA_LABOR_004              ]: ✅ | Ret:['Dieu_36', 'Dieu_34'] | GT:['Dieu_35'] | USR:0.000 | Latency:7.7ms
+ Task 05 [VLQA_LABOR_005              ]: ✅ | Ret:['Dieu_36', 'Dieu_125'] | GT:['Dieu_36'] | USR:0.000 | Latency:7.6ms
+ Task 06 [VLQA_LABOR_006              ]: ✅ | Ret:['Dieu_37', 'Dieu_35'] | GT:['Dieu_37'] | USR:0.000 | Latency:7.2ms
+ Task 07 [VLQA_LABOR_007              ]: ✅ | Ret:['Dieu_41', 'Dieu_40'] | GT:['Dieu_40'] | USR:0.000 | Latency:6.5ms
+ Task 08 [VLQA_LABOR_008              ]: ✅ | Ret:['Dieu_46', 'Dieu_41'] | GT:['Dieu_46'] | USR:0.000 | Latency:7.4ms
+ Task 09 [VLQA_LABOR_009              ]: ✅ | Ret:['Dieu_125', 'Dieu_122'] | GT:['Dieu_125'] | USR:0.000 | Latency:7.8ms
+ Task 10 [VLQA_LABOR_010              ]: ✅ | Ret:['Dieu_122', 'Dieu_37'] | GT:['Dieu_122'] | USR:0.000 | Latency:8.1ms
+
+--- Đang chạy Seed: 2026 ---
+ Task 01 [VLQA_LABOR_001              ]: ✅ | Ret:['Dieu_25', 'Dieu_27'] | GT:['Dieu_25'] | USR:0.000 | Latency:7.9ms
+ Task 02 [VLQA_LABOR_002              ]: ✅ | Ret:['Dieu_26', 'Dieu_27'] | GT:['Dieu_26'] | USR:0.000 | Latency:7.5ms
+ Task 03 [VLQA_LABOR_003              ]: ✅ | Ret:['Dieu_36', 'Dieu_35'] | GT:['Dieu_35'] | USR:0.000 | Latency:7.7ms
+ Task 04 [VLQA_LABOR_004              ]: ✅ | Ret:['Dieu_36', 'Dieu_34'] | GT:['Dieu_35'] | USR:0.000 | Latency:7.2ms
+ Task 05 [VLQA_LABOR_005              ]: ✅ | Ret:['Dieu_36', 'Dieu_125'] | GT:['Dieu_36'] | USR:0.000 | Latency:6.6ms
+ Task 06 [VLQA_LABOR_006              ]: ✅ | Ret:['Dieu_37', 'Dieu_35'] | GT:['Dieu_37'] | USR:0.000 | Latency:6.6ms
+ Task 07 [VLQA_LABOR_007              ]: ✅ | Ret:['Dieu_41', 'Dieu_40'] | GT:['Dieu_40'] | USR:0.000 | Latency:7.9ms
+ Task 08 [VLQA_LABOR_008              ]: ✅ | Ret:['Dieu_46', 'Dieu_41'] | GT:['Dieu_46'] | USR:0.000 | Latency:7.5ms
+ Task 09 [VLQA_LABOR_009              ]: ✅ | Ret:['Dieu_125', 'Dieu_122'] | GT:['Dieu_125'] | USR:0.000 | Latency:7.7ms
+ Task 10 [VLQA_LABOR_010              ]: ✅ | Ret:['Dieu_122', 'Dieu_37'] | GT:['Dieu_122'] | USR:0.000 | Latency:8.0ms
+
+==================================================
+BẮT ĐẦU CHẠY BENCHMARK: L1_ON
+Số lượng tasks: 10 | Seeds: [42, 123, 2026] | Offline: True | L2 SLM: False
+==================================================
+
+--- Đang chạy Seed: 42 ---
+ Task 01 [VLQA_LABOR_001              ]: ✅ | Ret:['Dieu_25', 'Dieu_27'] | GT:['Dieu_25'] | USR:0.000 | Latency:10.3ms
+ Task 02 [VLQA_LABOR_002              ]: ✅ | Ret:['Dieu_26', 'Dieu_27'] | GT:['Dieu_26'] | USR:0.000 | Latency:9.0ms
+ Task 03 [VLQA_LABOR_003              ]: ✅ | Ret:['Dieu_36', 'Dieu_35'] | GT:['Dieu_35'] | USR:0.000 | Latency:8.7ms
+ Task 04 [VLQA_LABOR_004              ]: ✅ | Ret:['Dieu_36', 'Dieu_34'] | GT:['Dieu_35'] | USR:0.000 | Latency:10.5ms
+ Task 05 [VLQA_LABOR_005              ]: ✅ | Ret:['Dieu_36', 'Dieu_125'] | GT:['Dieu_36'] | USR:0.000 | Latency:8.7ms
+ Task 06 [VLQA_LABOR_006              ]: ✅ | Ret:['Dieu_37', 'Dieu_35'] | GT:['Dieu_37'] | USR:0.000 | Latency:9.4ms
+ Task 07 [VLQA_LABOR_007              ]: ✅ | Ret:['Dieu_41', 'Dieu_40'] | GT:['Dieu_40'] | USR:0.000 | Latency:9.7ms
+ Task 08 [VLQA_LABOR_008              ]: ✅ | Ret:['Dieu_46', 'Dieu_41'] | GT:['Dieu_46'] | USR:0.000 | Latency:8.3ms
+ Task 09 [VLQA_LABOR_009              ]: ✅ | Ret:['Dieu_125', 'Dieu_122'] | GT:['Dieu_125'] | USR:0.000 | Latency:7.6ms
+ Task 10 [VLQA_LABOR_010              ]: ✅ | Ret:['Dieu_122', 'Dieu_37'] | GT:['Dieu_122'] | USR:0.000 | Latency:7.7ms
+
+--- Đang chạy Seed: 123 ---
+ Task 01 [VLQA_LABOR_001              ]: ✅ | Ret:['Dieu_25', 'Dieu_27'] | GT:['Dieu_25'] | USR:0.000 | Latency:6.6ms
+ Task 02 [VLQA_LABOR_002              ]: ✅ | Ret:['Dieu_26', 'Dieu_27'] | GT:['Dieu_26'] | USR:0.000 | Latency:5.8ms
+ Task 03 [VLQA_LABOR_003              ]: ✅ | Ret:['Dieu_36', 'Dieu_35'] | GT:['Dieu_35'] | USR:0.000 | Latency:9.4ms
+ Task 04 [VLQA_LABOR_004              ]: ✅ | Ret:['Dieu_36', 'Dieu_34'] | GT:['Dieu_35'] | USR:0.000 | Latency:8.8ms
+ Task 05 [VLQA_LABOR_005              ]: ✅ | Ret:['Dieu_36', 'Dieu_125'] | GT:['Dieu_36'] | USR:0.000 | Latency:7.4ms
+ Task 06 [VLQA_LABOR_006              ]: ✅ | Ret:['Dieu_37', 'Dieu_35'] | GT:['Dieu_37'] | USR:0.000 | Latency:6.0ms
+ Task 07 [VLQA_LABOR_007              ]: ✅ | Ret:['Dieu_41', 'Dieu_40'] | GT:['Dieu_40'] | USR:0.000 | Latency:7.8ms
+ Task 08 [VLQA_LABOR_008              ]: ✅ | Ret:['Dieu_46', 'Dieu_41'] | GT:['Dieu_46'] | USR:0.000 | Latency:8.8ms
+ Task 09 [VLQA_LABOR_009              ]: ✅ | Ret:['Dieu_125', 'Dieu_122'] | GT:['Dieu_125'] | USR:0.000 | Latency:6.1ms
+ Task 10 [VLQA_LABOR_010              ]: ✅ | Ret:['Dieu_122', 'Dieu_37'] | GT:['Dieu_122'] | USR:0.000 | Latency:8.9ms
+
+--- Đang chạy Seed: 2026 ---
+ Task 01 [VLQA_LABOR_001              ]: ✅ | Ret:['Dieu_25', 'Dieu_27'] | GT:['Dieu_25'] | USR:0.000 | Latency:6.8ms
+ Task 02 [VLQA_LABOR_002              ]: ✅ | Ret:['Dieu_26', 'Dieu_27'] | GT:['Dieu_26'] | USR:0.000 | Latency:5.9ms
+ Task 03 [VLQA_LABOR_003              ]: ✅ | Ret:['Dieu_36', 'Dieu_35'] | GT:['Dieu_35'] | USR:0.000 | Latency:8.8ms
+ Task 04 [VLQA_LABOR_004              ]: ✅ | Ret:['Dieu_36', 'Dieu_34'] | GT:['Dieu_35'] | USR:0.000 | Latency:8.6ms
+ Task 05 [VLQA_LABOR_005              ]: ✅ | Ret:['Dieu_36', 'Dieu_125'] | GT:['Dieu_36'] | USR:0.000 | Latency:7.4ms
+ Task 06 [VLQA_LABOR_006              ]: ✅ | Ret:['Dieu_37', 'Dieu_35'] | GT:['Dieu_37'] | USR:0.000 | Latency:6.2ms
+ Task 07 [VLQA_LABOR_007              ]: ✅ | Ret:['Dieu_41', 'Dieu_40'] | GT:['Dieu_40'] | USR:0.000 | Latency:6.7ms
+ Task 08 [VLQA_LABOR_008              ]: ✅ | Ret:['Dieu_46', 'Dieu_41'] | GT:['Dieu_46'] | USR:0.000 | Latency:8.6ms
+ Task 09 [VLQA_LABOR_009              ]: ✅ | Ret:['Dieu_125', 'Dieu_122'] | GT:['Dieu_125'] | USR:0.000 | Latency:8.1ms
+ Task 10 [VLQA_LABOR_010              ]: ✅ | Ret:['Dieu_122', 'Dieu_37'] | GT:['Dieu_122'] | USR:0.000 | Latency:8.5ms
+
+==========================================================================================
+ BẢNG TỔNG HỢP KẾT QUẢ ĐÁNH GIÁ ĐỊNH LƯỢNG D3 (THREE-WAY ABLATION STUDY)
+==========================================================================================
+Metric                     | Baseline (OFF)     | LuatCheck (L1 ON)  | LuatCheck (L1+L2) 
+------------------------------------------------------------------------------------------
+Recall@1                   | 0.700 ± 0.000      | 0.700 ± 0.000      | 0.000 ± 0.000     
+Recall@5                   | 1.000 ± 0.000      | 1.000 ± 0.000      | 0.000 ± 0.000     
+MRR                        | 0.833 ± 0.000      | 0.833 ± 0.000      | 0.000 ± 0.000     
+Citation Precision         | 0.700 ± 0.000      | 1.000 ± 0.000      | 0.000 ± 0.000     
+Citation Recall            | 0.700 ± 0.000      | 1.000 ± 0.000      | 0.000 ± 0.000     
+Answer Coverage            | 1.000 ± 0.000      | 1.000 ± 0.000      | 0.000 ± 0.000     
+Unsupported Rate (↓)       | 0.000 ± 0.000      | 0.000 ± 0.000      | 0.000 ± 0.000     
+Tokens / Task (mean)       | 255.6              | 256.2              | 0                 
+------------------------------------------------------------------------------------------
+Latency (p50 / p95)        | 7.7ms / 9.0ms      | 8.4ms / 10.0ms     | 0.0ms / 0.0ms     
+Compute Cost (USD)         | $0.00 (Local)      | $0.00 (Local)      | $0.00 (Local)     
+==========================================================================================
+
+### Comparative Error Taxonomy Across Ablation Configurations
+
+| Failure Mode | Description | Baseline (OFF) (Count / %) | LuatCheck (L1 ON) (Count / %) |
+| :--- | :--- | :---: | :---: |
+| `retrieval_miss` | Gold provision not in retrieved top-k | 0 (0.0%) | 0 (0.0%) |
+| `wrong_provision_cited` | Cited article is not in ground-truth article set | 9 (30.0%) | 0 (0.0%) |
+| `unsupported_claim` | Generated claim sentence is unsupported by cited text | 0 (0.0%) | 0 (0.0%) |
+| `over_refusal` | Refused on an answerable task | 0 (0.0%) | 0 (0.0%) |
+| `budget_exhausted` | Exceeded 5 tool calls or 2 repairs | 0 (0.0%) | 0 (0.0%) |
+| `parse_error` | Structured parse/JSON validation failure | 0 (0.0%) | 0 (0.0%) |
+
+Đã lưu kết quả thành công vào:
+ - /Users/admin/Desktop/Recents/LuatCheck-D2/docs/reviews/d2-gap-review-2026-10-21/cli-offline-results.json

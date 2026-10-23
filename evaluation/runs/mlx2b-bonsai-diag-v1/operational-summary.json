@@ -1,0 +1,754 @@
+{
+  "run_dir": "evaluation/runs/mlx2b-bonsai-diag-v1",
+  "phase": "pilot",
+  "trials": 20,
+  "collection_manifest_sha256": "b150d38b0f35d6d71c7b10c9163bad0c570bc41e277b69a3b8a45105f173e1f4",
+  "runs_sha256": "f4be8d5e06ad7bb5db2d7c7d9665b4cbf50c2c263080d907f6bca6f9ca01c8cb",
+  "tasks_sha256": "8b84c4f395b25b34e7c8fd76758501ea070c456d7db288d8c943167bbb46d9dc",
+  "semantic_task_success": null,
+  "semantic_unsupported_claim_rate": null,
+  "human_judge_agreement": null,
+  "hardware_GPU_active_hours": null,
+  "note": "Measured operations and citation-ID/lexical diagnostics. No semantic or expert correctness score is inferred.",
+  "modes": {
+    "off": {
+      "trials": 10,
+      "answered": 5,
+      "refused": 2,
+      "clarified": 2,
+      "execution_errors": 1,
+      "error_types": {
+        "model_output_error": 1
+      },
+      "answer_coverage": 0.5,
+      "answerable_trials": 9,
+      "answerable_answer_coverage": 0.5555555555555556,
+      "answerable_non_answers": 4,
+      "terminal_behavior_agreement_not_correctness": 0.6,
+      "latency_p50_seconds": 12.876005499999998,
+      "latency_p95_seconds": 44.509769299999995,
+      "task_wall_hours_sum": 0.05061174083333333,
+      "native_service_hours": null,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 28,
+      "input_tokens": 57038,
+      "output_tokens": 5758,
+      "tokens_per_trial": 6279.6,
+      "tools_per_trial_mean": 1.7,
+      "repairs_total": 0,
+      "trajectory_recall5": 0.6666666666666666,
+      "trajectory_hit5": 0.7777777777777778,
+      "trajectory_mrr": 0.5185111111111111,
+      "citation_id_precision": 0.3888888888888889,
+      "citation_id_recall": 0.3888888888888889,
+      "reference_token_f1_diagnostic": 0.16137697266072434,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.26666,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 0.6666666666666666,
+          "citation_precision": 0.3888888888888889,
+          "citation_recall": 0.3888888888888889
+        }
+      ],
+      "budget_violations": []
+    },
+    "l1_on": {
+      "trials": 10,
+      "answered": 1,
+      "refused": 6,
+      "clarified": 2,
+      "execution_errors": 1,
+      "error_types": {
+        "model_output_error": 1
+      },
+      "answer_coverage": 0.1,
+      "answerable_trials": 9,
+      "answerable_answer_coverage": 0.1111111111111111,
+      "answerable_non_answers": 8,
+      "terminal_behavior_agreement_not_correctness": 0.2,
+      "latency_p50_seconds": 15.602246000000001,
+      "latency_p95_seconds": 50.58595039999999,
+      "task_wall_hours_sum": 0.06797707222222223,
+      "native_service_hours": null,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 35,
+      "input_tokens": 79454,
+      "output_tokens": 7988,
+      "tokens_per_trial": 8744.2,
+      "tools_per_trial_mean": 1.8,
+      "repairs_total": 6,
+      "trajectory_recall5": 0.7222222222222222,
+      "trajectory_hit5": 0.7777777777777778,
+      "trajectory_mrr": 0.5185111111111111,
+      "citation_id_precision": 0.1111111111111111,
+      "citation_id_recall": 0.1111111111111111,
+      "reference_token_f1_diagnostic": 0.06535947712418301,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.0,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 0.7222222222222222,
+          "citation_precision": 0.1111111111111111,
+          "citation_recall": 0.1111111111111111
+        }
+      ],
+      "budget_violations": []
+    }
+  },
+  "details": [
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.1142857142857143
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_27",
+        "Dieu_25",
+        "Dieu_26"
+      ],
+      "citation_ids": [
+        "Dieu_25"
+      ],
+      "wall_seconds": 13.716273,
+      "input_tokens": 3030,
+      "output_tokens": 463,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng là 60 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_25",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 25. Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_27",
+        "Dieu_25",
+        "Dieu_26"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 36.306358,
+      "input_tokens": 8378,
+      "output_tokens": 1442,
+      "tool_calls": 1,
+      "repairs": 2,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không thể xác thực căn cứ pháp lý sau 2 lần thử sửa chữa. Chi tiết vi phạm: Trích nguyên văn của 'Dieu_25' không nằm trong văn bản nguồn. Đọc lại nguồn hoặc bỏ trường exact_quote nếu chỉ diễn giải.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.5882352941176471
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_24",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 10.945827999999999,
+      "input_tokens": 3104,
+      "output_tokens": 432,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.5882352941176471
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_24",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 11.05432,
+      "input_tokens": 3104,
+      "output_tokens": 432,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_45",
+        "Dieu_39",
+        "Dieu_35"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 9.322107,
+      "input_tokens": 3056,
+      "output_tokens": 295,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Điều 45 của Bộ luật Lao động, thời hạn cụ thể để chấm dứt hợp đồng lao động là bao nhiêu ngày?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_45",
+        "Dieu_39",
+        "Dieu_35"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 9.839405000000001,
+      "input_tokens": 3056,
+      "output_tokens": 295,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Điều 45 của Bộ luật Lao động, thời hạn cụ thể để chấm dứt hợp đồng lao động là bao nhiêu ngày?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_45",
+        "Dieu_220",
+        "Dieu_157",
+        "Dieu_109",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 56.735339,
+      "input_tokens": 26026,
+      "output_tokens": 1433,
+      "tool_calls": 5,
+      "repairs": 1,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy căn cứ trong các điều luật đã tra cứu về quyền tự ý chấm dứt hợp đồng lao động.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.15929203539823011
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_45",
+        "Dieu_220",
+        "Dieu_157",
+        "Dieu_109",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 46.301771,
+      "input_tokens": 21117,
+      "output_tokens": 1285,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo quy định Bộ luật Lao động 2019, người lao động có quyền tự ý chấm dứt hợp đồng nếu không có lý do. Tuy nhiên, các điều khoản 4-8 của Điều 34 quy định về việc có người đại diện hoặc báo trước. Nếu không có điều khoản này, người lao động vẫn có quyền tự ý chấm dứt, nhưng cần tuân thủ các quy định về thời gian và phương thức báo cáo. Lưu ý: Việc chấm dứt hợp đồng tự ý không phải là 'báo trước' theo nghĩa bắt buộc, mà chỉ tuân thủ các quy định nội bộ.",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.17391304347826086
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_139"
+      ],
+      "citation_ids": [
+        "Dieu_37"
+      ],
+      "wall_seconds": 10.412965,
+      "input_tokens": 3166,
+      "output_tokens": 487,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 37 của Bộ luật Lao động 2019, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động. Tuy nhiên, điều khoản 137 quy định rằng người sử dụng lao động nữ mang thai được chuyển sang công việc nhẹ hơn an toàn hơn, nhưng điều 37 không trực tiếp quy định quyền chấm dứt hợp đồng cho mọi tình huống. Để chi tiết hơn, cần xem xét điều 137 và 139.",
+        "citations": [
+          {
+            "article_id": "Dieu_37",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này. 2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ khác được người sử dụng lao động đồng ý. 3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_139"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 17.139622,
+      "input_tokens": 5723,
+      "output_tokens": 755,
+      "tool_calls": 1,
+      "repairs": 1,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy căn cứ đầy đủ để khẳng định quyền chấm dứt hợp đồng cho mọi trường hợp, đặc biệt là thời gian nghỉ thai. Cần kiểm tra lại điều khoản 37 và các điều khoản liên quan.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_39",
+        "Dieu_41",
+        "Dieu_46",
+        "Dieu_62"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 35.07488,
+      "input_tokens": 11466,
+      "output_tokens": 1350,
+      "tool_calls": 4,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model output truncated by token limit.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_39",
+        "Dieu_41",
+        "Dieu_46",
+        "Dieu_62"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 42.319545,
+      "input_tokens": 11466,
+      "output_tokens": 1350,
+      "tool_calls": 4,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model output truncated by token limit.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_219",
+        "Dieu_47"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 13.725439,
+      "input_tokens": 3424,
+      "output_tokens": 512,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Cần cung cấp thêm thông tin cụ thể: thời điểm nghỉ việc (trước/sau khi chấm dứt hợp đồng) và chi tiết về mức trợ cấp theo từng trường hợp (thiệt, mất việc) để xác định chính xác quy định áp dụng.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_219",
+        "Dieu_47"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 11.42863,
+      "input_tokens": 3424,
+      "output_tokens": 512,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Cần cung cấp thêm thông tin cụ thể: thời điểm nghỉ việc (trước/sau khi chấm dứt hợp đồng) và chi tiết về mức trợ cấp theo từng trường hợp (thiệt, mất việc) để xác định chính xác quy định áp dụng.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_39",
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 43.070031,
+      "input_tokens": 12717,
+      "output_tokens": 1331,
+      "tool_calls": 2,
+      "repairs": 2,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không thể xác thực căn cứ pháp lý sau 2 lần thử sửa chữa. Chi tiết vi phạm: Trích nguyên văn của 'Dieu_46' không nằm trong văn bản nguồn. Đọc lại nguồn hoặc bỏ trường exact_quote nếu chỉ diễn giải.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.41666666666666663
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_39",
+        "Dieu_41"
+      ],
+      "citation_ids": [
+        "Dieu_40",
+        "Dieu_41"
+      ],
+      "wall_seconds": 15.653497,
+      "input_tokens": 3115,
+      "output_tokens": 496,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Bộ luật Lao động 2019, khi người lao động chấm dứt hợp đồng trái pháp luật:\n- Không được trợ cấp thôi việc (Điều 40).\n- Phải trả tiền lương: H Half tháng lương theo hợp đồng và một khoản tương ứng với thời gian không báo trước (Điều 40).\n- Trợ cấp thôi việc: Theo Điều 46, tối thiểu là 2 tháng lương (tuy nhiên, điều khoản này có thể áp dụng cho trường hợp không muốn tiếp tục làm việc).\n- Nếu có thỏa thuận bồi thường, ít nhất là 2 tháng lương.",
+        "citations": [
+          {
+            "article_id": "Dieu_40",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Không được trợ cấp thôi việc."
+          },
+          {
+            "article_id": "Dieu_41",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Thợ cấp thôi việc theo quy định tại Điều 46... ít nhất bằng 02 tháng tiền lương"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_13",
+        "Dieu_40",
+        "Dieu_119"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 12.035737999999998,
+      "input_tokens": 3071,
+      "output_tokens": 249,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy quy định trong Bộ luật Lao động 2019 về nghĩa vụ người lao động nộp tiền đặt cọc để bảo đảm hợp đồng.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_13",
+        "Dieu_40",
+        "Dieu_119"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 14.06487,
+      "input_tokens": 3071,
+      "output_tokens": 249,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy quy định trong Bộ luật Lao động 2019 về nghĩa vụ người lao động nộp tiền đặt cọc để bảo đảm hợp đồng.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [],
+      "citation_ids": [],
+      "wall_seconds": 10.112497,
+      "input_tokens": 2489,
+      "output_tokens": 189,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy tài liệu trong cơ sở dữ liệu có quy định về số giờ làm thêm tối đa cho bang California.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [],
+      "citation_ids": [],
+      "wall_seconds": 7.660612,
+      "input_tokens": 2489,
+      "output_tokens": 189,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy tài liệu trong cơ sở dữ liệu có quy định về số giờ làm thêm tối đa cho bang California.",
+        "citations": []
+      }
+    }
+  ]
+}

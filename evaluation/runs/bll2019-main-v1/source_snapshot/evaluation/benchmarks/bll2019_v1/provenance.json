@@ -1,0 +1,26 @@
+{
+  "benchmark": "LuatCheck curated BLL2019-v1, 10 tasks",
+  "is_VLQA": false,
+  "selection": "Six single-provision legal facts, two synthesis, one deposit prohibition, one foreign-scope refusal. Selected and fixed before observing native outputs.",
+  "corpus": {
+    "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+    "pdf_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+    "records": 220,
+    "corpus_sha256": "8df39799441508ef17f94123393497c56d48ed071d99fd3cc7e16d283bf88c94",
+    "coverage": "Articles 1 through 220, no missing or duplicate article number",
+    "snapshot_scope": "Original 2019 enactment, not a consolidated statement of current 2026 law",
+    "not_a_public_QA_benchmark": true,
+    "extractor": "docs/materials/benchmark-sources/extract_official_corpus.py"
+  },
+  "corrections": [
+    "Removed internally inconsistent 3 years / 24-month contract scenario",
+    "Replaced disciplinary dismissal with unlawful unilateral termination for Article 41",
+    "Reclassified explicit contract-guarantee deposit as answerable under Article 17",
+    "Added exceptions/conditions to notice-period questions; no assumption of full current-law coverage"
+  ],
+  "limitations": [
+    "Small purposive local test set, not random or external held-out VLQA",
+    "Gold reviewed by AI against original source, not certified by legal expert",
+    "Official public dataset release/provenance could not be confirmed for legacy VLQA IDs; ALQAC file access returned 401 and was not bypassed"
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "lexical_false_positive": {
+    "synthetic_claim": "Tiền lương thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 50% mức lương của công việc đó.",
+    "local_source": {
+      "article_id": "Dieu_26",
+      "law_id": "45/2019/QH14",
+      "law_name": "Bộ luật Lao động 2019",
+      "title": "Điều 26. Tiền lương thử việc",
+      "content": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+    },
+    "verifier_accepts": true,
+    "same_verifier_USR": 0.0,
+    "meaning": "This check compares a deliberately changed number against the local source; it is not external legal validation."
+  },
+  "read_tool_alias": {
+    "registry_get_article_signature": "(doc_id: str) -> Dict[str, Any]",
+    "keyword_call": "TypeError: DomainKnowledgeRegistry.get_document() got an unexpected keyword argument 'article_id'"
+  },
+  "hitl_boundary": {
+    "caller_supplied_confirmation": true,
+    "provided_proposal": "nonexistent",
+    "provided_token": "invalid",
+    "pending_proposals": 0,
+    "result": {
+      "status": "success",
+      "message": "Đã gửi thành công bản tóm tắt pháp lý tới 'synthetic-review@example.invalid'.",
+      "hash": "da3a4a16d3782623074148716b26f7c4698d0c5045d678d9e04c549d2752c262"
+    },
+    "outbox_records_in_memory": 1,
+    "network_delivery": false,
+    "scope": "Direct registry/MCP-facing callable boundary; UI checkbox exists separately."
+  },
+  "audit_pii": {
+    "input_was_synthetic": true,
+    "terminal_status": "answered",
+    "raw_email_written_to_audit": true,
+    "scope": "SQLite sanitizer and audit logger are different persistence paths."
+  },
+  "offline_diagnostic": {
+    "task_count": 10,
+    "runs_per_mode": 30,
+    "total_runs": 60,
+    "execution_classification": "Fresh execution of deterministic fallback, not native Qwen inference.",
+    "instrumentation": {
+      "primary_calls": 129,
+      "primary_successes": 0,
+      "primary_errors": 129,
+      "fallback_calls": 129,
+      "agents": [
+        {
+          "mode": "off",
+          "endpoint": "http://127.0.0.1:1",
+          "embedding_neural_online": false,
+          "primary_type": "OllamaLLMClient",
+          "fallback_type": "MockRuleBasedLLMClient"
+        },
+        {
+          "mode": "l1_on",
+          "endpoint": "http://127.0.0.1:1",
+          "embedding_neural_online": false,
+          "primary_type": "OllamaLLMClient",
+          "fallback_type": "MockRuleBasedLLMClient"
+        }
+      ]
+    },
+    "metrics": {
+      "off": {
+        "mode": "off",
+        "seeds": [
+          42,
+          123,
+          2026
+        ],
+        "Recall@1_mean": 0.7,
+        "Recall@1_std": 0.0,
+        "Recall@5_mean": 1.0,
+        "Recall@5_std": 0.0,
+        "MRR_mean": 0.8333,
+        "MRR_std": 0.0,
+        "Citation_Precision_mean": 0.7,
+        "Citation_Precision_std": 0.0,
+        "Citation_Recall_mean": 0.7,
+        "Citation_Recall_std": 0.0,
+        "Coverage_mean": 1.0,
+        "Coverage_std": 0.0,
+        "Unsupported_Rate_mean": 0.0,
+        "Unsupported_Rate_std": 0.0,
+        "Error_Taxonomy": {
+          "retrieval_miss": 0,
+          "wrong_provision_cited": 9,
+          "unsupported_claim": 0,
+          "over_refusal": 0,
+          "budget_exhausted": 0,
+          "parse_error": 0
+        },
+        "Latency": {
+          "p50_ms": 8.28,
+          "p95_ms": 12.33
+        },
+        "Tokens_Per_Task_mean": 255.6,
+        "Total_Tokens": 7668,
+        "Compute_Cost_USD": 0.0
+      },
+      "l1_on": {
+        "mode": "l1_on",
+        "seeds": [
+          42,
+          123,
+          2026
+        ],
+        "Recall@1_mean": 0.7,
+        "Recall@1_std": 0.0,
+        "Recall@5_mean": 1.0,
+        "Recall@5_std": 0.0,
+        "MRR_mean": 0.8333,
+        "MRR_std": 0.0,
+        "Citation_Precision_mean": 1.0,
+        "Citation_Precision_std": 0.0,
+        "Citation_Recall_mean": 1.0,
+        "Citation_Recall_std": 0.0,
+        "Coverage_mean": 1.0,
+        "Coverage_std": 0.0,
+        "Unsupported_Rate_mean": 0.0,
+        "Unsupported_Rate_std": 0.0,
+        "Error_Taxonomy": {
+          "retrieval_miss": 0,
+          "wrong_provision_cited": 0,
+          "unsupported_claim": 0,
+          "over_refusal": 0,
+          "budget_exhausted": 0,
+          "parse_error": 0
+        },
+        "Latency": {
+          "p50_ms": 7.94,
+          "p95_ms": 11.68
+        },
+        "Tokens_Per_Task_mean": 256.2,
+        "Total_Tokens": 7686,
+        "Compute_Cost_USD": 0.0
+      }
+    }
+  },
+  "mcp_import": {
+    "mcp_version": "2.3.0",
+    "error": "ModuleNotFoundError: No module named 'mcp.server.fastmcp'. This is mcp 2.x, where FastMCP was renamed to MCPServer (from mcp.server.mcpserver import MCPServer) and other APIs changed; see the migration guide at https://py.sdk.modelcontextprotocol.io/v2/migration/#fastmcp-renamed-to-mcpserver or pin 'mcp<2' to keep running v1 code."
+  },
+  "mcp_wrapper_get_article": {
+    "not_executed": "MCP module import failed; direct alias keyword failure is recorded separately."
+  },
+  "save_case_persistence": {
+    "save_result": {
+      "status": "success",
+      "message": "Đã lưu hồ sơ tư vấn 'synthetic-case' thành công.",
+      "case_id": "synthetic-case"
+    },
+    "registry_in_memory_record_present": true,
+    "scope": "Registry save_case writes saved_cases, not SQLiteEpisodicStore; MCP wrapper delegates to it in source."
+  },
+  "source_sha256": {
+    "report_d2/main_d2.tex": "d765678839edb2e4cbe25d18474711d1901e1ca5f6a62b44b2ffa38a0d202ef4",
+    "evaluation/run_eval.py": "0574b08c62fa623dfef003a0295fe3641fe68093a50a8dce8767e3734128caf1",
+    "evaluation/eval_results.json": "af370b877104bd4e49904b3f9ec286e02ff89358d69816758850ff9f68d131e7",
+    "src/agent/llm_client.py": "666f45c18b4a1dd97edcb877f690d327e37847dddc921b7f070bd7cc438d83ab",
+    "src/tools/domain_tools.py": "aaaf21414442281288359255cf0118de72f0919e6de5ec48a812e0c18b9131ca",
+    "src/tools/mcp_server.py": "22ddc35e5555060c8cb319b5cd2ceaaa66e15bbfb880da72e48e0044c10f6ead"
+  },
+  "constraints": [
+    "No source implementation changes.",
+    "No native LLM service available on checked default ports.",
+    "No physical network isolation test.",
+    "No external email or webhook delivery attempted."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "retrieved_at": "2026-10-22T11:58:23.527970+00:00",
+  "gateway": "https://ai-gateway01.qualgo.ai",
+  "listed_model": "deepseek/deepseek-v4-flash",
+  "upstream_model": "deepseek/deepseek-v4-flash",
+  "provider": "deepseek",
+  "api_base_explicitly_reported": null,
+  "revision_pinned": false,
+  "official_alias_mapping_source": "https://api-docs.deepseek.com/",
+  "documented_serving_revision": "DeepSeek-V4.1-Flash-1017",
+  "note": "Official documentation mapping of a mutable legacy alias, not independent attestation of gateway routing."
+}

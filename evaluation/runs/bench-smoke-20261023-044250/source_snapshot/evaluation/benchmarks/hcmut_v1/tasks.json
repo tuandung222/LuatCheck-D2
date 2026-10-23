@@ -1,0 +1,1767 @@
+[
+ {
+  "task_id": "HCMUT-001",
+  "category": "single",
+  "question": "Theo Quyết định 1260/QĐ-ĐHBK sửa đổi khoản 3.1 Điều 3, chương trình PFIEV được tối đa bao nhiêu học kỳ chính để hoàn thành khóa học?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT1260_Dieu_1_S3_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tối đa 14 học kỳ chính (kế hoạch 10, chuẩn 10, tối đa 14).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+    "exact_quote": "tại Việt Nam (PFIEV) 10 10 14",
+    "pdf_pages": [
+     2,
+     3
+    ]
+   }
+  ],
+  "doc_code": "HVDT1260",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 1260, Điều 1 khoản 3.1 (table row for PFIEV). The table columns are Kế hoạch | Chuẩn | Tối đa. Base 2933 is not in the corpus; the answer uses only the amended table.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-002",
+  "category": "single",
+  "question": "Theo Quyết định 1260/QĐ-ĐHBK sửa đổi khoản 5.3 Điều 5, sinh viên chính quy đăng ký thêm lớp dự thính thì tổng số tín chỉ tối đa trong một học kỳ chính là bao nhiêu?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT1260_Dieu_1_S5_3"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "28 tín chỉ (gồm cả tín chỉ các lớp dự thính; riêng lớp dự thính tối đa 10 tín chỉ).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S5_3",
+    "exact_quote": "tín chỉ các lớp dự thính trong một học kỳ chính của một sinh viên chính quy là 28 tín chỉ",
+    "pdf_pages": [
+     3
+    ]
+   },
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S5_3",
+    "exact_quote": "10 tín chỉ các lớp dự thính trong học kỳ chính, tuy nhiên",
+    "pdf_pages": [
+     3
+    ]
+   }
+  ],
+  "doc_code": "HVDT1260",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 1260 khoản 5.3. The base cap of 25 credits for chính quy is in the same clause and is not asked. The 28 figure is the total including audit credits.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-003",
+  "category": "single",
+  "question": "Theo Quyết định 1260/QĐ-ĐHBK sửa đổi khoản 10.1 Điều 10, hạng tốt nghiệp xuất sắc hoặc giỏi của sinh viên bị giảm một mức nếu khối lượng học phần phải học lại vượt bao nhiêu phần trăm tổng số tín chỉ của chương trình?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT1260_Dieu_1_S10_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Vượt quá 5% so với tổng số tín chỉ quy định cho toàn chương trình.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S10_1",
+    "exact_quote": "Khối lượng của các học phần phải học lại vượt quá 5% so với tổng số tín chỉ",
+    "pdf_pages": [
+     4,
+     5
+    ]
+   },
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S10_1",
+    "exact_quote": "Sinh viên đã bị kỷ luật từ mức cảnh cáo trở lên trong thời gian học.",
+    "pdf_pages": [
+     4,
+     5
+    ]
+   }
+  ],
+  "doc_code": "HVDT1260",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 1260 khoản 10.1. The clause lists two downgrade triggers; the question targets the re-study trigger, and the second quote gives the disciplinary trigger for completeness.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-004",
+  "category": "single",
+  "question": "Theo Quyết định 1260/QĐ-ĐHBK sửa đổi khoản 14.3 Điều 14, sinh viên chính quy đã bị buộc thôi học (không phải do vi phạm kỷ luật ở mức buộc thôi học) có thể được xem xét thu nhận lại để chuyển sang hình thức đào tạo nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT1260_Dieu_1_S14_3"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Hình thức đào tạo vừa làm vừa học hoặc đào tạo từ xa.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S14_3",
+    "exact_quote": "thôi học có thể được xem xét thu nhận lại để chuyển sang hình thức đào tạo vừa làm vừa",
+    "pdf_pages": [
+     5,
+     6
+    ]
+   },
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S14_3",
+    "exact_quote": "học hoặc đào tạo từ xa.",
+    "pdf_pages": [
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "HVDT1260",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 1260 khoản 14.3, last paragraph. The answer excludes students disciplined at the buộc-thôi-học level. The question does not ask about admission conditions for the new form.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-005",
+  "category": "single",
+  "question": "Theo Phụ lục 1 được thay thế bởi Quyết định 2749/QĐ-ĐHBK, kết quả kiểm tra tiếng Anh theo định dạng TOEIC vào cuối học kỳ 1 năm nhất được dùng để làm gì, và có được dùng nhiều lần không?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT2749_PhuLuc_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Được dùng để xét miễn các học phần Anh văn 1, 2, 3, 4 tương ứng theo thang điểm quy đổi tại tiểu mục 3.1 mục 3 của Phụ lục; việc xét miễn này chỉ thực hiện một lần duy nhất (không dùng lại nhiều lần).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+    "exact_quote": "Vào cuối học kỳ 1 năm nhất, Nhà trường tổ chức thêm một kỳ kiểm tra trình độ tiếng Anh\nđầu vào theo định dạng TOEIC",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   {
+    "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+    "exact_quote": "Kết quả kiểm tra này được sử dụng để xét miễn một lần duy nhất các học phần Anh văn 1,\n2, 3, 4 tương ứng theo thang điểm quy đổi tại bảng quy đổi tại tiểu mục 3.1 mục 3 của Phụ",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "HVDT2749",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Quyết định 2749 replaces Phụ lục 1 of 2933 and 1260 (Điều 1). The paragraph is in appendix section 4.1 (Ngay khi nhập học). The same wording is in the 1260 appendix too; the question follows the 2749 version. The entrance placement test is not asked.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "fix",
+   "verify_B": "accept",
+   "adjudication": "fixed",
+   "note": "A fix adopted (B accepted). The old quote ended at \"Anh văn 1\", so \"2, 3, 4\", the 3.1 conversion table and the TOEIC-format test were not supported by the evidence; answer was correct against the full text. Evidence widened to two verbatim quotes. The rule applies to Vietnamese-language programmes (Phụ lục 1 mục 4.1); same sentence also appears in the superseded HVDT1260 appendix, gold stays on HVDT2749 because the question names 2749.",
+   "recheck_C": "accept"
+  }
+ },
+ {
+  "task_id": "HCMUT-006",
+  "category": "single",
+  "question": "Theo Phụ lục 1 sửa đổi bởi Quyết định 2749/QĐ-ĐHBK, sinh viên khóa 2024 trở về sau có chứng chỉ JLPT N2 còn trong thời hạn 12 tháng thì được xét miễn những học phần tiếng Nhật nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT2749_PhuLuc_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tiếng Nhật 1, 2, 3 và 4.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+    "exact_quote": "JLPT N2 Tiếng Nhật 1, 2, 3, 4",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "HVDT2749",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "2749 Phụ lục 1 mục 3.3(b), 'Đối với Khóa 2024 về sau' table. The 12-month validity condition is from the sentence before the table in the same record. The 2023-and-earlier table (N2 exempts Tiếng Nhật 1-3) is intentionally not asked.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-007",
+  "category": "single",
+  "question": "Theo Phụ lục 1 sửa đổi bởi Quyết định 2749/QĐ-ĐHBK, khi xét điều kiện đăng ký học phần Khóa luận tốt nghiệp, chuẩn ngoại ngữ tốt nghiệp tiếng Anh chỉ được áp dụng đối với những kỹ năng nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT2749_PhuLuc_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Chỉ kỹ năng Nghe và Đọc (Nghe – Đọc).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+    "exact_quote": "đối với kỹ năng Nghe – Đọc",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "HVDT2749",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "2749 Phụ lục 1, mục 2 (paragraph after the graduation-standard table). The extracted text has a split word ('ch ỉ') in this sentence, which is kept verbatim in the source. The temporary permission for Nói–Viết test results is a separate rule and is not asked.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-008",
+  "category": "single",
+  "question": "Theo Phụ lục 1 sửa đổi bởi Quyết định 2749/QĐ-ĐHBK, sinh viên Chương trình Định hướng Nhật Bản từ khóa 2026 muốn đăng ký học phần cho năm thứ ba cần đạt các học phần tiếng Nhật nào, và đến thời điểm nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT2749_PhuLuc_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tiếng Nhật 1, 2, 3 và 4, đạt đến hết năm thứ hai.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+    "exact_quote": "Năm thứ ba Tiếng Nhật 1, 2, 3, 4 Hết năm hai",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "HVDT2749",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "2749 Phụ lục 1 mục 1(c) (Japanese programme from khóa 2026). The 'Đạt tương đương' column gives the requirement and the 'Ghi chú' column gives the deadline, consistent with the mục 1 rule that the standard must be met to register for the next year.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-009",
+  "category": "single",
+  "question": "Theo Quyết định 1259/QĐ-ĐHBK sửa đổi khoản 15.1 Điều 15, điểm trung bình học kỳ và điểm trung bình tích lũy được làm tròn đến bao nhiêu chữ số thập phân, và áp dụng từ học kỳ nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVCHUNG1259_Dieu_1_S15_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Làm tròn đến 0,01 (hai chữ số thập phân), áp dụng từ học kỳ 1 năm học 2026-2027 và từ đợt tốt nghiệp tháng 04/2027.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S15_1",
+    "exact_quote": "được làm tròn đến 0.01 (áp",
+    "pdf_pages": [
+     6,
+     7
+    ]
+   },
+   {
+    "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S15_1",
+    "exact_quote": "dụng từ học kỳ 1 năm học 2026-2027 và từ đợt tốt nghiệp tháng 04/2027).",
+    "pdf_pages": [
+     6,
+     7
+    ]
+   }
+  ],
+  "doc_code": "HVCHUNG1259",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 1259 khoản 15.1. The sentence is split across two extracted lines, so two quote fragments are used. Effective dates come from the amendment text itself, not from the printed decision date (blank in the PDF).",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-010",
+  "category": "single",
+  "question": "Theo Quyết định 1259/QĐ-ĐHBK sửa đổi điểm a khoản 14.2 Điều 14, với học phần thuộc khối kiến thức tốt nghiệp đại học tính theo loại đạt có phân mức, điểm đạt bắt đầu từ điểm chữ nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVCHUNG1259_Dieu_1_S9_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Từ điểm C.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S9_1",
+    "exact_quote": "điểm đạt là từ điểm C.",
+    "pdf_pages": [
+     4,
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "HVCHUNG1259",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 1259, 14.2 a) exception list. The text sits in record HVCHUNG1259_Dieu_1_S9_1 because the extractor did not split at the 14.2 heading (that record also holds the 9.1 text). The PhD-dissertation threshold (B) is excluded from the question.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-011",
+  "category": "single",
+  "question": "Theo Quyết định 1259/QĐ-ĐHBK sửa đổi khoản 16.2 Điều 16, sinh viên vắng thi cuối kỳ có lý do chính đáng và được hoãn thi (nhận điểm I) có thời hạn tối đa bao lâu để dự thi lấy điểm thay thế?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVCHUNG1259_Dieu_1_S16_2"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tối đa một năm.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S16_2",
+    "exact_quote": "trong thời hạn tối đa một năm.",
+    "pdf_pages": [
+     7,
+     8
+    ]
+   }
+  ],
+  "doc_code": "HVCHUNG1259",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 1259 khoản 16.2. The one-year limit is the only term asked. The answer does not cover the rule for projects and theses without fixed exam dates (assessed by the Khoa) or the Rector's discretionary extension.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-012",
+  "category": "single",
+  "question": "Theo Điều 4 mới của Quyết định 1259/QĐ-ĐHBK, sĩ số tối thiểu để mở một lớp học phần thực hành, thực tập hoặc thí nghiệm là bao nhiêu, không tính trường hợp đặc biệt do Ban Giám hiệu quyết định?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVCHUNG1259_Dieu_1_S4_3"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "20 người học.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S4_3",
+    "exact_quote": "Các học phần thực hành, thực tập, thí nghiệm: 20.",
+    "pdf_pages": [
+     4
+    ]
+   }
+  ],
+  "doc_code": "HVCHUNG1259",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 1259, replacement Điều 4 khoản 4.3. Bảng 1 (classes under 15 students) and the Ban Giám hiệu special cases are excluded by the question wording.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-013",
+  "category": "single",
+  "question": "Theo Quyết định 2282/QĐ-ĐHBK sửa đổi khoản 3.2 Điều 3 của Quy định giảng dạy, số phiên học bố trí dạy thay của một lớp không được vượt quá bao nhiêu phần trăm tổng số phiên học?",
+  "ground_truth_article_ids": [
+   "HCMUT_GIANGDAY2282_Dieu_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "20% tổng số phiên học của lớp (và không quá 03 phiên học đã được phân công của giảng viên cho một lớp).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GIANGDAY2282_Dieu_1",
+    "exact_quote": "Số phiên học bố trí dạy thay của một lớp không được vượt quá 20% tổng số",
+    "pdf_pages": [
+     2,
+     3
+    ]
+   },
+   {
+    "article_id": "HCMUT_GIANGDAY2282_Dieu_1",
+    "exact_quote": "không quá 03 phiên học đã được phân công giảng dạy của giảng viên cho một",
+    "pdf_pages": [
+     2,
+     3
+    ]
+   }
+  ],
+  "doc_code": "GIANGDAY2282",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 2282, Điều 1 khoản 2 (replacement of 3.2). The 03-session cap is in the same clause. The expected answer states both caps; the question asks only the percentage.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-014",
+  "category": "single",
+  "question": "Theo Quyết định 2282/QĐ-ĐHBK sửa đổi khoản 3.2 Điều 3 của Quy định giảng dạy, khi đăng ký dạy bù, giảng viên phải đăng ký trước ngày dạy bù tối thiểu và tối đa bao nhiêu ngày?",
+  "ground_truth_article_ids": [
+   "HCMUT_GIANGDAY2282_Dieu_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tối thiểu 01 ngày và tối đa 07 ngày trước ngày dạy bù; việc đăng ký phải thực hiện trước 16g00 của ngày làm việc tương ứng.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GIANGDAY2282_Dieu_1",
+    "exact_quote": "Khi đăng ký dạy bù, giảng viên phải đăng ký trước 16g00 của ngày làm việc cách\ntrước ngày dạy bù tối thiểu 01 ngày và trước tối đa 07 ngày.",
+    "pdf_pages": [
+     2,
+     3
+    ]
+   }
+  ],
+  "doc_code": "GIANGDAY2282",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 2282, Điều 1 khoản 2. The 16g00 deadline on the registration day is in the same clause but is not asked.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "fix",
+   "verify_B": "accept",
+   "adjudication": "fixed",
+   "note": "A fix adopted (B accepted). Removed the parenthetical \"đăng ký trước 16g00 của ngày làm việc đó\": the source says 16g00 of the working day at least 01 day before the make-up day, so the paraphrase was inexact and is not asked.",
+   "recheck_C": "accept",
+   "note_orchestrator": "Restored the verbatim 16g00 condition (present in the source) after the final oracle check judged a more detailed answer partially correct; the asked numbers (01/07 ngày) are unchanged."
+  }
+ },
+ {
+  "task_id": "HCMUT-015",
+  "category": "single",
+  "question": "Theo Phụ lục 1 sửa đổi bởi Quyết định 2282/QĐ-ĐHBK, giảng viên chương trình quốc tế có kết quả khảo sát học phần của học kỳ liền trước ở mức nào thì được xem xét hoãn phân công ở học kỳ tiếp theo đối với cùng môn học?",
+  "ground_truth_article_ids": [
+   "HCMUT_GIANGDAY2282_PhuLuc_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Từ 3,4/5 trở xuống, với cỡ mẫu đạt.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GIANGDAY2282_PhuLuc_1",
+    "exact_quote": "trước từ 3.4/5 trở xuống đối với cùng môn học và có cỡ mẫu đạt.",
+    "pdf_pages": [
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   }
+  ],
+  "doc_code": "GIANGDAY2282",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 2282 Phụ lục 1 mục 2.2(a). The clause says the postponement is 'xem xét' (considered), not automatic; the question asks only the threshold.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-016",
+  "category": "single",
+  "question": "Theo Phụ lục 2 sửa đổi bởi Quyết định 2282/QĐ-ĐHBK, giảng viên chương trình PFIEV hoặc Tài năng đủ chuẩn bằng trình độ thạc sĩ (không có bằng tiến sĩ) thì bằng thạc sĩ phải được cấp ở đâu và thuộc ngành nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_GIANGDAY2282_PhuLuc_2"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Phải tốt nghiệp thạc sĩ tại trường đại học nước ngoài, đúng ngành hoặc thuộc ngành gần (bên cạnh phương án có trình độ tiến sĩ trở lên).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GIANGDAY2282_PhuLuc_2",
+    "exact_quote": "Có trình độ Tiến sĩ trở lên hoặc có trình độ Thạc sĩ tốt nghiệp tại các trường Đại học\nnước ngoài đúng ngành hoặc thuộc ngành gần;",
+    "pdf_pages": [
+     9
+    ]
+   }
+  ],
+  "doc_code": "GIANGDAY2282",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment 2282 Phụ lục 2 mục 2 (replacement of 2929 Phụ lục 2). The expected answer contrasts the master's route with the tiến sĩ alternative in the same clause.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "fix",
+   "verify_B": "accept",
+   "adjudication": "fixed",
+   "note": "A fix adopted (B accepted, noting the same wording issue as minor). \"Điều kiện gì\" was ambiguous: Phụ lục 2 mục 2 also lists research/teaching-experience and foreign-language requirements, so an answer limited to the degree route was incomplete for the question as worded. Question narrowed to the degree condition; two split quotes merged into one verbatim quote.",
+   "recheck_C": "accept"
+  }
+ },
+ {
+  "task_id": "HCMUT-017",
+  "category": "single",
+  "question": "Theo Quy định gia hạn thời gian nộp học phí của Trường Đại học Bách khoa, nếu bản thân người học bị ốm đau thì cần nộp loại giấy tờ nào để được xét gia hạn?",
+  "ground_truth_article_ids": [
+   "HCMUT_HOCPHI2800_Dieu_4"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Giấy nhập viện hoặc giấy xuất viện của bệnh viện hoặc đơn vị có chức năng.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HOCPHI2800_Dieu_4",
+    "exact_quote": "phải có giấy nhập viện hoặc giấy xuất viện",
+    "pdf_pages": [
+     2,
+     3
+    ]
+   }
+  ],
+  "doc_code": "HOCPHI2800",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Standalone regulation (not an amendment). Điều 4 khoản 2 also covers illness of a close relative; the question is limited to the student's own illness. The printed decision number and date are blank in the PDF; none is used.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-018",
+  "category": "single",
+  "question": "Theo Quy định gia hạn học phí của Trường Đại học Bách khoa, người học phải nộp đơn đăng ký gia hạn trước thời điểm kết thúc thời gian nộp học phí ít nhất bao nhiêu ngày làm việc?",
+  "ground_truth_article_ids": [
+   "HCMUT_HOCPHI2800_Dieu_7"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Ít nhất 05 ngày làm việc.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+    "exact_quote": "điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc.",
+    "pdf_pages": [
+     3,
+     4
+    ]
+   }
+  ],
+  "doc_code": "HOCPHI2800",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Standalone regulation, Điều 7 bước 1. Filing location (Phòng Công tác sinh viên) is not asked.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-019",
+  "category": "single",
+  "question": "Việc gia hạn thời gian nộp học phí theo quy định của Trường Đại học Bách khoa áp dụng cho những loại học kỳ nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_HOCPHI2800_Dieu_5"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Chỉ học kỳ chính; không áp dụng cho học kỳ dự thính và học kỳ hè.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HOCPHI2800_Dieu_5",
+    "exact_quote": "không áp dụng cho học kỳ dự thính, học kỳ hè",
+    "pdf_pages": [
+     3
+    ]
+   }
+  ],
+  "doc_code": "HOCPHI2800",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Standalone regulation, Điều 5 khoản 1. The answer is a scope exclusion.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-020",
+  "category": "single",
+  "question": "Theo Quy định gia hạn học phí của Trường Đại học Bách khoa, ai là Chủ tịch Hội đồng xét hồ sơ xin gia hạn thời gian nộp học phí?",
+  "ground_truth_article_ids": [
+   "HCMUT_HOCPHI2800_Dieu_8"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Phó Hiệu trưởng.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+    "exact_quote": "Phó Hiệu trưởng là Chủ tịch Hội đồng",
+    "pdf_pages": [
+     4
+    ]
+   }
+  ],
+  "doc_code": "HOCPHI2800",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Standalone regulation, Điều 8 khoản 1 (council of 5 members). Membership details are not asked.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-021",
+  "category": "multi",
+  "question": "Người học muốn xin gia hạn thời gian nộp học phí thì nộp đơn đăng ký về phòng nào, và phòng đó giữ những chức danh nào trong Hội đồng xét hồ sơ xin gia hạn?",
+  "ground_truth_article_ids": [
+   "HCMUT_HOCPHI2800_Dieu_7",
+   "HCMUT_HOCPHI2800_Dieu_8"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Nộp về Phòng Công tác sinh viên (Điều 7, Bước 1). Trong Hội đồng xét hồ sơ (Điều 8 khoản 1), Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng và Phó Trưởng phòng Công tác sinh viên là thư ký.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+    "exact_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên",
+    "pdf_pages": [
+     3,
+     4
+    ]
+   },
+   {
+    "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+    "exact_quote": "Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng",
+    "pdf_pages": [
+     4
+    ]
+   },
+   {
+    "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+    "exact_quote": "Phó Trưởng phòng Công tác sinh viên là thư ký",
+    "pdf_pages": [
+     4
+    ]
+   }
+  ],
+  "doc_code": "HOCPHI2800",
+  "author": "Claude Sonnet (AI) adjudicator (replacement authored; original item drafted by Claude Haiku (AI) and rejected by both verifiers)",
+  "gold_status": "ai_verified_adjudicator_plus_independent_recheck",
+  "notes": "Replacement for the rejected draft item. Two records of one regulation are needed: Điều 7 Bước 1 identifies the receiving unit (Phòng Công tác sinh viên); Điều 8 khoản 1 gives the roles that unit holds in the 5-member Hội đồng (Phó Chủ tịch = Trưởng Phòng CTSV, thư ký = Phó Trưởng phòng CTSV; the other two ủy viên are Trưởng Phòng Kế hoạch – Tài chính and Trưởng Phòng Đào tạo; Chủ tịch is Phó Hiệu trưởng, asked in HCMUT-020 and not here). Phụ lục 1 Bước 2 is consistent (nộp trực tiếp tại Phòng Công tác sinh viên). No dependence on base regulations or printed numbers/dates. Replacement authored and checked mechanically by the adjudicator only; not reviewed by the two independent verifiers.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "reject",
+   "verify_B": "reject",
+   "adjudication": "replaced",
+   "note": "Rejected by both verifiers: artificial conjunction of two unrelated questions; first half rested on a purpose clause (HOCPHI2800 Điều 3) and linked \"tạm dừng học tập\" to a different concept (HVDT1260 14.3 \"tạm dừng quá 02 học kỳ chính\"); 14.3 half duplicated HCMUT-004. Replaced by a same-regulation two-record question (Điều 7 + Điều 8).",
+   "recheck_C": "accept"
+  }
+ },
+ {
+  "task_id": "HCMUT-022",
+  "category": "multi",
+  "question": "Theo khoản 5.5 Điều 5 được sửa đổi bởi Quyết định 1260/QĐ-ĐHBK (áp dụng từ học kỳ 1 năm học 2025-2026), điểm trung bình tích lũy tối thiểu (thang 4) để sinh viên được đăng ký các học phần tốt nghiệp là bao nhiêu? Một sinh viên có điểm trung bình tích lũy 2,35 có đạt ngưỡng điểm này không, và học lực được xếp loại gì theo khoản 15.2 do Quyết định 1259/QĐ-ĐHBK sửa đổi?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVDT1260_Dieu_1_S5_5",
+   "HCMUT_HVCHUNG1259_Dieu_1_S15_2"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Ngưỡng tối thiểu là điểm trung bình tích lũy (GPA) từ 2.0 trở lên theo thang điểm 4 (áp dụng từ học kỳ 1 năm học 2025-2026). GPA 2,35 đạt ngưỡng GPA này (việc đăng ký học phần tốt nghiệp còn các điều kiện khác trong khoản 5.5, không được hỏi ở đây), và học lực xếp loại Trung bình (từ 2,00 đến cận 2,50).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S5_5",
+    "exact_quote": "Sinh viên phải có điểm trung bình tích lũy (GPA) từ 2.0 trở lên (theo thang điểm 4)",
+    "pdf_pages": [
+     3,
+     4
+    ]
+   },
+   {
+    "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S15_2",
+    "exact_quote": "Từ 2,00 đến cận 2,50: Trung bình",
+    "pdf_pages": [
+     7
+    ]
+   }
+  ],
+  "doc_code": "HVDT1260",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Combines amended 1260 khoản 5.5 (GPA 2.0 to register graduation courses, applicable from HK1 2025-2026 per the amendment text) with amended 1259 khoản 15.2 (rank table). GPA 2.35 satisfies the 2.0 threshold and sits in the Trung bình band. Base regulations 2933 and 2931 are not used.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "fix",
+   "verify_B": "fix",
+   "adjudication": "fixed",
+   "note": "Both verifiers fixed; merged (B question, A caveat). \"Đủ điều kiện đăng ký học phần tốt nghiệp\" was overclaimed: khoản 5.5 also requires foreign-language standard, cumulative-credit percentages and, for Khóa luận, 80% of the rèn luyện programme. The question now asks only about the GPA threshold. Rank band (2,35 in \"Từ 2,00 đến cận 2,50: Trung bình\") verified in the 15.2 table.",
+   "recheck_C": "accept"
+  }
+ },
+ {
+  "task_id": "HCMUT-023",
+  "category": "multi",
+  "question": "Sinh viên chính quy muốn chuyển sang hình thức vừa làm vừa học thì thời gian đào tạo tối đa của hình thức này là bao nhiêu học kỳ chính, và kết quả học tập đã tích lũy có được giữ nguyên không?",
+  "ground_truth_article_ids": [
+   "HCMUT_HVCHUNG1259_Dieu_1_S25_5",
+   "HCMUT_HVDT1260_Dieu_1_S3_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tối đa 16 học kỳ chính (hàng \"Vừa làm vừa học, đào tạo từ xa\" của bảng ở khoản 3.1: kế hoạch 10, chuẩn 10, tối đa 16); kết quả học tập của người học được giữ nguyên. Việc chuyển hình thức chỉ áp dụng nếu ngành đang học có hình thức vừa làm vừa học và người học còn đủ thời gian đào tạo tối đa của hình thức này.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S25_5",
+    "exact_quote": "Người học theo hình thức đào tạo chính quy có thể xin chuyển sang hình thức vừa\nlàm vừa học, đào tạo từ xa, nếu ngành đang học có hình thức đào tạo này và còn đủ thời\ngian đào tạo tối đa theo quy định của hình thức vừa làm vừa học, đào tạo từ xa. Kết quả học\ntập của người học được giữ nguyên.",
+    "pdf_pages": [
+     10,
+     11
+    ]
+   },
+   {
+    "article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+    "exact_quote": "Vừa làm vừa học, đào tạo từ xa 10 10 16",
+    "pdf_pages": [
+     2,
+     3
+    ]
+   }
+  ],
+  "doc_code": "HVCHUNG1259",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Combines amended 1259 khoản 25.5 (conditions; results kept) with amended 1260 khoản 3.1 (VLVH maximum 16 semesters). The expected answer does not compute remaining semesters, because that depends on how 'thời gian đào tạo tối đa' is counted from the start of study.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "fix",
+   "verify_B": "accept",
+   "adjudication": "fixed",
+   "note": "A fix adopted for evidence (B accepted, calling the quote weak). The old quote \"tập của người học được giữ nguyên\" began mid-sentence and did not support the conditions stated in the answer. Replaced by the full 25.5 sentence. Table reading verified (column order Kế hoạch / Chuẩn / Tối đa, so 16 is the maximum). Genuine two-record combination. The oracle run scored it partially_correct because the model omitted the conditions; the question does not ask for them, so the answer text now marks them as a qualification (a grader should not require them). Maximum-duration figure is the total for the VLVH form, not remaining semesters.",
+   "recheck_C": "accept"
+  }
+ },
+ {
+  "task_id": "HCMUT-024",
+  "category": "out_of_scope",
+  "question": "Đơn giá học phí mỗi tín chỉ năm học 2026–2027 cho sinh viên đại học chính quy là bao nhiêu?",
+  "ground_truth_article_ids": [],
+  "expected_behavior": "refuse",
+  "expected_answer": "Corpus không có đơn giá học phí. Điều 23.1 (Quyết định 1259) chỉ nói Trường thông báo đơn giá, cách tính và thời điểm thu học phí theo từng năm hoặc theo học kỳ; thông báo đó không nằm trong corpus.",
+  "reference_evidence": [],
+  "doc_code": "HVCHUNG1259",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Searched all 143 record contents. Terms: 'đơn giá' (1 hit, HVCHUNG1259 Điều 23.1, which says the School announces unit prices but gives no amount); 'học phí' (17 hits, none with a per-credit amount); money regex for số + đồng/VNĐ/VND/triệu (4 hits, all in VINHDANH658 award prizes, unrelated); 'tín chỉ' (no unit price). Annual tariff notices are not in the corpus.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-025",
+  "category": "out_of_scope",
+  "question": "Sinh viên muốn phúc khảo điểm một học phần thì phải nộp đơn trong thời hạn bao nhiêu ngày kể từ ngày công bố điểm?",
+  "ground_truth_article_ids": [],
+  "expected_behavior": "refuse",
+  "expected_answer": "Corpus không quy định thủ tục hay thời hạn phúc khảo điểm học phần. Các điều khoản về đánh giá, hoãn thi và xét kết quả trong corpus không trả lời câu hỏi này; cần tra quy định riêng của nhà trường.",
+  "reference_evidence": [],
+  "doc_code": "HVCHUNG1259",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Replacement for an earlier item whose topic (cảnh báo học vụ threshold) is answerable from or adjacent to corpus text, removed per the coordinator's correction. Searched all 143 record contents: 'phúc khảo' (0 hits), 'chấm lại' (0), 'xem lại bài thi' (0), 'phản hồi điểm' (0). 'khiếu nại' (2 hits, both in VINHDANH658 Điều 7 and 10) concern award decisions, not exam scores; 'phúc' hits are only the word 'Hạnh phúc' in document headers. 'điểm thi' hits are in PFIEV and 1259 contexts that do not regulate score review. Nearest related text: 1259 Điều 16.2 (vắng thi / hoãn thi, 05 working days for hoãn-thi registration only). Base 2933 is image-only.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-026",
+  "category": "single",
+  "question": "Theo quy định về công tác GVCN và CVHT, mỗi GVCN được chủ nhiệm tối đa bao nhiêu lớp?",
+  "ground_truth_article_ids": [
+   "HCMUT_GVCN2977_Dieu_5"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tối đa 02 lớp.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GVCN2977_Dieu_5",
+    "exact_quote": "Mỗi GVCN chủ nhiệm tối đa 02 lớp",
+    "pdf_pages": [
+     3
+    ]
+   }
+  ],
+  "doc_code": "GVCN2977",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 5 khoản 2. The clause says the cap applies to all training systems and that the Hiệu trưởng decides special cases; that exception is split across lines in the PDF text and is not part of the expected answer. The printed Số/ngày are blank in the PDF; number and date come from the HCMUT listing (unverified).",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-027",
+  "category": "single",
+  "question": "Ở mức kỷ luật nào thì GVCN hoặc CVHT có thể bị Hiệu trưởng miễn nhiệm theo quy định này?",
+  "ground_truth_article_ids": [
+   "HCMUT_GVCN2977_Dieu_5"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Từ hình thức cảnh cáo trở lên.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GVCN2977_Dieu_5",
+    "exact_quote": "GVCN & CVHT bị kỷ luật từ hình thức cảnh cáo trở lên",
+    "pdf_pages": [
+     3
+    ]
+   }
+  ],
+  "doc_code": "GVCN2977",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 5 khoản 4 a. Removal is one of four grounds in khoản 4 (others: failing duties, health, other justified reasons); the question asks only about the disciplinary ground. Removal is decided on a proposal from P. CTSV after a request from the Khoa.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-028",
+  "category": "single",
+  "question": "Khi người học yếu, kém hoặc thuộc diện cảnh báo học vụ, GVCN cần liên hệ để làm gì và ghi nhận điều gì?",
+  "ground_truth_article_ids": [
+   "HCMUT_GVCN2977_Dieu_12"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Liên hệ để thông báo tình trạng của người học cho gia đình và ghi nhận lại kết quả.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GVCN2977_Dieu_12",
+    "exact_quote": "để thông báo tình trạng của người học cho gia đình và ghi nhận lại kết quả",
+    "pdf_pages": [
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "GVCN2977",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 12 khoản 8. Only this duty is asked. Khoản 6 of the same article (keep a list of students under academic handling and inform families) is related but is not used. The warning (cảnh báo học vụ) rule itself is in the image-only base regulation and is not in the corpus.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-029",
+  "category": "single",
+  "question": "Khi có quyết định xử lý biến động người học như đình chỉ học tập hoặc buộc thôi học, Phòng Đào tạo phải gửi quyết định đi đâu?",
+  "ground_truth_article_ids": [
+   "HCMUT_GVCN2977_Dieu_8"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Gửi đến Khoa.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GVCN2977_Dieu_8",
+    "exact_quote": "Gửi quyết định mỗi khi có xử lý biến động người học",
+    "pdf_pages": [
+     4
+    ]
+   },
+   {
+    "article_id": "HCMUT_GVCN2977_Dieu_8",
+    "exact_quote": "nghỉ học tạm thời đến Khoa",
+    "pdf_pages": [
+     4
+    ]
+   }
+  ],
+  "doc_code": "GVCN2977",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 8 khoản 4 (duties of Phòng Đào tạo). The clause lists đình chỉ học tập, buộc thôi học and nghỉ học tạm thời; the conditions for those sanctions are in other documents and are not asked. Two evidence fragments because the list spans lines.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-030",
+  "category": "single",
+  "question": "Sinh viên bắt buộc phải đeo thẻ sinh viên trong phạm vi nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_NOIQUY1924_Dieu_3"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Khi ở trong khuôn viên Trường.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_NOIQUY1924_Dieu_3",
+    "exact_quote": "sinh viên phải đeo thẻ sinh viên khi ở trong khuôn viên Trường",
+    "pdf_pages": [
+     2,
+     3
+    ]
+   }
+  ],
+  "doc_code": "NOIQUY1924",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 3 khoản 1 of Nội quy học đường. The Nội quy has no printed number or date (blank in the PDF). No exception is stated in the corpus text.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-031",
+  "category": "single",
+  "question": "Trong khuôn viên Trường, sinh viên bị cấm đi bằng những loại phương tiện nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_NOIQUY1924_Dieu_5"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Xe máy và xe đạp.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_NOIQUY1924_Dieu_5",
+    "exact_quote": "Đi xe máy, xe đạp trong khuôn viên Trường",
+    "pdf_pages": [
+     3,
+     4
+    ]
+   }
+  ],
+  "doc_code": "NOIQUY1924",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 5 khoản 3 (list of prohibited conduct). The clause names only motorcycles and bicycles.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-032",
+  "category": "single",
+  "question": "Theo Nội quy học đường, quy định cấm hút thuốc lá trong khuôn viên Trường nêu rõ bao gồm cả loại thuốc lá nào ngoài thuốc lá thông thường?",
+  "ground_truth_article_ids": [
+   "HCMUT_NOIQUY1924_Dieu_5"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Bao gồm cả thuốc lá điện tử.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_NOIQUY1924_Dieu_5",
+    "exact_quote": "hút thuốc lá trong khuôn viên Trường (bao gồm thuốc lá\nđiện tử)",
+    "pdf_pages": [
+     3,
+     4
+    ]
+   }
+  ],
+  "doc_code": "NOIQUY1924",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 5 khoản 8. The parenthesis '(bao gồm thuốc lá điện tử)' is split across a PDF line break; two evidence fragments cover it. The same clause also bans drugs, stimulants, buying or selling them, and drinking alcohol on campus; those are not asked.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "fix",
+   "verify_B": "accept",
+   "adjudication": "fixed",
+   "note": "A fix adopted (B accepted). \"Loại sản phẩm nào khác cũng bị cấm hút\" was ambiguous: the same Điều 5 khoản 8 also bans using drugs and stimulants, so a second defensible answer existed. Question now targets the parenthetical on thuốc lá. Two split quotes merged. UNGXU3408 Điều 4 is consistent.",
+   "recheck_C": "accept"
+  }
+ },
+ {
+  "task_id": "HCMUT-033",
+  "category": "single",
+  "question": "Sinh viên vi phạm Nội quy học đường sẽ được xử lý theo căn cứ nào, và mức xử lý phụ thuộc vào yếu tố nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_NOIQUY1924_Dieu_6"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Theo Quy chế Công tác sinh viên của Trường và quy định của pháp luật; tùy theo mức độ vi phạm.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_NOIQUY1924_Dieu_6",
+    "exact_quote": "sẽ bị xử lý theo Quy chế Công tác sinh viên Trường và quy định của pháp luật",
+    "pdf_pages": [
+     4
+    ]
+   },
+   {
+    "article_id": "HCMUT_NOIQUY1924_Dieu_6",
+    "exact_quote": "tùy theo mức độ vi phạm",
+    "pdf_pages": [
+     4
+    ]
+   }
+  ],
+  "doc_code": "NOIQUY1924",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 6 khoản 3. The Quy chế Công tác sinh viên is named but is not in the corpus (manifest: the 2017 text 925/QĐ-ĐHBK-CTCT-SV is image-only), so the answer rests only on the name cited here. No sanction list is asked.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-034",
+  "category": "single",
+  "question": "Theo Quyết định 1862/QĐ-ĐHBK sửa đổi Quy định 3538, sinh viên tốt nghiệp đại học khóa 2026 làm đồ án/khóa luận tốt nghiệp bao nhiêu tín chỉ và vào học kỳ nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_CTDT1862_Dieu_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "6 tín chỉ, học kỳ 8.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_CTDT1862_Dieu_1",
+    "exact_quote": "e) Tốt nghiệp trình độ đại học từ khóa 2026",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   },
+   {
+    "article_id": "HCMUT_CTDT1862_Dieu_1",
+    "exact_quote": "2. Đồ án/ Khóa luận tốt nghiệp 6 Học kỳ 8",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   }
+  ],
+  "doc_code": "CTDT1862",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment: Điều 1 khoản 6 replaces Điều 11 of base 3538 (base is excluded from the corpus: 115 pages). The row is parsed from the PDF table layout. Khóa 2025 and earlier has a different row (4 tín chỉ, học kỳ 8) and is deliberately not asked. Decision number 1862 is named as context only (printed Số/ngày blank).",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-035",
+  "category": "single",
+  "question": "Theo điểm b khoản 2 Điều 2 được sửa bởi Quyết định 1862/QĐ-ĐHBK, học phần lý thuyết có phần thực hành phải chiếm tối thiểu bao nhiêu phần trăm khối lượng tín chỉ?",
+  "ground_truth_article_ids": [
+   "HCMUT_CTDT1862_Dieu_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "20%.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_CTDT1862_Dieu_1",
+    "exact_quote": "hành chiếm tối thiểu 20% khối lượng tín chỉ học phần",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   }
+  ],
+  "doc_code": "CTDT1862",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment: Điều 1 khoản 1 a of Quyết định 1862 quotes the new point b of base 3538 Điều 2 khoản 2. The base text is not in the corpus; the answer is taken only from the quoted amended clause. The same clause lists thảo luận, thí nghiệm, bài tập lớn and kiến tập as practice forms (not asked).",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-036",
+  "category": "single",
+  "question": "Theo Điều 6 mới của Quyết định 1862/QĐ-ĐHBK, chương trình đại học các ngành kỹ thuật và kiến trúc theo khung ABET có tổng bao nhiêu tín chỉ, và khối Toán tối thiểu bao nhiêu tín chỉ?",
+  "ground_truth_article_ids": [
+   "HCMUT_CTDT1862_Dieu_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tổng 128–132 tín chỉ; khối Toán tối thiểu 11 tín chỉ.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_CTDT1862_Dieu_1",
+    "exact_quote": "Cơ sở ngành/ Ngành/ Chuyên ngành 68–72\n1. Cơ sở ngành 18–34\n2. Ngành/ Chuyên ngành\n34–54\n3. Tốt nghiệp trình độ đại học\nTổng tín chỉ 128–132",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   },
+   {
+    "article_id": "HCMUT_CTDT1862_Dieu_1",
+    "exact_quote": "Toán và Khoa học tự nhiên 30\n1. Toán tối thiểu 11",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   }
+  ],
+  "doc_code": "CTDT1862",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment: Điều 1 khoản 3 replaces Điều 6 of base 3538. The question is limited to the ABET-framework table for engineering and architecture; the management table also totals 128–132 and the PFIEV table totals 158–163, neither is used. The 'Toán' minimum is the first row of the table.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "fix",
+   "adjudication": "fixed",
+   "note": "B fix adopted (A accepted, noting the quote is non-unique). \"Tổng tín chỉ 128–132\" occurs several times in the record (ABET table, FIBAA table, appendix), so the old quote did not pin the ABET table. The new quote ends in the ABET total (block row 68–72, unique to ABET) and the Toán quote includes its block heading. Answer unchanged (128–132 total, Toán tối thiểu 11; FIBAA Toán is 9).",
+   "recheck_C": "accept"
+  }
+ },
+ {
+  "task_id": "HCMUT-037",
+  "category": "single",
+  "question": "Theo khoản 1 Điều 16 được sửa bởi Quyết định 1862/QĐ-ĐHBK, một Hội đồng ngành có tối thiểu và tối đa bao nhiêu thành viên?",
+  "ground_truth_article_ids": [
+   "HCMUT_CTDT1862_Dieu_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Tối thiểu 07 và tối đa 15 thành viên.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_CTDT1862_Dieu_1",
+    "exact_quote": "Hội đồng ngành có tối thiểu 07 thành viên và tối đa 15 thành viên",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   }
+  ],
+  "doc_code": "CTDT1862",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Amendment: Điều 1 khoản 8 a replaces Điều 16 khoản 1 of base 3538. The same clause requires an odd number of members and excludes the thư ký hành chính from the count; those phrases are split by line breaks and are not in the expected answer.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-038",
+  "category": "single",
+  "question": "Một đội thi được hỗ trợ hoặc vinh danh tối đa bao nhiêu lần ở cùng một mức?",
+  "ground_truth_article_ids": [
+   "HCMUT_VINHDANH658_Dieu_5"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "01 lần.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_VINHDANH658_Dieu_5",
+    "exact_quote": "Mỗi đội thi chỉ được hỗ trợ/vinh danh 01 lần ở mỗi mức",
+    "pdf_pages": [
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "VINHDANH658",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 5 (second paragraph, rules before the level table). The next sentence (no lower-level honour after a higher one was granted) is not in the answer. This Quy chế replaces Quyết định 1466/QĐ-ĐHBK (Điều 2), which is not in the corpus. Number and date printed blank.",
+  "verification": {
+   "verify_A": "fix",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "A asked to add regulation context to the question (\"Một đội thi\" alone is under-specified). Adjudication: the answer is unaffected and no other regulation in the corpus concerns đội thi, so the item has a single determinate answer; kept unchanged (B accepted). Source sentence: \"Mỗi đội thi chỉ được hỗ trợ/vinh danh 01 lần ở mỗi mức\"."
+  }
+ },
+ {
+  "task_id": "HCMUT-039",
+  "category": "single",
+  "question": "Giảng viên hướng dẫn nhóm SV đạt giải loại III trở lên cần hệ số khen thưởng Kpl từ bao nhiêu trở lên để Hội đồng cố vấn xem xét vinh danh?",
+  "ground_truth_article_ids": [
+   "HCMUT_VINHDANH658_Dieu_5"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Từ 18 trở lên (đối với nhóm SV).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_VINHDANH658_Dieu_5",
+    "exact_quote": "loại III trở lên và có hệ số khen thưởng (Kpl)",
+    "pdf_pages": [
+     5,
+     6
+    ]
+   },
+   {
+    "article_id": "HCMUT_VINHDANH658_Dieu_5",
+    "exact_quote": "từ 18 trở lên",
+    "pdf_pages": [
+     5,
+     6
+    ]
+   },
+   {
+    "article_id": "HCMUT_VINHDANH658_Dieu_5",
+    "exact_quote": "(đối với nhóm SV)",
+    "pdf_pages": [
+     5,
+     6
+    ]
+   }
+  ],
+  "doc_code": "VINHDANH658",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 5 (introductory paragraph on lecturer eligibility). The individual threshold (9) and team threshold (27) are in the same sentence and are not asked. Kpl is the classification value; the Khs multiplier is set yearly by the Hiệu trưởng and is not in the corpus.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both. Oracle run answered 27 (confused \"nhóm SV\" with \"giải đồng đội\"); gold 18 re-checked against VINHDANH658 Điều 5: \"từ 9 trở lên (đối với cá nhân), từ 18 trở lên (đối với nhóm SV), từ 27 trở lên (đối với giải đồng đội)\". Kept unchanged; note the source does not define the difference between nhóm SV and giải đồng đội, so the item is hard but the question uses the source label \"nhóm SV\"."
+  }
+ },
+ {
+  "task_id": "HCMUT-040",
+  "category": "single",
+  "question": "Hiện kim khen thưởng cho một nhóm SV từ hai người trở lên được tính so với khen thưởng dành cho cá nhân như thế nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_VINHDANH658_Dieu_11"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Bằng 2 lần khen thưởng dành cho cá nhân.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_VINHDANH658_Dieu_11",
+    "exact_quote": "Đối với nhóm SV (từ 02 SV trở lên) thì hiện kim khen thưởng cho nhóm SV có",
+    "pdf_pages": [
+     9,
+     10
+    ]
+   },
+   {
+    "article_id": "HCMUT_VINHDANH658_Dieu_11",
+    "exact_quote": "giá trị bằng 02 lần so với hiện kim khen thưởng dành cho cá nhân",
+    "pdf_pages": [
+     9,
+     10
+    ]
+   }
+  ],
+  "doc_code": "VINHDANH658",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 11 khoản 3 d. The rule is relative only: no VND amount is stated in the corpus. The team-competition rule (3 times, khoản 3 e) is not asked.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-041",
+  "category": "single",
+  "question": "Với hồ sơ đề xuất hỗ trợ tham gia cuộc thi, SV phải nộp tại Phòng Công tác sinh viên trong khoảng thời gian nào so với ngày kết thúc nhận đơn đăng ký của cuộc thi?",
+  "ground_truth_article_ids": [
+   "HCMUT_VINHDANH658_Dieu_6"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Từ ngày công bố cuộc thi đến trước 10 ngày làm việc tính từ thời gian kết thúc nhận đơn đăng ký.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_VINHDANH658_Dieu_6",
+    "exact_quote": "kể từ ngày công bố cuộc thi cho đến trước 10 ngày làm việc tính từ thời gian kết",
+    "pdf_pages": [
+     6
+    ]
+   },
+   {
+    "article_id": "HCMUT_VINHDANH658_Dieu_6",
+    "exact_quote": "thúc nhận đơn đăng ký tham gia của cuộc thi",
+    "pdf_pages": [
+     6
+    ]
+   }
+  ],
+  "doc_code": "VINHDANH658",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 6 khoản 1 a (support track). The honour track (khoản 2 a) has no day count and is not asked. The sentence is split across a PDF line break ('kết' / 'thúc'); two fragments are used.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-042",
+  "category": "single",
+  "question": "Khi tham gia hoạt động, sự kiện hoặc hội nghị của Nhà trường, người học phải có mặt trước giờ khai mạc ít nhất bao lâu?",
+  "ground_truth_article_ids": [
+   "HCMUT_UNGXU3408_Dieu_9"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Ít nhất 5 phút.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_UNGXU3408_Dieu_9",
+    "exact_quote": "người học phải đến trước giờ khai",
+    "pdf_pages": [
+     5
+    ]
+   },
+   {
+    "article_id": "HCMUT_UNGXU3408_Dieu_9",
+    "exact_quote": "mạc ít nhất 5 phút",
+    "pdf_pages": [
+     5
+    ]
+   }
+  ],
+  "doc_code": "UNGXU3408",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 9 khoản 4. The same clause requires reporting early to the Ban Tổ chức or the person in charge if the student will be late or absent (not asked). The phrase is split across a line break ('khai' / 'mạc').",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-043",
+  "category": "single",
+  "question": "Khi trao đổi công việc học tập với giảng viên hoặc đơn vị trong Trường qua thư điện tử, người học dùng địa chỉ nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_UNGXU3408_Dieu_12"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Địa chỉ thư điện tử do Nhà trường cấp.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_UNGXU3408_Dieu_12",
+    "exact_quote": "Người học sử dụng địa chỉ thư điện tử do Nhà trường cấp khi trao đổi công việc học",
+    "pdf_pages": [
+     6,
+     7
+    ]
+   }
+  ],
+  "doc_code": "UNGXU3408",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 12 khoản 1. The clause covers học tập and hành chính matters; the question keeps only the study-matter wording. Other email rules (khoản 2 to 6) are not asked.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-044",
+  "category": "single",
+  "question": "Nếu phát hiện tài khoản cá nhân bị xâm nhập, giả mạo hoặc sử dụng trái phép, người học phải làm gì theo quy tắc ứng xử trên không gian mạng?",
+  "ground_truth_article_ids": [
+   "HCMUT_UNGXU3408_Dieu_13"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Kịp thời thông báo cho đơn vị chức năng của Nhà trường.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_UNGXU3408_Dieu_13",
+    "exact_quote": "để lộ thông tin đăng nhập; kịp",
+    "pdf_pages": [
+     7
+    ]
+   },
+   {
+    "article_id": "HCMUT_UNGXU3408_Dieu_13",
+    "exact_quote": "thời thông báo cho đơn vị chức năng của Nhà trường khi phát hiện tài khoản bị xâm",
+    "pdf_pages": [
+     7
+    ]
+   }
+  ],
+  "doc_code": "UNGXU3408",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 13 khoản 4. The word 'kịp' ends one PDF line and 'thời' starts the next; the two fragments cover the phrase. Điều 13 sits in Chương IV, which applies to VC-NLĐ and người học (Điều 1 khoản 2).",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-045",
+  "category": "single",
+  "question": "Hành vi vi phạm xảy ra trước ngày Quy định ứng xử có hiệu lực thì được xem xét theo quy định nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_UNGXU3408_Dieu_16"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Quy định có hiệu lực tại thời điểm hành vi xảy ra.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_UNGXU3408_Dieu_16",
+    "exact_quote": "Các hành vi vi phạm xảy ra trước thời điểm Quy định này có hiệu lực",
+    "pdf_pages": [
+     8
+    ]
+   },
+   {
+    "article_id": "HCMUT_UNGXU3408_Dieu_16",
+    "exact_quote": "xử lý theo quy định có hiệu lực tại thời điểm xảy ra hành vi",
+    "pdf_pages": [
+     8
+    ]
+   }
+  ],
+  "doc_code": "UNGXU3408",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Điều 16 khoản 3. The effective date is the signing date (khoản 1); the printed date is blank in the PDF, so no date is asked. The listing date 2026-06-22 is not used.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-046",
+  "category": "multi",
+  "question": "Một người học vi phạm đồng thời Nội quy học đường và Quy tắc ứng xử của Trường thì mỗi văn bản dẫn đến căn cứ xử lý nào?",
+  "ground_truth_article_ids": [
+   "HCMUT_NOIQUY1924_Dieu_6",
+   "HCMUT_UNGXU3408_Dieu_15"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "Nội quy học đường: xử lý theo Quy chế Công tác sinh viên của Trường và quy định của pháp luật, tùy mức độ vi phạm. Quy tắc ứng xử: xử lý theo quy định của pháp luật và quy định nội bộ của Nhà trường, tùy tính chất và mức độ vi phạm.",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_NOIQUY1924_Dieu_6",
+    "exact_quote": "sẽ bị xử lý theo Quy chế Công tác sinh viên Trường và quy định của pháp luật",
+    "pdf_pages": [
+     4
+    ]
+   },
+   {
+    "article_id": "HCMUT_UNGXU3408_Dieu_15",
+    "exact_quote": "sẽ bị xử lý theo quy định của pháp luật và quy định nội bộ của Nhà trường",
+    "pdf_pages": [
+     8
+    ]
+   }
+  ],
+  "doc_code": "NOIQUY1924",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Multi across NOIQUY1924 (Điều 6 khoản 3) and UNGXU3408 (Điều 15 khoản 2). doc_code is the first-cited document; the second is in ground_truth_article_ids. The Quy chế Công tác sinh viên is named but not in the corpus, so the answer uses only the cited name. The Quy tắc sanction clause also says 'tùy theo tính chất, mức độ vi phạm'.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Both verifiers accepted (B noted its Nội quy half repeats HCMUT-033 and has low added value). Adjudication: gold is correct (NOIQUY1924 Điều 6 khoản 3 and UNGXU3408 Điều 15 khoản 2 both read and confirmed); kept unchanged. Known limitation: near-duplicate of 033 for the Nội quy half; the multi item compares two sanction bases side by side."
+  }
+ },
+ {
+  "task_id": "HCMUT-047",
+  "category": "multi",
+  "question": "Theo Quy định về công tác GVCN và CVHT, cố vấn học tập có nhiệm vụ gì liên quan đến tín chỉ tự chọn tự do, và theo Quyết định 1862/QĐ-ĐHBK sửa đổi, chương trình đào tạo trình độ đại học khóa 2025 về trước cần có tối thiểu bao nhiêu tín chỉ tự chọn tự do?",
+  "ground_truth_article_ids": [
+   "HCMUT_GVCN2977_Dieu_15",
+   "HCMUT_CTDT1862_Dieu_1"
+  ],
+  "expected_behavior": "answer",
+  "expected_answer": "CVHT tư vấn cho người học về các tín chỉ tự chọn tự do (Điều 15 khoản 4 Quy định GVCN và CVHT); chương trình đào tạo trình độ đại học khóa 2025 về trước cần có tối thiểu 9 tín chỉ tự chọn tự do (khoản 5 Điều 12 được sửa đổi).",
+  "reference_evidence": [
+   {
+    "article_id": "HCMUT_GVCN2977_Dieu_15",
+    "exact_quote": "Tư vấn cho người học về các tín chỉ tự chọn tự do.",
+    "pdf_pages": [
+     7
+    ]
+   },
+   {
+    "article_id": "HCMUT_CTDT1862_Dieu_1",
+    "exact_quote": "có tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước)",
+    "pdf_pages": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   }
+  ],
+  "doc_code": "GVCN2977",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Multi across GVCN2977 (Điều 15 khoản 4, advising duty) and CTDT1862 (amended Điều 12 khoản 5, from Điều 1 khoản 7 b). The advising clause gives no number; the 9-credit figure appears only in the amendment. Could be confused with the 9-credit tự chọn ngành/chuyên ngành rule in Điều 12 khoản 4 (not asked). doc_code is the first-cited document.",
+  "revised_by": "Claude Sonnet (AI) adjudicator",
+  "verification": {
+   "verify_A": "fix",
+   "verify_B": "fix",
+   "adjudication": "fixed",
+   "note": "Both verifiers fixed; merged (A question, B answer attribution). The 9 credits is a requirement on the structure of the training programme, not on the individual student, and the old question (\"phải có\") blurred that; the GVCN2977 record also did not contribute to the number. The rewritten question asks for the CVHT duty and the programme requirement separately so both records are needed. Limitation: the two halves are independent facts joined in one question (a conjunction, not a reasoning chain). Distractor not used: Điều 12 khoản 4 (9 credits = 3 elective major courses).",
+   "recheck_C": "accept"
+  }
+ },
+ {
+  "task_id": "HCMUT-048",
+  "category": "out_of_scope",
+  "question": "Để được xét học bổng khuyến khích học tập, sinh viên cần đạt điểm trung bình học kỳ và điểm rèn luyện tối thiểu bao nhiêu?",
+  "ground_truth_article_ids": [],
+  "expected_behavior": "refuse",
+  "expected_answer": "Corpus không có điều kiện hay ngưỡng điểm để xét học bổng khuyến khích học tập. Chỉ có một lần nhắc chung đến 'học bổng' trong nhiệm vụ của Phòng Công tác sinh viên, không có tiêu chí.",
+  "reference_evidence": [],
+  "doc_code": "VINHDANH658",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Searches over all 143 records (case-insensitive substring): 'khuyến khích học tập' 0 hits; 'học bổng' 1 hit (HCMUT_GVCN2977_Dieu_9, a list of topics with no criteria); 'điểm rèn luyện' hits only in GVCN2977, UNGXU3408 and HVCHUNG1259/HVDT1260 annex text (graduation or conduct context, no scholarship threshold). Likely source of the rule: the image-only 728/329 scholarship regulations listed as rejected in the manifest README. Not a DOCCODE-based answer; doc_code is the closest student-award document.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-049",
+  "category": "out_of_scope",
+  "question": "Sinh viên năm nhất muốn đăng ký ở ký túc xá của trường cho học kỳ tới thì cần làm thủ tục nào?",
+  "ground_truth_article_ids": [],
+  "expected_behavior": "refuse",
+  "expected_answer": "Corpus không có quy định hay thủ tục nào về ký túc xá hoặc đăng ký nội trú.",
+  "reference_evidence": [],
+  "doc_code": "GVCN2977",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "Searches over all 143 records: 'ký túc' 0 hits; 'nội trú' 0 hits; 'ktx' 0 hits. The question is about campus housing, not academic affairs, so it is out of the corpus scope. doc_code is the closest student-support document (GVCN2977) and is not a claim about where the answer lives.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ },
+ {
+  "task_id": "HCMUT-050",
+  "category": "out_of_scope",
+  "question": "Theo luật giao thông đường bộ, sinh viên đi xe máy vào khuôn viên trường mà không đội mũ bảo hiểm thì bị phạt bao nhiêu tiền?",
+  "ground_truth_article_ids": [],
+  "expected_behavior": "refuse",
+  "expected_answer": "Corpus chỉ cấm đi xe máy trong khuôn viên Trường (Nội quy học đường) và không nêu mức phạt tiền theo pháp luật giao thông đường bộ.",
+  "reference_evidence": [],
+  "doc_code": "NOIQUY1924",
+  "author": "Claude Haiku (AI), draft — not human-reviewed",
+  "gold_status": "ai_verified_two_independent_reviewers_adjudicated",
+  "notes": "National traffic law, outside this corpus. Searches over all 143 records: 'phạt' 0 hits; 'xử phạt' 0 hits; 'phạt tiền' 0 hits; 'mũ bảo hiểm' 0 hits. The Nội quy (Điều 5 khoản 3) bans motorcycles on campus, which is the only related text; the question asks about a fine, which is not stated. doc_code is NOIQUY1924 because of that related ban.",
+  "verification": {
+   "verify_A": "accept",
+   "verify_B": "accept",
+   "adjudication": "kept",
+   "note": "Accepted by both verifiers, no change."
+  }
+ }
+]

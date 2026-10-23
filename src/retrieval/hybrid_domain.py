@@ -1,7 +1,7 @@
 """
 Domain-Agnostic Hybrid Retrieval with Reciprocal Rank Fusion (RRF).
 
-Combines BM25 (lexical matching) and Neural Dense Search (Deep Learning CPU Embeddings)
+Combines BM25 with an explicitly selected statistical or neural retriever
 across any knowledge corpus (Legal, Medical, Technical, SOPs, Documentation).
 """
 import json
@@ -11,14 +11,13 @@ from collections import defaultdict
 
 from src.interfaces.base import BaseRetriever, BaseDenseRetriever
 from src.retrieval.bm25_engine import BM25Retriever
-from src.retrieval.dense_engine import NeuralDenseRetriever
+from src.retrieval.dense_engine import NeuralDenseRetriever, TfidfDenseRetriever
 from src.contracts.universal_document import UniversalDocument
 
 
 class HybridDomainRetriever(BaseRetriever):
     """
-    Universal hybrid retriever combining BM25 lexical search and Deep Learning
-    neural dense embeddings running 100% on CPU.
+    Hybrid BM25 retrieval with explicit TF-IDF or native embedding configuration.
     """
 
     def __init__(
@@ -28,9 +27,10 @@ class HybridDomainRetriever(BaseRetriever):
         rrf_k: int = 60,
         dense_retriever: Optional[BaseDenseRetriever] = None,
         dense_model_name: str = "all-minilm",
-        dense_endpoint: Optional[str] = None
+        dense_endpoint: Optional[str] = None,
+        retrieval_mode: str = "tfidf"
     ):
-        self.corpus_path = corpus_path or "data/corpus/labor_code_2019.json"
+        self.corpus_path = corpus_path or "data/corpus/labor_code_2019_official.json"
         self.rrf_k = rrf_k
         if corpus is not None:
             self.corpus = corpus
@@ -65,12 +65,20 @@ class HybridDomainRetriever(BaseRetriever):
         self.bm25 = BM25Retriever(self.corpus)
         if dense_retriever is not None:
             self.dense = dense_retriever
+            self.retrieval_mode = "injected"
+        elif retrieval_mode == "tfidf":
+            self.dense = TfidfDenseRetriever(self.corpus)
+            self.retrieval_mode = "bm25_tfidf_rrf"
+        elif retrieval_mode == "bm25":
+            self.dense = None
+            self.retrieval_mode = "bm25"
         else:
             self.dense = NeuralDenseRetriever(
                 self.corpus,
                 model_name=dense_model_name,
                 endpoint=dense_endpoint
             )
+            self.retrieval_mode = "bm25_neural_rrf"
 
     def _load_corpus(self, path: str) -> List[Dict[str, Any]]:
         if not os.path.exists(path):
@@ -114,10 +122,10 @@ class HybridDomainRetriever(BaseRetriever):
 
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         """
-        Executes hybrid search combining BM25 and Dense Neural Embedding search via RRF.
+        Executes the configured statistical/neural retrieval combination via RRF.
         """
         bm25_results = self.bm25.search(query, top_k=top_k * 2)
-        dense_results = self.dense.search(query, top_k=top_k * 2)
+        dense_results = self.dense.search(query, top_k=top_k * 2) if self.dense else []
 
         rrf_scores = defaultdict(float)
 
@@ -148,3 +156,68 @@ class HybridDomainRetriever(BaseRetriever):
                 })
 
         return enriched_results
+
+
+class IndexedRetriever(BaseRetriever):
+    """`retrieval.mode: hybrid_index`: `src/indexing` HybridSearcher over a built, persisted index.
+
+    Same interface and result shape as `HybridDomainRetriever` (`search`, `get_document_by_id`, `corpus`). The
+    embedding model (the index's own, from its manifest) is a ModelManager component: loaded on the first query,
+    counted in the resident budget, unloaded when idle. Any failure of the index or of the embedding model raises;
+    there is no fallback to keyword-only search or to the in-memory BM25/TF-IDF retriever.
+
+    FAISS stores are rejected: faiss and torch cannot share a process on macOS (duplicate libomp aborts or
+    segfaults), and the application loads torch for rerankers, NLI and the embedding model.
+    """
+
+    def __init__(self, index_cfg: Any, manager: Any = None):
+        from src.indexing import ConfigError, load_index
+        from src.indexing.builder import resolve_index_dir
+        from src.indexing.manifest import read_manifest
+        from src.model_manager import ModelManager, estimate_weights_gb
+
+        if not index_cfg.path:
+            raise ConfigError("retrieval.mode 'hybrid_index' requires retrieval.index.path")
+        index_dir = resolve_index_dir(index_cfg.path)
+        manifest = read_manifest(index_dir)
+        store = index_cfg.store or manifest["default_store"]
+        entries = {e["name"]: e for e in manifest["vector_stores"]}
+        if store not in entries:
+            raise ConfigError(f"index {manifest['name']!r} has no vector store {store!r}; built with {sorted(entries)}")
+        if entries[store]["backend"] == "faiss":
+            raise ConfigError(
+                f"vector store {store!r} is a FAISS store; FAISS cannot be used inside the application because it cannot "
+                "share a process with torch (duplicate libomp: abort or segfault). Choose another store of the index "
+                f"({sorted(n for n, e in entries.items() if e['backend'] != 'faiss')}) with retrieval.index.store")
+        self.index_cfg = index_cfg
+        self._loaded = load_index(index_dir, stores=[store], verify_corpus=index_cfg.verify_corpus)
+        self.searcher = self._loaded.searcher(store)
+        self.corpus: List[Dict[str, Any]] = list(self._loaded.records)
+        self.retrieval_mode = f"hybrid_index:{index_cfg.search_mode}"
+        provider = self._loaded.provider
+        self.manager = manager or ModelManager.shared()
+        local = hasattr(provider, "close") and provider.kind == "sentence_transformers"
+        if local:
+            gb, source = estimate_weights_gb(provider.model, getattr(provider, "dtype", "float32"),
+                                             self.manager.default_estimate_gb)
+            self.handle = self.manager.register(("embedding", provider.kind, provider.model, str(index_dir)), "embedding",
+                                                provider, provider.load, provider.close, gb)
+            self.handle.estimate_source = source
+        else:
+            self.handle = None   # HTTP embedding provider: nothing resident in this process
+
+    def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
+        if self.handle is None:
+            return self.searcher.search(query, top_k=top_k, mode=self.index_cfg.search_mode)
+        with self.handle.use():
+            return self.searcher.search(query, top_k=top_k, mode=self.index_cfg.search_mode)
+
+    def get_document_by_id(self, doc_id: str) -> Optional[Dict[str, Any]]:
+        return self.searcher.get_document_by_id(doc_id)
+
+    get_article_by_id = get_document_by_id
+
+    def close(self) -> None:
+        if self.handle is not None:
+            self.manager.unload(self.handle)
+        self._loaded.close()

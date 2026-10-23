@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "name": "labor_code_2019_vi",
+  "built_at": "2026-10-22T21:13:06+00:00",
+  "build_seconds": 32.144,
+  "config_path": "config/indexing/labor_code_2019.yaml",
+  "config": {
+    "name": "labor_code_2019_vi",
+    "corpora": [
+      {
+        "path": "data/corpus/labor_code_2019_official.json",
+        "collection_id": "labor_code_2019"
+      }
+    ],
+    "chunking": {
+      "max_tokens": 512,
+      "overlap_tokens": 64,
+      "max_chars": 1500,
+      "overlap_chars": 200,
+      "contextual_title": true,
+      "special_tokens": 2,
+      "title_token_cap": 48,
+      "title_char_cap": 200
+    },
+    "retrieval": {
+      "embedding": {
+        "provider": "sentence_transformers",
+        "model": "AITeamVN/Vietnamese_Embedding",
+        "device": "auto",
+        "batch_size": 4,
+        "max_seq_length": 2048,
+        "dtype": "float32",
+        "normalize": true,
+        "max_rss_gb": 4.0,
+        "wait_for_quiet_machine_gb": 2.0
+      },
+      "keyword_index": {
+        "backend": "sqlite_fts5",
+        "tokenizer": "unicode61 remove_diacritics 0",
+        "title_weight": 2.0,
+        "bigrams": true
+      },
+      "vector_stores": [
+        {
+          "backend": "numpy",
+          "name": "numpy",
+          "collection": "chunks",
+          "metric": "cosine",
+          "path": null
+        },
+        {
+          "backend": "faiss",
+          "name": "faiss",
+          "collection": "chunks",
+          "metric": "cosine",
+          "path": null,
+          "index_type": "flat"
+        },
+        {
+          "backend": "faiss",
+          "name": "faiss_hnsw",
+          "collection": "chunks",
+          "metric": "cosine",
+          "path": null,
+          "index_type": "hnsw",
+          "hnsw_m": 32,
+          "ef_construction": 200,
+          "ef_search": 128
+        },
+        {
+          "backend": "sqlite_vec",
+          "name": "sqlite_vec",
+          "collection": "chunks",
+          "metric": "cosine",
+          "path": null
+        },
+        {
+          "backend": "lancedb",
+          "name": "lancedb",
+          "collection": "chunks",
+          "metric": "cosine",
+          "path": null
+        },
+        {
+          "backend": "qdrant",
+          "name": "qdrant",
+          "collection": "chunks",
+          "metric": "cosine",
+          "path": null
+        },
+        {
+          "backend": "chroma",
+          "name": "chroma",
+          "collection": "chunks",
+          "metric": "cosine",
+          "path": null
+        }
+      ],
+      "rrf_k": 60,
+      "candidates": 50
+    },
+    "vector_metadata_fields": null,
+    "default_store": "numpy"
+  },
+  "corpora": [
+    {
+      "path": "data/corpus/labor_code_2019_official.json",
+      "sha256": "8df39799441508ef17f94123393497c56d48ed071d99fd3cc7e16d283bf88c94",
+      "records": 220,
+      "default_collection_id": "labor_code_2019"
+    }
+  ],
+  "records": 220,
+  "chunks": 230,
+  "chunking": {
+    "max_tokens": 512,
+    "overlap_tokens": 64,
+    "max_chars": 1500,
+    "overlap_chars": 200,
+    "contextual_title": true,
+    "special_tokens": 2,
+    "title_token_cap": 48,
+    "title_char_cap": 200
+  },
+  "embedding": {
+    "identity": {
+      "provider": "sentence_transformers",
+      "model": "AITeamVN/Vietnamese_Embedding",
+      "normalized": true,
+      "document_prefix": "",
+      "query_prefix": "",
+      "dtype": "float32"
+    },
+    "config": {
+      "provider": "sentence_transformers",
+      "model": "AITeamVN/Vietnamese_Embedding",
+      "device": "auto",
+      "batch_size": 4,
+      "max_seq_length": 2048,
+      "dtype": "float32",
+      "normalize": true,
+      "max_rss_gb": 4.0,
+      "wait_for_quiet_machine_gb": 2.0
+    },
+    "dimension": 1024,
+    "normalized": true,
+    "max_tokens": 2048,
+    "info": {
+      "provider": "sentence_transformers",
+      "model": "AITeamVN/Vietnamese_Embedding",
+      "dimension": 1024,
+      "normalized": true,
+      "max_tokens": 2048,
+      "batch_size": 4,
+      "document_prefix": "",
+      "query_prefix": "",
+      "device": "mps",
+      "dtype": "float32",
+      "model_revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568",
+      "sentence_transformers": "6.2.0",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "native_max_seq_length": 8192,
+      "load_seconds": 5.122171208000509,
+      "memory_rss_plus_mps_after_load_mb": 2460.78173828125,
+      "max_rss_gb": 4.0,
+      "mps_allocated_mb": 2182.35986328125,
+      "mps_driver_allocated_mb": 3056.703125
+    },
+    "texts_embedded": 230,
+    "embed_seconds": 15.842,
+    "embed_wall_seconds": 18.433,
+    "texts_per_second": 14.52
+  },
+  "keyword": {
+    "backend": "sqlite_fts5",
+    "config": {
+      "backend": "sqlite_fts5",
+      "tokenizer": "unicode61 remove_diacritics 0",
+      "title_weight": 2.0,
+      "bigrams": true
+    },
+    "build_seconds": 0.015,
+    "info": {
+      "backend": "sqlite_fts5",
+      "library": "sqlite3",
+      "version": "3.53.0",
+      "persistent": true,
+      "tokenizer": "unicode61 remove_diacritics 0",
+      "title_weight": 2.0,
+      "bigrams": true,
+      "score": "FTS5 bm25() sign-flipped (lexical proxy)",
+      "count": 220,
+      "path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/index/labor_code_2019_vi/keyword/fts5.sqlite"
+    },
+    "size_bytes": 671744
+  },
+  "vector_stores": [
+    {
+      "name": "numpy",
+      "backend": "numpy",
+      "collection": "chunks",
+      "metric": "cosine",
+      "path": "vector/numpy",
+      "params": {},
+      "count": 230,
+      "size_bytes": 1113229,
+      "build_seconds_write": 0.005,
+      "info": {
+        "backend": "numpy",
+        "library": "numpy",
+        "version": "2.5.4",
+        "exact": true,
+        "metric": "cosine",
+        "dim": 1024,
+        "count": 230,
+        "native_filter": true,
+        "persistence": ".npy matrix + JSON ids/metadata",
+        "path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/index/labor_code_2019_vi/vector/numpy"
+      }
+    },
+    {
+      "name": "faiss",
+      "backend": "faiss",
+      "collection": "chunks",
+      "metric": "cosine",
+      "path": "vector/faiss",
+      "params": {
+        "index_type": "flat"
+      },
+      "count": 230,
+      "size_bytes": 1118798,
+      "build_seconds_write": 0.005,
+      "info": {
+        "backend": "faiss",
+        "library": "faiss-cpu",
+        "version": "1.15.1",
+        "exact": true,
+        "index_type": "flat",
+        "metric": "cosine",
+        "dim": 1024,
+        "count": 230,
+        "native_filter": false,
+        "filter": "post-filter with candidate growth",
+        "persistence": ".faiss index + JSON id/metadata sidecar",
+        "path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/index/labor_code_2019_vi/vector/faiss"
+      },
+      "copied_from": "numpy"
+    },
+    {
+      "name": "faiss_hnsw",
+      "backend": "faiss",
+      "collection": "chunks",
+      "metric": "cosine",
+      "path": "vector/faiss_hnsw",
+      "params": {
+        "index_type": "hnsw",
+        "hnsw_m": 32,
+        "ef_construction": 200,
+        "ef_search": 128
+      },
+      "count": 230,
+      "size_bytes": 1181131,
+      "build_seconds_write": 0.016,
+      "info": {
+        "backend": "faiss",
+        "library": "faiss-cpu",
+        "version": "1.15.1",
+        "exact": false,
+        "index_type": "hnsw",
+        "metric": "cosine",
+        "dim": 1024,
+        "count": 230,
+        "native_filter": false,
+        "filter": "post-filter with candidate growth",
+        "persistence": ".faiss index + JSON id/metadata sidecar",
+        "path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/index/labor_code_2019_vi/vector/faiss_hnsw",
+        "hnsw_m": 32,
+        "ef_construction": 200,
+        "ef_search": 128
+      },
+      "copied_from": "numpy"
+    },
+    {
+      "name": "sqlite_vec",
+      "backend": "sqlite_vec",
+      "collection": "chunks",
+      "metric": "cosine",
+      "path": "vector/sqlite_vec",
+      "params": {},
+      "count": 230,
+      "size_bytes": 4444160,
+      "build_seconds_write": 0.027,
+      "info": {
+        "backend": "sqlite_vec",
+        "library": "sqlite-vec",
+        "version": "0.1.9",
+        "extension_version": "v0.1.9",
+        "sqlite_version": "3.53.0",
+        "exact": true,
+        "metric": "cosine",
+        "dim": 1024,
+        "count": 230,
+        "native_filter": false,
+        "filter": "post-filter with candidate growth (k <= 4096)",
+        "persistence": "SQLite file",
+        "path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/index/labor_code_2019_vi/vector/sqlite_vec/chunks.sqlite"
+      }
+    },
+    {
+      "name": "lancedb",
+      "backend": "lancedb",
+      "collection": "chunks",
+      "metric": "cosine",
+      "path": "vector/lancedb",
+      "params": {},
+      "count": 230,
+      "size_bytes": 1049726,
+      "build_seconds_write": 0.19,
+      "info": {
+        "backend": "lancedb",
+        "library": "lancedb",
+        "version": "0.40.0",
+        "pylance": null,
+        "exact": true,
+        "metric": "cosine",
+        "dim": 1024,
+        "count": 230,
+        "native_filter": false,
+        "filter": "post-filter with candidate growth",
+        "persistence": "Lance columnar dataset (versioned)",
+        "path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/index/labor_code_2019_vi/vector/lancedb"
+      }
+    },
+    {
+      "name": "qdrant",
+      "backend": "qdrant",
+      "collection": "chunks",
+      "metric": "cosine",
+      "path": "vector/qdrant",
+      "params": {},
+      "count": 230,
+      "size_bytes": 2859601,
+      "build_seconds_write": 0.232,
+      "info": {
+        "backend": "qdrant",
+        "library": "qdrant-client",
+        "version": "1.20.0",
+        "mode": "embedded-local",
+        "url": null,
+        "exact": true,
+        "metric": "cosine",
+        "dim": 1024,
+        "count": 230,
+        "native_filter": true,
+        "filter": "payload filter on meta.<field>",
+        "persistence": "qdrant local storage dir",
+        "path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/index/labor_code_2019_vi/vector/qdrant"
+      }
+    },
+    {
+      "name": "chroma",
+      "backend": "chroma",
+      "collection": "chunks",
+      "metric": "cosine",
+      "path": "vector/chroma",
+      "params": {},
+      "count": 230,
+      "size_bytes": 2964132,
+      "build_seconds_write": 0.119,
+      "info": {
+        "backend": "chroma",
+        "library": "chromadb",
+        "version": "1.5.9",
+        "exact": false,
+        "index": "HNSW",
+        "hnsw": {
+          "space": "cosine",
+          "ef_construction": 200,
+          "ef_search": 128,
+          "max_neighbors": 32
+        },
+        "metric": "cosine",
+        "dim": 1024,
+        "count": 230,
+        "native_filter": true,
+        "filter": "where on stored scalar fields",
+        "persistence": "chroma PersistentClient dir",
+        "path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/index/labor_code_2019_vi/vector/chroma"
+      }
+    }
+  ],
+  "default_store": "numpy",
+  "search": {
+    "rrf_k": 60,
+    "candidates": 50
+  },
+  "environment": {
+    "python": "3.14.4",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "process_peak_rss_mb": 978.5,
+    "provider_peak_memory_mb": 3092.12548828125
+  }
+}

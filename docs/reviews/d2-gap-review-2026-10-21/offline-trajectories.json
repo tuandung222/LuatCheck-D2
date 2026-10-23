@@ -1,0 +1,3167 @@
+[
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t0",
+    "original_query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_25",
+      "Dieu_27",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,...",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày. Căn cứ theo quy định tại Điều 25 Bộ luật Lao động 2019: Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_25",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t1",
+    "original_query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_26",
+      "Dieu_27",
+      "Dieu_41"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_26": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó. Căn cứ theo quy định tại Điều 26 Bộ luật Lao động 2019: Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "citations": [
+        {
+          "article_id": "Dieu_26",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t2",
+    "original_query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_35",
+      "Dieu_20"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_20": "1. Hợp đồng lao động được giao kết theo một trong các loại sau đây:\na) Hợp đồng lao động không xác định thời hạn là hợp đồng mà trong đó hai bên không xác định thời hạn, thời điểm chấm dứt hiệu lực của hợp đồng;\nb) Hợp đồng lao động xác định thời hạn là hợp đồng mà trong đó hai bên xác định thời hạn..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t3",
+    "original_query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_34",
+      "Dieu_35"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t4",
+    "original_query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_125",
+      "Dieu_25"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t5",
+    "original_query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_37",
+      "Dieu_35",
+      "Dieu_34"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không. Căn cứ theo quy định tại Điều 37 (Dieu_37): 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ t.",
+      "citations": [
+        {
+          "article_id": "Dieu_37",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t6",
+    "original_query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_41",
+      "Dieu_40",
+      "Dieu_46"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều...",
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không. Căn cứ theo quy định tại Điều 41 (Dieu_41): 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.",
+      "citations": [
+        {
+          "article_id": "Dieu_41",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t7",
+    "original_query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_46",
+      "Dieu_41",
+      "Dieu_40"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc. Căn cứ theo quy định tại Điều 46 (Dieu_46): 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nh.",
+      "citations": [
+        {
+          "article_id": "Dieu_46",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t8",
+    "original_query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_125",
+      "Dieu_122",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải. Căn cứ theo quy định tại Điều 125 Bộ luật Lao động 2019: Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_125",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s42_t9",
+    "original_query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_122",
+      "Dieu_37",
+      "Dieu_125"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không. Căn cứ theo quy định tại Điều 122 (Dieu_122): 1. Việc xử lý kỷ luật lao động được quy định như sau: a) Người sử dụng lao động phải chứng minh được lỗi của người lao động; b) Phải có sự tham gia củ.",
+      "citations": [
+        {
+          "article_id": "Dieu_122",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t0",
+    "original_query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_25",
+      "Dieu_27",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,...",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày. Căn cứ theo quy định tại Điều 25 Bộ luật Lao động 2019: Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_25",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t1",
+    "original_query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_26",
+      "Dieu_27",
+      "Dieu_41"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_26": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó. Căn cứ theo quy định tại Điều 26 Bộ luật Lao động 2019: Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "citations": [
+        {
+          "article_id": "Dieu_26",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t2",
+    "original_query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_35",
+      "Dieu_20"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_20": "1. Hợp đồng lao động được giao kết theo một trong các loại sau đây:\na) Hợp đồng lao động không xác định thời hạn là hợp đồng mà trong đó hai bên không xác định thời hạn, thời điểm chấm dứt hiệu lực của hợp đồng;\nb) Hợp đồng lao động xác định thời hạn là hợp đồng mà trong đó hai bên xác định thời hạn..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t3",
+    "original_query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_34",
+      "Dieu_35"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t4",
+    "original_query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_125",
+      "Dieu_25"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t5",
+    "original_query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_37",
+      "Dieu_35",
+      "Dieu_34"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không. Căn cứ theo quy định tại Điều 37 (Dieu_37): 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ t.",
+      "citations": [
+        {
+          "article_id": "Dieu_37",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t6",
+    "original_query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_41",
+      "Dieu_40",
+      "Dieu_46"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều...",
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không. Căn cứ theo quy định tại Điều 41 (Dieu_41): 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.",
+      "citations": [
+        {
+          "article_id": "Dieu_41",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t7",
+    "original_query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_46",
+      "Dieu_41",
+      "Dieu_40"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc. Căn cứ theo quy định tại Điều 46 (Dieu_46): 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nh.",
+      "citations": [
+        {
+          "article_id": "Dieu_46",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t8",
+    "original_query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_125",
+      "Dieu_122",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải. Căn cứ theo quy định tại Điều 125 Bộ luật Lao động 2019: Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_125",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s123_t9",
+    "original_query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_122",
+      "Dieu_37",
+      "Dieu_125"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không. Căn cứ theo quy định tại Điều 122 (Dieu_122): 1. Việc xử lý kỷ luật lao động được quy định như sau: a) Người sử dụng lao động phải chứng minh được lỗi của người lao động; b) Phải có sự tham gia củ.",
+      "citations": [
+        {
+          "article_id": "Dieu_122",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t0",
+    "original_query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_25",
+      "Dieu_27",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,...",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày. Căn cứ theo quy định tại Điều 25 Bộ luật Lao động 2019: Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_25",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t1",
+    "original_query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_26",
+      "Dieu_27",
+      "Dieu_41"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_26": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó. Căn cứ theo quy định tại Điều 26 Bộ luật Lao động 2019: Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "citations": [
+        {
+          "article_id": "Dieu_26",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t2",
+    "original_query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_35",
+      "Dieu_20"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_20": "1. Hợp đồng lao động được giao kết theo một trong các loại sau đây:\na) Hợp đồng lao động không xác định thời hạn là hợp đồng mà trong đó hai bên không xác định thời hạn, thời điểm chấm dứt hiệu lực của hợp đồng;\nb) Hợp đồng lao động xác định thời hạn là hợp đồng mà trong đó hai bên xác định thời hạn..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t3",
+    "original_query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_34",
+      "Dieu_35"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t4",
+    "original_query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_125",
+      "Dieu_25"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t5",
+    "original_query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_37",
+      "Dieu_35",
+      "Dieu_34"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không. Căn cứ theo quy định tại Điều 37 (Dieu_37): 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ t.",
+      "citations": [
+        {
+          "article_id": "Dieu_37",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t6",
+    "original_query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_41",
+      "Dieu_40",
+      "Dieu_46"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều...",
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không. Căn cứ theo quy định tại Điều 41 (Dieu_41): 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm th.",
+      "citations": [
+        {
+          "article_id": "Dieu_41",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t7",
+    "original_query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_46",
+      "Dieu_41",
+      "Dieu_40"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc. Căn cứ theo quy định tại Điều 46 (Dieu_46): 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nh.",
+      "citations": [
+        {
+          "article_id": "Dieu_46",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t8",
+    "original_query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_125",
+      "Dieu_122",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải. Căn cứ theo quy định tại Điều 125 Bộ luật Lao động 2019: Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_125",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "off",
+    "session_id": "eval_off_s2026_t9",
+    "original_query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_122",
+      "Dieu_37",
+      "Dieu_125"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không. Căn cứ theo quy định tại Điều 122 (Dieu_122): 1. Việc xử lý kỷ luật lao động được quy định như sau: a) Người sử dụng lao động phải chứng minh được lỗi của người lao động; b) Phải có sự tham gia củ.",
+      "citations": [
+        {
+          "article_id": "Dieu_122",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": false
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t0",
+    "original_query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_25",
+      "Dieu_27",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,...",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày. Căn cứ theo quy định tại Điều 25 Bộ luật Lao động 2019: Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_25",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t1",
+    "original_query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_26",
+      "Dieu_27",
+      "Dieu_41"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_26": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó. Căn cứ theo quy định tại Điều 26 Bộ luật Lao động 2019: Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "citations": [
+        {
+          "article_id": "Dieu_26",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t2",
+    "original_query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_35",
+      "Dieu_20"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_20": "1. Hợp đồng lao động được giao kết theo một trong các loại sau đây:\na) Hợp đồng lao động không xác định thời hạn là hợp đồng mà trong đó hai bên không xác định thời hạn, thời điểm chấm dứt hiệu lực của hợp đồng;\nb) Hợp đồng lao động xác định thời hạn là hợp đồng mà trong đó hai bên xác định thời hạn..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày. Căn cứ theo quy định tại Điều 35 (Dieu_35): 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm v.",
+      "citations": [
+        {
+          "article_id": "Dieu_35",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_36' (Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử dụng lao động) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t3",
+    "original_query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_34",
+      "Dieu_35"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước. Căn cứ theo quy định tại Điều 35 (Dieu_35): 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm v.",
+      "citations": [
+        {
+          "article_id": "Dieu_35",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_36' (Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử dụng lao động) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t4",
+    "original_query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_125",
+      "Dieu_25"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t5",
+    "original_query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_37",
+      "Dieu_35",
+      "Dieu_34"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không. Căn cứ theo quy định tại Điều 37 (Dieu_37): 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ t.",
+      "citations": [
+        {
+          "article_id": "Dieu_37",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t6",
+    "original_query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_41",
+      "Dieu_40",
+      "Dieu_46"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều...",
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không. Căn cứ theo quy định tại Điều 40 (Dieu_40): 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng.",
+      "citations": [
+        {
+          "article_id": "Dieu_40",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_41' (Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t7",
+    "original_query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_46",
+      "Dieu_41",
+      "Dieu_40"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc. Căn cứ theo quy định tại Điều 46 (Dieu_46): 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nh.",
+      "citations": [
+        {
+          "article_id": "Dieu_46",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t8",
+    "original_query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_125",
+      "Dieu_122",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải. Căn cứ theo quy định tại Điều 125 Bộ luật Lao động 2019: Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_125",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s42_t9",
+    "original_query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_122",
+      "Dieu_37",
+      "Dieu_125"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không. Căn cứ theo quy định tại Điều 122 (Dieu_122): 1. Việc xử lý kỷ luật lao động được quy định như sau: a) Người sử dụng lao động phải chứng minh được lỗi của người lao động; b) Phải có sự tham gia củ.",
+      "citations": [
+        {
+          "article_id": "Dieu_122",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t0",
+    "original_query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_25",
+      "Dieu_27",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,...",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày. Căn cứ theo quy định tại Điều 25 Bộ luật Lao động 2019: Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_25",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t1",
+    "original_query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_26",
+      "Dieu_27",
+      "Dieu_41"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_26": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó. Căn cứ theo quy định tại Điều 26 Bộ luật Lao động 2019: Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "citations": [
+        {
+          "article_id": "Dieu_26",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t2",
+    "original_query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_35",
+      "Dieu_20"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_20": "1. Hợp đồng lao động được giao kết theo một trong các loại sau đây:\na) Hợp đồng lao động không xác định thời hạn là hợp đồng mà trong đó hai bên không xác định thời hạn, thời điểm chấm dứt hiệu lực của hợp đồng;\nb) Hợp đồng lao động xác định thời hạn là hợp đồng mà trong đó hai bên xác định thời hạn..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày. Căn cứ theo quy định tại Điều 35 (Dieu_35): 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm v.",
+      "citations": [
+        {
+          "article_id": "Dieu_35",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_36' (Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử dụng lao động) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t3",
+    "original_query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_34",
+      "Dieu_35"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước. Căn cứ theo quy định tại Điều 35 (Dieu_35): 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm v.",
+      "citations": [
+        {
+          "article_id": "Dieu_35",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_36' (Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử dụng lao động) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t4",
+    "original_query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_125",
+      "Dieu_25"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t5",
+    "original_query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_37",
+      "Dieu_35",
+      "Dieu_34"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không. Căn cứ theo quy định tại Điều 37 (Dieu_37): 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ t.",
+      "citations": [
+        {
+          "article_id": "Dieu_37",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t6",
+    "original_query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_41",
+      "Dieu_40",
+      "Dieu_46"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều...",
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không. Căn cứ theo quy định tại Điều 40 (Dieu_40): 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng.",
+      "citations": [
+        {
+          "article_id": "Dieu_40",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_41' (Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t7",
+    "original_query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_46",
+      "Dieu_41",
+      "Dieu_40"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc. Căn cứ theo quy định tại Điều 46 (Dieu_46): 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nh.",
+      "citations": [
+        {
+          "article_id": "Dieu_46",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t8",
+    "original_query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_125",
+      "Dieu_122",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải. Căn cứ theo quy định tại Điều 125 Bộ luật Lao động 2019: Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_125",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s123_t9",
+    "original_query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_122",
+      "Dieu_37",
+      "Dieu_125"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không. Căn cứ theo quy định tại Điều 122 (Dieu_122): 1. Việc xử lý kỷ luật lao động được quy định như sau: a) Người sử dụng lao động phải chứng minh được lỗi của người lao động; b) Phải có sự tham gia củ.",
+      "citations": [
+        {
+          "article_id": "Dieu_122",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t0",
+    "original_query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_25",
+      "Dieu_27",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,...",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được pháp luật quy định là bao nhiêu ngày. Căn cứ theo quy định tại Điều 25 Bộ luật Lao động 2019: Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_25",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lê",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t1",
+    "original_query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_26",
+      "Dieu_27",
+      "Dieu_41"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_26": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "Dieu_27": "1. Khi kết thúc thời gian thử việc, người sử dụng lao động phải thông báo kết quả thử việc cho người lao động.\nTrường hợp thử việc đạt yêu cầu thì người sử dụng lao động tiếp tục thực hiện hợp đồng lao động đã giao kết đối với trường hợp thỏa thuận thử việc trong hợp đồng lao động hoặc phải giao kết...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm mức lương của công việc đó. Căn cứ theo quy định tại Điều 26 Bộ luật Lao động 2019: Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+      "citations": [
+        {
+          "article_id": "Dieu_26",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Mức tiền lương của người lao động trong thời gian thử việc tối thiểu phải bằng bao nhiêu phần trăm m",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t2",
+    "original_query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_35",
+      "Dieu_20"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_20": "1. Hợp đồng lao động được giao kết theo một trong các loại sau đây:\na) Hợp đồng lao động không xác định thời hạn là hợp đồng mà trong đó hai bên không xác định thời hạn, thời điểm chấm dứt hiệu lực của hợp đồng;\nb) Hợp đồng lao động xác định thời hạn là hợp đồng mà trong đó hai bên xác định thời hạn..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt hợp đồng không và phải báo trước ít nhất bao nhiêu ngày. Căn cứ theo quy định tại Điều 35 (Dieu_35): 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm v.",
+      "citations": [
+        {
+          "article_id": "Dieu_35",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động làm việc theo hợp đồng lao động không xác định thời hạn có quyền đơn phương chấm dứt ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_36' (Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử dụng lao động) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t3",
+    "original_query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_34",
+      "Dieu_35"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà không cần báo trước. Căn cứ theo quy định tại Điều 35 (Dieu_35): 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm v.",
+      "citations": [
+        {
+          "article_id": "Dieu_35",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động ngay lập tức mà",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_36' (Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử dụng lao động) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t4",
+    "original_query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công "
+    ],
+    "retrieved_article_ids": [
+      "Dieu_36",
+      "Dieu_125",
+      "Dieu_25"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_25": "Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây:\n1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý,..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ty có quyền đơn phương chấm dứt hợp đồng lao động không và có cần báo trước không. Căn cứ theo quy định tại Điều 36 (Dieu_36): 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành côn.",
+      "citations": [
+        {
+          "article_id": "Dieu_36",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động tự ý bỏ việc không có lý do chính đáng liên tục từ 05 ngày làm việc trở lên thì công ",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t5",
+    "original_query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_37",
+      "Dieu_35",
+      "Dieu_34"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_35": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau:\na) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;\nb) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đ...",
+      "Dieu_34": "1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này.\n2. Đã hoàn thành công việc theo hợp đồng lao động.\n3. Hai bên thỏa thuận chấm dứt hợp đồng lao động.\n4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang nuôi con dưới 12 tháng tuổi không. Căn cứ theo quy định tại Điều 37 (Dieu_37): 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ t.",
+      "citations": [
+        {
+          "article_id": "Dieu_37",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Công ty có được quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc đang",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t6",
+    "original_query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_41",
+      "Dieu_40",
+      "Dieu_46"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều...",
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 1,
+    "max_repairs": 2,
+    "step_count": 3,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi việc không và có phải bồi thường gì cho công ty không. Căn cứ theo quy định tại Điều 40 (Dieu_40): 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng.",
+      "citations": [
+        {
+          "article_id": "Dieu_40",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật thì có được nhận trợ cấp thôi vi",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      },
+      {
+        "event": "repair",
+        "count": 1,
+        "feedback": "Sai lệch chủ thể pháp lý: Nhận định về quyền/nghĩa vụ đơn phương của 'người lao động', nhưng điều luật trích dẫn 'Dieu_41' (Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật) lại điều chỉnh 'người sử dụng lao động'."
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t7",
+    "original_query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_46",
+      "Dieu_41",
+      "Dieu_40"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_46": "1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiề...",
+      "Dieu_41": "1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo...",
+      "Dieu_40": "1. Không được trợ cấp thôi việc.\n2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.\n3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào cho mỗi năm làm việc. Căn cứ theo quy định tại Điều 46 (Dieu_46): 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nh.",
+      "citations": [
+        {
+          "article_id": "Dieu_46",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Điều kiện để người lao động được hưởng trợ cấp thôi việc là gì và mức hưởng được tính như thế nào ch",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t8",
+    "original_query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_125",
+      "Dieu_122",
+      "Dieu_36"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ...",
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_36": "1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây:\na) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động;\nb) Người lao ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hình thức xử lý kỷ luật sa thải. Căn cứ theo quy định tại Điều 125 Bộ luật Lao động 2019: Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây: 1.",
+      "citations": [
+        {
+          "article_id": "Dieu_125",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Người lao động có hành vi tự ý bỏ việc bao nhiêu ngày mà không có lý do chính đáng thì bị áp dụng hì",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  },
+  {
+    "mode": "l1_on",
+    "session_id": "eval_l1_on_s2026_t9",
+    "original_query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không?",
+    "untrusted_documents": [],
+    "extracted_facts": [],
+    "queries_issued": [
+      "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai"
+    ],
+    "retrieved_article_ids": [
+      "Dieu_122",
+      "Dieu_37",
+      "Dieu_125"
+    ],
+    "retrieved_articles_cache": {
+      "Dieu_122": "1. Việc xử lý kỷ luật lao động được quy định như sau:\na) Người sử dụng lao động phải chứng minh được lỗi của người lao động;\nb) Phải có sự tham gia của tổ chức đại diện người lao động tại cơ sở mà người lao động đang bị xử lý kỷ luật là thành viên;\nc) Người lao động phải có mặt và có quyền tự bào ch...",
+      "Dieu_37": "1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này.\n2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ việc khác được...",
+      "Dieu_125": "Hình thức xử lý kỷ luật sa thải được người sử dụng lao động áp dụng trong trường hợp sau đây:\n1. Người lao động có hành vi trộm cắp, tham ô, đánh bạc, cố ý gây thương tích, sử dụng ma túy tại nơi làm việc;\n2. Người lao động có hành vi tiết lộ bí mật kinh doanh, bí mật công nghệ, xâm phạm quyền sở hữ..."
+    },
+    "tool_calls_count": 1,
+    "max_tool_calls": 5,
+    "repairs_count": 0,
+    "max_repairs": 2,
+    "step_count": 2,
+    "max_steps": 10,
+    "is_terminal": true,
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "content": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai hoặc nuôi con nhỏ dưới 12 tháng tuổi hay không. Căn cứ theo quy định tại Điều 122 (Dieu_122): 1. Việc xử lý kỷ luật lao động được quy định như sau: a) Người sử dụng lao động phải chứng minh được lỗi của người lao động; b) Phải có sự tham gia củ.",
+      "citations": [
+        {
+          "article_id": "Dieu_122",
+          "law_name": "Bộ luật Lao động 2019",
+          "exact_quote": null
+        }
+      ],
+      "verified": true
+    },
+    "audit_events": [
+      {
+        "event": "tool_call",
+        "count": 1,
+        "tool": "search_law",
+        "args": {
+          "query": "Doanh nghiệp có được phép tổ chức cuộc họp xử lý kỷ luật lao động đối với lao động nữ đang mang thai",
+          "top_k": 3
+        },
+        "result_summary": "Tìm thấy 3 điều luật"
+      }
+    ]
+  }
+]

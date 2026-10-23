@@ -1,0 +1,1018 @@
+[
+  {
+    "review_id": "0efabcf9eb987c2353c95882",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người lao động không thuộc diện được bảo vệ khỏi đơn phương chấm dứt, tự ý bỏ việc không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên: người sử dụng lao động có quyền đơn phương chấm dứt không và có phải báo trước không?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Có quyền đơn phương chấm dứt; không phải báo trước.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_36",
+        "exact_quote": "e) Người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên;",
+        "pdf_pages": [
+          16,
+          17
+        ]
+      },
+      {
+        "article_id": "Dieu_36",
+        "exact_quote": "3. Khi đơn phương chấm dứt hợp đồng lao động quy định tại điểm d và điểm e khoản 1 Điều này thì người sử dụng lao động không phải báo trước cho người lao động.",
+        "pdf_pages": [
+          16,
+          17
+        ]
+      }
+    ],
+    "candidate_behavior": "error",
+    "candidate_answer": "Model output truncated by token limit.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "Dieu_34",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 34. Các trường hợp chấm dứt hợp đồng lao động",
+        "content": "Điều 34. Các trường hợp chấm dứt hợp đồng lao động 1. Hết hạn hợp đồng lao động, trừ trường hợp quy định tại khoản 4 Điều 177 của Bộ luật này. 2. Đã hoàn thành công việc theo hợp đồng lao động. 3. Hai bên thỏa thuận chấm dứt hợp đồng lao động. 4. Người lao động bị kết án phạt tù nhưng không được hưởng án treo hoặc không thuộc trường hợp được trả tự do theo quy định tại khoản 5 Điều 328 của Bộ luật Tố tụng hình sự, tử hình hoặc bị cấm làm công việc ghi trong hợp đồng lao động theo bản án, quyết định của Tòa án đã có hiệu lực pháp luật. 5. Người lao động là người nước ngoài làm việc tại Việt Nam bị trục xuất theo bản án, quyết định của Tòa án đã có hiệu lực pháp luật, quyết định của cơ quan nhà nước có thẩm quyền. 6. Người lao động chết; bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết. 7. Người sử dụng lao động là cá nhân chết; bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết. Người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. 8. Người lao động bị xử lý kỷ luật sa thải. 9. Người lao động đơn phương chấm dứt hợp đồng lao động theo quy định tại Điều 35 của Bộ luật này. 10. Người sử dụng lao động đơn phương chấm dứt hợp đồng lao động theo quy định tại Điều 36 của Bộ luật này. 11. Người sử dụng lao động cho người lao động thôi việc theo quy định tại Điều 42 và Điều 43 của Bộ luật này. 12. Giấy phép lao động hết hiệu lực đối với người lao động là người nước ngoài làm việc tại Việt Nam theo quy định tại Điều 156 của Bộ luật này. 13. Trường hợp thỏa thuận nội dung thử việc ghi trong hợp đồng lao động mà thử việc không đạt yêu cầu hoặc một bên hủy bỏ thỏa thuận thử việc.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          14,
+          15
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_35",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người",
+        "content": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn; b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng; c) Ít nhất 03 ngày làm việc nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn dưới 12 tháng; d) Đối với một số ngành, nghề, công việc đặc thù thì thời hạn báo trước được thực hiện theo quy định của Chính phủ. 2. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không cần báo trước trong trường hợp sau đây: a) Không được bố trí theo đúng công việc, địa điểm làm việc hoặc không được bảo đảm điều kiện làm việc theo thỏa thuận, trừ trường hợp quy định tại Điều 29 của Bộ luật này; b) Không được trả đủ lương hoặc trả lương không đúng thời hạn, trừ trường hợp quy định tại khoản 4 Điều 97 của Bộ luật này; c) Bị người sử dụng lao động ngược đãi, đánh đập hoặc có lời nói, hành vi nhục mạ, hành vi làm ảnh hưởng đến sức khỏe, nhân phẩm, danh dự; bị cưỡng bức lao động; d) Bị quấy rối tình dục tại nơi làm việc; đ) Lao động nữ mang thai phải nghỉ việc theo quy định tại khoản 1 Điều 138 của Bộ luật này; e) Đủ tuổi nghỉ hưu theo quy định tại Điều 169 của Bộ luật này, trừ trường hợp các bên có thỏa thuận khác; g) Người sử dụng lao động cung cấp thông tin không trung thực theo quy định tại khoản 1 Điều 16 của Bộ luật này làm ảnh hưởng đến việc thực hiện hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          15,
+          16
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_36",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử",
+        "content": "Điều 36. Quyền đơn phương chấm dứt hợp đồng lao động của người sử dụng lao động 1. Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: a) Người lao động thường xuyên không hoàn thành công việc theo hợp đồng lao động được xác định theo tiêu chí đánh giá mức độ hoàn thành công việc trong quy chế của người sử dụng lao động. Quy chế đánh giá mức độ hoàn thành công việc do người sử dụng lao động ban hành nhưng phải tham khảo ý kiến tổ chức đại diện người lao động tại cơ sở đối với nơi có tổ chức đại diện người lao động tại cơ sở; b) Người lao động bị ốm đau, tai nạn đã điều trị 12 tháng liên tục đối với người làm việc theo hợp đồng lao động không xác định thời hạn hoặc đã điều trị 06 tháng liên tục đối với người làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng hoặc quá nửa thời hạn hợp đồng lao động đối với người làm việc theo hợp đồng lao động xác định thời hạn có thời hạn dưới 12 tháng mà khả năng lao động chưa hồi phục. Khi sức khỏe của người lao động bình phục thì người sử dụng lao động xem xét để tiếp tục giao kết hợp đồng lao động với người lao động; c) Do thiên tai, hỏa hoạn, dịch bệnh nguy hiểm, địch họa hoặc di dời, thu hẹp sản xuất, kinh doanh theo yêu cầu của cơ quan nhà nước có thẩm quyền mà người sử dụng lao động đã tìm mọi biện pháp khắc phục nhưng vẫn buộc phải giảm chỗ làm việc; d) Người lao động không có mặt tại nơi làm việc sau thời hạn quy định tại Điều 31 của Bộ luật này; đ) Người lao động đủ tuổi nghỉ hưu theo quy định tại Điều 169 của Bộ luật này, trừ trường hợp có thỏa thuận khác; e) Người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên; g) Người lao động cung cấp không trung thực thông tin theo quy định tại khoản 2 Điều 16 của Bộ luật này khi giao kết hợp đồng lao động làm ảnh hưởng đến việc tuyển dụng người lao động. 2. Khi đơn phương chấm dứt hợp đồng lao động trong trường hợp quy định tại các điểm a, b, c, đ và g khoản 1 Điều này, người sử dụng lao động phải báo trước cho người lao động như sau: a) Ít nhất 45 ngày đối với hợp đồng lao động không xác định thời hạn; b) Ít nhất 30 ngày đối với hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng; c) Ít nhất 03 ngày làm việc đối với hợp đồng lao động xác định thời hạn có thời hạn dưới 12 tháng và đối với trường hợp quy định tại điểm b khoản 1 Điều này; d) Đối với một số ngành, nghề, công việc đặc thù thì thời hạn báo trước được thực hiện theo quy định của Chính phủ. 3. Khi đơn phương chấm dứt hợp đồng lao động quy định tại điểm d và điểm e khoản 1 Điều này thì người sử dụng lao động không phải báo trước cho người lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          16,
+          17
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_39",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 39. Đơn phương chấm dứt hợp đồng lao động trái pháp luật",
+        "content": "Điều 39. Đơn phương chấm dứt hợp đồng lao động trái pháp luật Đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp chấm dứt hợp đồng lao động không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_40",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng",
+        "content": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động có được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi không?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được thực hiện quyền đơn phương chấm dứt trong các trường hợp này.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_37",
+        "exact_quote": "3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+        "pdf_pages": [
+          18
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động đang mang thai hoặc nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_137",
+        "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_137",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 137. Bảo vệ thai sản",
+        "content": "Điều 137. Bảo vệ thai sản 1. Người sử dụng lao động không được sử dụng người lao động làm việc ban đêm, làm thêm giờ và đi công tác xa trong trường hợp sau đây: a) Mang thai từ tháng thứ 07 hoặc từ tháng thứ 06 nếu làm việc ở vùng cao, vùng sâu, vùng xa, biên giới, hải đảo; b) Đang nuôi con dưới 12 tháng tuổi, trừ trường hợp được người lao động đồng ý. 2. Lao động nữ làm nghề, công việc nặng nhọc, độc hại, nguy hiểm hoặc đặc biệt nặng nhọc, độc hại, nguy hiểm hoặc làm nghề, công việc có ảnh hưởng xấu tới chức năng sinh sản và nuôi con khi mang thai và có thông báo cho người sử dụng lao động biết thì được người sử dụng lao động chuyển sang làm công việc nhẹ hơn, an toàn hơn hoặc giảm bớt 01 giờ làm việc hằng ngày mà không bị cắt giảm tiền lương và quyền, lợi ích cho đến hết thời gian nuôi con dưới 12 tháng tuổi. 3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới. 4. Lao động nữ trong thời gian hành kinh được nghỉ mỗi ngày 30 phút, trong thời gian nuôi con dưới 12 tháng tuổi được nghỉ mỗi ngày 60 phút trong thời gian làm việc. Thời gian nghỉ vẫn được hưởng đủ tiền lương theo hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          56
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_35",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người",
+        "content": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn; b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng; c) Ít nhất 03 ngày làm việc nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn dưới 12 tháng; d) Đối với một số ngành, nghề, công việc đặc thù thì thời hạn báo trước được thực hiện theo quy định của Chính phủ. 2. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không cần báo trước trong trường hợp sau đây: a) Không được bố trí theo đúng công việc, địa điểm làm việc hoặc không được bảo đảm điều kiện làm việc theo thỏa thuận, trừ trường hợp quy định tại Điều 29 của Bộ luật này; b) Không được trả đủ lương hoặc trả lương không đúng thời hạn, trừ trường hợp quy định tại khoản 4 Điều 97 của Bộ luật này; c) Bị người sử dụng lao động ngược đãi, đánh đập hoặc có lời nói, hành vi nhục mạ, hành vi làm ảnh hưởng đến sức khỏe, nhân phẩm, danh dự; bị cưỡng bức lao động; d) Bị quấy rối tình dục tại nơi làm việc; đ) Lao động nữ mang thai phải nghỉ việc theo quy định tại khoản 1 Điều 138 của Bộ luật này; e) Đủ tuổi nghỉ hưu theo quy định tại Điều 169 của Bộ luật này, trừ trường hợp các bên có thỏa thuận khác; g) Người sử dụng lao động cung cấp thông tin không trung thực theo quy định tại khoản 1 Điều 16 của Bộ luật này làm ảnh hưởng đến việc thực hiện hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          15,
+          16
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_37",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền",
+        "content": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này. 2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ khác được người sử dụng lao động đồng ý. 3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "6ca79b2c862614767055bc4d",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người lao động đơn phương chấm dứt trái pháp luật có được trợ cấp thôi việc không; khoản bồi thường cố định là bao nhiêu tháng tiền lương, chưa tính khoản ngày không báo trước và chi phí đào tạo?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được trợ cấp thôi việc; bồi thường nửa tháng tiền lương theo hợp đồng lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_40",
+        "exact_quote": "1. Không được trợ cấp thôi việc.",
+        "pdf_pages": [
+          18
+        ]
+      },
+      {
+        "article_id": "Dieu_40",
+        "exact_quote": "2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.",
+        "pdf_pages": [
+          18
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 40 của Bộ luật Lao động 2019, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật không được trợ cấp thôi việc. Người sử dụng lao động phải bồi thường cho người lao động một nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. Không có quy định cụ thể về số tháng tiền lương trong khoản bồi thường cố định. Người lao động còn có nghĩa vụ phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_40",
+        "exact_quote": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_40",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng",
+        "content": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_41",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt",
+        "content": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động. Sau khi được nhận lại làm việc, người lao động hoàn trả cho người sử dụng lao động các khoản tiền trợ cấp thôi việc, trợ cấp mất việc làm nếu đã nhận của người sử dụng lao động. Trường hợp không còn vị trí, công việc đã giao kết trong hợp đồng lao động mà người lao động vẫn muốn làm việc thì hai bên thỏa thuận để sửa đổi, bổ sung hợp đồng lao động. Trường hợp vi phạm quy định về thời hạn báo trước quy định tại khoản 2 Điều 36 của Bộ luật này thì phải trả một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 2. Trường hợp người lao động không muốn tiếp tục làm việc thì ngoài khoản tiền phải trả quy định tại khoản 1 Điều này người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này để chấm dứt hợp đồng lao động. 3. Trường hợp người sử dụng lao động không muốn nhận lại người lao động và người lao động đồng ý thì ngoài khoản tiền người sử dụng lao động phải trả theo quy định tại khoản 1 Điều này và trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này, hai bên thỏa thuận khoản tiền bồi thường thêm cho người lao động nhưng ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động để chấm dứt hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18,
+          19
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_46",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 46. Trợ cấp thôi việc",
+        "content": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này. 2. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc. 4. Chính phủ quy định chi tiết Điều này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "807283e79df1820ec7de2364",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động có được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi không?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được thực hiện quyền đơn phương chấm dứt trong các trường hợp này.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_37",
+        "exact_quote": "3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+        "pdf_pages": [
+          18
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới. Điều này cho thấy người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_137",
+        "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_137",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 137. Bảo vệ thai sản",
+        "content": "Điều 137. Bảo vệ thai sản 1. Người sử dụng lao động không được sử dụng người lao động làm việc ban đêm, làm thêm giờ và đi công tác xa trong trường hợp sau đây: a) Mang thai từ tháng thứ 07 hoặc từ tháng thứ 06 nếu làm việc ở vùng cao, vùng sâu, vùng xa, biên giới, hải đảo; b) Đang nuôi con dưới 12 tháng tuổi, trừ trường hợp được người lao động đồng ý. 2. Lao động nữ làm nghề, công việc nặng nhọc, độc hại, nguy hiểm hoặc đặc biệt nặng nhọc, độc hại, nguy hiểm hoặc làm nghề, công việc có ảnh hưởng xấu tới chức năng sinh sản và nuôi con khi mang thai và có thông báo cho người sử dụng lao động biết thì được người sử dụng lao động chuyển sang làm công việc nhẹ hơn, an toàn hơn hoặc giảm bớt 01 giờ làm việc hằng ngày mà không bị cắt giảm tiền lương và quyền, lợi ích cho đến hết thời gian nuôi con dưới 12 tháng tuổi. 3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới. 4. Lao động nữ trong thời gian hành kinh được nghỉ mỗi ngày 30 phút, trong thời gian nuôi con dưới 12 tháng tuổi được nghỉ mỗi ngày 60 phút trong thời gian làm việc. Thời gian nghỉ vẫn được hưởng đủ tiền lương theo hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          56
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_35",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người",
+        "content": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn; b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng; c) Ít nhất 03 ngày làm việc nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn dưới 12 tháng; d) Đối với một số ngành, nghề, công việc đặc thù thì thời hạn báo trước được thực hiện theo quy định của Chính phủ. 2. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không cần báo trước trong trường hợp sau đây: a) Không được bố trí theo đúng công việc, địa điểm làm việc hoặc không được bảo đảm điều kiện làm việc theo thỏa thuận, trừ trường hợp quy định tại Điều 29 của Bộ luật này; b) Không được trả đủ lương hoặc trả lương không đúng thời hạn, trừ trường hợp quy định tại khoản 4 Điều 97 của Bộ luật này; c) Bị người sử dụng lao động ngược đãi, đánh đập hoặc có lời nói, hành vi nhục mạ, hành vi làm ảnh hưởng đến sức khỏe, nhân phẩm, danh dự; bị cưỡng bức lao động; d) Bị quấy rối tình dục tại nơi làm việc; đ) Lao động nữ mang thai phải nghỉ việc theo quy định tại khoản 1 Điều 138 của Bộ luật này; e) Đủ tuổi nghỉ hưu theo quy định tại Điều 169 của Bộ luật này, trừ trường hợp các bên có thỏa thuận khác; g) Người sử dụng lao động cung cấp thông tin không trung thực theo quy định tại khoản 1 Điều 16 của Bộ luật này làm ảnh hưởng đến việc thực hiện hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          15,
+          16
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_37",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền",
+        "content": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này. 2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ khác được người sử dụng lao động đồng ý. 3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "9213280d76509d8751353ed8",
+    "question": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần? Chỉ trả lời nếu cơ sở tri thức đã nạp có nguồn áp dụng cho bang này.",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "refuse",
+    "reference_answer": "Từ chối vì cơ sở tri thức chỉ có Bộ luật Lao động Việt Nam 2019, không có nguồn luật California.",
+    "reference_evidence": [],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "Bảng quy định làm thêm giờ trong luật lao động bang California bao gồm cả làm thêm giờ bình thường và làm thêm giờ trong trường hợp đặc biệt? Nếu không có quy định làm thêm giờ bình thường, tôi cần biết số giờ làm thêm tối đa trong trường hợp đặc biệt.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "Dieu_107",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 107. Làm thêm giờ",
+        "content": "Điều 107. Làm thêm giờ 1. Thời gian làm thêm giờ là khoảng thời gian làm việc ngoài thời giờ làm việc bình thường theo quy định của pháp luật, thỏa ước lao động tập thể hoặc nội quy lao động. 2. Người sử dụng lao động được sử dụng người lao động làm thêm giờ khi đáp ứng đầy đủ các yêu cầu sau đây: a) Phải được sự đồng ý của người lao động; b) Bảo đảm số giờ làm thêm của người lao động không quá 50% số giờ làm việc bình thường trong 01 ngày; trường hợp áp dụng quy định thời giờ làm việc bình thường theo tuần thì tổng số giờ làm việc bình thường và số giờ làm thêm không quá 12 giờ trong 01 ngày; không quá 40 giờ trong 01 tháng; c) Bảo đảm số giờ làm thêm của người lao động không quá 200 giờ trong 01 năm, trừ trường hợp quy định tại khoản 3 Điều này. 3. Người sử dụng lao động được sử dụng người lao động làm thêm không quá 300 giờ trong 01 năm trong một số ngành, nghề, công việc hoặc trường hợp sau đây: a) Sản xuất, gia công xuất khẩu sản phẩm hàng dệt, may, da, giày, điện, điện tử, chế biến nông, lâm, diêm nghiệp, thủy sản; b) Sản xuất, cung cấp điện, viễn thông, lọc dầu; cấp, thoát nước; c) Trường hợp giải quyết công việc đòi hỏi lao động có trình độ chuyên môn, kỹ thuật cao mà thị trường lao động không cung ứng đầy đủ, kịp thời; d) Trường hợp phải giải quyết công việc cấp bách, không thể trì hoãn do tính chất thời vụ, thời điểm của nguyên liệu, sản phẩm hoặc để giải quyết công việc phát sinh do yếu tố khách quan không dự liệu trước, do hậu quả thời tiết, thiên tai, hỏa hoạn, địch họa, thiếu điện, thiếu nguyên liệu, sự cố kỹ thuật của dây chuyền sản xuất; đ) Trường hợp khác do Chính phủ quy định. 4. Khi tổ chức làm thêm giờ theo quy định tại khoản 3 Điều này, người sử dụng lao động phải thông báo bằng văn bản cho cơ quan chuyên môn về lao động thuộc Ủy ban nhân dân cấp tỉnh. 5. Chính phủ quy định chi tiết Điều này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          44,
+          45
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_108",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 108. Làm thêm giờ trong trường hợp đặc biệt",
+        "content": "Điều 108. Làm thêm giờ trong trường hợp đặc biệt Người sử dụng lao động có quyền yêu cầu người lao động làm thêm giờ vào bất kỳ ngày nào mà không bị giới hạn về số giờ làm thêm theo quy định tại Điều 107 của Bộ luật này và người lao động không được từ chối trong trường hợp sau đây: 1. Thực hiện lệnh động viên, huy động bảo đảm nhiệm vụ quốc phòng, an ninh theo quy định của pháp luật; 2. Thực hiện các công việc nhằm bảo vệ tính mạng con người, tài sản của cơ quan, tổ chức, cá nhân trong phòng ngừa, khắc phục hậu quả thiên tai, hỏa hoạn, dịch bệnh nguy hiểm và thảm họa, trừ trường hợp có nguy cơ ảnh hưởng đến tính mạng, sức khỏe của người lao động theo quy định của pháp luật về an toàn, vệ sinh lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          45,
+          46
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_117",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 117. Kỷ luật lao động",
+        "content": "Điều 117. Kỷ luật lao động Kỷ luật lao động là những quy định về việc tuân theo thời gian, công nghệ và điều hành sản xuất, kinh doanh do người sử dụng lao động ban hành trong nội quy lao động và do pháp luật quy định.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          48
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "9a5c3f97678401d9abbd0317",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), đã xác định người sử dụng lao động đơn phương chấm dứt hợp đồng trái pháp luật, người lao động không muốn tiếp tục làm việc. Các nghĩa vụ chính về tiền lương, bảo hiểm, khoản tiền ít nhất bằng bao nhiêu tháng lương và trợ cấp thôi việc là gì?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Phải trả tiền lương và đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp cho những ngày không được làm việc; trả thêm ít nhất 02 tháng tiền lương. Khi người lao động không muốn tiếp tục làm việc, trả thêm trợ cấp thôi việc theo Điều 46.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_41",
+        "exact_quote": "phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp",
+        "pdf_pages": [
+          18,
+          19
+        ]
+      },
+      {
+        "article_id": "Dieu_41",
+        "exact_quote": "ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động.",
+        "pdf_pages": [
+          18,
+          19
+        ]
+      },
+      {
+        "article_id": "Dieu_41",
+        "exact_quote": "2. Trường hợp người lao động không muốn tiếp tục làm việc",
+        "pdf_pages": [
+          18,
+          19
+        ]
+      },
+      {
+        "article_id": "Dieu_41",
+        "exact_quote": "người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46",
+        "pdf_pages": [
+          18,
+          19
+        ]
+      }
+    ],
+    "candidate_behavior": "error",
+    "candidate_answer": "Answer requires a citation list with valid article IDs.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "Dieu_40",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng",
+        "content": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_41",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt",
+        "content": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động. Sau khi được nhận lại làm việc, người lao động hoàn trả cho người sử dụng lao động các khoản tiền trợ cấp thôi việc, trợ cấp mất việc làm nếu đã nhận của người sử dụng lao động. Trường hợp không còn vị trí, công việc đã giao kết trong hợp đồng lao động mà người lao động vẫn muốn làm việc thì hai bên thỏa thuận để sửa đổi, bổ sung hợp đồng lao động. Trường hợp vi phạm quy định về thời hạn báo trước quy định tại khoản 2 Điều 36 của Bộ luật này thì phải trả một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 2. Trường hợp người lao động không muốn tiếp tục làm việc thì ngoài khoản tiền phải trả quy định tại khoản 1 Điều này người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này để chấm dứt hợp đồng lao động. 3. Trường hợp người sử dụng lao động không muốn nhận lại người lao động và người lao động đồng ý thì ngoài khoản tiền người sử dụng lao động phải trả theo quy định tại khoản 1 Điều này và trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này, hai bên thỏa thuận khoản tiền bồi thường thêm cho người lao động nhưng ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động để chấm dứt hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18,
+          19
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_42",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 42. Nghĩa vụ của người sử dụng lao động trong trường hợp thay đổi",
+        "content": "Điều 42. Nghĩa vụ của người sử dụng lao động trong trường hợp thay đổi cơ cấu, công nghệ hoặc vì lý do kinh tế 1. Những trường hợp sau đây được coi là thay đổi cơ cấu, công nghệ: a) Thay đổi cơ cấu tổ chức, tổ chức lại lao động; b) Thay đổi quy trình, công nghệ, máy móc, thiết bị sản xuất, kinh doanh gắn với ngành, nghề sản xuất, kinh doanh của người sử dụng lao động; c) Thay đổi sản phẩm hoặc cơ cấu sản phẩm. 2. Những trường hợp sau đây được coi là vì lý do kinh tế: a) Khủng hoảng hoặc suy thoái kinh tế; b) Thực hiện chính sách, pháp luật của Nhà nước khi cơ cấu lại nền kinh tế hoặc thực hiện cam kết quốc tế. 3. Trường hợp thay đổi cơ cấu, công nghệ mà ảnh hưởng đến việc làm của nhiều người lao động thì người sử dụng lao động phải xây dựng và thực hiện phương án sử dụng lao động theo quy định tại Điều 44 của Bộ luật này; trường hợp có chỗ làm việc mới thì ưu tiên đào tạo lại người lao động để tiếp tục sử dụng. 4. Trong trường hợp vì lý do kinh tế mà nhiều người lao động có nguy cơ mất việc làm, phải thôi việc thì người sử dụng lao động phải xây dựng và thực hiện phương án sử dụng lao động theo quy định tại Điều 44 của Bộ luật này. 5. Trong trường hợp người sử dụng lao động không thể giải quyết được việc làm mà phải cho người lao động thôi việc thì phải trả trợ cấp mất việc làm theo quy định tại Điều 47 của Bộ luật này. 6. Việc cho thôi việc đối với người lao động theo quy định tại Điều này chỉ được tiến hành sau khi đã trao đổi ý kiến với tổ chức đại diện người lao động tại cơ sở đối với nơi có tổ chức đại diện người lao động tại cơ sở mà người lao động là thành viên và thông báo trước 30 ngày cho Ủy ban nhân dân cấp tỉnh và cho người lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          19,
+          20
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_43",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 43. Nghĩa vụ của người sử dụng lao động khi chia, tách, hợp nhất,",
+        "content": "Điều 43. Nghĩa vụ của người sử dụng lao động khi chia, tách, hợp nhất, sáp nhập; bán, cho thuê, chuyển đổi loại hình doanh nghiệp; chuyển nhượng quyền sở hữu, quyền sử dụng tài sản của doanh nghiệp, hợp tác xã 1. Trong trường hợp chia, tách, hợp nhất, sáp nhập; bán, cho thuê, chuyển đổi loại hình doanh nghiệp; chuyển nhượng quyền sở hữu, quyền sử dụng tài sản của doanh nghiệp, hợp tác xã mà ảnh hưởng đến việc làm của nhiều người lao động thì người sử dụng lao động phải xây dựng phương án sử dụng lao động theo quy định tại Điều 44 của Bộ luật này. 2. Người sử dụng lao động hiện tại và người sử dụng lao động kế tiếp có trách nhiệm thực hiện phương án sử dụng lao động đã được thông qua. 3. Người lao động bị thôi việc thì được nhận trợ cấp mất việc làm theo quy định tại Điều 47 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          20
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_45",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 45. Thông báo chấm dứt hợp đồng lao động",
+        "content": "Điều 45. Thông báo chấm dứt hợp đồng lao động 1. Người sử dụng lao động phải thông báo bằng văn bản cho người lao động về việc chấm dứt hợp đồng lao động khi hợp đồng lao động chấm dứt theo quy định của Bộ luật này, trừ trường hợp quy định tại các khoản 4, 5, 6, 7 và 8 Điều 34 của Bộ luật này. 2. Trường hợp người sử dụng lao động không phải là cá nhân chấm dứt hoạt động thì thời điểm chấm dứt hợp đồng lao động tính từ thời điểm có thông báo chấm dứt hoạt động. Trường hợp người sử dụng lao động không phải là cá nhân bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật theo quy định tại khoản 7 Điều 34 của Bộ luật này thì thời điểm chấm dứt hợp đồng lao động tính từ ngày ra thông báo.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_46",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 46. Trợ cấp thôi việc",
+        "content": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này. 2. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc. 4. Chính phủ quy định chi tiết Điều này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_47",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 47. Trợ cấp mất việc làm",
+        "content": "Điều 47. Trợ cấp mất việc làm 1. Người sử dụng lao động trả trợ cấp mất việc làm cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên mà bị mất việc làm theo quy định tại khoản 11 Điều 34 của Bộ luật này, cứ mỗi năm làm việc trả 01 tháng tiền lương nhưng ít nhất bằng 02 tháng tiền lương. 2. Thời gian làm việc để tính trợ cấp mất việc làm là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp mất việc làm là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động mất việc làm. 4. Chính phủ quy định chi tiết Điều này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21,
+          22
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "9f972fff965b79d71e6f5b7e",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người lao động đơn phương chấm dứt trái pháp luật có được trợ cấp thôi việc không; khoản bồi thường cố định là bao nhiêu tháng tiền lương, chưa tính khoản ngày không báo trước và chi phí đào tạo?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được trợ cấp thôi việc; bồi thường nửa tháng tiền lương theo hợp đồng lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_40",
+        "exact_quote": "1. Không được trợ cấp thôi việc.",
+        "pdf_pages": [
+          18
+        ]
+      },
+      {
+        "article_id": "Dieu_40",
+        "exact_quote": "2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.",
+        "pdf_pages": [
+          18
+        ]
+      }
+    ],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "Khoản bồi thường cố định cho người sử dụng lao động khi người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật theo Điều 40 của Bộ luật Lao động 2019 là bao nhiêu tháng tiền lương?",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "Dieu_38",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 38. Hủy bỏ việc đơn phương chấm dứt hợp đồng lao động",
+        "content": "Điều 38. Hủy bỏ việc đơn phương chấm dứt hợp đồng lao động Mỗi bên đều có quyền hủy bỏ việc đơn phương chấm dứt hợp đồng lao động trước khi hết thời hạn báo trước nhưng phải thông báo bằng văn bản và phải được bên kia đồng ý.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_39",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 39. Đơn phương chấm dứt hợp đồng lao động trái pháp luật",
+        "content": "Điều 39. Đơn phương chấm dứt hợp đồng lao động trái pháp luật Đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp chấm dứt hợp đồng lao động không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_40",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng",
+        "content": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "a40ba41e2ea6d4881d63a75a",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), một người lao động đang trong thời hạn hợp đồng 24 tháng muốn nghỉ đúng luật theo trường hợp thông thường, không được miễn báo trước và không làm công việc đặc thù. Người này đã làm việc thường xuyên đủ 12 tháng, chưa đủ điều kiện hưởng lương hưu. Cần báo trước bao lâu, mức trợ cấp thôi việc mỗi năm là bao nhiêu và thời gian đã tham gia bảo hiểm thất nghiệp có được tính vào trợ cấp không?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Báo trước ít nhất 30 ngày. Mỗi năm làm việc được trợ cấp một nửa tháng tiền lương; trừ thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được chi trả trợ cấp thôi việc, mất việc làm.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_35",
+        "exact_quote": "b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng;",
+        "pdf_pages": [
+          15,
+          16
+        ]
+      },
+      {
+        "article_id": "Dieu_46",
+        "exact_quote": "mỗi năm làm việc được trợ cấp một nửa tháng tiền lương",
+        "pdf_pages": [
+          21
+        ]
+      },
+      {
+        "article_id": "Dieu_46",
+        "exact_quote": "trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp",
+        "pdf_pages": [
+          21
+        ]
+      }
+    ],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "Dieu_220",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 220. Hiệu lực thi hành",
+        "content": "Điều 220. Hiệu lực thi hành 1. Bộ luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2021. Bộ luật Lao động số 10/2012/QH13 hết hiệu lực thi hành kể từ ngày Bộ luật này có hiệu lực. 2. Kể từ ngày Bộ luật này có hiệu lực thi hành, hợp đồng lao động, thỏa ước lao động tập thể, các thỏa thuận hợp pháp đã giao kết có nội dung không trái hoặc bảo đảm cho người lao động có quyền và điều kiện thuận lợi hơn so với quy định của Bộ luật này được tiếp tục thực hiện, trừ trường hợp các bên có thỏa thuận về việc sửa đổi, bổ sung để phù hợp và để áp dụng quy định của Bộ luật này. 3. Chế độ lao động đối với cán bộ, công chức, viên chức, người thuộc lực lượng Quân đội nhân dân, Công an nhân dân, tổ chức xã hội, xã viên hợp tác xã, người làm việc không có quan hệ lao động do các văn bản pháp luật khác quy định nhưng tùy từng đối tượng mà được áp dụng một số quy định trong Bộ luật này. Bộ luật này được Quốc hội nước Cộng hòa xã hội chủ nghĩa Việt Nam khóa XIV, kỳ họp thứ 8 thông qua ngày 20 tháng 11 năm 2019./.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          92,
+          93
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_35",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người",
+        "content": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn; b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng; c) Ít nhất 03 ngày làm việc nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn dưới 12 tháng; d) Đối với một số ngành, nghề, công việc đặc thù thì thời hạn báo trước được thực hiện theo quy định của Chính phủ. 2. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không cần báo trước trong trường hợp sau đây: a) Không được bố trí theo đúng công việc, địa điểm làm việc hoặc không được bảo đảm điều kiện làm việc theo thỏa thuận, trừ trường hợp quy định tại Điều 29 của Bộ luật này; b) Không được trả đủ lương hoặc trả lương không đúng thời hạn, trừ trường hợp quy định tại khoản 4 Điều 97 của Bộ luật này; c) Bị người sử dụng lao động ngược đãi, đánh đập hoặc có lời nói, hành vi nhục mạ, hành vi làm ảnh hưởng đến sức khỏe, nhân phẩm, danh dự; bị cưỡng bức lao động; d) Bị quấy rối tình dục tại nơi làm việc; đ) Lao động nữ mang thai phải nghỉ việc theo quy định tại khoản 1 Điều 138 của Bộ luật này; e) Đủ tuổi nghỉ hưu theo quy định tại Điều 169 của Bộ luật này, trừ trường hợp các bên có thỏa thuận khác; g) Người sử dụng lao động cung cấp thông tin không trung thực theo quy định tại khoản 1 Điều 16 của Bộ luật này làm ảnh hưởng đến việc thực hiện hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          15,
+          16
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_41",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt",
+        "content": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động. Sau khi được nhận lại làm việc, người lao động hoàn trả cho người sử dụng lao động các khoản tiền trợ cấp thôi việc, trợ cấp mất việc làm nếu đã nhận của người sử dụng lao động. Trường hợp không còn vị trí, công việc đã giao kết trong hợp đồng lao động mà người lao động vẫn muốn làm việc thì hai bên thỏa thuận để sửa đổi, bổ sung hợp đồng lao động. Trường hợp vi phạm quy định về thời hạn báo trước quy định tại khoản 2 Điều 36 của Bộ luật này thì phải trả một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 2. Trường hợp người lao động không muốn tiếp tục làm việc thì ngoài khoản tiền phải trả quy định tại khoản 1 Điều này người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này để chấm dứt hợp đồng lao động. 3. Trường hợp người sử dụng lao động không muốn nhận lại người lao động và người lao động đồng ý thì ngoài khoản tiền người sử dụng lao động phải trả theo quy định tại khoản 1 Điều này và trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này, hai bên thỏa thuận khoản tiền bồi thường thêm cho người lao động nhưng ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động để chấm dứt hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18,
+          19
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_45",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 45. Thông báo chấm dứt hợp đồng lao động",
+        "content": "Điều 45. Thông báo chấm dứt hợp đồng lao động 1. Người sử dụng lao động phải thông báo bằng văn bản cho người lao động về việc chấm dứt hợp đồng lao động khi hợp đồng lao động chấm dứt theo quy định của Bộ luật này, trừ trường hợp quy định tại các khoản 4, 5, 6, 7 và 8 Điều 34 của Bộ luật này. 2. Trường hợp người sử dụng lao động không phải là cá nhân chấm dứt hoạt động thì thời điểm chấm dứt hợp đồng lao động tính từ thời điểm có thông báo chấm dứt hoạt động. Trường hợp người sử dụng lao động không phải là cá nhân bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật theo quy định tại khoản 7 Điều 34 của Bộ luật này thì thời điểm chấm dứt hợp đồng lao động tính từ ngày ra thông báo.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_46",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 46. Trợ cấp thôi việc",
+        "content": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này. 2. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc. 4. Chính phủ quy định chi tiết Điều này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_47",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 47. Trợ cấp mất việc làm",
+        "content": "Điều 47. Trợ cấp mất việc làm 1. Người sử dụng lao động trả trợ cấp mất việc làm cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên mà bị mất việc làm theo quy định tại khoản 11 Điều 34 của Bộ luật này, cứ mỗi năm làm việc trả 01 tháng tiền lương nhưng ít nhất bằng 02 tháng tiền lương. 2. Thời gian làm việc để tính trợ cấp mất việc làm là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp mất việc làm là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động mất việc làm. 4. Chính phủ quy định chi tiết Điều này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21,
+          22
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "ac462bb5d8f317e57c5ffc50",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người lao động đơn phương chấm dứt trái pháp luật có được trợ cấp thôi việc không; khoản bồi thường cố định là bao nhiêu tháng tiền lương, chưa tính khoản ngày không báo trước và chi phí đào tạo?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được trợ cấp thôi việc; bồi thường nửa tháng tiền lương theo hợp đồng lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_40",
+        "exact_quote": "1. Không được trợ cấp thôi việc.",
+        "pdf_pages": [
+          18
+        ]
+      },
+      {
+        "article_id": "Dieu_40",
+        "exact_quote": "2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.",
+        "pdf_pages": [
+          18
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 40 của Bộ luật Lao động 2019, người lao động không được trợ cấp thôi việc khi đơn phương chấm dứt hợp đồng lao động trái pháp luật. Điều 39 xác định đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này. Tuy nhiên, để hoàn chỉnh câu trả lời, tôi cần tra cứu thêm về khoản bồi thường cố định từ Điều 46 của Bộ luật Lao động 2019. Tuy nhiên, tôi không thể tra cứu thêm vì đã sử dụng tối đa số lượt gọi công cụ.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_40",
+        "exact_quote": "Người lao động không được trợ cấp thôi việc khi đơn phương chấm dứt hợp đồng lao động trái pháp luật."
+      },
+      {
+        "article_id": "Dieu_39",
+        "exact_quote": "Đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp chấm dứt hợp đồng lao động không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_39",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 39. Đơn phương chấm dứt hợp đồng lao động trái pháp luật",
+        "content": "Điều 39. Đơn phương chấm dứt hợp đồng lao động trái pháp luật Đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp chấm dứt hợp đồng lao động không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_40",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng",
+        "content": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_41",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt",
+        "content": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động. Sau khi được nhận lại làm việc, người lao động hoàn trả cho người sử dụng lao động các khoản tiền trợ cấp thôi việc, trợ cấp mất việc làm nếu đã nhận của người sử dụng lao động. Trường hợp không còn vị trí, công việc đã giao kết trong hợp đồng lao động mà người lao động vẫn muốn làm việc thì hai bên thỏa thuận để sửa đổi, bổ sung hợp đồng lao động. Trường hợp vi phạm quy định về thời hạn báo trước quy định tại khoản 2 Điều 36 của Bộ luật này thì phải trả một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 2. Trường hợp người lao động không muốn tiếp tục làm việc thì ngoài khoản tiền phải trả quy định tại khoản 1 Điều này người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này để chấm dứt hợp đồng lao động. 3. Trường hợp người sử dụng lao động không muốn nhận lại người lao động và người lao động đồng ý thì ngoài khoản tiền người sử dụng lao động phải trả theo quy định tại khoản 1 Điều này và trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này, hai bên thỏa thuận khoản tiền bồi thường thêm cho người lao động nhưng ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động để chấm dứt hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18,
+          19
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_46",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 46. Trợ cấp thôi việc",
+        "content": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này. 2. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc. 4. Chính phủ quy định chi tiết Điều này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "b276cb11ee141cb7b475b2b3",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động có được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi không?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được thực hiện quyền đơn phương chấm dứt trong các trường hợp này.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_37",
+        "exact_quote": "3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+        "pdf_pages": [
+          18
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do mang thai hoặc nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_137",
+        "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_137",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 137. Bảo vệ thai sản",
+        "content": "Điều 137. Bảo vệ thai sản 1. Người sử dụng lao động không được sử dụng người lao động làm việc ban đêm, làm thêm giờ và đi công tác xa trong trường hợp sau đây: a) Mang thai từ tháng thứ 07 hoặc từ tháng thứ 06 nếu làm việc ở vùng cao, vùng sâu, vùng xa, biên giới, hải đảo; b) Đang nuôi con dưới 12 tháng tuổi, trừ trường hợp được người lao động đồng ý. 2. Lao động nữ làm nghề, công việc nặng nhọc, độc hại, nguy hiểm hoặc đặc biệt nặng nhọc, độc hại, nguy hiểm hoặc làm nghề, công việc có ảnh hưởng xấu tới chức năng sinh sản và nuôi con khi mang thai và có thông báo cho người sử dụng lao động biết thì được người sử dụng lao động chuyển sang làm công việc nhẹ hơn, an toàn hơn hoặc giảm bớt 01 giờ làm việc hằng ngày mà không bị cắt giảm tiền lương và quyền, lợi ích cho đến hết thời gian nuôi con dưới 12 tháng tuổi. 3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới. 4. Lao động nữ trong thời gian hành kinh được nghỉ mỗi ngày 30 phút, trong thời gian nuôi con dưới 12 tháng tuổi được nghỉ mỗi ngày 60 phút trong thời gian làm việc. Thời gian nghỉ vẫn được hưởng đủ tiền lương theo hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          56
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_35",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người",
+        "content": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn; b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng; c) Ít nhất 03 ngày làm việc nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn dưới 12 tháng; d) Đối với một số ngành, nghề, công việc đặc thù thì thời hạn báo trước được thực hiện theo quy định của Chính phủ. 2. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không cần báo trước trong trường hợp sau đây: a) Không được bố trí theo đúng công việc, địa điểm làm việc hoặc không được bảo đảm điều kiện làm việc theo thỏa thuận, trừ trường hợp quy định tại Điều 29 của Bộ luật này; b) Không được trả đủ lương hoặc trả lương không đúng thời hạn, trừ trường hợp quy định tại khoản 4 Điều 97 của Bộ luật này; c) Bị người sử dụng lao động ngược đãi, đánh đập hoặc có lời nói, hành vi nhục mạ, hành vi làm ảnh hưởng đến sức khỏe, nhân phẩm, danh dự; bị cưỡng bức lao động; d) Bị quấy rối tình dục tại nơi làm việc; đ) Lao động nữ mang thai phải nghỉ việc theo quy định tại khoản 1 Điều 138 của Bộ luật này; e) Đủ tuổi nghỉ hưu theo quy định tại Điều 169 của Bộ luật này, trừ trường hợp các bên có thỏa thuận khác; g) Người sử dụng lao động cung cấp thông tin không trung thực theo quy định tại khoản 1 Điều 16 của Bộ luật này làm ảnh hưởng đến việc thực hiện hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          15,
+          16
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_37",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền",
+        "content": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này. 2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ khác được người sử dụng lao động đồng ý. 3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "dbd45deb49ef72c38f4b0b01",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động có được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi không?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được thực hiện quyền đơn phương chấm dứt trong các trường hợp này.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_37",
+        "exact_quote": "3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+        "pdf_pages": [
+          18
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới. Điều này cho thấy người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_137",
+        "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_137",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 137. Bảo vệ thai sản",
+        "content": "Điều 137. Bảo vệ thai sản 1. Người sử dụng lao động không được sử dụng người lao động làm việc ban đêm, làm thêm giờ và đi công tác xa trong trường hợp sau đây: a) Mang thai từ tháng thứ 07 hoặc từ tháng thứ 06 nếu làm việc ở vùng cao, vùng sâu, vùng xa, biên giới, hải đảo; b) Đang nuôi con dưới 12 tháng tuổi, trừ trường hợp được người lao động đồng ý. 2. Lao động nữ làm nghề, công việc nặng nhọc, độc hại, nguy hiểm hoặc đặc biệt nặng nhọc, độc hại, nguy hiểm hoặc làm nghề, công việc có ảnh hưởng xấu tới chức năng sinh sản và nuôi con khi mang thai và có thông báo cho người sử dụng lao động biết thì được người sử dụng lao động chuyển sang làm công việc nhẹ hơn, an toàn hơn hoặc giảm bớt 01 giờ làm việc hằng ngày mà không bị cắt giảm tiền lương và quyền, lợi ích cho đến hết thời gian nuôi con dưới 12 tháng tuổi. 3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới. 4. Lao động nữ trong thời gian hành kinh được nghỉ mỗi ngày 30 phút, trong thời gian nuôi con dưới 12 tháng tuổi được nghỉ mỗi ngày 60 phút trong thời gian làm việc. Thời gian nghỉ vẫn được hưởng đủ tiền lương theo hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          56
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_35",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người",
+        "content": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động 1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn; b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng; c) Ít nhất 03 ngày làm việc nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn dưới 12 tháng; d) Đối với một số ngành, nghề, công việc đặc thù thì thời hạn báo trước được thực hiện theo quy định của Chính phủ. 2. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không cần báo trước trong trường hợp sau đây: a) Không được bố trí theo đúng công việc, địa điểm làm việc hoặc không được bảo đảm điều kiện làm việc theo thỏa thuận, trừ trường hợp quy định tại Điều 29 của Bộ luật này; b) Không được trả đủ lương hoặc trả lương không đúng thời hạn, trừ trường hợp quy định tại khoản 4 Điều 97 của Bộ luật này; c) Bị người sử dụng lao động ngược đãi, đánh đập hoặc có lời nói, hành vi nhục mạ, hành vi làm ảnh hưởng đến sức khỏe, nhân phẩm, danh dự; bị cưỡng bức lao động; d) Bị quấy rối tình dục tại nơi làm việc; đ) Lao động nữ mang thai phải nghỉ việc theo quy định tại khoản 1 Điều 138 của Bộ luật này; e) Đủ tuổi nghỉ hưu theo quy định tại Điều 169 của Bộ luật này, trừ trường hợp các bên có thỏa thuận khác; g) Người sử dụng lao động cung cấp thông tin không trung thực theo quy định tại khoản 1 Điều 16 của Bộ luật này làm ảnh hưởng đến việc thực hiện hợp đồng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          15,
+          16
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_37",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền",
+        "content": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này. 2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ khác được người sử dụng lao động đồng ý. 3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          18
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "f0fcba9d7146734f87f5698f",
+    "question": "Luật lao động của bang California quy định số giờ làm thêm tối đa là bao nhiêu giờ một tuần? Chỉ trả lời nếu cơ sở tri thức đã nạp có nguồn áp dụng cho bang này.",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "refuse",
+    "reference_answer": "Từ chối vì cơ sở tri thức chỉ có Bộ luật Lao động Việt Nam 2019, không có nguồn luật California.",
+    "reference_evidence": [],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "Bảng quy định làm thêm giờ trong luật lao động bang California bao gồm cả làm thêm giờ bình thường và làm thêm giờ trong trường hợp đặc biệt. Tôi cần biết số giờ làm thêm bình thường được quy định là bao nhiêu. Bạn có thể chỉ dẫn tôi tìm tài liệu liên quan không?",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "Dieu_107",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 107. Làm thêm giờ",
+        "content": "Điều 107. Làm thêm giờ 1. Thời gian làm thêm giờ là khoảng thời gian làm việc ngoài thời giờ làm việc bình thường theo quy định của pháp luật, thỏa ước lao động tập thể hoặc nội quy lao động. 2. Người sử dụng lao động được sử dụng người lao động làm thêm giờ khi đáp ứng đầy đủ các yêu cầu sau đây: a) Phải được sự đồng ý của người lao động; b) Bảo đảm số giờ làm thêm của người lao động không quá 50% số giờ làm việc bình thường trong 01 ngày; trường hợp áp dụng quy định thời giờ làm việc bình thường theo tuần thì tổng số giờ làm việc bình thường và số giờ làm thêm không quá 12 giờ trong 01 ngày; không quá 40 giờ trong 01 tháng; c) Bảo đảm số giờ làm thêm của người lao động không quá 200 giờ trong 01 năm, trừ trường hợp quy định tại khoản 3 Điều này. 3. Người sử dụng lao động được sử dụng người lao động làm thêm không quá 300 giờ trong 01 năm trong một số ngành, nghề, công việc hoặc trường hợp sau đây: a) Sản xuất, gia công xuất khẩu sản phẩm hàng dệt, may, da, giày, điện, điện tử, chế biến nông, lâm, diêm nghiệp, thủy sản; b) Sản xuất, cung cấp điện, viễn thông, lọc dầu; cấp, thoát nước; c) Trường hợp giải quyết công việc đòi hỏi lao động có trình độ chuyên môn, kỹ thuật cao mà thị trường lao động không cung ứng đầy đủ, kịp thời; d) Trường hợp phải giải quyết công việc cấp bách, không thể trì hoãn do tính chất thời vụ, thời điểm của nguyên liệu, sản phẩm hoặc để giải quyết công việc phát sinh do yếu tố khách quan không dự liệu trước, do hậu quả thời tiết, thiên tai, hỏa hoạn, địch họa, thiếu điện, thiếu nguyên liệu, sự cố kỹ thuật của dây chuyền sản xuất; đ) Trường hợp khác do Chính phủ quy định. 4. Khi tổ chức làm thêm giờ theo quy định tại khoản 3 Điều này, người sử dụng lao động phải thông báo bằng văn bản cho cơ quan chuyên môn về lao động thuộc Ủy ban nhân dân cấp tỉnh. 5. Chính phủ quy định chi tiết Điều này.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          44,
+          45
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_108",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 108. Làm thêm giờ trong trường hợp đặc biệt",
+        "content": "Điều 108. Làm thêm giờ trong trường hợp đặc biệt Người sử dụng lao động có quyền yêu cầu người lao động làm thêm giờ vào bất kỳ ngày nào mà không bị giới hạn về số giờ làm thêm theo quy định tại Điều 107 của Bộ luật này và người lao động không được từ chối trong trường hợp sau đây: 1. Thực hiện lệnh động viên, huy động bảo đảm nhiệm vụ quốc phòng, an ninh theo quy định của pháp luật; 2. Thực hiện các công việc nhằm bảo vệ tính mạng con người, tài sản của cơ quan, tổ chức, cá nhân trong phòng ngừa, khắc phục hậu quả thiên tai, hỏa hoạn, dịch bệnh nguy hiểm và thảm họa, trừ trường hợp có nguy cơ ảnh hưởng đến tính mạng, sức khỏe của người lao động theo quy định của pháp luật về an toàn, vệ sinh lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          45,
+          46
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_117",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 117. Kỷ luật lao động",
+        "content": "Điều 117. Kỷ luật lao động Kỷ luật lao động là những quy định về việc tuân theo thời gian, công nghệ và điều hành sản xuất, kinh doanh do người sử dụng lao động ban hành trong nội quy lao động và do pháp luật quy định.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          48
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  }
+]

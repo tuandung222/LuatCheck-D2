@@ -1,0 +1,23 @@
+\begin{table}[H]\centering\footnotesize
+\begin{tabularx}{\textwidth}{@{}L{5.0cm}XX@{}}\toprule Metric & OFF & L1 ON\\\midrule
+Recorded trials (errors included) & 30 & 30\\
+Answered / refused / clarified & 18 / 3 / 4 & 14 / 5 / 4\\
+Execution errors (included) & 5 & 7\\
+Answer coverage (all trials) & 60.0\% & 46.7\%\\
+Trajectory Recall@5 & 0.815 & 0.815\\
+Trajectory Hit@5 & 0.815 & 0.815\\
+Trajectory MRR & 0.698 & 0.698\\
+Citation-ID precision & 0.407 & 0.370\\
+Citation-ID recall & 0.426 & 0.352\\
+Latency p50 / p95 (s) & 30.81 / 64.78 & 29.71 / 72.30\\
+Input tokens (all calls) & 517,715 & 553,311\\
+Output tokens (all calls) & 22,394 & 24,229\\
+Native calls & 129 & 135\\
+Repairs & 0 & 6\\
+Model service-hours & 0.2699 & 0.2869\\
+Human-validated task success & \pending{human audit} & \pending{human audit}\\
+Human-validated support rate & \pending{human audit} & \pending{human audit}\\
+Hardware GPU-active hours & \pending{not measured} & \pending{not measured}\\
+\bottomrule\end{tabularx}
+\caption{Main collection: 60 real native trials. Retrieval and citation-ID metrics average 27 / 27 answerable trials (OFF / ON), with non-answers included. These are operational/source-ID measurements, not semantic correctness. Model service-hours are backend durations, not GPU-active hours.}
+\end{table}

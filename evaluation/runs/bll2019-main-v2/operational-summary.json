@@ -1,0 +1,2269 @@
+{
+  "run_dir": "evaluation/runs/bll2019-main-v2",
+  "phase": "main",
+  "trials": 60,
+  "collection_manifest_sha256": "ad00573675fd1b76116a54f4454a887b76f4d775bb19078c16f045caf1e7343f",
+  "runs_sha256": "631480b2989859bd95d39bc8b7754caa1687a221cfd3858210c7129d0920b06e",
+  "tasks_sha256": "8b84c4f395b25b34e7c8fd76758501ea070c456d7db288d8c943167bbb46d9dc",
+  "semantic_task_success": null,
+  "semantic_unsupported_claim_rate": null,
+  "human_judge_agreement": null,
+  "hardware_GPU_active_hours": null,
+  "note": "Measured operations and citation-ID/lexical diagnostics. No semantic or expert correctness score is inferred.",
+  "modes": {
+    "off": {
+      "trials": 30,
+      "answered": 18,
+      "refused": 3,
+      "clarified": 4,
+      "execution_errors": 5,
+      "error_types": {
+        "model_output_error": 5
+      },
+      "answer_coverage": 0.6,
+      "answerable_trials": 27,
+      "answerable_answer_coverage": 0.6296296296296297,
+      "answerable_non_answers": 10,
+      "terminal_behavior_agreement_not_correctness": 0.5666666666666667,
+      "latency_p50_seconds": 30.805551,
+      "latency_p95_seconds": 64.78059569999996,
+      "task_wall_hours_sum": 0.2702794277777778,
+      "native_service_hours": 0.2698883228708333,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 129,
+      "input_tokens": 517715,
+      "output_tokens": 22394,
+      "tokens_per_trial": 18003.633333333335,
+      "tools_per_trial_mean": 2.966666666666667,
+      "repairs_total": 0,
+      "trajectory_recall5": 0.8148148148148148,
+      "trajectory_hit5": 0.8148148148148148,
+      "trajectory_mrr": 0.6975296296296297,
+      "citation_id_precision": 0.4074074074074074,
+      "citation_id_recall": 0.42592592592592593,
+      "reference_token_f1_diagnostic": 0.1558052923649207,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.125,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 0.7777777777777778,
+          "citation_precision": 0.5,
+          "citation_recall": 0.5
+        },
+        {
+          "seed": 123,
+          "trajectory_recall5": 0.8888888888888888,
+          "citation_precision": 0.2222222222222222,
+          "citation_recall": 0.2222222222222222
+        },
+        {
+          "seed": 2026,
+          "trajectory_recall5": 0.7777777777777778,
+          "citation_precision": 0.5,
+          "citation_recall": 0.5555555555555556
+        }
+      ],
+      "budget_violations": []
+    },
+    "l1_on": {
+      "trials": 30,
+      "answered": 14,
+      "refused": 5,
+      "clarified": 4,
+      "execution_errors": 7,
+      "error_types": {
+        "model_output_error": 7
+      },
+      "answer_coverage": 0.4666666666666667,
+      "answerable_trials": 27,
+      "answerable_answer_coverage": 0.48148148148148145,
+      "answerable_non_answers": 14,
+      "terminal_behavior_agreement_not_correctness": 0.4666666666666667,
+      "latency_p50_seconds": 29.7095645,
+      "latency_p95_seconds": 72.30418674999999,
+      "task_wall_hours_sum": 0.2872498041666667,
+      "native_service_hours": 0.2868658333225,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 135,
+      "input_tokens": 553311,
+      "output_tokens": 24229,
+      "tokens_per_trial": 19251.333333333332,
+      "tools_per_trial_mean": 3.033333333333333,
+      "repairs_total": 6,
+      "trajectory_recall5": 0.8148148148148148,
+      "trajectory_hit5": 0.8148148148148148,
+      "trajectory_mrr": 0.6975296296296297,
+      "citation_id_precision": 0.37037037037037035,
+      "citation_id_recall": 0.35185185185185186,
+      "reference_token_f1_diagnostic": 0.12024350952509388,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.0,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 0.7777777777777778,
+          "citation_precision": 0.5555555555555556,
+          "citation_recall": 0.5
+        },
+        {
+          "seed": 123,
+          "trajectory_recall5": 0.8888888888888888,
+          "citation_precision": 0.2222222222222222,
+          "citation_recall": 0.2222222222222222
+        },
+        {
+          "seed": 2026,
+          "trajectory_recall5": 0.7777777777777778,
+          "citation_precision": 0.3333333333333333,
+          "citation_recall": 0.3333333333333333
+        }
+      ],
+      "budget_violations": []
+    }
+  },
+  "details": [
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.10810810810810813
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_152",
+        "Dieu_151"
+      ],
+      "citation_ids": [
+        "Dieu_25"
+      ],
+      "wall_seconds": 20.786081,
+      "input_tokens": 7456,
+      "output_tokens": 448,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_25",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.10810810810810813
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_152",
+        "Dieu_151"
+      ],
+      "citation_ids": [
+        "Dieu_25"
+      ],
+      "wall_seconds": 16.627133999999998,
+      "input_tokens": 7456,
+      "output_tokens": 448,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_25",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;"
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.4878048780487805
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_24",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 11.680178,
+      "input_tokens": 3851,
+      "output_tokens": 308,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương của người lao động trong thời gian thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.4878048780487805
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_24",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 11.757482,
+      "input_tokens": 3851,
+      "output_tokens": 308,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương của người lao động trong thời gian thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.17391304347826084
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_35",
+        "Dieu_39",
+        "Dieu_36"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 17.055995,
+      "input_tokens": 8038,
+      "output_tokens": 402,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có hợp đồng lao động không xác định thời hạn muốn đơn phương chấm dứt hợp đồng phải báo trước ít nhất 45 ngày cho người sử dụng lao động.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.17391304347826084
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_35",
+        "Dieu_39",
+        "Dieu_36"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 17.220669,
+      "input_tokens": 8038,
+      "output_tokens": 402,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có hợp đồng lao động không xác định thời hạn muốn đơn phương chấm dứt hợp đồng phải báo trước ít nhất 45 ngày cho người sử dụng lao động.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;"
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_178",
+        "Dieu_45",
+        "Dieu_56"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 46.476563,
+      "input_tokens": 30551,
+      "output_tokens": 1273,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model returned an invalid or missing action.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_178",
+        "Dieu_45",
+        "Dieu_56"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 46.397021,
+      "input_tokens": 30551,
+      "output_tokens": 1273,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model returned an invalid or missing action.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.11607142857142858
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_35"
+      ],
+      "citation_ids": [
+        "Dieu_137"
+      ],
+      "wall_seconds": 28.904335,
+      "input_tokens": 8214,
+      "output_tokens": 835,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới. Điều này cho thấy người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi.",
+        "citations": [
+          {
+            "article_id": "Dieu_137",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.11607142857142858
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_35"
+      ],
+      "citation_ids": [
+        "Dieu_137"
+      ],
+      "wall_seconds": 26.794307,
+      "input_tokens": 8214,
+      "output_tokens": 835,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới. Điều này cho thấy người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi.",
+        "citations": [
+          {
+            "article_id": "Dieu_137",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.2537313432835821
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_40"
+      ],
+      "citation_ids": [
+        "Dieu_40"
+      ],
+      "wall_seconds": 32.565334,
+      "input_tokens": 11681,
+      "output_tokens": 1089,
+      "tool_calls": 2,
+      "repairs": 1,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 40 của Bộ luật Lao động 2019, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật không được trợ cấp thôi việc. Người sử dụng lao động phải bồi thường cho người lao động một nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. Không có quy định cụ thể về số tháng tiền lương trong khoản bồi thường cố định. Người lao động còn có nghĩa vụ phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+        "citations": [
+          {
+            "article_id": "Dieu_40",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3148148148148148
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_40"
+      ],
+      "citation_ids": [
+        "Dieu_40",
+        "Dieu_46"
+      ],
+      "wall_seconds": 18.870025000000002,
+      "input_tokens": 4110,
+      "output_tokens": 624,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 40 và Điều 46 của Bộ luật Lao động 2019, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật không được trợ cấp thôi việc. Người sử dụng lao động phải bồi thường cho người lao động một nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. Không có quy định cụ thể về số tháng tiền lương trong khoản bồi thường cố định.",
+        "citations": [
+          {
+            "article_id": "Dieu_40",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được một tháng tiền lương."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47",
+        "Dieu_45",
+        "Dieu_35",
+        "Dieu_220"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 54.68864,
+      "input_tokens": 38191,
+      "output_tokens": 866,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47",
+        "Dieu_45",
+        "Dieu_35",
+        "Dieu_220"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 38.822517,
+      "input_tokens": 38191,
+      "output_tokens": 866,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3260869565217391
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_41",
+        "Dieu_40",
+        "Dieu_46"
+      ],
+      "citation_ids": [
+        "Dieu_46"
+      ],
+      "wall_seconds": 29.344682000000002,
+      "input_tokens": 7868,
+      "output_tokens": 934,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 46 của Bộ luật Lao động 2019, người sử dụng lao động phải trả trợ cấp thôi việc cho người lao động đã làm việc từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được trợ cấp thôi việc, trợ cấp mất việc làm. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề trước khi người lao động thôi việc. Chính phủ sẽ quy định chi tiết Điều này.",
+        "citations": [
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này. 2. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc. 4. Chính phủ quy định chi tiết Điều này."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3260869565217391
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_41",
+        "Dieu_40",
+        "Dieu_46"
+      ],
+      "citation_ids": [
+        "Dieu_46"
+      ],
+      "wall_seconds": 33.323843999999994,
+      "input_tokens": 7868,
+      "output_tokens": 934,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 46 của Bộ luật Lao động 2019, người sử dụng lao động phải trả trợ cấp thôi việc cho người lao động đã làm việc từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được trợ cấp thôi việc, trợ cấp mất việc làm. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề trước khi người lao động thôi việc. Chính phủ sẽ quy định chi tiết Điều này.",
+        "citations": [
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này. 2. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm. 3. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc. 4. Chính phủ quy định chi tiết Điều này."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.20224719101123598
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_220",
+        "Dieu_45",
+        "Dieu_1"
+      ],
+      "citation_ids": [
+        "Dieu_220"
+      ],
+      "wall_seconds": 39.439822,
+      "input_tokens": 28662,
+      "output_tokens": 995,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 220 của Bộ luật Lao động 2019, việc người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc không được phép. Điều này được quy định trong hiệu lực thi hành của Bộ luật này, cụ thể là tại Khoản 2 Điều 220, trong đó quy định rằng từ ngày Bộ luật này có hiệu lực, hợp đồng lao động, thỏa ước lao động tập thể, các thỏa thuận hợp pháp đã giao kết có nội dung không trái hoặc bảo đảm cho người lao động có quyền và điều kiện thuận lợi hơn so với quy định của Bộ luật này được tiếp tục thực hiện, trừ trường hợp các bên có thỏa thuận về việc sửa đổi, bổ sung để phù hợp và để áp dụng quy định của Bộ luật này. Do đó, việc yêu cầu người lao động nộp tiền đặt cọc không được phép.",
+        "citations": [
+          {
+            "article_id": "Dieu_220",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Kể từ ngày Bộ luật này có hiệu lực thi hành, hợp đồng lao động, thỏa ước lao động tập thể, các thỏa thuận hợp pháp đã giao kết có nội dung không trái hoặc bảo đảm cho người lao động có quyền và điều kiện thuận lợi hơn so với quy định của Bộ luật này được tiếp tục thực hiện, trừ trường hợp các bên có thỏa thuận về việc sửa đổi, bổ sung để phù hợp và để áp dụng quy định của Bộ luật này."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_220",
+        "Dieu_45",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 23.106072,
+      "input_tokens": 21741,
+      "output_tokens": 528,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Bộ luật Lao động 2019, có quy định nào liên quan đến việc người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc không?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_108",
+        "Dieu_117",
+        "Dieu_107"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 10.783592,
+      "input_tokens": 3894,
+      "output_tokens": 207,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Bảng quy định làm thêm giờ trong luật lao động bang California bao gồm cả làm thêm giờ bình thường và làm thêm giờ trong trường hợp đặc biệt? Nếu không có quy định làm thêm giờ bình thường, tôi cần biết số giờ làm thêm tối đa trong trường hợp đặc biệt.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_108",
+        "Dieu_117",
+        "Dieu_107"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 10.249176,
+      "input_tokens": 3894,
+      "output_tokens": 212,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Bảng quy định làm thêm giờ trong luật lao động bang California bao gồm cả làm thêm giờ bình thường và làm thêm giờ trong trường hợp đặc biệt. Tôi cần biết số giờ làm thêm bình thường được quy định là bao nhiêu. Bạn có thể chỉ dẫn tôi tìm tài liệu liên quan không?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_4",
+        "Dieu_151"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 13.431003,
+      "input_tokens": 4008,
+      "output_tokens": 346,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa là 180 ngày đối với công việc của người quản lý doanh nghiệp. Tuy nhiên, không có quy định cụ thể về thời gian thử việc cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên. Bạn có thể cung cấp thêm thông tin về loại công việc cụ thể không?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_4",
+        "Dieu_151"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 13.237290000000002,
+      "input_tokens": 4008,
+      "output_tokens": 346,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa là 180 ngày đối với công việc của người quản lý doanh nghiệp. Tuy nhiên, không có quy định cụ thể về thời gian thử việc cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên. Bạn có thể cung cấp thêm thông tin về loại công việc cụ thể không?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.5405405405405406
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_24",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 10.721335999999999,
+      "input_tokens": 3858,
+      "output_tokens": 281,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương trong thời gian thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.4878048780487805
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_24",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 11.645442,
+      "input_tokens": 3858,
+      "output_tokens": 305,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương của người lao động trong thời gian thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.11594202898550725
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_35",
+        "Dieu_36",
+        "Dieu_38"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 21.218156999999998,
+      "input_tokens": 8051,
+      "output_tokens": 493,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn. Điều này áp dụng cho trường hợp thông thường, không thuộc diện được miễn báo trước.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.11594202898550725
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_35",
+        "Dieu_36",
+        "Dieu_38"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 20.823248,
+      "input_tokens": 8051,
+      "output_tokens": 493,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn. Điều này áp dụng cho trường hợp thông thường, không thuộc diện được miễn báo trước.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;"
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_39",
+        "Dieu_36",
+        "Dieu_35",
+        "Dieu_40",
+        "Dieu_34"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 79.045723,
+      "input_tokens": 37480,
+      "output_tokens": 1482,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model output truncated by token limit.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_39",
+        "Dieu_36",
+        "Dieu_35",
+        "Dieu_40",
+        "Dieu_34"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 74.64184900000001,
+      "input_tokens": 37480,
+      "output_tokens": 1482,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model output truncated by token limit.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.13186813186813187
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_35"
+      ],
+      "citation_ids": [
+        "Dieu_137"
+      ],
+      "wall_seconds": 35.341216,
+      "input_tokens": 8234,
+      "output_tokens": 995,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do mang thai hoặc nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+        "citations": [
+          {
+            "article_id": "Dieu_137",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.13186813186813187
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_35"
+      ],
+      "citation_ids": [
+        "Dieu_137"
+      ],
+      "wall_seconds": 34.512447,
+      "input_tokens": 8234,
+      "output_tokens": 995,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do mang thai hoặc nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+        "citations": [
+          {
+            "article_id": "Dieu_137",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_39",
+        "Dieu_40",
+        "Dieu_38"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 15.03589,
+      "input_tokens": 7251,
+      "output_tokens": 388,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Khoản bồi thường cố định cho người sử dụng lao động khi người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật theo Điều 40 của Bộ luật Lao động 2019 là bao nhiêu tháng tiền lương?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_39",
+        "Dieu_40",
+        "Dieu_38"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 14.919955,
+      "input_tokens": 7251,
+      "output_tokens": 388,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Khoản bồi thường cố định cho người sử dụng lao động khi người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật theo Điều 40 của Bộ luật Lao động 2019 là bao nhiêu tháng tiền lương?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47",
+        "Dieu_45",
+        "Dieu_35",
+        "Dieu_220",
+        "Dieu_168"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 57.315008999999996,
+      "input_tokens": 38253,
+      "output_tokens": 917,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47",
+        "Dieu_45",
+        "Dieu_35",
+        "Dieu_220",
+        "Dieu_168"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 44.314267,
+      "input_tokens": 38253,
+      "output_tokens": 917,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47",
+        "Dieu_45",
+        "Dieu_40",
+        "Dieu_42",
+        "Dieu_43"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 42.350744,
+      "input_tokens": 37872,
+      "output_tokens": 879,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Answer requires a citation list with valid article IDs.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47",
+        "Dieu_45",
+        "Dieu_40",
+        "Dieu_42",
+        "Dieu_43"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 41.765758999999996,
+      "input_tokens": 37872,
+      "output_tokens": 879,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Answer requires a citation list with valid article IDs.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.1951219512195122
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_220",
+        "Dieu_127",
+        "Dieu_119",
+        "Dieu_62",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 56.014154000000005,
+      "input_tokens": 37874,
+      "output_tokens": 805,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Điều 220, Điều 127 và Điều 119 của Bộ luật Lao động 2019 không đề cập đến việc người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc. Tuy nhiên, tôi chưa chắc chắn rằng điều này không tồn tại mà chỉ chưa được tra cứu. Cần tra cứu thêm các điều khoản liên quan.",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_220",
+        "Dieu_127",
+        "Dieu_119",
+        "Dieu_62",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 63.625589999999995,
+      "input_tokens": 45986,
+      "output_tokens": 980,
+      "tool_calls": 5,
+      "repairs": 1,
+      "final_output": {
+        "action": "error",
+        "reason": "Action requires a nonempty reason.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 123,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_108",
+        "Dieu_117",
+        "Dieu_107"
+      ],
+      "citation_ids": [
+        "Dieu_107"
+      ],
+      "wall_seconds": 24.894963,
+      "input_tokens": 7822,
+      "output_tokens": 630,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo quy định của Bộ luật Lao động 2019, số giờ làm thêm tối đa trong một năm tại bang California không quá 200 giờ, trừ trường hợp quy định tại khoản 3 Điều này.",
+        "citations": [
+          {
+            "article_id": "Dieu_107",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "3. Người sử dụng lao động được sử dụng người lao động làm thêm không quá 300 giờ trong 01 năm trong một số ngành, nghề, công việc hoặc trường hợp sau đây: a) Sản xuất, gia công xuất khẩu sản phẩm hàng dệt, may, da, giày, điện, điện tử, chế biến nông, lâm, diêm nghiệp, thủy sản; b) Sản xuất, cung cấp điện, viễn thông, lọc dầu; cấp, thoát nước; c) Trường hợp giải quyết công việc đòi hỏi lao động có trình độ chuyên môn, kỹ thuật cao mà thị trường lao động không cung ứng đầy đủ, kịp thời; d) Trường hợp phải giải quyết công việc cấp bách, không thể trì hoãn do tính chất thời vụ, thời điểm của nguyên liệu, sản phẩm hoặc để giải quyết công việc phát sinh do yếu tố khách quan không dự liệu trước, do hậu quả thời tiết, thiên tai, hỏa hoạn, địch họa, thiếu điện, thiếu nguyên liệu, sự cố kỹ thuật của dây chuyền sản xuất; đ) Trường hợp khác do Chính phủ quy định. 4. Khi tổ chức làm thêm giờ theo quy định tại khoản 3 Điều này, người sử dụng lao động phải thông báo bằng văn bản cho cơ quan chuyên môn về lao động thuộc Ủy ban nhân dân cấp tỉnh. 5. Chính phủ quy định chi tiết Điều này."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 123,
+      "mode": "off",
+      "terminal_status": "clarified",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_108",
+        "Dieu_117",
+        "Dieu_107"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 13.299551,
+      "input_tokens": 7822,
+      "output_tokens": 268,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "clarify",
+        "question": "Trong trường hợp nào người sử dụng lao động được phép làm thêm giờ vượt quá 200 giờ theo Điều 107 của Bộ luật Lao động 2019?",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.10810810810810813
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_152",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_25"
+      ],
+      "wall_seconds": 15.487317,
+      "input_tokens": 7304,
+      "output_tokens": 396,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_25",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.10810810810810813
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_152",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_25"
+      ],
+      "wall_seconds": 15.972325999999999,
+      "input_tokens": 7304,
+      "output_tokens": 396,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_25",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;"
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.5405405405405406
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_24",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 13.395378000000001,
+      "input_tokens": 6764,
+      "output_tokens": 368,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương trong thời gian thử việc ít nhất phải bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.5405405405405406
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_24",
+        "Dieu_27"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 13.663432,
+      "input_tokens": 6764,
+      "output_tokens": 368,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 26 của Bộ luật Lao động 2019, tiền lương trong thời gian thử việc ít nhất phải bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.21052631578947367
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_35",
+        "Dieu_36",
+        "Dieu_39"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 12.671018,
+      "input_tokens": 4057,
+      "output_tokens": 334,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có hợp đồng không xác định thời hạn cần báo trước ít nhất 45 ngày để đơn phương chấm dứt hợp đồng.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.21052631578947367
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_35",
+        "Dieu_36",
+        "Dieu_39"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 12.613446,
+      "input_tokens": 4057,
+      "output_tokens": 334,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có hợp đồng không xác định thời hạn cần báo trước ít nhất 45 ngày để đơn phương chấm dứt hợp đồng.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;"
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_45",
+        "Dieu_39",
+        "Dieu_38",
+        "Dieu_40",
+        "Dieu_35"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 42.519193,
+      "input_tokens": 14145,
+      "output_tokens": 1130,
+      "tool_calls": 3,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model output truncated by token limit.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_45",
+        "Dieu_39",
+        "Dieu_38",
+        "Dieu_40",
+        "Dieu_35"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 41.957004,
+      "input_tokens": 14145,
+      "output_tokens": 1130,
+      "tool_calls": 3,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model output truncated by token limit.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.13333333333333333
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_35"
+      ],
+      "citation_ids": [
+        "Dieu_137"
+      ],
+      "wall_seconds": 34.080374000000006,
+      "input_tokens": 8216,
+      "output_tokens": 982,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động đang mang thai hoặc nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+        "citations": [
+          {
+            "article_id": "Dieu_137",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.13333333333333333
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_35"
+      ],
+      "citation_ids": [
+        "Dieu_137"
+      ],
+      "wall_seconds": 33.323437,
+      "input_tokens": 8216,
+      "output_tokens": 982,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động đang mang thai hoặc nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+        "citations": [
+          {
+            "article_id": "Dieu_137",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật. Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_41",
+        "Dieu_46",
+        "Dieu_39"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 69.962057,
+      "input_tokens": 38087,
+      "output_tokens": 1236,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model returned an invalid or missing action.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.2047244094488189
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_41",
+        "Dieu_46",
+        "Dieu_39"
+      ],
+      "citation_ids": [
+        "Dieu_40",
+        "Dieu_39"
+      ],
+      "wall_seconds": 55.945616,
+      "input_tokens": 38087,
+      "output_tokens": 1394,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 40 của Bộ luật Lao động 2019, người lao động không được trợ cấp thôi việc khi đơn phương chấm dứt hợp đồng lao động trái pháp luật. Điều 39 xác định đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này. Tuy nhiên, để hoàn chỉnh câu trả lời, tôi cần tra cứu thêm về khoản bồi thường cố định từ Điều 46 của Bộ luật Lao động 2019. Tuy nhiên, tôi không thể tra cứu thêm vì đã sử dụng tối đa số lượt gọi công cụ.",
+        "citations": [
+          {
+            "article_id": "Dieu_40",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Người lao động không được trợ cấp thôi việc khi đơn phương chấm dứt hợp đồng lao động trái pháp luật."
+          },
+          {
+            "article_id": "Dieu_39",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp chấm dứt hợp đồng lao động không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47",
+        "Dieu_35",
+        "Dieu_139",
+        "Dieu_117"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 70.888803,
+      "input_tokens": 29788,
+      "output_tokens": 1286,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model output truncated by token limit.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "error",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_46",
+        "Dieu_41",
+        "Dieu_47",
+        "Dieu_35",
+        "Dieu_139",
+        "Dieu_117"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 70.012308,
+      "input_tokens": 29788,
+      "output_tokens": 1286,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "error",
+        "reason": "Model output truncated by token limit.",
+        "error_kind": "model_output_error",
+        "citations": [],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_41",
+        "Dieu_40",
+        "Dieu_46"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 73.94316099999999,
+      "input_tokens": 32462,
+      "output_tokens": 2108,
+      "tool_calls": 4,
+      "repairs": 2,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không thể xác thực căn cứ pháp lý sau 2 lần thử sửa chữa. Chi tiết vi phạm: Trích nguyên văn của 'Dieu_41' không nằm trong văn bản nguồn. Đọc lại nguồn hoặc bỏ trường exact_quote nếu chỉ diễn giải.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.34972677595628415
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_41",
+        "Dieu_40",
+        "Dieu_46"
+      ],
+      "citation_ids": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "wall_seconds": 30.828830000000004,
+      "input_tokens": 12884,
+      "output_tokens": 845,
+      "tool_calls": 3,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Điều 41 của Bộ luật Lao động 2019, người sử dụng lao động phải trả cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động khi người lao động không muốn tiếp tục làm việc. Về trợ cấp thôi việc, theo Điều 46 của Bộ luật Lao động 2019, người sử dụng lao động phải trả trợ cấp thôi việc cho người lao động đã làm việc từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề trước khi người lao động thôi việc. Chính phủ quy định chi tiết về trợ cấp thôi việc.",
+        "citations": [
+          {
+            "article_id": "Dieu_41",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. ... ngoài khoản tiền phải trả quy định tại khoản 1 Điều này người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này để chấm dứt hợp đồng lao động."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 46. Trợ cấp thôi việc 1. Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_220",
+        "Dieu_45",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 30.782272000000003,
+      "input_tokens": 28563,
+      "output_tokens": 738,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.0
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_220",
+        "Dieu_45",
+        "Dieu_1"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 30.074447,
+      "input_tokens": 28487,
+      "output_tokens": 731,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Không tìm thấy quy định cụ thể về việc người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc trong Bộ luật Lao động 2019. Cần tra cứu thêm thông tin từ nguồn khác hoặc từ người dùng.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 2026,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_108",
+        "Dieu_117",
+        "Dieu_107",
+        "Dieu_98",
+        "Dieu_105"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 70.300996,
+      "input_tokens": 43701,
+      "output_tokens": 1377,
+      "tool_calls": 5,
+      "repairs": 2,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Hệ thống đã sử dụng hết giới hạn tối đa 8 bước suy luận mà chưa có kết luận.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 2026,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": false,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_108",
+        "Dieu_117",
+        "Dieu_107",
+        "Dieu_98",
+        "Dieu_105"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 45.636758,
+      "input_tokens": 36369,
+      "output_tokens": 1146,
+      "tool_calls": 5,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo quy định của Bộ luật Lao động 2019, thời giờ làm việc bình thường không quá 8 giờ trong một ngày và không quá 48 giờ trong một tuần. Tuy nhiên, tôi chưa tìm thấy quy định cụ thể về số giờ làm thêm tối đa thông thường. Để có thông tin chính xác, tôi khuyên bạn nên tra cứu thêm về quy định này. Nếu bạn có thêm thông tin về quy định làm thêm giờ thông thường, tôi sẽ rất vui lòng xem xét lại câu trả lời của mình.",
+        "citations": [],
+        "verified": false
+      }
+    }
+  ]
+}

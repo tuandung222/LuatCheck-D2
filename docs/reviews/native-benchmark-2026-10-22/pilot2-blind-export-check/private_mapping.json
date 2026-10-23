@@ -1,0 +1,34 @@
+[
+  {
+    "review_id": "aa3f78dd01828ec87126a690",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "d9aca1c892f18cf2df7935e2",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "5d99a944ed44b05f8e90a6af",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "ec9b05964028c4de10f9caf7",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  }
+]

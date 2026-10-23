@@ -1,0 +1,165 @@
+{
+  "schema": "luatcheck.native.d2.v1",
+  "phase": "main",
+  "created_at": "2026-10-22T09:51:20.935035+00:00",
+  "status": "collected_pending_human_scoring",
+  "report_eligible": false,
+  "model": {
+    "model": {
+      "name": "qwen2.5:3b",
+      "model": "qwen2.5:3b",
+      "modified_at": "2026-09-15T00:02:25.479561786+07:00",
+      "size": 1929912432,
+      "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "3.1B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 32768,
+        "embedding_length": 2048
+      },
+      "capabilities": [
+        "completion",
+        "tools"
+      ]
+    },
+    "ollama_version": {
+      "version": "0.34.4"
+    },
+    "endpoint": "http://127.0.0.1:11434",
+    "provider": "ollama",
+    "inference_executed": false
+  },
+  "config": {
+    "model": {
+      "provider": "ollama",
+      "endpoint": "http://127.0.0.1:11434",
+      "name": "qwen2.5:3b",
+      "temperature": 0.1,
+      "timeout_seconds": 60.0,
+      "seed": null,
+      "max_output_tokens": 768,
+      "context_tokens": 8192
+    },
+    "budgets": {
+      "max_tool_calls": 5,
+      "max_repairs": 2,
+      "max_steps": 8,
+      "wall_seconds": 180.0
+    },
+    "retrieval": {
+      "bm25_top_k": 5,
+      "dense_top_k": 5,
+      "rrf_k": 60,
+      "final_top_k": 5,
+      "corpus_path": "data/corpus/labor_code_2019_official.json",
+      "dense_model_type": "tfidf"
+    },
+    "verifier": {
+      "mode": "l1",
+      "similarity_threshold": 0.7,
+      "l1_overlap_threshold": 0.25,
+      "l2_entailment_threshold": 0.3,
+      "l2_use_slm": false
+    },
+    "memory": {
+      "enabled": false,
+      "sqlite_path": "data/db/local_slm_memory.db",
+      "similarity_threshold": 0.85,
+      "index_version": "bll2019-official-220-v1"
+    },
+    "security": {
+      "audit_log_path": "data/audit_log.jsonl",
+      "outbox_path": "data/outbox/sent_summaries.jsonl",
+      "egress_requires_confirmation": true
+    }
+  },
+  "sources": {
+    "base_commit": "3996f1f84d0dbd1356744b51758f96e829d3c1de",
+    "tracked_worktree_dirty": true,
+    "files_sha256": {
+      "src/agent/llm_client.py": "f0a95bb67f7096231f4677588e2267f76650e0bf83f98ada9784f6227391e548",
+      "src/agent/loop.py": "1d5787521c78ad95700844169e9ffc8ed7f4933a4d83ee0f885ed3e91e40748b",
+      "src/agent/prompts.py": "524379ae5d5a93e9cb3106e4faa6adc65c869d9ee674c7c2ca105ec5ed9458cf",
+      "src/agent/state.py": "e945fd0935fa013b997f73a729614fdb0660dd83f6271d5cf412d3ed4c37641f",
+      "src/config/__init__.py": "107f1a5f4c29c03f40e06492da0a1378f228b7ea5e68ee265bb826432bf30c02",
+      "src/config/app_config.py": "92b2a82deaa534a6e474033567f1b79412d767f273a50820d0ef4f1e32719e5e",
+      "src/contracts/__init__.py": "6b10dba74420e8d20fee27b97db4e72eb6073ef3473e49dd0b1086fbeea47a59",
+      "src/contracts/universal_document.py": "349d24bfe4c0f5c76f29a747de879c99a3c1c616d32e0d50cd0cb9b3019d5f0e",
+      "src/evaluation/benchmark_runner.py": "cde84c32cd08550d3363f7736d72c9bfafbe3f11e336a7ec6330a220dfe5d438",
+      "src/interfaces/__init__.py": "6cd175d4d449690bfdda9a6262f3c64e54b151da57b65978b4511835a223bdd0",
+      "src/interfaces/base.py": "c4141cf09124a764f0ba2a58de83c314a81a912a3d6784fc9481e366cbd97d5d",
+      "src/memory/ledger.py": "6a6b7124b98921ac96ad3494c3483e1353eb5d0d8b9bde315963ccedd3ca1138",
+      "src/memory/sqlite_store.py": "94ca8d6836a54ad44df3b890f15f8e8958bc36bca3120c2a16f9935a46f75141",
+      "src/retrieval/bm25_engine.py": "223ef2ccb665430ddb891db3873a19c5809b92e8c5791570870ce6720eb16dd0",
+      "src/retrieval/dense_engine.py": "0d167a34697912eee362e9db5afadadc7faea088f282c50bebb8071b1f172139",
+      "src/retrieval/hybrid_domain.py": "3ae9ef669fdbd09c6cc5a683323cae99dc43bcd14e0f6fde00ee56e32d6371d9",
+      "src/retrieval/hybrid_rrf.py": "b57bc38712c410b6169bce695db36cc9a80dbb7e15cd68db180dc3c12d4e338d",
+      "src/security/audit_logger.py": "8fecc3e4094183851e4c9820810b26264ecaef535e8b94c41774220ff2615198",
+      "src/security/guardrails.py": "7eb5e8eaf5a0e92834f1bf9d1ade32fd27892d225e3ac0609607d418cf9179ae",
+      "src/tools/domain_tools.py": "17c04aa31f9f0e958ecd055e76bada72e221d23bd37365fa14d10057c392446b",
+      "src/tools/legal_tools.py": "69198751a4af8c3f8abf44ec2d16fc802a71733ff63bd228d7fd6ca530e1d322",
+      "src/tools/mcp_server.py": "25579767e3c8e9a8927917578606c4787e4e9a96ce986187496f30ad0e2a9070",
+      "src/tools/permissions.py": "3773ff2a5abdfdaf9cc2aa9cc618f74a0bc07d6345ecedc5515e4eae860ae880",
+      "src/ui/app.py": "02f04b097295066c7955b2555f40eaa6597c0a4f656df5f2345765eeca40ba56",
+      "src/verifier/grounding_analyzer.py": "60b1190e9caed04dec3382816878c4594b806c43059a515760c66006a79b37ed",
+      "src/verifier/lexical_grounding.py": "d7a777f0bfa12bda10a69e915d2985aebf9f676487703c0b15d66725a6523ac7",
+      "src/verifier/pipeline.py": "0214b52772b36e5160025c46c8278f476ae8d99a448d4567f07fc75d0eb08bbc",
+      "src/verifier/semantic_nli.py": "0e6b7ebbeaa499d320824bd1ceeb254036827d2613a7cc332518aa7de22bbd67",
+      "evaluation/analyze_native.py": "eb3efca0ab493f9b4f3fd7bfde504715d6ee98b6130057295c05826c1245b46e",
+      "evaluation/error_analyzer.py": "cf3942a2f2f1228663355b336df21006a49a1d8aa3349913cf9ff64952c86b21",
+      "evaluation/metrics.py": "c119e0f1be2d44b1b3e1bc4755068bd4bb4499fc06dab93d2a9b9c85d41ed77c",
+      "evaluation/run_eval.py": "ef8226c631306a72a1b7ba85e228bbe880ceb64983fe5ebf8039eed30da3b377",
+      "evaluation/score_reviewed_runs.py": "1302657613696734f6fe4f663505215813bb213f0427eee89c7e955660af4e28",
+      "evaluation/benchmarks/bll2019_v1/tasks.json": "8b84c4f395b25b34e7c8fd76758501ea070c456d7db288d8c943167bbb46d9dc",
+      "config/d2_native.yaml": "b2762226b6432af8de8fa8e2801f9a90bc6a83434d41acc70a38e512426d5c5c",
+      "requirements.txt": "dd8c39a9e06a423e0c50e455fdebbac234d50b0f153aacd88b7bb93b24a9d273",
+      "evaluation/benchmarks/bll2019_v1/pilot2-interface.json": "2fcb11a3153c0c144f46cb66ee173acbb65afdaf9896383e91c3958d435aa474",
+      "evaluation/benchmarks/bll2019_v1/pilot4.json": "cb88d1237e94e171a3c30fcc62a5f9926d2291dd9d354764b06a23e1e12c02da",
+      "evaluation/benchmarks/bll2019_v1/provenance.json": "6f4e7e931eace7a8453f84a5361115a147a3220687a91263c304e74c59a9da7e",
+      "evaluation/benchmarks/bll2019_v1/review.json": "d3403399de38a8fa126b5f74f75d76fd5c317454bf5fb1370de1c52323f14a0e",
+      "data/corpus/labor_code_2019_official.json": "8df39799441508ef17f94123393497c56d48ed071d99fd3cc7e16d283bf88c94",
+      "data/corpus/tech_sop.json": "16e686624fa1720c144ef98a62cb7d8e14a33569880d135fe905106d513b6931",
+      "docs/materials/benchmark-sources/bll2019-congbao.pdf": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+      "docs/materials/benchmark-sources/corpus_manifest.json": "36d9785290d51a17a37c868cb88f7696c5090c6bc7bb243906ea163a740e0b7f",
+      "docs/materials/benchmark-sources/extract_official_corpus.py": "2bae780623692969037b8b71059128c5c8c6bc8055426f149f000d92a71accde"
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "modes": [
+    "off",
+    "l1_on"
+  ],
+  "task_ids": [
+    "BLL19-01-PROBATION",
+    "BLL19-02-PROBATION_WAGE",
+    "BLL19-03-NOTICE",
+    "BLL19-04-ABSENCE",
+    "BLL19-05-PREGNANCY",
+    "BLL19-06-UNLAWFUL_RESIGNATION",
+    "BLL19-07-NOTICE_AND_SEVERANCE",
+    "BLL19-08-UNLAWFUL_TERMINATION",
+    "BLL19-09-DEPOSIT",
+    "BLL19-10-FOREIGN_SCOPE"
+  ],
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "scoring": "Citation/retrieval/lexical proxies; human correctness labels remain pending.",
+  "device_active_GPU_hours": null,
+  "API_charge_USD": 0.0,
+  "API_charge_note": "Local endpoint; this is not a claim of zero compute cost.",
+  "task_review_sha256": "d3403399de38a8fa126b5f74f75d76fd5c317454bf5fb1370de1c52323f14a0e",
+  "completed_runs": 60,
+  "tokens_complete": true,
+  "device_run_wall_hours": 0.5576559012383334,
+  "wall_time_note": "Device collection wall time, not measured active GPU hours.",
+  "runs_sha256": "631480b2989859bd95d39bc8b7754caa1687a221cfd3858210c7129d0920b06e"
+}

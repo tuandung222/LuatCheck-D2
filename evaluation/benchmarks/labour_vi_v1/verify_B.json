@@ -1,0 +1,722 @@
+[
+  {
+    "task_id": "LVN-001",
+    "verdict": "accept",
+    "issues": [
+      "Record read in full; 16 days for 'đặc biệt nặng nhọc, độc hại, nguy hiểm' (khoản 1 điểm c) is unique and quotes support it. No amendment of Điều 113 inside the corpus."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "nghỉ hằng năm",
+      "16 ngày làm việc",
+      "Điều 113"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-002",
+    "verdict": "accept",
+    "issues": [
+      "200 h/yr (khoản 2 điểm c) and 300 h/yr in listed sectors/cases (khoản 3) are both supported; no other record changes these caps."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "làm thêm giờ",
+      "200 giờ",
+      "300 giờ"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-003",
+    "verdict": "accept",
+    "issues": [
+      "Correct: 12 months for violations directly related to finance/property/secrets, else 6 months, counted from the day the violation occurred (the question says 'phát hiện' but the gold correctly says 'kể từ ngày xảy ra'). Khoản 2 (extension up to 60 days) exists but is not asked; consider whether graders may expect it. Minor."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thời hiệu xử lý kỷ luật",
+      "Điều 122",
+      "Điều 123"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-004",
+    "verdict": "accept",
+    "issues": [
+      "Twins: 6 + 1 = 7 months, derivable from khoản 1 only; correct. Điều 139 is also the anchor for out-of-scope tasks LVN-049 (benefit rate not stated), which is consistent."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "nghỉ thai sản",
+      "sinh đôi"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-005",
+    "verdict": "accept",
+    "issues": [
+      "60% of average of last 6 months, capped at 5x regional minimum wage; both from khoản 1; correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "trợ cấp thất nghiệp hằng tháng",
+      "60%"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-006",
+    "verdict": "accept",
+    "issues": [
+      "1% cap each side (khoản 1 a, b), correct. State support 1% (c) not asked."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "bảo hiểm thất nghiệp",
+      "tối đa bằng 1%"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-007",
+    "verdict": "accept",
+    "issues": [
+      "03 months from termination for filing a complete dossier (khoản 1 điểm c); correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "nộp đủ hồ sơ hưởng trợ cấp thất nghiệp"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-008",
+    "verdict": "accept",
+    "issues": [
+      "Khoản 2: 20x regional minimum monthly wage; correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "20 lần",
+      "căn cứ đóng bảo hiểm thất nghiệp"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-009",
+    "verdict": "accept",
+    "issues": [
+      "Table reading verified: columns are monthly then hourly; Vùng IV = 3.700.000 / 17.800 đồng/giờ. Same table pattern as LVN-021 (Vùng I) - acceptable but both are table lookups."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "Vùng IV",
+      "17.800"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-010",
+    "verdict": "accept",
+    "issues": [
+      "Khoản 3 điểm c: highest-wage locality; correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "khu công nghiệp",
+      "địa bàn có mức lương tối thiểu cao nhất"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-011",
+    "verdict": "accept",
+    "issues": [
+      "Khoản 3 điểm a: weekly x 52 / 12; correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "52 tuần",
+      "quy đổi theo tháng"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-012",
+    "verdict": "accept",
+    "issues": [
+      "Correct per Điều 4 khoản 1. Question is close to a paraphrase of the source sentence (easy), acceptable."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "mức lương tối thiểu tháng",
+      "định mức lao động"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-013",
+    "verdict": "accept",
+    "issues": [
+      "Điều 9 khoản 1: Bộ Nội vụ; 'cơ quan chủ quản' occurs only in this record."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "cơ quan chủ quản"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-014",
+    "verdict": "accept",
+    "issues": [
+      "Correct from Điều 6 khoản 2 and 3: online electronic declaration via Sàn giao dịch việc làm quốc gia (vieclam.gov.vn) or VNeID; result returned immediately upon completion, reason given if failure. The platform/VNeID part of the answer is in khoản 3 điểm a but not in either quote; optionally add that quote. Not blocking."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "đăng ký lao động",
+      "Tờ khai điện tử",
+      "VNeID"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "LVN-015",
+    "verdict": "accept",
+    "issues": [
+      "Correct: the worker who self-declares is responsible for truthfulness (Điều 3 khoản 5). The gold also states the employer's own duty from the same khoản, which is in the text and does no harm."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "chịu trách nhiệm trước pháp luật về tính trung thực"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-016",
+    "verdict": "fix",
+    "issues": [
+      "Gold evidence is insufficient: the only cited record (Điều 8) says 'thông tin quy định tại khoản 1 Điều 4' without listing họ tên khai sinh / số định danh / ngày sinh / giới tính. The link to those items exists only in ND318_2025_Dieu_4 khoản 1, which is not cited. The answer (Cơ sở dữ liệu quốc gia về dân cư) is correct, but the item needs both records and is a two-record (multi) question."
+    ],
+    "fix": {
+      "category": "multi",
+      "ground_truth_article_ids": [
+        "ND318_2025_Dieu_8",
+        "ND318_2025_Dieu_4"
+      ],
+      "reference_evidence": [
+        {
+          "article_id": "ND318_2025_Dieu_8",
+          "exact_quote": "Thông tin quy định tại khoản 1 Điều 4 Nghị định này được xác thực, khai thác từ Cơ sở dữ liệu quốc gia về dân cư",
+          "pdf_pages": [
+            6,
+            7
+          ]
+        },
+        {
+          "article_id": "ND318_2025_Dieu_4",
+          "exact_quote": "Thông tin cơ bản của người lao động, gồm: Họ, chữ đệm và tên khai sinh; số định danh cá nhân; ngày, tháng, năm sinh; giới tính",
+          "pdf_pages": [
+            2,
+            3
+          ]
+        }
+      ],
+      "expected_answer": "Cơ sở dữ liệu quốc gia về dân cư. Các thông tin cơ bản của người lao động tại Điều 4 khoản 1 (họ, chữ đệm và tên khai sinh; số định danh cá nhân; ngày, tháng, năm sinh; giới tính, ...) được xác thực, khai thác từ cơ sở dữ liệu này theo Điều 8 khoản 2 điểm a."
+    },
+    "searched_terms": [
+      "Cơ sở dữ liệu quốc gia về dân cư",
+      "số định danh cá nhân",
+      "khoản 1 Điều 4"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-017",
+    "verdict": "accept",
+    "issues": [
+      "Điều 22 khoản 3: 10 working days from receipt of complete dossier; gia hạn has a parallel rule in Điều 28 but the question is about cấp. Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "10 ngày làm việc, kể từ ngày nhận đủ hồ sơ"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-018",
+    "verdict": "accept",
+    "issues": [
+      "Điều 21 khoản 1: term follows one of the listed bases but not more than 02 years; consistent with BLLD2019 Điều 155 (max 2 years, one extension up to 2 years) and ND219 Điều 17/29. The 'kể cả khi hợp đồng dài hơn' clause is a faithful reading."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "02 năm",
+      "gia hạn giấy phép lao động",
+      "Điều 155"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-019",
+    "verdict": "accept",
+    "issues": [
+      "Điều 31 khoản 1: 15 days from expiry (case of Điều 30 khoản 1). Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thu hồi giấy phép lao động",
+      "15 ngày"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-020",
+    "verdict": "accept",
+    "issues": [
+      "Điều 22 khoản 1: submit within 60 days but not fewer than 10 days before expected start date. Correct. Similar procedure for giấy xác nhận (Điều 9) is a different document type and does not conflict."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thời hạn 60 ngày",
+      "không ít hơn 10 ngày"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-021",
+    "verdict": "accept",
+    "issues": [
+      "BLLD Điều 91 khoản 2 and ND293 Điều 3 table verified (Vùng I 5.310.000 đồng/tháng, 25.500 đồng/giờ). Wording 'theo những đơn vị nào' is slightly awkward (answer is: by region, in month/hour). Not blocking."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "mức lương tối thiểu",
+      "Vùng I",
+      "25.500"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-022",
+    "verdict": "accept",
+    "issues": [
+      "Điều 38 khoản 1 điểm b (12 months within 36 months for fixed-term contracts of 1 to <12 months) and Điều 39 khoản 2 (12 to 36 months of contribution = 03 months) verified; 6-month contract qualifies under Điều 31 khoản 1 điểm a (from 01 month). Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "đóng bảo hiểm thất nghiệp",
+      "36 tháng",
+      "03 tháng trợ cấp"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-023",
+    "verdict": "accept",
+    "issues": [
+      "BLLD Điều 154 khoản 1 delegates the amount to the Government; ND219 Điều 7 khoản 2 states 3 tỷ đồng; ND219 Điều 2 điểm l (below 3 tỷ = needs permit) is consistent. Question's first sentence does not name ND 219/2025, consider naming it (rule 4); answer is correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "3 tỷ",
+      "góp vốn",
+      "không thuộc diện cấp giấy phép lao động"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-024",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed. BHYT appears in 20+ records only as a duty/priority/obligation mention or as paid from the unemployment fund (LVL2025 Điều 39, 45, 46) without a contribution rate. The only percent figures in the corpus are BHTN 1% (LVL2025 Điều 33), BHXH-related disability %, 2% union fee, etc.; no BHYT rate. Refusal is appropriate."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "bảo hiểm y tế",
+      "tỷ lệ đóng",
+      "4,5%",
+      "3%",
+      "1,5%",
+      "17,5",
+      "% in all records"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-025",
+    "verdict": "fix",
+    "issues": [
+      "Corpus partially touches the topic: BLLD2019 Điều 97 khoản 4 requires an employer who pays wages late (force majeure case, delay of 15 days or more) to compensate at least the interest on the delayed amount. This is compensation, not an administrative fine, so refusal to give a fine amount is still correct, but the draft's expected_answer/notes ignore Điều 97, so a response that cites Điều 97 would be judged wrongly. Corpus contains no VND fine amounts at all (no 'triệu đồng'; the only đồng amounts are wages and 3 tỷ capital thresholds)."
+    ],
+    "fix": {
+      "question": "Công ty trả lương chậm cho nhân viên thì bị cơ quan nhà nước xử phạt vi phạm hành chính bao nhiêu tiền?",
+      "expected_answer": "Kho dữ liệu không nêu mức tiền xử phạt vi phạm hành chính. Điều 217 Bộ luật Lao động 2019 chỉ dẫn chung việc xử phạt vi phạm hành chính theo pháp luật, không có số tiền; nghị định xử phạt không nằm trong kho. Điều 97 khoản 4 chỉ quy định việc đền bù cho người lao động (ít nhất bằng tiền lãi) khi chậm trả lương từ 15 ngày trở lên trong trường hợp bất khả kháng, đó không phải là tiền phạt hành chính."
+    },
+    "searched_terms": [
+      "phạt tiền",
+      "tiền phạt",
+      "mức phạt",
+      "triệu đồng",
+      "xử phạt",
+      "trả lương chậm",
+      "lãi suất",
+      "chậm trả"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-026",
+    "verdict": "accept",
+    "issues": [
+      "LCD2024 Điều 29 khoản 1 điểm b: 2% of the payroll fund used as the basis for compulsory BHXH; correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "kinh phí công đoàn",
+      "2%"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-027",
+    "verdict": "accept",
+    "issues": [
+      "Điều 30 khoản 3: may be considered for suspension for up to 12 months, then pay back the suspended months by the last day of the month after the end of suspension. Correct, 'được xem xét' reflected as 'có thể'."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "tạm dừng đóng",
+      "không quá 12 tháng",
+      "đóng bù"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-028",
+    "verdict": "accept",
+    "issues": [
+      "Điều 37: effective 01-07-2025; Luật Công đoàn 12/2012/QH13 ceases from the same date. Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "hết hiệu lực",
+      "12/2012/QH13"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-029",
+    "verdict": "accept",
+    "issues": [
+      "Điều 5 khoản 2: foreign workers on labour contracts of at least 12 months may join and operate unions at công đoàn cơ sở. Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "công dân nước ngoài",
+      "công đoàn cơ sở"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-030",
+    "verdict": "accept",
+    "issues": [
+      "Table reading verified: male column 'Từ năm 2028 trở đi 62 tuổi'. The cited quote ('đủ 62 tuổi vào năm 2028') supports it; the table fragment 'Từ năm 2028 trở đi 62 tuổi' would be a more direct quote and is a verbatim substring. Consistent with BLLD2019 Điều 169."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "62 tuổi",
+      "Từ năm 2028"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-031",
+    "verdict": "fix",
+    "issues": [
+      "Conflict inside the corpus: BLLD2019 Điều 219 (amending Luật BHXH Điều 55) sets different age caps for workers with reduced working capacity of 61% or more (5 years for 61% to under 81%; 10 years for 81% and above), and ND135 Điều 5 itself says 'trừ trường hợp pháp luật có quy định khác'. The draft question is scoped to ND135 but asks for 'tối đa' without tying it to Điều 5 khoản 1, so a correct answer from Điều 219 could be marked wrong. Tie the question and answer explicitly to khoản 1 Điều 5 ND135/2020."
+    ],
+    "fix": {
+      "question": "Theo khoản 1 Điều 5 Nghị định 135/2020/NĐ-CP, người lao động bị suy giảm khả năng lao động từ 61% trở lên có thể nghỉ hưu ở tuổi thấp hơn tuổi nghỉ hưu trong điều kiện lao động bình thường không, và thấp hơn tối đa bao nhiêu tuổi?",
+      "expected_answer": "Có. Theo khoản 1 Điều 5 Nghị định 135/2020/NĐ-CP (điểm c), người lao động bị suy giảm khả năng lao động từ 61% trở lên có thể nghỉ hưu ở tuổi thấp hơn nhưng không quá 05 tuổi so với tuổi nghỉ hưu quy định tại Điều 4 của Nghị định tại thời điểm nghỉ hưu, trừ trường hợp pháp luật có quy định khác."
+    },
+    "searched_terms": [
+      "suy giảm khả năng lao động",
+      "61%",
+      "10 tuổi",
+      "Điều 55",
+      "tuổi thấp hơn tối đa"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "LVN-032",
+    "verdict": "accept",
+    "issues": [
+      "Điều 3 khoản 1: end of the last day of the month of reaching retirement age; if the worker continues working, retirement time is the time of labour-contract termination. Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thời điểm nghỉ hưu"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-033",
+    "verdict": "accept",
+    "issues": [
+      "Điều 7 khoản 2: male born 12/1960 (normal conditions): retirement time end of 31-12-2020, pension from 01-01-2021. Correct; Phụ lục I starts at birth year 1961, so no conflicting row."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "tháng 12 năm 1960",
+      "thời điểm hưởng lương hưu"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-034",
+    "verdict": "accept",
+    "issues": [
+      "Điều 3 khoản 2: 05 working days. Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "05 ngày làm việc",
+      "đôn đốc"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-035",
+    "verdict": "accept",
+    "issues": [
+      "Điều 3 khoản 3 điểm a: before the 15th of the first month of the next quarter. Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "trước ngày 15",
+      "quý tiếp theo"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-036",
+    "verdict": "accept",
+    "issues": [
+      "Điều 4 khoản 1 supports 'not treated as trốn đóng' for declared storms/floods affecting production. Note Điều 5 khoản 1 điểm c still treats these as 'chậm đóng' with the amount owed; not asked, so the gold is complete for the question, but an answer that adds this nuance is also right. Fairly easy yes/no."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "không bị coi là trốn đóng",
+      "thiên tai",
+      "chậm đóng"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-037",
+    "verdict": "accept",
+    "issues": [
+      "Điều 6 khoản 2 điểm c first branch: counting starts after 60 days from after the latest payment deadline (or BHTN equivalent). Generic rule in khoản 2 điểm a is for other cases; the specific điểm c governs đ, e. Gold correct; heavily copied from source wording but difficult nested reading."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "45 ngày",
+      "60 ngày",
+      "điểm đ, e khoản 1 Điều 39"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "LVN-038",
+    "verdict": "accept",
+    "issues": [
+      "Điều 11 khoản 3 điểm b: 12% of Vùng IV monthly minimum wage for a 12-month payment. Correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "Mức đóng 12 tháng",
+      "12%"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-039",
+    "verdict": "accept",
+    "issues": [
+      "Điều 12 khoản 1 điểm c: 10% for 'người lao động khác'. Correct. Minor: poverty status in the text is measured by the rural poverty standard; the question does not say so, harmless."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "hỗ trợ tiền đóng",
+      "Bằng 10%"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-040",
+    "verdict": "accept",
+    "issues": [
+      "Arithmetic verified: 3 + (30 - 5) x 0.3 = 10.5 times Vùng IV monthly minimum wage; matches Ví dụ 1 in the same record ({3 + (30-5) x 0,3} x 3.450.000). Point b (years of contribution) correctly excluded."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "suy giảm khả năng lao động",
+      "0,3 lần"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-041",
+    "verdict": "accept",
+    "issues": [
+      "Điều 13 khoản 1 and 2 verified. Minor: question wording 'không đóng đúng thời điểm' is looser than the text ('quá thời điểm đóng ... mà không đóng'), harmless."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "tạm dừng đóng",
+      "đăng ký lại phương thức đóng"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-042",
+    "verdict": "accept",
+    "issues": [
+      "Điều 4 (first khoản 2, điểm b) supports: work from 01-07-2025 to before 01-01-2026 is determined by the situation in June 2025. The record shows two khoản '2.' (source numbering), harmless. Source document TT26_2025 is flagged UNVERIFIED in the corpus (blank number/date in the PDF; the official vanban.chinhphu.vn page metadata lists 26/2025/TT-BNV, 29-12-2025, but the text of the unsigned PDF copy was not compared with the signed text). Answer is correct against the corpus text as printed."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "tháng 6 năm 2025"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "LVN-043",
+    "verdict": "accept",
+    "issues": [
+      "Điều 5 khoản 3: Bộ Nội vụ. Source document TT26_2025 is flagged UNVERIFIED in the corpus (blank number/date in the PDF; the official vanban.chinhphu.vn page metadata lists 26/2025/TT-BNV, 29-12-2025, but the text of the unsigned PDF copy was not compared with the signed text). Answer is correct against the corpus text as printed."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "phản ánh về"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "LVN-044",
+    "verdict": "fix",
+    "issues": [
+      "Question says 'Thông tư về danh mục vùng này' with no antecedent, so it is not self-contained (the retrieval/QA system sees only the question). Gold answer and quote are correct (Điều 2: khoản 3 Điều 169 BLLD, Điều 5 NĐ 135/2020). Source document TT26_2025 is flagged UNVERIFIED in the corpus (blank number/date in the PDF; the official vanban.chinhphu.vn page metadata lists 26/2025/TT-BNV, 29-12-2025, but the text of the unsigned PDF copy was not compared with the signed text). Answer is correct against the corpus text as printed."
+    ],
+    "fix": {
+      "question": "Thông tư quy định Danh mục vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn (căn cứ xác định các trường hợp nghỉ hưu ở tuổi thấp hơn) được ban hành để làm căn cứ theo khoản nào của Điều 169 Bộ luật Lao động 2019 và điều nào của Nghị định 135/2020/NĐ-CP?"
+    },
+    "searched_terms": [
+      "khoản 3 Điều 169",
+      "Điều 5 Nghị định số 135/2020"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "LVN-045",
+    "verdict": "accept",
+    "issues": [
+      "Điều 5 khoản 1: UBND tỉnh, thành phố trực thuộc trung ương. Correct. Source document TT26_2025 is flagged UNVERIFIED in the corpus (blank number/date in the PDF; the official vanban.chinhphu.vn page metadata lists 26/2025/TT-BNV, 29-12-2025, but the text of the unsigned PDF copy was not compared with the signed text). Answer is correct against the corpus text as printed."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "chỉ đạo Sở Nội vụ"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "LVN-046",
+    "verdict": "accept",
+    "issues": [
+      "Both parts supported: ND135 Điều 5 khoản 1 điểm b (includes time at areas with khu vực allowance 0,7+ before 01-01-2021) and TT26 Điều 4 khoản 2 điểm a (also 25%+). Answer 'Có' is correct. The two parts are partly redundant and 'Thông tư về danh mục vùng' is unnamed, but TT26 is the only thông tư in the corpus. Source document TT26_2025 is flagged UNVERIFIED in the corpus (blank number/date in the PDF; the official vanban.chinhphu.vn page metadata lists 26/2025/TT-BNV, 29-12-2025, but the text of the unsigned PDF copy was not compared with the signed text). Answer is correct against the corpus text as printed."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "phụ cấp khu vực",
+      "0,7",
+      "25%"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "LVN-047",
+    "verdict": "fix",
+    "issues": [
+      "Both facts are correct (LCD2024 Điều 10 khoản 5 'hành vi bị nghiêm cấm'; ND274 Điều 7 khoản 2 0,03%/ngày) but the draft question joins two unrelated rules with no common scenario ('nhóm hành vi nào' is also an unnatural phrasing). Rewritten as one scenario; 'nộp thêm' dropped because the text says 'phải nộp bằng 0,03%/ngày' without 'thêm'. LCD2024 Điều 29 khoản 2 delegates the consequences of late union-fee payment to the Government; no conflict."
+    ],
+    "fix": {
+      "question": "Một doanh nghiệp vừa chậm đóng kinh phí công đoàn, vừa chậm đóng bảo hiểm xã hội bắt buộc. Theo Luật Công đoàn 2024, việc chậm đóng kinh phí công đoàn thuộc nhóm hành vi nào? Và theo Nghị định 274/2025/NĐ-CP, đối với số tiền bảo hiểm xã hội bắt buộc chậm đóng thì người sử dụng lao động phải nộp số tiền bằng bao nhiêu phần trăm mỗi ngày?",
+      "expected_answer": "Theo Luật Công đoàn 2024 (Điều 10 khoản 5, Điều 'Các hành vi bị nghiêm cấm'), chậm đóng kinh phí công đoàn là hành vi bị nghiêm cấm. Theo Nghị định 274/2025/NĐ-CP (Điều 7 khoản 2), người sử dụng lao động phải nộp số tiền bằng 0,03%/ngày đối với số tiền chậm đóng, trốn đóng bảo hiểm xã hội bắt buộc, bảo hiểm thất nghiệp."
+    },
+    "searched_terms": [
+      "chậm đóng kinh phí",
+      "0,03",
+      "kinh phí công đoàn"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-048",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed: the pension percentage by years of contribution (Luật BHXH Điều 56/74) is not in the corpus. BLLD2019 Điều 219 amends Luật BHXH Điều 54, 55, 73 (conditions: 20 years, ages) but no rate; ND135 Điều 7 khoản 3 only mentions 'tỷ lệ hưởng lương hưu'. No pension % anywhere (full percent scan of all records)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "lương hưu",
+      "tỷ lệ hưởng",
+      "mức lương hưu",
+      "Điều 56",
+      "Điều 74",
+      "45%",
+      "75%",
+      "20 năm",
+      "bình quân"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-049",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed: BLLD2019 Điều 139 and 141 only refer to the Social Insurance Law for the benefit; no maternity benefit percentage appears in any record (full percent scan)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thai sản",
+      "trợ cấp thai sản",
+      "chế độ thai sản",
+      "trợ cấp",
+      "% tiền lương"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "LVN-050",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed: ND274 has 16 records (chậm đóng, trốn đóng, 0,03%/ngày, complaints); no administrative fine amount; 'xử phạt' only in BLLD Điều 217, LVL2025 Điều 41, LCD2024 Điều 36 without amounts; no VND fine amounts anywhere. Same pattern as LVN-025 (both ask for fine amounts) but different topics, acceptable."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "xử phạt",
+      "phạt",
+      "phạt tiền",
+      "mức phạt",
+      "triệu đồng",
+      "trốn đóng bảo hiểm"
+    ],
+    "confidence": "high"
+  }
+]

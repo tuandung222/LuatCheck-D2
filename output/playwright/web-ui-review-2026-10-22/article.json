@@ -1,0 +1,13 @@
+{
+  "article_id": "Dieu_26",
+  "title": "Điều 26. Tiền lương thử việc",
+  "content": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+  "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+  "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law",
+  "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+  "source_pages": [
+    12
+  ],
+  "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+  "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace"
+}

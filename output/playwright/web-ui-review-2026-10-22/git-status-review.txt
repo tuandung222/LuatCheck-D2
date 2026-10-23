@@ -1,0 +1,82 @@
+ M .gitignore
+ M Makefile
+ M README.md
+ M config/config.yaml
+ D data/corpus/labor_code_2019.json
+ M evaluation/metrics.py
+ M evaluation/run_eval.py
+ D evaluation/tasks/vlqa_full_20.json
+ D evaluation/tasks/vlqa_sample_10.json
+ M redteam/run_redteam.py
+ M report_d2/main_d2.pdf
+ M report_d2/main_d2.tex
+ M report_d2/refs.bib
+ M requirements.txt
+ M src/agent/llm_client.py
+ M src/agent/loop.py
+ M src/agent/prompts.py
+ M src/agent/state.py
+ M src/config/app_config.py
+ M src/evaluation/benchmark_runner.py
+ M src/memory/sqlite_store.py
+ M src/retrieval/dense_engine.py
+ M src/retrieval/hybrid_domain.py
+ M src/security/audit_logger.py
+ M src/tools/domain_tools.py
+ M src/tools/mcp_server.py
+ M src/ui/app.py
+ M src/verifier/grounding_analyzer.py
+ M src/verifier/lexical_grounding.py
+ M src/verifier/semantic_nli.py
+ D tests/test_adversarial_guardrails.py
+ D tests/test_adversarial_memory.py
+ D tests/test_agent_loop.py
+ D tests/test_challenger_m1_4_security.py
+ D tests/test_challenger_m1_iter2.py
+ D tests/test_challenger_m3.py
+ D tests/test_challenger_m4.py
+ D tests/test_challenger_m5.py
+ D tests/test_data_scientist_extensibility.py
+ D tests/test_error_analyzer.py
+ D tests/test_l2_verifier.py
+ D tests/test_llamacpp_client.py
+ D tests/test_mcp_tools.py
+ D tests/test_memory.py
+ D tests/test_multi_domain.py
+ D tests/test_neural_dense.py
+ D tests/test_offline.py
+ D tests/test_security.py
+ D tests/test_ui.py
+ D tests/test_ui_stress.py
+ D tests/test_verification_pipeline.py
+ D tests/test_verifier.py
+?? .env.example
+?? AGENTS.md
+?? config/d2_judge_gateway.json
+?? config/d2_native.yaml
+?? data/corpus/labor_code_2019_official.json
+?? docs/
+?? evaluation/RESULTS_STATUS.md
+?? evaluation/analyze_judge.py
+?? evaluation/analyze_native.py
+?? evaluation/benchmarks/
+?? evaluation/export_blind_review.py
+?? evaluation/judge_gateway.py
+?? evaluation/judge_prompt.txt
+?? evaluation/recover_judge.py
+?? evaluation/render_native_table.py
+?? evaluation/report_judge.py
+?? evaluation/runs/
+?? evaluation/score_reviewed_runs.py
+?? frontend/
+?? output/
+?? report_d2/D2_EXPERIMENT_PLAN.md
+?? report_d2/D2_GAP_REVIEW.md
+?? report_d2/D2_REQUIREMENTS.md
+?? report_d2/D2_REVISION_STATUS.md
+?? report_d2/native_results.tex
+?? report_d2/semantic_results.tex
+?? src/api/
+?? src/services/
+?? tests/test_real_system.py
+?? tmp/

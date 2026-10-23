@@ -1,0 +1,38 @@
+{
+  "review_date": "2026-10-22",
+  "source_sha256": {
+    "src/api/app.py": "4f49fc3b78d77ef0c79d61e5980e862ee306731091bba47343672b72a8c38996",
+    "src/services/web_store.py": "6693abaf42b8455c49b8222023b2dba9e46f6e019c40ae3fe6d1678fb8aa8140",
+    "frontend/src/App.tsx": "48169cde920e92de7ff036fdb03c7cd18ef7a06609f4e01ef4388076bbe96a7e",
+    "frontend/src/api.ts": "55c389f958589df7ec338a7899daefecc70ea4860fba6efc8f96de9a685c6be2",
+    "frontend/src/styles.css": "c26ded77bf2b5ada0082ff33587044ed0405b3776284373174d336b45bac1475",
+    "frontend/src/types.ts": "fadd0570935b7563b7888097bacba10e6f5aa8ad06ee6d6b115edf819743b466",
+    "frontend/package-lock.json": "60b50bf6cfbd74e150ca231ef6b33b84d878d623d4fe5abcdc9610dcb175e28a",
+    "src/agent/loop.py": "e590c72bcd34afb42bedb694edd6879655929d8181589d943c3897aa73ad3265",
+    "src/verifier/grounding_analyzer.py": "6cfaa8000cd4a0cf1903ee65e3ab039488010bf552669ad7716c71b162beb8fd"
+  },
+  "verification": {
+    "frontend_build": "passed: TypeScript and Vite production build",
+    "existing_python_suite": "11 passed in 63.47s",
+    "browser_viewports_observed": [
+      {
+        "width": 460,
+        "height": 773
+      },
+      {
+        "width": 1280,
+        "height": 720
+      }
+    ],
+    "tablet_breakpoint": "source-reviewed; not browser-tested at 1024",
+    "native_success_runs": [
+      "ade8f337-ecb2-4c7d-9af7-fe5fe1024e58",
+      "5f744691-786f-42e9-96b0-d78d00887cd6"
+    ],
+    "native_unavailable_run": "7b829e78-b8a8-4a23-a486-251d370950ea",
+    "intentional_api_restart": "one real running job and two queued jobs; API process only, model server not interrupted",
+    "benchmarks_recollected": false,
+    "model_quality_or_legal_correctness_certified": false
+  },
+  "boundaries": "Storage paths isolated; native core, configured model and official corpus used without component substitution."
+}

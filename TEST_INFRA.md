@@ -1,3 +1,8 @@
+> **HISTORICAL — not current evidence (marked 23 October 2026).** This document describes the retired
+> pre-D2 test suite, which relied on mocked/injected components and offline substitutions. Its pass counts
+> and "100%" defense figures are not evidence for the current system and must not be cited. The current
+> suite is `tests/` (real implementations and native inference); see `evaluation/RESULTS_STATUS.md`.
+
 # TEST_INFRA.md — Dual-Track Testing Infrastructure Specification
 
 ## 1. Executive Summary & Architecture Overview

@@ -1,0 +1,16 @@
+{
+  "scope": "Post-collection fail-fast cleanup; historical native source snapshot preserved",
+  "changes": [
+    {
+      "path": "evaluation/metrics.py",
+      "native_batch_snapshot_sha256": "c119e0f1be2d44b1b3e1bc4755068bd4bb4499fc06dab93d2a9b9c85d41ed77c",
+      "current_sha256": "94b31b2920a5569f79e796df412ea010e79ed79ce399a7208bec2c1970e8036e"
+    },
+    {
+      "path": "src/config/app_config.py",
+      "native_batch_snapshot_sha256": "92b2a82deaa534a6e474033567f1b79412d767f273a50820d0ef4f1e32719e5e",
+      "current_sha256": "7863e53e3723f2093ddf5d474834361992e76a362c2baafba8094234607066ef"
+    }
+  ],
+  "effect": "Removed an unused compatibility Citation class on ImportError; canonical Citation import now fails fast. Also corrected a stale config description. Native metric formulas and configured inference are unchanged. No empirical run relabelled or rewritten."
+}

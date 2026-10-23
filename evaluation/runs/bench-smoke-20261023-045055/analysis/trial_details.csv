@@ -1,0 +1,7 @@
+benchmark,variant,seed,task_id,category,expected_behavior,state,terminal_status,strict_success,wall_s
+hcmut_v1,off,42,HCMUT-001,single,answer,judged,answered,False,15.029
+hcmut_v1,l1,42,HCMUT-001,single,answer,judged,refused,False,13.108
+hcmut_v1,off,42,HCMUT-021,multi,answer,judged,clarified,False,5.905
+hcmut_v1,l1,42,HCMUT-021,multi,answer,judged,clarified,False,6.685
+hcmut_v1,off,42,HCMUT-024,out_of_scope,refuse,judged,answered,False,7.151
+hcmut_v1,l1,42,HCMUT-024,out_of_scope,refuse,judged,refused,True,10.437

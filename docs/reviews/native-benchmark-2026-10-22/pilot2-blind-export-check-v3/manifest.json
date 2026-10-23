@@ -1,0 +1,16 @@
+{
+  "runs_sha256": "d36a4efbba9912241a9832f92173232b2548b1515afa37089c4b21dca6131127",
+  "packets": 4,
+  "files_sha256": {
+    "SEMANTIC_JUDGING.md": "d9dbee8fc6659e3f9921ae4ada015788516a4372bd728ebccc8e7a8b0fd445ff",
+    "private_mapping.json": "d6702253b805b8cfb24f67c1e961fb15f01a6b84313266b87def355918b0beb3",
+    "judge_packets.json": "ca91b5ad780484c05dbefa97b60c476c1f4524493b1c91d82f1ca660b5c460f8"
+  },
+  "labels_generated": false,
+  "task_source_path": "evaluation/benchmarks/bll2019_v1/tasks.json",
+  "task_source_sha256": "8b84c4f395b25b34e7c8fd76758501ea070c456d7db288d8c943167bbb46d9dc",
+  "corpus_sha256": "8df39799441508ef17f94123393497c56d48ed071d99fd3cc7e16d283bf88c94",
+  "exporter_sha256": "cd969019a4f82e09a8b5ceb52c8d086469cd58aecd73fd4d467959418e53e50b",
+  "protocol_timing": "Developed after pilots and during collection; not preregistered. Frozen here before any semantic judge execution.",
+  "instructions": "Give the reviewer only judge_packets.json and SEMANTIC_JUDGING.md. Keep private_mapping.json private. Expert review of gold remains pending."
+}

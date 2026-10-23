@@ -1,0 +1,49 @@
+[
+  {
+    "task_id": "BLL19-01-PROBATION",
+    "category": "single",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là bao nhiêu ngày?",
+    "ground_truth_article_ids": [
+      "Dieu_25"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Không quá 60 ngày.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_25",
+        "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+        "pdf_pages": [
+          11,
+          12
+        ]
+      }
+    ],
+    "provenance_status": "local_curated_statute_grounded",
+    "gold_status": "source_checked_by_AI_not_expert_certified",
+    "author": "OpenAI Codex: revision of local D2 draft, before any benchmark output",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice"
+  },
+  {
+    "task_id": "BLL19-09-DEPOSIT",
+    "category": "single",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc chỉ để bảo đảm việc thực hiện hợp đồng lao động có được phép không?",
+    "ground_truth_article_ids": [
+      "Dieu_17"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Không được phép yêu cầu biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_17",
+        "exact_quote": "2. Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động.",
+        "pdf_pages": [
+          8
+        ]
+      }
+    ],
+    "provenance_status": "local_curated_statute_grounded",
+    "gold_status": "source_checked_by_AI_not_expert_certified",
+    "author": "OpenAI Codex: revision of local D2 draft, before any benchmark output",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice"
+  }
+]

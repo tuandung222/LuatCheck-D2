@@ -1,0 +1,2049 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "luatcheck-ingestion",
+    "version": "0.1.0"
+  },
+  "status": "ok",
+  "config": {
+    "path": "config/ingestion/labour_vi_v1.yaml",
+    "sha256": "e46121b98bd12b2222df102520f6c2c8d148a35966a1c25e47f72e9a7615f86f",
+    "output": {
+      "corpus": "data/corpus/labour_vi_v1.json",
+      "manifest": "data/corpus/labour_vi_v1.manifest.json"
+    },
+    "defaults": {
+      "collection_id": "labour_vi",
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "contiguous_articles": "warn"
+      },
+      "chunking": {
+        "granularity": "article",
+        "content_whitespace": "collapse"
+      },
+      "ids": {
+        "templates": {
+          "document": "{doc_code}",
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}"
+        }
+      }
+    }
+  },
+  "environment": {
+    "python": "3.14.4",
+    "libraries": {
+      "PyYAML": "6.0.3",
+      "pypdf": "6.21.1"
+    }
+  },
+  "sources": [
+    {
+      "index": 0,
+      "path": "docs/materials/benchmark-sources/bll2019-congbao.pdf",
+      "sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+      "bytes": 1352965,
+      "format": "pdf",
+      "doc_code": "BLLD2019",
+      "collection_id": "labour_vi",
+      "source_name": "Bộ luật Lao động 2019",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+      "document_number": "45/2019/QH14",
+      "issued_date": "2019-11-20",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^CHỦ TỊCH QUỐC HỘI"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 94,
+          "pages_without_text": [
+            94
+          ]
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 93,
+      "normalized_chars": 189185,
+      "normalized_sha256": "5ff577416717e7bc993b87239cd69a90be65e7d423e4fdf2592c2079df331a72",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 47,
+          "sample": "CÔNG BÁO/Số 993 + 994/Ngày 26-12-2019 3"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# CÔNG BÁO/Số # + #/Ngày #-#-#",
+          "count": 46,
+          "sample": "4 CÔNG BÁO/Số 993 + 994/Ngày 26-12-2019"
+        }
+      ],
+      "removed_lines_total": 93,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 220,
+          "chapter": 17,
+          "clause": 640,
+          "muc": 24,
+          "point": 275
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 5,
+            "samples": [
+              "@181188: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của",
+              "@183781: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của",
+              "@184626: 2. Người lao động quy định tại điểm đ và điểm e khoản 1 Điều 2 của Luật này",
+              "@185479: 2. Sửa đổi, bổ sung Điều 32 của Bộ luật Tố tụng dân sự số 92/2015/QH13",
+              "@185769: 1. Tranh chấp lao động cá nhân giữa người lao động với người sử dụng lao"
+            ]
+          },
+          "point": {
+            "count": 12,
+            "samples": [
+              "@181450: a) Đủ tuổi theo quy định tại khoản 2 Điều 169 của Bộ luật Lao động;",
+              "@183677: b) Sửa đổi, bổ sung Điều 55 như sau:",
+              "@184987: a) Có tuổi thấp hơn tối đa 10 tuổi so với tuổi nghỉ hưu quy định tại khoản 2",
+              "@185095: b) Có đủ 15 năm trở lên làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy",
+              "@185244: c) Sửa đổi, bổ sung khoản 1 Điều 73 như sau:"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 220,
+        "by_level": {
+          "article": 220
+        }
+      },
+      "validation": {
+        "chunks": 220,
+        "verbatim_chunks": 220,
+        "chunks_with_unemitted_parent": 220,
+        "coverage": {
+          "source_chars": 189185,
+          "covered_chars": 186770,
+          "char_fraction": 0.987235,
+          "source_non_whitespace_chars": 147583,
+          "covered_non_whitespace_chars": 145876,
+          "non_whitespace_fraction": 0.988434,
+          "uncovered_stretches_with_text": 36,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 238,
+              "non_whitespace_chars": 185,
+              "preview": "QUỐC HỘI CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc Bộ luật số: 45/2019/QH14 BỘ "
+            },
+            {
+              "start": 10228,
+              "end": 10280,
+              "non_whitespace_chars": 40,
+              "preview": "Chương II VIỆC LÀM, TUYỂN DỤNG VÀ QUẢN LÝ LAO ĐỘNG"
+            },
+            {
+              "start": 11714,
+              "end": 11777,
+              "non_whitespace_chars": 48,
+              "preview": "Chương III HỢP ĐỒNG LAO ĐỘNG Mục 1 GIAO KẾT HỢP ĐỒNG LAO ĐỘNG"
+            },
+            {
+              "start": 22675,
+              "end": 22710,
+              "non_whitespace_chars": 26,
+              "preview": "Mục 2 THỰC HIỆN HỢP ĐỒNG LAO ĐỘNG"
+            },
+            {
+              "start": 27596,
+              "end": 27630,
+              "non_whitespace_chars": 25,
+              "preview": "Mục 3 CHẤM DỨT HỢP ĐỒNG LAO ĐỘNG"
+            },
+            {
+              "start": 44257,
+              "end": 44290,
+              "non_whitespace_chars": 24,
+              "preview": "Mục 4 HỢP ĐỒNG LAO ĐỘNG VÔ HIỆU"
+            },
+            {
+              "start": 45640,
+              "end": 45669,
+              "non_whitespace_chars": 21,
+              "preview": "Mục 5 CHO THUÊ LẠI LAO ĐỘNG"
+            },
+            {
+              "start": 51593,
+              "end": 51652,
+              "non_whitespace_chars": 46,
+              "preview": "Chương IV GIÁO DỤC NGHỀ NGHIỆP VÀ PHÁT TRIỂN KỸ NĂNG NGHỀ"
+            },
+            {
+              "start": 55910,
+              "end": 56029,
+              "non_whitespace_chars": 92,
+              "preview": "Chương V ĐỐI THOẠI TẠI NƠI LÀM VIỆC, THƯƠNG LƯỢNG TẬP THỂ, THỎA ƯỚC LAO ĐỘNG TẬP THỂ Mục 1 ĐỐI THOẠI"
+            },
+            {
+              "start": 57705,
+              "end": 57733,
+              "non_whitespace_chars": 21,
+              "preview": "Mục 2 THƯƠNG LƯỢNG TẬP THỂ"
+            },
+            {
+              "start": 67726,
+              "end": 67759,
+              "non_whitespace_chars": 24,
+              "preview": "Mục 3 THỎA ƯỚC LAO ĐỘNG TẬP THỂ"
+            },
+            {
+              "start": 79037,
+              "end": 79059,
+              "non_whitespace_chars": 17,
+              "preview": "Chương VI TIỀN LƯƠNG"
+            },
+            {
+              "start": 89213,
+              "end": 89287,
+              "non_whitespace_chars": 57,
+              "preview": "Chương VII THỜI GIỜ LÀM VIỆC, THỜI GIỜ NGHỈ NGƠI Mục 1 THỜI GIỜ LÀM VIỆC"
+            },
+            {
+              "start": 92620,
+              "end": 92646,
+              "non_whitespace_chars": 19,
+              "preview": "Mục 2 THỜI GIỜ NGHỈ NGƠI"
+            },
+            {
+              "start": 97295,
+              "end": 97390,
+              "non_whitespace_chars": 73,
+              "preview": "Mục 3 THỜI GIỜ LÀM VIỆC, THỜI GIỜ NGHỈ NGƠI ĐỐI VỚI NGƯỜI LÀM CÔNG VIỆC CÓ TÍNH CHẤT ĐẶC BIỆT"
+            },
+            {
+              "start": 98277,
+              "end": 98352,
+              "non_whitespace_chars": 58,
+              "preview": "Chương VIII KỶ LUẬT LAO ĐỘNG, TRÁCH NHIỆM VẬT CHẤT Mục 1 KỶ LUẬT LAO ĐỘNG"
+            },
+            {
+              "start": 107474,
+              "end": 107502,
+              "non_whitespace_chars": 21,
+              "preview": "Mục 2 TRÁCH NHIỆM VẬT CHẤT"
+            },
+            {
+              "start": 109406,
+              "end": 109443,
+              "non_whitespace_chars": 28,
+              "preview": "Chương IX AN TOÀN, VỆ SINH LAO ĐỘNG"
+            },
+            {
+              "start": 110404,
+              "end": 110481,
+              "non_whitespace_chars": 59,
+              "preview": "Chương X NHỮNG QUY ĐỊNH RIÊNG ĐỐI VỚI LAO ĐỘNG NỮ VÀ BẢO ĐẢM BÌNH ĐẲNG GIỚI"
+            },
+            {
+              "start": 117613,
+              "end": 117733,
+              "non_whitespace_chars": 93,
+              "preview": "Chương XI NHỮNG QUY ĐỊNH RIÊNG ĐỐI VỚI LAO ĐỘNG CHƯA THÀNH NIÊN VÀ MỘT SỐ LAO ĐỘNG KHÁC Mục 1 LAO ĐỘ"
+            },
+            {
+              "start": 122059,
+              "end": 122090,
+              "non_whitespace_chars": 23,
+              "preview": "Mục 2 NGƯỜI LAO ĐỘNG CAO TUỔI"
+            },
+            {
+              "start": 123386,
+              "end": 123553,
+              "non_whitespace_chars": 129,
+              "preview": "Mục 3 NGƯỜI LAO ĐỘNG VIỆT NAM ĐI LÀM VIỆC Ở NƯỚC NGOÀI, LAO ĐỘNG CHO CÁC TỔ CHỨC, CÁ NHÂN NƯỚC NGOÀI"
+            },
+            {
+              "start": 129507,
+              "end": 129543,
+              "non_whitespace_chars": 27,
+              "preview": "Mục 4 LAO ĐỘNG LÀ NGƯỜI KHUYẾT TẬT"
+            },
+            {
+              "start": 130885,
+              "end": 130929,
+              "non_whitespace_chars": 33,
+              "preview": "Mục 5 LAO ĐỘNG LÀ NGƯỜI GIÚP VIỆC GIA ĐÌNH"
+            },
+            {
+              "start": 133541,
+              "end": 133569,
+              "non_whitespace_chars": 20,
+              "preview": "Mục 6 MỘT SỐ LAO ĐỘNG KHÁC"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "5 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@181188: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của', '@183781: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của']",
+          "12 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@181450: a) Đủ tuổi theo quy định tại khoản 2 Điều 169 của Bộ luật Lao động;', '@183677: b) Sửa đổi, bổ sung Điều 55 như sau:']",
+          "1 of 94 pages have (almost) no text layer and contribute nothing: pages [94]"
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "path": "docs/materials/labour-sources/LVL2025_74-2025-QH15.pdf",
+      "sha256": "63cf9e29dc924956a1dcc6e28dab4ba9b518866241d0eaddca07f7e168761cc7",
+      "bytes": 370135,
+      "format": "pdf",
+      "doc_code": "LVL2025",
+      "collection_id": "labour_vi",
+      "source_name": "Luật Việc làm 2025",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/6/45562/57700-1-2025967-96874-2025-qh15.pdf",
+      "document_number": "74/2025/QH15",
+      "issued_date": "2025-06-16",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 27,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 27,
+      "normalized_chars": 56788,
+      "normalized_sha256": "205b40137b6ff2369feb52430549441cb229be392d5013df347c27243502a147",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 14,
+          "sample": "CÔNG BÁO/Số 967 + 968/Ngày 24-7-2025 29"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# CÔNG BÁO/Số # + #/Ngày #-#-#",
+          "count": 13,
+          "sample": "30 CÔNG BÁO/Số 967 + 968/Ngày 24-7-2025"
+        }
+      ],
+      "removed_lines_total": 27,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 55,
+          "chapter": 8,
+          "clause": 200,
+          "muc": 7,
+          "point": 142
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {}
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 55,
+        "by_level": {
+          "article": 55
+        }
+      },
+      "validation": {
+        "chunks": 55,
+        "verbatim_chunks": 55,
+        "chunks_with_unemitted_parent": 55,
+        "coverage": {
+          "source_chars": 56788,
+          "covered_chars": 55720,
+          "char_fraction": 0.981193,
+          "source_non_whitespace_chars": 44347,
+          "covered_non_whitespace_chars": 43554,
+          "non_whitespace_fraction": 0.982118,
+          "uncovered_stretches_with_text": 15,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 299,
+              "non_whitespace_chars": 235,
+              "preview": "QUỐC HỘI CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc Luật số: 74/2025/QH15 LUẬT V"
+            },
+            {
+              "start": 5984,
+              "end": 6026,
+              "non_whitespace_chars": 32,
+              "preview": "Chương II CHÍNH SÁCH HỖ TRỢ TẠO VIỆC LÀM"
+            },
+            {
+              "start": 14757,
+              "end": 14786,
+              "non_whitespace_chars": 22,
+              "preview": "Chương III ĐĂNG KÝ LAO ĐỘNG"
+            },
+            {
+              "start": 18052,
+              "end": 18102,
+              "non_whitespace_chars": 39,
+              "preview": "Chương IV HỆ THỐNG THÔNG TIN THỊ TRƯỜNG LAO ĐỘNG"
+            },
+            {
+              "start": 20291,
+              "end": 20325,
+              "non_whitespace_chars": 26,
+              "preview": "Chương V PHÁT TRIỂN KỸ NĂNG NGHỀ"
+            },
+            {
+              "start": 25236,
+              "end": 25264,
+              "non_whitespace_chars": 21,
+              "preview": "Chương VI DỊCH VỤ VIỆC LÀM"
+            },
+            {
+              "start": 27280,
+              "end": 27370,
+              "non_whitespace_chars": 71,
+              "preview": "Chương VII BẢO HIỂM THẤT NGHIỆP Mục 1 NGUYÊN TẮC, ĐỐI TƯỢNG, CHẾ ĐỘ BẢO HIỂM THẤT NGHIỆP"
+            },
+            {
+              "start": 31148,
+              "end": 31193,
+              "non_whitespace_chars": 34,
+              "preview": "Mục 2 THAM GIA VÀ ĐÓNG BẢO HIỂM THẤT NGHIỆP"
+            },
+            {
+              "start": 37059,
+              "end": 37168,
+              "non_whitespace_chars": 83,
+              "preview": "Mục 3 TƯ VẤN, GIỚI THIỆU VIỆC LÀM VÀ HỖ TRỢ NGƯỜI LAO ĐỘNG THAM GIA ĐÀO TẠO, NÂNG CAO TRÌNH ĐỘ KỸ NĂ"
+            },
+            {
+              "start": 39257,
+              "end": 39284,
+              "non_whitespace_chars": 20,
+              "preview": "Mục 4 TRỢ CẤP THẤT NGHIỆP"
+            },
+            {
+              "start": 44962,
+              "end": 45089,
+              "non_whitespace_chars": 97,
+              "preview": "Mục 5 HỖ TRỢ NGƯỜI SỬ DỤNG LAO ĐỘNG ĐÀO TẠO, BỒI DƯỠNG, NÂNG CAO TRÌNH ĐỘ KỸ NĂNG NGHỀ ĐỂ DUY TRÌ VI"
+            },
+            {
+              "start": 46419,
+              "end": 46451,
+              "non_whitespace_chars": 24,
+              "preview": "Mục 6 QUỸ BẢO HIỂM THẤT NGHIỆP"
+            },
+            {
+              "start": 50143,
+              "end": 50192,
+              "non_whitespace_chars": 37,
+              "preview": "Mục 7 KHIẾU NẠI, TỐ CÁO VỀ BẢO HIỂM THẤT NGHIỆP"
+            },
+            {
+              "start": 54739,
+              "end": 54772,
+              "non_whitespace_chars": 26,
+              "preview": "Chương VIII ĐIỀU KHOẢN THI HÀNH"
+            },
+            {
+              "start": 56755,
+              "end": 56788,
+              "non_whitespace_chars": 26,
+              "preview": "CHỦ TỊCH QUỐC HỘI Trần Thanh Mẫn"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "index": 2,
+      "path": "docs/materials/labour-sources/ND293_2025_293-2025-ND-CP.pdf",
+      "sha256": "8ebf219debf9224796c98670d1eb5b8e5757d8ed74590c45ff5eab0dfc4fdbd0",
+      "bytes": 307194,
+      "format": "pdf",
+      "doc_code": "ND293_2025",
+      "collection_id": "labour_vi",
+      "source_name": "Nghị định 293/2025/NĐ-CP (mức lương tối thiểu)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/11/46568/59713-1-20251591-1592293-2025-nd-cp.pdf",
+      "document_number": "293/2025/NĐ-CP",
+      "issued_date": "2025-11-10",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 17,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 17,
+      "normalized_chars": 28406,
+      "normalized_sha256": "f8017a5c9179e7a17bd148f4de9ec4774492eccc02d968aa53ceb3edad2050c7",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 17,
+          "sample": "CÔNG BÁO/Số 1591 + 1592/Ngày 19-11-2025 43"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "- Vùng IV, gồm các xã, phường còn lại.",
+          "count": 6,
+          "sample": "- Vùng IV, gồm các xã, phường còn lại."
+        }
+      ],
+      "removed_lines_total": 23,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 5,
+          "clause": 14,
+          "point": 9
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 34,
+            "samples": [
+              "@7117: 1. Thành phố Hà Nội",
+              "@8299: 2. Tỉnh Cao Bằng",
+              "@8418: 3. Tỉnh Tuyên Quang",
+              "@8558: 4. Tỉnh Điện Biên",
+              "@8696: 5. Tỉnh Lai Châu"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 5,
+        "by_level": {
+          "article": 5
+        }
+      },
+      "validation": {
+        "chunks": 5,
+        "verbatim_chunks": 5,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 28406,
+          "covered_chars": 6377,
+          "char_fraction": 0.224495,
+          "source_non_whitespace_chars": 22510,
+          "covered_non_whitespace_chars": 5004,
+          "non_whitespace_fraction": 0.222301,
+          "uncovered_stretches_with_text": 2,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 520,
+              "non_whitespace_chars": 411,
+              "preview": "CHÍNH PHỦ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc Số: 293/2025/NĐ-CP Hà Nội, "
+            },
+            {
+              "start": 6901,
+              "end": 28406,
+              "non_whitespace_chars": 17095,
+              "preview": "TM. CHÍNH PHỦ KT. THỦ TƯỚNG PHÓ THỦ TƯỚNG Hồ Đức Phớc Phụ lục DANH MỤC ĐỊA BÀN ÁP DỤNG MỨC LƯƠNG TỐI"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "34 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@7117: 1. Thành phố Hà Nội', '@8299: 2. Tỉnh Cao Bằng']"
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "path": "docs/materials/labour-sources/ND318_2025_318-2025-ND-CP.pdf",
+      "sha256": "e08a1dea39cc8c6fa3b4225bcce5978b24eee607a76e5d8eabd13dfcaf71cbe1",
+      "bytes": 385724,
+      "format": "pdf",
+      "doc_code": "ND318_2025",
+      "collection_id": "labour_vi",
+      "source_name": "Nghị định 318/2025/NĐ-CP (đăng ký lao động)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/12/46804/60300-1-20251717-1718318-2025-nd-cp.pdf",
+      "document_number": "318/2025/NĐ-CP",
+      "issued_date": "2025-12-12",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 24,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 24,
+      "normalized_chars": 39363,
+      "normalized_sha256": "d688a375f432496525188037b77f1c073dd00e2eda94c03bdc9ba98f875bdb61",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 24,
+          "sample": "CÔNG BÁO/Số 1717 + 1718/Ngày 25-12-2025 3"
+        }
+      ],
+      "removed_lines_total": 24,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 25,
+          "chapter": 4,
+          "clause": 77,
+          "muc": 2,
+          "point": 89
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 28,
+            "samples": [
+              "@28334: 1. Họ, chữ đệm và tên khai sinh:................................................",
+              "@28441: 2. Ngày, tháng, năm sinh:....../....../......... 3. Giới tính: ◻ Nam ◻ Nữ",
+              "@28515: 4. Số định danh cá nhân:....................................... 5. Mã số BHXH...",
+              "@28614: 6. Nơi thường trú:..............................................................",
+              "@28730: 7. Nơi tạm trú (Nếu khác nơi thường trú):......................................."
+            ]
+          },
+          "point": {
+            "count": 1,
+            "samples": [
+              "@19425: d) Trung tâm Dữ liệu quốc gia chia sẻ, cung cấp thông tin, dữ liệu có liên quan"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 25,
+        "by_level": {
+          "article": 25
+        }
+      },
+      "validation": {
+        "chunks": 25,
+        "verbatim_chunks": 25,
+        "chunks_with_unemitted_parent": 25,
+        "coverage": {
+          "source_chars": 39363,
+          "covered_chars": 27188,
+          "char_fraction": 0.690699,
+          "source_non_whitespace_chars": 30896,
+          "covered_non_whitespace_chars": 21186,
+          "non_whitespace_fraction": 0.68572,
+          "uncovered_stretches_with_text": 6,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 570,
+              "non_whitespace_chars": 446,
+              "preview": "VĂN BẢN QUY PHẠM PHÁP LUẬT CHÍNH PHỦ CHÍNH PHỦ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - "
+            },
+            {
+              "start": 1510,
+              "end": 1616,
+              "non_whitespace_chars": 81,
+              "preview": "Chương II ĐĂNG KÝ LAO ĐỘNG Mục 1 HỒ SƠ, TRÌNH TỰ, THỦ TỤC ĐĂNG KÝ, ĐIỀU CHỈNH THÔNG TIN ĐĂNG KÝ LAO "
+            },
+            {
+              "start": 9059,
+              "end": 9155,
+              "non_whitespace_chars": 73,
+              "preview": "Mục 2 TIẾP NHẬN, QUẢN LÝ, KHAI THÁC, KẾT NỐI, CHIA SẺ, SỬ DỤNG CƠ SỞ DỮ LIỆU VỀ NGƯỜI LAO ĐỘNG"
+            },
+            {
+              "start": 13207,
+              "end": 13258,
+              "non_whitespace_chars": 40,
+              "preview": "Chương III HỆ THỐNG THÔNG TIN THỊ TRƯỜNG LAO ĐỘNG"
+            },
+            {
+              "start": 24858,
+              "end": 24886,
+              "non_whitespace_chars": 21,
+              "preview": "Chương IV TỔ CHỨC THI HÀNH"
+            },
+            {
+              "start": 28059,
+              "end": 39363,
+              "non_whitespace_chars": 9049,
+              "preview": "TM. CHÍNH PHỦ KT. THỦ TƯỚNG PHÓ THỦ TƯỚNG Phạm Thị Thanh Trà Phụ lục (Kèm theo Nghị định số 318/2025"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "28 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@28334: 1. Họ, chữ đệm và tên khai sinh:................................................', '@28441: 2. Ngày, tháng, năm sinh:....../....../......... 3. Giới tính: ◻ Nam ◻ Nữ']",
+          "1 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@19425: d) Trung tâm Dữ liệu quốc gia chia sẻ, cung cấp thông tin, dữ liệu có liên quan']"
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "path": "docs/materials/labour-sources/ND219_2025_219-2025-ND-CP.pdf",
+      "sha256": "3433595f6bf143ce3b4d602b2d49c8724b3276f789be4c79822f4b93f6124787",
+      "bytes": 789146,
+      "format": "pdf",
+      "doc_code": "ND219_2025",
+      "collection_id": "labour_vi",
+      "source_name": "Nghị định 219/2025/NĐ-CP (người lao động nước ngoài)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/8/45798/58141-1-20251073-1074219-2025-nd-cp.pdf",
+      "document_number": "219/2025/NĐ-CP",
+      "issued_date": "2025-08-07",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 36,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 36,
+      "normalized_chars": 67373,
+      "normalized_sha256": "9d4e29a8a8611540d64b9b1e28d2777d708b571aa7f5cc304b1c4487803c5c96",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# CÔNG BÁO/Số # + #/Ngày #-#-#",
+          "count": 18,
+          "sample": "2 CÔNG BÁO/Số 1073 + 1074/Ngày 20-8-2025"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 18,
+          "sample": "CÔNG BÁO/Số 1073 + 1074/Ngày 20-8-2025 3"
+        }
+      ],
+      "removed_lines_total": 36,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 36,
+          "chapter": 5,
+          "clause": 123,
+          "muc": 6,
+          "point": 84
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 40,
+            "samples": [
+              "@51901: 1. Tên người sử dụng lao động:...…………………………..………………….",
+              "@51955: 2. Loại hình người sử dụng lao động2: ...…………………………..………….",
+              "@52014: 3. Mã số định danh người sử dụng lao động (nếu có): …………………….….",
+              "@52078: 4. Tổng số người lao động đang làm vi ệc cho người sử dụng lao động:..… người.",
+              "@52221: 5. Địa chỉ3: ………………………………………………………………....….."
+            ]
+          },
+          "point": {
+            "count": 34,
+            "samples": [
+              "@53268: a) Họ và tên (In hoa)/Full name (In capital letters): ……………………………",
+              "@53334: b) Ngày, tháng, năm sinh/Date of birth: ……………………………….……….",
+              "@53392: c) Giới tính (Nam/Nữ)/Sex (Male/Female): ……………………………...…….",
+              "@53451: d) Quốc tịch/Nationality: ......................................................",
+              "@53562: đ) Số hộ chiếu/Passport number: ……………………………….…………….."
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 36,
+        "by_level": {
+          "article": 36
+        }
+      },
+      "validation": {
+        "chunks": 36,
+        "verbatim_chunks": 36,
+        "chunks_with_unemitted_parent": 36,
+        "coverage": {
+          "source_chars": 67373,
+          "covered_chars": 49891,
+          "char_fraction": 0.740519,
+          "source_non_whitespace_chars": 53124,
+          "covered_non_whitespace_chars": 38809,
+          "non_whitespace_fraction": 0.730536,
+          "uncovered_stretches_with_text": 10,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 526,
+              "non_whitespace_chars": 421,
+              "preview": "VĂN BẢN QUY PHẠM PHÁP LUẬT CHÍNH PHỦ CHÍNH PHỦ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM ________ Độc lập -"
+            },
+            {
+              "start": 7905,
+              "end": 8094,
+              "non_whitespace_chars": 147,
+              "preview": "Chương II TRÌNH TỰ, THỦ TỤC CẤP, CẤP LẠI VÀ GIA HẠN GIẤY XÁC NHẬN KHÔNG THUỘC DIỆN CẤP GIẤY PHÉP LAO"
+            },
+            {
+              "start": 16736,
+              "end": 16823,
+              "non_whitespace_chars": 67,
+              "preview": "Mục 2 TRÌNH TỰ, THỦ TỤC CẤP LẠI GIẤY XÁC NHẬN KHÔNG THUỘC DIỆN CẤP GIẤY PHÉP LAO ĐỘNG"
+            },
+            {
+              "start": 19148,
+              "end": 19235,
+              "non_whitespace_chars": 67,
+              "preview": "Mục 3 TRÌNH TỰ, THỦ TỤC GIA HẠN GIẤY XÁC NHẬN KHÔNG THUỘC DIỆN CẤP GIẤY PHÉP LAO ĐỘNG"
+            },
+            {
+              "start": 22213,
+              "end": 22315,
+              "non_whitespace_chars": 78,
+              "preview": "Chương III TRÌNH TỰ, THỦ TỤC CẤP, CẤP LẠI VÀ GIA HẠN GIẤY PHÉP LAO ĐỘNG Mục 1 CẤP GIẤY PHÉP LAO ĐỘNG"
+            },
+            {
+              "start": 36279,
+              "end": 36313,
+              "non_whitespace_chars": 25,
+              "preview": "Mục 2 CẤP LẠI GIẤY PHÉP LAO ĐỘNG"
+            },
+            {
+              "start": 38282,
+              "end": 38316,
+              "non_whitespace_chars": 25,
+              "preview": "Mục 3 GIA HẠN GIẤY PHÉP LAO ĐỘNG"
+            },
+            {
+              "start": 41738,
+              "end": 41835,
+              "non_whitespace_chars": 76,
+              "preview": "Chương IV THU HỒI GIẤY PHÉP LAO ĐỘNG HOẶC GIẤY XÁC NHẬN KHÔNG THUỘC DIỆN CẤP GIẤY PHÉP LAO ĐỘNG"
+            },
+            {
+              "start": 44515,
+              "end": 44545,
+              "non_whitespace_chars": 23,
+              "preview": "Chương V ĐIỀU KHOẢN THI HÀNH"
+            },
+            {
+              "start": 51104,
+              "end": 67373,
+              "non_whitespace_chars": 13386,
+              "preview": "TM. CHÍNH PHỦ KT. THỦ TƯỚNG PHÓ THỦ TƯỚNG Nguyễn Hòa Bình Phụ lục (Kèm theo Nghị định số 219/2025/NĐ"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "40 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@51901: 1. Tên người sử dụng lao động:...…………………………..………………….', '@51955: 2. Loại hình người sử dụng lao động2: ...…………………………..………….']",
+          "34 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@53268: a) Họ và tên (In hoa)/Full name (In capital letters): ……………………………', '@53334: b) Ngày, tháng, năm sinh/Date of birth: ……………………………….……….']"
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "path": "docs/materials/labour-sources/LCD2024_50-2024-QH15.pdf",
+      "sha256": "7ddcbdf2d1db00d6d6a85ca01a086f8ed729ad3bba8d24a31913aec84965314e",
+      "bytes": 260498,
+      "format": "pdf",
+      "doc_code": "LCD2024",
+      "collection_id": "labour_vi",
+      "source_name": "Luật Công đoàn 2024",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2024/11/43589/53742-1-20241533-153450-2024-qh15.pdf",
+      "document_number": "50/2024/QH15",
+      "issued_date": "2024-11-27",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 25,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 25,
+      "normalized_chars": 50248,
+      "normalized_sha256": "1c5fd2543f10265158249b941fa222b2d7df3633af1393269570a53690203d07",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 13,
+          "sample": "CÔNG BÁO/Số 1533 + 1534/Ngày 30-12-2024 3"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# CÔNG BÁO/Số # + #/Ngày #-#-#",
+          "count": 12,
+          "sample": "4 CÔNG BÁO/Số 1533 + 1534/Ngày 30-12-2024"
+        }
+      ],
+      "removed_lines_total": 25,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 37,
+          "chapter": 6,
+          "clause": 159,
+          "muc": 2,
+          "point": 82
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {}
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 37,
+        "by_level": {
+          "article": 37
+        }
+      },
+      "validation": {
+        "chunks": 37,
+        "verbatim_chunks": 37,
+        "chunks_with_unemitted_parent": 37,
+        "coverage": {
+          "source_chars": 50248,
+          "covered_chars": 49556,
+          "char_fraction": 0.986228,
+          "source_non_whitespace_chars": 39388,
+          "covered_non_whitespace_chars": 38870,
+          "non_whitespace_fraction": 0.986849,
+          "uncovered_stretches_with_text": 8,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 231,
+              "non_whitespace_chars": 181,
+              "preview": "QUỐC HỘI CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc Luật số: 50/2024/QH15 LUẬT C"
+            },
+            {
+              "start": 13929,
+              "end": 14035,
+              "non_whitespace_chars": 84,
+              "preview": "Chương II QUYỀN, TRÁCH NHIỆM CỦA CÔNG ĐOÀN VÀ ĐOÀN VIÊN CÔNG ĐOÀN Mục 1 QUYỀN, TRÁCH NHIỆM CỦA CÔNG "
+            },
+            {
+              "start": 30190,
+              "end": 30240,
+              "non_whitespace_chars": 39,
+              "preview": "Mục 2 QUYỀN, TRÁCH NHIỆM CỦA ĐOÀN VIÊN CÔNG ĐOÀN"
+            },
+            {
+              "start": 32565,
+              "end": 32644,
+              "non_whitespace_chars": 62,
+              "preview": "Chương III TRÁCH NHIỆM CỦA NHÀ NƯỚC, NGƯỜI SỬ DỤNG LAO ĐỘNG ĐỐI VỚI CÔNG ĐOÀN"
+            },
+            {
+              "start": 36055,
+              "end": 36098,
+              "non_whitespace_chars": 33,
+              "preview": "Chương IV BẢO ĐẢM HOẠT ĐỘNG CỦA CÔNG ĐOÀN"
+            },
+            {
+              "start": 48678,
+              "end": 48767,
+              "non_whitespace_chars": 69,
+              "preview": "Chương V GIẢI QUYẾT TRANH CHẤP VỀ QUYỀN CÔNG ĐOÀN, XỬ LÝ VI PHẠM PHÁP LUẬT VỀ CÔNG ĐOÀN"
+            },
+            {
+              "start": 49892,
+              "end": 49923,
+              "non_whitespace_chars": 24,
+              "preview": "Chương VI ĐIỀU KHOẢN THI HÀNH"
+            },
+            {
+              "start": 50215,
+              "end": 50248,
+              "non_whitespace_chars": 26,
+              "preview": "CHỦ TỊCH QUỐC HỘI Trần Thanh Mẫn"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "index": 6,
+      "path": "docs/materials/labour-sources/ND135_2020_135-2020-ND-CP.pdf",
+      "sha256": "0348497f54794e9b476958cb0716d00ac7847d6edfe1e5b6416acaae7478550a",
+      "bytes": 427441,
+      "format": "pdf",
+      "doc_code": "ND135_2020",
+      "collection_id": "labour_vi",
+      "source_name": "Nghị định 135/2020/NĐ-CP (tuổi nghỉ hưu)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2020/11/32525/33432-1-20201117-1118135-2020-nd-cp.pdf",
+      "document_number": "135/2020/NĐ-CP",
+      "issued_date": "2020-11-18",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 17,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 17,
+      "normalized_chars": 16687,
+      "normalized_sha256": "545cc17db203f14dc50694cbed7ebf929fe8581616e827a8765451ef0205e1b8",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# # # #",
+          "count": 17,
+          "sample": "7 1971 8 2029"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# # # # # # # #",
+          "count": 17,
+          "sample": "2 1962 9 2022 2 1967 11 2022"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 9,
+          "sample": "CÔNG BÁO/Số 1117 + 1118/Ngày 03-12-2020 3"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# CÔNG BÁO/Số # + #/Ngày #-#-#",
+          "count": 8,
+          "sample": "4 CÔNG BÁO/Số 1117 + 1118/Ngày 03-12-2020"
+        }
+      ],
+      "removed_lines_total": 51,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 3,
+          "article": 9,
+          "clause": 16,
+          "point": 9
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 24,
+            "samples": [
+              "@15589: 1. Khai thác mỏ hầm lò.",
+              "@15613: 2. Khoan đá bằng búa máy cầm tay trong hầm lò.",
+              "@15660: 3. Đội viên cứu hộ mỏ.",
+              "@15683: 4. Sửa chữa cơ điện trong hầm lò.",
+              "@15717: 5. Vận hành trạm quạt khí nén, điện, diezel, trạm xạc ắc quy trong hầm lò."
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 12,
+        "by_level": {
+          "article": 9,
+          "section": 3
+        }
+      },
+      "validation": {
+        "chunks": 12,
+        "verbatim_chunks": 12,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 16687,
+          "covered_chars": 16020,
+          "char_fraction": 0.960029,
+          "source_non_whitespace_chars": 12706,
+          "covered_non_whitespace_chars": 12197,
+          "non_whitespace_fraction": 0.95994,
+          "uncovered_stretches_with_text": 2,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 615,
+              "non_whitespace_chars": 476,
+              "preview": "VĂN BẢN QUY PHẠM PHÁP LUẬT CHÍNH PHỦ CHÍNH PHỦ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - "
+            },
+            {
+              "start": 9459,
+              "end": 9501,
+              "non_whitespace_chars": 33,
+              "preview": "TM. CHÍNH PHỦ THỦ TƯỚNG Nguyễn Xuân Phúc"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "24 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@15589: 1. Khai thác mỏ hầm lò.', '@15613: 2. Khoan đá bằng búa máy cầm tay trong hầm lò.']"
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "path": "docs/materials/labour-sources/ND274_2025_274-2025-ND-CP.pdf",
+      "sha256": "aa2a35fa9e7dd0f421df8c67da6062c5e7168531d00b1d8f5e0ae3521cffd37b",
+      "bytes": 261785,
+      "format": "pdf",
+      "doc_code": "ND274_2025",
+      "collection_id": "labour_vi",
+      "source_name": "Nghị định 274/2025/NĐ-CP (chậm đóng, trốn đóng BHXH)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/10/46418/59403-1-20251515-1516274-2025-nd-cp.pdf",
+      "document_number": "274/2025/NĐ-CP",
+      "issued_date": "2025-10-16",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 14,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 14,
+      "normalized_chars": 28097,
+      "normalized_sha256": "77c33a67e1ce52f9707affe3c632180be540aa1f91203476d0881b269a55e570",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 14,
+          "sample": "CÔNG BÁO/Số 1515 + 1516/Ngày 29-10-2025 63"
+        }
+      ],
+      "removed_lines_total": 14,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 16,
+          "chapter": 4,
+          "clause": 35,
+          "muc": 2,
+          "point": 43
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 6,
+            "samples": [
+              "@27511: 1. Số tiền chậm đóng, trốn đóng: chi tiết từng khoản chậm đóng, trốn đóng.",
+              "@27586: 2. Số ngày chậm đóng, trốn đóng: chi tiết từng khoản chậm đóng, trốn đóng",
+              "@27700: 3. Số tiền phải nộp bằng 0,03%/ngày tính trên số tiền, số ngày chậm đóng,",
+              "@27785: 4. Quy định của pháp luật về các biện pháp xử lý hành vi chậm đóng,",
+              "@27864: 5. Thời hạn chuyển từ hành vi chậm đóng sang hành vi trốn đóng và các biện"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 16,
+        "by_level": {
+          "article": 16
+        }
+      },
+      "validation": {
+        "chunks": 16,
+        "verbatim_chunks": 16,
+        "chunks_with_unemitted_parent": 16,
+        "coverage": {
+          "source_chars": 28097,
+          "covered_chars": 25834,
+          "char_fraction": 0.919458,
+          "source_non_whitespace_chars": 21922,
+          "covered_non_whitespace_chars": 20153,
+          "non_whitespace_fraction": 0.919305,
+          "uncovered_stretches_with_text": 6,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 873,
+              "non_whitespace_chars": 689,
+              "preview": "CHÍNH PHỦ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc Số: 274/2025/NĐ-CP Hà Nội, "
+            },
+            {
+              "start": 1819,
+              "end": 1889,
+              "non_whitespace_chars": 55,
+              "preview": "Chương II CHẬM ĐÓNG, TRỐN ĐÓNG BẢO HIỂM XÃ HỘI, BẢO HIỂM THẤT NGHIỆP"
+            },
+            {
+              "start": 14074,
+              "end": 14158,
+              "non_whitespace_chars": 63,
+              "preview": "Chương III KHIẾU NẠI, TỐ CÁO VỀ BẢO HIỂM XÃ HỘI Mục 1 KHIẾU NẠI VỀ BẢO HIỂM XÃ HỘI"
+            },
+            {
+              "start": 22045,
+              "end": 22078,
+              "non_whitespace_chars": 23,
+              "preview": "Mục 2 TỐ CÁO VỀ BẢO HIỂM XÃ HỘI"
+            },
+            {
+              "start": 25939,
+              "end": 25970,
+              "non_whitespace_chars": 24,
+              "preview": "Chương IV ĐIỀU KHOẢN THI HÀNH"
+            },
+            {
+              "start": 26936,
+              "end": 28097,
+              "non_whitespace_chars": 915,
+              "preview": "TM. CHÍNH PHỦ KT. THỦ TƯỚNG PHÓ THỦ TƯỚNG Hồ Đức Phớc Phụ lục (Kèm theo Nghị định số 274/2025/NĐ-CP "
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "6 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@27511: 1. Số tiền chậm đóng, trốn đóng: chi tiết từng khoản chậm đóng, trốn đóng.', '@27586: 2. Số ngày chậm đóng, trốn đóng: chi tiết từng khoản chậm đóng, trốn đóng']"
+        ]
+      }
+    },
+    {
+      "index": 8,
+      "path": "docs/materials/labour-sources/ND143_2024_143-2024-ND-CP.pdf",
+      "sha256": "3a226e34dfeaf1968f7662c8cec144329585b6ceab622aef5773b7c7349fb5a0",
+      "bytes": 543017,
+      "format": "pdf",
+      "doc_code": "ND143_2024",
+      "collection_id": "labour_vi",
+      "source_name": "Nghị định 143/2024/NĐ-CP (BHTNLĐ tự nguyện)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2024/11/43119/52597-1-20241249-1250143-2024-nd-cp.pdf",
+      "document_number": "143/2024/NĐ-CP",
+      "issued_date": "2024-11-01",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [
+          "",
+          "MAU_"
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 35,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_{series_tag}Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 35,
+      "normalized_chars": 60313,
+      "normalized_sha256": "13d5c4cbd89ffb9afb25ebca919cfd28265686af3f3fbb911a156205da428475",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "# CÔNG BÁO/Số # + #/Ngày #-#-#",
+          "count": 19,
+          "sample": "4 CÔNG BÁO/Số 1249 + 1250/Ngày 15-11-2024"
+        },
+        {
+          "reason": "repeated_edge_line",
+          "shape": "CÔNG BÁO/Số # + #/Ngày #-#-# #",
+          "count": 16,
+          "sample": "CÔNG BÁO/Số 1249 + 1250/Ngày 15-11-2024 5"
+        }
+      ],
+      "removed_lines_total": 35,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 9,
+          "article": 38,
+          "chapter": 6,
+          "clause": 113,
+          "point": 79
+        },
+        "series": {
+          "article": 2
+        },
+        "end_marker_hits": 4,
+        "rejected_markers": {
+          "clause": {
+            "count": 42,
+            "samples": [
+              "@39612: 1. Thông tin về vụ tai nạn:",
+              "@39902: 2. Thông tin về nạn nhân:",
+              "@40803: 1. Thông tin xã/phường:",
+              "@40950: 2. Thông tin vụ tai nạn lao động",
+              "@41106: 3. Sơ lược thông tin nạn nhân"
+            ]
+          },
+          "point": {
+            "count": 3,
+            "samples": [
+              "@57077: a) Họ và tên:…………………..…………………………………………………",
+              "@57119: b) Ngày tháng năm sinh:………………..………. Giới tính…………………….",
+              "@57174: c) Số chứng minh thư (hoặc hộ chiếu, căn cước công dân):….…………………"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 47,
+        "by_level": {
+          "article": 38,
+          "section": 9
+        }
+      },
+      "validation": {
+        "chunks": 47,
+        "verbatim_chunks": 47,
+        "chunks_with_unemitted_parent": 38,
+        "coverage": {
+          "source_chars": 60313,
+          "covered_chars": 56620,
+          "char_fraction": 0.938769,
+          "source_non_whitespace_chars": 48138,
+          "covered_non_whitespace_chars": 45299,
+          "non_whitespace_fraction": 0.941024,
+          "uncovered_stretches_with_text": 10,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 787,
+              "non_whitespace_chars": 612,
+              "preview": "VĂN BẢN QUY PHẠM PHÁP LUẬT CHÍNH PHỦ CHÍNH PHỦ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - "
+            },
+            {
+              "start": 2153,
+              "end": 2207,
+              "non_whitespace_chars": 41,
+              "preview": "Chương II CHẾ ĐỘ BẢO HIỂM TAI NẠN LAO ĐỘNG TỰ NGUYỆN"
+            },
+            {
+              "start": 9357,
+              "end": 9409,
+              "non_whitespace_chars": 40,
+              "preview": "Chương III QUỸ BẢO HIỂM TAI NẠN LAO ĐỘNG TỰ NGUYỆN"
+            },
+            {
+              "start": 14448,
+              "end": 14538,
+              "non_whitespace_chars": 69,
+              "preview": "Chương IV HỒ SƠ, THỦ TỤC THAM GIA, GIẢI QUYẾT CHẾ ĐỘ BẢO HIỂM TAI NẠN LAO ĐỘNG TỰ NGUYỆN"
+            },
+            {
+              "start": 29932,
+              "end": 29960,
+              "non_whitespace_chars": 21,
+              "preview": "Chương V TỔ CHỨC THỰC HIỆN"
+            },
+            {
+              "start": 38854,
+              "end": 38885,
+              "non_whitespace_chars": 24,
+              "preview": "Chương VI ĐIỀU KHOẢN THI HÀNH"
+            },
+            {
+              "start": 39282,
+              "end": 39339,
+              "non_whitespace_chars": 44,
+              "preview": "TM. CHÍNH PHỦ KT. THỦ TƯỚNG PHÓ THỦ TƯỚNG Lê Thành Long"
+            },
+            {
+              "start": 41331,
+              "end": 41547,
+              "non_whitespace_chars": 166,
+              "preview": "Nơi nhận: TM. ỦY BAN NHÂN DÂN - Như trên; CHỦ TỊCH - Lưu: VT. (Ký tên, đóng dấu) 1 Chỉ áp dụng trong"
+            },
+            {
+              "start": 43085,
+              "end": 43182,
+              "non_whitespace_chars": 72,
+              "preview": "Nơi nhận: TM. ỦY BAN NHÂN DÂN - Như Điều 3; CHỦ TỊCH - Lưu: VT. (Ký, ghi rõ họ tên và đóng dấu)"
+            },
+            {
+              "start": 58070,
+              "end": 60313,
+              "non_whitespace_chars": 1750,
+              "preview": "Nơi nhận: QUYỀN HẠN, CHỨC VỤ CỦA NGƯỜI KÝ - ..............; (Ký, đóng dấu, ghi rõ họ và tên) - Lưu:."
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "42 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@39612: 1. Thông tin về vụ tai nạn:', '@39902: 2. Thông tin về nạn nhân:']",
+          "3 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@57077: a) Họ và tên:…………………..…………………………………………………', '@57119: b) Ngày tháng năm sinh:………………..………. Giới tính…………………….']"
+        ]
+      }
+    },
+    {
+      "index": 9,
+      "path": "docs/materials/labour-sources/TT26_2025_26-2025-TT-BNV.pdf",
+      "sha256": "a066774ff7581c46e76c0d5ac6de6a10597eb7e7d1851d9b6272edba06bbbd98",
+      "bytes": 645192,
+      "format": "pdf",
+      "doc_code": "TT26_2025",
+      "collection_id": "labour_vi",
+      "source_name": "Thông tư 26/2025/TT-BNV (vùng KT-XH đặc biệt khó khăn, nghỉ hưu sớm)",
+      "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/12/26-bnv.pdf",
+      "document_number": null,
+      "issued_date": null,
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "warn",
+        "series_tags": [],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 7,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "",
+        "templates": {
+          "part": "{doc_code}_Phan_{num_ascii}",
+          "chapter": "{doc_code}_Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{doc_code}_Dieu_{num_ascii}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": null,
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 7,
+      "normalized_chars": 10117,
+      "normalized_sha256": "82e62686592e1ee9d35519789ef42c2ab918426cba8b002fc7d17669ea499698",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "#",
+          "count": 5,
+          "sample": "2"
+        }
+      ],
+      "removed_lines_total": 5,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 5,
+          "clause": 7,
+          "point": 2
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 35,
+            "samples": [
+              "@3335: 2. Thông tư số 19/2021/TT-BLĐTBXH ngày 15 tháng 12 năm 2021 của Bộ",
+              "@5312: 1. Đặc khu Thổ Châu.",
+              "@5351: 1. Các xã: Bảo Lạc, Bảo Lâm, Bế Văn Đàn, Cô Ba, Cốc Pàng, Đàm Thủy, Đình",
+              "@5691: 1. Các xã: Buôn Đôn, Dliê Ya, Ea Hiao, Ia Lốp, Ia Rvê, Krông Nô, Cư Pui, Ea",
+              "@5818: 1. Các xã: Chà Tở, Chiềng Sinh, Mường Chà, Mường Luân, Mường Mùn, Mường"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 5,
+        "by_level": {
+          "article": 5
+        }
+      },
+      "validation": {
+        "chunks": 5,
+        "verbatim_chunks": 5,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 10117,
+          "covered_chars": 3252,
+          "char_fraction": 0.321439,
+          "source_non_whitespace_chars": 7885,
+          "covered_non_whitespace_chars": 2514,
+          "non_whitespace_fraction": 0.318833,
+          "uncovered_stretches_with_text": 2,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 999,
+              "non_whitespace_chars": 777,
+              "preview": "BỘ NỘI VỤ CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc Số: /2025/TT-BNV Hà Nội, ng"
+            },
+            {
+              "start": 4255,
+              "end": 10117,
+              "non_whitespace_chars": 4594,
+              "preview": "Nơi nhận: KT. BỘ TRƯỞNG - Ban Bí thư Trung ương Đảng; THỨ TRƯỞNG - Thủ tướng, các Phó Thủ tướng Chín"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "35 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@3335: 2. Thông tư số 19/2021/TT-BLĐTBXH ngày 15 tháng 12 năm 2021 của Bộ', '@5312: 1. Đặc khu Thổ Châu.']"
+        ]
+      }
+    }
+  ],
+  "totals": {
+    "sources": 10,
+    "records": 458,
+    "by_level": {
+      "article": 446,
+      "section": 12
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "source 0 (docs/materials/benchmark-sources/bll2019-congbao.pdf): 5 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@181188: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của', '@183781: 1. Người lao động quy định tại các điểm a, b, c, d, g, h và i khoản 1 Điều 2 của']",
+    "source 0 (docs/materials/benchmark-sources/bll2019-congbao.pdf): 12 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@181450: a) Đủ tuổi theo quy định tại khoản 2 Điều 169 của Bộ luật Lao động;', '@183677: b) Sửa đổi, bổ sung Điều 55 như sau:']",
+    "source 0 (docs/materials/benchmark-sources/bll2019-congbao.pdf): 1 of 94 pages have (almost) no text layer and contribute nothing: pages [94]",
+    "source 2 (docs/materials/labour-sources/ND293_2025_293-2025-ND-CP.pdf): 34 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@7117: 1. Thành phố Hà Nội', '@8299: 2. Tỉnh Cao Bằng']",
+    "source 3 (docs/materials/labour-sources/ND318_2025_318-2025-ND-CP.pdf): 28 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@28334: 1. Họ, chữ đệm và tên khai sinh:................................................', '@28441: 2. Ngày, tháng, năm sinh:....../....../......... 3. Giới tính: ◻ Nam ◻ Nữ']",
+    "source 3 (docs/materials/labour-sources/ND318_2025_318-2025-ND-CP.pdf): 1 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@19425: d) Trung tâm Dữ liệu quốc gia chia sẻ, cung cấp thông tin, dữ liệu có liên quan']",
+    "source 4 (docs/materials/labour-sources/ND219_2025_219-2025-ND-CP.pdf): 40 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@51901: 1. Tên người sử dụng lao động:...…………………………..………………….', '@51955: 2. Loại hình người sử dụng lao động2: ...…………………………..………….']",
+    "source 4 (docs/materials/labour-sources/ND219_2025_219-2025-ND-CP.pdf): 34 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@53268: a) Họ và tên (In hoa)/Full name (In capital letters): ……………………………', '@53334: b) Ngày, tháng, năm sinh/Date of birth: ……………………………….……….']",
+    "source 6 (docs/materials/labour-sources/ND135_2020_135-2020-ND-CP.pdf): 24 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@15589: 1. Khai thác mỏ hầm lò.', '@15613: 2. Khoan đá bằng búa máy cầm tay trong hầm lò.']",
+    "source 7 (docs/materials/labour-sources/ND274_2025_274-2025-ND-CP.pdf): 6 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@27511: 1. Số tiền chậm đóng, trốn đóng: chi tiết từng khoản chậm đóng, trốn đóng.', '@27586: 2. Số ngày chậm đóng, trốn đóng: chi tiết từng khoản chậm đóng, trốn đóng']",
+    "source 8 (docs/materials/labour-sources/ND143_2024_143-2024-ND-CP.pdf): 42 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@39612: 1. Thông tin về vụ tai nạn:', '@39902: 2. Thông tin về nạn nhân:']",
+    "source 8 (docs/materials/labour-sources/ND143_2024_143-2024-ND-CP.pdf): 3 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@57077: a) Họ và tên:…………………..…………………………………………………', '@57119: b) Ngày tháng năm sinh:………………..………. Giới tính…………………….']",
+    "source 9 (docs/materials/labour-sources/TT26_2025_26-2025-TT-BNV.pdf): 35 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@3335: 2. Thông tư số 19/2021/TT-BLĐTBXH ngày 15 tháng 12 năm 2021 của Bộ', '@5312: 1. Đặc khu Thổ Châu.']"
+  ],
+  "output": {
+    "corpus": "data/corpus/labour_vi_v1.json",
+    "records": 458,
+    "corpus_sha256": "51154b6e9c9320b507d7ee19512e729f7908e45840c7ea701d92bf28fe65bea8"
+  }
+}

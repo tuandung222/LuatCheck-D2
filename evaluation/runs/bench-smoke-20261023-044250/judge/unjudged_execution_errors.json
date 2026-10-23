@@ -1,0 +1,10 @@
+[
+  {
+    "review_id": "d9018fe5845b970c804419bc",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "reason": "execution error: model_output_error"
+  }
+]

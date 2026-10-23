@@ -1,0 +1,18 @@
+\begin{table}[H]\centering\footnotesize
+\begin{tabularx}{\textwidth}{@{}L{6.0cm}XX@{}}\toprule Uncalibrated semantic estimate & OFF & L1 ON\\\midrule
+Valid / judgeable judgments & 30 / 30 & 30 / 30\\
+Strict task successes (LLM estimate) & 10 / 30 known & 11 / 30 known\\
+Unknown task outcomes & 0 & 0\\
+Strict success over all 30 trials & 33.3\% & 36.7\%\\
+Supported / total factual claims & 40 / 48 & 28 / 35\\
+Claim faithfulness (LLM estimate) & 83.3\% & 80.0\%\\
+Unsupported claims (LLM estimate) & 16.7\% & 20.0\%\\
+Human agreement / Cohen's kappa & \pending{human labels} & \pending{human labels}\\
+\bottomrule\end{tabularx}
+\caption{Independent DeepSeek Flash gateway judgments. These are LLM estimates, not human-validated accuracy. Bounds retain invalid/unjudgeable outputs as unknown, not confidence intervals; known execution errors remain failures. Claim rates use factual claims in valid judgeable outputs, including claims in refusals/clarifications. Zero-claim outputs do not create perfect faithfulness.}
+\end{table}
+The main and recovery judging batches made 86 API attempts (including retained failed attempts). Usage is available for 79 attempts: 392,218 reported prompt and 384,976 reported completion tokens. 7 attempts have unknown usage; no complete total is claimed. The response-body usage.cost subtotal is USD 0.160908; cost is missing for 7 attempts. The separate response-header subtotal is USD 0.097455 over 65 attempts; the two reported cost fields disagree in 8 records, so neither is certified as the actual charge. These are gateway-reported costs, not an independently verified invoice. Remote judge hardware and active GPU time are unknown. A reproducible stratified human-audit package contains 12 validly judged outputs; 0 unresolved outputs are provided for a separate targeted review. The human label sheet is blank. \pending{Complete the human audit and report actual agreement and Cohen's kappa.}
+Two earlier judge pilot calls are retained separately and are not merged into these main metrics or cost subtotals.
+The gateway returned 13 usage records whose reasoning-token detail exceeds the reported completion-token field. Original values are retained without correction; these are provider-reported counters, not independently certified physical token counts.
+A provenance-parser correction permits a known article ID with a null quotation for not-established claims, as allowed by the frozen rubric. Complete raw judgments were revalidated without editing any model score, label or quotation; original validation failures remain preserved.
+Recovery was added after observing API/validation failures and was not preregistered. Every phase covers all and only still-invalid judgments; each task stops at its first valid judgment, regardless of semantic score. Model, semantic prompt and task inputs are unchanged. A streamed phase retried 11 outputs with up to 1 attempts per output, a 16,384-token cap and concurrency 2; 8 judgments passed validation. A streamed phase retried 3 outputs with up to 3 attempts per output, a 32,768-token cap and concurrency 1; 3 judgments passed validation. All attempts, including failures and available usage/cost, are retained. Previously accepted judgments were never resampled.

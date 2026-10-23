@@ -6,12 +6,7 @@ import re
 import numpy as np
 from typing import List, Dict, Any, Set, Optional
 
-try:
-    from src.agent.state import Citation
-except ImportError:
-    class Citation:
-        def __init__(self, article_id: str, **kwargs):
-            self.article_id = article_id
+from src.agent.state import Citation
 
 
 def normalize_id(aid: str) -> str:
@@ -34,8 +29,9 @@ def calculate_retrieval_metrics(retrieved_ids: List[str], ground_truth_id: Any, 
 
     metrics = {}
     for k in k_list:
-        hits = 1.0 if any(g in norm_retrieved[:k] for g in norm_gts) else 0.0
-        metrics[f"Recall@{k}"] = hits
+        hit_count = len(set(norm_gts) & set(norm_retrieved[:k]))
+        metrics[f"Recall@{k}"] = hit_count / len(set(norm_gts)) if norm_gts else 0.0
+        metrics[f"Hit@{k}"] = float(hit_count > 0)
 
     # MRR (Mean Reciprocal Rank)
     ranks = [norm_retrieved.index(g) + 1 for g in norm_gts if g in norm_retrieved]
@@ -92,7 +88,7 @@ def calculate_unsupported_rate(
 ) -> float:
     """
     Computes Unsupported-Sentence Rate (fraction of claims lacking statutory support).
-    Standardized according to ALCE (Gao et al., 2023) and legal QA benchmarks:
+    Lexical/provenance proxy only; not an independent semantic-correctness score:
     - If answer is empty or a refusal, Unsupported Rate = 0.0 (no unsupported assertions made).
     - Splits the response into individual proposition sentences.
     - Matches each sentence against cited statutory articles using the verifier.
@@ -160,7 +156,7 @@ def calculate_unsupported_rate(
                     is_supported = True
                     break
         else:
-            is_supported = True
+            raise TypeError("A supported verifier interface is required; unsupported claims cannot default to valid.")
 
         if not is_supported:
             unsupported_count += 1

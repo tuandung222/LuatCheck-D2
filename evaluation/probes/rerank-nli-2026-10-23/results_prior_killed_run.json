@@ -1,0 +1,1874 @@
+{
+ "probe": {
+  "date": "2026-10-23",
+  "brief": "evaluation/probes/rerank-nli-2026-10-23/BRIEF.md",
+  "corpus": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/corpus/labor_code_2019_official.json",
+  "tasks": "/Users/admin/Desktop/Recents/LuatCheck-D2/evaluation/benchmarks/bll2019_v1/tasks.json",
+  "excluded_task": "BLL19-10-FOREIGN_SCOPE",
+  "n_queries_experiment_a": 9,
+  "python": "3.12.10 (main, Apr  9 2025, 03:49:38) [Clang 20.1.0 ]",
+  "torch": "2.14.1",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "mps_available": true,
+  "labels_note": "NLI pair labels are constructed from source text by the probe author; they are NOT human labels.",
+  "first_stage": "HybridDomainRetriever(retrieval_mode='tfidf'), top_k=20"
+ },
+ "first_stage": {
+  "per_task": {
+   "BLL19-01-PROBATION": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là bao nhiêu ngày?",
+    "gold_ids": [
+     "Dieu_25"
+    ],
+    "gold_ranks": {
+     "Dieu_25": 1
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0017494999992777593,
+    "candidates": [
+     {
+      "article_id": "Dieu_25",
+      "rrf_score": 0.03278688524590164,
+      "content_chars": 722
+     },
+     {
+      "article_id": "Dieu_53",
+      "rrf_score": 0.031024531024531024,
+      "content_chars": 1230
+     },
+     {
+      "article_id": "Dieu_152",
+      "rrf_score": 0.030536130536130537,
+      "content_chars": 891
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.0304147465437788,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_4",
+      "rrf_score": 0.030330882352941176,
+      "content_chars": 1502
+     },
+     {
+      "article_id": "Dieu_107",
+      "rrf_score": 0.029877369007803793,
+      "content_chars": 1844
+     },
+     {
+      "article_id": "Dieu_151",
+      "rrf_score": 0.029850746268656716,
+      "content_chars": 1237
+     },
+     {
+      "article_id": "Dieu_27",
+      "rrf_score": 0.028474711270410194,
+      "content_chars": 662
+     },
+     {
+      "article_id": "Dieu_109",
+      "rrf_score": 0.02821939586645469,
+      "content_chars": 550
+     },
+     {
+      "article_id": "Dieu_169",
+      "rrf_score": 0.028169014084507043,
+      "content_chars": 1326
+     },
+     {
+      "article_id": "Dieu_119",
+      "rrf_score": 0.027650648360030512,
+      "content_chars": 1172
+     },
+     {
+      "article_id": "Dieu_220",
+      "rrf_score": 0.02758751902587519,
+      "content_chars": 1011
+     },
+     {
+      "article_id": "Dieu_45",
+      "rrf_score": 0.026631393298059962,
+      "content_chars": 848
+     },
+     {
+      "article_id": "Dieu_118",
+      "rrf_score": 0.02632034632034632,
+      "content_chars": 1333
+     },
+     {
+      "article_id": "Dieu_33",
+      "rrf_score": 0.026153846153846153,
+      "content_chars": 586
+     },
+     {
+      "article_id": "Dieu_60",
+      "rrf_score": 0.02581612258494337,
+      "content_chars": 542
+     },
+     {
+      "article_id": "Dieu_61",
+      "rrf_score": 0.02519288301054952,
+      "content_chars": 1460
+     },
+     {
+      "article_id": "Dieu_101",
+      "rrf_score": 0.024877149877149878,
+      "content_chars": 631
+     },
+     {
+      "article_id": "Dieu_185",
+      "rrf_score": 0.024222968043192763,
+      "content_chars": 2729
+     },
+     {
+      "article_id": "Dieu_82",
+      "rrf_score": 0.02399425287356322,
+      "content_chars": 678
+     }
+    ]
+   },
+   "BLL19-02-PROBATION_WAGE": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), tiền lương trong thời gian thử việc ít nhất bằng bao nhiêu phần trăm mức lương của công việc đó?",
+    "gold_ids": [
+     "Dieu_26"
+    ],
+    "gold_ranks": {
+     "Dieu_26": 1
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0013873329990019556,
+    "candidates": [
+     {
+      "article_id": "Dieu_26",
+      "rrf_score": 0.03278688524590164,
+      "content_chars": 161
+     },
+     {
+      "article_id": "Dieu_29",
+      "rrf_score": 0.03125763125763126,
+      "content_chars": 1784
+     },
+     {
+      "article_id": "Dieu_41",
+      "rrf_score": 0.031054405392392875,
+      "content_chars": 1625
+     },
+     {
+      "article_id": "Dieu_98",
+      "rrf_score": 0.030776515151515152,
+      "content_chars": 995
+     },
+     {
+      "article_id": "Dieu_47",
+      "rrf_score": 0.028991596638655463,
+      "content_chars": 852
+     },
+     {
+      "article_id": "Dieu_24",
+      "rrf_score": 0.028693528693528692,
+      "content_chars": 445
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.028484848484848488,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_90",
+      "rrf_score": 0.028404512489927477,
+      "content_chars": 451
+     },
+     {
+      "article_id": "Dieu_101",
+      "rrf_score": 0.028381642512077296,
+      "content_chars": 631
+     },
+     {
+      "article_id": "Dieu_99",
+      "rrf_score": 0.027884615384615386,
+      "content_chars": 1048
+     },
+     {
+      "article_id": "Dieu_33",
+      "rrf_score": 0.027799227799227798,
+      "content_chars": 586
+     },
+     {
+      "article_id": "Dieu_128",
+      "rrf_score": 0.027222222222222224,
+      "content_chars": 1048
+     },
+     {
+      "article_id": "Dieu_35",
+      "rrf_score": 0.02712049508554787,
+      "content_chars": 1584
+     },
+     {
+      "article_id": "Dieu_82",
+      "rrf_score": 0.02668564312399929,
+      "content_chars": 678
+     },
+     {
+      "article_id": "Dieu_27",
+      "rrf_score": 0.026438310608579978,
+      "content_chars": 662
+     },
+     {
+      "article_id": "Dieu_109",
+      "rrf_score": 0.026397515527950312,
+      "content_chars": 550
+     },
+     {
+      "article_id": "Dieu_25",
+      "rrf_score": 0.026263297872340427,
+      "content_chars": 722
+     },
+     {
+      "article_id": "Dieu_49",
+      "rrf_score": 0.02557875991581674,
+      "content_chars": 532
+     },
+     {
+      "article_id": "Dieu_140",
+      "rrf_score": 0.02531645569620253,
+      "content_chars": 437
+     },
+     {
+      "article_id": "Dieu_91",
+      "rrf_score": 0.025015634771732333,
+      "content_chars": 823
+     }
+    ]
+   },
+   "BLL19-03-NOTICE": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người lao động có hợp đồng không xác định thời hạn muốn đơn phương chấm dứt trong trường hợp thông thường, không thuộc diện được miễn báo trước và không làm công việc đặc thù, phải báo trước ít nhất bao nhiêu ngày?",
+    "gold_ids": [
+     "Dieu_35"
+    ],
+    "gold_ranks": {
+     "Dieu_35": 1
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0016180410002561985,
+    "candidates": [
+     {
+      "article_id": "Dieu_35",
+      "rrf_score": 0.03278688524590164,
+      "content_chars": 1584
+     },
+     {
+      "article_id": "Dieu_36",
+      "rrf_score": 0.03225806451612903,
+      "content_chars": 2677
+     },
+     {
+      "article_id": "Dieu_41",
+      "rrf_score": 0.03125763125763126,
+      "content_chars": 1625
+     },
+     {
+      "article_id": "Dieu_38",
+      "rrf_score": 0.03057889822595705,
+      "content_chars": 225
+     },
+     {
+      "article_id": "Dieu_40",
+      "rrf_score": 0.030090497737556562,
+      "content_chars": 414
+     },
+     {
+      "article_id": "Dieu_45",
+      "rrf_score": 0.029910714285714284,
+      "content_chars": 848
+     },
+     {
+      "article_id": "Dieu_162",
+      "rrf_score": 0.028958333333333336,
+      "content_chars": 519
+     },
+     {
+      "article_id": "Dieu_34",
+      "rrf_score": 0.028850145288501453,
+      "content_chars": 1859
+     },
+     {
+      "article_id": "Dieu_20",
+      "rrf_score": 0.028438886647841874,
+      "content_chars": 1486
+     },
+     {
+      "article_id": "Dieu_33",
+      "rrf_score": 0.028381642512077296,
+      "content_chars": 586
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.028258706467661692,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_29",
+      "rrf_score": 0.02758751902587519,
+      "content_chars": 1784
+     },
+     {
+      "article_id": "Dieu_177",
+      "rrf_score": 0.027242401779095628,
+      "content_chars": 1434
+     },
+     {
+      "article_id": "Dieu_137",
+      "rrf_score": 0.026992753623188405,
+      "content_chars": 1807
+     },
+     {
+      "article_id": "Dieu_138",
+      "rrf_score": 0.026500526500526502,
+      "content_chars": 978
+     },
+     {
+      "article_id": "Dieu_188",
+      "rrf_score": 0.025779967159277502,
+      "content_chars": 3197
+     },
+     {
+      "article_id": "Dieu_27",
+      "rrf_score": 0.02557875991581674,
+      "content_chars": 662
+     },
+     {
+      "article_id": "Dieu_39",
+      "rrf_score": 0.025252525252525256,
+      "content_chars": 218
+     },
+     {
+      "article_id": "Dieu_201",
+      "rrf_score": 0.02484567901234568,
+      "content_chars": 1078
+     },
+     {
+      "article_id": "Dieu_139",
+      "rrf_score": 0.024725274725274724,
+      "content_chars": 1358
+     }
+    ]
+   },
+   "BLL19-04-ABSENCE": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người lao động không thuộc diện được bảo vệ khỏi đơn phương chấm dứt, tự ý bỏ việc không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên: người sử dụng lao động có quyền đơn phương chấm dứt không và có phải báo trước không?",
+    "gold_ids": [
+     "Dieu_36"
+    ],
+    "gold_ranks": {
+     "Dieu_36": 1
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0016611250011919765,
+    "candidates": [
+     {
+      "article_id": "Dieu_36",
+      "rrf_score": 0.03278688524590164,
+      "content_chars": 2677
+     },
+     {
+      "article_id": "Dieu_35",
+      "rrf_score": 0.03200204813108039,
+      "content_chars": 1584
+     },
+     {
+      "article_id": "Dieu_38",
+      "rrf_score": 0.03128054740957967,
+      "content_chars": 225
+     },
+     {
+      "article_id": "Dieu_41",
+      "rrf_score": 0.030117753623188408,
+      "content_chars": 1625
+     },
+     {
+      "article_id": "Dieu_34",
+      "rrf_score": 0.02976190476190476,
+      "content_chars": 1859
+     },
+     {
+      "article_id": "Dieu_45",
+      "rrf_score": 0.029083245521601686,
+      "content_chars": 848
+     },
+     {
+      "article_id": "Dieu_40",
+      "rrf_score": 0.029083245521601686,
+      "content_chars": 414
+     },
+     {
+      "article_id": "Dieu_138",
+      "rrf_score": 0.02900988017658188,
+      "content_chars": 978
+     },
+     {
+      "article_id": "Dieu_188",
+      "rrf_score": 0.028790389395194696,
+      "content_chars": 3197
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.028258706467661692,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_125",
+      "rrf_score": 0.02813852813852814,
+      "content_chars": 1267
+     },
+     {
+      "article_id": "Dieu_137",
+      "rrf_score": 0.027479766610201392,
+      "content_chars": 1807
+     },
+     {
+      "article_id": "Dieu_37",
+      "rrf_score": 0.027106227106227107,
+      "content_chars": 534
+     },
+     {
+      "article_id": "Dieu_5",
+      "rrf_score": 0.02684684684684685,
+      "content_chars": 1568
+     },
+     {
+      "article_id": "Dieu_39",
+      "rrf_score": 0.026736111111111113,
+      "content_chars": 218
+     },
+     {
+      "article_id": "Dieu_44",
+      "rrf_score": 0.026631393298059962,
+      "content_chars": 925
+     },
+     {
+      "article_id": "Dieu_48",
+      "rrf_score": 0.026547116736990152,
+      "content_chars": 1353
+     },
+     {
+      "article_id": "Dieu_118",
+      "rrf_score": 0.026334026334026334,
+      "content_chars": 1333
+     },
+     {
+      "article_id": "Dieu_177",
+      "rrf_score": 0.02631578947368421,
+      "content_chars": 1434
+     },
+     {
+      "article_id": "Dieu_162",
+      "rrf_score": 0.026200135226504394,
+      "content_chars": 519
+     }
+    ]
+   },
+   "BLL19-05-PREGNANCY": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động có được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi không?",
+    "gold_ids": [
+     "Dieu_37"
+    ],
+    "gold_ranks": {
+     "Dieu_37": 2
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0013836660000379197,
+    "candidates": [
+     {
+      "article_id": "Dieu_137",
+      "rrf_score": 0.03252247488101534,
+      "content_chars": 1807
+     },
+     {
+      "article_id": "Dieu_37",
+      "rrf_score": 0.03252247488101534,
+      "content_chars": 534
+     },
+     {
+      "article_id": "Dieu_35",
+      "rrf_score": 0.031746031746031744,
+      "content_chars": 1584
+     },
+     {
+      "article_id": "Dieu_122",
+      "rrf_score": 0.031009615384615385,
+      "content_chars": 1566
+     },
+     {
+      "article_id": "Dieu_36",
+      "rrf_score": 0.03007688828584351,
+      "content_chars": 2677
+     },
+     {
+      "article_id": "Dieu_138",
+      "rrf_score": 0.03007688828584351,
+      "content_chars": 978
+     },
+     {
+      "article_id": "Dieu_139",
+      "rrf_score": 0.029273504273504274,
+      "content_chars": 1358
+     },
+     {
+      "article_id": "Dieu_45",
+      "rrf_score": 0.028577260665441927,
+      "content_chars": 848
+     },
+     {
+      "article_id": "Dieu_34",
+      "rrf_score": 0.02821939586645469,
+      "content_chars": 1859
+     },
+     {
+      "article_id": "Dieu_40",
+      "rrf_score": 0.02782608695652174,
+      "content_chars": 414
+     },
+     {
+      "article_id": "Dieu_41",
+      "rrf_score": 0.027783137179239824,
+      "content_chars": 1625
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.02761904761904762,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_53",
+      "rrf_score": 0.0260840108401084,
+      "content_chars": 1230
+     },
+     {
+      "article_id": "Dieu_18",
+      "rrf_score": 0.025603392041748205,
+      "content_chars": 1754
+     },
+     {
+      "article_id": "Dieu_48",
+      "rrf_score": 0.02484567901234568,
+      "content_chars": 1353
+     },
+     {
+      "article_id": "Dieu_177",
+      "rrf_score": 0.024706420619185605,
+      "content_chars": 1434
+     },
+     {
+      "article_id": "Dieu_79",
+      "rrf_score": 0.024624624624624628,
+      "content_chars": 1053
+     },
+     {
+      "article_id": "Dieu_162",
+      "rrf_score": 0.024285714285714285,
+      "content_chars": 519
+     },
+     {
+      "article_id": "Dieu_30",
+      "rrf_score": 0.024250440917107582,
+      "content_chars": 1186
+     },
+     {
+      "article_id": "Dieu_80",
+      "rrf_score": 0.024056467876692595,
+      "content_chars": 910
+     }
+    ]
+   },
+   "BLL19-06-UNLAWFUL_RESIGNATION": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người lao động đơn phương chấm dứt trái pháp luật có được trợ cấp thôi việc không; khoản bồi thường cố định là bao nhiêu tháng tiền lương, chưa tính khoản ngày không báo trước và chi phí đào tạo?",
+    "gold_ids": [
+     "Dieu_40"
+    ],
+    "gold_ranks": {
+     "Dieu_40": 1
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0014638329994340893,
+    "candidates": [
+     {
+      "article_id": "Dieu_40",
+      "rrf_score": 0.03278688524590164,
+      "content_chars": 414
+     },
+     {
+      "article_id": "Dieu_41",
+      "rrf_score": 0.03225806451612903,
+      "content_chars": 1625
+     },
+     {
+      "article_id": "Dieu_46",
+      "rrf_score": 0.03149801587301587,
+      "content_chars": 1025
+     },
+     {
+      "article_id": "Dieu_62",
+      "rrf_score": 0.030309988518943745,
+      "content_chars": 1225
+     },
+     {
+      "article_id": "Dieu_35",
+      "rrf_score": 0.030117753623188408,
+      "content_chars": 1584
+     },
+     {
+      "article_id": "Dieu_36",
+      "rrf_score": 0.02967032967032967,
+      "content_chars": 2677
+     },
+     {
+      "article_id": "Dieu_47",
+      "rrf_score": 0.02964426877470356,
+      "content_chars": 852
+     },
+     {
+      "article_id": "Dieu_45",
+      "rrf_score": 0.02904040404040404,
+      "content_chars": 848
+     },
+     {
+      "article_id": "Dieu_34",
+      "rrf_score": 0.028790389395194696,
+      "content_chars": 1859
+     },
+     {
+      "article_id": "Dieu_39",
+      "rrf_score": 0.028693528693528692,
+      "content_chars": 218
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.02821939586645469,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_48",
+      "rrf_score": 0.02758751902587519,
+      "content_chars": 1353
+     },
+     {
+      "article_id": "Dieu_188",
+      "rrf_score": 0.026356857985087564,
+      "content_chars": 3197
+     },
+     {
+      "article_id": "Dieu_129",
+      "rrf_score": 0.025974025974025976,
+      "content_chars": 1192
+     },
+     {
+      "article_id": "Dieu_113",
+      "rrf_score": 0.02591362126245847,
+      "content_chars": 1560
+     },
+     {
+      "article_id": "Dieu_42",
+      "rrf_score": 0.025708635464733027,
+      "content_chars": 1673
+     },
+     {
+      "article_id": "Dieu_38",
+      "rrf_score": 0.025451688923802042,
+      "content_chars": 225
+     },
+     {
+      "article_id": "Dieu_220",
+      "rrf_score": 0.025158227848101268,
+      "content_chars": 1011
+     },
+     {
+      "article_id": "Dieu_37",
+      "rrf_score": 0.024827586206896554,
+      "content_chars": 534
+     },
+     {
+      "article_id": "Dieu_139",
+      "rrf_score": 0.024322344322344324,
+      "content_chars": 1358
+     }
+    ]
+   },
+   "BLL19-07-NOTICE_AND_SEVERANCE": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), một người lao động đang trong thời hạn hợp đồng 24 tháng muốn nghỉ đúng luật theo trường hợp thông thường, không được miễn báo trước và không làm công việc đặc thù. Người này đã làm việc thường xuyên đủ 12 tháng, chưa đủ điều kiện hưởng lương hưu. Cần báo trước bao lâu, mức trợ cấp thôi việc mỗi năm là bao nhiêu và thời gian đã tham gia bảo hiểm thất nghiệp có được tính vào trợ cấp không?",
+    "gold_ids": [
+     "Dieu_35",
+     "Dieu_46"
+    ],
+    "gold_ranks": {
+     "Dieu_35": 5,
+     "Dieu_46": 1
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0022583329991903156,
+    "candidates": [
+     {
+      "article_id": "Dieu_46",
+      "rrf_score": 0.03278688524590164,
+      "content_chars": 1025
+     },
+     {
+      "article_id": "Dieu_47",
+      "rrf_score": 0.03225806451612903,
+      "content_chars": 852
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.03149801587301587,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_41",
+      "rrf_score": 0.03149801587301587,
+      "content_chars": 1625
+     },
+     {
+      "article_id": "Dieu_35",
+      "rrf_score": 0.030536130536130537,
+      "content_chars": 1584
+     },
+     {
+      "article_id": "Dieu_36",
+      "rrf_score": 0.029857397504456328,
+      "content_chars": 2677
+     },
+     {
+      "article_id": "Dieu_113",
+      "rrf_score": 0.029631255487269532,
+      "content_chars": 1560
+     },
+     {
+      "article_id": "Dieu_169",
+      "rrf_score": 0.02862400327131466,
+      "content_chars": 1326
+     },
+     {
+      "article_id": "Dieu_139",
+      "rrf_score": 0.02782608695652174,
+      "content_chars": 1358
+     },
+     {
+      "article_id": "Dieu_40",
+      "rrf_score": 0.027783137179239824,
+      "content_chars": 414
+     },
+     {
+      "article_id": "Dieu_137",
+      "rrf_score": 0.027443609022556388,
+      "content_chars": 1807
+     },
+     {
+      "article_id": "Dieu_48",
+      "rrf_score": 0.027222222222222224,
+      "content_chars": 1353
+     },
+     {
+      "article_id": "Dieu_168",
+      "rrf_score": 0.02548562548562549,
+      "content_chars": 1059
+     },
+     {
+      "article_id": "Dieu_149",
+      "rrf_score": 0.02532051282051282,
+      "content_chars": 825
+     },
+     {
+      "article_id": "Dieu_122",
+      "rrf_score": 0.0251414204902577,
+      "content_chars": 1566
+     },
+     {
+      "article_id": "Dieu_27",
+      "rrf_score": 0.024909420289855072,
+      "content_chars": 662
+     },
+     {
+      "article_id": "Dieu_5",
+      "rrf_score": 0.02484567901234568,
+      "content_chars": 1568
+     },
+     {
+      "article_id": "Dieu_145",
+      "rrf_score": 0.02478580171358629,
+      "content_chars": 1224
+     },
+     {
+      "article_id": "Dieu_79",
+      "rrf_score": 0.0246415770609319,
+      "content_chars": 1053
+     },
+     {
+      "article_id": "Dieu_151",
+      "rrf_score": 0.024562989752863168,
+      "content_chars": 1237
+     }
+    ]
+   },
+   "BLL19-08-UNLAWFUL_TERMINATION": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), đã xác định người sử dụng lao động đơn phương chấm dứt hợp đồng trái pháp luật, người lao động không muốn tiếp tục làm việc. Các nghĩa vụ chính về tiền lương, bảo hiểm, khoản tiền ít nhất bằng bao nhiêu tháng lương và trợ cấp thôi việc là gì?",
+    "gold_ids": [
+     "Dieu_41",
+     "Dieu_46"
+    ],
+    "gold_ranks": {
+     "Dieu_41": 1,
+     "Dieu_46": 3
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0016365420015063137,
+    "candidates": [
+     {
+      "article_id": "Dieu_41",
+      "rrf_score": 0.03278688524590164,
+      "content_chars": 1625
+     },
+     {
+      "article_id": "Dieu_40",
+      "rrf_score": 0.03225806451612903,
+      "content_chars": 414
+     },
+     {
+      "article_id": "Dieu_46",
+      "rrf_score": 0.03149801587301587,
+      "content_chars": 1025
+     },
+     {
+      "article_id": "Dieu_47",
+      "rrf_score": 0.030303030303030304,
+      "content_chars": 852
+     },
+     {
+      "article_id": "Dieu_36",
+      "rrf_score": 0.030117753623188408,
+      "content_chars": 2677
+     },
+     {
+      "article_id": "Dieu_35",
+      "rrf_score": 0.030090497737556562,
+      "content_chars": 1584
+     },
+     {
+      "article_id": "Dieu_34",
+      "rrf_score": 0.029877369007803793,
+      "content_chars": 1859
+     },
+     {
+      "article_id": "Dieu_48",
+      "rrf_score": 0.029850746268656716,
+      "content_chars": 1353
+     },
+     {
+      "article_id": "Dieu_45",
+      "rrf_score": 0.028169014084507043,
+      "content_chars": 848
+     },
+     {
+      "article_id": "Dieu_101",
+      "rrf_score": 0.027212143650499815,
+      "content_chars": 631
+     },
+     {
+      "article_id": "Dieu_5",
+      "rrf_score": 0.02668564312399929,
+      "content_chars": 1568
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.026190476190476188,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_39",
+      "rrf_score": 0.026182294223531334,
+      "content_chars": 218
+     },
+     {
+      "article_id": "Dieu_137",
+      "rrf_score": 0.025937081659973226,
+      "content_chars": 1807
+     },
+     {
+      "article_id": "Dieu_138",
+      "rrf_score": 0.025516795865633074,
+      "content_chars": 978
+     },
+     {
+      "article_id": "Dieu_163",
+      "rrf_score": 0.02548701298701299,
+      "content_chars": 735
+     },
+     {
+      "article_id": "Dieu_175",
+      "rrf_score": 0.02538152610441767,
+      "content_chars": 1312
+     },
+     {
+      "article_id": "Dieu_139",
+      "rrf_score": 0.025232198142414862,
+      "content_chars": 1358
+     },
+     {
+      "article_id": "Dieu_177",
+      "rrf_score": 0.0251661918328585,
+      "content_chars": 1434
+     },
+     {
+      "article_id": "Dieu_188",
+      "rrf_score": 0.024877149877149878,
+      "content_chars": 3197
+     }
+    ]
+   },
+   "BLL19-09-DEPOSIT": {
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc chỉ để bảo đảm việc thực hiện hợp đồng lao động có được phép không?",
+    "gold_ids": [
+     "Dieu_17"
+    ],
+    "gold_ranks": {
+     "Dieu_17": 1
+    },
+    "gold_absent_from_top20": [],
+    "search_seconds": 0.0012509160005720332,
+    "candidates": [
+     {
+      "article_id": "Dieu_17",
+      "rrf_score": 0.03278688524590164,
+      "content_chars": 385
+     },
+     {
+      "article_id": "Dieu_41",
+      "rrf_score": 0.029957522915269395,
+      "content_chars": 1625
+     },
+     {
+      "article_id": "Dieu_35",
+      "rrf_score": 0.02964426877470356,
+      "content_chars": 1584
+     },
+     {
+      "article_id": "Dieu_45",
+      "rrf_score": 0.028850145288501453,
+      "content_chars": 848
+     },
+     {
+      "article_id": "Dieu_79",
+      "rrf_score": 0.028474711270410194,
+      "content_chars": 1053
+     },
+     {
+      "article_id": "Dieu_220",
+      "rrf_score": 0.028205128205128206,
+      "content_chars": 1011
+     },
+     {
+      "article_id": "Dieu_33",
+      "rrf_score": 0.027623285131627734,
+      "content_chars": 586
+     },
+     {
+      "article_id": "Dieu_128",
+      "rrf_score": 0.026860955056179775,
+      "content_chars": 1048
+     },
+     {
+      "article_id": "Dieu_102",
+      "rrf_score": 0.0266900790166813,
+      "content_chars": 534
+     },
+     {
+      "article_id": "Dieu_100",
+      "rrf_score": 0.026631393298059962,
+      "content_chars": 883
+     },
+     {
+      "article_id": "Dieu_144",
+      "rrf_score": 0.026547116736990152,
+      "content_chars": 816
+     },
+     {
+      "article_id": "Dieu_5",
+      "rrf_score": 0.026540946394272742,
+      "content_chars": 1568
+     },
+     {
+      "article_id": "Dieu_36",
+      "rrf_score": 0.02571241401899771,
+      "content_chars": 2677
+     },
+     {
+      "article_id": "Dieu_219",
+      "rrf_score": 0.025458570524984188,
+      "content_chars": 7247
+     },
+     {
+      "article_id": "Dieu_48",
+      "rrf_score": 0.02441520467836257,
+      "content_chars": 1353
+     },
+     {
+      "article_id": "Dieu_29",
+      "rrf_score": 0.023717595146166573,
+      "content_chars": 1784
+     },
+     {
+      "article_id": "Dieu_108",
+      "rrf_score": 0.02319109461966605,
+      "content_chars": 711
+     },
+     {
+      "article_id": "Dieu_82",
+      "rrf_score": 0.022774327122153208,
+      "content_chars": 678
+     },
+     {
+      "article_id": "Dieu_44",
+      "rrf_score": 0.02224694104560623,
+      "content_chars": 925
+     },
+     {
+      "article_id": "Dieu_37",
+      "rrf_score": 0.021627308861351415,
+      "content_chars": 534
+     }
+    ]
+   }
+  },
+  "metrics": {
+   "per_task": [
+    {
+     "task_id": "BLL19-01-PROBATION",
+     "gold_ranks": {
+      "Dieu_25": 1
+     },
+     "recall": {
+      "@1": 1.0,
+      "@3": 1.0,
+      "@5": 1.0
+     },
+     "rr": 1.0
+    },
+    {
+     "task_id": "BLL19-02-PROBATION_WAGE",
+     "gold_ranks": {
+      "Dieu_26": 1
+     },
+     "recall": {
+      "@1": 1.0,
+      "@3": 1.0,
+      "@5": 1.0
+     },
+     "rr": 1.0
+    },
+    {
+     "task_id": "BLL19-03-NOTICE",
+     "gold_ranks": {
+      "Dieu_35": 1
+     },
+     "recall": {
+      "@1": 1.0,
+      "@3": 1.0,
+      "@5": 1.0
+     },
+     "rr": 1.0
+    },
+    {
+     "task_id": "BLL19-04-ABSENCE",
+     "gold_ranks": {
+      "Dieu_36": 1
+     },
+     "recall": {
+      "@1": 1.0,
+      "@3": 1.0,
+      "@5": 1.0
+     },
+     "rr": 1.0
+    },
+    {
+     "task_id": "BLL19-05-PREGNANCY",
+     "gold_ranks": {
+      "Dieu_37": 2
+     },
+     "recall": {
+      "@1": 0.0,
+      "@3": 1.0,
+      "@5": 1.0
+     },
+     "rr": 0.5
+    },
+    {
+     "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+     "gold_ranks": {
+      "Dieu_40": 1
+     },
+     "recall": {
+      "@1": 1.0,
+      "@3": 1.0,
+      "@5": 1.0
+     },
+     "rr": 1.0
+    },
+    {
+     "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+     "gold_ranks": {
+      "Dieu_35": 5,
+      "Dieu_46": 1
+     },
+     "recall": {
+      "@1": 0.5,
+      "@3": 0.5,
+      "@5": 1.0
+     },
+     "rr": 1.0
+    },
+    {
+     "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+     "gold_ranks": {
+      "Dieu_41": 1,
+      "Dieu_46": 3
+     },
+     "recall": {
+      "@1": 0.5,
+      "@3": 1.0,
+      "@5": 1.0
+     },
+     "rr": 1.0
+    },
+    {
+     "task_id": "BLL19-09-DEPOSIT",
+     "gold_ranks": {
+      "Dieu_17": 1
+     },
+     "recall": {
+      "@1": 1.0,
+      "@3": 1.0,
+      "@5": 1.0
+     },
+     "rr": 1.0
+    }
+   ],
+   "mean": {
+    "Recall@1": 0.7777777777777778,
+    "Recall@3": 0.9444444444444444,
+    "Recall@5": 1.0,
+    "MRR": 0.9444444444444444
+   }
+  }
+ },
+ "experiment_a": {
+  "models": {
+   "aiteam": {
+    "model": "AITeamVN/Vietnamese_Reranker",
+    "status": "ok",
+    "errors": [],
+    "device": "mps",
+    "load_seconds": 9.10071191699899,
+    "dtype": "float32",
+    "max_length": 2304,
+    "per_task": {
+     "BLL19-01-PROBATION": {
+      "gold_ranks_before": {
+       "Dieu_25": 1
+      },
+      "gold_ranks_after": {
+       "Dieu_25": 1
+      },
+      "reranked_ids": [
+       "Dieu_25",
+       "Dieu_61",
+       "Dieu_27",
+       "Dieu_107",
+       "Dieu_169",
+       "Dieu_151",
+       "Dieu_53",
+       "Dieu_152",
+       "Dieu_219",
+       "Dieu_109",
+       "Dieu_45",
+       "Dieu_33",
+       "Dieu_119",
+       "Dieu_220",
+       "Dieu_4",
+       "Dieu_101",
+       "Dieu_118",
+       "Dieu_185",
+       "Dieu_82",
+       "Dieu_60"
+      ],
+      "scores": {
+       "Dieu_25": 9.650897979736328,
+       "Dieu_53": -7.169435977935791,
+       "Dieu_152": -7.297276496887207,
+       "Dieu_219": -7.449395656585693,
+       "Dieu_4": -8.40460205078125,
+       "Dieu_107": -5.950571060180664,
+       "Dieu_151": -6.781091690063477,
+       "Dieu_27": -5.713925838470459,
+       "Dieu_109": -7.701361179351807,
+       "Dieu_169": -6.486973285675049,
+       "Dieu_119": -8.144767761230469,
+       "Dieu_220": -8.360872268676758,
+       "Dieu_45": -7.8234992027282715,
+       "Dieu_118": -8.88242244720459,
+       "Dieu_33": -8.01341438293457,
+       "Dieu_60": -10.52282428741455,
+       "Dieu_61": -5.433926582336426,
+       "Dieu_101": -8.652772903442383,
+       "Dieu_185": -8.926403045654297,
+       "Dieu_82": -10.124403953552246
+      },
+      "seconds": 5.048765249999633
+     },
+     "BLL19-02-PROBATION_WAGE": {
+      "gold_ranks_before": {
+       "Dieu_26": 1
+      },
+      "gold_ranks_after": {
+       "Dieu_26": 1
+      },
+      "reranked_ids": [
+       "Dieu_26",
+       "Dieu_90",
+       "Dieu_29",
+       "Dieu_25",
+       "Dieu_98",
+       "Dieu_24",
+       "Dieu_99",
+       "Dieu_47",
+       "Dieu_27",
+       "Dieu_219",
+       "Dieu_128",
+       "Dieu_91",
+       "Dieu_41",
+       "Dieu_101",
+       "Dieu_35",
+       "Dieu_49",
+       "Dieu_109",
+       "Dieu_140",
+       "Dieu_33",
+       "Dieu_82"
+      ],
+      "scores": {
+       "Dieu_26": 11.177765846252441,
+       "Dieu_29": -2.828828811645508,
+       "Dieu_41": -6.981861591339111,
+       "Dieu_98": -4.488247394561768,
+       "Dieu_47": -5.431321144104004,
+       "Dieu_24": -4.826387882232666,
+       "Dieu_219": -6.117038726806641,
+       "Dieu_90": -0.4181651473045349,
+       "Dieu_101": -7.0086188316345215,
+       "Dieu_99": -4.956357955932617,
+       "Dieu_33": -8.979644775390625,
+       "Dieu_128": -6.3306660652160645,
+       "Dieu_35": -7.262999057769775,
+       "Dieu_82": -9.255675315856934,
+       "Dieu_27": -5.878373622894287,
+       "Dieu_109": -8.666763305664062,
+       "Dieu_25": -4.1955695152282715,
+       "Dieu_49": -7.516643524169922,
+       "Dieu_140": -8.759838104248047,
+       "Dieu_91": -6.370771408081055
+      },
+      "seconds": 4.4973982499996055
+     },
+     "BLL19-03-NOTICE": {
+      "gold_ranks_before": {
+       "Dieu_35": 1
+      },
+      "gold_ranks_after": {
+       "Dieu_35": 1
+      },
+      "reranked_ids": [
+       "Dieu_35",
+       "Dieu_36",
+       "Dieu_162",
+       "Dieu_45",
+       "Dieu_33",
+       "Dieu_41",
+       "Dieu_34",
+       "Dieu_29",
+       "Dieu_20",
+       "Dieu_38",
+       "Dieu_40",
+       "Dieu_39",
+       "Dieu_177",
+       "Dieu_201",
+       "Dieu_219",
+       "Dieu_188",
+       "Dieu_27",
+       "Dieu_137",
+       "Dieu_139",
+       "Dieu_138"
+      ],
+      "scores": {
+       "Dieu_35": 6.330059051513672,
+       "Dieu_36": 5.830929756164551,
+       "Dieu_41": -2.4616329669952393,
+       "Dieu_38": -4.0031280517578125,
+       "Dieu_40": -4.011630058288574,
+       "Dieu_45": -1.2488837242126465,
+       "Dieu_162": -0.08396796882152557,
+       "Dieu_34": -3.0896050930023193,
+       "Dieu_20": -3.5732035636901855,
+       "Dieu_33": -1.8499594926834106,
+       "Dieu_219": -6.105712413787842,
+       "Dieu_29": -3.3980798721313477,
+       "Dieu_177": -5.723354816436768,
+       "Dieu_137": -7.639143466949463,
+       "Dieu_138": -8.49110221862793,
+       "Dieu_188": -6.201328754425049,
+       "Dieu_27": -6.573227882385254,
+       "Dieu_39": -4.664225101470947,
+       "Dieu_201": -6.071135520935059,
+       "Dieu_139": -8.199345588684082
+      },
+      "seconds": 5.82069783299994
+     },
+     "BLL19-04-ABSENCE": {
+      "gold_ranks_before": {
+       "Dieu_36": 1
+      },
+      "gold_ranks_after": {
+       "Dieu_36": 1
+      },
+      "reranked_ids": [
+       "Dieu_36",
+       "Dieu_35",
+       "Dieu_125",
+       "Dieu_37",
+       "Dieu_162",
+       "Dieu_45",
+       "Dieu_38",
+       "Dieu_41",
+       "Dieu_34",
+       "Dieu_5",
+       "Dieu_48",
+       "Dieu_40",
+       "Dieu_39",
+       "Dieu_188",
+       "Dieu_44",
+       "Dieu_177",
+       "Dieu_118",
+       "Dieu_137",
+       "Dieu_219",
+       "Dieu_138"
+      ],
+      "scores": {
+       "Dieu_36": 9.989035606384277,
+       "Dieu_35": 6.88761568069458,
+       "Dieu_38": 0.8282703757286072,
+       "Dieu_41": -0.8836762309074402,
+       "Dieu_34": -1.0339285135269165,
+       "Dieu_45": 1.1805250644683838,
+       "Dieu_40": -1.8509228229522705,
+       "Dieu_138": -5.494046688079834,
+       "Dieu_188": -3.540989875793457,
+       "Dieu_219": -4.214025974273682,
+       "Dieu_125": 2.1923727989196777,
+       "Dieu_137": -4.200294017791748,
+       "Dieu_37": 1.5045831203460693,
+       "Dieu_5": -1.0922865867614746,
+       "Dieu_39": -3.225327491760254,
+       "Dieu_44": -3.5720953941345215,
+       "Dieu_48": -1.2563748359680176,
+       "Dieu_118": -3.891014814376831,
+       "Dieu_177": -3.698184013366699,
+       "Dieu_162": 1.46832275390625
+      },
+      "seconds": 5.443842708000375
+     },
+     "BLL19-05-PREGNANCY": {
+      "gold_ranks_before": {
+       "Dieu_37": 2
+      },
+      "gold_ranks_after": {
+       "Dieu_37": 1
+      },
+      "reranked_ids": [
+       "Dieu_37",
+       "Dieu_137",
+       "Dieu_35",
+       "Dieu_36",
+       "Dieu_122",
+       "Dieu_138",
+       "Dieu_34",
+       "Dieu_30",
+       "Dieu_162",
+       "Dieu_45",
+       "Dieu_18",
+       "Dieu_139",
+       "Dieu_48",
+       "Dieu_219",
+       "Dieu_41",
+       "Dieu_53",
+       "Dieu_177",
+       "Dieu_40",
+       "Dieu_80",
+       "Dieu_79"
+      ],
+      "scores": {
+       "Dieu_137": 8.041131973266602,
+       "Dieu_37": 10.267614364624023,
+       "Dieu_35": 4.884542465209961,
+       "Dieu_122": 1.976393461227417,
+       "Dieu_36": 2.7933106422424316,
+       "Dieu_138": 1.8453434705734253,
+       "Dieu_139": -3.140296459197998,
+       "Dieu_45": -2.7445828914642334,
+       "Dieu_34": -0.7052890062332153,
+       "Dieu_40": -6.53303861618042,
+       "Dieu_41": -4.111586570739746,
+       "Dieu_219": -3.786895751953125,
+       "Dieu_53": -4.8280816078186035,
+       "Dieu_18": -2.992117404937744,
+       "Dieu_48": -3.3765995502471924,
+       "Dieu_177": -6.128833293914795,
+       "Dieu_79": -7.188525199890137,
+       "Dieu_162": -2.1944756507873535,
+       "Dieu_30": -1.661149024963379,
+       "Dieu_80": -7.1331071853637695
+      },
+      "seconds": 5.286995709000621
+     },
+     "BLL19-06-UNLAWFUL_RESIGNATION": {
+      "gold_ranks_before": {
+       "Dieu_40": 1
+      },
+      "gold_ranks_after": {
+       "Dieu_40": 1
+      },
+      "reranked_ids": [
+       "Dieu_40",
+       "Dieu_41",
+       "Dieu_46",
+       "Dieu_35",
+       "Dieu_39",
+       "Dieu_47",
+       "Dieu_48",
+       "Dieu_34",
+       "Dieu_113",
+       "Dieu_36",
+       "Dieu_129",
+       "Dieu_37",
+       "Dieu_45",
+       "Dieu_42",
+       "Dieu_219",
+       "Dieu_188",
+       "Dieu_62",
+       "Dieu_220",
+       "Dieu_38",
+       "Dieu_139"
+      ],
+      "scores": {
+       "Dieu_40": 7.112606525421143,
+       "Dieu_41": 2.8010926246643066,
+       "Dieu_46": -0.31456100940704346,
+       "Dieu_62": -6.862555027008057,
+       "Dieu_35": -3.050943613052368,
+       "Dieu_36": -3.6877822875976562,
+       "Dieu_47": -3.307474136352539,
+       "Dieu_45": -5.317574977874756,
+       "Dieu_34": -3.5092287063598633,
+       "Dieu_39": -3.160221815109253,
+       "Dieu_219": -5.990931987762451,
+       "Dieu_48": -3.4741151332855225,
+       "Dieu_188": -6.319110870361328,
+       "Dieu_129": -4.962313175201416,
+       "Dieu_113": -3.68501353263855,
+       "Dieu_42": -5.46319055557251,
+       "Dieu_38": -7.669909954071045,
+       "Dieu_220": -6.907381534576416,
+       "Dieu_37": -5.2243804931640625,
+       "Dieu_139": -9.35228157043457
+      },
+      "seconds": 5.689189542001259
+     },
+     "BLL19-07-NOTICE_AND_SEVERANCE": {
+      "gold_ranks_before": {
+       "Dieu_35": 5,
+       "Dieu_46": 1
+      },
+      "gold_ranks_after": {
+       "Dieu_35": 4,
+       "Dieu_46": 1
+      },
+      "reranked_ids": [
+       "Dieu_46",
+       "Dieu_47",
+       "Dieu_113",
+       "Dieu_35",
+       "Dieu_36",
+       "Dieu_41",
+       "Dieu_48",
+       "Dieu_219",
+       "Dieu_169",
+       "Dieu_168",
+       "Dieu_5",
+       "Dieu_40",
+       "Dieu_145",
+       "Dieu_122",
+       "Dieu_151",
+       "Dieu_139",
+       "Dieu_27",
+       "Dieu_137",
+       "Dieu_149",
+       "Dieu_79"
+      ],
+      "scores": {
+       "Dieu_46": 5.0209784507751465,
+       "Dieu_47": 2.8932809829711914,
+       "Dieu_219": -4.194994926452637,
+       "Dieu_41": -3.075159788131714,
+       "Dieu_35": -2.089883804321289,
+       "Dieu_36": -2.591881275177002,
+       "Dieu_113": -1.164636492729187,
+       "Dieu_169": -4.759460926055908,
+       "Dieu_139": -7.272940158843994,
+       "Dieu_40": -5.726894855499268,
+       "Dieu_137": -7.580607891082764,
+       "Dieu_48": -3.50384521484375,
+       "Dieu_168": -5.386341571807861,
+       "Dieu_149": -8.213027954101562,
+       "Dieu_122": -6.960403919219971,
+       "Dieu_27": -7.564158916473389,
+       "Dieu_5": -5.390880107879639,
+       "Dieu_145": -6.767264366149902,
+       "Dieu_79": -8.275009155273438,
+       "Dieu_151": -7.234604358673096
+      },
+      "seconds": 5.7183607919996575
+     },
+     "BLL19-08-UNLAWFUL_TERMINATION": {
+      "gold_ranks_before": {
+       "Dieu_41": 1,
+       "Dieu_46": 3
+      },
+      "gold_ranks_after": {
+       "Dieu_41": 1,
+       "Dieu_46": 3
+      },
+      "reranked_ids": [
+       "Dieu_41",
+       "Dieu_40",
+       "Dieu_46",
+       "Dieu_47",
+       "Dieu_39",
+       "Dieu_48",
+       "Dieu_34",
+       "Dieu_36",
+       "Dieu_5",
+       "Dieu_101",
+       "Dieu_35",
+       "Dieu_45",
+       "Dieu_188",
+       "Dieu_219",
+       "Dieu_137",
+       "Dieu_163",
+       "Dieu_177",
+       "Dieu_138",
+       "Dieu_175",
+       "Dieu_139"
+      ],
+      "scores": {
+       "Dieu_41": 4.8722710609436035,
+       "Dieu_40": 1.5846610069274902,
+       "Dieu_46": 0.8157702684402466,
+       "Dieu_47": -0.8168442249298096,
+       "Dieu_36": -3.2684545516967773,
+       "Dieu_35": -4.129292964935303,
+       "Dieu_34": -2.8310766220092773,
+       "Dieu_48": -2.8026959896087646,
+       "Dieu_45": -4.240234851837158,
+       "Dieu_101": -4.024276256561279,
+       "Dieu_5": -3.9114933013916016,
+       "Dieu_219": -5.902805328369141,
+       "Dieu_39": -2.583631992340088,
+       "Dieu_137": -6.060618877410889,
+       "Dieu_138": -8.25437068939209,
+       "Dieu_163": -6.608541011810303,
+       "Dieu_175": -8.290519714355469,
+       "Dieu_139": -8.41189956665039,
+       "Dieu_177": -7.107805252075195,
+       "Dieu_188": -5.793203830718994
+      },
+      "seconds": 5.969803833000697
+     },
+     "BLL19-09-DEPOSIT": {
+      "gold_ranks_before": {
+       "Dieu_17": 1
+      },
+      "gold_ranks_after": {
+       "Dieu_17": 1
+      },
+      "reranked_ids": [
+       "Dieu_17",
+       "Dieu_48",
+       "Dieu_5",
+       "Dieu_33",
+       "Dieu_36",
+       "Dieu_35",
+       "Dieu_219",
+       "Dieu_44",
+       "Dieu_45",
+       "Dieu_41",
+       "Dieu_29",
+       "Dieu_220",
+       "Dieu_144",
+       "Dieu_100",
+       "Dieu_37",
+       "Dieu_79",
+       "Dieu_108",
+       "Dieu_82",
+       "Dieu_128",
+       "Dieu_102"
+      ],
+      "scores": {
+       "Dieu_17": 2.5573816299438477,
+       "Dieu_41": -6.218854904174805,
+       "Dieu_35": -5.399307727813721,
+       "Dieu_45": -6.056887149810791,
+       "Dieu_79": -7.1381049156188965,
+       "Dieu_220": -6.798369884490967,
+       "Dieu_33": -4.98137903213501,
+       "Dieu_128": -8.008776664733887,
+       "Dieu_102": -8.149454116821289,
+       "Dieu_100": -6.834436416625977,
+       "Dieu_144": -6.813476085662842,
+       "Dieu_5": -4.560571193695068,
+       "Dieu_36": -5.292802333831787,
+       "Dieu_219": -5.449701309204102,
+       "Dieu_48": -3.8069639205932617,
+       "Dieu_29": -6.219508647918701,
+       "Dieu_108": -7.24835729598999,
+       "Dieu_82": -7.680631160736084,
+       "Dieu_44": -5.990467071533203,
+       "Dieu_37": -7.073461055755615
+      },
+      "seconds": 4.688571792001312
+     }
+    },
+    "metrics": {
+     "per_task": [
+      {
+       "task_id": "BLL19-01-PROBATION",
+       "gold_ranks": {
+        "Dieu_25": 1
+       },
+       "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      },
+      {
+       "task_id": "BLL19-02-PROBATION_WAGE",
+       "gold_ranks": {
+        "Dieu_26": 1
+       },
+       "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      },
+      {
+       "task_id": "BLL19-03-NOTICE",
+       "gold_ranks": {
+        "Dieu_35": 1
+       },
+       "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      },
+      {
+       "task_id": "BLL19-04-ABSENCE",
+       "gold_ranks": {
+        "Dieu_36": 1
+       },
+       "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      },
+      {
+       "task_id": "BLL19-05-PREGNANCY",
+       "gold_ranks": {
+        "Dieu_37": 1
+       },
+       "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      },
+      {
+       "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+       "gold_ranks": {
+        "Dieu_40": 1
+       },
+       "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      },
+      {
+       "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+       "gold_ranks": {
+        "Dieu_35": 4,
+        "Dieu_46": 1
+       },
+       "recall": {
+        "@1": 0.5,
+        "@3": 0.5,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      },
+      {
+       "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+       "gold_ranks": {
+        "Dieu_41": 1,
+        "Dieu_46": 3
+       },
+       "recall": {
+        "@1": 0.5,
+        "@3": 1.0,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      },
+      {
+       "task_id": "BLL19-09-DEPOSIT",
+       "gold_ranks": {
+        "Dieu_17": 1
+       },
+       "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+       },
+       "rr": 1.0
+      }
+     ],
+     "mean": {
+      "Recall@1": 0.8888888888888888,
+      "Recall@3": 0.9444444444444444,
+      "Recall@5": 1.0,
+      "MRR": 1.0
+     }
+    },
+    "rerank_batch_seconds": {
+     "n": 45,
+     "median_ms": 614.8458749994461,
+     "p95_ms": 2827.8999578007642,
+     "mean_ms": 1070.301308222204,
+     "min_ms": 285.14341600021,
+     "max_ms": 2890.5804579990217,
+     "per_pair_ms": [
+      2638.78,
+      613.156,
+      452.278,
+      479.919,
+      864.618,
+      549.77,
+      2763.53,
+      370.553,
+      528.391,
+      285.143,
+      911.414,
+      600.189,
+      2792.407,
+      1035.608,
+      481.073,
+      900.832,
+      628.602,
+      2828.767,
+      570.708,
+      514.928,
+      581.112,
+      890.913,
+      2824.431,
+      588.832,
+      401.703,
+      514.749,
+      904.294,
+      2797.292,
+      1020.668,
+      452.183,
+      2890.58,
+      941.642,
+      640.803,
+      611.446,
+      633.882,
+      539.519,
+      897.347,
+      2845.451,
+      614.846,
+      1072.635,
+      562.961,
+      376.622,
+      569.933,
+      2817.485,
+      361.565
+     ]
+    },
+    "per_pair_latency": {
+     "n": 20,
+     "median_ms": 101.30141650006408,
+     "p95_ms": 244.6861857512889,
+     "mean_ms": 134.30163135026305,
+     "min_ms": 59.6743330006575,
+     "max_ms": 662.693666999985,
+     "per_pair_ms": [
+      72.849,
+      110.687,
+      87.727,
+      662.694,
+      137.912,
+      170.902,
+      109.901,
+      73.502,
+      59.674,
+      123.059,
+      111.875,
+      92.702,
+      88.577,
+      130.397,
+      78.821,
+      76.826,
+      125.943,
+      73.778,
+      222.686,
+      75.521
+     ]
+    },
+    "memory": {
+     "baseline_rss_bytes": 333791232,
+     "peak_rss_bytes": 839483392,
+     "rss_increase_bytes": 505692160,
+     "mps": {
+      "current_allocated_bytes": 2288374528,
+      "driver_allocated_bytes": 3272294400
+     }
+    }
+   }
+  }
+ },
+ "experiment_b": {},
+ "onejev": null
+}

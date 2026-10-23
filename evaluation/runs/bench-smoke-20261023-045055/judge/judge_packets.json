@@ -1,0 +1,161 @@
+[
+  {
+    "review_id": "06c2ae6cb3bc542cf38d1893",
+    "question": "Theo Quyết định 1260/QĐ-ĐHBK sửa đổi khoản 3.1 Điều 3, chương trình PFIEV được tối đa bao nhiêu học kỳ chính để hoàn thành khóa học?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Tối đa 14 học kỳ chính (kế hoạch 10, chuẩn 10, tối đa 14).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+        "exact_quote": "tại Việt Nam (PFIEV) 10 10 14"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo tài liệu tra cứu: Đối với chương trình PFIEV (Kỹ sư Việt-Pháp), thời gian đào tạo chuẩn được quy định là 10 học kỳ. Tuy nhiên, câu hỏi đề cập đến 'tối đa' (max) có thể cần kiểm tra lại trong văn bản chi tiết hơn. Từ snippet của tài liệu HCMUT_HVDT1260_Dieu_1_S3_1, thời gian đào tạo chuẩn được ghi là 10 học kỳ, trong khi các loại khác như song ngành hoặc miễn trừ có 10-14 học kỳ. Nếu không có điều khoản cụ thể 'tối đa X' trong văn bản đã nạp, thông tin này chỉ dựa trên quy định chuẩn.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+        "exact_quote": "Thời gian đào tạo (theo số học kỳ chính)\nKế hoạch Chuẩn Tối đa\nChính quy 8 8 12"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+        "title": "“3.1 Thời gian đào tạo",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh — số 1260/QĐ-ĐHBK",
+        "content": "“3.1 Thời gian đào tạo\nThời gian đào tạo chuẩn, kế hoạch và tối đa tính theo số học kỳ chính được quy định\nnhư sau:\nLoại hình đào tạo\nThời gian đào tạo (theo số học kỳ\nchính)\nKế hoạch Chuẩn Tối đa\nChính quy 8 8 12\nChương trình đào tạo kỹ sư chất lượng cao\ntại Việt Nam (PFIEV) 10 10 14\nVừa làm vừa học, đào tạo từ xa 10 10 16\nChương trình song ngành (tuyển sinh từ\nđầu) 10 10 14\nĐối với các sinh viên được miễn trừ các học phần từ kết quả học tập trước đó, thời gian đào\ntạo để hoàn thành khóa học là thời gian theo kế hoạch học tập toàn khoá giảm tương ứng\nvới khối lượng được miễn trừ như sau:\nSố học kỳ giảm = [Số học kỳ đào tạo chuẩn] x [Số tín chỉ miễn trừ] / [Số tín chỉ toàn khoá],\nlấy phần nguyên.”\n2. Sửa đổi, bổ sung khoản 5.2, 5.3, 5.5 Điều 5 như sau:\na) Sửa đổi, bổ sung khoản 5.2 Điều 5 như sau:"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "3a6f2f999931142b2ea38599",
+    "question": "Theo Quyết định 1260/QĐ-ĐHBK sửa đổi khoản 3.1 Điều 3, chương trình PFIEV được tối đa bao nhiêu học kỳ chính để hoàn thành khóa học?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Tối đa 14 học kỳ chính (kế hoạch 10, chuẩn 10, tối đa 14).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+        "exact_quote": "tại Việt Nam (PFIEV) 10 10 14"
+      }
+    ],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Không tìm thấy văn bản đầy đủ trong cơ sở dữ liệu (full_content_chars < 808) để khẳng định chính xác về số học kỳ tối đa, do đó không thể đưa ra thông tin dựa trên nội dung trích dẫn.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+        "title": "“3.1 Thời gian đào tạo",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh — số 1260/QĐ-ĐHBK",
+        "content": "“3.1 Thời gian đào tạo\nThời gian đào tạo chuẩn, kế hoạch và tối đa tính theo số học kỳ chính được quy định\nnhư sau:\nLoại hình đào tạo\nThời gian đào tạo (theo số học kỳ\nchính)\nKế hoạch Chuẩn Tối đa\nChính quy 8 8 12\nChương trình đào tạo kỹ sư chất lượng cao\ntại Việt Nam (PFIEV) 10 10 14\nVừa làm vừa học, đào tạo từ xa 10 10 16\nChương trình song ngành (tuyển sinh từ\nđầu) 10 10 14\nĐối với các sinh viên được miễn trừ các học phần từ kết quả học tập trước đó, thời gian đào\ntạo để hoàn thành khóa học là thời gian theo kế hoạch học tập toàn khoá giảm tương ứng\nvới khối lượng được miễn trừ như sau:\nSố học kỳ giảm = [Số học kỳ đào tạo chuẩn] x [Số tín chỉ miễn trừ] / [Số tín chỉ toàn khoá],\nlấy phần nguyên.”\n2. Sửa đổi, bổ sung khoản 5.2, 5.3, 5.5 Điều 5 như sau:\na) Sửa đổi, bổ sung khoản 5.2 Điều 5 như sau:"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "6b9b8567ea129441f0a98c0d",
+    "question": "Đơn giá học phí mỗi tín chỉ năm học 2026–2027 cho sinh viên đại học chính quy là bao nhiêu?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus không có đơn giá học phí. Điều 23.1 (Quyết định 1259) chỉ nói Trường thông báo đơn giá, cách tính và thời điểm thu học phí theo từng năm hoặc theo học kỳ; thông báo đó không nằm trong corpus.",
+    "reference_evidence": [],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Không có căn cứ trong văn bản đã tra cứu để xác nhận đơn giá học phí. Theo quy định, nếu không tìm thấy điều khoản trong cơ sở dữ liệu, phải chọn refuse.",
+    "candidate_citations": [],
+    "source_articles": [],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "6c6467ea928778442309fc3a",
+    "question": "Người học muốn xin gia hạn thời gian nộp học phí thì nộp đơn đăng ký về phòng nào, và phòng đó giữ những chức danh nào trong Hội đồng xét hồ sơ xin gia hạn?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Nộp về Phòng Công tác sinh viên (Điều 7, Bước 1). Trong Hội đồng xét hồ sơ (Điều 8 khoản 1), Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng và Phó Trưởng phòng Công tác sinh viên là thư ký.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên"
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng"
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Phó Trưởng phòng Công tác sinh viên là thư ký"
+      }
+    ],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "Trong Quy định gia hạn học phí, khi người học nộp đơn, phòng nào tiếp nhận đơn? Và danh sách các chức danh cụ thể của Hội đồng xét hồ sơ xin gia hạn có gì?",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "title": "Điều 7. Quy trình gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 7. Quy trình gia hạn thời gian nộp học phí\nNgười học và các đơn vị liên quan thực hiện quy trình gồm các bước sau:\nBước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên, kèm các minh chứng cần thiết. Thời gian đăng ký gia hạn phải trước thời\nđiểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc. (Phụ lục 1)\nBước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình\nBan Giám hiệu phê duyệt.\nBước 3: Phòng Công tác sinh viên thông báo kết quả cho người học , thực hiện gia\nhạn thời gian nộp học phí, đồng thời thông báo kết quả cho Phòng Kế hoạch - Tài chính để\ntheo dõi công nợ của người học.\nBước 4: Người học thực hiện nộp học phí sau khi hết thời gian gia hạn.\nBước 5: Phòng Kế hoạch - Tài chính gửi kết quả theo dõi công nợ của người học\nđược xét gia hạn về Phòng Công tác sinh viên sau khi kết thúc thời gian nộp học phí ở học\nkỳ kế tiếp.\nBước 6: Phòng Công tác sinh viên ra quyết định liên quan đến nợ học phí, xử lý học\nvụ (đối với người học không hoàn thành nộp học phí)."
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "title": "Điều 8. Quy trình xét hồ sơ",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 8. Quy trình xét hồ sơ\n1. Trường ban hành quyết định thành lập Hội đồng xét hồ sơ xin gia hạn thời gian\nnộp học phí, bao gồm 5 thành viên: Phó Hiệu trưởng là Chủ tịch Hội đồng; Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng; Trưởng Phòng Kế hoạch – Tài chính là ủy\nviên; Trưởng Phòng Đào tạo là ủy viên; Phó Trưởng phòng Công tác sinh viên là thư ký.\n2. Hội đồng thực hiện xét hồ sơ dựa trên các tiêu chuẩn xét gia hạn thời gian nộp\nhọc phí quy định tại Điều 4.\nChương V\nTỔ CHỨC THỰC HIỆN"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "bb71544db495ab657026b37f",
+    "question": "Đơn giá học phí mỗi tín chỉ năm học 2026–2027 cho sinh viên đại học chính quy là bao nhiêu?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus không có đơn giá học phí. Điều 23.1 (Quyết định 1259) chỉ nói Trường thông báo đơn giá, cách tính và thời điểm thu học phí theo từng năm hoặc theo học kỳ; thông báo đó không nằm trong corpus.",
+    "reference_evidence": [],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Để tìm thông tin chính xác về đơn giá học phí mỗi tín chỉ năm học 2026–2027 cho sinh viên đại học chính quy tại Trường Đại học Bách khoa - ĐHQG-HCM, tôi cần kiểm tra thêm các văn bản quy định. Tuy nhiên, dựa trên nội dung trong các tài liệu đã tìm thấy (Quy định số 2933/QĐ-ĐHBK và Quyết định số 1260/QĐ-ĐHBK), chúng không nêu rõ trực tiếp giá trị học phí cho từng tín chỉ năm học.",
+    "candidate_citations": [],
+    "source_articles": [],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "c8bfcfb9384c9a4d6fe52dc5",
+    "question": "Người học muốn xin gia hạn thời gian nộp học phí thì nộp đơn đăng ký về phòng nào, và phòng đó giữ những chức danh nào trong Hội đồng xét hồ sơ xin gia hạn?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Nộp về Phòng Công tác sinh viên (Điều 7, Bước 1). Trong Hội đồng xét hồ sơ (Điều 8 khoản 1), Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng và Phó Trưởng phòng Công tác sinh viên là thư ký.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên"
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng"
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Phó Trưởng phòng Công tác sinh viên là thư ký"
+      }
+    ],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "Trong Quy định gia hạn học phí, khi người học nộp đơn, phòng nào tiếp nhận đơn? Và danh sách các chức danh cụ thể của Hội đồng xét hồ sơ xin gia hạn có gì?",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "title": "Điều 7. Quy trình gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 7. Quy trình gia hạn thời gian nộp học phí\nNgười học và các đơn vị liên quan thực hiện quy trình gồm các bước sau:\nBước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên, kèm các minh chứng cần thiết. Thời gian đăng ký gia hạn phải trước thời\nđiểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc. (Phụ lục 1)\nBước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình\nBan Giám hiệu phê duyệt.\nBước 3: Phòng Công tác sinh viên thông báo kết quả cho người học , thực hiện gia\nhạn thời gian nộp học phí, đồng thời thông báo kết quả cho Phòng Kế hoạch - Tài chính để\ntheo dõi công nợ của người học.\nBước 4: Người học thực hiện nộp học phí sau khi hết thời gian gia hạn.\nBước 5: Phòng Kế hoạch - Tài chính gửi kết quả theo dõi công nợ của người học\nđược xét gia hạn về Phòng Công tác sinh viên sau khi kết thúc thời gian nộp học phí ở học\nkỳ kế tiếp.\nBước 6: Phòng Công tác sinh viên ra quyết định liên quan đến nợ học phí, xử lý học\nvụ (đối với người học không hoàn thành nộp học phí)."
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "title": "Điều 8. Quy trình xét hồ sơ",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 8. Quy trình xét hồ sơ\n1. Trường ban hành quyết định thành lập Hội đồng xét hồ sơ xin gia hạn thời gian\nnộp học phí, bao gồm 5 thành viên: Phó Hiệu trưởng là Chủ tịch Hội đồng; Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng; Trưởng Phòng Kế hoạch – Tài chính là ủy\nviên; Trưởng Phòng Đào tạo là ủy viên; Phó Trưởng phòng Công tác sinh viên là thư ký.\n2. Hội đồng thực hiện xét hồ sơ dựa trên các tiêu chuẩn xét gia hạn thời gian nộp\nhọc phí quy định tại Điều 4.\nChương V\nTỔ CHỨC THỰC HIỆN"
+      }
+    ],
+    "unknown_citation_ids": []
+  }
+]

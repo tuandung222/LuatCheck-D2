@@ -1,0 +1,17 @@
+from pathlib import Path
+import requests,sqlite3,json,uuid,os,signal,time
+p=Path(__file__).resolve().parent
+c=sqlite3.connect(p/'web.sqlite3');c.row_factory=sqlite3.Row
+run=dict(c.execute("select * from runs where terminal_status='answered' limit 1").fetchone())
+b=dict(c.execute('select * from browser_sessions where session_id=?',(run['session_id'],)).fetchone())
+s=requests.Session();s.cookies.set('luatcheck_session',b['session_id'])
+base='http://127.0.0.1:8011';headers={'Origin':base,'X-CSRF-Token':b['csrf_token']}
+body={'query':'Thời gian thử việc tối đa đối với công việc yêu cầu trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên được quy định là bao nhiêu ngày?','verification_mode':'lexical_grounding'}
+results=[]
+for _ in range(4):
+ resp=s.post(base+'/api/v1/runs',json=body,headers={**headers,'Idempotency-Key':str(uuid.uuid4())},timeout=5)
+ results.append({'http_status':resp.status_code,'body':resp.json(),'retry_after':resp.headers.get('Retry-After')})
+health=s.get(base+'/api/v1/health',timeout=5).json()
+(p/'queue-before-restart.json').write_text(json.dumps({'responses':results,'health':health},ensure_ascii=False,indent=2))
+print(json.dumps({'responses':results,'active_run':health['active_run'],'queued_runs':health['queued_runs']},ensure_ascii=False))
+os.kill(48208,signal.SIGTERM)

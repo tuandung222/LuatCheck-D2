@@ -1,0 +1,1942 @@
+[
+  {
+    "review_id": "008dfaa6565b0abc730607b1",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "008dfaa6565b0abc730607b1",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate returned an execution error ('Model returned an invalid or missing action.') instead of answering the question. The expected behaviour was 'answer' and the question is fully answerable from the supplied sources. Therefore behaviour is inappropriate and there are no substantive factual claims to evaluate; correctness and completeness are both 0.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "0efabcf9eb987c2353c95882",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "0efabcf9eb987c2353c95882",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The candidate answer consists only of a system truncation message ('Model output truncated by token limit.') and contains no substantive legal answer to the question. This is an execution error, not a justified refusal or clarification. Under the protocol, an expected-answer trial that ends in an execution error is unsuccessful: behaviour_appropriate is false, correctness = 0, completeness = 0. The question was answerable from the supplied source articles (Dieu_36), but the candidate failed to provide any response.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "117a08fb3d0365d26543eac7",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "scope",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "117a08fb3d0365d26543eac7",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The question explicitly asks about California labor law and conditions that a response should only be given if the knowledge base contains an applicable source for that state. The supplied sources are exclusively Vietnamese labour law (Bộ luật Lao động 2019), with no California source. Therefore the expected behaviour was to refuse. The candidate instead answered with Vietnamese law, which is jurisdictionally incorrect and fails the explicit condition. Additionally, within the Vietnamese law context, the candidate incorrectly claimed there is no specific regulation on maximum overtime hours, while Article 107 provides clear limits. The answer is non-responsive and contains a factual error.",
+      "claims": [
+        {
+          "answer_quote": "thời giờ làm việc bình thường không quá 8 giờ trong một ngày và không quá 48 giờ trong một tuần",
+          "support": "supported",
+          "source_article_id": "Dieu_105",
+          "source_quote": "Thời giờ làm việc bình thường không quá 08 giờ trong 01 ngày và không quá 48 giờ trong 01 tuần.",
+          "explanation": "The candidate's statement about normal working hours matches the provision in Article 105 of the Vietnamese Labour Code."
+        },
+        {
+          "answer_quote": "tôi chưa tìm thấy quy định cụ thể về số giờ làm thêm tối đa thông thường",
+          "support": "contradicted",
+          "source_article_id": "Dieu_107",
+          "source_quote": "số giờ làm thêm của người lao động không quá 50% số giờ làm việc bình thường trong 01 ngày; trường hợp áp dụng quy định thời giờ làm việc bình thường theo tuần thì tổng số giờ làm việc bình thường và số giờ làm thêm không quá 12 giờ trong 01 ngày; không quá 40 giờ trong 01 tháng;",
+          "explanation": "The source provides specific limits for overtime hours (e.g., 50% of normal daily hours, max 12 hours/day combined, 40 hours/month), contradicting the candidate's claim that no specific regulation exists."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "0d3daae8b9b605a0bdf9cc77",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "0d3daae8b9b605a0bdf9cc77",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh trích dẫn đúng Điều 35 Bộ luật Lao động 2019 (nguyên bản) và nêu chính xác thời hạn báo trước là ít nhất 45 ngày đối với hợp đồng không xác định thời hạn. Câu trả lời cũng khẳng định áp dụng cho trường hợp thông thường, không thuộc diện miễn báo trước, phù hợp với điều kiện câu hỏi. Tất cả các khẳng định thực tế đều được hỗ trợ bởi nguồn cung cấp (Điều 35). Phản hồi là một câu trả lời trực tiếp, đầy đủ và chính xác; không có lỗi hoặc thiếu sót. Hành vi phù hợp với yêu cầu 'answer'.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn.",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;",
+          "explanation": "Khẳng định này trực tiếp phản ánh khoản a Điều 35, xác lập nghĩa vụ báo trước 45 ngày đối với hợp đồng lao động không xác định thời hạn."
+        },
+        {
+          "answer_quote": "Điều này áp dụng cho trường hợp thông thường, không thuộc diện được miễn báo trước.",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;",
+          "explanation": "Điều 35 quy định quy tắc chung và các ngoại lệ ở khoản 2 (được miễn báo trước); do đó, khẳng định rằng quy tắc 45 ngày áp dụng cho trường hợp thông thường, không thuộc diện miễn báo trước là phù hợp với cấu trúc của điều luật."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "1272a2d463364a0f1728fe43",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "1272a2d463364a0f1728fe43",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh xác định đúng cơ sở pháp lý (Điều 25 Bộ luật Lao động 2019) và đưa ra thời gian thử việc tối đa là 60 ngày. Cả hai khẳng định đều được hỗ trợ trực tiếp bởi Điều 25 trong nguồn cung cấp. Câu trả lời đầy đủ, chính xác và phù hợp với câu hỏi và hành vi mong đợi. Không có lỗi hay thiếu sót.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 25 của Bộ luật Lao động 2019",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "Điều 25. Thời gian thử việc",
+          "explanation": "Nguồn bài báo xác nhận rằng Điều 25 quy định về thời gian thử việc, do đó khẳng định rằng câu trả lời dựa trên Điều 25 là có cơ sở."
+        },
+        {
+          "answer_quote": "thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày.",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+          "explanation": "Khoản 2 của Điều 25 nêu rõ giới hạn tối đa 60 ngày cho loại công việc yêu cầu trình độ cao đẳng trở lên, hỗ trợ trực tiếp khẳng định của thí sinh."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "248fa46257a83d440b251968",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "248fa46257a83d440b251968",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "The candidate correctly states that according to Article 26 of the 2019 Labor Code, probation salary must be at least 85% of the job salary. This matches the reference answer and is fully supported by the supplied source (Điều 26). No errors or omissions.",
+      "claims": [
+        {
+          "answer_quote": "tiền lương trong thời gian thử việc ít nhất phải bằng 85% mức lương của công việc đó.",
+          "support": "supported",
+          "source_article_id": "Dieu_26",
+          "source_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+          "explanation": "The candidate's claim directly quotes the statutory minimum of 85% from Article 26 of the 2019 Labor Code, which is exactly the legal requirement under the original enactment. The source confirms this percentage without any conditions or exceptions relevant to the question."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "15b4202699ef30b56bceb619",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "15b4202699ef30b56bceb619",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu hỏi yêu cầu thời hạn báo trước tối thiểu khi người lao động có hợp đồng không xác định thời hạn đơn phương chấm dứt hợp đồng trong trường hợp thông thường, không được miễn báo trước và không làm công việc đặc thù theo nguyên bản BLLĐ 2019. Câu trả lời của ứng viên trích dẫn đúng Điều 35 và nêu rõ thời hạn là 45 ngày, hoàn toàn phù hợp với nguồn Điều 35 được cung cấp. Câu trả lời đầy đủ, chính xác, không có lỗi. Hành vi trả lời phù hợp.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có hợp đồng không xác định thời hạn cần báo trước ít nhất 45 ngày để đơn phương chấm dứt hợp đồng.",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn",
+          "explanation": "Trả lời đúng quy định tại Điều 35(1)(a) Bộ luật Lao động 2019."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "2868aa8ba2b354b0d92a7406",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "2868aa8ba2b354b0d92a7406",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "The candidate answer correctly addresses the question under the original 2019 Labor Code. It cites Article 137, which is a supplied source, and states that the employer is prohibited from dismissing or unilaterally terminating the contract with a pregnant worker or a worker raising a child under 12 months, subject to the statutory exceptions. The exceptions and the additional provision about contract expiration are all directly supported by the source text. No factual errors or unsupported claims. Behaviour is appropriate (answered). Completeness covers the prohibition and the exceptions, meeting the reference answer requirement.",
+      "claims": [
+        {
+          "answer_quote": "người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động đang mang thai hoặc nuôi con dưới 12 tháng tuổi",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi",
+          "explanation": "Directly supported by Article 137, clause 3, which prohibits dismissal or unilateral termination on grounds of pregnancy or raising a child under 12 months."
+        },
+        {
+          "answer_quote": "trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "explanation": "The exceptions listed in the candidate answer are a verbatim match to the exception clause in Article 137, clause 3."
+        },
+        {
+          "answer_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "explanation": "This statement is directly from Article 137, clause 3, last sentence; it provides an additional protection regarding contract expiration."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "3b8dc9a2015f1c71c11e4737",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 42,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "3b8dc9a2015f1c71c11e4737",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate output is a system execution error (budget exhausted) rather than a substantive answer. The question is answerable from supplied sources (Dieu_35, Dieu_46). The error does not provide any factual legal content. Per protocol, execution errors make correctness=0, completeness=0, behaviour_appropriate=false. No reference or task issue.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "30bceb1e819fdce4c49e0d1d",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "30bceb1e819fdce4c49e0d1d",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 1,
+      "completeness": 0,
+      "rationale": "Câu hỏi có đáp án rõ trong Điều 25 Luật 45/2019/QH14: thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là không quá 60 ngày. Ứng viên không trả lời đúng nội dung đó, khẳng định sai rằng không có quy định cụ thể, rồi hỏi xin thêm thông tin. Câu trần thuật về 180 ngày đối với người quản lý doanh nghiệp là đúng nhưng không giải quyết câu hỏi. Vì vậy hành vi yêu cầu làm rõ không phù hợp, thiếu nội dung bắt buộc và có nhận định bị mâu thuẫn với nguồn luật.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa là 180 ngày đối với công việc của người quản lý doanh nghiệp.",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp;",
+          "explanation": "Nguồn Điều 25 khoản 1 xác định thời gian thử việc tối đa 180 ngày cho người quản lý doanh nghiệp; nhận định này của ứng viên phù hợp với nguồn, tuy không trả lời câu hỏi về nhóm cao đẳng trở lên."
+        },
+        {
+          "answer_quote": "không có quy định cụ thể về thời gian thử việc cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên.",
+          "support": "contradicted",
+          "source_article_id": "Dieu_25",
+          "source_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+          "explanation": "Điều 25 khoản 2 có quy định cụ thể 60 ngày cho nhóm công việc này, nên khẳng định của ứng viên rằng không có quy định là mâu thuẫn với nguồn luật."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "44d31749b1543c91d8152506",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "44d31749b1543c91d8152506",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate answer is an execution error message, not a substantive response to the legal question. Expected behavior was 'answer' but the model returned an invalid or missing action. Per the judging protocol, execution errors result in behaviour_appropriate=false, correctness=0, completeness=0. No factual legal claims were made, so the claims list is empty. The source articles (particularly Điều 36) provide the relevant legal basis that would have supported a correct answer, but the candidate did not engage with them.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "3c934e967a3c8c35b7c00272",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "3c934e967a3c8c35b7c00272",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "The candidate answer correctly identifies the maximum probation period as 60 days and correctly cites Article 25 of the 2019 Labor Code. The source Article 25, clause 2, explicitly states 'Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên', which fully supports the answer. No errors or omissions. The answer is appropriate, complete, and accurate under the original 45/2019/QH14 scope.",
+      "claims": [
+        {
+          "answer_quote": "thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày.",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+          "explanation": "The source clause directly specifies a maximum of 60 days for jobs requiring qualifications from college level upwards, which exactly matches the candidate's factual claim."
+        },
+        {
+          "answer_quote": "Theo Điều 25 của Bộ luật Lao động 2019,",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "Điều 25. Thời gian thử việc",
+          "explanation": "The candidate correctly attributes the rule to Article 25 of the 2019 Labor Code; the supplied source article is indeed Dieu_25 of the Labor Code 2019."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "4b59ef449eb089e1aa7d7a58",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "4b59ef449eb089e1aa7d7a58",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 1,
+      "rationale": "Câu hỏi yêu cầu nêu đầy đủ nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng trái pháp luật và người lao động không muốn tiếp tục làm việc: trả tiền lương, đóng bảo hiểm xã hội/y tế/thất nghiệp cho những ngày không được làm việc, trả thêm ít nhất 02 tháng tiền lương theo hợp đồng, và trả trợ cấp thôi việc theo Điều 46. Phản hồi của ứng viên chỉ trả lời đúng và đầy đủ nội dung trợ cấp thôi việc theo Điều 46, các khẳng định đều được hỗ trợ bởi nguồn. Tuy nhiên, ứng viên bỏ sót hoàn toàn các nghĩa vụ chính về tiền lương, bảo hiểm và khoản bồi thường ít nhất 02 tháng tiền lương theo Điều 41, nên trả lời chưa đầy đủ.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 46 của Bộ luật Lao động 2019, người sử dụng lao động phải trả trợ cấp thôi việc cho người lao động đã làm việc từ đủ 12 tháng trở lên",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên",
+          "explanation": "Điều 46.1 quy định điều kiện trả trợ cấp thôi việc cho người lao động đã làm việc từ đủ 12 tháng trở lên; trong tình huống này, Điều 41.2 dẫn chiếu đến Điều 46 nên nội dung phù hợp."
+        },
+        {
+          "answer_quote": "mỗi năm làm việc được trợ cấp một nửa tháng tiền lương",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "mỗi năm làm việc được trợ cấp một nửa tháng tiền lương",
+          "explanation": "Khẳng định đúng theo Điều 46.1 về mức trợ cấp thôi việc."
+        },
+        {
+          "answer_quote": "Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được trợ cấp thôi việc, trợ cấp mất việc làm.",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm.",
+          "explanation": "Nội dung khớp với Điều 46.2 về cách xác định thời gian làm việc để tính trợ cấp thôi việc."
+        },
+        {
+          "answer_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề trước khi người lao động thôi việc.",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc.",
+          "explanation": "Khẳng định đúng theo Điều 46.3, chỉ lược bớt cụm từ 'theo hợp đồng lao động' nhưng không làm sai nội dung quy định."
+        },
+        {
+          "answer_quote": "Chính phủ sẽ quy định chi tiết Điều này.",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "Chính phủ quy định chi tiết Điều này.",
+          "explanation": "Điều 46.4 đúng là giao Chính phủ quy định chi tiết điều này."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 1,
+      "completeness": 2,
+      "rationale": "Candidate correctly answers that unilateral termination is not allowed, satisfying the core requirement. However, the claim that under Điều 137 the employer cannot terminate workers who are pregnant or nursing is imprecise – the article prohibits termination ‘vì lý do’ (because of) those conditions, not all terminations of such workers.  The included exceptions, while textually from Điều 137, are not supported by the broader, unconditional prohibition in Điều 37, which is directly relevant to the question.  The answer therefore contains an unsupported nuance, making it partly correct (correctness 1).  All required information is supplied (completeness 2).",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động đang mang thai hoặc nuôi con dưới 12 tháng tuổi",
+          "support": "not_established",
+          "source_article_id": "Dieu_137",
+          "source_quote": null,
+          "explanation": "Điều 137 prohibits termination ‘vì lý do’ (because of) pregnancy/nursing, not all terminations of workers in those categories.  The claim attributes a broader, unconditional prohibition to Điều 137 that the supplied source does not state."
+        },
+        {
+          "answer_quote": "trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "explanation": "This list of exceptions is a direct quotation from Điều 137.3 in the supplied source."
+        },
+        {
+          "answer_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "explanation": "The sentence appears verbatim in Điều 137.3 of the supplied source."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "1ac23e95a8a8f224634ad7f7",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 2026,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "1ac23e95a8a8f224634ad7f7",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 1,
+      "rationale": "Câu trả lời không có khẳng định sai: theo Điều 41 BLLĐ 2019, trong tình huống NLĐ không muốn tiếp tục làm việc, NSDLĐ vẫn phải thực hiện nghĩa vụ tại khoản 1 gồm trả thêm ít nhất 02 tháng tiền lương và khoản 2 buộc trả trợ cấp thôi việc theo Điều 46; các chi tiết về trợ cấp thôi việc (làm từ đủ 12 tháng, nửa tháng lương mỗi năm, tiền lương bình quân 06 tháng liền kề, Chính phủ quy định chi tiết) đều được nguồn hỗ trợ. Tuy nhiên, câu trả lời thiếu nghĩa vụ chính theo khoản 1 Điều 41 là trả tiền lương và đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp cho những ngày NLĐ không được làm việc, nên mức đầy đủ chỉ đạt một phần.",
+      "claims": [
+        {
+          "answer_quote": "người sử dụng lao động phải trả cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động khi người lao động không muốn tiếp tục làm việc",
+          "support": "supported",
+          "source_article_id": "Dieu_41",
+          "source_quote": "Trường hợp người lao động không muốn tiếp tục làm việc thì ngoài khoản tiền phải trả quy định tại khoản 1 Điều này người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này để chấm dứt hợp đồng lao động.",
+          "explanation": "Khoản 2 Điều 41 xác định khi NLĐ không muốn tiếp tục làm việc, NSDLĐ vẫn phải thực hiện các khoản ở khoản 1, trong đó có khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động; do đó khẳng định của câu trả lời phù hợp với nguồn trong tình huống đã nêu."
+        },
+        {
+          "answer_quote": "theo Điều 46 của Bộ luật Lao động 2019, người sử dụng lao động phải trả trợ cấp thôi việc cho người lao động đã làm việc từ đủ 12 tháng trở lên",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên",
+          "explanation": "Khoản 1 Điều 46 quy định đúng điều kiện làm việc từ đủ 12 tháng trở lên để được trả trợ cấp thôi việc, phù hợp với khẳng định của câu trả lời."
+        },
+        {
+          "answer_quote": "mỗi năm làm việc được trợ cấp một nửa tháng tiền lương",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "mỗi năm làm việc được trợ cấp một nửa tháng tiền lương",
+          "explanation": "Đây là mức trợ cấp thôi việc được quy định trực tiếp tại khoản 1 Điều 46."
+        },
+        {
+          "answer_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề trước khi người lao động thôi việc",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc.",
+          "explanation": "Khoản 3 Điều 46 quy định đúng căn cứ tiền lương bình quân 06 tháng liền kề trước khi thôi việc."
+        },
+        {
+          "answer_quote": "Chính phủ quy định chi tiết về trợ cấp thôi việc",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "Chính phủ quy định chi tiết Điều này.",
+          "explanation": "Khoản 4 Điều 46 giao Chính phủ quy định chi tiết về trợ cấp thôi việc, phù hợp với khẳng định của câu trả lời."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "7638ca0d0ac3c0558eb6a2b2",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "7638ca0d0ac3c0558eb6a2b2",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh khẳng định đúng rằng tiền lương thử việc ít nhất bằng 85% mức lương của công việc đó, trích dẫn Điều 26 của Bộ luật Lao động 2019. Nguồn Điều 26 được cung cấp hỗ trợ chính xác nội dung này. Không có sai sót hoặc thiếu sót; câu trả lời đầy đủ và phù hợp với phạm vi luật gốc.",
+      "claims": [
+        {
+          "answer_quote": "tiền lương của người lao động trong thời gian thử việc phải ít nhất bằng 85% mức lương của công việc đó",
+          "support": "supported",
+          "source_article_id": "Dieu_26",
+          "source_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+          "explanation": "Khẳng định về mức lương tối thiểu 85% khớp chính xác với nội dung Điều 26 của Bộ luật Lao động 2019."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "73580e1ce23e2ef725de0c58",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "73580e1ce23e2ef725de0c58",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi yêu cầu thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên theo Bộ luật Lao động 45/2019/QH14 nguyên bản. Nguồn cung cấp Điều 25, khoản 2 nêu rõ 'Không quá 60 ngày'. Thí sinh không trả lời đúng mà lại cho rằng không có quy định cụ thể và yêu cầu cung cấp thêm thông tin. Hành vi này không phù hợp vì câu hỏi có thể trả lời được, dẫn đến behaviour_appropriate = false. Nội dung trả lời chứa một khẳng định sai (không có quy định) nên correctness = 0; không cung cấp thông tin cần thiết (60 ngày) nên completeness = 0.",
+      "claims": [
+        {
+          "answer_quote": "thời gian thử việc tối đa là 180 ngày đối với công việc của người quản lý doanh nghiệp",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp;",
+          "explanation": "Khẳng định này phù hợp với quy định tại Điều 25 khoản 1 về thời gian thử việc đối với người quản lý doanh nghiệp."
+        },
+        {
+          "answer_quote": "không có quy định cụ thể về thời gian thử việc cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên",
+          "support": "contradicted",
+          "source_article_id": "Dieu_25",
+          "source_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+          "explanation": "Nguồn Điều 25 khoản 2 quy định rõ thời gian thử việc tối đa 60 ngày cho loại công việc này, mâu thuẫn trực tiếp với khẳng định của thí sinh."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "6d11a1ae3b7337d8a5709d6f",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "6d11a1ae3b7337d8a5709d6f",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate refused to answer, claiming that the exact quote of 'Dieu_41' is not in the source document. However, the supplied source articles clearly contain Article 41 (Dieu_41) with the full content matching the reference quote. The question is answerable from the supplied sources, so the refusal is unjustified. The candidate's factual claim about the source is contradicted by the source itself. No legal answer was provided. Therefore, behaviour is inappropriate, correctness is 0, and completeness is 0.",
+      "claims": [
+        {
+          "answer_quote": "Trích nguyên văn của 'Dieu_41' không nằm trong văn bản nguồn",
+          "support": "contradicted",
+          "source_article_id": "Dieu_41",
+          "source_quote": "Điều 41. Nghĩa vụ của người sử dụng lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật",
+          "explanation": "The candidate claims that the exact quote of Dieu_41 is not in the source document. However, the supplied source contains Article 41 with that exact title and content, contradicting the claim."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "766fd5b97a7e67b8e0a0b386",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "766fd5b97a7e67b8e0a0b386",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi hoàn toàn có thể trả lời bằng Điều 17 Bộ luật Lao động 2019: người sử dụng lao động bị cấm yêu cầu người lao động thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động. Do đó, hành vi yêu cầu nộp tiền đặt cọc để bảo đảm thực hiện hợp đồng lao động là không được phép. Ứng viên tuyên bố không tìm thấy quy định cụ thể và yêu cầu tra cứu thêm, đây là từ chối trả lời không chính đáng đối với câu hỏi có thể trả lời được và trái với expected_behavior. Vì vậy, nội dung sai, không cung cấp thông tin cần thiết, và hành vi không phù hợp.",
+      "claims": [
+        {
+          "answer_quote": "Không tìm thấy quy định cụ thể về việc người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc trong Bộ luật Lao động 2019.",
+          "support": "contradicted",
+          "source_article_id": "Dieu_17",
+          "source_quote": "Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động.",
+          "explanation": "Điều 17 khoản 2 Bộ luật Lao động 2019 liệt kê hành vi người sử dụng lao động không được làm khi giao kết, thực hiện hợp đồng lao động, bao gồm yêu cầu biện pháp bảo đảm bằng tiền hoặc tài sản khác. Vì vậy, khẳng định của ứng viên rằng không có quy định cụ thể là mâu thuẫn với nguồn luật được cung cấp."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "6ca79b2c862614767055bc4d",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "6ca79b2c862614767055bc4d",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 1,
+      "completeness": 2,
+      "rationale": "The candidate correctly states that the employee is not entitled to severance pay (claim 1, supported by Điều 40.1) and that the employee must repay training costs (claim 5, supported by Điều 40.3). However, it incorrectly claims that the employer must compensate the employee with half a month's salary (claim 2) and a notice payment (claim 3); Điều 40 requires the employee to pay these to the employer, not the reverse. The candidate further claims there is no specific amount for the fixed compensation (claim 4), contradicting Điều 40.2 which explicitly specifies 'nửa tháng tiền lương'. These errors reduce correctness to 1. The required facts (no severance and half-month compensation) both appear in the answer, so completeness is 2. Behaviour is appropriate as the answer directly addresses the question.",
+      "claims": [
+        {
+          "answer_quote": "người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật không được trợ cấp thôi việc.",
+          "support": "supported",
+          "source_article_id": "Dieu_40",
+          "source_quote": "1. Không được trợ cấp thôi việc.",
+          "explanation": "The source confirms that the employee is not entitled to severance pay when terminating illegally."
+        },
+        {
+          "answer_quote": "Người sử dụng lao động phải bồi thường cho người lao động một nửa tháng tiền lương theo hợp đồng lao động",
+          "support": "contradicted",
+          "source_article_id": "Dieu_40",
+          "source_quote": "Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động",
+          "explanation": "The source states that the employee must compensate the employer, not the reverse as claimed."
+        },
+        {
+          "answer_quote": "và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.",
+          "support": "contradicted",
+          "source_article_id": "Dieu_40",
+          "source_quote": "và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước",
+          "explanation": "The source shows that the obligation to pay the notice compensation falls on the employee, not the employer."
+        },
+        {
+          "answer_quote": "Không có quy định cụ thể về số tháng tiền lương trong khoản bồi thường cố định.",
+          "support": "contradicted",
+          "source_article_id": "Dieu_40",
+          "source_quote": "Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động",
+          "explanation": "The source explicitly specifies a fixed compensation of half a month's salary, contradicting the claim that no specific amount is prescribed."
+        },
+        {
+          "answer_quote": "Người lao động còn có nghĩa vụ phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+          "support": "supported",
+          "source_article_id": "Dieu_40",
+          "source_quote": "3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này.",
+          "explanation": "The source confirms the employee's duty to repay training costs."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "80a84e240c1cd7c1bab53131",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "80a84e240c1cd7c1bab53131",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời nêu đúng quy định tại Điều 35 Bộ luật Lao động 2019: người lao động có hợp đồng lao động không xác định thời hạn đơn phương chấm dứt hợp đồng phải báo trước ít nhất 45 ngày. Nội dung khớp với nguồn Điều 35.1.a và phù hợp với điều kiện câu hỏi (trường hợp thông thường, không được miễn báo trước, không phải công việc đặc thù). Hành vi trả lời là phù hợp; không thiếu thông tin cần thiết và không có khẳng định sai.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 35 của Bộ luật Lao động 2019, người lao động có hợp đồng lao động không xác định thời hạn muốn đơn phương chấm dứt hợp đồng phải báo trước ít nhất 45 ngày cho người sử dụng lao động.",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;",
+          "explanation": "Nguồn Điều 35 khoản 1 điểm a quy định người lao động làm việc theo hợp đồng lao động không xác định thời hạn phải báo trước ít nhất 45 ngày khi đơn phương chấm dứt hợp đồng, đúng với khẳng định của ứng viên."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "89d5947f699a6e6e835aabff",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "89d5947f699a6e6e835aabff",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi có thể trả lời đầy đủ từ Điều 40 BLLĐ 2019: người lao động đơn phương chấm dứt trái pháp luật không được trợ cấp thôi việc (khoản 1) và phải bồi thường nửa tháng tiền lương theo hợp đồng lao động (khoản 2), chưa tính khoản ngày không báo trước và chi phí đào tạo. Ứng viên chỉ đặt lại câu hỏi 'là bao nhiêu tháng tiền lương?' mà không đưa ra câu trả lời hay thông tin pháp lý nào, nên không đáp ứng expected_behavior là 'answer'. Việc hỏi làm rõ là không chính đáng vì câu hỏi đủ rõ và nguồn luật được cung cấp đầy đủ. Do đó correctness = 0 (không trả lời đúng trọng tâm), completeness = 0 (không cung cấp thông tin nào), behaviour_appropriate = false.",
+      "claims": [
+        {
+          "answer_quote": "Khoản bồi thường cố định cho người sử dụng lao động khi người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật theo Điều 40 của Bộ luật Lao động 2019 là bao nhiêu tháng tiền lương?",
+          "support": "supported",
+          "source_article_id": "Dieu_40",
+          "source_quote": "2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động",
+          "explanation": "Câu hỏi của ứng viên giả định có khoản bồi thường cố định theo Điều 40; điều này được nguồn hỗ trợ vì khoản 2 Điều 40 quy định bồi thường nửa tháng tiền lương theo hợp đồng lao động. Tuy nhiên ứng viên không nêu con số nửa tháng mà chỉ hỏi lại, nên câu trả lời vẫn thiếu hoàn toàn."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "90819b991564349ba6e49071",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "90819b991564349ba6e49071",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate output is 'Model output truncated by token limit.', an execution error, not a substantive answer. The question is answerable using supplied sources (Điều 35, 46). The error does not count as a justified refusal or clarification, so behaviour is inappropriate. Since no factual legal claims are provided, correctness and completeness are both 0.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "8a0b72150b88421542f0eaf1",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "8a0b72150b88421542f0eaf1",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của ứng viên nêu đúng tỷ lệ phần trăm tối thiểu (85%) theo yêu cầu của câu hỏi về nguyên bản Bộ luật Lao động 45/2019/QH14. Nội dung hoàn toàn khớp với Điều 26 của nguồn được cung cấp. Không có sai sót hay thiếu sót nào. Hành vi trả lời là phù hợp.",
+      "claims": [
+        {
+          "answer_quote": "tiền lương trong thời gian thử việc ít nhất phải bằng 85% mức lương của công việc đó.",
+          "support": "supported",
+          "source_article_id": "Dieu_26",
+          "source_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+          "explanation": "Điều 26 nguồn cung cấp trực tiếp quy định mức lương thử việc tối thiểu là 85%, hỗ trợ hoàn toàn cho khẳng định của ứng viên."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "95d33ca5e958414b7be5bc66",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "95d33ca5e958414b7be5bc66",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu hỏi yêu cầu áp dụng nguyên bản Bộ luật Lao động 45/2019/QH14, không xét sửa đổi, cho người lao động có hợp đồng không xác định thời hạn đơn phương chấm dứt trong trường hợp thông thường. Điều 35 khoản 1 điểm a của nguồn được cung cấp quy định rõ thời hạn báo trước ít nhất 45 ngày đối với hợp đồng không xác định thời hạn. Câu trả lời của ứng viên nêu đúng Điều 35 và con số 45 ngày, không thêm điều kiện hay sai lệch nào. Hành vi trả lời phù hợp, đầy đủ và chính xác.",
+      "claims": [
+        {
+          "answer_quote": "người lao động có hợp đồng không xác định thời hạn cần báo trước ít nhất 45 ngày để đơn phương chấm dứt hợp đồng",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;",
+          "explanation": "Điều 35 khoản 1 điểm a nguồn cung cấp trực tiếp quy định người lao động đơn phương chấm dứt hợp đồng lao động không xác định thời hạn phải báo trước ít nhất 45 ngày, đúng với khẳng định của ứng viên."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "9213280d76509d8751353ed8",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "scope",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "9213280d76509d8751353ed8",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate did not refuse as required; instead it posed a clarification question about California overtime regulations. Since the supplied knowledge base (Bộ luật Lao động Việt Nam 2019) contains no source applicable to California, the only appropriate response was a refusal. The candidate's answer contains no factual legal assertions about the question, making it unrelated and incomplete.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "92871a50b4af46e46b702c92",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "92871a50b4af46e46b702c92",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "The candidate answered correctly and completely, citing Article 26 of the 2019 Labour Code and stating that the probation salary must be at least 85% of the job salary. This matches the supplied sources exactly (Dieu_26). Behaviour is appropriate.",
+      "claims": [
+        {
+          "answer_quote": "Điều 26 của Bộ luật Lao động 2019",
+          "support": "supported",
+          "source_article_id": "Dieu_26",
+          "source_quote": "Điều 26. Tiền lương thử việc",
+          "explanation": "The answer correctly identifies Article 26 as the legal basis, which is present in the supplied Gazette excerpt."
+        },
+        {
+          "answer_quote": "tiền lương trong thời gian thử việc phải ít nhất bằng 85% mức lương của công việc đó",
+          "support": "supported",
+          "source_article_id": "Dieu_26",
+          "source_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+          "explanation": "The rule that probation salary is at least 85% is directly supported by the full text of Article 26."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "99d25b4a9d8373352568af8e",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "99d25b4a9d8373352568af8e",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh trích dẫn chính xác Điều 26 của Bộ luật Lao động 2019 (nguyên bản) và nêu đúng mức tối thiểu 85% tiền lương của công việc đó. Nội dung hoàn toàn phù hợp với quy định tại nguồn luật được cung cấp. Không có lỗi hay thiếu sót nào. Hành vi trả lời là phù hợp với kỳ vọng.",
+      "claims": [
+        {
+          "answer_quote": "tiền lương của người lao động trong thời gian thử việc phải ít nhất bằng 85% mức lương của công việc đó.",
+          "support": "supported",
+          "source_article_id": "Dieu_26",
+          "source_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+          "explanation": "Khẳng định về mức lương thử việc tối thiểu 85% hoàn toàn khớp với nội dung Điều 26 của Bộ luật Lao động 2019."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "9f972fff965b79d71e6f5b7e",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "9f972fff965b79d71e6f5b7e",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The candidate did not answer the question; it responded with a clarifying question ('Khoản bồi thường cố định ... là bao nhiêu tháng tiền lương?'), requesting information that is fully and directly available in the supplied source (Điều 40, which specifies a fixed compensation of half a month's salary). The expected behavior was 'answer', and the question is answerable without clarification. Therefore the behaviour is inappropriate, and no factual legal claim was provided, resulting in correctness 0 and completeness 0.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "a40ba41e2ea6d4881d63a75a",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "a40ba41e2ea6d4881d63a75a",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate answered with a system budget execution error ('Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.'), not a substantive legal answer or justified refusal. The question is answerable from the supplied sources (notice period 30 days under Điều 35, severance half-month per year and exclusion of unemployment insurance period under Điều 46). The execution error means no factual legal claims were provided, behavior was inappropriate, and both correctness and completeness are 0.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "9a5c3f97678401d9abbd0317",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 123,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "9a5c3f97678401d9abbd0317",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The candidate produced an execution error (\"Answer requires a citation list with valid article IDs.\") instead of providing a substantive answer to the question. The expected behavior was \"answer\", and the question is answerable using the supplied sources. Therefore, behaviour is inappropriate, and both correctness and completeness are 0 because no factual answer was given. No factual legal claims were made; the candidate text is a boilerplate error message, so the claims array is empty.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "ac94412a557f4ecdc756b8f6",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "ac94412a557f4ecdc756b8f6",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu trả lời của ứng viên không trả lời câu hỏi; thay vào đó, nó đặt câu hỏi về việc có quy định nào liên quan đến đặt cọc hay không. Đây là yêu cầu làm rõ. Câu hỏi có thể trả lời được dựa trên Điều 17 của Bộ luật Lao động gốc, quy định cấm yêu cầu biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động. Do đó, việc yêu cầu làm rõ là không chính đáng. Câu trả lời không đưa ra bất kỳ khẳng định thực tế nào, do đó không có nội dung đúng hoặc đầy đủ. Hành vi không phù hợp với expected_behavior là 'answer'.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "a8b7ba96afe4eb07b3530b39",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "scope",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "a8b7ba96afe4eb07b3530b39",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi yêu cầu luật lao động California, nhưng cơ sở tri thức chỉ có Bộ luật Lao động Việt Nam 2019. Hành vi mong đợi là từ chối trả lời. Thay vào đó, thí sinh đã trả lời, viện dẫn Điều 107 của Bộ luật Lao động Việt Nam và khẳng định giới hạn 200 giờ/năm áp dụng cho California. Tuyên bố thực tế duy nhất không được hỗ trợ bởi bất kỳ nguồn nào được cung cấp; tất cả các nguồn đều là luật Việt Nam, không phải California. Do đó, câu trả lời là không phù hợp (trả lời khi đáng lẽ phải từ chối), không chính xác (sai về thẩm quyền và nội dung), và không đầy đủ (không thực hiện hành vi mong đợi).",
+      "claims": [
+        {
+          "answer_quote": "số giờ làm thêm tối đa trong một năm tại bang California không quá 200 giờ, trừ trường hợp quy định tại khoản 3 Điều này.",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Tuyên bố này khẳng định giới hạn làm thêm giờ cho California, nhưng tất cả các nguồn được cung cấp chỉ liên quan đến Bộ luật Lao động Việt Nam 2019, không đề cập đến luật California. Do đó, không có nguồn nào trong hồ sơ thiết lập tuyên bố này."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "ae8f7e4fb3d8f0344e63f096",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 123,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "ae8f7e4fb3d8f0344e63f096",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate answer is a budget-limit execution error message ('Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.'). It contains no substantive legal response. Expected behavior was 'answer', so the behavior is inappropriate. Since the answer fails to address the question at all, correctness and completeness are both 0.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "807283e79df1820ec7de2364",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "807283e79df1820ec7de2364",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời đúng và đầy đủ. Nó khẳng định rằng người sử dụng lao động không được đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi, phù hợp với Điều 137.3 (cấm sa thải hoặc đơn phương chấm dứt vì lý do này, có ngoại lệ) và Điều 37.3 (cấm tuyệt đối đơn phương chấm dứt trong các trường hợp này). Các ngoại lệ và quy tắc ưu tiên giao kết hợp đồng mới được trích dẫn chính xác từ Điều 137. Không có sai sót hay tuyên bố nào trái với nguồn. Phản hồi trả lời trực tiếp câu hỏi và cung cấp thông tin bổ sung được hỗ trợ.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "explanation": "Khẳng định rằng người sử dụng lao động bị cấm sa thải hoặc đơn phương chấm dứt hợp đồng vì các lý do nêu trên, trừ các ngoại lệ cụ thể, phù hợp hoàn toàn với nội dung Điều 137.3."
+        },
+        {
+          "answer_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "explanation": "Quy tắc về ưu tiên giao kết hợp đồng mới khi hợp đồng hết hạn trong thời gian bảo vệ thai sản được sao chép chính xác từ Điều 137.3."
+        },
+        {
+          "answer_quote": "người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi.",
+          "support": "supported",
+          "source_article_id": "Dieu_37",
+          "source_quote": "Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+          "explanation": "Kết luận rằng người sử dụng lao động không được đơn phương chấm dứt hợp đồng với hai đối tượng này được hỗ trợ bởi Điều 37.3, liệt kê họ là trường hợp không được thực hiện quyền đơn phương chấm dứt."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "b2ef5d296020655f187fadb0",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "scope",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "b2ef5d296020655f187fadb0",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate answer is a system message about exhausting reasoning steps without conclusion, not a refusal or answer. The question requires a refusal because the knowledge base only contains Vietnamese labor law, not California law. The output is an execution error, not a justified refusal. Per protocol, execution errors yield correctness=0, completeness=0, behaviour_appropriate=false.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "b17de6a27d7656149e80a45d",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "b17de6a27d7656149e80a45d",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh cung cấp thông tin chính xác về thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên theo Điều 25 của Bộ luật Lao động 2019 (nguyên bản). Nội dung khớp với quy định tại khoản 2 Điều 25: 'Không quá 60 ngày'. Thí sinh trích dẫn đúng điều luật. Hành vi trả lời phù hợp với yêu cầu. Không có lỗi hay thiếu sót.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 25 của Bộ luật Lao động 2019",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "Điều 25. Thời gian thử việc",
+          "explanation": "Thí sinh trích dẫn đúng Điều 25 của Bộ luật Lao động 2019, là điều luật quy định về thời gian thử việc."
+        },
+        {
+          "answer_quote": "thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+          "explanation": "Thí sinh nêu chính xác giới hạn 60 ngày, phù hợp với quy định 'không quá 60 ngày' tại khoản 2 Điều 25."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "b6ad1f31b97538d4c89688ca",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "b6ad1f31b97538d4c89688ca",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 1,
+      "completeness": 1,
+      "rationale": "The candidate correctly identifies that the employee is not entitled to severance allowance (Điều 40.1). However, it reverses the direction of compensation, stating the employer must pay the employee half-month's salary and notice pay, whereas Điều 40.2 requires the employee to pay the employer. It also incorrectly claims there is no specific provision on the fixed compensation amount, when Điều 40.2 clearly sets half-month's salary. Therefore the answer is partly correct but contains material errors; behaviour is appropriate (answered), and some required information (severance part) is supplied, but the required compensation amount is either misstated or denied.",
+      "claims": [
+        {
+          "answer_quote": "người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật không được trợ cấp thôi việc.",
+          "support": "supported",
+          "source_article_id": "Dieu_40",
+          "source_quote": "Không được trợ cấp thôi việc.",
+          "explanation": "Điều 40.1 explicitly states that the employee is not entitled to severance allowance; the claim matches this."
+        },
+        {
+          "answer_quote": "Người sử dụng lao động phải bồi thường cho người lao động một nửa tháng tiền lương theo hợp đồng lao động",
+          "support": "contradicted",
+          "source_article_id": "Dieu_40",
+          "source_quote": "Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động",
+          "explanation": "Điều 40.2 states the employee (not the employer) must compensate the employer with half-month salary; the candidate reverses the obligated party."
+        },
+        {
+          "answer_quote": "và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.",
+          "support": "contradicted",
+          "source_article_id": "Dieu_40",
+          "source_quote": "và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.",
+          "explanation": "The same clause in Điều 40.2 requires the employee to pay the employer, not the reverse as stated by the candidate."
+        },
+        {
+          "answer_quote": "Không có quy định cụ thể về số tháng tiền lương trong khoản bồi thường cố định.",
+          "support": "contradicted",
+          "source_article_id": "Dieu_40",
+          "source_quote": "Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động",
+          "explanation": "Điều 40.2 specifically provides 'nửa tháng tiền lương' as the fixed compensation, directly contradicting the claim that no specific number of months is stated."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "c31a3382678759495c864e1d",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "c31a3382678759495c864e1d",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu trả lời của ứng viên chỉ là thông báo lỗi hệ thống: \"Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.\" Đây là lỗi thực thi/ngân sách chứ không phải từ chối trả lời hợp lý. Theo quy trình, câu hỏi thuộc phạm vi Bộ luật Lao động 2019 và có thể trả lời bằng Điều 35 và Điều 46; vì vậy hành vi không phù hợp. Không có nội dung pháp lý nào được cung cấp nên mức đúng và mức đầy đủ đều là 0. Không có khẳng định thực tế nào để phân tách claim.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "cd32efad61fb6cd71288413b",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "cd32efad61fb6cd71288413b",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Người được đánh giá không trả lời câu hỏi mà chỉ đưa ra thông báo lỗi thực thi 'Action requires a nonempty reason.' Đây không phải nội dung tư vấn pháp lý và không chứa bất kỳ khẳng định pháp lý nào. Câu hỏi có thể trả lời được và theo Điều 17 khoản 2 Bộ luật Lao động 2019, người sử dụng lao động bị nghiêm cấm 'Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động', nên hành vi yêu cầu đặt cọc chỉ để bảo đảm thực hiện hợp đồng lao động là không được phép. Tuy nhiên, do lỗi thực thi, hành vi không phù hợp với expected_behavior là 'answer'; correctness và completeness đều là 0 theo quy trình đánh giá.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "ce1ca11d88a5571ef7746261",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "ce1ca11d88a5571ef7746261",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu hỏi yêu cầu xác định mức lương tối thiểu trong thời gian thử việc theo nguyên bản BLLĐ 45/2019/QH14. Câu trả lời của ứng viên nêu đúng Điều 26 và khẳng định tiền lương thử việc ít nhất bằng 85% mức lương của công việc đó. Điều 26 trong nguồn Công báo cung cấp hỗ trợ trực tiếp cho khẳng định này. Hành vi trả lời là phù hợp với expected_behavior, câu trả lời đầy đủ và chính xác so với đáp án tham chiếu.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 26 của Bộ luật Lao động 2019",
+          "support": "supported",
+          "source_article_id": "Dieu_26",
+          "source_quote": "Điều 26. Tiền lương thử việc",
+          "explanation": "Nguồn cung cấp xác định Điều 26 của BLLĐ 2019 là quy định về tiền lương thử việc, nên việc viện dẫn điều này là đúng."
+        },
+        {
+          "answer_quote": "tiền lương của người lao động trong thời gian thử việc phải ít nhất bằng 85% mức lương của công việc đó",
+          "support": "supported",
+          "source_article_id": "Dieu_26",
+          "source_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+          "explanation": "Điều 26 quy định trực tiếp rằng tiền lương thử việc ít nhất phải bằng 85% mức lương của công việc đó, khớp hoàn toàn với khẳng định của ứng viên."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "d052cb149b55f530e179ff24",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "d052cb149b55f530e179ff24",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi yêu cầu trả lời về quyền đơn phương chấm dứt và nghĩa vụ báo trước của người sử dụng lao động khi người lao động tự ý bỏ việc không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên theo nguyên bản BLLĐ 2019. Nguồn cung cấp xác nhận đáp án tham chiếu: Điều 36 khoản 1 điểm e quy định người sử dụng lao động có quyền đơn phương chấm dứt trong trường hợp này, và Điều 36 khoản 3 quy định khi đơn phương chấm dứt theo điểm e khoản 1 thì người sử dụng lao động không phải báo trước. Tuy nhiên, ứng viên không đưa ra bất kỳ nội dung trả lời pháp lý nào: output chỉ là thông báo lỗi 'Model output truncated by token limit.' với candidate_behavior là 'error'. Đây là lỗi thực thi theo đúng quy trình, không phải từ chối hợp lý hay làm rõ câu hỏi; do đó hành vi không phù hợp, correctness = 0 và completeness = 0 theo tiêu chí dành cho execution error. Câu trả lời không chứa khẳng định thực tế/pháp lý nào để gán nhãn hỗ trợ; thông báo lỗi không phải là khẳng định pháp lý nên mảng claims để trống.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "d2633fe3c7b020820117029d",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "d2633fe3c7b020820117029d",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu trả lời của ứng viên chỉ là thông báo lỗi 'Model output truncated by token limit', không chứa bất kỳ nội dung pháp lý nào trả lời câu hỏi. Đây là lỗi thực thi (execution error) chứ không phải từ chối trả lời hợp lệ. Theo quy trình đánh giá, với lỗi thực thi thì behaviour_appropriate = false, correctness = 0, completeness = 0. Không có tuyên bố thực tế nào trong câu trả lời để phân tách thành claim.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "ac462bb5d8f317e57c5ffc50",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "ac462bb5d8f317e57c5ffc50",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate correctly states that no severance is payable under Article 40 and defines unlawful unilateral termination under Article 39. However, the question also requires the fixed compensation amount (nửa tháng tiền lương). The candidate acknowledges the need to look this up but fails to provide it due to exhausting tool calls, which constitutes an execution error. Per protocol, execution errors result in behaviour_appropriate = false, correctness = 0, completeness = 0. The factual claims made are supported, but the task is not completed.",
+      "claims": [
+        {
+          "answer_quote": "người lao động không được trợ cấp thôi việc khi đơn phương chấm dứt hợp đồng lao động trái pháp luật",
+          "support": "supported",
+          "source_article_id": "Dieu_40",
+          "source_quote": "Không được trợ cấp thôi việc.",
+          "explanation": "Article 40, paragraph 1 explicitly states that the worker is not entitled to severance pay, supporting the claim."
+        },
+        {
+          "answer_quote": "Điều 39 xác định đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này.",
+          "support": "supported",
+          "source_article_id": "Dieu_39",
+          "source_quote": "Đơn phương chấm dứt hợp đồng lao động trái pháp luật là trường hợp chấm dứt hợp đồng lao động không đúng quy định tại các điều 35, 36 và 37 của Bộ luật này.",
+          "explanation": "Article 39 defines unlawful unilateral termination as termination not in accordance with Articles 35, 36, and 37, supporting the claim."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "d5be62d4e70509cb7587eb88",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "d5be62d4e70509cb7587eb88",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate output is truncated due to token limit (execution error). The expected behavior was 'answer', but the model failed to produce any factual legal answer. Under the rubric, an execution error makes behaviour_appropriate false, and both correctness and completeness are scored 0 because no substantive content was delivered. No factual claims can be extracted from the candidate answer.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "d60f0334d266aea2347455d2",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "d60f0334d266aea2347455d2",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate did not answer the question; instead gave a non-substantive response stating 'Answer requires a citation list with valid article IDs.' This is an unjustified refusal for an answerable question. Under the protocol, an expected-answer task that results in a refusal or clarification without justification is unsuccessful. Therefore, behaviour_appropriate is false, correctness is 0 (no factual content), and completeness is 0 (none of the required information supplied).",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "d26f834a9525b5760f49efe7",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "d26f834a9525b5760f49efe7",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "The question asks for the minimum notice period under the original 45/2019/QH14 Labor Code for an employee with an indefinite-term contract in ordinary circumstances. The candidate answer correctly states that the employee must give at least 45 days' notice, citing Điều 35. This is directly supported by the supplied Điều 35 source, which in khoản 1 điểm a states 'Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn'. The answer is complete, accurate, and appropriate; no errors or unsupported claims.",
+      "claims": [
+        {
+          "answer_quote": "người lao động có hợp đồng lao động không xác định thời hạn muốn đơn phương chấm dứt hợp đồng phải báo trước ít nhất 45 ngày cho người sử dụng lao động",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;",
+          "explanation": "The candidate's claim matches the statutory requirement in Điều 35 khoản 1 điểm a of the original Labor Code, which applies to the described scenario (ordinary termination, not exempted, not special work)."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "b276cb11ee141cb7b475b2b3",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "b276cb11ee141cb7b475b2b3",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Candidate correctly answers that the employer cannot unilaterally terminate a contract with a pregnant worker or a worker caring for a child under 12 months due to those reasons, citing Điều 137 of the 2019 Labor Code. The additional details about exceptions (employer death/cessation) and priority for renewal when the contract expires are all directly supported by the supplied Điều 137. No contradictions with supplied sources; the answer is fully supported and complete relative to the reference (which states the same core prohibition). Behaviour is appropriate as the candidate answered the question.",
+      "claims": [
+        {
+          "answer_quote": "người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do mang thai hoặc nuôi con dưới 12 tháng tuổi",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi",
+          "explanation": "The claim that the employer cannot unilaterally terminate for pregnancy or childcare reasons is supported by Điều 137.3. The source includes 'mang thai' and 'nuôi con dưới 12 tháng tuổi' as prohibited reasons."
+        },
+        {
+          "answer_quote": "trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "explanation": "The list of exceptions matches exactly the exceptions provided in Điều 137.3."
+        },
+        {
+          "answer_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "explanation": "The claim about priority to sign a new contract when the labor contract expires during pregnancy or childcare is directly supported by the last sentence of Điều 137.3."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "dbd45deb49ef72c38f4b0b01",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "dbd45deb49ef72c38f4b0b01",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời đưa ra kết luận đúng: theo nguyên bản BLLĐ 2019, người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi. Phần trích dẫn Điều 137(3) khớp chính xác với nguồn được cung cấp, và kết luận của ứng viên được Điều 37(3) hỗ trợ trực tiếp. Không có khẳng định sai hoặc không được chứng minh; hành vi trả lời phù hợp và đầy đủ so với đáp án tham chiếu.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 137 của Bộ luật Lao động 2019, người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "3. Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi, trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật.",
+          "explanation": "Khẳng định về quy định tại Điều 137(3) khớp chính xác với nội dung nguồn; Điều 137 cấm sa thải hoặc đơn phương chấm dứt vì lý do mang thai, thai sản, nuôi con dưới 12 tháng tuổi, kèm các trường hợp ngoại lệ được nêu."
+        },
+        {
+          "answer_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới.",
+          "explanation": "Câu cuối khoản 3 Điều 137 quy định đúng nguyên văn nội dung này; đây là thông tin bổ sung chính xác, không mâu thuẫn với câu hỏi."
+        },
+        {
+          "answer_quote": "Điều này cho thấy người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng với lao động nữ đang mang thai hoặc người lao động đang nuôi con dưới 12 tháng tuổi.",
+          "support": "supported",
+          "source_article_id": "Dieu_37",
+          "source_quote": "3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi.",
+          "explanation": "Điều 37(3) liệt kê trực tiếp các trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động, gồm lao động nữ mang thai và người lao động nuôi con dưới 12 tháng tuổi; do đó kết luận của ứng viên được nguồn hỗ trợ."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "e1b80b6edddfb86b76546f56",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "e1b80b6edddfb86b76546f56",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The candidate output is an execution-budget exhaustion message ('Hệ thống đã sử dụng hết ngân sách 5 lượt gọi công cụ.'), not an answer, justified refusal, or clarification concerning the legal question.  The question is answerable from the supplied source (Điều 17 cấm yêu cầu biện pháp bảo đảm bằng tiền).  Because the system failed to produce any legal content due to a tool‑call budget error, the behaviour is inappropriate for an expected‑answer task, and correctness/completeness are scored 0 as per protocol (execution errors yield 0).  No factual claims are present in the candidate answer, so the claims list is empty.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "b52a9eb20ff77ad7021a41b8",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "b52a9eb20ff77ad7021a41b8",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời trực tiếp xác nhận người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động vì lý do mang thai hoặc nuôi con dưới 12 tháng tuổi, phù hợp với khoản 3 Điều 137 BLLĐ 2019 trong nguồn được cung cấp. Các ngoại lệ được nêu và quy định ưu tiên giao kết hợp đồng mới khi hợp đồng hết hạn đều trùng khớp nguyên văn với nguồn. Việc trích Điều 137 thay vì Điều 37 là một nguồn hợp lệ được cung cấp, không làm sai lệch kết luận và không tạo mâu thuẫn với đáp án tham chiếu. Không có khẳng định pháp lý sai hoặc thiếu thông tin bắt buộc.",
+      "claims": [
+        {
+          "answer_quote": "người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do mang thai hoặc nuôi con dưới 12 tháng tuổi",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Người sử dụng lao động không được sa thải hoặc đơn phương chấm dứt hợp đồng lao động đối với người lao động vì lý do kết hôn, mang thai, nghỉ thai sản, nuôi con dưới 12 tháng tuổi",
+          "explanation": "Khoản 3 Điều 137 BLLĐ 2019 quy định đúng nội dung cấm sa thải hoặc đơn phương chấm dứt hợp đồng vì lý do mang thai và nuôi con dưới 12 tháng tuổi, nên khẳng định của ứng viên được nguồn hỗ trợ."
+        },
+        {
+          "answer_quote": "trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "trừ trường hợp người sử dụng lao động là cá nhân chết, bị Tòa án tuyên bố mất năng lực hành vi dân sự, mất tích hoặc đã chết hoặc người sử dụng lao động không phải là cá nhân chấm dứt hoạt động hoặc bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật",
+          "explanation": "Phần ngoại lệ ứng viên nêu chính là ngoại lệ được ghi nguyên văn trong khoản 3 Điều 137 BLLĐ 2019."
+        },
+        {
+          "answer_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới",
+          "support": "supported",
+          "source_article_id": "Dieu_137",
+          "source_quote": "Trường hợp hợp đồng lao động hết hạn trong thời gian lao động nữ mang thai hoặc nuôi con dưới 12 tháng tuổi thì được ưu tiên giao kết hợp đồng lao động mới",
+          "explanation": "Khoản 3 Điều 137 BLLĐ 2019 quy định đúng quyền ưu tiên giao kết hợp đồng lao động mới trong tình huống hợp đồng hết hạn, nên thông tin bổ sung này được nguồn hỗ trợ."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "e619e41770b77b37779c0b65",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "e619e41770b77b37779c0b65",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate answer is an execution error ('Model output truncated by token limit'), not a substantive response. The expected behaviour was 'answer', but the model failed to generate a valid answer due to token limit truncation. Therefore, behaviour is inappropriate, and correctness/completeness are 0.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "e07c5760529528b8b221fcb7",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "e07c5760529528b8b221fcb7",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 1,
+      "completeness": 0,
+      "rationale": "Câu hỏi yêu cầu trả lời trực tiếp về việc người sử dụng lao động có được phép yêu cầu người lao động nộp tiền đặt cọc để bảo đảm thực hiện hợp đồng lao động hay không. Điều 17.2 của Bộ luật Lao động 2019 (nguyên bản) xác định hành vi \"Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động\" là hành vi người sử dụng lao động không được làm, nên câu trả lời đúng là không được phép. Ứng viên chỉ nêu rằng Điều 119, Điều 127 và Điều 220 không đề cập đến tiền đặt cọc, sau đó nói chưa chắc chắn và cần tra cứu thêm; câu trả lời không đưa ra kết luận pháp lý và bỏ sót Điều 17. Nhận định hạn chế về ba điều luật nêu trên là đúng và được nguồn hỗ trợ, nhưng đó không phải là câu trả lời cho câu hỏi, và việc cho rằng cần tra cứu thêm là không cần thiết vì Điều 17.2 đã giải quyết vấn đề. Vì vậy hành vi không phù hợp với hành vi mong đợi là trả lời; mức độ đầy đủ bằng 0; chỉ có một phần nội dung đúng nên correctness = 1.",
+      "claims": [
+        {
+          "answer_quote": "Điều 220, Điều 127 và Điều 119 của Bộ luật Lao động 2019 không đề cập đến việc người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc.",
+          "support": "supported",
+          "source_article_id": "Dieu_127",
+          "source_quote": "Điều 127. Các hành vi bị nghiêm cấm khi xử lý kỷ luật lao động 1. Xâm phạm sức khỏe, danh dự, tính mạng, uy tín, nhân phẩm của người lao động.",
+          "explanation": "Nội dung Điều 127 được cung cấp chỉ quy định các hành vi bị nghiêm cấm khi xử lý kỷ luật lao động; tương tự, nội dung Điều 119 (đăng ký nội quy lao động) và Điều 220 (hiệu lực thi hành) không quy định về tiền đặt cọc hoặc biện pháp bảo đảm thực hiện hợp đồng. Phát biểu hạn chế này đúng nhưng không trả lời câu hỏi chính."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "e1fd4353ad8dd1205dc6b290",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 42,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "e1fd4353ad8dd1205dc6b290",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 1,
+      "rationale": "The candidate answer correctly states the severance allowance obligations under Article 46 of the Labor Code 2019, and all its factual claims are fully supported by the source. However, the question also requires identification of the employer's obligations under Article 41(1) – specifically the payment of salary, social insurance, health insurance, unemployment insurance for the days not worked, and an additional minimum payment of 02 months' salary. The candidate answer omits these essential obligations entirely. Therefore, while the assertions made are correct, the answer is incomplete regarding the required information, resulting in completeness score 1.",
+      "claims": [
+        {
+          "answer_quote": "người sử dụng lao động phải trả trợ cấp thôi việc cho người lao động đã làm việc từ đủ 12 tháng trở lên",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên",
+          "explanation": "Article 46(1) requires severance pay for employees with at least 12 months of work; the claim matches this condition."
+        },
+        {
+          "answer_quote": "mỗi năm làm việc được trợ cấp một nửa tháng tiền lương",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "mỗi năm làm việc được trợ cấp một nửa tháng tiền lương",
+          "explanation": "Article 46(1) specifies the severance allowance rate as half a month's salary per year of work."
+        },
+        {
+          "answer_quote": "Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được trợ cấp thôi việc, trợ cấp mất việc làm.",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm.",
+          "explanation": "Article 46(2) defines the calculation period for severance pay; the claim accurately summarises it."
+        },
+        {
+          "answer_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề trước khi người lao động thôi việc.",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc.",
+          "explanation": "Article 46(3) sets the salary base as the average of the preceding six months; the claim matches this."
+        },
+        {
+          "answer_quote": "Chính phủ sẽ quy định chi tiết Điều này.",
+          "support": "supported",
+          "source_article_id": "Dieu_46",
+          "source_quote": "Chính phủ quy định chi tiết Điều này.",
+          "explanation": "Article 46(4) delegates detailed regulation to the Government; the claim aligns with this provision."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "ec8047bbb818be1b2bf0f347",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 123,
+    "mode": "off",
+    "category": "scope",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "ec8047bbb818be1b2bf0f347",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi yêu cầu luật lao động California về số giờ làm thêm tối đa mỗi tuần và phạm vi chỉ có Bộ luật Lao động Việt Nam 2019. Hành vi mong đợi là từ chối vì thiếu nguồn California. Câu trả lời của thí sinh là một câu hỏi về điều kiện vượt quá 200 giờ/năm theo Điều 107 của Bộ luật Lao động Việt Nam, hoàn toàn không trả lời câu hỏi và không từ chối. Do đó, hành vi không phù hợp, câu trả lời không liên quan và sai, không cung cấp thông tin yêu cầu. Tuy nhiên, câu trả lời có chứa một tuyên bố thực tế rằng Điều 107 cho phép làm thêm giờ vượt quá 200 giờ, được hỗ trợ bởi nguồn (cho phép tối đa 300 giờ trong một số trường hợp). Nhưng điều này không thay đổi tính không phù hợp tổng thể.",
+      "claims": [
+        {
+          "answer_quote": "người sử dụng lao động được phép làm thêm giờ vượt quá 200 giờ theo Điều 107 của Bộ luật Lao động 2019",
+          "support": "supported",
+          "source_article_id": "Dieu_107",
+          "source_quote": "Người sử dụng lao động được sử dụng người lao động làm thêm không quá 300 giờ trong 01 năm trong một số ngành, nghề, công việc hoặc trường hợp sau đây",
+          "explanation": "Điều 107 cho phép làm thêm tới 300 giờ/năm trong một số trường hợp, tức là có thể vượt quá 200 giờ; tuyên bố này được hỗ trợ."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "f61a12015b2a1d74d3695ad7",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": true,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "f61a12015b2a1d74d3695ad7",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate output is an execution-error message: \"Model returned an invalid or missing action.\" It contains no legal content, no refusal justification, and does not answer the question. The question is answerable under the supplied original 45/2019/QH14 snapshot via Điều 36 khoản 1 điểm e and khoản 3, which give the employer the right to unilaterally terminate when the employee is absent 5 consecutive working days without justifiable reason and exempt the employer from prior notice. Since no factual legal claim was made, correctness and completeness are scored 0 and the behaviour is inappropriate for an expected-answer task.",
+      "claims": []
+    }
+  },
+  {
+    "review_id": "fc27c417625b1b6f96e9d1b9",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "fc27c417625b1b6f96e9d1b9",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "The candidate correctly answers the question by stating that the maximum probation period for work requiring professional/technical qualifications from college level or above is 60 days, citing Article 25 of the Labor Code 2019. This assertion is directly supported by Điều 25, point 2 of the supplied source. The answer is complete and appropriate; no refusal or clarification is given, and the scope (original 2019 law) is correctly followed.",
+      "claims": [
+        {
+          "answer_quote": "thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày",
+          "support": "supported",
+          "source_article_id": "Dieu_25",
+          "source_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+          "explanation": "The claim directly states the maximum period (60 days) for the specified job category, which matches the exact provision in Article 25, clause 2 of the original Labor Code 2019."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "e74d36035dd3dde9b5c7277a",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": true,
+    "judgment": {
+      "review_id": "e74d36035dd3dde9b5c7277a",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh hoàn toàn chính xác và đầy đủ. Thí sinh trích dẫn đúng Điều 35 BLLĐ 2019, nêu rõ thời hạn báo trước ít nhất 45 ngày đối với hợp đồng không xác định thời hạn, đồng thời nhấn mạnh áp dụng cho trường hợp thông thường không thuộc diện miễn báo trước, phù hợp với điều kiện câu hỏi. Các nhận định đều được hỗ trợ bởi nguồn luật được cung cấp.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 35 của Bộ luật Lao động 2019",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "Điều 35. Quyền đơn phương chấm dứt hợp đồng lao động của người lao động",
+          "explanation": "Thí sinh xác định đúng cơ sở pháp lý là Điều 35 BLLĐ 2019."
+        },
+        {
+          "answer_quote": "người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn.",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "1. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;",
+          "explanation": "Nội dung này khớp hoàn toàn với quy định tại khoản 1 Điều 35, bao gồm quyền đơn phương chấm dứt và thời hạn báo trước 45 ngày."
+        },
+        {
+          "answer_quote": "Điều này áp dụng cho trường hợp thông thường, không thuộc diện được miễn báo trước.",
+          "support": "supported",
+          "source_article_id": "Dieu_35",
+          "source_quote": "2. Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không cần báo trước trong trường hợp sau đây:",
+          "explanation": "Khoản 2 Điều 35 liệt kê các trường hợp miễn báo trước, xác nhận rằng quy tắc tại khoản 1 (45 ngày) áp dụng cho các trường hợp thông thường không thuộc các trường hợp đó."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "e9f42b6509c3f04c8fec3aba",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "recovery",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "e9f42b6509c3f04c8fec3aba",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 1,
+      "completeness": 2,
+      "rationale": "Câu trả lời kết luận đúng rằng việc yêu cầu đặt cọc không được phép, nhưng lại viện dẫn Điều 220 (hiệu lực thi hành) làm căn cứ, trong khi quy định cấm thực sự nằm tại Điều 17. Do đó, khẳng định về Điều 220 là không được hỗ trợ bởi nguồn luật được cung cấp, khiến cho câu trả lời có một phần sai sót. Tuy nhiên, nội dung chính là đúng và đầy đủ so với đáp án tham chiếu.",
+      "claims": [
+        {
+          "answer_quote": "Theo Điều 220 của Bộ luật Lao động 2019",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Khẳng định rằng Điều 220 là nguồn quy định cấm đặt cọc; Điều 220 thực tế chỉ quy định về hiệu lực thi hành, không chứa nội dung cấm này."
+        },
+        {
+          "answer_quote": "việc người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc không được phép",
+          "support": "supported",
+          "source_article_id": "Dieu_17",
+          "source_quote": "Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động.",
+          "explanation": "Kết luận này phù hợp với quy định cấm tại Điều 17, khoản 2, cấm người sử dụng lao động yêu cầu biện pháp bảo đảm bằng tiền."
+        }
+      ]
+    }
+  },
+  {
+    "review_id": "f0fcba9d7146734f87f5698f",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 42,
+    "mode": "off",
+    "category": "scope",
+    "system_error": false,
+    "valid_judgment": true,
+    "judgment_origin": "main",
+    "judgeable": true,
+    "llm_task_success_estimate": false,
+    "judgment": {
+      "review_id": "f0fcba9d7146734f87f5698f",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi yêu cầu luật lao động bang California, nhưng cơ sở tri thức chỉ có Bộ luật Lao động Việt Nam 2019. Ứng viên không từ chối mà đưa ra khẳng định về bảng quy định làm thêm giờ của California, không được hỗ trợ bởi bất kỳ nguồn nào được cung cấp. Câu trả lời không đưa ra số giờ tối đa được yêu cầu và không tuân theo hành vi dự kiến là từ chối. Do đó, câu trả lời sai, không đầy đủ và hành vi không phù hợp.",
+      "claims": [
+        {
+          "answer_quote": "Bảng quy định làm thêm giờ trong luật lao động bang California bao gồm cả làm thêm giờ bình thường và làm thêm giờ trong trường hợp đặc biệt.",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Không có nguồn luật California nào trong các tài liệu được cung cấp (chỉ có Bộ luật Lao động Việt Nam 2019). Khẳng định này không thể được xác nhận từ cơ sở tri thức hiện có."
+        }
+      ]
+    }
+  }
+]

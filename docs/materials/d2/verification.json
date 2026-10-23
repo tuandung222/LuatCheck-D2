@@ -1,0 +1,5500 @@
+{
+  "verified_at": "2026-10-21T23:05:29.968800+07:00",
+  "scope": "Three supplied D2 sources, local copies, and the requirements note; not project compliance or native Excel execution.",
+  "source_copies": [
+    {
+      "repo_path": "docs/materials/d2/CO5151-D2-Rubric.xlsx",
+      "source_path": "/Users/admin/Downloads/CO5151-D2-Rubric.xlsx",
+      "bytes": 51156,
+      "sha256": "0d3d07ac7cd4be7ccea40cfd8e8ecd17f8675ddc3594eb627302f59ef5018f20",
+      "source_sha256": "0d3d07ac7cd4be7ccea40cfd8e8ecd17f8675ddc3594eb627302f59ef5018f20",
+      "identical_to_source": true
+    },
+    {
+      "repo_path": "docs/materials/d2/interim-report-requirements.pdf",
+      "source_path": "/Users/admin/Downloads/interim-report-requirements.pdf",
+      "bytes": 198645,
+      "sha256": "54c3bd42799e11d7ea6cf57e6448c9ab05b13448d912e3f392c4c4a01c324cce",
+      "source_sha256": "54c3bd42799e11d7ea6cf57e6448c9ab05b13448d912e3f392c4c4a01c324cce",
+      "identical_to_source": true
+    },
+    {
+      "repo_path": "docs/materials/d2/CO5151-D2-announcement.txt",
+      "source_path": "/Users/admin/.codex/attachments/aee003c1-83ef-4df3-9f26-68f02cd793e8/Pasted text.txt",
+      "bytes": 11723,
+      "sha256": "5bdce43e7ca171785a294b6a291f54bda75907e6d20bd9685d9f37c3e50b20bb",
+      "source_sha256": "5bdce43e7ca171785a294b6a291f54bda75907e6d20bd9685d9f37c3e50b20bb",
+      "identical_to_source": true
+    },
+    {
+      "repo_path": "docs/materials/d2/CO5151-D2-announcement.md",
+      "source_path": "/Users/admin/.codex/attachments/aee003c1-83ef-4df3-9f26-68f02cd793e8/Pasted text.txt",
+      "bytes": 11723,
+      "sha256": "5bdce43e7ca171785a294b6a291f54bda75907e6d20bd9685d9f37c3e50b20bb",
+      "source_sha256": "5bdce43e7ca171785a294b6a291f54bda75907e6d20bd9685d9f37c3e50b20bb",
+      "identical_to_source": true
+    }
+  ],
+  "reviewed_documents": [
+    {
+      "repo_path": "report_d2/D2_REQUIREMENTS.md",
+      "sha256": "a8d2b9ca49ad56d6a1c2ecc3b750c2a326ebce156b5887e89052c978e9ad5bf3"
+    },
+    {
+      "repo_path": "docs/materials/d2/README.md",
+      "sha256": "712e7433a4f6145e7163c9ec61403eccb040ea9bac8181c8393405046d748f7d"
+    },
+    {
+      "repo_path": "docs/materials/d2/D2_REQUIREMENTS_REVIEW.md",
+      "sha256": "e49f9400c0f55c5290c98b454539919eafbbd97c67ed77f2307a32b2d87a228d"
+    }
+  ],
+  "semantic_review": {
+    "method": "Full source-to-note reading plus rendered PDF page inspection by the assistant.",
+    "coverage_groups": 80,
+    "table": "docs/materials/d2/D2_REQUIREMENTS_REVIEW.md",
+    "finding": "No omitted or contradictory D2 requirement identified within the supplied sources after the documented edits.",
+    "not_a_guarantee_of_absolute_error_absence": true
+  },
+  "pdf_visual_review": {
+    "renderer": "pdftoppm",
+    "pages_inspected": [
+      1,
+      2,
+      3
+    ]
+  },
+  "spreadsheet_validation": {
+    "sheets": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7",
+      "G8"
+    ],
+    "criterion_comments": 64,
+    "score_dropdowns": 64,
+    "stored_formulas_checked": 160,
+    "independent_ooxml_formula_checks": 160,
+    "native_excel_calculation_executed": false
+  },
+  "checks": [
+    {
+      "check": "copy_bytes:CO5151-D2-Rubric.xlsx",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "copy_sha256:CO5151-D2-Rubric.xlsx",
+      "passed": true,
+      "actual": "0d3d07ac7cd4be7ccea40cfd8e8ecd17f8675ddc3594eb627302f59ef5018f20",
+      "expected": "0d3d07ac7cd4be7ccea40cfd8e8ecd17f8675ddc3594eb627302f59ef5018f20"
+    },
+    {
+      "check": "copy_bytes:interim-report-requirements.pdf",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "copy_sha256:interim-report-requirements.pdf",
+      "passed": true,
+      "actual": "54c3bd42799e11d7ea6cf57e6448c9ab05b13448d912e3f392c4c4a01c324cce",
+      "expected": "54c3bd42799e11d7ea6cf57e6448c9ab05b13448d912e3f392c4c4a01c324cce"
+    },
+    {
+      "check": "copy_bytes:CO5151-D2-announcement.txt",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "copy_sha256:CO5151-D2-announcement.txt",
+      "passed": true,
+      "actual": "5bdce43e7ca171785a294b6a291f54bda75907e6d20bd9685d9f37c3e50b20bb",
+      "expected": "5bdce43e7ca171785a294b6a291f54bda75907e6d20bd9685d9f37c3e50b20bb"
+    },
+    {
+      "check": "copy_bytes:CO5151-D2-announcement.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "copy_sha256:CO5151-D2-announcement.md",
+      "passed": true,
+      "actual": "5bdce43e7ca171785a294b6a291f54bda75907e6d20bd9685d9f37c3e50b20bb",
+      "expected": "5bdce43e7ca171785a294b6a291f54bda75907e6d20bd9685d9f37c3e50b20bb"
+    },
+    {
+      "check": "pdf_pages:pypdf",
+      "passed": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "check": "pdf_pages:pdfplumber",
+      "passed": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "check": "pdf_text:page1:23:59 Chủ nhật 25/10/2026",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page1:18:00–20:29",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page1:B4-305",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page1:Trừ 10% mỗi ngày, tối đa 3 ngày",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page1:sau đó bài nộp nhận 0 điểm",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page1:Báo cáo gồm tám phần dưới đây, theo đúng thứ tự này",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page2:ít nhất 5–10 task",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page2:ít nhất một cấu hình đơn giản hơn",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page2:một mẫu có nhãn người",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page2:token và tiền",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page2:giờ GPU và cấu hình máy",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page2:Số liệu sơ bộ là điều được mong đợi",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page2:D2 không yêu cầu chạy thử prompt injection",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page3:tuần 45",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page3:tuần 49, 2/12/2026",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page3:giả thuyết có thể bác bỏ (RT1)",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page3:baseline bên ngoài (RT2)",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page3:ít nhất ba kịch bản sử dụng (AT1)",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page3:số lần chạy",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "pdf_text:page3:dữ liệu giả lập hoặc tổng hợp",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "workbook_sheet_names",
+      "passed": true,
+      "actual": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8"
+      ],
+      "expected": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8"
+      ]
+    },
+    {
+      "check": "G1:matches_G1_except_title",
+      "passed": true,
+      "actual": "identical",
+      "expected": "identical"
+    },
+    {
+      "check": "G1:group_title",
+      "passed": true,
+      "actual": "CO5151 · Phiếu chấm D2 · G1",
+      "expected": "CO5151 · Phiếu chấm D2 · G1"
+    },
+    {
+      "check": "G1:presentation_date",
+      "passed": true,
+      "actual": "Ngày trình bày: 28/10/2026",
+      "expected": "Ngày trình bày: 28/10/2026"
+    },
+    {
+      "check": "G1:F5:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "G1:F6:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "G1:F7:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "G1:F8:formula",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "G1:E17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G1:F17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G1:A12:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "G1:C12:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G1:B12:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:E12:formula",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "G1:F12:formula",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "G1:A13:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "G1:C13:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G1:B13:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:E13:formula",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "G1:F13:formula",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "G1:A14:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "G1:C14:weight",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "G1:B14:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:E14:formula",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "G1:F14:formula",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "G1:A15:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "G1:C15:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G1:B15:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:E15:formula",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "G1:F15:formula",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "G1:A16:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "G1:C16:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G1:B16:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:E16:formula",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "G1:F16:formula",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "G1:A18:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "G1:C18:weight",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "G1:B18:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:E18:formula",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "G1:F18:formula",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "G1:A19:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "G1:C19:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G1:B19:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:E19:formula",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "G1:F19:formula",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "G1:A20:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "G1:C20:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G1:B20:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:E20:formula",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "G1:F20:formula",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "G1:dropdown_ranges",
+      "passed": true,
+      "actual": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    },
+    {
+      "check": "G1:dropdown_values",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G1:bands",
+      "passed": true,
+      "actual": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ],
+      "expected": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ]
+    },
+    {
+      "check": "G2:matches_G1_except_title",
+      "passed": true,
+      "actual": "identical",
+      "expected": "identical"
+    },
+    {
+      "check": "G2:group_title",
+      "passed": true,
+      "actual": "CO5151 · Phiếu chấm D2 · G2",
+      "expected": "CO5151 · Phiếu chấm D2 · G2"
+    },
+    {
+      "check": "G2:presentation_date",
+      "passed": true,
+      "actual": "Ngày trình bày: 28/10/2026",
+      "expected": "Ngày trình bày: 28/10/2026"
+    },
+    {
+      "check": "G2:F5:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "G2:F6:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "G2:F7:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "G2:F8:formula",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "G2:E17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G2:F17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G2:A12:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "G2:C12:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G2:B12:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:E12:formula",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "G2:F12:formula",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "G2:A13:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "G2:C13:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G2:B13:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:E13:formula",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "G2:F13:formula",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "G2:A14:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "G2:C14:weight",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "G2:B14:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:E14:formula",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "G2:F14:formula",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "G2:A15:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "G2:C15:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G2:B15:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:E15:formula",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "G2:F15:formula",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "G2:A16:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "G2:C16:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G2:B16:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:E16:formula",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "G2:F16:formula",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "G2:A18:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "G2:C18:weight",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "G2:B18:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:E18:formula",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "G2:F18:formula",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "G2:A19:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "G2:C19:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G2:B19:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:E19:formula",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "G2:F19:formula",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "G2:A20:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "G2:C20:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G2:B20:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:E20:formula",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "G2:F20:formula",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "G2:dropdown_ranges",
+      "passed": true,
+      "actual": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    },
+    {
+      "check": "G2:dropdown_values",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G2:bands",
+      "passed": true,
+      "actual": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ],
+      "expected": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ]
+    },
+    {
+      "check": "G3:matches_G1_except_title",
+      "passed": true,
+      "actual": "identical",
+      "expected": "identical"
+    },
+    {
+      "check": "G3:group_title",
+      "passed": true,
+      "actual": "CO5151 · Phiếu chấm D2 · G3",
+      "expected": "CO5151 · Phiếu chấm D2 · G3"
+    },
+    {
+      "check": "G3:presentation_date",
+      "passed": true,
+      "actual": "Ngày trình bày: 28/10/2026",
+      "expected": "Ngày trình bày: 28/10/2026"
+    },
+    {
+      "check": "G3:F5:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "G3:F6:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "G3:F7:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "G3:F8:formula",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "G3:E17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G3:F17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G3:A12:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "G3:C12:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G3:B12:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:E12:formula",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "G3:F12:formula",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "G3:A13:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "G3:C13:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G3:B13:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:E13:formula",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "G3:F13:formula",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "G3:A14:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "G3:C14:weight",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "G3:B14:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:E14:formula",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "G3:F14:formula",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "G3:A15:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "G3:C15:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G3:B15:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:E15:formula",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "G3:F15:formula",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "G3:A16:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "G3:C16:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G3:B16:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:E16:formula",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "G3:F16:formula",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "G3:A18:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "G3:C18:weight",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "G3:B18:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:E18:formula",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "G3:F18:formula",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "G3:A19:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "G3:C19:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G3:B19:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:E19:formula",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "G3:F19:formula",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "G3:A20:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "G3:C20:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G3:B20:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:E20:formula",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "G3:F20:formula",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "G3:dropdown_ranges",
+      "passed": true,
+      "actual": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    },
+    {
+      "check": "G3:dropdown_values",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G3:bands",
+      "passed": true,
+      "actual": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ],
+      "expected": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ]
+    },
+    {
+      "check": "G4:matches_G1_except_title",
+      "passed": true,
+      "actual": "identical",
+      "expected": "identical"
+    },
+    {
+      "check": "G4:group_title",
+      "passed": true,
+      "actual": "CO5151 · Phiếu chấm D2 · G4",
+      "expected": "CO5151 · Phiếu chấm D2 · G4"
+    },
+    {
+      "check": "G4:presentation_date",
+      "passed": true,
+      "actual": "Ngày trình bày: 28/10/2026",
+      "expected": "Ngày trình bày: 28/10/2026"
+    },
+    {
+      "check": "G4:F5:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "G4:F6:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "G4:F7:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "G4:F8:formula",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "G4:E17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G4:F17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G4:A12:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "G4:C12:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G4:B12:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:E12:formula",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "G4:F12:formula",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "G4:A13:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "G4:C13:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G4:B13:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:E13:formula",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "G4:F13:formula",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "G4:A14:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "G4:C14:weight",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "G4:B14:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:E14:formula",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "G4:F14:formula",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "G4:A15:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "G4:C15:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G4:B15:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:E15:formula",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "G4:F15:formula",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "G4:A16:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "G4:C16:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G4:B16:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:E16:formula",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "G4:F16:formula",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "G4:A18:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "G4:C18:weight",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "G4:B18:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:E18:formula",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "G4:F18:formula",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "G4:A19:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "G4:C19:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G4:B19:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:E19:formula",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "G4:F19:formula",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "G4:A20:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "G4:C20:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G4:B20:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:E20:formula",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "G4:F20:formula",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "G4:dropdown_ranges",
+      "passed": true,
+      "actual": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    },
+    {
+      "check": "G4:dropdown_values",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G4:bands",
+      "passed": true,
+      "actual": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ],
+      "expected": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ]
+    },
+    {
+      "check": "G5:matches_G1_except_title",
+      "passed": true,
+      "actual": "identical",
+      "expected": "identical"
+    },
+    {
+      "check": "G5:group_title",
+      "passed": true,
+      "actual": "CO5151 · Phiếu chấm D2 · G5",
+      "expected": "CO5151 · Phiếu chấm D2 · G5"
+    },
+    {
+      "check": "G5:presentation_date",
+      "passed": true,
+      "actual": "Ngày trình bày: 28/10/2026",
+      "expected": "Ngày trình bày: 28/10/2026"
+    },
+    {
+      "check": "G5:F5:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "G5:F6:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "G5:F7:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "G5:F8:formula",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "G5:E17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G5:F17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G5:A12:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "G5:C12:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G5:B12:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:E12:formula",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "G5:F12:formula",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "G5:A13:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "G5:C13:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G5:B13:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:E13:formula",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "G5:F13:formula",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "G5:A14:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "G5:C14:weight",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "G5:B14:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:E14:formula",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "G5:F14:formula",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "G5:A15:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "G5:C15:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G5:B15:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:E15:formula",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "G5:F15:formula",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "G5:A16:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "G5:C16:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G5:B16:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:E16:formula",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "G5:F16:formula",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "G5:A18:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "G5:C18:weight",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "G5:B18:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:E18:formula",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "G5:F18:formula",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "G5:A19:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "G5:C19:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G5:B19:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:E19:formula",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "G5:F19:formula",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "G5:A20:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "G5:C20:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G5:B20:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:E20:formula",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "G5:F20:formula",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "G5:dropdown_ranges",
+      "passed": true,
+      "actual": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    },
+    {
+      "check": "G5:dropdown_values",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G5:bands",
+      "passed": true,
+      "actual": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ],
+      "expected": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ]
+    },
+    {
+      "check": "G6:matches_G1_except_title",
+      "passed": true,
+      "actual": "identical",
+      "expected": "identical"
+    },
+    {
+      "check": "G6:group_title",
+      "passed": true,
+      "actual": "CO5151 · Phiếu chấm D2 · G6",
+      "expected": "CO5151 · Phiếu chấm D2 · G6"
+    },
+    {
+      "check": "G6:presentation_date",
+      "passed": true,
+      "actual": "Ngày trình bày: 28/10/2026",
+      "expected": "Ngày trình bày: 28/10/2026"
+    },
+    {
+      "check": "G6:F5:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "G6:F6:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "G6:F7:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "G6:F8:formula",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "G6:E17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G6:F17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G6:A12:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "G6:C12:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G6:B12:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:E12:formula",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "G6:F12:formula",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "G6:A13:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "G6:C13:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G6:B13:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:E13:formula",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "G6:F13:formula",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "G6:A14:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "G6:C14:weight",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "G6:B14:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:E14:formula",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "G6:F14:formula",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "G6:A15:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "G6:C15:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G6:B15:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:E15:formula",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "G6:F15:formula",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "G6:A16:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "G6:C16:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G6:B16:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:E16:formula",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "G6:F16:formula",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "G6:A18:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "G6:C18:weight",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "G6:B18:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:E18:formula",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "G6:F18:formula",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "G6:A19:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "G6:C19:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G6:B19:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:E19:formula",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "G6:F19:formula",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "G6:A20:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "G6:C20:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G6:B20:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:E20:formula",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "G6:F20:formula",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "G6:dropdown_ranges",
+      "passed": true,
+      "actual": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    },
+    {
+      "check": "G6:dropdown_values",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G6:bands",
+      "passed": true,
+      "actual": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ],
+      "expected": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ]
+    },
+    {
+      "check": "G7:matches_G1_except_title",
+      "passed": true,
+      "actual": "identical",
+      "expected": "identical"
+    },
+    {
+      "check": "G7:group_title",
+      "passed": true,
+      "actual": "CO5151 · Phiếu chấm D2 · G7",
+      "expected": "CO5151 · Phiếu chấm D2 · G7"
+    },
+    {
+      "check": "G7:presentation_date",
+      "passed": true,
+      "actual": "Ngày trình bày: 28/10/2026",
+      "expected": "Ngày trình bày: 28/10/2026"
+    },
+    {
+      "check": "G7:F5:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "G7:F6:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "G7:F7:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "G7:F8:formula",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "G7:E17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G7:F17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G7:A12:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "G7:C12:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G7:B12:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:E12:formula",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "G7:F12:formula",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "G7:A13:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "G7:C13:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G7:B13:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:E13:formula",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "G7:F13:formula",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "G7:A14:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "G7:C14:weight",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "G7:B14:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:E14:formula",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "G7:F14:formula",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "G7:A15:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "G7:C15:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G7:B15:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:E15:formula",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "G7:F15:formula",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "G7:A16:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "G7:C16:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G7:B16:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:E16:formula",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "G7:F16:formula",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "G7:A18:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "G7:C18:weight",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "G7:B18:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:E18:formula",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "G7:F18:formula",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "G7:A19:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "G7:C19:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G7:B19:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:E19:formula",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "G7:F19:formula",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "G7:A20:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "G7:C20:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G7:B20:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:E20:formula",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "G7:F20:formula",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "G7:dropdown_ranges",
+      "passed": true,
+      "actual": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    },
+    {
+      "check": "G7:dropdown_values",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G7:bands",
+      "passed": true,
+      "actual": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ],
+      "expected": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ]
+    },
+    {
+      "check": "G8:matches_G1_except_title",
+      "passed": true,
+      "actual": "identical",
+      "expected": "identical"
+    },
+    {
+      "check": "G8:group_title",
+      "passed": true,
+      "actual": "CO5151 · Phiếu chấm D2 · G8",
+      "expected": "CO5151 · Phiếu chấm D2 · G8"
+    },
+    {
+      "check": "G8:presentation_date",
+      "passed": true,
+      "actual": "Ngày trình bày: 28/10/2026",
+      "expected": "Ngày trình bày: 28/10/2026"
+    },
+    {
+      "check": "G8:F5:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "G8:F6:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "G8:F7:formula",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "G8:F8:formula",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "G8:E17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G8:F17_non_criterion",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "G8:A12:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "G8:C12:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G8:B12:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:E12:formula",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "G8:F12:formula",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "G8:A13:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "G8:C13:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G8:B13:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:E13:formula",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "G8:F13:formula",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "G8:A14:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "G8:C14:weight",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "G8:B14:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:E14:formula",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "G8:F14:formula",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "G8:A15:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "G8:C15:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G8:B15:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:E15:formula",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "G8:F15:formula",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "G8:A16:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "G8:C16:weight",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "G8:B16:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:E16:formula",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "G8:F16:formula",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "G8:A18:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "G8:C18:weight",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "G8:B18:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:E18:formula",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "G8:F18:formula",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "G8:A19:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "G8:C19:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G8:B19:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:E19:formula",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "G8:F19:formula",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "G8:A20:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "G8:C20:weight",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "G8:B20:comment_present",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:E20:formula",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "G8:F20:formula",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "G8:dropdown_ranges",
+      "passed": true,
+      "actual": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": [
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    },
+    {
+      "check": "G8:dropdown_values",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "G8:bands",
+      "passed": true,
+      "actual": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ],
+      "expected": [
+        [
+          "Rất tốt",
+          "9–10"
+        ],
+        [
+          "Tốt",
+          "7–8"
+        ],
+        [
+          "Khá",
+          "5–6"
+        ],
+        [
+          "Trung bình",
+          "3–4"
+        ],
+        [
+          "Không tốt",
+          "0–2"
+        ]
+      ]
+    },
+    {
+      "check": "rubric_formula_count",
+      "passed": true,
+      "actual": 160,
+      "expected": 160
+    },
+    {
+      "check": "rubric_criterion_comment_count",
+      "passed": true,
+      "actual": 64,
+      "expected": 64
+    },
+    {
+      "check": "rubric_score_dropdown_count",
+      "passed": true,
+      "actual": 64,
+      "expected": 64
+    },
+    {
+      "check": "weights_total",
+      "passed": true,
+      "actual": "1.00",
+      "expected": "1.00"
+    },
+    {
+      "check": "weights_report",
+      "passed": true,
+      "actual": "0.50",
+      "expected": "0.50"
+    },
+    {
+      "check": "weights_presentation",
+      "passed": true,
+      "actual": "0.50",
+      "expected": "0.50"
+    },
+    {
+      "check": "max_D2",
+      "passed": true,
+      "actual": "10.00",
+      "expected": "10.00"
+    },
+    {
+      "check": "max_report",
+      "passed": true,
+      "actual": "5.00",
+      "expected": "5.00"
+    },
+    {
+      "check": "max_presentation",
+      "passed": true,
+      "actual": "5.00",
+      "expected": "5.00"
+    },
+    {
+      "check": "D2_course_fraction",
+      "passed": true,
+      "actual": "0.1500",
+      "expected": "0.1500"
+    },
+    {
+      "check": "xlsx_zip_crc",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check": "xlsx_xml_sheet_names",
+      "passed": true,
+      "actual": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8"
+      ],
+      "expected": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8"
+      ]
+    },
+    {
+      "check": "OOXML:G1:C12",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G1:C13",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G1:C14",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "OOXML:G1:C15",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G1:C16",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G1:C18",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "OOXML:G1:C19",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G1:C20",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G1:F5",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G1:F6",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "OOXML:G1:F7",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G1:F8",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "OOXML:G1:E12",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "OOXML:G1:F12",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "OOXML:G1:E13",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "OOXML:G1:F13",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "OOXML:G1:E14",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "OOXML:G1:F14",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "OOXML:G1:E15",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "OOXML:G1:F15",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "OOXML:G1:E16",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "OOXML:G1:F16",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "OOXML:G1:E18",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "OOXML:G1:F18",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "OOXML:G1:E19",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "OOXML:G1:F19",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "OOXML:G1:E20",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "OOXML:G1:F20",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "OOXML:G1:dropdown_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:G1:dropdown_content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:G2:C12",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G2:C13",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G2:C14",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "OOXML:G2:C15",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G2:C16",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G2:C18",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "OOXML:G2:C19",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G2:C20",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G2:F5",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G2:F6",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "OOXML:G2:F7",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G2:F8",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "OOXML:G2:E12",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "OOXML:G2:F12",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "OOXML:G2:E13",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "OOXML:G2:F13",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "OOXML:G2:E14",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "OOXML:G2:F14",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "OOXML:G2:E15",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "OOXML:G2:F15",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "OOXML:G2:E16",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "OOXML:G2:F16",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "OOXML:G2:E18",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "OOXML:G2:F18",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "OOXML:G2:E19",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "OOXML:G2:F19",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "OOXML:G2:E20",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "OOXML:G2:F20",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "OOXML:G2:dropdown_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:G2:dropdown_content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:G3:C12",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G3:C13",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G3:C14",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "OOXML:G3:C15",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G3:C16",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G3:C18",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "OOXML:G3:C19",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G3:C20",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G3:F5",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G3:F6",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "OOXML:G3:F7",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G3:F8",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "OOXML:G3:E12",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "OOXML:G3:F12",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "OOXML:G3:E13",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "OOXML:G3:F13",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "OOXML:G3:E14",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "OOXML:G3:F14",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "OOXML:G3:E15",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "OOXML:G3:F15",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "OOXML:G3:E16",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "OOXML:G3:F16",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "OOXML:G3:E18",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "OOXML:G3:F18",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "OOXML:G3:E19",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "OOXML:G3:F19",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "OOXML:G3:E20",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "OOXML:G3:F20",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "OOXML:G3:dropdown_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:G3:dropdown_content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:G4:C12",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G4:C13",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G4:C14",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "OOXML:G4:C15",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G4:C16",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G4:C18",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "OOXML:G4:C19",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G4:C20",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G4:F5",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G4:F6",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "OOXML:G4:F7",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G4:F8",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "OOXML:G4:E12",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "OOXML:G4:F12",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "OOXML:G4:E13",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "OOXML:G4:F13",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "OOXML:G4:E14",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "OOXML:G4:F14",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "OOXML:G4:E15",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "OOXML:G4:F15",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "OOXML:G4:E16",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "OOXML:G4:F16",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "OOXML:G4:E18",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "OOXML:G4:F18",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "OOXML:G4:E19",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "OOXML:G4:F19",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "OOXML:G4:E20",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "OOXML:G4:F20",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "OOXML:G4:dropdown_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:G4:dropdown_content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:G5:C12",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G5:C13",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G5:C14",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "OOXML:G5:C15",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G5:C16",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G5:C18",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "OOXML:G5:C19",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G5:C20",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G5:F5",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G5:F6",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "OOXML:G5:F7",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G5:F8",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "OOXML:G5:E12",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "OOXML:G5:F12",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "OOXML:G5:E13",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "OOXML:G5:F13",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "OOXML:G5:E14",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "OOXML:G5:F14",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "OOXML:G5:E15",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "OOXML:G5:F15",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "OOXML:G5:E16",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "OOXML:G5:F16",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "OOXML:G5:E18",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "OOXML:G5:F18",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "OOXML:G5:E19",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "OOXML:G5:F19",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "OOXML:G5:E20",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "OOXML:G5:F20",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "OOXML:G5:dropdown_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:G5:dropdown_content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:G6:C12",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G6:C13",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G6:C14",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "OOXML:G6:C15",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G6:C16",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G6:C18",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "OOXML:G6:C19",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G6:C20",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G6:F5",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G6:F6",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "OOXML:G6:F7",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G6:F8",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "OOXML:G6:E12",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "OOXML:G6:F12",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "OOXML:G6:E13",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "OOXML:G6:F13",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "OOXML:G6:E14",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "OOXML:G6:F14",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "OOXML:G6:E15",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "OOXML:G6:F15",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "OOXML:G6:E16",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "OOXML:G6:F16",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "OOXML:G6:E18",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "OOXML:G6:F18",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "OOXML:G6:E19",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "OOXML:G6:F19",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "OOXML:G6:E20",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "OOXML:G6:F20",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "OOXML:G6:dropdown_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:G6:dropdown_content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:G7:C12",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G7:C13",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G7:C14",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "OOXML:G7:C15",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G7:C16",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G7:C18",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "OOXML:G7:C19",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G7:C20",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G7:F5",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G7:F6",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "OOXML:G7:F7",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G7:F8",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "OOXML:G7:E12",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "OOXML:G7:F12",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "OOXML:G7:E13",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "OOXML:G7:F13",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "OOXML:G7:E14",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "OOXML:G7:F14",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "OOXML:G7:E15",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "OOXML:G7:F15",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "OOXML:G7:E16",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "OOXML:G7:F16",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "OOXML:G7:E18",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "OOXML:G7:F18",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "OOXML:G7:E19",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "OOXML:G7:F19",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "OOXML:G7:E20",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "OOXML:G7:F20",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "OOXML:G7:dropdown_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:G7:dropdown_content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:G8:C12",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G8:C13",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G8:C14",
+      "passed": true,
+      "actual": "0.1",
+      "expected": "0.1"
+    },
+    {
+      "check": "OOXML:G8:C15",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G8:C16",
+      "passed": true,
+      "actual": "0.05",
+      "expected": "0.05"
+    },
+    {
+      "check": "OOXML:G8:C18",
+      "passed": true,
+      "actual": "0.2",
+      "expected": "0.2"
+    },
+    {
+      "check": "OOXML:G8:C19",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G8:C20",
+      "passed": true,
+      "actual": "0.15",
+      "expected": "0.15"
+    },
+    {
+      "check": "OOXML:G8:F5",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")",
+      "expected": "=IF(COUNT(E12:E20)=8,SUM(F12:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G8:F6",
+      "passed": true,
+      "actual": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")",
+      "expected": "=IF(COUNT(E12:E16)=5,SUM(F12:F16),\"\")"
+    },
+    {
+      "check": "OOXML:G8:F7",
+      "passed": true,
+      "actual": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")",
+      "expected": "=IF(COUNT(E18:E20)=3,SUM(F18:F20),\"\")"
+    },
+    {
+      "check": "OOXML:G8:F8",
+      "passed": true,
+      "actual": "=COUNT(E12:E20)&\"/8 tiêu chí\"",
+      "expected": "=COUNT(E12:E20)&\"/8 tiêu chí\""
+    },
+    {
+      "check": "OOXML:G8:E12",
+      "passed": true,
+      "actual": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))",
+      "expected": "=IF(D12=\"\",\"\",VALUE(LEFT(D12,2)))"
+    },
+    {
+      "check": "OOXML:G8:F12",
+      "passed": true,
+      "actual": "=IF(E12=\"\",\"\",C12*E12)",
+      "expected": "=IF(E12=\"\",\"\",C12*E12)"
+    },
+    {
+      "check": "OOXML:G8:E13",
+      "passed": true,
+      "actual": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))",
+      "expected": "=IF(D13=\"\",\"\",VALUE(LEFT(D13,2)))"
+    },
+    {
+      "check": "OOXML:G8:F13",
+      "passed": true,
+      "actual": "=IF(E13=\"\",\"\",C13*E13)",
+      "expected": "=IF(E13=\"\",\"\",C13*E13)"
+    },
+    {
+      "check": "OOXML:G8:E14",
+      "passed": true,
+      "actual": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))",
+      "expected": "=IF(D14=\"\",\"\",VALUE(LEFT(D14,2)))"
+    },
+    {
+      "check": "OOXML:G8:F14",
+      "passed": true,
+      "actual": "=IF(E14=\"\",\"\",C14*E14)",
+      "expected": "=IF(E14=\"\",\"\",C14*E14)"
+    },
+    {
+      "check": "OOXML:G8:E15",
+      "passed": true,
+      "actual": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))",
+      "expected": "=IF(D15=\"\",\"\",VALUE(LEFT(D15,2)))"
+    },
+    {
+      "check": "OOXML:G8:F15",
+      "passed": true,
+      "actual": "=IF(E15=\"\",\"\",C15*E15)",
+      "expected": "=IF(E15=\"\",\"\",C15*E15)"
+    },
+    {
+      "check": "OOXML:G8:E16",
+      "passed": true,
+      "actual": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))",
+      "expected": "=IF(D16=\"\",\"\",VALUE(LEFT(D16,2)))"
+    },
+    {
+      "check": "OOXML:G8:F16",
+      "passed": true,
+      "actual": "=IF(E16=\"\",\"\",C16*E16)",
+      "expected": "=IF(E16=\"\",\"\",C16*E16)"
+    },
+    {
+      "check": "OOXML:G8:E18",
+      "passed": true,
+      "actual": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))",
+      "expected": "=IF(D18=\"\",\"\",VALUE(LEFT(D18,2)))"
+    },
+    {
+      "check": "OOXML:G8:F18",
+      "passed": true,
+      "actual": "=IF(E18=\"\",\"\",C18*E18)",
+      "expected": "=IF(E18=\"\",\"\",C18*E18)"
+    },
+    {
+      "check": "OOXML:G8:E19",
+      "passed": true,
+      "actual": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))",
+      "expected": "=IF(D19=\"\",\"\",VALUE(LEFT(D19,2)))"
+    },
+    {
+      "check": "OOXML:G8:F19",
+      "passed": true,
+      "actual": "=IF(E19=\"\",\"\",C19*E19)",
+      "expected": "=IF(E19=\"\",\"\",C19*E19)"
+    },
+    {
+      "check": "OOXML:G8:E20",
+      "passed": true,
+      "actual": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))",
+      "expected": "=IF(D20=\"\",\"\",VALUE(LEFT(D20,2)))"
+    },
+    {
+      "check": "OOXML:G8:F20",
+      "passed": true,
+      "actual": "=IF(E20=\"\",\"\",C20*E20)",
+      "expected": "=IF(E20=\"\",\"\",C20*E20)"
+    },
+    {
+      "check": "OOXML:G8:dropdown_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:G8:dropdown_content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:comment_parts",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "OOXML:comment_part_1:matches_G1",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:comment_part_2:matches_G1",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:comment_part_3:matches_G1",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:comment_part_4:matches_G1",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:comment_part_5:matches_G1",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:comment_part_6:matches_G1",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:comment_part_7:matches_G1",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:comment_part_8:matches_G1",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "OOXML:formula_count",
+      "passed": true,
+      "actual": 160,
+      "expected": 160
+    },
+    {
+      "check": "note:report_section_order",
+      "passed": true,
+      "actual": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "expected": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "check": "note:no_external_local_source_paths",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check": "note:weighted_formula",
+      "passed": true,
+      "actual": "0.15*A1 + 0.15*A2 + 0.10*A3 + 0.05*A4 + 0.05*A5 + 0.20*B1 + 0.15*B2 + 0.15*B3",
+      "expected": "0.15*A1 + 0.15*A2 + 0.10*A3 + 0.05*A4 + 0.05*A5 + 0.20*B1 + 0.15*B2 + 0.15*B3"
+    },
+    {
+      "check": "note:rubric_row_count",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "check": "note:rubric_A1:code",
+      "passed": true,
+      "actual": "A1",
+      "expected": "A1"
+    },
+    {
+      "check": "note:rubric_A1:name",
+      "passed": true,
+      "actual": "Kiến trúc, công cụ, bộ nhớ và nguồn tri thức",
+      "expected": "Kiến trúc, công cụ, bộ nhớ và nguồn tri thức"
+    },
+    {
+      "check": "note:rubric_A1:weight",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A1:max",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A2:code",
+      "passed": true,
+      "actual": "A2",
+      "expected": "A2"
+    },
+    {
+      "check": "note:rubric_A2:name",
+      "passed": true,
+      "actual": "Bộ đánh giá và số liệu đầu tiên",
+      "expected": "Bộ đánh giá và số liệu đầu tiên"
+    },
+    {
+      "check": "note:rubric_A2:weight",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A2:max",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A3:code",
+      "passed": true,
+      "actual": "A3",
+      "expected": "A3"
+    },
+    {
+      "check": "note:rubric_A3:name",
+      "passed": true,
+      "actual": "Threat model",
+      "expected": "Threat model"
+    },
+    {
+      "check": "note:rubric_A3:weight",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A3:max",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A4:code",
+      "passed": true,
+      "actual": "A4",
+      "expected": "A4"
+    },
+    {
+      "check": "note:rubric_A4:name",
+      "passed": true,
+      "actual": "Thay đổi, kế hoạch và rủi ro",
+      "expected": "Thay đổi, kế hoạch và rủi ro"
+    },
+    {
+      "check": "note:rubric_A4:weight",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A4:max",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A5:code",
+      "passed": true,
+      "actual": "A5",
+      "expected": "A5"
+    },
+    {
+      "check": "note:rubric_A5:name",
+      "passed": true,
+      "actual": "Chất lượng báo cáo",
+      "expected": "Chất lượng báo cáo"
+    },
+    {
+      "check": "note:rubric_A5:weight",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_A5:max",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_B1:code",
+      "passed": true,
+      "actual": "B1",
+      "expected": "B1"
+    },
+    {
+      "check": "note:rubric_B1:name",
+      "passed": true,
+      "actual": "Live demo",
+      "expected": "Live demo"
+    },
+    {
+      "check": "note:rubric_B1:weight",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_B1:max",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_B2:code",
+      "passed": true,
+      "actual": "B2",
+      "expected": "B2"
+    },
+    {
+      "check": "note:rubric_B2:name",
+      "passed": true,
+      "actual": "Trình bày",
+      "expected": "Trình bày"
+    },
+    {
+      "check": "note:rubric_B2:weight",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_B2:max",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_B3:code",
+      "passed": true,
+      "actual": "B3",
+      "expected": "B3"
+    },
+    {
+      "check": "note:rubric_B3:name",
+      "passed": true,
+      "actual": "Hỏi đáp",
+      "expected": "Hỏi đáp"
+    },
+    {
+      "check": "note:rubric_B3:weight",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "note:rubric_B3:max",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "review:80_unique_group_ids_in_order",
+      "passed": true,
+      "actual": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C27",
+        "C28",
+        "C29",
+        "C30",
+        "C31",
+        "C32",
+        "C33",
+        "C34",
+        "C35",
+        "C36",
+        "C37",
+        "C38",
+        "C39",
+        "C40",
+        "C41",
+        "C42",
+        "C43",
+        "C44",
+        "C45",
+        "C46",
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "X01",
+        "X02"
+      ],
+      "expected": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C27",
+        "C28",
+        "C29",
+        "C30",
+        "C31",
+        "C32",
+        "C33",
+        "C34",
+        "C35",
+        "C36",
+        "C37",
+        "C38",
+        "C39",
+        "C40",
+        "C41",
+        "C42",
+        "C43",
+        "C44",
+        "C45",
+        "C46",
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "X01",
+        "X02"
+      ]
+    },
+    {
+      "check": "calendar:deadline:weekday_monday0",
+      "passed": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "check": "calendar:presentation:weekday_monday0",
+      "passed": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "check": "calendar:final_first_round:weekday_monday0",
+      "passed": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "check": "calendar:final_iso_week",
+      "passed": true,
+      "actual": 49,
+      "expected": 49
+    },
+    {
+      "check": "markdown:D2_REQUIREMENTS.md:no_trailing_whitespace",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check": "link:D2_REQUIREMENTS.md:../docs/materials/d2/interim-report-requirements.pdf",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:D2_REQUIREMENTS.md:../docs/materials/d2/CO5151-D2-Rubric.xlsx",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:D2_REQUIREMENTS.md:../docs/materials/d2/CO5151-D2-announcement.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:D2_REQUIREMENTS.md:../docs/materials/d2/CO5151-D2-announcement.txt",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:D2_REQUIREMENTS.md:../docs/materials/d2/README.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:D2_REQUIREMENTS.md:../docs/materials/d2/D2_REQUIREMENTS_REVIEW.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:D2_REQUIREMENTS.md:../docs/materials/d2/verification.json",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "markdown:README.md:no_trailing_whitespace",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check": "link:README.md:CO5151-D2-Rubric.xlsx",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:README.md:interim-report-requirements.pdf",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:README.md:CO5151-D2-announcement.txt",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:README.md:CO5151-D2-announcement.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:README.md:../../../report_d2/D2_REQUIREMENTS.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:README.md:D2_REQUIREMENTS_REVIEW.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:README.md:verification.json",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "markdown:D2_REQUIREMENTS_REVIEW.md:no_trailing_whitespace",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check": "link:D2_REQUIREMENTS_REVIEW.md:../../../report_d2/D2_REQUIREMENTS.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:D2_REQUIREMENTS_REVIEW.md:README.md",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "link:D2_REQUIREMENTS_REVIEW.md:verification.json",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    }
+  ],
+  "not_checked": [
+    "Project report and code compliance",
+    "Live demo or experiment reproducibility",
+    "Contents of referenced external websites",
+    "Unprovided original email headers"
+  ],
+  "internal_links": [
+    {
+      "from": "report_d2/D2_REQUIREMENTS.md",
+      "target": "../docs/materials/d2/interim-report-requirements.pdf",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "report_d2/D2_REQUIREMENTS.md",
+      "target": "../docs/materials/d2/CO5151-D2-Rubric.xlsx",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "report_d2/D2_REQUIREMENTS.md",
+      "target": "../docs/materials/d2/CO5151-D2-announcement.md",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "report_d2/D2_REQUIREMENTS.md",
+      "target": "../docs/materials/d2/CO5151-D2-announcement.txt",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "report_d2/D2_REQUIREMENTS.md",
+      "target": "../docs/materials/d2/README.md",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "report_d2/D2_REQUIREMENTS.md",
+      "target": "../docs/materials/d2/D2_REQUIREMENTS_REVIEW.md",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "report_d2/D2_REQUIREMENTS.md",
+      "target": "../docs/materials/d2/verification.json",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/README.md",
+      "target": "CO5151-D2-Rubric.xlsx",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/README.md",
+      "target": "interim-report-requirements.pdf",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/README.md",
+      "target": "CO5151-D2-announcement.txt",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/README.md",
+      "target": "CO5151-D2-announcement.md",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/README.md",
+      "target": "../../../report_d2/D2_REQUIREMENTS.md",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/README.md",
+      "target": "D2_REQUIREMENTS_REVIEW.md",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/README.md",
+      "target": "verification.json",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/D2_REQUIREMENTS_REVIEW.md",
+      "target": "../../../report_d2/D2_REQUIREMENTS.md",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/D2_REQUIREMENTS_REVIEW.md",
+      "target": "README.md",
+      "resolves_to_file_in_repo": true
+    },
+    {
+      "from": "docs/materials/d2/D2_REQUIREMENTS_REVIEW.md",
+      "target": "verification.json",
+      "resolves_to_file_in_repo": true
+    }
+  ],
+  "summary": {
+    "checks": 770,
+    "passed": 770,
+    "failed": 0
+  }
+}

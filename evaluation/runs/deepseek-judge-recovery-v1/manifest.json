@@ -1,0 +1,77 @@
+{
+  "phase": "schema_failure_recovery",
+  "status": "collected_pending_human_validation",
+  "config": {
+    "base_url": "https://ai-gateway01.qualgo.ai/v1",
+    "credential_env": "LUATCHECK_JUDGE_API_KEY",
+    "model": "deepseek/deepseek-v4-flash",
+    "requested_family": "DeepSeek V4.1 Flash",
+    "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+    "revision_pinned": false,
+    "allowed_returned_models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek-v4-flash",
+      "deepseek-flash",
+      "deepseek-v4.1-flash",
+      "deepseek-v4.1-flash-1017"
+    ],
+    "model_identity_note": "Gateway /model/info identifies provider deepseek and upstream deepseek/deepseek-v4-flash. Official DeepSeek documentation maps the legacy deepseek-v4-flash alias to V4.1-Flash-1017. Actual gateway routing is not independently attested; preserve returned model IDs.",
+    "model_identity_source": "https://api-docs.deepseek.com/",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 16384,
+    "timeout_seconds": 180,
+    "max_attempts": 1,
+    "concurrency": 2,
+    "temperature": null,
+    "seed": null,
+    "billing_note": "Use real gateway usage and cost headers if present. Actual invoiced charges are unknown unless separately obtained; do not apply official direct-API prices to a gateway.",
+    "stream": true
+  },
+  "created_at": "2026-10-22T12:11:32.474337+00:00",
+  "initial_judgments_sha256": "834e27ef6bfb253a4119ef7bfda100b86f0ec06408b301d5d775c697e20976db",
+  "source_runs_sha256": "631480b2989859bd95d39bc8b7754caa1687a221cfd3858210c7129d0920b06e",
+  "expected_review_ids": [
+    "41cc0dcbdc12a6bdc7c3bfa9",
+    "6ca79b2c862614767055bc4d",
+    "807283e79df1820ec7de2364",
+    "ac462bb5d8f317e57c5ffc50",
+    "b17de6a27d7656149e80a45d",
+    "b52a9eb20ff77ad7021a41b8",
+    "dbd45deb49ef72c38f4b0b01",
+    "e07c5760529528b8b221fcb7",
+    "e1fd4353ad8dd1205dc6b290",
+    "e74d36035dd3dde9b5c7277a",
+    "e9f42b6509c3f04c8fec3aba"
+  ],
+  "selection_rule": "All and only initial status != valid. No valid judgment resampled; no selection by semantic scores.",
+  "protocol_development_note": "One streamed retry with 16384 output tokens was added after observing initial truncation/HTTP errors. Semantic prompts and task inputs are unchanged. Not preregistered.",
+  "input_sha256": {
+    "judge_prompt.txt": "9d863c6560b6ac95ad1b601e848a3418cae40590b75c111a517efb5b91afc402",
+    "input-SEMANTIC_JUDGING.md": "d9dbee8fc6659e3f9921ae4ada015788516a4372bd728ebccc8e7a8b0fd445ff",
+    "config.json": "b04af81972d111cacf3154ec18acddbdb3c7d1aa3e6f40dafda068494837f66e",
+    "judge_gateway.py": "ed111dc578f1cf622a342196f9e2efa038b0492b43d1c9d62012886cbf36a566",
+    "input-judge_packets.json": "359dcccc5480941552d3ebdaee5b89e41a1a28ddf1f5cf4bcb46f4a18ddfbd43",
+    "recover_judge.py": "826d61b3e203dafdc566b15df9157f3e1822281ceeb9242f965798a1bdf772c5"
+  },
+  "human_labels": false,
+  "collected": 11,
+  "valid": 7,
+  "invalid": 4,
+  "judgments_sha256": "9aaa0baeb6d1f2c5d31b05b3220bab3b288ec7e4882ac7cb1bef97b354052d24",
+  "attempts_sha256": {
+    "41cc0dcbdc12a6bdc7c3bfa9-a1.json": "8271f5c88bdc2f65e02e059ca99a8b0995b0bee8475bf1e25293e904423eb70b",
+    "6ca79b2c862614767055bc4d-a1.json": "4ca91ea3879eb4e991206470cfeb2ccb09324d9f606386f4cb2ac9a9ade6412d",
+    "807283e79df1820ec7de2364-a1.json": "6cdfef079c61348a97f89019d6613a60ab1019d25c82aa240b7ee8c503e66a2b",
+    "ac462bb5d8f317e57c5ffc50-a1.json": "f2699cfd21556a7651fc90fe376b2347e67adc315a689bd66892f533393ba4fe",
+    "b17de6a27d7656149e80a45d-a1.json": "ea842691bf13dbe11dcee630b1b94f0fc7409455f4489aa3becfc5eb6b8c7aca",
+    "b52a9eb20ff77ad7021a41b8-a1.json": "e26742bbcbc5119fad99a77aecb470149083c964c59ba832aa04c62129aec7b3",
+    "dbd45deb49ef72c38f4b0b01-a1.json": "4ae8642ed3f4be6a396132fca1b6dd55d189349f77e6cce50a6852ed40f4cc88",
+    "e07c5760529528b8b221fcb7-a1.json": "221181b4113a99d3ee79cde6d98ebf48273601a462c9bec028f54b6a6d965154",
+    "e1fd4353ad8dd1205dc6b290-a1.json": "a914771caa759b188117a9b08243748bde335f23e66e1f96f27bfc9b786e57ca",
+    "e74d36035dd3dde9b5c7277a-a1.json": "b18bd312bc68fa13449290fac6b2c0f196424a5c7d97d97dcb005f7622bbfac2",
+    "e9f42b6509c3f04c8fec3aba-a1.json": "091c10837526a90a8f2bfb9d5f361dd634d5e4a531ca287f5c82b5204f1f7c43"
+  }
+}

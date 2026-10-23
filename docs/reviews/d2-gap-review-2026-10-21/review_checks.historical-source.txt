@@ -1,0 +1,193 @@
+"""Read-only source audit plus synthetic diagnostics in an isolated repo copy.
+
+Run with the project's Python environment:
+  python review_checks.py --sandbox /path/to/disposable/repo --output /path/to/evidence
+The sandbox must contain this commit's source/config/data and have no production data.
+No external messages are sent; the egress check only exercises an in-memory/local outbox.
+"""
+import argparse
+import contextlib
+import hashlib
+import inspect
+import io
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+from importlib.metadata import version
+from unittest.mock import patch
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--sandbox', required=True)
+parser.add_argument('--output', required=True)
+args = parser.parse_args()
+sandbox = Path(args.sandbox).resolve()
+output = Path(args.output).resolve()
+output.mkdir(parents=True, exist_ok=True)
+for filename in ['synthetic-audit.jsonl', 'benchmark-audit.jsonl']:
+    (output / filename).unlink(missing_ok=True)
+scratch = Path(tempfile.mkdtemp(prefix='synthetic-checks-', dir=sandbox.parent))
+os.chdir(sandbox)
+sys.path.insert(0, str(sandbox))
+os.environ['EMBEDDING_ENDPOINT'] = 'http://127.0.0.1:1'
+
+from src.agent.loop import LuatCheckAgent
+from src.agent.state import Citation
+from src.config.app_config import load_config
+from src.tools.legal_tools import LegalToolRegistry
+from src.verifier.lexical_grounding import LexicalGroundingVerifier
+from evaluation.metrics import calculate_unsupported_rate
+import evaluation.run_eval as runner
+
+corpus = json.loads(Path('data/corpus/labor_code_2019.json').read_text())
+findings = {}
+verifier = LexicalGroundingVerifier(corpus)
+claim = 'Tiền lương thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 50% mức lương của công việc đó.'
+result = verifier.verify(claim, [Citation(article_id='Dieu_26')], ['Dieu_26'])
+findings['lexical_false_positive'] = {
+    'synthetic_claim': claim,
+    'local_source': next(d for d in corpus if d['article_id'] == 'Dieu_26'),
+    'verifier_accepts': result.is_valid,
+    'same_verifier_USR': calculate_unsupported_rate(claim, ['Dieu_26'], verifier, ['Dieu_26']),
+    'meaning': 'This check compares a deliberately changed number against the local source; it is not external legal validation.'
+}
+
+registry = LegalToolRegistry(dense_endpoint='http://127.0.0.1:1')
+findings['read_tool_alias'] = {'registry_get_article_signature': str(inspect.signature(registry.get_article))}
+try:
+    registry.get_article(article_id='Dieu_35')
+    findings['read_tool_alias']['keyword_call'] = 'success'
+except Exception as exc:
+    findings['read_tool_alias']['keyword_call'] = f'{type(exc).__name__}: {exc}'
+
+# The implementation only appends an outbox record; it has no mail/webhook transport.
+res = registry.send_summary(recipient='synthetic-review@example.invalid',
+                            content='Synthetic permission-boundary diagnostic.',
+                            idempotency_key='synthetic-review', user_confirmed=True,
+                            proposal_id='nonexistent', approval_token='invalid')
+findings['hitl_boundary'] = {
+    'caller_supplied_confirmation': True, 'provided_proposal': 'nonexistent',
+    'provided_token': 'invalid', 'pending_proposals': len(registry.pending_proposals),
+    'result': res, 'outbox_records_in_memory': len(registry.sent_summaries_log),
+    'network_delivery': False,
+    'scope': 'Direct registry/MCP-facing callable boundary; UI checkbox exists separately.'
+}
+
+cfg = load_config()
+cfg.model.provider = 'mock'
+cfg.memory.sqlite_path = str(scratch/'synthetic-memory.db')
+cfg.security.audit_log_path = str(output/'synthetic-audit.jsonl')
+cfg.security.outbox_path = str(output/'synthetic-outbox.jsonl')
+synthetic_query = 'Thời gian thử việc tối đa là bao nhiêu ngày? Liên hệ synthetic-person@example.invalid.'
+agent = LuatCheckAgent(config=cfg, ollama_url='http://127.0.0.1:1')
+ledger = agent.run(synthetic_query, session_id='synthetic-pii-review')
+audit_text = Path(cfg.security.audit_log_path).read_text()
+findings['audit_pii'] = {
+    'input_was_synthetic': True, 'terminal_status': ledger.terminal_status,
+    'raw_email_written_to_audit': 'synthetic-person@example.invalid' in audit_text,
+    'scope': 'SQLite sanitizer and audit logger are different persistence paths.'
+}
+
+instrumentation = {'primary_calls': 0, 'primary_successes': 0, 'primary_errors': 0,
+                   'fallback_calls': 0, 'agents': []}
+trajectories = []
+real_agent_class = LuatCheckAgent
+
+
+def instrumented_agent(**kwargs):
+    conf = load_config()
+    conf.memory.sqlite_path = str(scratch/'benchmark-memory.db')
+    conf.security.audit_log_path = str(output/'benchmark-audit.jsonl')
+    conf.security.outbox_path = str(output/'benchmark-outbox.jsonl')
+    a = real_agent_class(config=conf, **kwargs)
+    primary_generate = a.llm_client.primary_client.generate
+    fallback_generate = a.llm_client.fallback_client.generate
+
+    def primary(*a_args, **a_kwargs):
+        instrumentation['primary_calls'] += 1
+        try:
+            value = primary_generate(*a_args, **a_kwargs)
+            instrumentation['primary_successes'] += 1
+            return value
+        except Exception:
+            instrumentation['primary_errors'] += 1
+            raise
+
+    def fallback(*a_args, **a_kwargs):
+        instrumentation['fallback_calls'] += 1
+        return fallback_generate(*a_args, **a_kwargs)
+
+    a.llm_client.primary_client.generate = primary
+    a.llm_client.fallback_client.generate = fallback
+    original_run = a.run
+
+    def capture(*run_args, **run_kwargs):
+        led = original_run(*run_args, **run_kwargs)
+        trajectories.append({'mode': a.verification_mode, **led.model_dump()})
+        return led
+
+    a.run = capture
+    instrumentation['agents'].append({'mode': a.verification_mode,
+                                       'endpoint': a.ollama_url,
+                                       'embedding_neural_online': a.tool_registry.retriever.dense._is_online,
+                                       'primary_type': type(a.llm_client.primary_client).__name__,
+                                       'fallback_type': type(a.llm_client.fallback_client).__name__})
+    return a
+
+
+evaluations = {}
+log = io.StringIO()
+with patch.object(runner, 'LuatCheckAgent', side_effect=instrumented_agent), contextlib.redirect_stdout(log):
+    for mode in ['off', 'l1_on']:
+        res = runner.run_benchmark('evaluation/tasks/vlqa_sample_10.json', [42, 123, 2026], mode=mode, offline=True)
+        res.pop('_analyzer')
+        evaluations[mode] = res
+(output/'offline-diagnostic-output.txt').write_text(log.getvalue())
+(output/'offline-diagnostic-results.json').write_text(json.dumps(evaluations, ensure_ascii=False, indent=2)+'\n')
+(output/'offline-trajectories.json').write_text(json.dumps(trajectories, ensure_ascii=False, indent=2)+'\n')
+findings['offline_diagnostic'] = {
+    'task_count': 10, 'runs_per_mode': 30, 'total_runs': len(trajectories),
+    'execution_classification': 'Fresh execution of deterministic fallback, not native Qwen inference.',
+    'instrumentation': instrumentation,
+    'metrics': {mode: {k: v for k,v in metrics.items() if k not in ['Markdown_Taxonomy', 'Error_Taxonomy_Detailed']}
+                for mode, metrics in evaluations.items()}
+}
+
+# Re-run the relevant MCP wrappers, retaining the public signature call.
+try:
+    from src.tools import mcp_server
+except Exception as exc:
+    findings['mcp_import'] = {'mcp_version': version('mcp'), 'error': f'{type(exc).__name__}: {exc}'}
+    findings['mcp_wrapper_get_article'] = {'not_executed': 'MCP module import failed; direct alias keyword failure is recorded separately.'}
+else:
+    findings['mcp_import'] = {'mcp_version': version('mcp'), 'imported': True}
+    try:
+        res = mcp_server.get_article(article_id='Dieu_35')
+        findings['mcp_wrapper_get_article'] = {'result': res}
+    except Exception as exc:
+        findings['mcp_wrapper_get_article'] = {'error': f'{type(exc).__name__}: {exc}'}
+findings['save_case_persistence'] = {
+    'save_result': registry.save_case('synthetic-case', 'Synthetic summary.'),
+    'registry_in_memory_record_present': 'synthetic-case' in registry.saved_cases,
+    'scope': 'Registry save_case writes saved_cases, not SQLiteEpisodicStore; MCP wrapper delegates to it in source.'
+}
+
+source_files = [Path('report_d2/main_d2.tex'), Path('evaluation/run_eval.py'),
+                Path('evaluation/eval_results.json'), Path('src/agent/llm_client.py'),
+                Path('src/tools/domain_tools.py'), Path('src/tools/mcp_server.py')]
+findings['source_sha256'] = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in source_files}
+findings['constraints'] = ['No source implementation changes.', 'No native LLM service available on checked default ports.',
+                            'No physical network isolation test.', 'No external email or webhook delivery attempted.']
+(output/'diagnostics.json').write_text(json.dumps(findings, ensure_ascii=False, indent=2)+'\n')
+print(json.dumps({
+    'lexical_accepts_wrong_number': findings['lexical_false_positive']['verifier_accepts'],
+    'self_scored_USR': findings['lexical_false_positive']['same_verifier_USR'],
+    'mcp_get_article': findings['mcp_wrapper_get_article'],
+    'hitl_result': findings['hitl_boundary']['result'],
+    'mcp_import': findings['mcp_import'],
+    'raw_synthetic_email_in_audit': findings['audit_pii']['raw_email_written_to_audit'],
+    'benchmark_instrumentation': instrumentation,
+    'metrics': findings['offline_diagnostic']['metrics']
+}, ensure_ascii=False, indent=2))

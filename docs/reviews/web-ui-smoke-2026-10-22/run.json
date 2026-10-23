@@ -1,0 +1,139 @@
+{
+  "provenance": "Read directly from the local web UI SQLite smoke database; this is one diagnostic execution, not a benchmark observation.",
+  "run": {
+    "run_id": "801e9177-188d-420e-be58-fed1405d6f35",
+    "session_id": "CXYSG4wtEe4Gb0_f8WJxL3KhoQcmuEoOrJtahILJNGo",
+    "request_key": "57edb0fe-670e-4fbc-bd57-75dfa62ec596",
+    "request_sha256": "9b6a475de5b9e3076409de7bf2142d0b9cddadf1cd86f582fa11fef996cacb91",
+    "query_text": "Thời gian thử việc tối đa đối với vị trí chuyên môn là bao lâu?",
+    "pasted_document": null,
+    "verification_mode": "lexical_grounding",
+    "job_status": "finished",
+    "terminal_status": "error",
+    "created_at": 1792678999.182249,
+    "updated_at": 1792678999.299743,
+    "config": {
+      "model": {
+        "provider": "ollama",
+        "endpoint": "http://localhost:11434",
+        "name": "qwen2.5:3b",
+        "temperature": 0.1,
+        "timeout_seconds": 30.0,
+        "seed": null,
+        "max_output_tokens": 512,
+        "context_tokens": 4096
+      },
+      "budgets": {
+        "max_tool_calls": 5,
+        "max_repairs": 2,
+        "max_steps": 10,
+        "wall_seconds": 180.0
+      },
+      "retrieval": {
+        "bm25_top_k": 5,
+        "dense_top_k": 5,
+        "rrf_k": 60,
+        "final_top_k": 5,
+        "corpus_path": "/Users/admin/Desktop/Recents/LuatCheck-D2/data/corpus/labor_code_2019_official.json",
+        "dense_model_type": "tfidf"
+      },
+      "verifier": {
+        "mode": "lexical_grounding",
+        "similarity_threshold": 0.7,
+        "l1_overlap_threshold": 0.25,
+        "l2_entailment_threshold": 0.3,
+        "l2_use_slm": false
+      },
+      "memory": {
+        "enabled": true,
+        "sqlite_path": "/tmp/luatcheck-web-ui-smoke-memory.sqlite3",
+        "similarity_threshold": 0.85,
+        "index_version": "native-v2026.10.22"
+      },
+      "security": {
+        "audit_log_path": "/tmp/luatcheck-web-ui-smoke-audit.jsonl",
+        "outbox_path": "/tmp/luatcheck-web-ui-smoke-outbox.jsonl",
+        "egress_requires_confirmation": true
+      }
+    },
+    "snapshot": {
+      "terminal_status": "error",
+      "final_output": {
+        "action": "error",
+        "citations": [],
+        "verified": false,
+        "from_cache": false,
+        "reason": "ollama inference failed: ConnectionError",
+        "error_kind": "backend_error"
+      },
+      "verification_mode": "lexical_grounding",
+      "budgets": {
+        "tool_calls": {
+          "used": 0,
+          "limit": 5
+        },
+        "repairs": {
+          "used": 0,
+          "limit": 2
+        },
+        "steps": {
+          "used": 1,
+          "limit": 10
+        }
+      },
+      "retrieved_article_ids": [],
+      "grounding": null,
+      "usage": {
+        "model_call_count": 1,
+        "input_tokens": null,
+        "output_tokens": null,
+        "model_wall_ms": 3.413
+      },
+      "elapsed_ms": 79.0
+    }
+  },
+  "events": [
+    {
+      "event_id": 1,
+      "event_type": "run_queued",
+      "created_at": 1792678999.184424,
+      "data": {}
+    },
+    {
+      "event_id": 2,
+      "event_type": "run_started",
+      "created_at": 1792678999.211658,
+      "data": {}
+    },
+    {
+      "event_id": 3,
+      "event_type": "run_started",
+      "created_at": 1792678999.2496152,
+      "data": {}
+    },
+    {
+      "event_id": 4,
+      "event_type": "model_call_started",
+      "created_at": 1792678999.278569,
+      "data": {
+        "step": 1
+      }
+    },
+    {
+      "event_id": 5,
+      "event_type": "run_finished",
+      "created_at": 1792678999.296278,
+      "data": {
+        "terminal_status": "error"
+      }
+    },
+    {
+      "event_id": 6,
+      "event_type": "run_persisted",
+      "created_at": 1792678999.3039129,
+      "data": {
+        "terminal_status": "error"
+      }
+    }
+  ]
+}

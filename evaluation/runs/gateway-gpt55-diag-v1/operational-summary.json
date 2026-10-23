@@ -1,0 +1,963 @@
+{
+  "run_dir": "evaluation/runs/gateway-gpt55-diag-v1",
+  "phase": "pilot",
+  "trials": 20,
+  "collection_manifest_sha256": "37bfb678c5493736152034f90275adb263aa2ea1acd3026d50a039439d9a5f3a",
+  "runs_sha256": "608c94b7673be1cee035bb89ba51a9da291067752f2de8d676c206d59ce1030a",
+  "tasks_sha256": "8b84c4f395b25b34e7c8fd76758501ea070c456d7db288d8c943167bbb46d9dc",
+  "semantic_task_success": null,
+  "semantic_unsupported_claim_rate": null,
+  "human_judge_agreement": null,
+  "hardware_GPU_active_hours": null,
+  "note": "Measured operations and citation-ID/lexical diagnostics. No semantic or expert correctness score is inferred.",
+  "modes": {
+    "off": {
+      "trials": 10,
+      "answered": 9,
+      "refused": 1,
+      "clarified": 0,
+      "execution_errors": 0,
+      "error_types": {},
+      "answer_coverage": 0.9,
+      "answerable_trials": 9,
+      "answerable_answer_coverage": 1.0,
+      "answerable_non_answers": 0,
+      "terminal_behavior_agreement_not_correctness": 1.0,
+      "latency_p50_seconds": 3.9750989999999997,
+      "latency_p95_seconds": 14.441430499999992,
+      "task_wall_hours_sum": 0.015664953055555556,
+      "native_service_hours": null,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 31,
+      "input_tokens": 65447,
+      "output_tokens": 3660,
+      "tokens_per_trial": 6910.7,
+      "tools_per_trial_mean": 2.1,
+      "repairs_total": 0,
+      "trajectory_recall5": 1.0,
+      "trajectory_hit5": 1.0,
+      "trajectory_mrr": 0.8333333333333334,
+      "citation_id_precision": 1.0,
+      "citation_id_recall": 1.0,
+      "reference_token_f1_diagnostic": 0.2512490553676441,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.01852222222222222,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        }
+      ],
+      "budget_violations": []
+    },
+    "l1_on": {
+      "trials": 10,
+      "answered": 9,
+      "refused": 1,
+      "clarified": 0,
+      "execution_errors": 0,
+      "error_types": {},
+      "answer_coverage": 0.9,
+      "answerable_trials": 9,
+      "answerable_answer_coverage": 1.0,
+      "answerable_non_answers": 0,
+      "terminal_behavior_agreement_not_correctness": 1.0,
+      "latency_p50_seconds": 5.9485335,
+      "latency_p95_seconds": 24.91021114999999,
+      "task_wall_hours_sum": 0.027256494444444446,
+      "native_service_hours": null,
+      "native_service_time_note": "Sum of backend total_duration on the Metal-backed local model; not hardware GPU-active time.",
+      "native_calls": 37,
+      "input_tokens": 86028,
+      "output_tokens": 7011,
+      "tokens_per_trial": 9303.9,
+      "tools_per_trial_mean": 2.1,
+      "repairs_total": 6,
+      "trajectory_recall5": 1.0,
+      "trajectory_hit5": 1.0,
+      "trajectory_mrr": 0.8333333333333334,
+      "citation_id_precision": 1.0,
+      "citation_id_recall": 1.0,
+      "reference_token_f1_diagnostic": 0.28202424774968704,
+      "reference_exact_match_diagnostic": 0.0,
+      "lexical_unsupported_proxy_answered_only": 0.0,
+      "by_seed": [
+        {
+          "seed": 42,
+          "trajectory_recall5": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        }
+      ],
+      "budget_violations": []
+    }
+  },
+  "details": [
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.17391304347826084
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_152",
+        "Dieu_53"
+      ],
+      "citation_ids": [
+        "Dieu_25"
+      ],
+      "wall_seconds": 6.957872999999999,
+      "input_tokens": 6869,
+      "output_tokens": 296,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14, thời gian thử việc tối đa đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là không quá 60 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_25",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.17391304347826084
+      },
+      "gold_articles": [
+        "Dieu_25"
+      ],
+      "retrieved_ids": [
+        "Dieu_25",
+        "Dieu_152",
+        "Dieu_53"
+      ],
+      "citation_ids": [
+        "Dieu_25"
+      ],
+      "wall_seconds": 0.685493,
+      "input_tokens": 3755,
+      "output_tokens": 132,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14, thời gian thử việc tối đa đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là không quá 60 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_25",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;"
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3478260869565218
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_98",
+        "Dieu_29"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 5.352947,
+      "input_tokens": 3728,
+      "output_tokens": 245,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 2019, tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận, nhưng tối thiểu phải bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3478260869565218
+      },
+      "gold_articles": [
+        "Dieu_26"
+      ],
+      "retrieved_ids": [
+        "Dieu_26",
+        "Dieu_98",
+        "Dieu_29"
+      ],
+      "citation_ids": [
+        "Dieu_26"
+      ],
+      "wall_seconds": 0.31942000000000004,
+      "input_tokens": 3728,
+      "output_tokens": 245,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 2019, tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận, nhưng tối thiểu phải bằng 85% mức lương của công việc đó.",
+        "citations": [
+          {
+            "article_id": "Dieu_26",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.11594202898550725
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_35",
+        "Dieu_36",
+        "Dieu_38"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 10.439273,
+      "input_tokens": 7477,
+      "output_tokens": 394,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 2019, người lao động làm việc theo hợp đồng lao động không xác định thời hạn, khi đơn phương chấm dứt hợp đồng trong trường hợp thông thường, không thuộc trường hợp được miễn báo trước và không làm ngành/nghề/công việc đặc thù, phải báo trước cho người sử dụng lao động ít nhất 45 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;"
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.11594202898550725
+      },
+      "gold_articles": [
+        "Dieu_35"
+      ],
+      "retrieved_ids": [
+        "Dieu_35",
+        "Dieu_36",
+        "Dieu_38"
+      ],
+      "citation_ids": [
+        "Dieu_35"
+      ],
+      "wall_seconds": 0.588623,
+      "input_tokens": 3806,
+      "output_tokens": 167,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 2019, người lao động làm việc theo hợp đồng lao động không xác định thời hạn, khi đơn phương chấm dứt hợp đồng trong trường hợp thông thường, không thuộc trường hợp được miễn báo trước và không làm ngành/nghề/công việc đặc thù, phải báo trước cho người sử dụng lao động ít nhất 45 ngày.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: a) Ít nhất 45 ngày nếu làm việc theo hợp đồng lao động không xác định thời hạn;"
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.15873015873015872
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_38",
+        "Dieu_36",
+        "Dieu_35"
+      ],
+      "citation_ids": [
+        "Dieu_36",
+        "Dieu_36"
+      ],
+      "wall_seconds": 15.466476,
+      "input_tokens": 12847,
+      "output_tokens": 900,
+      "tool_calls": 2,
+      "repairs": 1,
+      "final_output": {
+        "action": "answer",
+        "content": "Có. Theo Bộ luật Lao động 2019 nguyên bản, người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động nếu người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên. Căn cứ là điểm e khoản 1 Điều 36.\n\nVề báo trước: trong đúng trường hợp tại điểm e khoản 1 Điều 36 này, người sử dụng lao động không phải báo trước cho người lao động. Căn cứ là khoản 3 Điều 36.\n\nKết luận này áp dụng theo giả định bạn nêu: người lao động không thuộc diện được bảo vệ khỏi đơn phương chấm dứt.",
+        "citations": [
+          {
+            "article_id": "Dieu_36",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "e) Người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên;"
+          },
+          {
+            "article_id": "Dieu_36",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "3. Khi đơn phương chấm dứt hợp đồng lao động quy định tại điểm d và điểm e khoản 1 Điều này thì người sử dụng lao động không phải báo trước cho người lao động."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-04-ABSENCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.13333333333333333
+      },
+      "gold_articles": [
+        "Dieu_36"
+      ],
+      "retrieved_ids": [
+        "Dieu_38",
+        "Dieu_36",
+        "Dieu_35"
+      ],
+      "citation_ids": [
+        "Dieu_36",
+        "Dieu_36"
+      ],
+      "wall_seconds": 0.654658,
+      "input_tokens": 3839,
+      "output_tokens": 167,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Có. Theo nguyên bản Bộ luật Lao động 2019, nếu người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên thì người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động. Trường hợp này thuộc điểm e khoản 1 Điều 36.\n\nVề báo trước: người sử dụng lao động không phải báo trước cho người lao động khi đơn phương chấm dứt theo trường hợp này, vì khoản 3 Điều 36 quy định rõ trường hợp tại điểm e khoản 1 không phải báo trước.\n\nLưu ý: kết luận này theo đúng giả định bạn nêu là người lao động không thuộc diện được bảo vệ khỏi đơn phương chấm dứt và căn cứ vào Bộ luật Lao động 2019 nguyên bản.",
+        "citations": [
+          {
+            "article_id": "Dieu_36",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Người sử dụng lao động có quyền đơn phương chấm dứt hợp đồng lao động trong trường hợp sau đây: ... e) Người lao động tự ý bỏ việc mà không có lý do chính đáng từ 05 ngày làm việc liên tục trở lên;"
+          },
+          {
+            "article_id": "Dieu_36",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Khi đơn phương chấm dứt hợp đồng lao động quy định tại điểm d và điểm e khoản 1 Điều này thì người sử dụng lao động không phải báo trước cho người lao động."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.23809523809523808
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_138"
+      ],
+      "citation_ids": [
+        "Dieu_37"
+      ],
+      "wall_seconds": 8.718386,
+      "input_tokens": 6964,
+      "output_tokens": 411,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Không. Theo nguyên bản Bộ luật Lao động 2019, người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động đối với: (i) người lao động nữ mang thai; (ii) người lao động đang nghỉ thai sản; hoặc (iii) người lao động đang nuôi con dưới 12 tháng tuổi. Căn cứ trực tiếp là khoản 3 Điều 37 Bộ luật Lao động 2019.",
+        "citations": [
+          {
+            "article_id": "Dieu_37",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động ... 3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.2891566265060241
+      },
+      "gold_articles": [
+        "Dieu_37"
+      ],
+      "retrieved_ids": [
+        "Dieu_137",
+        "Dieu_37",
+        "Dieu_138"
+      ],
+      "citation_ids": [
+        "Dieu_37"
+      ],
+      "wall_seconds": 5.835756999999999,
+      "input_tokens": 7432,
+      "output_tokens": 501,
+      "tool_calls": 2,
+      "repairs": 1,
+      "final_output": {
+        "action": "answer",
+        "content": "Không. Theo Điều 37 Bộ luật Lao động 2019, đây là các trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động. Khoản 3 Điều 37 nêu rõ các trường hợp được bảo vệ gồm: người lao động nữ mang thai; người lao động đang nghỉ thai sản; hoặc người lao động đang nuôi con dưới 12 tháng tuổi.",
+        "citations": [
+          {
+            "article_id": "Dieu_37",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Điều 37. Trường hợp người sử dụng lao động không được thực hiện quyền đơn phương chấm dứt hợp đồng lao động 1. Người lao động ốm đau hoặc bị tai nạn, bệnh nghề nghiệp đang điều trị, điều dưỡng theo chỉ định của cơ sở khám bệnh, chữa bệnh có thẩm quyền, trừ trường hợp quy định tại điểm b khoản 1 Điều 36 của Bộ luật này. 2. Người lao động đang nghỉ hằng năm, nghỉ việc riêng và trường hợp nghỉ khác được người sử dụng lao động đồng ý. 3. Người lao động nữ mang thai; người lao động đang nghỉ thai sản hoặc nuôi con dưới 12 tháng tuổi."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3300970873786408
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "citation_ids": [
+        "Dieu_40"
+      ],
+      "wall_seconds": 9.712589,
+      "input_tokens": 6970,
+      "output_tokens": 497,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 2019, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật: (1) không được trợ cấp thôi việc; và (2) phải bồi thường khoản cố định bằng nửa tháng tiền lương theo hợp đồng lao động. Khoản nửa tháng tiền lương này là khoản cố định, chưa tính khoản tiền tương ứng với tiền lương trong những ngày không báo trước và chưa tính chi phí đào tạo nếu có căn cứ phải hoàn trả.",
+        "citations": [
+          {
+            "article_id": "Dieu_40",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3300970873786408
+      },
+      "gold_articles": [
+        "Dieu_40"
+      ],
+      "retrieved_ids": [
+        "Dieu_40",
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "citation_ids": [
+        "Dieu_40"
+      ],
+      "wall_seconds": 0.698652,
+      "input_tokens": 3878,
+      "output_tokens": 181,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 2019, người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật: (1) không được trợ cấp thôi việc; và (2) phải bồi thường khoản cố định bằng nửa tháng tiền lương theo hợp đồng lao động. Khoản nửa tháng tiền lương này là khoản cố định, chưa tính khoản tiền tương ứng với tiền lương trong những ngày không báo trước và chưa tính chi phí đào tạo nếu có căn cứ phải hoàn trả.",
+        "citations": [
+          {
+            "article_id": "Dieu_40",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Điều 40. Nghĩa vụ của người lao động khi đơn phương chấm dứt hợp đồng lao động trái pháp luật 1. Không được trợ cấp thôi việc. 2. Phải bồi thường cho người sử dụng lao động nửa tháng tiền lương theo hợp đồng lao động và một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước. 3. Phải hoàn trả cho người sử dụng lao động chi phí đào tạo quy định tại Điều 62 của Bộ luật này."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.3181818181818182
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_41",
+        "Dieu_46",
+        "Dieu_40",
+        "Dieu_35",
+        "Dieu_36",
+        "Dieu_162"
+      ],
+      "citation_ids": [
+        "Dieu_35",
+        "Dieu_46",
+        "Dieu_46",
+        "Dieu_46"
+      ],
+      "wall_seconds": 17.715923,
+      "input_tokens": 18243,
+      "output_tokens": 1095,
+      "tool_calls": 4,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo Bộ luật Lao động 2019 nguyên bản:\n\n1. Thời hạn báo trước: hợp đồng 24 tháng là hợp đồng lao động xác định thời hạn từ 12 tháng đến 36 tháng, nên người lao động muốn đơn phương chấm dứt hợp đồng theo trường hợp thông thường phải báo trước ít nhất 30 ngày cho người sử dụng lao động.\n\n2. Trợ cấp thôi việc: nếu hợp đồng chấm dứt thuộc trường hợp được trả trợ cấp thôi việc theo Điều 46, người lao động đã làm việc thường xuyên từ đủ 12 tháng trở lên và chưa đủ điều kiện hưởng lương hưu thì mỗi năm làm việc được trợ cấp một nửa tháng tiền lương.\n\n3. Thời gian đã tham gia bảo hiểm thất nghiệp: không được tính vào thời gian làm việc để tính trợ cấp thôi việc. Thời gian tính trợ cấp thôi việc bằng tổng thời gian làm việc thực tế cho người sử dụng lao động trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được chi trả trợ cấp thôi việc/trợ cấp mất việc làm trước đó.\n\nLưu ý: tiền lương dùng để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi thôi việc.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động nhưng phải báo trước cho người sử dụng lao động như sau: ... b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng;"
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.39215686274509803
+      },
+      "gold_articles": [
+        "Dieu_35",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_41",
+        "Dieu_46",
+        "Dieu_40",
+        "Dieu_35",
+        "Dieu_36",
+        "Dieu_162"
+      ],
+      "citation_ids": [
+        "Dieu_35",
+        "Dieu_46",
+        "Dieu_46",
+        "Dieu_46"
+      ],
+      "wall_seconds": 19.77052,
+      "input_tokens": 18814,
+      "output_tokens": 1640,
+      "tool_calls": 4,
+      "repairs": 2,
+      "final_output": {
+        "action": "answer",
+        "content": "Kết luận theo Bộ luật Lao động 2019 nguyên bản:\n\n1. Thời hạn báo trước: ít nhất 30 ngày, áp dụng theo quy định tại Điều 35 cho trường hợp “hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng”.\n\n2. Mức trợ cấp thôi việc: mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, nếu thuộc trường hợp được trả trợ cấp thôi việc theo Điều 46 và không thuộc trường hợp bị loại trừ tại điều này.\n\n3. Thời gian đã tham gia bảo hiểm thất nghiệp: bị trừ khỏi thời gian làm việc để tính trợ cấp thôi việc; nói cách khác, thời gian đã tham gia bảo hiểm thất nghiệp không được tính để hưởng trợ cấp thôi việc.\n\n4. Tiền lương làm căn cứ tính trợ cấp thôi việc: tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi thôi việc.",
+        "citations": [
+          {
+            "article_id": "Dieu_35",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "b) Ít nhất 30 ngày nếu làm việc theo hợp đồng lao động xác định thời hạn có thời hạn từ 12 tháng đến 36 tháng;"
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.2880886426592798
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_41",
+        "Dieu_40",
+        "Dieu_46"
+      ],
+      "citation_ids": [
+        "Dieu_41",
+        "Dieu_41",
+        "Dieu_46",
+        "Dieu_46",
+        "Dieu_46",
+        "Dieu_41"
+      ],
+      "wall_seconds": 29.115413,
+      "input_tokens": 17638,
+      "output_tokens": 2213,
+      "tool_calls": 3,
+      "repairs": 1,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 2019, khi người sử dụng lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật và người lao động không muốn tiếp tục làm việc, các nghĩa vụ chính là:\n\n1. Người sử dụng lao động phải trả tiền lương cho những ngày người lao động không được làm việc.\n\n2. Người sử dụng lao động phải đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp cho những ngày người lao động không được làm việc.\n\n3. Người sử dụng lao động phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động.\n\n4. Vì người lao động không muốn tiếp tục làm việc, ngoài các khoản nêu trên, người sử dụng lao động còn phải trả trợ cấp thôi việc theo Điều 46 để chấm dứt hợp đồng lao động.\n\n5. Về trợ cấp thôi việc theo Điều 46: nếu thuộc điều kiện tại Điều 46, người lao động đã làm việc thường xuyên từ đủ 12 tháng trở lên thì mỗi năm làm việc được trợ cấp một nửa tháng tiền lương. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian làm việc thực tế trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được chi trả trợ cấp thôi việc, trợ cấp mất việc làm. Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi thôi việc.\n\n6. Nếu có vi phạm quy định về thời hạn báo trước, Điều 41 còn quy định phải trả thêm khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.",
+        "citations": [
+          {
+            "article_id": "Dieu_41",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động."
+          },
+          {
+            "article_id": "Dieu_41",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Trường hợp người lao động không muốn tiếp tục làm việc thì ngoài khoản tiền phải trả quy định tại khoản 1 Điều này người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này để chấm dứt hợp đồng lao động."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ trường hợp đủ điều kiện hưởng lương hưu theo quy định của pháp luật về bảo hiểm xã hội và trường hợp quy định tại điểm e khoản 1 Điều 36 của Bộ luật này."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc."
+          },
+          {
+            "article_id": "Dieu_41",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Trường hợp vi phạm quy định về thời hạn báo trước quy định tại khoản 2 Điều 36 của Bộ luật này thì phải trả một khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.2803234501347709
+      },
+      "gold_articles": [
+        "Dieu_41",
+        "Dieu_46"
+      ],
+      "retrieved_ids": [
+        "Dieu_41",
+        "Dieu_40",
+        "Dieu_46"
+      ],
+      "citation_ids": [
+        "Dieu_41",
+        "Dieu_41",
+        "Dieu_46",
+        "Dieu_46",
+        "Dieu_46"
+      ],
+      "wall_seconds": 0.992325,
+      "input_tokens": 3909,
+      "output_tokens": 181,
+      "tool_calls": 3,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Theo nguyên bản Bộ luật Lao động 2019, trong trường hợp đã xác định người sử dụng lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật và người lao động không muốn tiếp tục làm việc, các nghĩa vụ chính của người sử dụng lao động gồm:\n\n1. Trả tiền lương cho những ngày người lao động không được làm việc.\n\n2. Đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp cho những ngày người lao động không được làm việc.\n\n3. Trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động.\n\n4. Vì người lao động không muốn tiếp tục làm việc, ngoài các khoản trên, người sử dụng lao động còn phải trả trợ cấp thôi việc theo Điều 46 để chấm dứt hợp đồng lao động.\n\nVề trợ cấp thôi việc theo Điều 46: nếu người lao động đã làm việc thường xuyên cho người sử dụng lao động từ đủ 12 tháng trở lên thì mỗi năm làm việc được trợ cấp một nửa tháng tiền lương, trừ các trường hợp loại trừ nêu tại Điều 46. Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian làm việc thực tế trừ đi thời gian đã tham gia bảo hiểm thất nghiệp và thời gian đã được chi trả trợ cấp thôi việc, trợ cấp mất việc làm. Tiền lương tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi thôi việc.\n\nLưu ý: Nếu còn có vi phạm về thời hạn báo trước theo khoản 2 Điều 36, Điều 41 còn quy định người sử dụng lao động phải trả thêm khoản tiền tương ứng với tiền lương theo hợp đồng lao động trong những ngày không báo trước.",
+        "citations": [
+          {
+            "article_id": "Dieu_41",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Trường hợp người lao động không muốn tiếp tục làm việc thì ngoài khoản tiền phải trả quy định tại khoản 1 Điều này người sử dụng lao động phải trả trợ cấp thôi việc theo quy định tại Điều 46 của Bộ luật này để chấm dứt hợp đồng lao động."
+          },
+          {
+            "article_id": "Dieu_41",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Phải nhận người lao động trở lại làm việc theo hợp đồng lao động đã giao kết; phải trả tiền lương, đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp trong những ngày người lao động không được làm việc và phải trả thêm cho người lao động một khoản tiền ít nhất bằng 02 tháng tiền lương theo hợp đồng lao động."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Khi hợp đồng lao động chấm dứt theo quy định tại các khoản 1, 2, 3, 4, 6, 7, 9 và 10 Điều 34 của Bộ luật này thì người sử dụng lao động có trách nhiệm trả trợ cấp thôi việc cho người lao động đã làm việc thường xuyên cho mình từ đủ 12 tháng trở lên, mỗi năm làm việc được trợ cấp một nửa tháng tiền lương..."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Thời gian làm việc để tính trợ cấp thôi việc là tổng thời gian người lao động đã làm việc thực tế cho người sử dụng lao động trừ đi thời gian người lao động đã tham gia bảo hiểm thất nghiệp theo quy định của pháp luật về bảo hiểm thất nghiệp và thời gian làm việc đã được người sử dụng lao động chi trả trợ cấp thôi việc, trợ cấp mất việc làm."
+          },
+          {
+            "article_id": "Dieu_46",
+            "law_name": "Bộ luật Lao động 2019",
+            "exact_quote": "Tiền lương để tính trợ cấp thôi việc là tiền lương bình quân của 06 tháng liền kề theo hợp đồng lao động trước khi người lao động thôi việc."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.32352941176470584
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_17",
+        "Dieu_19",
+        "Dieu_16"
+      ],
+      "citation_ids": [
+        "Dieu_17"
+      ],
+      "wall_seconds": 9.523348,
+      "input_tokens": 6756,
+      "output_tokens": 435,
+      "tool_calls": 2,
+      "repairs": 0,
+      "final_output": {
+        "action": "answer",
+        "content": "Không. Theo nguyên bản Bộ luật Lao động 2019, người sử dụng lao động không được yêu cầu người lao động nộp tiền đặt cọc chỉ để bảo đảm việc thực hiện hợp đồng lao động.\n\nLý do: Điều 17 liệt kê các hành vi người sử dụng lao động không được làm khi giao kết, thực hiện hợp đồng lao động; trong đó cấm việc “yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động”. Tiền đặt cọc là một biện pháp bảo đảm bằng tiền, nên thuộc trường hợp bị cấm theo quy định này.",
+        "citations": [
+          {
+            "article_id": "Dieu_17",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 17. Hành vi người sử dụng lao động không được làm khi giao kết, thực hiện hợp đồng lao động ... 2. Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động."
+          }
+        ],
+        "verified": false
+      }
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "answered",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": {
+        "normalized_exact_match": 0.0,
+        "token_f1": 0.4423076923076923
+      },
+      "gold_articles": [
+        "Dieu_17"
+      ],
+      "retrieved_ids": [
+        "Dieu_17",
+        "Dieu_19",
+        "Dieu_16"
+      ],
+      "citation_ids": [
+        "Dieu_17"
+      ],
+      "wall_seconds": 5.534252,
+      "input_tokens": 7254,
+      "output_tokens": 461,
+      "tool_calls": 2,
+      "repairs": 1,
+      "final_output": {
+        "action": "answer",
+        "content": "Không được phép. Theo Điều 17 Bộ luật Lao động 2019 nguyên bản, người sử dụng lao động không được yêu cầu người lao động thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động. Vì câu hỏi nêu việc yêu cầu người lao động nộp tiền đặt cọc chỉ để bảo đảm việc thực hiện hợp đồng lao động, trường hợp này thuộc hành vi bị cấm theo Điều 17.",
+        "citations": [
+          {
+            "article_id": "Dieu_17",
+            "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+            "exact_quote": "Điều 17. Hành vi người sử dụng lao động không được làm khi giao kết, thực hiện hợp đồng lao động 1. Giữ bản chính giấy tờ tùy thân, văn bằng, chứng chỉ của người lao động. 2. Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động. 3. Buộc người lao động thực hiện hợp đồng lao động để trả nợ cho người sử dụng lao động."
+          }
+        ],
+        "verified": true
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "l1_on",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_107",
+        "Dieu_146",
+        "Dieu_98"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 6.061310000000001,
+      "input_tokens": 3784,
+      "output_tokens": 255,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Cơ sở tri thức đã nạp không tìm thấy nguồn pháp luật lao động áp dụng cho bang California; kết quả tra cứu chỉ trả về Bộ luật Lao động 2019 của Việt Nam, nên tôi không thể trả lời về giới hạn giờ làm thêm theo luật California.",
+        "citations": []
+      }
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 42,
+      "mode": "off",
+      "terminal_status": "refused",
+      "terminal_behavior_agrees": true,
+      "reference_overlap": null,
+      "gold_articles": [],
+      "retrieved_ids": [
+        "Dieu_107",
+        "Dieu_146",
+        "Dieu_98"
+      ],
+      "citation_ids": [],
+      "wall_seconds": 0.373973,
+      "input_tokens": 3784,
+      "output_tokens": 255,
+      "tool_calls": 1,
+      "repairs": 0,
+      "final_output": {
+        "action": "refuse",
+        "reason": "Cơ sở tri thức đã nạp không tìm thấy nguồn pháp luật lao động áp dụng cho bang California; kết quả tra cứu chỉ trả về Bộ luật Lao động 2019 của Việt Nam, nên tôi không thể trả lời về giới hạn giờ làm thêm theo luật California.",
+        "citations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,627 @@
+[
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "b9e1f316417489f813d7691b",
+    "state": "judged",
+    "judgment": {
+      "review_id": "b9e1f316417489f813d7691b",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The question asks for the maximum number of main semesters for the PFIEV program under Decision 1260. The candidate answer fails to provide this number. It correctly states the standard duration (10 học kỳ) but then incorrectly claims that the source does not explicitly state a maximum and suggests the number 14 might belong to the 'kế hoạch' column, which contradicts the source where 14 is clearly under 'Tối đa'. The answer is incomplete and contains factual errors, thus correctness=0 and completeness=0. The behaviour is not appropriate because the candidate did not answer the question directly; instead, it hedged and misrepresented the evidence.",
+      "claims": [
+        {
+          "answer_quote": "Đối với chương trình PFIEV (Kỹ sư Việt-Pháp), thời gian đào tạo chuẩn được quy định là 10 học kỳ.",
+          "support": "supported",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "The source shows that the standard (Chuẩn) duration for PFIEV is 10 học kỳ (the second number in the row)."
+        },
+        {
+          "answer_quote": "Từ nội dung snippet của tài liệu HCMUT_HVDT1260_Dieu_1_S3_1, đoạn trích ghi: 'thời gian đào tạo chuẩn, kế hoạch và tối đa tính theo số học kỳ chính'.",
+          "support": "supported",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Thời gian đào tạo chuẩn, kế hoạch và tối đa tính theo số học kỳ chính",
+          "explanation": "The source contains this exact phrase."
+        },
+        {
+          "answer_quote": "Do thông tin chi tiết về con số 'tối đa' (ví dụ 14) có thể thuộc mục 'kế hoạch', cần đọc thêm.",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Kế hoạch Chuẩn Tối đa\nChính quy 8 8 12\nChương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "The source shows that 14 is under the 'Tối đa' column, not 'Kế hoạch'. The table order is Kế hoạch, Chuẩn, Tối đa."
+        },
+        {
+          "answer_quote": "the standard duration is 10 terms.",
+          "support": "supported",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "The standard duration is 10 học kỳ, equivalent to 10 terms."
+        },
+        {
+          "answer_quote": "does not explicitly state a single maximum number for PFIEV without further context",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "The source explicitly states the maximum as 14 in the table under the Tối đa column. The claim that it does not explicitly state a single maximum number is false."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "5d9312f1ad416de8c439d942",
+    "state": "judged",
+    "judgment": {
+      "review_id": "5d9312f1ad416de8c439d942",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The candidate refused to answer, claiming that no specific information about the maximum number of main semesters for the PFIEV program was found in the loaded documents, and that the documents only mention standard or planned durations. However, the supplied source article (HCMUT_HVDT1260_Dieu_1_S3_1) clearly contains a table with column headers 'Kế hoạch', 'Chuẩn', 'Tối đa' and a row for PFIEV showing values 10, 10, 14, where the third column indicates the maximum duration. Thus the candidate's factual assertions are contradicted by the source. The expected behaviour was to answer, and the refusal is not justified. Therefore correctness and completeness are 0, and behaviour_appropriate is false.",
+      "claims": [
+        {
+          "answer_quote": "Không tìm thấy trong văn bản đã nạp thông tin cụ thể về 'tối đa' (max) số học kỳ chính cho chương trình PFIEV.",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "The source includes the row 'tại Việt Nam (PFIEV) 10 10 14' under the column 'Tối đa', providing the specific maximum of 14 semesters, which directly contradicts the claim that this information is not found."
+        },
+        {
+          "answer_quote": "Các tài liệu chỉ đề cập đến thời gian chuẩn hoặc kế hoạch, không có điều khoản 'tối đa X'.",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Kế hoạch Chuẩn Tối đa",
+          "explanation": "The source's table header includes 'Tối đa' as a column, and the PFIEV row has a value under this column, explicitly providing a maximum duration and thus contradicting the claim that only standard or planned durations are mentioned."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "f92b9838f78fbce2eab0a914",
+    "state": "judged",
+    "judgment": {
+      "review_id": "f92b9838f78fbce2eab0a914",
+      "judgeable": false,
+      "reference_issue": "Mâu thuẫn giữa phạm vi dữ liệu (scope) nói câu hỏi nằm ngoài cơ sở dữ liệu và hành vi mong đợi 'answer', cùng với việc có nguồn trả lời trong source_articles. Nhiệm vụ không nhất quán, không thể đánh giá.",
+      "behaviour_appropriate": null,
+      "correctness": null,
+      "completeness": null,
+      "rationale": "Phạm vi (scope) khẳng định câu hỏi nằm ngoài cơ sở dữ liệu đã nạp, nhưng expected_behavior là \"answer\" và source_articles chứa văn bản trả lời trực tiếp. Sự mâu thuẫn này khiến cho nhiệm vụ đánh giá không có điểm tựa rõ ràng, do đó không thể đưa ra phán quyết tin cậy.",
+      "claims": []
+    },
+    "judgeable": false,
+    "success": null,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "cb9234839bf8243b30e1a76c",
+    "state": "judged",
+    "judgment": {
+      "review_id": "cb9234839bf8243b30e1a76c",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The candidate response is a clarification question (asking which office receives the application and what positions are in the committee), not an answer to the user's question. The question is answerable from the supplied source articles (Điều 7 and Điều 8), which clearly specify that the application is submitted to Phòng Công tác sinh viên, and that Trưởng Phòng Công tác sinh viên is Phó Chủ tịch Hội đồng and Phó Trưởng phòng Công tác sinh viên is thư ký. The candidate's failure to answer constitutes an unjustified refusal, as no legitimate reason exists to avoid answering. Therefore behavior is inappropriate, and correctness and completeness are both 0.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "clarified",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "3ca48fd103d5c9e6a679e7f1",
+    "state": "judged",
+    "judgment": {
+      "review_id": "3ca48fd103d5c9e6a679e7f1",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate did not answer the question; instead posed a clarifying question that repeats the original query. The expected behavior was 'answer' and the question is fully answerable from the supplied sources (Điều 7, Điều 8). The refusal/clarification is unjustified, so behaviour is inappropriate, correctness and completeness are 0.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "clarified",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "1c5aeae66078ba53322d0699",
+    "state": "judged",
+    "judgment": {
+      "review_id": "1c5aeae66078ba53322d0699",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 1,
+      "completeness": 0,
+      "rationale": "The candidate partially answered (correctly stated that applications go to Phòng Công tác sinh viên) but then incorrectly claimed that detailed information about the committee and positions is lacking, when in fact Article 8 provides those details. The candidate also asked for clarification instead of providing the complete answer as expected. Therefore behaviour is inappropriate (expected 'answer'), completeness is 0 due to the unjustified clarification and missing information, and correctness is 1 because only the first assertion is correct while the second is contradicted by the source.",
+      "claims": [
+        {
+          "answer_quote": "Theo file PHỤ LỤC 1, người học nộp đơn cho Phòng Công tác sinh viên.",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_7",
+          "source_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công tác sinh viên",
+          "explanation": "The source confirms that the application is submitted to Phòng Công tác sinh viên, consistent with the candidate's assertion."
+        },
+        {
+          "answer_quote": "câu hỏi về 'Hội đồng xét hồ sơ' và 'chức danh' trong đó vẫn chưa có thông tin chi tiết.",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Trường ban hành quyết định thành lập Hội đồng xét hồ sơ xin gia hạn thời gian nộp học phí, bao gồm 5 thành viên: Phó Hiệu trưởng là Chủ tịch Hội đồng; Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng; Trưởng Phòng Kế hoạch – Tài chính là ủy viên; Trưởng Phòng Đào tạo là ủy viên; Phó Trưởng phòng Công tác sinh viên là thư ký.",
+          "explanation": "The candidate claims that there is no detailed information about the committee and positions, but Article 8 explicitly lists the committee members including the positions of Trưởng Phòng Công tác sinh viên (Phó Chủ tịch) and Phó Trưởng phòng Công tác sinh viên (thư ký), thus the claim is contradicted by the source."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "clarified",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "expected_behavior": "refuse",
+    "recorded": true,
+    "review_id": "d5774e32cb9320d287633bf3",
+    "state": "judged",
+    "judgment": {
+      "review_id": "d5774e32cb9320d287633bf3",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 1,
+      "completeness": 1,
+      "rationale": "Hành vi thí sinh là trả lời, không phải từ chối theo expected_behavior. Nội dung có khẳng định rằng không có thông báo cụ thể về học phí trong các văn bản QCDT; khẳng định này phù hợp về hướng với phạm vi đã nêu nhưng không có source_article và cũng không có trích dẫn nguồn nào được cung cấp để xác minh, nên không thể đạt correctness = 2. Đồng thời, câu trả lời thiếu sự từ chối tường minh và thiếu gợi ý liên hệ đơn vị phụ trách đào tạo của trường như yêu cầu của tình huống, nên completeness chỉ đạt một phần.",
+      "claims": [
+        {
+          "answer_quote": "không có thông báo cụ thể về giá học phí này trong các văn bản QCDT.",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Không có source_articles hoặc trích dẫn nào được cung cấp để xác minh khẳng định về việc không có thông báo học phí trong cơ sở dữ liệu, nên mức độ hỗ trợ không thể được thiết lập."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "expected_behavior": "refuse",
+    "recorded": true,
+    "review_id": "1c3ee1bf8681d5751513b12a",
+    "state": "judged",
+    "judgment": {
+      "review_id": "1c3ee1bf8681d5751513b12a",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh là từ chối phù hợp với hành vi mong đợi. Thí sinh tuyên bố rằng không có căn cứ trong văn bản đã tra cứu để xác nhận đơn giá học phí, điều này đúng vì câu hỏi nằm ngoài phạm vi cơ sở dữ liệu. Câu trả lời từ chối hoàn toàn và không đưa ra bất kỳ khẳng định pháp lý cụ thể nào cần được đánh giá dựa trên các nguồn luật được cung cấp. Do đó, tính đúng đắn và đầy đủ được đánh giá là 2.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": true,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "expected_behavior": "refuse",
+    "recorded": true,
+    "review_id": "0517a97f2378492fda78d7c2",
+    "state": "judged",
+    "judgment": {
+      "review_id": "0517a97f2378492fda78d7c2",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Candidate correctly refused the question by stating that detailed tuition fee information is not found in the loaded documents. This is a justified and accurate scope refusal because the knowledge base contains only academic regulations and does not include tuition fee schedules. The answer appropriately declines to speculate and makes no factual assertions about the law beyond the meta-statement about the corpus, which is consistent with the empty source list.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": true,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "LVN-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "ac01f3bdc25c87c9c89063f4",
+    "state": "judged",
+    "judgment": {
+      "review_id": "ac01f3bdc25c87c9c89063f4",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 1,
+      "rationale": "Câu trả lời của ứng viên nêu đúng và được Điều 113 Bộ luật Lao động 2019 hỗ trợ về điều kiện làm đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm, hưởng nguyên lương theo hợp đồng lao động. Tuy nhiên, câu trả lời thiếu con số trả lời trực tiếp cho câu hỏi: người làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm được nghỉ 16 ngày làm việc theo điểm c khoản 1 Điều 113. Vì vậy các khẳng định đưa ra là đúng, nhưng phần thông tin bắt buộc còn thiếu nên completeness chỉ đạt 1.",
+      "claims": [
+        {
+          "answer_quote": "Người lao động làm việc đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm và hưởng nguyên lương theo hợp đồng lao động.",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "Người lao động làm việc đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm, hưởng nguyên lương theo hợp đồng lao động",
+          "explanation": "Khẳng định này khớp với quy định chung tại khoản 1 Điều 113 Bộ luật Lao động 2019 về điều kiện nghỉ hằng năm và hưởng nguyên lương khi làm đủ 12 tháng."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "LVN-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "a5682620287016dccd8292c3",
+    "state": "judged",
+    "judgment": {
+      "review_id": "a5682620287016dccd8292c3",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 1,
+      "rationale": "The candidate answer includes a correct statement about the general condition for annual leave (12 months of work), which is supported by Điều 113 BLLD 2019. However, the question specifically asks for the number of leave days for workers in extremely heavy, hazardous, dangerous occupations. The candidate did not provide the specific number (16 days) as required, resulting in incomplete information. The answer is otherwise accurate and does not contain any errors.",
+      "claims": [
+        {
+          "answer_quote": "Người lao động làm việc đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm và hưởng nguyên lương theo hợp đồng lao động.",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "Người lao động làm việc đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm, hưởng nguyên lương theo hợp đồng lao động",
+          "explanation": "The claim restates the introductory part of Điều 113, which is a correct statement of the law."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "LVN-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "ae3d4b4b6a50729a9cedd486",
+    "state": "judged",
+    "judgment": {
+      "review_id": "ae3d4b4b6a50729a9cedd486",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Người dùng từ chối trả lời, tuyên bố không tìm thấy căn cứ trong tài liệu dù nguồn được cung cấp (Điều 113 Bộ luật Lao động 2019) có quy định rõ ràng: người làm nghề đặc biệt nặng nhọc, độc hại, nguy hiểm được nghỉ 16 ngày làm việc hưởng nguyên lương. Do đó, hành vi từ chối là không chính đáng, câu trả lời không cung cấp thông tin yêu cầu nên sai và không đầy đủ.",
+      "claims": [
+        {
+          "answer_quote": "Không tìm thấy căn cứ trong tài liệu để khẳng định số ngày làm việc cụ thể hay mức lương nguyên theo Điều 113.",
+          "support": "contradicted",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "16 ngày làm việc đối với người làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm",
+          "explanation": "Tuyên bố của ứng viên cho rằng không có căn cứ trong tài liệu để xác nhận số ngày hoặc tiền lương, nhưng Điều 113 BLLĐ 2019 trực tiếp quy định 16 ngày cho nhóm này và quyền hưởng nguyên lương (câu đầu khoản 1). Vì vậy, tuyên bố bị mâu thuẫn với nguồn."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "LVN-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "5174574cb9c809403652ef0e",
+    "state": "judged",
+    "judgment": {
+      "review_id": "5174574cb9c809403652ef0e",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 1,
+      "rationale": "Câu trả lời của thí sinh đưa ra các khẳng định thực tế đều được hỗ trợ bởi các nguồn được cung cấp: (1) BLLD2019 quy định tổng quát về mức sống tối thiểu, (2) Nghị định 293/2025 quy định cụ thể cho từng vùng, (3) mức lương tối thiểu tháng Vùng I là 5.310.000 đồng, và (4) mức lương tối thiểu giờ cũng được quy định. Tuy nhiên, câu trả lời thiếu thông tin quan trọng: không đề cập đến đơn vị xác lập và ấn định mức lương tối thiểu theo BLLD2019 ('theo vùng, ấn định theo tháng, giờ') và không nêu cụ thể mức lương tối thiểu giờ Vùng I (25.500 đồng/giờ). Do đó, tính đầy đủ chỉ đạt mức 1.",
+      "claims": [
+        {
+          "answer_quote": "**Bộ luật Lao động 2019**: Quy định tổng quát về mức sống tối thiểu của người lao động.",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_91",
+          "source_quote": "nhằm bảo đảm mức sống tối thiểu của người lao động và gia đình họ",
+          "explanation": "Điều 91 BLLD 2019 nêu mục đích của mức lương tối thiểu là bảo đảm mức sống tối thiểu, do đó khẳng định của thí sinh được hỗ trợ."
+        },
+        {
+          "answer_quote": "**Nghị định 293/2025 (NĐ-CP)**: Quy định cụ thể cho từng vùng.",
+          "support": "supported",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Quy định mức lương tối thiểu tháng và mức lương tối thiểu giờ đối với người lao động làm việc cho người sử dụng lao động theo vùng như sau:",
+          "explanation": "Điều 3 Nghị định 293/2025 quy định mức lương tối thiểu theo từng vùng cụ thể."
+        },
+        {
+          "answer_quote": "Đối với **Vùng I**, mức lương tối thiểu tháng là **5.310.000 đồng**.",
+          "support": "supported",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "Bảng lương tại Điều 3 Nghị định 293/2025 ghi nhận mức lương tối thiểu tháng Vùng I là 5.310.000 đồng."
+        },
+        {
+          "answer_quote": "mức lương tối thiểu giờ cũng được quy định theo cùng các đơn vị",
+          "support": "supported",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "Điều 3 Nghị định 293/2025 bao gồm cả mức lương tối thiểu giờ (25.500 đồng/giờ) cho Vùng I, hỗ trợ khẳng định rằng mức lương tối thiểu giờ được quy định."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "LVN-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "8b053b3c039d4916dd2c5136",
+    "state": "judged",
+    "judgment": {
+      "review_id": "8b053b3c039d4916dd2c5136",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi có đầy đủ nguồn trả lời trong các văn bản đã nạp: Điều 91 BLLĐ 2019 quy định mức lương tối thiểu được xác lập theo vùng, ấn định theo tháng, giờ; Điều 3 Nghị định 293/2025 nêu rõ Vùng I là 5.310.000 đồng/tháng và 25.500 đồng/giờ. Ứng viên từ chối trả lời mặc dù câu hỏi có thể trả lời được và nội dung từ chối khẳng định 'không có tài liệu' trái với nguồn được cung cấp. Vì vậy hành vi không phù hợp, không cung cấp thông tin yêu cầu và có nhận định sai.",
+      "claims": [
+        {
+          "answer_quote": "Không có tài liệu tra cứu chứng minh trực tiếp quy định mức lương tối thiểu tháng cụ thể cho Vùng I (5.310.000 đồng) từ các văn bản đã nạp.",
+          "support": "contradicted",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "Điều 3 Nghị định 293/2025 được nạp và nêu trực tiếp mức lương tối thiểu tháng Vùng I là 5.310.000 đồng cùng mức giờ 25.500 đồng, nên khẳng định 'không có tài liệu' là sai."
+        },
+        {
+          "answer_quote": "Thông tin này thuộc về quy định của Nghị định 293/2025",
+          "support": "supported",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "Bản ghi nguồn ND293_2025_Dieu_3 thuộc Nghị định 293/2025 chứa đúng số liệu Vùng I nên nhận định này phù hợp."
+        },
+        {
+          "answer_quote": "cần đọc toàn bộ nội dung để xác nhận con số chính xác",
+          "support": "contradicted",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "Nội dung điều khoản được cung cấp đã ghi chính xác số liệu Vùng I; không cần thao tác thêm nào để xác nhận con số này."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "LVN-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "recorded": true,
+    "review_id": "4a6c408d6fe2ab96378a9d24",
+    "state": "judged",
+    "judgment": {
+      "review_id": "4a6c408d6fe2ab96378a9d24",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 1,
+      "completeness": 1,
+      "rationale": "Câu trả lời chỉ đưa ra mức lương tối thiểu tháng cho Vùng I (5.310.000 đồng/tháng), đúng và được hỗ trợ bởi Nghị định 293/2025. Tuy nhiên, câu trả lời thiếu hai phần: (1) đơn vị xác lập và ấn định mức lương tối thiểu theo Bộ luật Lao động 2019 (theo vùng, tháng, giờ), và (2) mức lương tối thiểu giờ cho Vùng I (25.500 đồng/giờ) theo Nghị định 293/2025. Do đó, câu trả lời đúng một phần và không đầy đủ.",
+      "claims": [
+        {
+          "answer_quote": "mức lương tối thiểu tháng cho Vùng I là 5.310.000 đồng/tháng",
+          "support": "supported",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "Nghị định 293/2025 Điều 3 quy định mức lương tối thiểu tháng cho Vùng I là 5.310.000 đồng/tháng."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "LVN-024",
+    "category": "out_of_scope",
+    "expected_behavior": "refuse",
+    "recorded": true,
+    "review_id": "e9d0bbd422337105e8f072b9",
+    "state": "judged",
+    "judgment": {
+      "review_id": "e9d0bbd422337105e8f072b9",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu hỏi yêu cầu nêu tỷ lệ đóng bảo hiểm y tế, nhưng phạm vi cơ sở dữ liệu chỉ gồm Bộ luật Lao động 2019 và các văn bản liên quan; câu hỏi được xác định nằm ngoài phạm vi và hành vi mong đợi là từ chối. Thí sinh đã từ chối, chỉ nêu rằng không có thông tin về tỷ lệ bảo hiểm y tế trong các văn bản đã tra cứu, không khẳng định một tỷ lệ hay quy phạm pháp luật cụ thể nào. Vì vậy hành vi phù hợp, từ chối đúng phạm vi, đầy đủ và không có sai sót nội dung pháp lý. Không có khẳng định pháp lý thực chất nào để đối chiếu với nguồn; câu nói về việc thiếu thông tin là lời từ chối chứ không phải luận điểm pháp lý.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": true,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "LVN-024",
+    "category": "out_of_scope",
+    "expected_behavior": "refuse",
+    "recorded": true,
+    "review_id": "9df8ce9270747ad3a8c21c9a",
+    "state": "judged",
+    "judgment": {
+      "review_id": "9df8ce9270747ad3a8c21c9a",
+      "judgeable": false,
+      "reference_issue": "Không có source_articles nào được cung cấp để đánh giá các tuyên bố thực tế. Không thể xác nhận hỗ trợ từ nguồn.",
+      "behaviour_appropriate": null,
+      "correctness": null,
+      "completeness": null,
+      "rationale": "Giải thích: Không có source_articles hoặc reference_evidence để kiểm tra bất kỳ tuyên bố nào. Câu trả lời của thí sinh phù hợp với phạm vi và hành vi mong đợi (từ chối), nhưng không thể đánh giá tính chính xác và đầy đủ vì thiếu tài liệu nguồn để so sánh. Do đó, quyết định là không thể đánh giá.",
+      "claims": []
+    },
+    "judgeable": false,
+    "success": null,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "LVN-024",
+    "category": "out_of_scope",
+    "expected_behavior": "refuse",
+    "recorded": true,
+    "review_id": "0993cc6fa1581efa788d4264",
+    "state": "judged",
+    "judgment": {
+      "review_id": "0993cc6fa1581efa788d4264",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The question asks for health insurance contribution rates, which is outside the loaded knowledge base of labor law. The expected behavior is to refuse. Instead, the candidate asked a clarifying question about three conditions not present in the question, which is not a refusal and does not address the query. The candidate answer contains no factual claims, as it is a question. Therefore, behavioural appropriateness is false, and correctness and completeness are both 0.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "clarified",
+    "error_kind": null
+  }
+]

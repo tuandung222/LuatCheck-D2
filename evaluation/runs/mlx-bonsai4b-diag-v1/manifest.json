@@ -1,0 +1,161 @@
+{
+  "schema": "luatcheck.native.d2.v1",
+  "phase": "pilot",
+  "created_at": "2026-10-22T18:25:53.035173+00:00",
+  "status": "collected_pending_human_scoring",
+  "report_eligible": false,
+  "model": {
+    "model": {
+      "name": "prism-ml/Ternary-Bonsai-2-4B-mlx-2bit",
+      "digest": null,
+      "hf_revision": "dff2caaa23fa8706164c44c10f1b58feb405f76a"
+    },
+    "endpoint": "http://127.0.0.1:8080/v1",
+    "provider": "mlx",
+    "protocol_note": "Diagnostic local MLX controller; not the frozen D2 protocol.",
+    "inference_executed": false
+  },
+  "config": {
+    "model": {
+      "provider": "mlx",
+      "endpoint": "http://127.0.0.1:8080/v1",
+      "name": "prism-ml/Ternary-Bonsai-2-4B-mlx-2bit",
+      "temperature": 0.7,
+      "timeout_seconds": 60.0,
+      "seed": null,
+      "max_output_tokens": 768,
+      "context_tokens": 8192,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "constrained_json": true,
+      "api_key_env": null,
+      "reasoning_effort": null
+    },
+    "budgets": {
+      "max_tool_calls": 5,
+      "max_repairs": 2,
+      "max_steps": 8,
+      "wall_seconds": 180.0
+    },
+    "retrieval": {
+      "bm25_top_k": 5,
+      "dense_top_k": 5,
+      "rrf_k": 60,
+      "final_top_k": 5,
+      "corpus_path": "data/corpus/labor_code_2019_official.json",
+      "dense_model_type": "tfidf"
+    },
+    "verifier": {
+      "mode": "l1",
+      "similarity_threshold": 0.7,
+      "l1_overlap_threshold": 0.25,
+      "l2_entailment_threshold": 0.3,
+      "l2_use_slm": false
+    },
+    "memory": {
+      "enabled": false,
+      "sqlite_path": "data/db/local_slm_memory.db",
+      "similarity_threshold": 0.85,
+      "index_version": "bll2019-official-220-v1"
+    },
+    "security": {
+      "audit_log_path": "data/audit_log.jsonl",
+      "outbox_path": "data/outbox/sent_summaries.jsonl",
+      "egress_requires_confirmation": true
+    }
+  },
+  "sources": {
+    "base_commit": "3996f1f84d0dbd1356744b51758f96e829d3c1de",
+    "tracked_worktree_dirty": true,
+    "files_sha256": {
+      "src/agent/llm_client.py": "ded61d9e3b43b78b8dcdfb5770e497aeb08c6c584bc8741dc979e6bc64515a0a",
+      "src/agent/loop.py": "346611ca54ca4aa535f994a9c6a9a7aa66d01e5bdefe6ce36083ff2696de76f5",
+      "src/agent/prompts.py": "f4cad655ec1a67e026958dac4161be9459bba0cc7e9504f774c7945aed6d2741",
+      "src/agent/state.py": "e945fd0935fa013b997f73a729614fdb0660dd83f6271d5cf412d3ed4c37641f",
+      "src/api/__init__.py": "d70761e8cd362ff5fb663ec12a7468a6a84c8b055a3cad3a745bc07042b28c6e",
+      "src/api/app.py": "192b0109076a346108a457c5809209b093d79831d9798c432e4fba7ef7540ff5",
+      "src/config/__init__.py": "107f1a5f4c29c03f40e06492da0a1378f228b7ea5e68ee265bb826432bf30c02",
+      "src/config/app_config.py": "5adec69230c62d9b7ee595ee4a51c7a9fac92cc24d094039379970c332d87a55",
+      "src/contracts/__init__.py": "6b10dba74420e8d20fee27b97db4e72eb6073ef3473e49dd0b1086fbeea47a59",
+      "src/contracts/universal_document.py": "349d24bfe4c0f5c76f29a747de879c99a3c1c616d32e0d50cd0cb9b3019d5f0e",
+      "src/evaluation/benchmark_runner.py": "cde84c32cd08550d3363f7736d72c9bfafbe3f11e336a7ec6330a220dfe5d438",
+      "src/interfaces/__init__.py": "6cd175d4d449690bfdda9a6262f3c64e54b151da57b65978b4511835a223bdd0",
+      "src/interfaces/base.py": "c4141cf09124a764f0ba2a58de83c314a81a912a3d6784fc9481e366cbd97d5d",
+      "src/memory/ledger.py": "6a6b7124b98921ac96ad3494c3483e1353eb5d0d8b9bde315963ccedd3ca1138",
+      "src/memory/sqlite_store.py": "94ca8d6836a54ad44df3b890f15f8e8958bc36bca3120c2a16f9935a46f75141",
+      "src/retrieval/bm25_engine.py": "223ef2ccb665430ddb891db3873a19c5809b92e8c5791570870ce6720eb16dd0",
+      "src/retrieval/dense_engine.py": "0d167a34697912eee362e9db5afadadc7faea088f282c50bebb8071b1f172139",
+      "src/retrieval/hybrid_domain.py": "3ae9ef669fdbd09c6cc5a683323cae99dc43bcd14e0f6fde00ee56e32d6371d9",
+      "src/retrieval/hybrid_rrf.py": "b57bc38712c410b6169bce695db36cc9a80dbb7e15cd68db180dc3c12d4e338d",
+      "src/security/audit_logger.py": "8fecc3e4094183851e4c9820810b26264ecaef535e8b94c41774220ff2615198",
+      "src/security/guardrails.py": "7eb5e8eaf5a0e92834f1bf9d1ade32fd27892d225e3ac0609607d418cf9179ae",
+      "src/services/__init__.py": "b3fa193109b7c1c67717cfb6bcc57068555c648d16e22b4892c8e58b6ed4688e",
+      "src/services/web_contract.py": "786ab543d44ad9b7a36c0a7ce00fc3cc3413da1cfb23365f793f004ac95ced39",
+      "src/services/web_store.py": "dc592d694280734d90d81ec6e1cbf17ca577167b34e1e511e369d05d1b640ba5",
+      "src/tools/domain_tools.py": "8ac2003b38acf93aa25399eed6c90c9bab593c254fda90459b5c4b6f46e3faca",
+      "src/tools/legal_tools.py": "69198751a4af8c3f8abf44ec2d16fc802a71733ff63bd228d7fd6ca530e1d322",
+      "src/tools/mcp_server.py": "25579767e3c8e9a8927917578606c4787e4e9a96ce986187496f30ad0e2a9070",
+      "src/tools/permissions.py": "3773ff2a5abdfdaf9cc2aa9cc618f74a0bc07d6345ecedc5515e4eae860ae880",
+      "src/ui/app.py": "02f04b097295066c7955b2555f40eaa6597c0a4f656df5f2345765eeca40ba56",
+      "src/verifier/grounding_analyzer.py": "6cfaa8000cd4a0cf1903ee65e3ab039488010bf552669ad7716c71b162beb8fd",
+      "src/verifier/lexical_grounding.py": "b69716944494cf4f848df0962e371b963a0bdd980c632bbeae1b38a9720ae83c",
+      "src/verifier/pipeline.py": "0214b52772b36e5160025c46c8278f476ae8d99a448d4567f07fc75d0eb08bbc",
+      "src/verifier/semantic_nli.py": "0e6b7ebbeaa499d320824bd1ceeb254036827d2613a7cc332518aa7de22bbd67",
+      "evaluation/analyze_judge.py": "fcf0e7d72c794ea628b0d91a823df072fa0fcba807fb6a9cf4bc20242d819bd2",
+      "evaluation/analyze_native.py": "eb3efca0ab493f9b4f3fd7bfde504715d6ee98b6130057295c05826c1245b46e",
+      "evaluation/error_analyzer.py": "cf3942a2f2f1228663355b336df21006a49a1d8aa3349913cf9ff64952c86b21",
+      "evaluation/export_blind_review.py": "cd969019a4f82e09a8b5ceb52c8d086469cd58aecd73fd4d467959418e53e50b",
+      "evaluation/judge_gateway.py": "d9a3864c42ffd7ade96a2dc7aa772c44c426f3e41e342bd86d85f637874a7bd9",
+      "evaluation/metrics.py": "94b31b2920a5569f79e796df412ea010e79ed79ce399a7208bec2c1970e8036e",
+      "evaluation/recover_judge.py": "8473712602b155a3939048e3ad3743622e0f19560c48e17a6802eeb7754eb6d4",
+      "evaluation/render_native_table.py": "d3008a3901865f7f83b84bd95b1c5481f50440a5792f32622356b21df7e075c8",
+      "evaluation/report_judge.py": "a25e9ee1749fc95f736f6f5790cffd53044a753fffce90d95c8930fbee871151",
+      "evaluation/run_eval.py": "e1c51dcb0ef7946054c5d5a80f5451abd09fbb04b1b49d1a52392d7fa53b1f4d",
+      "evaluation/score_reviewed_runs.py": "1302657613696734f6fe4f663505215813bb213f0427eee89c7e955660af4e28",
+      "evaluation/benchmarks/bll2019_v1/tasks.json": "8b84c4f395b25b34e7c8fd76758501ea070c456d7db288d8c943167bbb46d9dc",
+      "config/d2_mlx4b_diagnostic.yaml": "dd0e97b7fbf3504b49f046b1f2f562ba075f4a7206c45d7664a61a9587032e84",
+      "requirements.txt": "81da0b4fea6b1019407676601c4cfe4dfff3627e04ed013404d594e8b124411e",
+      "evaluation/benchmarks/bll2019_v1/pilot2-interface.json": "2fcb11a3153c0c144f46cb66ee173acbb65afdaf9896383e91c3958d435aa474",
+      "evaluation/benchmarks/bll2019_v1/pilot4.json": "cb88d1237e94e171a3c30fcc62a5f9926d2291dd9d354764b06a23e1e12c02da",
+      "evaluation/benchmarks/bll2019_v1/provenance.json": "6f4e7e931eace7a8453f84a5361115a147a3220687a91263c304e74c59a9da7e",
+      "evaluation/benchmarks/bll2019_v1/review.json": "d3403399de38a8fa126b5f74f75d76fd5c317454bf5fb1370de1c52323f14a0e",
+      "data/corpus/labor_code_2019_official.json": "8df39799441508ef17f94123393497c56d48ed071d99fd3cc7e16d283bf88c94",
+      "data/corpus/tech_sop.json": "16e686624fa1720c144ef98a62cb7d8e14a33569880d135fe905106d513b6931",
+      "docs/materials/benchmark-sources/bll2019-congbao.pdf": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+      "docs/materials/benchmark-sources/corpus_manifest.json": "36d9785290d51a17a37c868cb88f7696c5090c6bc7bb243906ea163a740e0b7f",
+      "docs/materials/benchmark-sources/extract_official_corpus.py": "2bae780623692969037b8b71059128c5c8c6bc8055426f149f000d92a71accde"
+    }
+  },
+  "seeds": [
+    42
+  ],
+  "modes": [
+    "off",
+    "l1_on"
+  ],
+  "task_ids": [
+    "BLL19-01-PROBATION",
+    "BLL19-02-PROBATION_WAGE",
+    "BLL19-03-NOTICE",
+    "BLL19-04-ABSENCE",
+    "BLL19-05-PREGNANCY",
+    "BLL19-06-UNLAWFUL_RESIGNATION",
+    "BLL19-07-NOTICE_AND_SEVERANCE",
+    "BLL19-08-UNLAWFUL_TERMINATION",
+    "BLL19-09-DEPOSIT",
+    "BLL19-10-FOREIGN_SCOPE"
+  ],
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "scoring": "Citation/retrieval/lexical proxies; human correctness labels remain pending.",
+  "device_active_GPU_hours": null,
+  "API_charge_USD": 0.0,
+  "API_charge_note": "Local endpoint; this is not a claim of zero compute cost.",
+  "task_review_sha256": "d3403399de38a8fa126b5f74f75d76fd5c317454bf5fb1370de1c52323f14a0e",
+  "completed_runs": 20,
+  "tokens_complete": false,
+  "device_run_wall_hours": 0.36883001248833325,
+  "wall_time_note": "Device collection wall time, not measured active GPU hours.",
+  "runs_sha256": "be3cbbaca864f6e95b716db903b46fc421fd91ef7212aa7cc1c58451a3653b65"
+}

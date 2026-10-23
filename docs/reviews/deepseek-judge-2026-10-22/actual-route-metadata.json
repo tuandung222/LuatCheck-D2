@@ -1,0 +1,12 @@
+{
+  "actual_route_metadata": [
+    {
+      "model_name": "deepseek/deepseek-v4-flash",
+      "actual_route_model_id": "e6c5537d-3c6d-4147-ac30-29a77c4447b8",
+      "upstream_model": "deepseek/deepseek-v4-flash",
+      "upstream_base": null,
+      "provider": "deepseek",
+      "base_model": null
+    }
+  ]
+}

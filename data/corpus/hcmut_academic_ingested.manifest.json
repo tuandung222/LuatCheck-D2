@@ -1,0 +1,1905 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "luatcheck-ingestion",
+    "version": "0.1.0"
+  },
+  "status": "ok",
+  "config": {
+    "path": "config/ingestion/hcmut_academic.yaml",
+    "sha256": "90a3e596e66de7f5c2f9a294ecaf3f5ed764406c55529280ccdf87885024ca1a",
+    "output": {
+      "corpus": "data/corpus/hcmut_academic_ingested.json",
+      "manifest": "data/corpus/hcmut_academic_ingested.manifest.json"
+    },
+    "defaults": {
+      "collection_id": "hcmut_academic",
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "series_tags": [
+          "QD_",
+          ""
+        ]
+      },
+      "chunking": {
+        "granularity": "article",
+        "content_whitespace": "collapse"
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        }
+      }
+    }
+  },
+  "environment": {
+    "python": "3.14.4",
+    "libraries": {
+      "PyYAML": "6.0.3",
+      "pypdf": "6.21.1"
+    }
+  },
+  "sources": [
+    {
+      "index": 0,
+      "path": "docs/materials/hcmut-sources/HVDT1260_1260-QD-DHBK_2026_sua-doi-quy-dinh-hoc-vu-va-dao-tao.pdf",
+      "sha256": "71883b7763e49e17fbffba9f0d80667d0cee71933165c758c80fbcf0d460bfb1",
+      "bytes": 1048987,
+      "format": "pdf",
+      "doc_code": "HVDT1260",
+      "collection_id": "hcmut_academic",
+      "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh",
+      "url": "https://hcmut.edu.vn/document/quyChe/1792061722850_I.1.1_Quy%20%C4%91i%CC%A3nh%20ho%CC%A3c%20vu%CC%A3%20va%CC%80%20%C4%91a%CC%80o%20ta%CC%A3o%20ba%CC%A3%CC%82c%20%C4%90a%CC%A3i%20ho%CC%A3c.pdf",
+      "document_number": "1260/QĐ-ĐHBK",
+      "issued_date": "2026-03-15",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 21,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "HVDT1260"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "71883b7763e49e17fbffba9f0d80667d0cee71933165c758c80fbcf0d460bfb1"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 21,
+      "normalized_chars": 38239,
+      "normalized_sha256": "4b2f764aa67b505dce8105cc4efd7c3fb47dd90beadf55c3ebba44b4c4cf1e50",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "#",
+          "count": 20,
+          "sample": "2"
+        }
+      ],
+      "removed_lines_total": 20,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 4,
+          "article": 4,
+          "clause": 9,
+          "point": 8
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 17,
+            "samples": [
+              "@13252: 1. Chuẩn ngoại ngữ từng năm học",
+              "@14974: 2. Chuẩn ngoại ngữ tốt nghiệp",
+              "@16555: 3. Quy đổi các bằng cấp và chứng chỉ ngoại ngữ",
+              "@18368: 4. Nguyên tắc xét miễn các học phần tiếng Anh và các chuẩn ngoại ngữ",
+              "@20759: 1. Chuẩn kỹ năng ứng dụng Công nghệ thông tin và các điều kiện ràng buộc"
+            ]
+          },
+          "point": {
+            "count": 5,
+            "samples": [
+              "@13435: a) Chuẩn ngoại ngữ tiếng Anh từng năm dành cho sinh viên chương trình tiêu chuẩn",
+              "@14314: b) Chuẩn ngoại ngữ tiếng Pháp từng năm dành cho sinh viên Chương trình đào tạo k",
+              "@14674: c) Chuẩn ngoại ngữ tiếng Nhật từng năm dành cho sinh viên Chương trình định hướn",
+              "@18064: a) Đối với Khóa 2023 về trước:",
+              "@18214: b) Đối với Khóa 2024 về sau:"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 8,
+        "by_level": {
+          "article": 4,
+          "section": 4
+        }
+      },
+      "validation": {
+        "chunks": 8,
+        "verbatim_chunks": 8,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 38239,
+          "covered_chars": 34444,
+          "char_fraction": 0.900756,
+          "source_non_whitespace_chars": 29875,
+          "covered_non_whitespace_chars": 26917,
+          "non_whitespace_fraction": 0.900987,
+          "uncovered_stretches_with_text": 2,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 3711,
+              "non_whitespace_chars": 2898,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập – Tự do – Hạnh phú"
+            },
+            {
+              "start": 12621,
+              "end": 12699,
+              "non_whitespace_chars": 60,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 4; - Lưu: VT, P.ĐT. GS. TS. Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "17 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@13252: 1. Chuẩn ngoại ngữ từng năm học', '@14974: 2. Chuẩn ngoại ngữ tốt nghiệp']",
+          "5 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@13435: a) Chuẩn ngoại ngữ tiếng Anh từng năm dành cho sinh viên chương trình tiêu chuẩn', '@14314: b) Chuẩn ngoại ngữ tiếng Pháp từng năm dành cho sinh viên Chương trình đào tạo k']"
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "path": "docs/materials/hcmut-sources/HVDT2749_2749-QD-DHBK_2026_sua-doi-quy-dinh-hoc-vu-va-dao-tao.pdf",
+      "sha256": "173ee609c71c9da3a1f5ecbb4c1d5a6ada2e965ce08b1c29c2ac642a55252c30",
+      "bytes": 587389,
+      "format": "pdf",
+      "doc_code": "HVDT2749",
+      "collection_id": "hcmut_academic",
+      "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 và Quyết định số 1260/QĐ-ĐHBK ngày 16 tháng 03 năm 2026 của Hiệu trưởng trường Đại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh",
+      "url": "https://hcmut.edu.vn/document/quyChe/1792061765860_I.1.2_Quy%20%C4%91i%CC%A3nh%20ho%CC%A3c%20vu%CC%A3%20va%CC%80%20%C4%91a%CC%80o%20ta%CC%A3o%20ba%CC%A3%CC%82c%20%C4%90a%CC%A3i%20ho%CC%A3c.pdf",
+      "document_number": "2749/QĐ-ĐHBK",
+      "issued_date": "2026-05-26",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 6,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "HVDT2749"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "173ee609c71c9da3a1f5ecbb4c1d5a6ada2e965ce08b1c29c2ac642a55252c30"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 6,
+      "normalized_chars": 9902,
+      "normalized_sha256": "3ec4836b11d9df4bbb0c34526d04cd642aea873042ec0762f909c0aa07ff2ef1",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "#",
+          "count": 5,
+          "sample": "2"
+        }
+      ],
+      "removed_lines_total": 5,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 1,
+          "article": 3
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 4,
+            "samples": [
+              "@2433: 1. Chuẩn ngoại ngữ từng năm học",
+              "@4155: 2. Chuẩn ngoại ngữ tốt nghiệp",
+              "@5743: 3. Quy đổi các bằng cấp và chứng chỉ ngoại ngữ",
+              "@7680: 4. Nguyên tắc xét miễn các học phần tiếng Anh và các chuẩn ngoại ngữ"
+            ]
+          },
+          "point": {
+            "count": 5,
+            "samples": [
+              "@2616: a) Chuẩn ngoại ngữ tiếng Anh từng năm dành cho sinh viên chương trình tiêu chuẩn",
+              "@3495: b) Chuẩn ngoại ngữ tiếng Pháp từng năm dành cho sinh viên Chương trình đào tạo k",
+              "@3855: c) Chuẩn ngoại ngữ tiếng Nhật từng năm dành cho sinh viên Chương trình định hướn",
+              "@7375: a) Đối với Khóa 2023 về trước:",
+              "@7525: b) Đối với Khóa 2024 về sau:"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 4,
+        "by_level": {
+          "article": 3,
+          "section": 1
+        }
+      },
+      "validation": {
+        "chunks": 4,
+        "verbatim_chunks": 4,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 9902,
+          "covered_chars": 8467,
+          "char_fraction": 0.85508,
+          "source_non_whitespace_chars": 7696,
+          "covered_non_whitespace_chars": 6573,
+          "non_whitespace_fraction": 0.85408,
+          "uncovered_stretches_with_text": 2,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 1355,
+              "non_whitespace_chars": 1063,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập – Tự do – Hạnh phú"
+            },
+            {
+              "start": 1802,
+              "end": 1880,
+              "non_whitespace_chars": 60,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 4; - Lưu: VT, P.ĐT. GS. TS. Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "4 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@2433: 1. Chuẩn ngoại ngữ từng năm học', '@4155: 2. Chuẩn ngoại ngữ tốt nghiệp']",
+          "5 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@2616: a) Chuẩn ngoại ngữ tiếng Anh từng năm dành cho sinh viên chương trình tiêu chuẩn', '@3495: b) Chuẩn ngoại ngữ tiếng Pháp từng năm dành cho sinh viên Chương trình đào tạo k']"
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "path": "docs/materials/hcmut-sources/HVCHUNG1259_1259-QD-DHBK_2026_sua-doi-quy-dinh-chung-ve-hoc-vu-va-dao-tao.pdf",
+      "sha256": "8754204320cc8a33eb741cb3efe955b800f8aed4e48fa1a2f9e4bbbec9339990",
+      "bytes": 880149,
+      "format": "pdf",
+      "doc_code": "HVCHUNG1259",
+      "collection_id": "hcmut_academic",
+      "source_name": "Sửa đổi, bổ sung một số điều của Quy định chung về học vụ và đào tạo theo Quyết định số 2931/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh",
+      "url": "https://hcmut.edu.vn/document/quyChe/1792061881750_I.2.1_%20Quy%20%C4%91i%CC%A3nh%20chung%20ve%CC%82%CC%80%20ho%CC%A3c%20vu%CC%A3%20va%CC%80%20%C4%91a%CC%80o%20ta%CC%A3o.pdf",
+      "document_number": "1259/QĐ-ĐHBK",
+      "issued_date": "2026-03-15",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 18,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "HVCHUNG1259"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "8754204320cc8a33eb741cb3efe955b800f8aed4e48fa1a2f9e4bbbec9339990"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 18,
+      "normalized_chars": 33649,
+      "normalized_sha256": "e9fe3080129158c4a497fda83429509a6a672dce059ec1e6746b38d39d4ecc63",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "#",
+          "count": 17,
+          "sample": "2"
+        }
+      ],
+      "removed_lines_total": 17,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 2,
+          "article": 4,
+          "clause": 15,
+          "point": 8
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 6,
+            "samples": [
+              "@24512: 1. Cấu trúc mã số người học",
+              "@25074: 2. Cấu trúc mã số học phần",
+              "@26805: 1. Các hình thức khen thưởng",
+              "@27689: 2. Số lượng và tiêu chuẩn của các hình thức khen thưởng",
+              "@30827: 3. Hội đồng xét tặng huy chương cấp Khoa"
+            ]
+          },
+          "point": {
+            "count": 14,
+            "samples": [
+              "@10391: b) Loại đạt không phân mức, áp dụng cho các học phần chỉ yêu cầu đạt, không",
+              "@18080: a) Không đang là sinh viên trình độ năm thứ nhất hoặc năm cuối khóa đối với trìn",
+              "@18581: b) Sửa đổi, bổ sung khoản 25.4 Điều 25 như sau:",
+              "@19500: c) Sửa đổi, bổ sung khoản 25.5 Điều 25 như sau:",
+              "@27766: a) Số lượng"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 6,
+        "by_level": {
+          "article": 4,
+          "section": 2
+        }
+      },
+      "validation": {
+        "chunks": 6,
+        "verbatim_chunks": 6,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 33649,
+          "covered_chars": 30424,
+          "char_fraction": 0.904158,
+          "source_non_whitespace_chars": 26327,
+          "covered_non_whitespace_chars": 23819,
+          "non_whitespace_fraction": 0.904737,
+          "uncovered_stretches_with_text": 2,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 3143,
+              "non_whitespace_chars": 2448,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập – Tự do – Hạnh phú"
+            },
+            {
+              "start": 24263,
+              "end": 24341,
+              "non_whitespace_chars": 60,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 4; - Lưu: VT, P.ĐT. GS. TS. Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "6 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@24512: 1. Cấu trúc mã số người học', '@25074: 2. Cấu trúc mã số học phần']",
+          "14 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@10391: b) Loại đạt không phân mức, áp dụng cho các học phần chỉ yêu cầu đạt, không', '@18080: a) Không đang là sinh viên trình độ năm thứ nhất hoặc năm cuối khóa đối với trìn']"
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "path": "docs/materials/hcmut-sources/GIANGDAY2282_2282-QD-DHBK_2026_sua-doi-quy-dinh-giang-day.pdf",
+      "sha256": "bc4d1562df8310f4fd9037eff64cc037c5bc651d36d9c9f83e36dea5007ef2ba",
+      "bytes": 628860,
+      "format": "pdf",
+      "doc_code": "GIANGDAY2282",
+      "collection_id": "hcmut_academic",
+      "source_name": "Sửa đổi, bổ sung một số điều của Quy định giảng dạy theo Quyết định số 2929/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh",
+      "url": "https://hcmut.edu.vn/document/quyChe/1792120097761_II.1.1_Quy%20%C4%91i%CC%A3nh%20gia%CC%89ng%20da%CC%A3y.pdf",
+      "document_number": "2282/QĐ-ĐHBK",
+      "issued_date": "2026-05-05",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 9,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "GIANGDAY2282"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "bc4d1562df8310f4fd9037eff64cc037c5bc651d36d9c9f83e36dea5007ef2ba"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 9,
+      "normalized_chars": 15776,
+      "normalized_sha256": "4c219d66c71dc6eb39804919712cee8cdf916ee5c90b97fdfe7b43239eac0ae6",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "#",
+          "count": 8,
+          "sample": "2"
+        }
+      ],
+      "removed_lines_total": 8,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 2,
+          "article": 4,
+          "clause": 2
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 6,
+            "samples": [
+              "@6677: 1. Phạm vi điều chỉnh, đối tượng và mục đích áp dụng",
+              "@8705: 2. Quy định dành cho giảng viên giảng dạy các chương trình đào tạo quốc tế (bao",
+              "@12091: 3. Quy định dành cho cán bộ hỗ trợ hoạt động giảng dạy",
+              "@14431: 1. Phạm vi áp dụng",
+              "@14758: 2. Giảng viên"
+            ]
+          },
+          "point": {
+            "count": 4,
+            "samples": [
+              "@11373: a) Dựa trên kết quả khảo sát học phần của học kỳ liền trước. Xem xét việc hoãn p",
+              "@11607: b) Không có ghi nhận vi phạm về quy định, quy chế hiện hành của nhà trường.",
+              "@11683: c) Mức hoàn thành NV2 từ 50% trở lên.",
+              "@11721: d) Khoa xác nhận về việc đánh giá chuyên môn theo quy trình của Khoa và đảm bảo"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 6,
+        "by_level": {
+          "article": 4,
+          "section": 2
+        }
+      },
+      "validation": {
+        "chunks": 6,
+        "verbatim_chunks": 6,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 15776,
+          "covered_chars": 13222,
+          "char_fraction": 0.838109,
+          "source_non_whitespace_chars": 12368,
+          "covered_non_whitespace_chars": 10368,
+          "non_whitespace_fraction": 0.838292,
+          "uncovered_stretches_with_text": 2,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 2472,
+              "non_whitespace_chars": 1940,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập – Tự do – Hạnh phú"
+            },
+            {
+              "start": 6411,
+              "end": 6489,
+              "non_whitespace_chars": 60,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 4; - Lưu: VT, P.ĐT. GS. TS. Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "6 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@6677: 1. Phạm vi điều chỉnh, đối tượng và mục đích áp dụng', '@8705: 2. Quy định dành cho giảng viên giảng dạy các chương trình đào tạo quốc tế (bao']",
+          "4 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@11373: a) Dựa trên kết quả khảo sát học phần của học kỳ liền trước. Xem xét việc hoãn p', '@11607: b) Không có ghi nhận vi phạm về quy định, quy chế hiện hành của nhà trường.']"
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "path": "docs/materials/hcmut-sources/HOCPHI2800_2800-QD-DHBK_2025_quy-dinh-gia-han-nop-hoc-phi.pdf",
+      "sha256": "ca0801728fdd53d1e47ce591aea162031db816b758294453dadf656251b8cede",
+      "bytes": 2405531,
+      "format": "pdf",
+      "doc_code": "HOCPHI2800",
+      "collection_id": "hcmut_academic",
+      "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM.",
+      "url": "https://hcmut.edu.vn/document/quyChe/1791966539979_8_Quy%20dinh%20gia%20han%20thoi%20gian%20nop%20hoc%20phi.pdf",
+      "document_number": "2800/QĐ-ĐHBK",
+      "issued_date": "2025-07-20",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 5,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "HOCPHI2800"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "ca0801728fdd53d1e47ce591aea162031db816b758294453dadf656251b8cede"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 5,
+      "normalized_chars": 8424,
+      "normalized_sha256": "532bcd0c5b84582cddb39f7374f7826f42c37b973cb5c5ce5e88f913fb300cdb",
+      "removed_lines": [],
+      "removed_lines_total": 0,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 1,
+          "article": 13,
+          "chapter": 5,
+          "clause": 18
+        },
+        "series": {
+          "article": 2
+        },
+        "end_marker_hits": 2,
+        "rejected_markers": {}
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 14,
+        "by_level": {
+          "article": 13,
+          "section": 1
+        }
+      },
+      "validation": {
+        "chunks": 14,
+        "verbatim_chunks": 14,
+        "chunks_with_unemitted_parent": 10,
+        "coverage": {
+          "source_chars": 8424,
+          "covered_chars": 6730,
+          "char_fraction": 0.798908,
+          "source_non_whitespace_chars": 6584,
+          "covered_non_whitespace_chars": 5263,
+          "non_whitespace_fraction": 0.799362,
+          "uncovered_stretches_with_text": 7,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 1033,
+              "non_whitespace_chars": 812,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập - Tự do - Hạnh phú"
+            },
+            {
+              "start": 1482,
+              "end": 1920,
+              "non_whitespace_chars": 343,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 3; - Lưu VT, CTSV. Mai Thanh Phong ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI"
+            },
+            {
+              "start": 2824,
+              "end": 2880,
+              "non_whitespace_chars": 43,
+              "preview": "Chương II TIÊU CHUẨN XÉT GIA HẠN THỜI GIAN NỘP HỌC PHÍ"
+            },
+            {
+              "start": 3842,
+              "end": 3890,
+              "non_whitespace_chars": 37,
+              "preview": "Chương III QUYỀN LỢI VÀ NGHĨA VỤ CỦA NGƯỜI HỌC"
+            },
+            {
+              "start": 4905,
+              "end": 4960,
+              "non_whitespace_chars": 42,
+              "preview": "Chương IV QUY TRÌNH XÉT GIA HẠN THỜI GIAN NỘP HỌC PHÍ"
+            },
+            {
+              "start": 6487,
+              "end": 6515,
+              "non_whitespace_chars": 21,
+              "preview": "Chương V TỔ CHỨC THỰC HIỆN"
+            },
+            {
+              "start": 7540,
+              "end": 7569,
+              "non_whitespace_chars": 23,
+              "preview": "HIỆU TRƯỞNG Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "index": 5,
+      "path": "docs/materials/hcmut-sources/GVCN2977_2977-QD-DHBK_2025_quy-dinh-cong-tac-GVCN-CVHT.pdf",
+      "sha256": "93e9db03336ba195433b405301dcb8007bb3fd834aeca2705d52f94a9f01a408",
+      "bytes": 2561581,
+      "format": "pdf",
+      "doc_code": "GVCN2977",
+      "collection_id": "hcmut_academic",
+      "source_name": "Về việc ban hành Quy định về công tác Giáo viên chủ nhiệm và Cố vấn học tập Trường Đại học Bách khoa – ĐHQG-HCM.",
+      "url": "https://hcmut.edu.vn/document/quyChe/1791966602455_9_Quy%20dinh%20cong%20tac%20GVCN%2C%20CVHT%20truong.pdf",
+      "document_number": "2977/QĐ-ĐHBK",
+      "issued_date": "2025-07-30",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 11,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "GVCN2977"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "93e9db03336ba195433b405301dcb8007bb3fd834aeca2705d52f94a9f01a408"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 11,
+      "normalized_chars": 18132,
+      "normalized_sha256": "de38e3e9f9e91b4ae6241c5f243ca8919e652a8632c5afb670ce915530f2b68f",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "#",
+          "count": 10,
+          "sample": "1"
+        }
+      ],
+      "removed_lines_total": 10,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 2,
+          "article": 23,
+          "chapter": 6,
+          "clause": 77,
+          "point": 13
+        },
+        "series": {
+          "article": 2
+        },
+        "end_marker_hits": 2,
+        "rejected_markers": {
+          "clause": {
+            "count": 10,
+            "samples": [
+              "@16033: 1. Ban Chủ nhiệm Khoa thực hiện phân công Ban Chủ nhiệm Khoa Phòng ĐT, Phòng CTS",
+              "@16192: 2. Tham gia tập huấn công tác GVCN. GVCN, Phòng ĐT Phòng CTSV, Khoa 01 tuần trướ",
+              "@16424: 3. định hướng nhiệm vụ công tác GVCN trong GVCN, Khoa Phòng CTSV Sau hoạt động 1",
+              "@16551: 4. Xây dựng kế hoạch công tác GVCN trong GVCN Khoa, Phòng ĐT, Phòng Sau hoạt độn",
+              "@16714: 5. Tổ chức họp lớp đầu học kỳ (Lần 1) GVCN, người học học kỳ bắt đầu Mẫu BM6"
+            ]
+          },
+          "point": {
+            "count": 3,
+            "samples": [
+              "@6615: e) Thực hiện chế độ họp công tác GVCN & CVHT và báo cáo theo quy định.",
+              "@6686: f) Tổ chức đánh giá, tổng kết trong công tác GVCN & CVHT.",
+              "@6744: g) Hỗ trợ cung cấp thông tin về các hoạt động của công tác GVCN & CVHT khi"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 25,
+        "by_level": {
+          "article": 23,
+          "section": 2
+        }
+      },
+      "validation": {
+        "chunks": 25,
+        "verbatim_chunks": 25,
+        "chunks_with_unemitted_parent": 20,
+        "coverage": {
+          "source_chars": 18132,
+          "covered_chars": 16428,
+          "char_fraction": 0.906023,
+          "source_non_whitespace_chars": 14094,
+          "covered_non_whitespace_chars": 12774,
+          "non_whitespace_fraction": 0.906343,
+          "uncovered_stretches_with_text": 8,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 1013,
+              "non_whitespace_chars": 797,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập - Tự do - Hạnh phú"
+            },
+            {
+              "start": 1436,
+              "end": 1866,
+              "non_whitespace_chars": 336,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 3; - Lưu VT, CTSV. Mai Thanh Phong ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI"
+            },
+            {
+              "start": 6129,
+              "end": 6187,
+              "non_whitespace_chars": 44,
+              "preview": "Chương II NHIỆM VỤ VÀ QUYỀN HẠN CỦA CÁC ĐƠN VỊ LIÊN QUAN"
+            },
+            {
+              "start": 8722,
+              "end": 8767,
+              "non_whitespace_chars": 35,
+              "preview": "Chương III NHIỆM VỤ CỦA GIÁO VIÊN CHỦ NHIỆM"
+            },
+            {
+              "start": 13058,
+              "end": 13097,
+              "non_whitespace_chars": 29,
+              "preview": "Chương IV NHIỆM VỤ CỦA CỐ VẤN HỌC TẬP"
+            },
+            {
+              "start": 14101,
+              "end": 14145,
+              "non_whitespace_chars": 34,
+              "preview": "Chương V QUYỀN LỢI, KHEN THƯỞNG VÀ KỶ LUẬT"
+            },
+            {
+              "start": 15394,
+              "end": 15423,
+              "non_whitespace_chars": 22,
+              "preview": "Chương VI TỔ CHỨC THỰC HIỆN"
+            },
+            {
+              "start": 15865,
+              "end": 15894,
+              "non_whitespace_chars": 23,
+              "preview": "HIỆU TRƯỞNG Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "10 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@16033: 1. Ban Chủ nhiệm Khoa thực hiện phân công Ban Chủ nhiệm Khoa Phòng ĐT, Phòng CTS', '@16192: 2. Tham gia tập huấn công tác GVCN. GVCN, Phòng ĐT Phòng CTSV, Khoa 01 tuần trướ']",
+          "3 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@6615: e) Thực hiện chế độ họp công tác GVCN & CVHT và báo cáo theo quy định.', '@6686: f) Tổ chức đánh giá, tổng kết trong công tác GVCN & CVHT.']"
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "path": "docs/materials/hcmut-sources/NOIQUY1924_1924-QD-DHBK_2025_noi-quy-hoc-duong.pdf",
+      "sha256": "6f9a485ae7de82edf46d3f8ea2e4683e15a913ca3983c5cca724b874e17b1af2",
+      "bytes": 2420732,
+      "format": "pdf",
+      "doc_code": "NOIQUY1924",
+      "collection_id": "hcmut_academic",
+      "source_name": "Về việc ban hành Nội quy học đường Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM.",
+      "url": "https://hcmut.edu.vn/document/quyChe/1791966495674_7_Noi%20quy%20hoc%20duong%20Truong.pdf",
+      "document_number": "1924/QĐ-ĐHBK",
+      "issued_date": "2025-05-30",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 4,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "NOIQUY1924"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "6f9a485ae7de82edf46d3f8ea2e4683e15a913ca3983c5cca724b874e17b1af2"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 4,
+      "normalized_chars": 8160,
+      "normalized_sha256": "be916141b6fcfb58a94df1f898af3643e58f9a0f16c0368843c6bbff3ddb5256",
+      "removed_lines": [],
+      "removed_lines_total": 0,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 9,
+          "clause": 42
+        },
+        "series": {
+          "article": 2
+        },
+        "end_marker_hits": 2,
+        "rejected_markers": {}
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 9,
+        "by_level": {
+          "article": 9
+        }
+      },
+      "validation": {
+        "chunks": 9,
+        "verbatim_chunks": 9,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 8160,
+          "covered_chars": 6799,
+          "char_fraction": 0.833211,
+          "source_non_whitespace_chars": 6396,
+          "covered_non_whitespace_chars": 5334,
+          "non_whitespace_fraction": 0.833959,
+          "uncovered_stretches_with_text": 3,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 947,
+              "non_whitespace_chars": 746,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập - Tự do - Hạnh phú"
+            },
+            {
+              "start": 1346,
+              "end": 1725,
+              "non_whitespace_chars": 293,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 3; - Lưu VT, CTSV. Mai Thanh Phong ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI"
+            },
+            {
+              "start": 8132,
+              "end": 8160,
+              "non_whitespace_chars": 23,
+              "preview": "HIỆU TRƯỞNG Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "index": 7,
+      "path": "docs/materials/hcmut-sources/CTDT1862_1862-QD-DHBK_2026_sua-doi-quy-dinh-cau-truc-quy-trinh-chuong-trinh-dao-tao.pdf",
+      "sha256": "bf4310265640db128c766e1a8787251a39776b1624be5068a3e118af0ba1a8d7",
+      "bytes": 724680,
+      "format": "pdf",
+      "doc_code": "CTDT1862",
+      "collection_id": "hcmut_academic",
+      "source_name": "Quyết định sửa đổi, bổ sung một số điều của Quy định về cấu trúc và quy trình xây dựng, thẩm định, điều chỉnh chương trình đào tạo; quy trình mở ngành đào tạo trình độ đại học, thạc sĩ, tiến sĩ ban hành kèm theo Quyết định số 3538/QĐ-ĐHBK ngày 11 tháng 9 năm 2025 của Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh",
+      "url": "https://hcmut.edu.vn/document/quyChe/1792381894639_III.1.1_Quye%CC%82%CC%81t%20%C4%91i%CC%A3nh%20su%CC%9B%CC%89a%20%C4%91o%CC%82%CC%89i%2C%20bo%CC%82%CC%89%20sung%20mo%CC%A3%CC%82t%20so%CC%82%CC%81%20%C4%91ie%CC%82%CC%80u%20cu%CC%89a%20Quy%20%C4%91i%CC%A3nh%20ve%CC%82%CC%80%20ca%CC%82%CC%81u%20tru%CC%81c%20va%CC%80%20quy%20tri%CC%80nh%20xa%CC%82y%20du%CC%9B%CC%A3ng%2C%20tha%CC%82%CC%89m%20%C4%91i%CC%A3nh%2C%20%C4%91ie%CC%82%CC%80u%20chi%CC%89nh%20CT%C4%90T%3B%20quy%20tri%CC%80nh%20mo%CC%9B%CC%89%20NDT%20tri%CC%80nh%20%C4%91o%CC%A3%CC%82.pdf",
+      "document_number": "1862/QĐ-ĐHBK",
+      "issued_date": "2026-04-12",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 21,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "CTDT1862"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "bf4310265640db128c766e1a8787251a39776b1624be5068a3e118af0ba1a8d7"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 21,
+      "normalized_chars": 23101,
+      "normalized_sha256": "a0ab7c3a7fa5fd1084669b260ea3fbf6a3981ef0d500999574e93cc94ee1d02b",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "…",
+          "count": 15,
+          "sample": "…"
+        }
+      ],
+      "removed_lines_total": 15,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 4,
+          "clause": 13,
+          "point": 16
+        },
+        "series": {},
+        "end_marker_hits": 1,
+        "rejected_markers": {
+          "clause": {
+            "count": 65,
+            "samples": [
+              "@4474: 1. Các ngành kỹ thuật và kiến trúc theo khung của tiêu chuẩn kiểm định ABET và",
+              "@4646: 1. Toán tối thiểu 11",
+              "@4667: 2. Khoa học tự nhiên tối thiểu 5",
+              "@4718: 1. Kinh tế – Chính trị – Xã hội – Luật 13",
+              "@4760: 2. Giáo dục chung khác 9"
+            ]
+          },
+          "point": {
+            "count": 13,
+            "samples": [
+              "@7542: e) Tốt nghiệp trình độ đại học từ khóa 2026",
+              "@7672: f) Tốt nghiệp chương trình PFIEV",
+              "@7977: g) Tốt nghiệp trình độ thạc sĩ ứng dụng",
+              "@8084: h) Tốt nghiệp trình độ thạc sĩ nghiên cứu",
+              "@8209: i) Tốt nghiệp trình độ thạc sĩ nghiên cứu chuyên sâu"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 4,
+        "by_level": {
+          "article": 4
+        }
+      },
+      "validation": {
+        "chunks": 4,
+        "verbatim_chunks": 4,
+        "chunks_with_unemitted_parent": 0,
+        "coverage": {
+          "source_chars": 23101,
+          "covered_chars": 20172,
+          "char_fraction": 0.873209,
+          "source_non_whitespace_chars": 18190,
+          "covered_non_whitespace_chars": 15895,
+          "non_whitespace_fraction": 0.873832,
+          "uncovered_stretches_with_text": 2,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 2832,
+              "non_whitespace_chars": 2222,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập – Tự do – Hạnh phú"
+            },
+            {
+              "start": 23007,
+              "end": 23101,
+              "non_whitespace_chars": 73,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 4; - ĐHQG-HCM (để báo cáo); - Lưu: VT, ĐT. [ Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "chunk 0 ('HCMUT_CTDT1862_Dieu_1'): title is 339 chars; the heading may have absorbed body text",
+          "65 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@4474: 1. Các ngành kỹ thuật và kiến trúc theo khung của tiêu chuẩn kiểm định ABET và', '@4646: 1. Toán tối thiểu 11']",
+          "13 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@7542: e) Tốt nghiệp trình độ đại học từ khóa 2026', '@7672: f) Tốt nghiệp chương trình PFIEV']"
+        ]
+      }
+    },
+    {
+      "index": 8,
+      "path": "docs/materials/hcmut-sources/VINHDANH658_658-QD-DHBK_2025_quy-che-ho-tro-va-vinh-danh-sinh-vien.pdf",
+      "sha256": "f6c8fb4299901db3006697ec589e1b26364fea07e22287bdf5378388ba3318a2",
+      "bytes": 2364801,
+      "format": "pdf",
+      "doc_code": "VINHDANH658",
+      "collection_id": "hcmut_academic",
+      "source_name": "Về việc ban hành Quy chế hỗ trợ và vinh danh sinh viên, nhóm sinh viên, giảng viên hướng dẫn, tham gia và đạt giải thưởng cao trong các cuộc thi học thuật, khoa học công nghệ và đổi mới sáng tạo.",
+      "url": "https://hcmut.edu.vn/document/quyChe/1791966434223_6_Quy%20che%20ho%20tro%20va%20vinh%20danh%20SV%2C%20nhom%20SV%2C%20GVHD%2C%20tham%20gia%20va%20dat%20giai%20thuong%20cao%20trong%20cac%20cuoc%20thi%20hoc%20thuat%2C%20KHCN%20va%20%C4%90MST.pdf",
+      "document_number": "658/QĐ-ĐHBK",
+      "issued_date": "2025-03-02",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 12,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "VINHDANH658"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "f6c8fb4299901db3006697ec589e1b26364fea07e22287bdf5378388ba3318a2"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 12,
+      "normalized_chars": 23172,
+      "normalized_sha256": "4f7864544bb98704b87afc63d4bb0b26e61f25b237fa03ab23dec4ac6cdf1822",
+      "removed_lines": [
+        {
+          "reason": "repeated_edge_line",
+          "shape": "#",
+          "count": 10,
+          "sample": "1"
+        }
+      ],
+      "removed_lines_total": 10,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "appendix": 2,
+          "article": 17,
+          "chapter": 5,
+          "clause": 37
+        },
+        "series": {
+          "article": 2
+        },
+        "end_marker_hits": 2,
+        "rejected_markers": {
+          "clause": {
+            "count": 23,
+            "samples": [
+              "@22095: 1. Ban Giám hiệu Chủ tịch Hội đồng",
+              "@22130: 2. Phòng Công tác sinh viên Phó Chủ tịch Hội đồng",
+              "@22180: 3. Phòng Khoa học và Công nghệ Thường trực hội đồng",
+              "@22232: 4. Phòng Quan hệ Đối ngoại Thường trực hội đồng",
+              "@22280: 5. Phòng Kế hoạch - Tài chính Thường trực hội đồng"
+            ]
+          }
+        }
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 19,
+        "by_level": {
+          "article": 17,
+          "section": 2
+        }
+      },
+      "validation": {
+        "chunks": 19,
+        "verbatim_chunks": 19,
+        "chunks_with_unemitted_parent": 14,
+        "coverage": {
+          "source_chars": 23172,
+          "covered_chars": 20476,
+          "char_fraction": 0.883653,
+          "source_non_whitespace_chars": 18042,
+          "covered_non_whitespace_chars": 15931,
+          "non_whitespace_fraction": 0.882995,
+          "uncovered_stretches_with_text": 7,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 1947,
+              "non_whitespace_chars": 1538,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập - Tự do - Hạnh phú"
+            },
+            {
+              "start": 2573,
+              "end": 3092,
+              "non_whitespace_chars": 407,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 3; - Lưu VT, CTSV. Mai Thanh Phong ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI"
+            },
+            {
+              "start": 4958,
+              "end": 4998,
+              "non_whitespace_chars": 30,
+              "preview": "Chương II CÔNG TÁC HỖ TRỢ VÀ VINH DANH"
+            },
+            {
+              "start": 11701,
+              "end": 11771,
+              "non_whitespace_chars": 53,
+              "preview": "Chương III QUYỀN HẠN VÀ TRÁCH NHIỆM CỦA HỘI ĐỒNG CỐ VẤN VÀ TỔ CỐ VẤN"
+            },
+            {
+              "start": 16288,
+              "end": 16339,
+              "non_whitespace_chars": 39,
+              "preview": "Chương IV ĐỊNH MỨC KINH PHÍ HỖ TRỢ VÀ KHEN THƯỞNG"
+            },
+            {
+              "start": 19044,
+              "end": 19072,
+              "non_whitespace_chars": 21,
+              "preview": "Chương V TỔ CHỨC THỰC HIỆN"
+            },
+            {
+              "start": 20104,
+              "end": 20133,
+              "non_whitespace_chars": 23,
+              "preview": "HIỆU TRƯỞNG Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": [
+          "23 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@22095: 1. Ban Giám hiệu Chủ tịch Hội đồng', '@22130: 2. Phòng Công tác sinh viên Phó Chủ tịch Hội đồng']"
+        ]
+      }
+    },
+    {
+      "index": 9,
+      "path": "docs/materials/hcmut-sources/UNGXU3408_3408-QD-DHBK_2026_quy-tac-ung-xu.pdf",
+      "sha256": "c790b48952d2d4a64285d8092fbccd0599ed86908ede24f24ecf005de92fbd64",
+      "bytes": 916156,
+      "format": "pdf",
+      "doc_code": "UNGXU3408",
+      "collection_id": "hcmut_academic",
+      "source_name": "Về việc ban hành Quy định Quy tắc ứng xử tại Trường Đại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh.",
+      "url": "https://hcmut.edu.vn/document/quyChe/1791966651808_10_%20Quy%20dinh%20Quy%20tac%20ung%20xu%20tai%20truong.signed.pdf",
+      "document_number": "3408/QĐ-ĐHBK",
+      "issued_date": "2026-06-22",
+      "version": null,
+      "ruleset": "vi_legal",
+      "ruleset_options": {
+        "max_article_gap": 10,
+        "title_continuation_lines": 3,
+        "end_markers": [
+          "^Nơi nhận\\s*:",
+          "^(?:TM|KT|TL|TUQ)\\.\\s",
+          "^CHỦ TỊCH QUỐC HỘI",
+          "^HIỆU TRƯỞNG\\s*$"
+        ],
+        "contiguous_articles": "error",
+        "series_tags": [
+          "QD_",
+          ""
+        ],
+        "appendices": true
+      },
+      "loader": {
+        "options": {},
+        "info": {
+          "pypdf_mode": "layout",
+          "page_count": 8,
+          "pages_without_text": []
+        }
+      },
+      "normalize": {
+        "nfc": true,
+        "remove_repeated_edges": true,
+        "edge_lines": 3,
+        "min_page_fraction": 0.3,
+        "min_pages": 3,
+        "strip_page_numbers": true,
+        "remove_line_patterns": [],
+        "join_hyphenated": false,
+        "blank_lines": null
+      },
+      "chunking": {
+        "granularity": "article",
+        "include_levels": [],
+        "lead_records": true,
+        "lead_in_for": [
+          "clause",
+          "point"
+        ],
+        "content_whitespace": "collapse",
+        "preamble_record": false,
+        "on_no_structure": "error",
+        "fallback_paragraph": {}
+      },
+      "ids": {
+        "prefix": "HCMUT_",
+        "templates": {
+          "part": "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}",
+          "chapter": "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}",
+          "muc": "{parent}_Muc_{num_ascii}",
+          "appendix": "{prefix}{doc_code}_PhuLuc_{num_ascii}",
+          "article": "{prefix}{doc_code}_{series_tag}Dieu_{num}",
+          "clause": "{parent}_K{num_ascii}",
+          "point": "{parent}_{num_ascii}",
+          "document": "{prefix}{doc_code}"
+        },
+        "article_id_alias": false
+      },
+      "metadata_from": {
+        "file": "docs/materials/hcmut-sources/manifest.json",
+        "file_sha256": "d91ddf2f6e738bc99d3c93037837307c983b9661b22ab3fc58c0129346bb6059",
+        "match": {
+          "doc_code": "UNGXU3408"
+        },
+        "fields": {
+          "source_name": "title",
+          "url": "source_url",
+          "document_number": "document_number",
+          "issued_date": "issued_date",
+          "retrieved_at": "retrieved_at",
+          "metadata_verification": "metadata_verification"
+        },
+        "recorded_sha256": "c790b48952d2d4a64285d8092fbccd0599ed86908ede24f24ecf005de92fbd64"
+      },
+      "extraction": "src.ingestion 0.1.0: pypdf extraction_mode=layout; NFC; whitespace folded per line; repeated running headers/footers removed; ruleset=vi_legal; granularity=article; content_whitespace=collapse",
+      "pages": 8,
+      "normalized_chars": 16262,
+      "normalized_sha256": "51610ed53c6ac55c65ae447678f2e4127e0ef4bdb0061a42277b390b534752d9",
+      "removed_lines": [],
+      "removed_lines_total": 0,
+      "parse": {
+        "ruleset": "vi_legal",
+        "nodes_by_kind": {
+          "article": 19,
+          "chapter": 5,
+          "clause": 73
+        },
+        "series": {
+          "article": 2
+        },
+        "end_marker_hits": 2,
+        "rejected_markers": {}
+      },
+      "fallback_chunking": null,
+      "counts": {
+        "records": 19,
+        "by_level": {
+          "article": 19
+        }
+      },
+      "validation": {
+        "chunks": 19,
+        "verbatim_chunks": 19,
+        "chunks_with_unemitted_parent": 16,
+        "coverage": {
+          "source_chars": 16262,
+          "covered_chars": 14599,
+          "char_fraction": 0.897737,
+          "source_non_whitespace_chars": 12730,
+          "covered_non_whitespace_chars": 11443,
+          "non_whitespace_fraction": 0.8989,
+          "uncovered_stretches_with_text": 7,
+          "uncovered_listed": [
+            {
+              "start": 0,
+              "end": 1011,
+              "non_whitespace_chars": 793,
+              "preview": "ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM THÀNH PHỐ HỒ CHÍ MINH Độc lập - Tự do - Hạnh phú"
+            },
+            {
+              "start": 1434,
+              "end": 1873,
+              "non_whitespace_chars": 340,
+              "preview": "Nơi nhận: HIỆU TRƯỞNG - Như Điều 3; - Lưu VT, CTSV. Mai Thanh Phong ĐẠI HỌC QUỐC GIA CỘNG HÒA XÃ HỘI"
+            },
+            {
+              "start": 4308,
+              "end": 4364,
+              "non_whitespace_chars": 43,
+              "preview": "Chương II QUY TẮC ỨNG XỬ CỦA VIÊN CHỨC, NGƯỜI LAO ĐỘNG"
+            },
+            {
+              "start": 8636,
+              "end": 8677,
+              "non_whitespace_chars": 31,
+              "preview": "Chương III QUY TẮC ỨNG XỬ CỦA NGƯỜI HỌC"
+            },
+            {
+              "start": 13423,
+              "end": 13470,
+              "non_whitespace_chars": 36,
+              "preview": "Chương IV QUY TẮC ỨNG XỬ TRÊN KHÔNG GIAN MẠNG"
+            },
+            {
+              "start": 14307,
+              "end": 14335,
+              "non_whitespace_chars": 21,
+              "preview": "Chương V TỔ CHỨC THỰC HIỆN"
+            },
+            {
+              "start": 16234,
+              "end": 16262,
+              "non_whitespace_chars": 23,
+              "preview": "HIỆU TRƯỞNG Mai Thanh Phong"
+            }
+          ]
+        },
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "totals": {
+    "sources": 10,
+    "records": 114,
+    "by_level": {
+      "article": 100,
+      "section": 14
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "source 0 (docs/materials/hcmut-sources/HVDT1260_1260-QD-DHBK_2026_sua-doi-quy-dinh-hoc-vu-va-dao-tao.pdf): 17 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@13252: 1. Chuẩn ngoại ngữ từng năm học', '@14974: 2. Chuẩn ngoại ngữ tốt nghiệp']",
+    "source 0 (docs/materials/hcmut-sources/HVDT1260_1260-QD-DHBK_2026_sua-doi-quy-dinh-hoc-vu-va-dao-tao.pdf): 5 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@13435: a) Chuẩn ngoại ngữ tiếng Anh từng năm dành cho sinh viên chương trình tiêu chuẩn', '@14314: b) Chuẩn ngoại ngữ tiếng Pháp từng năm dành cho sinh viên Chương trình đào tạo k']",
+    "source 1 (docs/materials/hcmut-sources/HVDT2749_2749-QD-DHBK_2026_sua-doi-quy-dinh-hoc-vu-va-dao-tao.pdf): 4 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@2433: 1. Chuẩn ngoại ngữ từng năm học', '@4155: 2. Chuẩn ngoại ngữ tốt nghiệp']",
+    "source 1 (docs/materials/hcmut-sources/HVDT2749_2749-QD-DHBK_2026_sua-doi-quy-dinh-hoc-vu-va-dao-tao.pdf): 5 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@2616: a) Chuẩn ngoại ngữ tiếng Anh từng năm dành cho sinh viên chương trình tiêu chuẩn', '@3495: b) Chuẩn ngoại ngữ tiếng Pháp từng năm dành cho sinh viên Chương trình đào tạo k']",
+    "source 2 (docs/materials/hcmut-sources/HVCHUNG1259_1259-QD-DHBK_2026_sua-doi-quy-dinh-chung-ve-hoc-vu-va-dao-tao.pdf): 6 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@24512: 1. Cấu trúc mã số người học', '@25074: 2. Cấu trúc mã số học phần']",
+    "source 2 (docs/materials/hcmut-sources/HVCHUNG1259_1259-QD-DHBK_2026_sua-doi-quy-dinh-chung-ve-hoc-vu-va-dao-tao.pdf): 14 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@10391: b) Loại đạt không phân mức, áp dụng cho các học phần chỉ yêu cầu đạt, không', '@18080: a) Không đang là sinh viên trình độ năm thứ nhất hoặc năm cuối khóa đối với trìn']",
+    "source 3 (docs/materials/hcmut-sources/GIANGDAY2282_2282-QD-DHBK_2026_sua-doi-quy-dinh-giang-day.pdf): 6 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@6677: 1. Phạm vi điều chỉnh, đối tượng và mục đích áp dụng', '@8705: 2. Quy định dành cho giảng viên giảng dạy các chương trình đào tạo quốc tế (bao']",
+    "source 3 (docs/materials/hcmut-sources/GIANGDAY2282_2282-QD-DHBK_2026_sua-doi-quy-dinh-giang-day.pdf): 4 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@11373: a) Dựa trên kết quả khảo sát học phần của học kỳ liền trước. Xem xét việc hoãn p', '@11607: b) Không có ghi nhận vi phạm về quy định, quy chế hiện hành của nhà trường.']",
+    "source 5 (docs/materials/hcmut-sources/GVCN2977_2977-QD-DHBK_2025_quy-dinh-cong-tac-GVCN-CVHT.pdf): 10 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@16033: 1. Ban Chủ nhiệm Khoa thực hiện phân công Ban Chủ nhiệm Khoa Phòng ĐT, Phòng CTS', '@16192: 2. Tham gia tập huấn công tác GVCN. GVCN, Phòng ĐT Phòng CTSV, Khoa 01 tuần trướ']",
+    "source 5 (docs/materials/hcmut-sources/GVCN2977_2977-QD-DHBK_2025_quy-dinh-cong-tac-GVCN-CVHT.pdf): 3 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@6615: e) Thực hiện chế độ họp công tác GVCN & CVHT và báo cáo theo quy định.', '@6686: f) Tổ chức đánh giá, tổng kết trong công tác GVCN & CVHT.']",
+    "source 7 (docs/materials/hcmut-sources/CTDT1862_1862-QD-DHBK_2026_sua-doi-quy-dinh-cau-truc-quy-trinh-chuong-trinh-dao-tao.pdf): chunk 0 ('HCMUT_CTDT1862_Dieu_1'): title is 339 chars; the heading may have absorbed body text",
+    "source 7 (docs/materials/hcmut-sources/CTDT1862_1862-QD-DHBK_2026_sua-doi-quy-dinh-cau-truc-quy-trinh-chuong-trinh-dao-tao.pdf): 65 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@4474: 1. Các ngành kỹ thuật và kiến trúc theo khung của tiêu chuẩn kiểm định ABET và', '@4646: 1. Toán tối thiểu 11']",
+    "source 7 (docs/materials/hcmut-sources/CTDT1862_1862-QD-DHBK_2026_sua-doi-quy-dinh-cau-truc-quy-trinh-chuong-trinh-dao-tao.pdf): 13 point marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@7542: e) Tốt nghiệp trình độ đại học từ khóa 2026', '@7672: f) Tốt nghiệp chương trình PFIEV']",
+    "source 8 (docs/materials/hcmut-sources/VINHDANH658_658-QD-DHBK_2025_quy-che-ho-tro-va-vinh-danh-sinh-vien.pdf): 23 clause marker line(s) rejected as out of sequence/context and kept as text; e.g. ['@22095: 1. Ban Giám hiệu Chủ tịch Hội đồng', '@22130: 2. Phòng Công tác sinh viên Phó Chủ tịch Hội đồng']"
+  ],
+  "output": {
+    "corpus": "data/corpus/hcmut_academic_ingested.json",
+    "records": 114,
+    "corpus_sha256": "9f955d5ed77695d7fae74bf0fc5c0abbb0ca2f991a917cce2304f5f87bbf1ff9"
+  }
+}

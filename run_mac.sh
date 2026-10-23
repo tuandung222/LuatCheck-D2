@@ -26,13 +26,13 @@ fi
 PY_VERSION=$($PYTHON_CMD -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
 echo "✅ Detected Python version: $PY_VERSION"
 
-# 2. Check Ollama status
-if curl -s --connect-timeout 2 http://localhost:11434/api/tags > /dev/null 2>&1; then
-    echo "✅ Ollama is running locally on http://localhost:11434"
+# 2. Check the default model server (Ternary Bonsai 2 2B GGUF on the PrismML llama.cpp fork)
+if curl -s --connect-timeout 2 http://127.0.0.1:8081/health > /dev/null 2>&1; then
+    echo "✅ Model server (prism llama.cpp) is running on http://127.0.0.1:8081"
 else
-    echo "⚠️ Warning: Ollama does not appear to be running on http://localhost:11434."
-    echo "👉 If you have Ollama installed, please run 'ollama serve' in another terminal."
-    echo "👉 Offline mock mode will be used if Ollama is unavailable."
+    echo "⚠️ Warning: the model server is not running on http://127.0.0.1:8081."
+    echo "👉 First time: 'make mlx-setup' (hf CLI) and 'make prism-setup'. Then run 'make prism-server' in another terminal."
+    echo "👉 Without a model server the app reports an error; it never answers without the model."
 fi
 
 # 3. Setup Virtual Environment

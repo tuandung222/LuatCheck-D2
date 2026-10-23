@@ -1,0 +1,417 @@
+{
+  "schema_version": 1,
+  "collection_id": "labour_vi",
+  "description": "Source documents for the labour_vi v1 corpus (10 official Vietnamese labour/employment documents). Built by src.ingestion from config/ingestion/labour_vi_v1.yaml.",
+  "retrieval_method": "HTTP GET (curl) of the congbao.chinhphu.vn PDF links found on each document page; retrieval time = UTC time of the download. Files were staged in a scratch folder, then copied here; sha256 recomputed below.",
+  "page_limit": "40 pages, except BLLD2019 (exception granted by the user).",
+  "documents": [
+    {
+      "doc_code": "BLLD2019",
+      "title": "Bộ luật Lao động 2019",
+      "document_number": "45/2019/QH14",
+      "issuing_body": "Quốc hội",
+      "dates_printed": {
+        "adopted": "2019-11-20 (thông qua)",
+        "effective": "2021-01-01"
+      },
+      "gazette": "Công báo số 993 + 994, ngày 26-12-2019",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+      "retrieved_at_utc": "not recorded (existing file; see docs/materials/benchmark-sources/corpus_manifest.json)",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Original 2019 enactment; not a consolidated text. Exception to the 40-page limit (94 pages).",
+      "path": "docs/materials/benchmark-sources/bll2019-congbao.pdf",
+      "sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+      "bytes": 1352965,
+      "pages": 94,
+      "records": 220,
+      "article_records": 220,
+      "section_records": 0,
+      "coverage_non_whitespace": 0.9884,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "LVL2025",
+      "title": "Luật Việc làm",
+      "document_number": "74/2025/QH15",
+      "issuing_body": "Quốc hội",
+      "dates_printed": {
+        "adopted": "2025-06-16 (thông qua)",
+        "effective": "2026-01-01"
+      },
+      "gazette": "Công báo số 967 + 968, ngày 24-7-2025",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/6/45562/57700-1-2025967-96874-2025-qh15.pdf",
+      "retrieved_at_utc": "2026-10-22T21:22:28Z",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Repeals Luật Việc làm 38/2013/QH13 (as amended by 41/2024/QH15) from its effective date (printed transitional clause). Implementing decrees in this corpus: NĐ 318/2025/NĐ-CP. Other implementing decrees 338/2025, 352/2025 were not included (page limit).",
+      "path": "docs/materials/labour-sources/LVL2025_74-2025-QH15.pdf",
+      "sha256": "63cf9e29dc924956a1dcc6e28dab4ba9b518866241d0eaddca07f7e168761cc7",
+      "bytes": 370135,
+      "pages": 27,
+      "records": 55,
+      "article_records": 55,
+      "section_records": 0,
+      "coverage_non_whitespace": 0.9821,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "ND293_2025",
+      "title": "Nghị định quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động",
+      "document_number": "293/2025/NĐ-CP",
+      "issuing_body": "Chính phủ",
+      "dates_printed": {
+        "issued": "2025-11-10",
+        "effective": "2026-01-01"
+      },
+      "gazette": "Công báo số 1591 + 1592, ngày 19-11-2025",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/11/46568/59713-1-20251591-1592293-2025-nd-cp.pdf",
+      "retrieved_at_utc": "2026-10-22T21:22:29Z",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Clause 5.2 repeals NĐ 74/2024/NĐ-CP. Current minimum wage for contract workers in this corpus. Annex (Phụ lục: list of localities by wage region) is NOT captured (see caveats).",
+      "path": "docs/materials/labour-sources/ND293_2025_293-2025-ND-CP.pdf",
+      "sha256": "8ebf219debf9224796c98670d1eb5b8e5757d8ed74590c45ff5eab0dfc4fdbd0",
+      "bytes": 307194,
+      "pages": 17,
+      "records": 5,
+      "article_records": 5,
+      "section_records": 0,
+      "coverage_non_whitespace": 0.2223,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "ND318_2025",
+      "title": "Nghị định quy định chi tiết một số điều của Luật Việc làm về đăng ký lao động và hệ thống thông tin thị trường lao động",
+      "document_number": "318/2025/NĐ-CP",
+      "issuing_body": "Chính phủ",
+      "dates_printed": {
+        "issued": "2025-12-12",
+        "effective": "2026-01-01"
+      },
+      "gazette": "Công báo số 1717 + 1718, ngày 25-12-2025",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/12/46804/60300-1-20251717-1718318-2025-nd-cp.pdf",
+      "retrieved_at_utc": "2026-10-22T21:22:30Z",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Implements Luật Việc làm 74/2025/QH15 (Article 1). Forms annex after the signature is not captured (unnumbered Phụ lục).",
+      "path": "docs/materials/labour-sources/ND318_2025_318-2025-ND-CP.pdf",
+      "sha256": "e08a1dea39cc8c6fa3b4225bcce5978b24eee607a76e5d8eabd13dfcaf71cbe1",
+      "bytes": 385724,
+      "pages": 24,
+      "records": 25,
+      "article_records": 25,
+      "section_records": 0,
+      "coverage_non_whitespace": 0.6857,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "ND219_2025",
+      "title": "Nghị định quy định về người lao động nước ngoài làm việc tại Việt Nam",
+      "document_number": "219/2025/NĐ-CP",
+      "issuing_body": "Chính phủ",
+      "dates_printed": {
+        "issued": "2025-08-07",
+        "effective": "2025-08-07"
+      },
+      "gazette": "Công báo số 1073 + 1074, ngày 20-8-2025",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/8/45798/58141-1-20251073-1074219-2025-nd-cp.pdf",
+      "retrieved_at_utc": "2026-10-22T21:24:23Z",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Successor to NĐ 152/2020/NĐ-CP (as amended by NĐ 70/2023/NĐ-CP) for foreign workers in Vietnam. Article 34 keeps permits issued under NĐ 152/2020 valid until expiry. The printed text also states that the NĐ 70/2023 amendments on Vietnamese workers for foreign organisations cease from the effective date. Forms annex not captured.",
+      "path": "docs/materials/labour-sources/ND219_2025_219-2025-ND-CP.pdf",
+      "sha256": "3433595f6bf143ce3b4d602b2d49c8724b3276f789be4c79822f4b93f6124787",
+      "bytes": 789146,
+      "pages": 36,
+      "records": 36,
+      "article_records": 36,
+      "section_records": 0,
+      "coverage_non_whitespace": 0.7305,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "LCD2024",
+      "title": "Luật Công đoàn",
+      "document_number": "50/2024/QH15",
+      "issuing_body": "Quốc hội",
+      "dates_printed": {
+        "adopted": "2024-11-27 (thông qua)",
+        "effective": "2025-07-01"
+      },
+      "gazette": "Công báo số 1533 + 1534, ngày 30-12-2024",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2024/11/43589/53742-1-20241533-153450-2024-qh15.pdf",
+      "retrieved_at_utc": "2026-10-22T21:24:36Z",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Article 37 repeals Luật Công đoàn 12/2012/QH13 from the effective date.",
+      "path": "docs/materials/labour-sources/LCD2024_50-2024-QH15.pdf",
+      "sha256": "7ddcbdf2d1db00d6d6a85ca01a086f8ed729ad3bba8d24a31913aec84965314e",
+      "bytes": 260498,
+      "pages": 25,
+      "records": 37,
+      "article_records": 37,
+      "section_records": 0,
+      "coverage_non_whitespace": 0.9868,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "ND135_2020",
+      "title": "Nghị định quy định về tuổi nghỉ hưu",
+      "document_number": "135/2020/NĐ-CP",
+      "issuing_body": "Chính phủ",
+      "dates_printed": {
+        "issued": "2020-11-18",
+        "effective": "2021-01-01"
+      },
+      "gazette": "Công báo số 1117 + 1118, ngày 03-12-2020",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2020/11/32525/33432-1-20201117-1118135-2020-nd-cp.pdf",
+      "retrieved_at_utc": "2026-10-22T21:25:11Z",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Implements Article 169 of Bộ luật Lao động 2019. Điều 8, clause 2 repeals listed provisions of NĐ 115/2015/NĐ-CP and NĐ 134/2015/NĐ-CP. Amendments after 2020 not checked.",
+      "path": "docs/materials/labour-sources/ND135_2020_135-2020-ND-CP.pdf",
+      "sha256": "0348497f54794e9b476958cb0716d00ac7847d6edfe1e5b6416acaae7478550a",
+      "bytes": 427441,
+      "pages": 17,
+      "records": 12,
+      "article_records": 9,
+      "section_records": 3,
+      "coverage_non_whitespace": 0.9599,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "ND274_2025",
+      "title": "Nghị định quy định chi tiết một số điều của Luật Bảo hiểm xã hội về chậm đóng, trốn đóng bảo hiểm xã hội bắt buộc, bảo hiểm thất nghiệp; khiếu nại, tố cáo về bảo hiểm xã hội",
+      "document_number": "274/2025/NĐ-CP",
+      "issuing_body": "Chính phủ",
+      "dates_printed": {
+        "issued": "2025-10-16",
+        "effective": "2025-11-30"
+      },
+      "gazette": "Công báo số 1515 + 1516, ngày 29-10-2025",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/10/46418/59403-1-20251515-1516274-2025-nd-cp.pdf",
+      "retrieved_at_utc": "2026-10-22T21:25:27Z",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Implements Luật Bảo hiểm xã hội 41/2024/QH15 and refers to Luật Việc làm 38/2013/QH13 in its preamble. Form annexes not captured.",
+      "path": "docs/materials/labour-sources/ND274_2025_274-2025-ND-CP.pdf",
+      "sha256": "aa2a35fa9e7dd0f421df8c67da6062c5e7168531d00b1d8f5e0ae3521cffd37b",
+      "bytes": 261785,
+      "pages": 14,
+      "records": 16,
+      "article_records": 16,
+      "section_records": 0,
+      "coverage_non_whitespace": 0.9193,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "ND143_2024",
+      "title": "Nghị định quy định về bảo hiểm tai nạn lao động theo hình thức tự nguyện đối với người lao động làm việc không theo hợp đồng lao động",
+      "document_number": "143/2024/NĐ-CP",
+      "issuing_body": "Chính phủ",
+      "dates_printed": {
+        "issued": "2024-11-01",
+        "effective": "2025-01-01"
+      },
+      "gazette": "Công báo số 1249 + 1250, ngày 15-11-2024",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2024/11/43119/52597-1-20241249-1250143-2024-nd-cp.pdf",
+      "retrieved_at_utc": "2026-10-22T21:27:07Z",
+      "status": "verified: number, dates and text printed in PDF",
+      "amendments": "Standalone voluntary scheme (not a replacement for compulsory insurance in NĐ 88/2020/NĐ-CP). Phụ lục I-IX are the decree's forms; Phụ lục III contains a sample decision whose Điều 1-3 are indexed with series tag MAU_ (see caveats).",
+      "path": "docs/materials/labour-sources/ND143_2024_143-2024-ND-CP.pdf",
+      "sha256": "3a226e34dfeaf1968f7662c8cec144329585b6ceab622aef5773b7c7349fb5a0",
+      "bytes": 543017,
+      "pages": 35,
+      "records": 47,
+      "article_records": 38,
+      "section_records": 9,
+      "coverage_non_whitespace": 0.941,
+      "sha256_recomputed_matches": true
+    },
+    {
+      "doc_code": "TT26_2025",
+      "title": "Thông tư ban hành Danh mục vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn để làm căn cứ xác định các trường hợp có thể nghỉ hưu ở tuổi thấp hơn tuổi nghỉ hưu trong điều kiện lao động bình thường",
+      "document_number": "NOT PRINTED (PDF shows '/2025/TT-BNV' with blank number)",
+      "issuing_body": "Bộ Nội vụ",
+      "dates_printed": {
+        "issued": "NOT PRINTED (PDF shows blank day/month)",
+        "effective": "2026-01-01 (Điều 4.1)"
+      },
+      "gazette": "not found on congbao.chinhphu.vn in search",
+      "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/12/26-bnv.pdf (attachment of https://vanban.chinhphu.vn/?docid=216367&pageid=27160)",
+      "retrieved_at_utc": "2026-10-22T21:25:49Z",
+      "status": "UNVERIFIED: printed number and date are blank; PDF may be an unsigned copy. Date 29-12-2025 and signatory from a search summary of vanban.chinhphu.vn (not opened)",
+      "amendments": "Repeals Thông tư 19/2021/TT-BLĐTBXH (Điều 4.2, printed). Annex (Danh mục vùng by commune) is NOT captured: corpus holds only Điều 1-5 (about 32% of the text).",
+      "path": "docs/materials/labour-sources/TT26_2025_26-2025-TT-BNV.pdf",
+      "sha256": "a066774ff7581c46e76c0d5ac6de6a10597eb7e7d1851d9b6272edba06bbbd98",
+      "bytes": 645192,
+      "pages": 7,
+      "records": 5,
+      "article_records": 5,
+      "section_records": 0,
+      "coverage_non_whitespace": 0.3188,
+      "sha256_recomputed_matches": true
+    }
+  ],
+  "corpus": {
+    "config": "config/ingestion/labour_vi_v1.yaml",
+    "corpus_path": "data/corpus/labour_vi_v1.json",
+    "manifest_path": "data/corpus/labour_vi_v1.manifest.json",
+    "records": 458,
+    "corpus_sha256": "51154b6e9c9320b507d7ee19512e729f7908e45840c7ea701d92bf28fe65bea8",
+    "status": "ok",
+    "by_level": {
+      "article": 446,
+      "section": 12
+    },
+    "id_format": "<DOCCODE>_Dieu_<n> for articles; <DOCCODE>_PhuLuc_<n> for numbered appendices; <DOCCODE>_<series-tag>Dieu_<n> only for the sample articles inside ND143_2024 Phụ lục III (series tag MAU_)"
+  },
+  "checks": {
+    "documents": 10,
+    "doc_ids_unique": true,
+    "empty_content": 0,
+    "article_numbering_gaps_per_document": {
+      "BLLD2019": [],
+      "LVL2025": [],
+      "ND293_2025": [],
+      "ND318_2025": [],
+      "ND219_2025": [],
+      "LCD2024": [],
+      "ND135_2020": [],
+      "ND274_2025": [],
+      "ND143_2024": [],
+      "TT26_2025": []
+    },
+    "source_sha256_recomputed_all_match": true,
+    "build_check_mode": "build --check: 'up to date' (rebuild reproduces the corpus byte for byte)",
+    "bll2019_records_identical_to_frozen_official": "220 of 220 (content compared with data/corpus/labor_code_2019_official.json; the frozen file was only read)",
+    "verbatim_check": "performed by the pipeline against the normalised source text (validation errors: 0)"
+  },
+  "rejected_candidates": [
+    {
+      "candidate": "Luật Bảo hiểm xã hội 41/2024/QH15",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2024/6/42576/51466-1-2024987-98841-2024-qh15.pdf",
+      "pages": 88,
+      "reason": "Over 40 pages"
+    },
+    {
+      "candidate": "Nghị định 145/2020/NĐ-CP (điều kiện lao động và quan hệ lao động)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2020/12/32732/33806-1-20201203-1204145-2020-nd-cp.pdf",
+      "pages": 95,
+      "reason": "Over 40 pages. Core implementing decree of the Labour Code: largest gap in this corpus."
+    },
+    {
+      "candidate": "Nghị định 12/2022/NĐ-CP (xử phạt lao động, BHXH)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2022/1/36716/39686-1-2022199-20012-2022-nd-cp.pdf",
+      "pages": 95,
+      "reason": "Over 40 pages; ceased to be effective under NĐ 283/2026/NĐ-CP (printed clause 4 of NĐ 283, checked in its text)"
+    },
+    {
+      "candidate": "Nghị định 283/2026/NĐ-CP (xử phạt lao động, BHXH, lao động đi nước ngoài)",
+      "url": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/7/28/470103-1785229247_v1_1785229756_signed.pdf",
+      "pages": 100,
+      "reason": "Over 40 pages. Current penalty decree; should be added with a page-limit exception if wanted"
+    },
+    {
+      "candidate": "Nghị định 352/2025/NĐ-CP (dịch vụ việc làm)",
+      "url": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/1/19/352signed-17688167847921465959100.pdf",
+      "pages": 55,
+      "reason": "Over 40 pages"
+    },
+    {
+      "candidate": "Nghị định 338/2025/NĐ-CP (chính sách hỗ trợ tạo việc làm)",
+      "url": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/1/15/338signed-1768441315190313926761.pdf",
+      "pages": 42,
+      "reason": "Over 40 pages (42)"
+    },
+    {
+      "candidate": "Nghị định 158/2025/NĐ-CP (BHXH bắt buộc)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/6/45240/57069-1-2025851-852158-2025-nd-cp.pdf",
+      "pages": 60,
+      "reason": "Over 40 pages"
+    },
+    {
+      "candidate": "Nghị định 152/2020/NĐ-CP (người lao động nước ngoài và lao động VN cho tổ chức nước ngoài)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2020/12/32864/34061-1-202137-38152-2020-nd-cp.pdf",
+      "pages": 61,
+      "reason": "Over 40 pages; its foreign-worker part is replaced by NĐ 219/2025 (printed Điều 34-35 transitional rules)"
+    },
+    {
+      "candidate": "Luật Người lao động Việt Nam đi làm việc ở nước ngoài theo hợp đồng 69/2020/QH14",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2020/11/32699/33744-1-20201183-118469-2020-qh14.pdf",
+      "pages": 45,
+      "reason": "Over 40 pages (45)"
+    },
+    {
+      "candidate": "Luật An toàn, vệ sinh lao động 84/2015/QH13",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2015/6/15356/10353-1-2015871-872-842015qh13pdf",
+      "pages": 56,
+      "reason": "Over 40 pages. Note: the `file` utility reported 10 pages; pypdf reports 56 (pypdf used)"
+    },
+    {
+      "candidate": "Thông tư 21/2021/TT-BLĐTBXH (người lao động đi làm việc ở nước ngoài)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2021/12/36486/39291-1-202289-9021-2021-tt-bldtbxh.pdf",
+      "pages": 68,
+      "reason": "Over 40 pages"
+    },
+    {
+      "candidate": "Nghị định 88/2020/NĐ-CP (BHTNLĐ-BNN bắt buộc)",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2020/7/31809/32127-1-2020821-82288-2020-nd-cp.pdf",
+      "pages": 67,
+      "reason": "Over 40 pages"
+    },
+    {
+      "candidate": "Thông tư 19/2021/TT-BLĐTBXH (vùng khó khăn nghỉ hưu sớm)",
+      "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/01/19-bldtbxh.pdf",
+      "pages": 13,
+      "reason": "Repealed by Thông tư 26/2025/TT-BNV (printed Điều 4.2 of TT 26)"
+    },
+    {
+      "candidate": "Nghị định 39/2016/NĐ-CP (chi tiết Luật ATVSLD)",
+      "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-39-2016-nd-cp-19831.htm (PDF link on g7.cdnchinhphu.vn)",
+      "pages": null,
+      "reason": "Not downloaded: TLS certificate error from the PDF host; current status not verified"
+    },
+    {
+      "candidate": "Thông tư 12/2025/TT-BNV (BHXH bắt buộc)",
+      "url": "https://vbpl.vn/bonoivu/Pages/vbpq-van-ban-goc.aspx?ItemID=179089&dvid=320",
+      "pages": null,
+      "reason": "Not included: no official PDF located (vbpl.vn pages are client-rendered and returned no text to curl)"
+    },
+    {
+      "candidate": "Nghị định 37/2016/NĐ-CP (BH TNLĐ-BNN bắt buộc)",
+      "url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-37-2016-nd-cp-19792.htm",
+      "pages": null,
+      "reason": "Not downloaded: vbpl listing (search summary only) shows it expired and replaced by NĐ 88/2020"
+    },
+    {
+      "candidate": "Nghị định 74/2024/NĐ-CP (lương tối thiểu vùng)",
+      "url": "-",
+      "pages": null,
+      "reason": "Superseded by NĐ 293/2025 (printed clause 5.2)"
+    },
+    {
+      "candidate": "Luật Công đoàn 12/2012/QH13",
+      "url": "-",
+      "pages": null,
+      "reason": "Repealed by Luật 50/2024/QH15 (printed Điều 37)"
+    },
+    {
+      "candidate": "Luật Việc làm 38/2013/QH13",
+      "url": "-",
+      "pages": null,
+      "reason": "Repealed by Luật 74/2025/QH15 (printed transitional clause)"
+    },
+    {
+      "candidate": "Nghị định 70/2023/NĐ-CP (sửa đổi NĐ 152/2020)",
+      "url": "-",
+      "pages": null,
+      "reason": "Not included: amends NĐ 152/2020, whose foreign-worker part is replaced by NĐ 219/2025"
+    },
+    {
+      "candidate": "Luật Bảo hiểm xã hội 58/2014/QH13",
+      "url": "-",
+      "pages": null,
+      "reason": "Repealed by Luật 41/2024/QH15 (search summary, not opened)"
+    }
+  ],
+  "unverified_items": [
+    "TT26_2025: printed number and date are blank in the PDF; date 29-12-2025 and signatory come from a search summary of vanban.chinhphu.vn. The text may be an unsigned copy.",
+    "Amendment status after the printed date was not checked for any document (no consolidated text pulled from vbpl.vn; its pages are client-rendered and could not be read by curl).",
+    "Law dates: for laws the printed date is the adoption date ('thông qua ngày'), not the signing date; the record field issued_date holds that value.",
+    "BLLD2019 retrieval time is not recorded in the existing corpus_manifest.json."
+  ]
+}

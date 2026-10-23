@@ -1,0 +1,10 @@
+{
+  "runs_sha256": "d36a4efbba9912241a9832f92173232b2548b1515afa37089c4b21dca6131127",
+  "packets": 4,
+  "files_sha256": {
+    "private_mapping.json": "d6702253b805b8cfb24f67c1e961fb15f01a6b84313266b87def355918b0beb3",
+    "judge_packets.json": "ca91b5ad780484c05dbefa97b60c476c1f4524493b1c91d82f1ca660b5c460f8"
+  },
+  "labels_generated": false,
+  "instructions": "Give the reviewer only judge_packets.json and SEMANTIC_JUDGING.md. Keep private_mapping.json private. Expert review of gold remains pending."
+}

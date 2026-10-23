@@ -1,7 +1,7 @@
 """
 Long-term Episodic Store: SQLite
-Implements long-term episodic memory with Write Policy, Retrieval Policy,
-and Personally Identifiable Information (PII) Sanitization conforming to Vietnam PDPL 2025.
+Implements episodic policies and supported-pattern PII filtering.
+Filtering alone does not establish privacy or legal compliance.
 """
 import sqlite3
 import json
@@ -139,7 +139,19 @@ class SQLiteEpisodicStore:
                     created_at TEXT NOT NULL
                 )
             """)
+            columns = {row[1] for row in cursor.execute("PRAGMA table_info(episodic_memory)")}
+            if "native_evidence_json" not in columns:
+                cursor.execute("ALTER TABLE episodic_memory ADD COLUMN native_evidence_json TEXT NOT NULL DEFAULT '[]'")
             conn.commit()
+
+    @staticmethod
+    def has_native_evidence(case: Dict[str, Any]) -> bool:
+        evidence = case.get("native_evidence", [])
+        return bool(isinstance(evidence, list) and evidence and all(
+            isinstance(call, dict) and call.get("backend") in {"ollama", "llamacpp", "mlx"}
+            and call.get("outcome") == "success" and bool(call.get("requested_model"))
+            and re.fullmatch(r"[a-f0-9]{64}", str(call.get("request_sha256", "")))
+            for call in evidence) and evidence[-1].get("action") == "answer")
 
     def write_if_verified(
         self,
@@ -147,7 +159,8 @@ class SQLiteEpisodicStore:
         query: str,
         answer: str,
         citations: List[Dict[str, Any]],
-        is_l1_verified: bool
+        is_l1_verified: bool,
+        native_evidence: Optional[List[Dict[str, Any]]] = None
     ) -> bool:
         """
         WRITE POLICY:
@@ -185,8 +198,8 @@ class SQLiteEpisodicStore:
             cursor = conn.cursor()
             cursor.execute("""
                 INSERT OR REPLACE INTO episodic_memory 
-                (case_id, normalized_query, article_ids, answer, citations_json, index_version, created_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                (case_id, normalized_query, article_ids, answer, citations_json, index_version, created_at, native_evidence_json)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 case_id,
                 clean_query,
@@ -194,7 +207,8 @@ class SQLiteEpisodicStore:
                 clean_answer,
                 json.dumps(citations_sanitized, ensure_ascii=False),
                 self.index_version,
-                datetime.now(timezone.utc).isoformat()
+                datetime.now(timezone.utc).isoformat(),
+                json.dumps(native_evidence or [], ensure_ascii=False)
             ))
             conn.commit()
         return True
@@ -223,7 +237,7 @@ class SQLiteEpisodicStore:
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             cursor.execute("""
-                SELECT case_id, normalized_query, article_ids, answer, citations_json, index_version, created_at
+                SELECT case_id, normalized_query, article_ids, answer, citations_json, index_version, created_at, native_evidence_json
                 FROM episodic_memory
                 WHERE index_version = ?
             """, (target_version,))
@@ -268,7 +282,14 @@ class SQLiteEpisodicStore:
                     parsed_aids = []
 
                 best_match["article_ids"] = parsed_aids
-                best_match["citations"] = json.loads(best_match["citations_json"])
+                try:
+                    best_match["citations"] = json.loads(best_match["citations_json"])
+                except (ValueError, TypeError):
+                    return None
+                try:
+                    best_match["native_evidence"] = json.loads(best_match["native_evidence_json"])
+                except (ValueError, TypeError):
+                    best_match["native_evidence"] = []
                 best_match["similarity_score"] = round(best_score, 4)
                 return best_match
 

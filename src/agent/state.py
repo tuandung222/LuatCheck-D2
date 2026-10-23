@@ -7,11 +7,20 @@ from enum import Enum
 
 
 class ActionType(str, Enum):
-    SEARCH_LAW = "search_law"
-    GET_ARTICLE = "get_article"
+    """Canonical controller actions. The model-facing names of SEARCH and READ come from the domain profile."""
+    SEARCH = "search"
+    READ = "read"
     ANSWER = "answer"
     CLARIFY = "clarify"
     REFUSE = "refuse"
+    # Backward-compatible aliases (same members as SEARCH / READ).
+    SEARCH_LAW = "search"
+    GET_ARTICLE = "read"
+
+    @classmethod
+    def _missing_(cls, value):
+        # Accept the labour-profile tool names for callers that still use the old values.
+        return {"search_law": cls.SEARCH, "get_article": cls.READ}.get(value)
 
 
 class Citation(BaseModel):
@@ -22,7 +31,7 @@ class Citation(BaseModel):
 
 class AgentAction(BaseModel):
     thought: str = Field(description="Step-by-step agent reasoning before deciding an action")
-    action: ActionType = Field(description="Chosen action: search_law, get_article, answer, clarify, refuse")
+    action: ActionType = Field(description="Canonical action: search, read, answer, clarify, refuse")
     tool_args: Dict[str, Any] = Field(default_factory=dict, description="Arguments passed to the chosen action or tool")
 
 
@@ -59,9 +68,11 @@ class CaseLedger(BaseModel):
     
     # State tracking
     is_terminal: bool = False
-    terminal_status: Optional[Literal["answered", "clarified", "refused"]] = None
+    terminal_status: Optional[Literal["answered", "clarified", "refused", "error"]] = None
     final_output: Optional[Dict[str, Any]] = None
     audit_events: List[Dict[str, Any]] = Field(default_factory=list)
+    llm_calls: List[Dict[str, Any]] = Field(default_factory=list)
+    deadline_monotonic: Optional[float] = Field(default=None, exclude=True)
 
     def can_call_tool(self) -> bool:
         return self.tool_calls_count < self.max_tool_calls

@@ -1,0 +1,6 @@
+{
+  "currency": "USD as reported by the LiteLLM gateway",
+  "source": "https://docs.litellm.ai/docs/proxy/model_cost_map",
+  "meter": "response usage.cost; compare completed non-streamed x-litellm-response-cost where present",
+  "known_limit": "Gateway computed/reported spend is not an independently verified invoice. Failed requests without usage remain unknown, never zero."
+}

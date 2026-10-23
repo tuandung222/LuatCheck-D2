@@ -1,0 +1,20 @@
+{
+  "report_pdf_sha256": "21d618ca48245d15455d17565481b714493b0d0646d8c77e6e3a98f5e4056da4",
+  "report_source_sha256": "72960a0d79dc6e3eb3de032b69b9f381215fff075b453eb7a93b784609ffd5dd",
+  "rendered_pages_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "total_pdf_pages": 8,
+  "visual_review": "Assistant inspected all eight rendered pages; no clipping, table overlap or unreadable glyphs identified.",
+  "build_log": "logs/final-report-build.log",
+  "semantic_judge_executed": false,
+  "human_labels_received": false,
+  "status": "Draft with measured operational results; semantic and team evidence still pending"
+}

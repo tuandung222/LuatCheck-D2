@@ -8,6 +8,7 @@ Streamlit Live Demo UI for LuatCheck (Requirement R7).
 - Bottom Drawer: Comprehensive Real-time Audit Log Inspector (JSONL)
 """
 import streamlit as st
+import html
 import json
 import time
 import os
@@ -23,6 +24,7 @@ from src.agent.loop import LuatCheckAgent
 from src.agent.state import CaseLedger, Citation
 from src.tools.legal_tools import LegalToolRegistry
 from src.security.audit_logger import AuditLogger
+from src.config.app_config import load_config
 
 st.set_page_config(
     page_title="LuatCheck - Evidence-Grounded AI Assistant",
@@ -34,7 +36,6 @@ st.set_page_config(
 # Custom CSS for high-fidelity conference-ready UI
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
     
     html, body, [class*="css"] {
         font-family: 'Be Vietnam Pro', sans-serif;
@@ -189,7 +190,7 @@ def get_agent_instance(verification_mode: str = "lexical_grounding"):
 
 
 # Initialize shared AuditLogger and Registry
-audit_logger = AuditLogger()
+audit_logger = AuditLogger(log_path=load_config().security.audit_log_path)
 
 # Initialize session state defaults if absent
 if "current_ledger" not in st.session_state:
@@ -218,12 +219,12 @@ from src.verifier.grounding_analyzer import analyze_grounding
 # =========================================================================
 # HUMAN-IN-THE-LOOP (HITL) MODAL: SEND_SUMMARY
 # =========================================================================
-@st.dialog("🔒 Xác Nhận Tác Vụ Không Khả Hồi (HITL Egress Gate)")
+@st.dialog("🔒 Duyệt Ghi Hàng Đợi Cục Bộ (HITL)")
 def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent, session_id: str):
     st.markdown("""
     <div style='background-color: #fff3e0; border-left: 4px solid #ff9800; padding: 10px; border-radius: 4px; margin-bottom: 12px;'>
-        <strong>CẢNH BÁO BẢO MẬT (Least Privilege IRREVERSIBLE_WRITE):</strong><br>
-        Hành động <code>send_summary</code> gửi nội dung tư vấn ra hệ thống bên ngoài.
+        <strong>CẢNH BÁO BẢO MẬT (Least Privilege: APPROVAL REQUIRED):</strong><br>
+        Hành động <code>send_summary</code> đề xuất ghi nội dung vào hàng đợi cục bộ; chưa có bộ gửi email/webhook.
         Hệ thống yêu cầu kiểm duyệt thủ công và xác thực tính lũy nghiệm (SHA-256 Idempotency) để ngăn trùng lặp.
     </div>
     """, unsafe_allow_html=True)
@@ -236,8 +237,7 @@ def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent,
     idempotency_key = st.text_input("Idempotency Key:", value=default_key, key="modal_key")
 
     # Calculate SHA-256 hash directly
-    hash_payload = f"{recipient}:{content}:{idempotency_key}"
-    sha256_hash = hashlib.sha256(hash_payload.encode("utf-8")).hexdigest()
+    sha256_hash = agent_instance.tool_registry.summary_hash(recipient, content, idempotency_key)
 
     # Real-time duplicate check with registry
     is_duplicate = sha256_hash in agent_instance.tool_registry.executed_idempotency_keys
@@ -251,7 +251,7 @@ def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent,
         st.success("✅ Khóa Idempotency hợp lệ: Chưa từng thực thi.")
 
     user_confirmed = st.checkbox(
-        "Tôi xác nhận cho phép hệ thống gửi nội dung này ra ngoài (Human-In-The-Loop Confirmation)",
+        "Tôi xác nhận ghi nội dung này vào hàng đợi cục bộ (Human-In-The-Loop Confirmation)",
         key="modal_chk"
     )
 
@@ -261,18 +261,23 @@ def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent,
             st.session_state.show_egress_dialog = False
             st.rerun()
     with col_send:
-        btn_submit = st.button("📤 Xác Nhận & Thực Thi (Send Egress)", type="primary", use_container_width=True, key="btn_modal_submit")
+        btn_submit = st.button("📤 Xác Nhận & Thực Thi (Local Outbox)", type="primary", use_container_width=True, key="btn_modal_submit")
 
     if btn_submit:
         if not user_confirmed:
-            st.error("CẢNH BÁO BẢO MẬT: Hành động 'send_summary' là tác vụ ghi không khả hồi (Irreversible Egress). Bắt buộc phải có sự xác nhận trực tiếp từ người dùng (Human-In-The-Loop Confirmation) trước khi thực thi!")
+            st.error("CẢNH BÁO BẢO MẬT: Hành động 'send_summary' cần phê duyệt ghi vào hàng đợi cục bộ. Bắt buộc phải có sự xác nhận trực tiếp từ người dùng (Human-In-The-Loop Confirmation) trước khi thực thi!")
         else:
             res = agent_instance.tool_registry.send_summary(
                 recipient=recipient,
                 content=content,
                 idempotency_key=idempotency_key,
-                user_confirmed=user_confirmed
+                user_confirmed=False
             )
+            proposal_id = res.get("proposal_id")
+            token = agent_instance.tool_registry.approve_proposal(proposal_id)
+            res = agent_instance.tool_registry.send_summary(
+                recipient=recipient, content=content, idempotency_key=idempotency_key,
+                user_confirmed=True, proposal_id=proposal_id, approval_token=token)
             st.session_state.egress_last_result = res
             
             # Record audit log for Egress action
@@ -287,9 +292,9 @@ def show_hitl_egress_modal(default_content: str, agent_instance: LuatCheckAgent,
                 }
             )
             
-            if res.get("status") == "success":
+            if res.get("status") == "queued_locally":
                 st.session_state.show_egress_dialog = False
-                st.success(f"Đã gửi thành công bản tóm tắt pháp lý tới '{recipient}'.")
+                st.success("Đã lưu vào hàng đợi cục bộ. Chưa gửi email/webhook.")
                 time.sleep(0.5)
                 st.rerun()
             else:
@@ -303,8 +308,8 @@ col_logo, col_title = st.columns([1, 7])
 with col_logo:
     st.markdown("<div style='font-size: 42px; text-align: center;'>⚖️</div>", unsafe_allow_html=True)
 with col_title:
-    st.markdown("<h2 class='main-header'>LuatCheck · Local SLM CPU</h2>", unsafe_allow_html=True)
-    st.markdown("<div class='sub-header'>Evidence-Grounded Agentic Assistant · Multi-Domain Verification &amp; 100% Offline CPU Execution</div>", unsafe_allow_html=True)
+    st.markdown("<h2 class='main-header'>LuatCheck · Local SLM</h2>", unsafe_allow_html=True)
+    st.markdown("<div class='sub-header'>Evidence-Grounded Agentic Assistant · Multi-Domain Verification &amp; Local Native Inference</div>", unsafe_allow_html=True)
 
 st.divider()
 
@@ -351,12 +356,12 @@ with col1:
             if current_ledger.queries_issued:
                 st.markdown("<div style='font-size: 12px; margin-top: 6px;'><strong>Truy vấn đã phát:</strong></div>", unsafe_allow_html=True)
                 for q in current_ledger.queries_issued:
-                    st.markdown(f"<span class='pill pill-blue'>🔍 {q}</span>", unsafe_allow_html=True)
+                    st.markdown(f"<span class='pill pill-blue'>🔍 {html.escape(str(q))}</span>", unsafe_allow_html=True)
 
             # Loaded articles in session (provenance)
             if current_ledger.retrieved_article_ids:
                 st.markdown("<div style='font-size: 12px; margin-top: 6px;'><strong>Điều luật đã nạp (Provenance):</strong></div>", unsafe_allow_html=True)
-                pills_html = "".join([f"<span class='pill pill-green'>📖 {aid}</span>" for aid in current_ledger.retrieved_article_ids])
+                pills_html = "".join([f"<span class='pill pill-green'>📖 {html.escape(str(aid))}</span>" for aid in current_ledger.retrieved_article_ids])
                 st.markdown(pills_html, unsafe_allow_html=True)
 
             # Attached untrusted document
@@ -442,7 +447,7 @@ with col1:
         # Instantiate new agent with selected mode
         agent_to_run = get_agent_instance(verification_mode=selected_mode_key)
         
-        with st.spinner("Local SLM CPU Agent đang thực thi vòng lặp ReAct và xác thực căn cứ..."):
+        with st.spinner("Local SLM Agent đang thực thi vòng lặp ReAct và xác thực căn cứ..."):
             ledger_result = agent_to_run.run(user_query, pasted_doc=pasted_doc, session_id=sid)
             st.session_state.current_ledger = ledger_result
             st.rerun()
@@ -462,12 +467,12 @@ with col2:
 
         # --- 2.1 TERMINAL STATUS BANNER ---
         if status == "answered":
-            is_verified = final_out.get("verified", True)
+            is_verified = final_out.get("verified", False)
             if is_verified:
                 st.markdown("""
                 <div style='background-color: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px; padding: 12px; margin-bottom: 12px;'>
-                    <span class='badge-valid badge-verified'>✅ GROUNDING VERIFIED: HOÀN TẤT TƯ VẤN CÓ CĂN CỨ 100%</span>
-                    <div style='font-size: 11px; color: #388e3c; margin-top: 4px;'>Đã kiểm tra 100% tài liệu trích dẫn tồn tại, có xuất xứ tra cứu và đối soát ngữ nghĩa.</div>
+                    <span class='badge-valid badge-verified'>Đã qua cổng kiểm tra căn cứ được cấu hình</span>
+                    <div style='font-size: 11px; color: #388e3c; margin-top: 4px;'>Kiểm tra tự động không thay thế đánh giá độc lập về tính đúng của tư vấn.</div>
                 </div>
                 """, unsafe_allow_html=True)
             else:
@@ -495,13 +500,15 @@ with col2:
             """, unsafe_allow_html=True)
             st.error(f"CẢNH BÁO AN NINH: {final_out.get('reason', 'Từ chối đưa ra kết luận vì không đủ căn cứ hoặc phát hiện vi phạm an ninh.')}")
 
+        elif status == "error":
+            st.error(f"Lỗi thực thi: {final_out.get('reason', '')}. Không có kết quả tư vấn thay thế.")
         elif status == "clarified":
             st.info(f"ℹ️ **Yêu cầu làm rõ thêm:** {final_out.get('question', 'Vui lòng cung cấp thêm thông tin chi tiết.')}")
 
         # Display latest egress action result (if present)
         if st.session_state.egress_last_result:
             eg = st.session_state.egress_last_result
-            if eg.get("status") == "success":
+            if eg.get("status") == "queued_locally":
                 st.success(f"Egress: {eg.get('message')} (Mã băm: `{eg.get('hash', '')[:12]}...`)")
             else:
                 st.warning(f"Egress: {eg.get('message')}")
@@ -537,7 +544,7 @@ with col2:
         st.markdown("""
         <div style='background-color: #fafafa; border: 1px dashed #b0bec5; border-radius: 8px; padding: 25px; text-align: center; color: #78909c;'>
             <div style='font-size: 36px; margin-bottom: 8px;'>🤖</div>
-            <strong>Trợ lý Local SLM CPU đang sẵn sàng.</strong><br>
+            <strong>Trợ lý Local SLM đang sẵn sàng.</strong><br>
             Vui lòng chọn một kịch bản mẫu ở Cột 1 hoặc nhập câu hỏi pháp lý và nhấn <strong>'Tham Vấn Pháp Lý'</strong> để bắt đầu theo dõi vết suy luận từng bước.
         </div>
         """, unsafe_allow_html=True)
@@ -558,10 +565,10 @@ with col3:
         st.markdown("**Huy Hiệu Xác Thực Căn Cứ:**")
         if ledger.terminal_status == "refused":
             st.markdown("<span class='badge-rejected badge-refused'>🛑 REJECTED: CĂN CỨ BỊ TỪ CHỐI</span>", unsafe_allow_html=True)
-        elif final_out.get("verified") is False:
+        elif final_out.get("verified") is not True:
             st.markdown("<span class='badge-unverified'>⚠️ UNVERIFIED: CHẾ ĐỘ RAG KHÔNG KIỂM TRA</span>", unsafe_allow_html=True)
         else:
-            st.markdown("<span class='badge-valid badge-verified'>✅ VALID: 100% CĂN CỨ HỢP LỆ</span>", unsafe_allow_html=True)
+            st.markdown("<span class='badge-valid badge-verified'>Đã qua kiểm tra căn cứ tự động</span>", unsafe_allow_html=True)
 
         st.markdown("<div style='margin-bottom: 12px;'></div>", unsafe_allow_html=True)
 
@@ -571,7 +578,7 @@ with col3:
             analysis = analyze_grounding(content_text, citations, active_agent)
             
             grounded_pct = int(analysis["grounded_ratio"] * 100)
-            st.caption(f"Tỷ lệ câu khẳng định có căn cứ: **{grounded_pct}%**")
+            st.caption(f"Tỷ lệ câu qua kiểm tra từ vựng: **{grounded_pct}%**; không phải điểm đúng pháp lý.")
 
             for s_info in analysis["sentences_data"]:
                 sent = s_info["sentence"]
@@ -582,25 +589,25 @@ with col3:
                 if final_out.get("verified") is False:
                     st.markdown(f"""
                     <div class='sentence-unverified'>
-                        <span>{sent}</span>
+                        <span>{html.escape(str(sent))}</span>
                         <div style='font-size: 11px; color: #f57f17; margin-top: 3px;'>
-                            ⚠️ <em>Unverified Mode (Overlap: {ov_pct}% với {best_id})</em>
+                            ⚠️ <em>Unverified Mode (Overlap: {ov_pct}% với {html.escape(str(best_id))})</em>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
                 elif is_sup:
                     st.markdown(f"""
                     <div class='sentence-supported'>
-                        <span>{sent}</span>
+                        <span>{html.escape(str(sent))}</span>
                         <div style='font-size: 11px; color: #2e7d32; margin-top: 3px;'>
-                            ✅ <strong>Căn cứ hợp lệ:</strong> {best_id} (Độ khớp token: <strong>{ov_pct}%</strong>)
+                            ✅ <strong>Căn cứ hợp lệ:</strong> {html.escape(str(best_id))} (Độ khớp token: <strong>{ov_pct}%</strong>)
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
                 else:
                     st.markdown(f"""
                     <div class='sentence-unsupported'>
-                        <span>{sent}</span>
+                        <span>{html.escape(str(sent))}</span>
                         <div style='font-size: 11px; color: #c62828; margin-top: 3px;'>
                             ❌ <strong>Không đủ căn cứ:</strong> Đạt {ov_pct}% (< 25% ngưỡng quy định)
                         </div>
@@ -619,7 +626,7 @@ with col3:
                 art = active_agent.tool_registry.get_article(aid)
                 if art.get("status") == "success":
                     with st.expander(f"📖 {art['title']} ({art['law_name']})", expanded=True):
-                        st.markdown(f"<span class='pill pill-green'>✅ Session Provenance OK</span> <span class='pill pill-blue'>{art['article_id']}</span>", unsafe_allow_html=True)
+                        st.markdown(f"<span class='pill pill-green'>✅ Session Provenance OK</span> <span class='pill pill-blue'>{html.escape(str(art['article_id']))}</span>", unsafe_allow_html=True)
                         st.write(art["full_content"])
                 else:
                     st.warning(f"Điều luật {aid} không tìm thấy trong dữ liệu tĩnh.")
@@ -629,9 +636,10 @@ with col3:
     st.markdown("**Kiểm Soát Egress (send_summary & HITL):**")
     st.caption("Tác vụ gửi tóm tắt pháp lý ra email bên ngoài bắt buộc phải có xác nhận trực tiếp từ người dùng và kiểm tra Idempotency SHA-256.")
 
-    default_egress_txt = "Tóm tắt tư vấn: Thời gian thử việc trình độ đại học tối đa 60 ngày theo Điều 25 BLLĐ 2019."
+    # Only a real answer from this run is offered for the outbox; there is no canned default summary.
+    default_egress_txt = ""
     if current_ledger and current_ledger.final_output:
-        default_egress_txt = current_ledger.final_output.get("content", default_egress_txt)
+        default_egress_txt = current_ledger.final_output.get("content") or ""
 
     rec_email = st.text_input("Email người nhận:", value="hr_manager@company.vn", key="col3_rec")
     summary_txt = st.text_area("Nội dung tóm tắt:", value=default_egress_txt, height=70, key="col3_txt")
@@ -640,15 +648,14 @@ with col3:
     if "col3_key" not in st.session_state:
         st.session_state.col3_key = f"demo_key_{int(time.time())}"
     egress_idempotency_key = st.text_input("Idempotency Key:", key="col3_key")
-    hash_payload = f"{rec_email}:{summary_txt}:{egress_idempotency_key}"
-    sha256_hash = hashlib.sha256(hash_payload.encode("utf-8")).hexdigest()
+    sha256_hash = active_agent.tool_registry.summary_hash(rec_email, summary_txt, egress_idempotency_key)
     st.caption(f"SHA-256 Hash: `{sha256_hash[:24]}...`")
 
-    confirm_chk = st.checkbox("Tôi xác nhận cho phép hệ thống gửi nội dung này ra ngoài (Human-In-The-Loop Confirmation)", key="col3_chk")
+    confirm_chk = st.checkbox("Tôi xác nhận ghi nội dung này vào hàng đợi cục bộ (Human-In-The-Loop Confirmation)", key="col3_chk")
     
     col_btn_egress1, col_btn_egress2 = st.columns([1, 1])
     with col_btn_egress1:
-        btn_send = st.button("📤 Gửi Tóm Tắt (Egress)", type="primary", use_container_width=True, key="btn_send_col3")
+        btn_send = st.button("📤 Ghi Hàng Đợi (Outbox)", type="primary", use_container_width=True, key="btn_send_col3")
     with col_btn_egress2:
         btn_open_modal = st.button("🔒 Mở Modal HITL", use_container_width=True, key="btn_open_modal_col3")
 
@@ -657,22 +664,27 @@ with col3:
 
     if btn_send:
         if not confirm_chk:
-            st.error("CẢNH BÁO BẢO MẬT: Hành động 'send_summary' là tác vụ ghi không khả hồi (Irreversible Egress). Bắt buộc phải có sự xác nhận trực tiếp từ người dùng (Human-In-The-Loop Confirmation) trước khi thực thi!")
+            st.error("CẢNH BÁO BẢO MẬT: Hành động 'send_summary' cần phê duyệt ghi vào hàng đợi cục bộ. Bắt buộc phải có sự xác nhận trực tiếp từ người dùng (Human-In-The-Loop Confirmation) trước khi thực thi!")
         else:
             res = active_agent.tool_registry.send_summary(
                 recipient=rec_email,
                 content=summary_txt,
                 idempotency_key=egress_idempotency_key,
-                user_confirmed=confirm_chk
+                user_confirmed=False
             )
+            proposal_id = res.get("proposal_id")
+            token = active_agent.tool_registry.approve_proposal(proposal_id)
+            res = active_agent.tool_registry.send_summary(
+                recipient=rec_email, content=summary_txt, idempotency_key=egress_idempotency_key,
+                user_confirmed=True, proposal_id=proposal_id, approval_token=token)
             st.session_state.egress_last_result = res
             audit_logger.log_event(
                 session_id=current_ledger.session_id if current_ledger else "direct_egress",
                 event_type="egress_action",
                 payload={"recipient": rec_email, "status": res.get("status"), "hash": sha256_hash}
             )
-            if res.get("status") == "success":
-                st.success(f"Đã gửi thành công bản tóm tắt pháp lý tới '{rec_email}'.")
+            if res.get("status") == "queued_locally":
+                st.success("Đã lưu vào hàng đợi cục bộ. Chưa gửi email/webhook.")
             else:
                 st.error(res["message"])
 
@@ -685,9 +697,11 @@ if st.session_state.get("show_egress_dialog", False):
     if current_ledger and current_ledger.final_output:
         content_to_pass = current_ledger.final_output.get("content", "")
     if not content_to_pass:
-        content_to_pass = "Tóm tắt tư vấn: Thời gian thử việc trình độ đại học tối đa 60 ngày theo Điều 25 BLLĐ 2019."
-    sess_id = current_ledger.session_id if current_ledger else "demo_session"
-    show_hitl_egress_modal(content_to_pass, active_agent, sess_id)
+        st.session_state.show_egress_dialog = False
+        st.warning("Chưa có câu trả lời của hệ thống để đưa vào outbox. Hãy chạy một câu hỏi trước hoặc tự nhập nội dung.")
+    else:
+        sess_id = current_ledger.session_id if current_ledger else "demo_session"
+        show_hitl_egress_modal(content_to_pass, active_agent, sess_id)
 
 
 # =========================================================================

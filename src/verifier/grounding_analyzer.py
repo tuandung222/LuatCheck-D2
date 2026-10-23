@@ -13,7 +13,8 @@ from src.agent.state import Citation
 def analyze_grounding(
     answer_text: str,
     citations: List[Any],
-    agent_or_verifier: Any
+    agent_or_verifier: Any,
+    retrieved_article_ids: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
     """
     Analyzes sentence-level span support conforming to statutory evidence verification:
@@ -44,7 +45,11 @@ def analyze_grounding(
         elif isinstance(c, Citation):
             norm_citations.append(c)
 
-    retrieved_ids = [c.article_id for c in norm_citations]
+    retrieved_ids = (
+        list(retrieved_article_ids)
+        if retrieved_article_ids is not None
+        else [c.article_id for c in norm_citations]
+    )
 
     # 1. Invoke L1 Verifier for comprehensive statutory check
     l1_res = verifier.verify(

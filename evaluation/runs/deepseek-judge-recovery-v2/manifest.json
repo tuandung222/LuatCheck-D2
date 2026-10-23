@@ -1,0 +1,67 @@
+{
+  "phase": "schema_failure_recovery",
+  "status": "collected_pending_human_validation",
+  "config": {
+    "base_url": "https://ai-gateway01.qualgo.ai/v1",
+    "credential_env": "LUATCHECK_JUDGE_API_KEY",
+    "model": "deepseek/deepseek-v4-flash",
+    "requested_family": "DeepSeek V4.1 Flash",
+    "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+    "revision_pinned": false,
+    "allowed_returned_models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek-v4-flash",
+      "deepseek-flash",
+      "deepseek-v4.1-flash",
+      "deepseek-v4.1-flash-1017"
+    ],
+    "model_identity_note": "Gateway /model/info identifies provider deepseek and upstream deepseek/deepseek-v4-flash. Official DeepSeek documentation maps the legacy deepseek-v4-flash alias to V4.1-Flash-1017. Actual gateway routing is not independently attested; preserve returned model IDs.",
+    "model_identity_source": "https://api-docs.deepseek.com/",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 32768,
+    "timeout_seconds": 180,
+    "max_attempts": 3,
+    "concurrency": 1,
+    "temperature": null,
+    "seed": null,
+    "billing_note": "Use real gateway usage and cost headers if present. Actual invoiced charges are unknown unless separately obtained; do not apply official direct-API prices to a gateway.",
+    "stream": true
+  },
+  "created_at": "2026-10-22T12:41:40.016391+00:00",
+  "initial_judgments_sha256": "834e27ef6bfb253a4119ef7bfda100b86f0ec06408b301d5d775c697e20976db",
+  "source_runs_sha256": "631480b2989859bd95d39bc8b7754caa1687a221cfd3858210c7129d0920b06e",
+  "expected_review_ids": [
+    "dbd45deb49ef72c38f4b0b01",
+    "e07c5760529528b8b221fcb7",
+    "e74d36035dd3dde9b5c7277a"
+  ],
+  "selection_rule": "All and only still-invalid judgments after ordered prior recoveries. Stop each task at first schema-valid output; no selection by semantic scores.",
+  "previous_recoveries": [
+    {
+      "path": "evaluation/runs/deepseek-judge-recovery-v1",
+      "manifest_sha256": "639de471a1b18c433749bc874632fe49b9a7a35a07c1cb3ee751703435557a0a"
+    }
+  ],
+  "protocol_development_note": "Bounded sequential streamed retries with backoff and a larger output budget, after observed API/truncation/schema failures. Same semantic prompts, tasks and model. Not preregistered.",
+  "input_sha256": {
+    "judge_prompt.txt": "9d863c6560b6ac95ad1b601e848a3418cae40590b75c111a517efb5b91afc402",
+    "input-SEMANTIC_JUDGING.md": "d9dbee8fc6659e3f9921ae4ada015788516a4372bd728ebccc8e7a8b0fd445ff",
+    "config.json": "9d418a74d221f49eed47b8602b56fdeb79158c1c9fc73423028fd18d660782dc",
+    "judge_gateway.py": "d9a3864c42ffd7ade96a2dc7aa772c44c426f3e41e342bd86d85f637874a7bd9",
+    "input-judge_packets.json": "359dcccc5480941552d3ebdaee5b89e41a1a28ddf1f5cf4bcb46f4a18ddfbd43",
+    "recover_judge.py": "8473712602b155a3939048e3ad3743622e0f19560c48e17a6802eeb7754eb6d4"
+  },
+  "human_labels": false,
+  "collected": 3,
+  "valid": 3,
+  "invalid": 0,
+  "judgments_sha256": "a6878abc09af7b7e51f89cd2379f7798f0e70a0f083e48fe9d41d6e9ca543368",
+  "attempts_sha256": {
+    "dbd45deb49ef72c38f4b0b01-a1.json": "b3dee403bbb0f79d054c8323c1b32608586ec9f1ff6bf162a5551a1e5e8a35c1",
+    "e07c5760529528b8b221fcb7-a1.json": "090a53fcc040b395a55408a84f685b760aac848259333db27becaaeef20fd554",
+    "e74d36035dd3dde9b5c7277a-a1.json": "ef3b1ec9cedc346067c085ab540b0265f0cd6803a62e40f1dd7c5f1394282b3a"
+  }
+}

@@ -1,0 +1,13 @@
+# Optional dependencies of src/indexing (pluggable vector stores + local embedding model).
+# Install: uv pip install --python .venv/bin/python -r requirements-indexing.txt
+# Each backend is imported lazily; install only what you use. Versions are those verified on Python 3.14 / Apple M4.
+# NumPy-flat vector store, SQLite FTS5 keyword index and the HTTP embedding providers need no extra package
+# (numpy, pyyaml, requests, rank-bm25 come from requirements.txt).
+sentence-transformers>=6.2   # local embedding model (AITeamVN/Vietnamese_Embedding); also pulls torch + transformers
+faiss-cpu>=1.15              # FAISS flat (exact) and HNSW
+sqlite-vec>=0.1.9            # SQLite vec0 extension (needs a Python whose sqlite3 allows loadable extensions)
+lancedb>=0.40                # embedded Lance columnar store
+qdrant-client>=1.20          # embedded local mode and remote server
+chromadb>=1.5                # PersistentClient (HNSW)
+# Model weights are downloaded on first use into ~/.cache/huggingface:
+#   hf download AITeamVN/Vietnamese_Embedding --exclude "onnx/*"

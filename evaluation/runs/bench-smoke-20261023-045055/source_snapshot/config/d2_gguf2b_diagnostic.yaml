@@ -1,0 +1,38 @@
+# Diagnostic comparison, NOT the frozen D2 protocol (config/d2_native.yaml).
+# Same tasks, corpus, retrieval, budgets and L1 checks; controller: the same Ternary Bonsai 2 2B weights as
+# GGUF PQ2_0 on the PrismML llama.cpp fork (llama-server -ngl 99 -fa on -c 32768, port 8081, alias
+# prism-ml/Ternary-Bonsai-2-2B-gguf). Model-card non-thinking sampler; decoding constrained to the action JSON
+# schema; 768-token output cap. Paired with d2_mlx2b_diagnostic.yaml.
+model:
+  provider: llamacpp
+  endpoint: http://127.0.0.1:8081/v1
+  name: prism-ml/Ternary-Bonsai-2-2B-gguf
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  min_p: 0.0
+  presence_penalty: 1.5
+  constrained_json: true
+  enable_thinking: false
+  timeout_seconds: 60
+  max_output_tokens: 768
+  context_tokens: 8192
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+  max_steps: 8
+  wall_seconds: 180
+retrieval:
+  corpus_path: data/corpus/labor_code_2019_official.json
+  dense_model_type: tfidf
+  final_top_k: 5
+  rrf_k: 60
+verifier:
+  mode: l1
+  l2_use_slm: false
+memory:
+  enabled: false
+  similarity_threshold: 0.85
+  index_version: bll2019-official-220-v1
+security:
+  egress_requires_confirmation: true

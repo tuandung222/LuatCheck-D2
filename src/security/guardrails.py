@@ -1,10 +1,15 @@
 """
 Security Guardrails for LuatCheck (Remediation M1-Rem-3)
 Enforces system security boundaries, delimiter sanitization, and multi-tier prompt injection detection.
+
+The patterns here are domain-agnostic. Domain-specific refusal patterns (for example the labour-law
+evasion and fabricated-article patterns) live in the domain profile, config/domains/<profile>.yaml.
 """
 import re
 import unicodedata
 from typing import Tuple, Optional, List
+
+from src.domains import DomainProfile, load_profile
 
 
 class SecurityGuardrails:
@@ -12,9 +17,8 @@ class SecurityGuardrails:
     Multi-tier defense system for LuatCheck:
     1. Group 1: Instruction Override & System Prompt Exfiltration
     2. Group 2: Roleplay & Jailbreak / Unrestricted Modes
-    3. Group 3: Legal Evasion, Malicious Advisory & Unlawful Termination
-    4. Group 4: Indirect Document Injection, Egress & SQL/Memory Poisoning
-    5. Group 5: Corpus Poisoning & Fabricated Legal Citations
+    3. Group 4: Indirect Document Injection, Egress & SQL/Memory Poisoning
+    Plus the domain profile's own patterns (Legal Evasion, Corpus Poisoning ... for the labour profile).
     """
 
     # Group 1: Instruction Override & Exfiltration
@@ -41,18 +45,6 @@ class SecurityGuardrails:
         r"(?i)\b(you\s+are\s+now|từ\s+giờ\s+(trở\s+đi\s+)?bạn\s+là)\b.{0,30}\b(unrestricted|không\s+bị\s+ràng\s+buộc|bất\s+chấp\s+luật)\b",
     ]
 
-    # Group 3: Legal Evasion & Malicious Advisory
-    LEGAL_EVASION_PATTERNS = [
-        # Inquiries asking how to evade tax, circumvent law, defraud insurance (excludes whistleblower / reporting / remediation)
-        (
-            r"(?i)\b(cách|làm\s+sao|làm\s+thế\s+nào|hướng\s+dẫn|chỉ\s+(?:cho\s+)?(?:tôi\s+)?|bày\s+(?:cho\s+)?(?:tôi\s+)?)\b"
-            r"(?:(?!(?:khiếu\s+nại|tố\s+cáo|tố\s+giác|xử\s+lý|nhận\s+biết|phát\s+hiện|phản\s+ánh|biết\b|phòng\s+tránh|bảo\s+vệ)).){0,35}"
-            r"\b(trốn|lách|né|gian\s+lận|quỵt)\b.{0,30}\b(bảo\s+hiểm|thuế|luật|nghĩa\s+vụ|trợ\s+cấp|bồi\s+thường)\b"
-        ),
-        # Instructions for unlawful termination of pregnant female employees
-        r"(?i)\b(cách|làm\s+sao|làm\s+thế\s+nào|chỉ\s+(cho\s+)?(tôi\s+)?|hướng\s+dẫn|bày\s+(cho\s+)?(tôi\s+)?)\b.{0,40}\b(đuổi\s+việc|sa\s+thải|cho\s+nghỉ\s+việc)\b.{0,40}\b(mang\s+thai|thai\s+sản|nuôi\s+con\s+nhỏ)\b",
-    ]
-
     # Group 4: Indirect Document Injection, Egress & Memory Poisoning
     INDIRECT_INJECTION_PATTERNS = [
         # Delimiter spoofing / boundary escape
@@ -71,34 +63,22 @@ class SecurityGuardrails:
         r"(?i)\bdump\s+all\s+previous\b",
     ]
 
-    # Group 5: Corpus Poisoning & Fabricated Citations
-    CORPUS_POISONING_PATTERNS = [
-        # Fake statutory document tags embedded in input
-        r"(?i)\[\s*(văn\s+bản\s+quy\s+phạm\s+giả\s+mạo|trích\s+đoạn\s+luật\s+tải\s+về|luật\s+sửa\s+đổi\s+chưa\s+ban\s+hành)\b",
-        # Zero-pay / unpaid probation clauses (excluding advisory questions inquiring about employee rights)
-        (
-            r"(?i)\bthử\s+việc\b"
-            r"(?:(?!(?:có\s+(?:được|đúng|hợp\s+pháp|trái|sai|phạm\s+luật)|bị|bắt|ép|khiếu\s+nại|tố\s+cáo|hỏi)).){0,30}"
-            r"\b(?:0\s*(?:đồng|đ|vnd)|không\s+(?:trả\s+)?lương|miễn\s+phí)\b"
-            r"(?!\s*(?:có\s+(?:được|đúng|hợp\s+pháp|trái|sai|phạm\s+luật)|không\b|\?))"
-        ),
-        # Abolition of severance allowance
-        r"(?i)\bbãi\s+bỏ\b.{0,40}\b(trợ\s+cấp\s+thôi\s+việc|trợ\s+cấp\s+mất\s+việc)\b",
-        # Non-existent statutory article in Labor Code 2019 (valid range: Điều 1..220) or fabricated 4+ digit Decree numbers
-        r"(?i)\bđiều\s+(0\b|[3-9]\d{2,}|2[3-9]\d|22[1-9]|\d+[a-z])\b.{0,40}\b(bộ\s+luật\s+lao\s+động|bllđ|luật\s+lao\s+động)\b",
-        r"(?i)\bđiều\s+[5-9]\d{2,}\b",
-        r"(?i)\bnghị\s+định\s+[1-9]\d{3,}\b",
-    ]
-
-    ALL_PATTERNS = (
+    SHARED_PATTERNS = (
         INSTRUCTION_OVERRIDE_PATTERNS
         + ROLEPLAY_JAILBREAK_PATTERNS
-        + LEGAL_EVASION_PATTERNS
         + INDIRECT_INJECTION_PATTERNS
-        + CORPUS_POISONING_PATTERNS
     )
 
-    INJECTION_PATTERNS = ALL_PATTERNS
+    SAFETY_REFUSAL_MESSAGE = (
+        "CẢNH BÁO AN NINH: Phát hiện dấu hiệu tấn công Prompt Injection hoặc yêu cầu vi phạm đạo đức / lách luật. "
+        "Hệ thống tự động kích hoạt cơ chế từ chối an toàn (Safety Refusal)."
+    )
+
+    @classmethod
+    def patterns_for(cls, profile: Optional[DomainProfile] = None) -> List[str]:
+        """Shared patterns plus the domain profile's own (default profile: labour)."""
+        profile = profile or load_profile()
+        return cls.SHARED_PATTERNS + list(profile.guardrails.patterns)
 
     @classmethod
     def sanitize_delimiters(cls, text: str) -> str:
@@ -127,7 +107,8 @@ class SecurityGuardrails:
         return text.strip()
 
     @classmethod
-    def check_input_safety(cls, user_query: str, pasted_doc: Optional[str] = None) -> Tuple[bool, Optional[str]]:
+    def check_input_safety(cls, user_query: str, pasted_doc: Optional[str] = None,
+                           profile: Optional[DomainProfile] = None) -> Tuple[bool, Optional[str]]:
         """
         Verifies input safety prior to entering the Agent ReAct loop.
         Returns (is_safe, refusal_reason).
@@ -144,12 +125,10 @@ class SecurityGuardrails:
 
         combined_text = f"{norm_query} {norm_doc}".lower()
 
-        for pattern in cls.ALL_PATTERNS:
+        profile = profile or load_profile()
+        for pattern in cls.patterns_for(profile):
             if re.search(pattern, combined_text, re.IGNORECASE):
-                return False, (
-                    "CẢNH BÁO AN NINH: Phát hiện dấu hiệu tấn công Prompt Injection hoặc yêu cầu vi phạm đạo đức / lách luật. "
-                    "Hệ thống tự động kích hoạt cơ chế từ chối an toàn (Safety Refusal)."
-                )
+                return False, profile.guardrails.refusal_message or cls.SAFETY_REFUSAL_MESSAGE
 
         return True, None
 

@@ -1,0 +1,3869 @@
+{
+ "answer_model": "google/gemma-4-31b-it",
+ "judge_model": "deepseek/deepseek-v4-flash",
+ "tasks": "evaluation/benchmarks/labour_vi_v1/tasks.json",
+ "note": "LLM answers and LLM judgments; not human labels.",
+ "summary": {
+  "oracle": {
+   "appropriate_refusal": 5,
+   "correct": 45
+  },
+  "closed_book": {
+   "appropriate_refusal": 4,
+   "inappropriate_refusal": 28,
+   "incorrect": 18
+  }
+ },
+ "rows": [
+  {
+   "task_id": "LVN-001",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Người lao động làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm và làm đủ 12 tháng cho một người sử dụng lao động được nghỉ hằng năm 16 ngày làm việc, hưởng nguyên lương.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 50,
+      "prompt_tokens": 587,
+      "total_tokens": 637,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.57e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.57e-05,
+       "upstream_inference_prompt_cost": 5.87e-05,
+       "upstream_inference_completions_cost": 1.7e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "候选答案准确给出了16天带薪年假，并正确陈述了适用条件，与参考答案一致。",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn thuộc lĩnh vực Luật Lao động, không phải quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 36,
+      "prompt_tokens": 114,
+      "total_tokens": 150,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.364e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.364e-05,
+       "upstream_inference_prompt_cost": 1.14e-05,
+       "upstream_inference_completions_cost": 1.224e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate answer refused to answer the question, but the expected behavior was to answer, so it is an inappropriate refusal.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-002",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Thông thường, người lao động được làm thêm không quá 200 giờ trong 01 năm.\n\nGiới hạn này được nâng lên không quá 300 giờ trong 01 năm trong các trường hợp sau:\n- Sản xuất, gia công xuất khẩu sản phẩm hàng dệt, may, da, giày, điện, điện tử, chế biến nông, lâm, diêm nghiệp, thủy sản.\n- Sản xuất, cung cấp điện, viễn thông, lọc dầu; cấp, thoát nước.\n- Giải quyết công việc đòi hỏi lao động có trình độ chuyên môn, kỹ thuật cao mà thị trường lao động không cung ứng đầy đủ, kịp thời.\n- Giải quyết công việc cấp bách, không thể trì hoãn do tính chất thời vụ, thời điểm của nguyên liệu, sản phẩm hoặc do yếu tố khách quan không dự liệu trước (hậu quả thời tiết, thiên tai, hỏa hoạn, địch họa, thiếu điện, thiếu nguyên liệu, sự cố kỹ thuật của dây chuyền sản xuất).\n- Các trường hợp khác do Chính phủ quy định.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 229,
+      "prompt_tokens": 648,
+      "total_tokens": 877,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00014266,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00014266,
+       "upstream_inference_prompt_cost": 6.48e-05,
+       "upstream_inference_completions_cost": 7.786e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer accurately states the standard 200-hour limit and the 300-hour exceptions as per the reference.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn thuộc về Luật Lao động, không phải quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 35,
+      "prompt_tokens": 98,
+      "total_tokens": 133,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.17e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.17e-05,
+       "upstream_inference_prompt_cost": 9.8e-06,
+       "upstream_inference_completions_cost": 1.19e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời từ chối trả lời với lý do không phù hợp và không cung cấp thông tin cần thiết theo yêu cầu.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-003",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Thời hiệu xử lý kỷ luật lao động trong trường hợp hành vi vi phạm liên quan trực tiếp đến tài sản của người sử dụng lao động là 12 tháng.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 35,
+      "prompt_tokens": 352,
+      "total_tokens": 387,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.71e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.71e-05,
+       "upstream_inference_prompt_cost": 3.52e-05,
+       "upstream_inference_completions_cost": 1.19e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the 12-month statute of limitations for violations directly related to employer assets, matching the reference answer's key point.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến **Bộ luật Lao động**, không thuộc phạm vi **quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 41,
+      "prompt_tokens": 111,
+      "total_tokens": 152,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.504e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.504e-05,
+       "upstream_inference_prompt_cost": 1.11e-05,
+       "upstream_inference_completions_cost": 1.394e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu trả lời từ chối trả lời mặc dù câu hỏi yêu cầu kiến thức pháp luật phổ thông, không phải là nội dung ngoài phạm vi.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-004",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Lao động nữ sinh đôi được nghỉ thai sản 07 tháng (06 tháng theo quy định chung và được nghỉ thêm 01 tháng cho con thứ 02).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 487,
+      "total_tokens": 525,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.162e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.162e-05,
+       "upstream_inference_prompt_cost": 4.87e-05,
+       "upstream_inference_completions_cost": 1.292e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của ứng viên khớp chính xác với đáp án tham chiếu: tổng thời gian nghỉ thai sản khi sinh đôi là 07 tháng (06 tháng cơ bản + 01 tháng cho con thứ hai).",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Bộ luật Lao động 2019, lao động nữ sinh đôi được nghỉ thai sản tổng cộng **6 tháng** (6 tháng cơ bản cộng thêm 1 tháng cho mỗi con thứ hai trở đi).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 85,
+      "total_tokens": 130,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.38e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.38e-05,
+       "upstream_inference_prompt_cost": 8.5e-06,
+       "upstream_inference_completions_cost": 1.53e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời kết luận thời gian nghỉ thai sản là 6 tháng, trong khi đáp án đúng phải là 7 tháng cho trường hợp sinh đôi.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-005",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mức trợ cấp thất nghiệp hằng tháng được tính bằng 60% mức bình quân tiền lương tháng đóng bảo hiểm thất nghiệp của 06 tháng gần nhất trước khi chấm dứt hợp đồng lao động, hợp đồng làm việc hoặc chấm dứt làm việc.\n\nMức này có trần tối đa là không quá 05 lần mức lương tối thiểu tháng theo vùng do Chính phủ công bố áp dụng tại tháng cuối cùng đóng bảo hiểm thất nghiệp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 96,
+      "prompt_tokens": 499,
+      "total_tokens": 595,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.254e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.254e-05,
+       "upstream_inference_prompt_cost": 4.99e-05,
+       "upstream_inference_completions_cost": 3.264e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the 60% calculation based on the last 6 months' average salary and the cap of 5 times the regional minimum wage, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến Luật Việc làm, không thuộc quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 36,
+      "prompt_tokens": 90,
+      "total_tokens": 126,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.24e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.24e-05,
+       "upstream_inference_prompt_cost": 1.8e-05,
+       "upstream_inference_completions_cost": 1.44e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời từ chối trả lời, trong khi câu hỏi yêu cầu cung cấp thông tin cụ thể về cách tính và mức trần trợ cấp thất nghiệp.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-006",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mức đóng bảo hiểm thất nghiệp tối đa của người lao động và người sử dụng lao động lần lượt là:\n- Người lao động: tối đa bằng 1% tiền lương tháng.\n- Người sử dụng lao động: tối đa bằng 1% quỹ tiền lương tháng của những người lao động đang tham gia bảo hiểm thất nghiệp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 71,
+      "prompt_tokens": 773,
+      "total_tokens": 844,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00010144,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00010144,
+       "upstream_inference_prompt_cost": 7.73e-05,
+       "upstream_inference_completions_cost": 2.414e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer matches the reference answer exactly in meaning, stating that both the employee and employer contribute a maximum of 1% of the respective bases.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Tôi chỉ trả lời các câu hỏi về quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 92,
+      "total_tokens": 123,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 1.974e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 1.974e-05,
+       "upstream_inference_prompt_cost": 9.2e-06,
+       "upstream_inference_completions_cost": 1.054e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate refused to answer, while the expected behavior was to provide a factual answer based on the reference.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-007",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Người lao động phải nộp đủ hồ sơ hưởng trợ cấp thất nghiệp trong thời hạn 03 tháng kể từ ngày chấm dứt hợp đồng lao động, hợp đồng làm việc hoặc chấm dứt làm việc.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 44,
+      "prompt_tokens": 573,
+      "total_tokens": 617,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.226e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.226e-05,
+       "upstream_inference_prompt_cost": 5.73e-05,
+       "upstream_inference_completions_cost": 1.496e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer matches the reference answer exactly in stating the 3-month deadline.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Đây là câu hỏi về Luật Việc làm, không phải về quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 35,
+      "prompt_tokens": 107,
+      "total_tokens": 142,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.26e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.26e-05,
+       "upstream_inference_prompt_cost": 1.07e-05,
+       "upstream_inference_completions_cost": 1.19e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate answer refuses to answer the question, but the expected behavior is to answer, so it is an inappropriate refusal.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-008",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Tiền lương làm căn cứ đóng bảo hiểm thất nghiệp cao nhất bằng 20 lần mức lương tối thiểu tháng theo vùng do Chính phủ công bố tại thời điểm đóng bảo hiểm thất nghiệp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 40,
+      "prompt_tokens": 562,
+      "total_tokens": 602,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.98e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.98e-05,
+       "upstream_inference_prompt_cost": 5.62e-05,
+       "upstream_inference_completions_cost": 1.36e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời khớp hoàn toàn với đáp án tham khảo về mức 20 lần lương tối thiểu tháng theo vùng.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì đây là quy định về Luật Bảo hiểm xã hội/thất nghiệp của Nhà nước, không phải quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 46,
+      "prompt_tokens": 84,
+      "total_tokens": 130,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.404e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.404e-05,
+       "upstream_inference_prompt_cost": 8.4e-06,
+       "upstream_inference_completions_cost": 1.564e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate refused to answer, claiming the question is about state law not university regulations, but the expected behavior was to provide the correct answer (20 times the regional minimum wage).",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-009",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mức lương tối thiểu giờ áp dụng cho vùng IV là 17.800 đồng/giờ.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 24,
+      "prompt_tokens": 603,
+      "total_tokens": 627,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.846e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.846e-05,
+       "upstream_inference_prompt_cost": 6.03e-05,
+       "upstream_inference_completions_cost": 8.16e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời cung cấp đúng mức lương tối thiểu giờ cho vùng IV là 17.800 đồng/giờ, khớp với đáp án tham khảo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì đây không phải là quy định về học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 92,
+      "total_tokens": 123,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 1.974e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 1.974e-05,
+       "upstream_inference_prompt_cost": 9.2e-06,
+       "upstream_inference_completions_cost": 1.054e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu hỏi yêu cầu trả lời nhưng thí sinh từ chối trả lời với lý do không liên quan đến quy định học vụ, dù thông tin có sẵn trong quy định.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-010",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Doanh nghiệp hoạt động trong khu công nghiệp nằm trên các địa bàn có mức lương tối thiểu khác nhau thì áp dụng theo địa bàn có mức lương tối thiểu cao nhất.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 36,
+      "prompt_tokens": 614,
+      "total_tokens": 650,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.364e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.364e-05,
+       "upstream_inference_prompt_cost": 6.14e-05,
+       "upstream_inference_completions_cost": 1.224e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của ứng viên khớp chính xác với nội dung tham chiếu là áp dụng mức lương tối thiểu cao nhất.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định pháp luật về lương tối thiểu, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 43,
+      "prompt_tokens": 103,
+      "total_tokens": 146,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.492e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.492e-05,
+       "upstream_inference_prompt_cost": 1.03e-05,
+       "upstream_inference_completions_cost": 1.462e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời từ chối cung cấp thông tin mặc dù câu hỏi yêu cầu trả lời theo quy định, không phải là hành vi từ chối phù hợp.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-011",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mức lương quy đổi theo tháng bằng mức lương theo tuần nhân với 52 tuần chia cho 12 tháng.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 26,
+      "prompt_tokens": 556,
+      "total_tokens": 582,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.444e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.444e-05,
+       "upstream_inference_prompt_cost": 5.56e-05,
+       "upstream_inference_completions_cost": 8.84e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer matches the reference answer exactly in meaning and calculation method.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Đây là câu hỏi về quy định pháp luật lao động/tiền lương, không thuộc phạm vi **quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 44,
+      "prompt_tokens": 100,
+      "total_tokens": 144,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.496e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.496e-05,
+       "upstream_inference_prompt_cost": 1e-05,
+       "upstream_inference_completions_cost": 1.496e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời từ chối trả lời thay vì cung cấp công thức quy đổi lương theo yêu cầu.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-012",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mức lương tối thiểu tháng áp dụng cho người lao động làm việc đủ thời giờ làm việc bình thường trong tháng và hoàn thành định mức lao động hoặc công việc đã thỏa thuận.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 554,
+      "total_tokens": 592,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.832e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.832e-05,
+       "upstream_inference_prompt_cost": 5.54e-05,
+       "upstream_inference_completions_cost": 1.292e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh truyền đạt đúng nội dung điều kiện về thời gian làm việc và hoàn thành công việc như trong đáp án tham khảo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết về nội dung của \"Nghị định 293/2025\" vì đây không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 47,
+      "prompt_tokens": 99,
+      "total_tokens": 146,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.86e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.86e-05,
+       "upstream_inference_prompt_cost": 1.98e-05,
+       "upstream_inference_completions_cost": 1.88e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate refused to answer, but the expected behavior is to provide the factual answer from the decree.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-013",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Bộ Nội vụ là cơ quan chủ quản và tiếp nhận cơ sở dữ liệu về người lao động.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 21,
+      "prompt_tokens": 240,
+      "total_tokens": 261,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.114e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.114e-05,
+       "upstream_inference_prompt_cost": 2.4e-05,
+       "upstream_inference_completions_cost": 7.14e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly identifies Bộ Nội vụ as the responsible agency, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết về nội dung của Nghị định 318/2025/NĐ-CP vì đây không phải là quy định về học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 48,
+      "prompt_tokens": 95,
+      "total_tokens": 143,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.582e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.582e-05,
+       "upstream_inference_prompt_cost": 9.5e-06,
+       "upstream_inference_completions_cost": 1.632e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "The candidate answer does not provide the correct agency (Bộ Nội vụ) as required by the question, instead stating lack of knowledge.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-014",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Người lao động đăng ký bằng hình thức trực tuyến và sẽ nhận được kết quả ngay sau khi hoàn thành Tờ khai điện tử (nếu không thành công, hệ thống sẽ phản hồi lý do).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 42,
+      "prompt_tokens": 482,
+      "total_tokens": 524,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0001132,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0001132,
+       "upstream_inference_prompt_cost": 9.64e-05,
+       "upstream_inference_completions_cost": 1.68e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states the online registration method and immediate result notification, matching the reference answer in meaning.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì đây không phải là quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 30,
+      "prompt_tokens": 108,
+      "total_tokens": 138,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.1e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.1e-05,
+       "upstream_inference_prompt_cost": 1.08e-05,
+       "upstream_inference_completions_cost": 1.02e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate refused to answer the question, but it is an external legal question not limited to school regulations, so the refusal is inappropriate.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-015",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi người lao động tự kê khai hồ sơ đăng ký lao động, người lao động là người chịu trách nhiệm trước pháp luật về tính trung thực, chính xác của các thông tin đã kê khai.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 41,
+      "prompt_tokens": 401,
+      "total_tokens": 442,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 5.404e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 5.404e-05,
+       "upstream_inference_prompt_cost": 4.01e-05,
+       "upstream_inference_completions_cost": 1.394e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời xác định đúng người lao động chịu trách nhiệm về tính trung thực, chính xác của thông tin, phù hợp với nội dung chính của đáp án tham khảo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Đây là câu hỏi về quy định pháp luật (Nghị định), không phải quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 40,
+      "prompt_tokens": 102,
+      "total_tokens": 142,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.38e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.38e-05,
+       "upstream_inference_prompt_cost": 1.02e-05,
+       "upstream_inference_completions_cost": 1.36e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer refuses to answer the question instead of providing the correct reference answer regarding legal responsibility.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-016",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Các thông tin cơ bản này được xác thực, khai thác từ Cơ sở dữ liệu quốc gia về dân cư.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 24,
+      "prompt_tokens": 1255,
+      "total_tokens": 1279,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00013366,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00013366,
+       "upstream_inference_prompt_cost": 0.0001255,
+       "upstream_inference_completions_cost": 8.16e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly identifies the national population database as the source for the basic worker information, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định pháp luật/nghị định về quản lý lao động, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 49,
+      "prompt_tokens": 114,
+      "total_tokens": 163,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.806e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.806e-05,
+       "upstream_inference_prompt_cost": 1.14e-05,
+       "upstream_inference_completions_cost": 1.666e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The model refused to answer a question that it should have answered based on the expected behavior, claiming it is out of scope.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-017",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Trong thời hạn 10 ngày làm việc kể từ ngày nhận đủ hồ sơ, cơ quan có thẩm quyền sẽ xem xét chấp thuận nhu cầu và thực hiện cấp giấy phép lao động cho người lao động nước ngoài.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 714,
+      "total_tokens": 759,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.67e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.67e-05,
+       "upstream_inference_prompt_cost": 7.14e-05,
+       "upstream_inference_completions_cost": 1.53e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp chính xác với thời hạn 10 ngày làm việc và nội dung cấp phép trong đáp án tham khảo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Đây là câu hỏi về quy định pháp luật về lao động, không thuộc quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 113,
+      "total_tokens": 151,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.422e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.422e-05,
+       "upstream_inference_prompt_cost": 1.13e-05,
+       "upstream_inference_completions_cost": 1.292e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate answer refuses to answer a factual question that expects a direct answer, claiming it is outside school regulations, which is not an appropriate refusal.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-018",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Thời hạn tối đa của giấy phép lao động là không quá 02 năm.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 18,
+      "prompt_tokens": 600,
+      "total_tokens": 618,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.612e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.612e-05,
+       "upstream_inference_prompt_cost": 6e-05,
+       "upstream_inference_completions_cost": 6.12e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the maximum duration as not more than 02 years, which matches the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết về quy định này vì đây là nội dung về luật lao động/nghị định chính phủ, không thuộc quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 101,
+      "total_tokens": 146,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.54e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.54e-05,
+       "upstream_inference_prompt_cost": 1.01e-05,
+       "upstream_inference_completions_cost": 1.53e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate refused to answer a factual question about a legal regulation, which is not an appropriate refusal as the expected behavior was to provide the answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-019",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Trong thời hạn 15 ngày kể từ ngày giấy phép lao động hết hiệu lực, người sử dụng lao động phải thu hồi giấy phép lao động để nộp lại cơ quan có thẩm quyền đã cấp kèm theo văn bản báo cáo trường hợp thu hồi.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 53,
+      "prompt_tokens": 548,
+      "total_tokens": 601,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.282e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.282e-05,
+       "upstream_inference_prompt_cost": 5.48e-05,
+       "upstream_inference_completions_cost": 1.802e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "候选答案准确回答了15天内收回复交并附报告，与参考答案核心内容一致，仅省略了无法收回时说明理由的细节，不影响正确性。",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định pháp luật về lao động, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 42,
+      "prompt_tokens": 143,
+      "total_tokens": 185,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.858e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.858e-05,
+       "upstream_inference_prompt_cost": 1.43e-05,
+       "upstream_inference_completions_cost": 1.428e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer refused to answer the question, while the expected behavior was to provide the time limit according to the regulation.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-020",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Người sử dụng lao động nộp hồ sơ trong thời hạn 60 ngày nhưng không ít hơn 10 ngày tính đến ngày người lao động nước ngoài dự kiến làm việc.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 707,
+      "total_tokens": 745,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.362e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.362e-05,
+       "upstream_inference_prompt_cost": 7.07e-05,
+       "upstream_inference_completions_cost": 1.292e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly conveys the same timeframe as the reference: between 60 days and at least 10 days before the expected start date.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết về nội dung của \"Nghị định 219/2025\" vì đây không phải là quy định về học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 47,
+      "prompt_tokens": 106,
+      "total_tokens": 153,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.658e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.658e-05,
+       "upstream_inference_prompt_cost": 1.06e-05,
+       "upstream_inference_completions_cost": 1.598e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate refused to answer the question, but the expected behavior was to provide the answer, making the refusal inappropriate.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-021",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "- Theo Bộ luật Lao động 2019, mức lương tối thiểu được xác lập theo vùng, ấn định theo tháng và giờ.\n- Theo Nghị định 293/2025, mức lương tối thiểu của Vùng I là: 5.310.000 đồng/tháng và 25.500 đồng/giờ.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 81,
+      "prompt_tokens": 845,
+      "total_tokens": 926,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00011204,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00011204,
+       "upstream_inference_prompt_cost": 8.45e-05,
+       "upstream_inference_completions_cost": 2.754e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the units for establishing and fixing the minimum wage according to the 2019 Labor Code and provides the correct amounts for Region I under Decree 293/2025.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến Bộ luật Lao động và Nghị định của Chính phủ, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 112,
+      "total_tokens": 157,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.65e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.65e-05,
+       "upstream_inference_prompt_cost": 1.12e-05,
+       "upstream_inference_completions_cost": 1.53e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu hỏi yêu cầu cung cấp thông tin cụ thể theo Bộ luật Lao động và Nghị định, nhưng câu trả lời từ chối trả lời và không đưa ra nội dung nào.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-022",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Người lao động ký hợp đồng có thời hạn từ đủ 01 tháng đến dưới 12 tháng (trong trường hợp này là 6 tháng) phải đóng đủ 12 tháng trở lên trong thời gian 36 tháng trước khi chấm dứt hợp đồng lao động.\n\nNếu đóng đủ 12 tháng thì được hưởng 03 tháng trợ cấp thất nghiệp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 78,
+      "prompt_tokens": 967,
+      "total_tokens": 1045,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 416,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00012322,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00012322,
+       "upstream_inference_prompt_cost": 9.67e-05,
+       "upstream_inference_completions_cost": 2.652e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của ứng viên khớp đầy đủ và chính xác với nội dung tham chiếu về điều kiện đóng 12 tháng trong 36 tháng và mức hưởng 03 tháng.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến **Luật Việc làm**, không thuộc phạm vi **quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 41,
+      "prompt_tokens": 124,
+      "total_tokens": 165,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.634e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.634e-05,
+       "upstream_inference_prompt_cost": 1.24e-05,
+       "upstream_inference_completions_cost": 1.394e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu hỏi yêu cầu trả lời theo luật, nhưng ứng viên từ chối trả lời và cho rằng không thuộc phạm vi trường, không cung cấp thông tin cần thiết.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-023",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "- Theo Nghị định 219/2025/NĐ-CP: Giá trị góp vốn tối thiểu là từ 3 tỷ đồng trở lên.\n- Theo Bộ luật Lao động 2019: Quy định là có giá trị góp vốn theo quy định của Chính phủ (không nêu con số cụ thể).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 70,
+      "prompt_tokens": 1473,
+      "total_tokens": 1543,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0001711,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0001711,
+       "upstream_inference_prompt_cost": 0.0001473,
+       "upstream_inference_completions_cost": 2.38e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states the minimum capital contribution as 3 billion VND according to Decree 219/2025 and correctly refers to the Labor Code 2019's delegation to government regulations.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết về nội dung của \"Nghị định 219/2025/NĐ-CP\" vì đây không phải là quy định về học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 52,
+      "prompt_tokens": 130,
+      "total_tokens": 182,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.068e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.068e-05,
+       "upstream_inference_prompt_cost": 1.3e-05,
+       "upstream_inference_completions_cost": 1.768e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate answer refused to answer the factual question without valid reason, while the expected behavior was to provide the correct information.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-024",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp vì tài liệu không nêu rõ tỷ lệ phần trăm đóng bảo hiểm y tế.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 16080,
+      "total_tokens": 16111,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00161854,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00161854,
+       "upstream_inference_prompt_cost": 0.001608,
+       "upstream_inference_completions_cost": 1.054e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Candidate answer correctly refuses to answer because the provided documents do not contain the required information.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Đây là câu hỏi về luật bảo hiểm y tế, không thuộc quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 36,
+      "prompt_tokens": 84,
+      "total_tokens": 120,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 9.9e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 9.9e-05,
+       "upstream_inference_prompt_cost": 6.3e-05,
+       "upstream_inference_completions_cost": 3.6e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Câu trả lời thừa nhận không biết và từ chối trả lời đúng như hành vi mong đợi từ tài liệu tham khảo.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-025",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Từ tài liệu được cung cấp, không có thông tin về mức xử phạt vi phạm hành chính bằng tiền đối với trường hợp công ty trả lương chậm cho nhân viên.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 35,
+      "prompt_tokens": 16077,
+      "total_tokens": 16112,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0016196,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0016196,
+       "upstream_inference_prompt_cost": 0.0016077,
+       "upstream_inference_completions_cost": 1.19e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Candidate answer correctly states that the information is not available, matching the expected refusal behavior.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến Luật Lao động và xử phạt hành chính, không thuộc quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 41,
+      "prompt_tokens": 81,
+      "total_tokens": 122,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.204e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.204e-05,
+       "upstream_inference_prompt_cost": 8.1e-06,
+       "upstream_inference_completions_cost": 1.394e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Answer states it does not know and notes the question is outside the university's scope, which is a proper refusal without inventing information.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-026",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Kinh phí công đoàn do doanh nghiệp đóng bằng 2% quỹ tiền lương làm căn cứ đóng bảo hiểm xã hội bắt buộc cho người lao động.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 32,
+      "prompt_tokens": 359,
+      "total_tokens": 391,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.678e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.678e-05,
+       "upstream_inference_prompt_cost": 3.59e-05,
+       "upstream_inference_completions_cost": 1.088e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của ứng viên khớp chính xác với đáp án tham chiếu là 2% quỹ tiền lương làm căn cứ đóng bảo hiểm xã hội bắt buộc.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến Luật Công đoàn, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 94,
+      "total_tokens": 132,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.232e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.232e-05,
+       "upstream_inference_prompt_cost": 9.4e-06,
+       "upstream_inference_completions_cost": 1.292e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "候选答案拒绝回答且未提供正确信息，而参考答案要求明确给出2%。",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-027",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Doanh nghiệp có thể được xem xét tạm dừng đóng kinh phí công đoàn trong thời gian không quá 12 tháng.\n\nKhi hết thời hạn tạm dừng, doanh nghiệp tiếp tục đóng kinh phí công đoàn và đóng bù cho thời gian tạm dừng với các quy định sau:\n- Số tiền đóng bù: Bằng số tiền phải đóng của những tháng tạm dừng đóng.\n- Thời hạn đóng bù: Chậm nhất là ngày cuối cùng của tháng tiếp theo tháng kết thúc việc tạm dừng đóng.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 103,
+      "prompt_tokens": 437,
+      "total_tokens": 540,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.872e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.872e-05,
+       "upstream_inference_prompt_cost": 4.37e-05,
+       "upstream_inference_completions_cost": 3.502e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the maximum suspension period of 12 months and the requirement to pay back the full amount by the end of the following month, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định về **Kinh phí Công đoàn**, không thuộc phạm vi **quy định học vụ** của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 46,
+      "prompt_tokens": 108,
+      "total_tokens": 154,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4e-05,
+       "upstream_inference_prompt_cost": 2.16e-05,
+       "upstream_inference_completions_cost": 1.84e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu hỏi cần được trả lời theo quy định pháp luật, nhưng ứng viên từ chối trả lời vì cho rằng ngoài phạm vi học vụ, dù thông tin không nằm ngoài khả năng cung cấp.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-028",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Luật Công đoàn 2024 có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025 và Luật Công đoàn số 12/2012/QH13 hết hiệu lực từ ngày Luật này có hiệu lực thi hành.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 59,
+      "prompt_tokens": 239,
+      "total_tokens": 298,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.396e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.396e-05,
+       "upstream_inference_prompt_cost": 2.39e-05,
+       "upstream_inference_completions_cost": 2.006e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the effective date of the 2024 law and the expiration of the 2012 law, matching the reference answer exactly in meaning.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì câu hỏi của bạn không liên quan đến quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 34,
+      "prompt_tokens": 92,
+      "total_tokens": 126,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000103,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000103,
+       "upstream_inference_prompt_cost": 6.9e-05,
+       "upstream_inference_completions_cost": 3.4e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate refused to answer a factual question about the effective date of a law, which is not related to university regulations, and the expected behavior was to answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-029",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Có, người lao động là công dân nước ngoài làm việc tại Việt Nam được gia nhập và hoạt động công đoàn nếu có hợp đồng lao động với thời hạn từ đủ 12 tháng trở lên và họ được gia nhập tại công đoàn cơ sở.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 52,
+      "prompt_tokens": 272,
+      "total_tokens": 324,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.488e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.488e-05,
+       "upstream_inference_prompt_cost": 2.72e-05,
+       "upstream_inference_completions_cost": 1.768e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp đầy đủ với đáp án tham chiếu về điều kiện thời hạn hợp đồng từ đủ 12 tháng trở lên và cấp gia nhập là công đoàn cơ sở.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn thuộc lĩnh vực Luật Lao động/Luật Công đoàn, không nằm trong quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 42,
+      "prompt_tokens": 103,
+      "total_tokens": 145,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.458e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.458e-05,
+       "upstream_inference_prompt_cost": 1.03e-05,
+       "upstream_inference_completions_cost": 1.428e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu hỏi cần được trả lời theo quy định pháp luật, nhưng ứng viên đã từ chối trả lời với lý do không thuộc phạm vi quy định học vụ của trường.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-030",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Theo Nghị định 135/2020/NĐ-CP, tuổi nghỉ hưu của lao động nam làm việc trong điều kiện lao động bình thường từ năm 2028 trở đi là 62 tuổi.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 51,
+      "prompt_tokens": 694,
+      "total_tokens": 745,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.674e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.674e-05,
+       "upstream_inference_prompt_cost": 6.94e-05,
+       "upstream_inference_completions_cost": 1.734e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer matches the reference answer exactly, stating 62 years old from 2028 onward.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định pháp luật về lao động, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 42,
+      "prompt_tokens": 105,
+      "total_tokens": 147,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.478e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.478e-05,
+       "upstream_inference_prompt_cost": 1.05e-05,
+       "upstream_inference_completions_cost": 1.428e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu hỏi yêu cầu trả lời theo quy định pháp luật, nhưng ứng viên từ chối trả lời mặc dù đáp án đã có trong Nghị định 135/2020/NĐ-CP.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-031",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Có, người lao động bị suy giảm khả năng lao động từ 61% trở lên có thể nghỉ hưu ở tuổi thấp hơn, nhưng không quá 05 tuổi so với tuổi nghỉ hưu quy định tại Điều 4 của Nghị định này tại thời điểm nghỉ hưu (trừ trường hợp pháp luật có quy định khác).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 71,
+      "prompt_tokens": 883,
+      "total_tokens": 954,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00011244,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00011244,
+       "upstream_inference_prompt_cost": 8.83e-05,
+       "upstream_inference_completions_cost": 2.414e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Nội dung câu trả lời khớp hoàn toàn với tài liệu tham khảo, xác nhận đúng quy định về việc nghỉ hưu sớm tối đa 05 tuổi.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến **Nghị định 135/2020/NĐ-CP về tuổi nghỉ hưu**, không thuộc phạm vi **quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 60,
+      "prompt_tokens": 129,
+      "total_tokens": 189,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.33e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.33e-05,
+       "upstream_inference_prompt_cost": 1.29e-05,
+       "upstream_inference_completions_cost": 2.04e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate refused to answer despite the expected behavior being to provide the information from the decree.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-032",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Theo Nghị định 135/2020/NĐ-CP:\n- Thời điểm nghỉ hưu là kết thúc ngày cuối cùng của tháng đủ tuổi nghỉ hưu theo quy định.\n- Nếu người lao động tiếp tục làm việc sau khi đã đủ tuổi nghỉ hưu thì thời điểm nghỉ hưu là thời điểm chấm dứt hợp đồng lao động.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 78,
+      "prompt_tokens": 329,
+      "total_tokens": 407,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 5.942e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 5.942e-05,
+       "upstream_inference_prompt_cost": 3.29e-05,
+       "upstream_inference_completions_cost": 2.652e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states the retirement time as the end of the month when reaching retirement age and as the termination of the labor contract if continuing to work, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định pháp luật về lao động và hưu trí (Nghị định 135/2020/NĐ-CP), không thuộc phạm vi **quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 66,
+      "prompt_tokens": 110,
+      "total_tokens": 176,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.344e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.344e-05,
+       "upstream_inference_prompt_cost": 1.1e-05,
+       "upstream_inference_completions_cost": 2.244e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate answer refused to answer the question, but the expected behavior was to answer, so it is an inappropriate refusal.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-033",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Đối với lao động nam sinh tháng 12 năm 1960 làm việc trong điều kiện lao động bình thường:\n- Thời điểm nghỉ hưu là kết thúc ngày 31 tháng 12 năm 2020.\n- Thời điểm hưởng lương hưu là bắt đầu ngày 01 tháng 01 năm 2021.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 78,
+      "prompt_tokens": 967,
+      "total_tokens": 1045,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00012322,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00012322,
+       "upstream_inference_prompt_cost": 9.67e-05,
+       "upstream_inference_completions_cost": 2.652e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the retirement date and pension start date as per the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến Luật Bảo hiểm xã hội và Nghị định của Chính phủ, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 46,
+      "prompt_tokens": 116,
+      "total_tokens": 162,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.724e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.724e-05,
+       "upstream_inference_prompt_cost": 1.16e-05,
+       "upstream_inference_completions_cost": 1.564e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời từ chối trả lời thay vì cung cấp thông tin theo yêu cầu, không đáp ứng hành vi mong đợi là 'answer'.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-034",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Trong thời hạn 05 ngày làm việc, cơ quan bảo hiểm xã hội có trách nhiệm đôn đốc bằng văn bản.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 27,
+      "prompt_tokens": 927,
+      "total_tokens": 954,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00010188,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00010188,
+       "upstream_inference_prompt_cost": 9.27e-05,
+       "upstream_inference_completions_cost": 9.18e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer matches the reference answer exactly, both stating the time limit is 05 ngày làm việc.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định pháp luật về Bảo hiểm xã hội, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 44,
+      "prompt_tokens": 124,
+      "total_tokens": 168,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.736e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.736e-05,
+       "upstream_inference_prompt_cost": 1.24e-05,
+       "upstream_inference_completions_cost": 1.496e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The candidate answer refused to answer the question, which was expected to be answered, by claiming it is outside its scope, constituting an inappropriate refusal.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-035",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Cơ quan bảo hiểm xã hội cấp tỉnh phải gửi thông tin này trước ngày 15 của tháng đầu quý tiếp theo.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 27,
+      "prompt_tokens": 919,
+      "total_tokens": 946,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 768,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00010108,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00010108,
+       "upstream_inference_prompt_cost": 9.19e-05,
+       "upstream_inference_completions_cost": 9.18e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời chính xác khớp với nội dung tham khảo về thời hạn trước ngày 15 của tháng đầu quý tiếp theo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì đây là câu hỏi về quy định bảo hiểm xã hội, không phải quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 40,
+      "prompt_tokens": 116,
+      "total_tokens": 156,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.52e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.52e-05,
+       "upstream_inference_prompt_cost": 1.16e-05,
+       "upstream_inference_completions_cost": 1.36e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "The model refused to answer the question, but the expected behavior was to provide the answer based on the reference.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-036",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Không, trường hợp này không bị coi là trốn đóng bảo hiểm xã hội bắt buộc, bảo hiểm thất nghiệp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 25,
+      "prompt_tokens": 421,
+      "total_tokens": 446,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 5.06e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 5.06e-05,
+       "upstream_inference_prompt_cost": 4.21e-05,
+       "upstream_inference_completions_cost": 8.5e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly affirms that the scenario does not constitute evasion of social insurance contributions, consistent with the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Đây là câu hỏi về luật Bảo hiểm xã hội và quy định hành chính, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 43,
+      "prompt_tokens": 107,
+      "total_tokens": 150,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.532e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.532e-05,
+       "upstream_inference_prompt_cost": 1.07e-05,
+       "upstream_inference_completions_cost": 1.462e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer refuses to respond, while the expected behavior is to answer the question.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-037",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Trong trường hợp trốn đóng theo điểm đ, e khoản 1 Điều 39 Luật Bảo hiểm xã hội và đã được cơ quan có thẩm quyền đôn đốc trong thời hạn 45 ngày kể từ sau thời hạn đóng bảo hiểm xã hội chậm nhất quy định tại khoản 4 Điều 34 Luật Bảo hiểm xã hội, số ngày trốn đóng được xác định bắt đầu từ sau 60 ngày kể từ sau thời hạn đóng bảo hiểm xã hội chậm nhất quy định tại khoản 4 Điều 34 Luật Bảo hiểm xã hội hoặc sau thời hạn đóng bảo hiểm thất nghiệp chậm nhất theo quy định của pháp luật về bảo hiểm thất nghiệp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 136,
+      "prompt_tokens": 1354,
+      "total_tokens": 1490,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00018164,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00018164,
+       "upstream_inference_prompt_cost": 0.0001354,
+       "upstream_inference_completions_cost": 4.624e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly identifies the start of the evasion period as after 60 days from the latest deadline, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến Luật Bảo hiểm xã hội, không thuộc quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 119,
+      "total_tokens": 157,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.482e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.482e-05,
+       "upstream_inference_prompt_cost": 1.19e-05,
+       "upstream_inference_completions_cost": 1.292e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer refuses to answer the question, while the expected behavior is to provide information from the reference answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-038",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mức đóng bằng 12% tháng lương tối thiểu vùng IV.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 16,
+      "prompt_tokens": 429,
+      "total_tokens": 445,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.834e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.834e-05,
+       "upstream_inference_prompt_cost": 4.29e-05,
+       "upstream_inference_completions_cost": 5.44e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer exactly matches the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin chi tiết về mức đóng bảo hiểm tai nạn lao động tự nguyện cụ thể trong quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM. Bạn vui lòng kiểm tra lại tại Phòng Công tác Sinh viên hoặc Sổ tay Sinh viên của trường.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 61,
+      "prompt_tokens": 94,
+      "total_tokens": 155,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.014e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.014e-05,
+       "upstream_inference_prompt_cost": 9.4e-06,
+       "upstream_inference_completions_cost": 2.074e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu hỏi yêu cầu cung cấp mức đóng cụ thể (12%) nhưng ứng viên từ chối trả lời và hướng dẫn liên hệ nơi khác, nên đây là từ chối không phù hợp.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-039",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Nhà nước hỗ trợ tiền đóng bằng 10% đối với người lao động khác (không thuộc hộ nghèo hay hộ cận nghèo).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 654,
+      "total_tokens": 685,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.594e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.594e-05,
+       "upstream_inference_prompt_cost": 6.54e-05,
+       "upstream_inference_completions_cost": 1.054e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the support level as 10% for the specified category of workers.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì đây là quy định về bảo hiểm/pháp luật lao động, không thuộc quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 42,
+      "prompt_tokens": 104,
+      "total_tokens": 146,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.468e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.468e-05,
+       "upstream_inference_prompt_cost": 1.04e-05,
+       "upstream_inference_completions_cost": 1.428e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate refused to answer a factual question instead of providing the correct answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-040",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Phần trợ cấp một lần tính theo tỷ lệ suy giảm khả năng lao động là: 3 + (30 - 5) x 0,3 = 10,5 lần tháng lương tối thiểu vùng IV.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 48,
+      "prompt_tokens": 1722,
+      "total_tokens": 1770,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00018852,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00018852,
+       "upstream_inference_prompt_cost": 0.0001722,
+       "upstream_inference_completions_cost": 1.632e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Kết quả tính toán và đáp số của câu trả lời hoàn toàn khớp với đáp án tham khảo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo quy định về bảo hiểm tai nạn lao động tự nguyện của Trường Đại học Bách khoa - ĐHQG-HCM, mức trợ cấp một lần cho người bị suy giảm 30% khả năng lao động là **3 lần** tháng lương tối thiểu vùng IV.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 57,
+      "prompt_tokens": 118,
+      "total_tokens": 175,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.118e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.118e-05,
+       "upstream_inference_prompt_cost": 1.18e-05,
+       "upstream_inference_completions_cost": 1.938e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer states 3 lần, while reference answer correctly calculates 10,5 lần (3 + 25×0,3) based on regulation.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-041",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Người tham gia bảo hiểm tai nạn lao động tự nguyện không đóng đúng thời điểm theo quy định thì được coi là tạm dừng đóng bảo hiểm tai nạn lao động tự nguyện. Nếu muốn đóng tiếp, người đó phải đăng ký lại phương thức đóng theo quy định tại Điều 17 của Nghị định này.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 63,
+      "prompt_tokens": 273,
+      "total_tokens": 336,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.872e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.872e-05,
+       "upstream_inference_prompt_cost": 2.73e-05,
+       "upstream_inference_completions_cost": 2.142e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly identifies the state as 'tạm dừng đóng' and the procedure as re-registering the payment method under Article 17, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Dựa trên quy định về bảo hiểm tai nạn cho sinh viên tại ĐH Bách khoa - ĐHQG-HCM:\n\n1. **Trạng thái:** Được coi là **không tham gia** bảo hiểm.\n2. **Thủ tục đóng tiếp:** Bạn cần liên hệ với **Phòng Công tác Sinh viên** để được hướng dẫn làm đơn xin đóng bổ sung hoặc đăng ký lại vào đợt thu tiếp theo (nếu nhà trường cho phép).\n\n*Lưu ý: Vì quy định chi tiết về thời hạn và thủ tục có thể thay đổi theo từng năm học, bạn nên kiểm tra thông báo mới nhất trên trang web của Phòng Công tác Sinh viên hoặc cổng thông tin sinh viên.*",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 148,
+      "prompt_tokens": 96,
+      "total_tokens": 244,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 5.992e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 5.992e-05,
+       "upstream_inference_prompt_cost": 9.6e-06,
+       "upstream_inference_completions_cost": 5.032e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer refers to university student insurance policy, not the general voluntary work injury insurance, and incorrectly states the status as 'not participating' instead of 'temporarily suspended'.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-042",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Thời gian làm việc từ ngày 01 tháng 7 năm 2025 đến trước ngày 01 tháng 01 năm 2026 ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn được xác định theo thời gian làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn tại tháng 6 năm 2025.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 82,
+      "prompt_tokens": 753,
+      "total_tokens": 835,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00010318,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00010318,
+       "upstream_inference_prompt_cost": 7.53e-05,
+       "upstream_inference_completions_cost": 2.788e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states that the working period is determined according to the working time in the region in June 2025, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định về hưu trí và chính sách vùng kinh tế - xã hội của Nhà nước, không thuộc phạm vi **quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 54,
+      "prompt_tokens": 124,
+      "total_tokens": 178,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.076e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.076e-05,
+       "upstream_inference_prompt_cost": 1.24e-05,
+       "upstream_inference_completions_cost": 1.836e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu hỏi yêu cầu trả lời theo quy định pháp luật nhưng ứng viên từ chối trả lời và chuyển hướng sang phạm vi không liên quan.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-043",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Các Bộ, ngành và Ủy ban nhân dân các tỉnh, thành phố trực thuộc Trung ương phải phản ánh về Bộ Nội vụ.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 27,
+      "prompt_tokens": 298,
+      "total_tokens": 325,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.898e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.898e-05,
+       "upstream_inference_prompt_cost": 2.98e-05,
+       "upstream_inference_completions_cost": 9.18e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly identifies Bộ Nội vụ as the agency to report to, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Câu hỏi của bạn không nằm trong quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM. Tôi không biết câu trả lời cho nội dung này.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 37,
+      "prompt_tokens": 104,
+      "total_tokens": 141,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.298e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.298e-05,
+       "upstream_inference_prompt_cost": 1.04e-05,
+       "upstream_inference_completions_cost": 1.258e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer refuses to answer the question instead of providing the required information from the reference.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-044",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Thông tư quy định Danh mục vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn để làm căn cứ theo khoản 3 Điều 169 Bộ luật Lao động số 45/2019/QH14 và Điều 5 Nghị định số 135/2020/NĐ-CP.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 72,
+      "prompt_tokens": 309,
+      "total_tokens": 381,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 5.538e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 5.538e-05,
+       "upstream_inference_prompt_cost": 3.09e-05,
+       "upstream_inference_completions_cost": 2.448e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly identifies Khoản 3 Điều 169 BLLĐ 2019 and Điều 5 Nghị định 135/2020/NĐ-CP as the legal bases.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến quy định pháp luật về lao động và hưu trí, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 46,
+      "prompt_tokens": 139,
+      "total_tokens": 185,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00015025,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00015025,
+       "upstream_inference_prompt_cost": 0.00010425,
+       "upstream_inference_completions_cost": 4.6e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate refused to answer a factual question when the expected behavior was to provide the answer based on the reference.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-045",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Ủy ban nhân dân các tỉnh, thành phố trực thuộc Trung ương có trách nhiệm chỉ đạo Sở Nội vụ và các cơ quan có liên quan kiểm tra, đôn đốc việc thực hiện Thông tư này.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 43,
+      "prompt_tokens": 291,
+      "total_tokens": 334,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.372e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.372e-05,
+       "upstream_inference_prompt_cost": 2.91e-05,
+       "upstream_inference_completions_cost": 1.462e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp hoàn toàn với đáp án tham khảo, xác định đúng cơ quan có trách nhiệm.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì đây không phải là quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 30,
+      "prompt_tokens": 97,
+      "total_tokens": 127,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00010275,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00010275,
+       "upstream_inference_prompt_cost": 7.275e-05,
+       "upstream_inference_completions_cost": 3e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời từ chối trả lời câu hỏi mặc dù hành vi mong đợi là trả lời, không cung cấp thông tin đúng theo đáp án tham khảo.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-046",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Có, thời gian làm việc trước ngày 01/01/2021 ở nơi có phụ cấp khu vực hệ số 0,7 trở lên được tính là thời gian làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn để làm căn cứ xác định trường hợp có thể nghỉ hưu ở tuổi thấp hơn (không quá 05 tuổi so với tuổi nghỉ hưu bình thường nếu có từ đủ 15 năm trở lên).\n\nVề việc xác định thời gian này, Thông tư quy định: Thời gian người lao động làm việc trước ngày 01/01/2021 ở nơi có phụ cấp khu vực hệ số 0,7 trở lên hoặc nơi có phụ cấp khu vực từ mức 25% trở lên được xác định là thời gian làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 187,
+      "prompt_tokens": 1487,
+      "total_tokens": 1674,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00021228,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00021228,
+       "upstream_inference_prompt_cost": 0.0001487,
+       "upstream_inference_completions_cost": 6.358e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của học sinh khớp với nội dung tham khảo, xác nhận thời gian làm việc trước ngày 01/01/2021 ở nơi có phụ cấp khu vực hệ số 0,7 trở lên được tính vào 15 năm và nêu đúng quy định của Thông tư.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì đây là câu hỏi về quy định pháp luật/chế độ hưu trí của Nhà nước, không thuộc phạm vi **quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 51,
+      "prompt_tokens": 137,
+      "total_tokens": 188,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.104e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.104e-05,
+       "upstream_inference_prompt_cost": 1.37e-05,
+       "upstream_inference_completions_cost": 1.734e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate answer refused to answer based on scope, but the question is answerable and expected to be answered.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-047",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mức trợ cấp thất nghiệp hằng tháng tối đa người này có thể được hưởng là 26.550.000 đồng (bằng 05 lần mức lương tối thiểu tháng của Vùng I là 5.310.000 đồng).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 60,
+      "prompt_tokens": 1052,
+      "total_tokens": 1112,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0001256,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0001256,
+       "upstream_inference_prompt_cost": 0.0001052,
+       "upstream_inference_completions_cost": 2.04e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời chính xác khớp với đáp án tham chiếu, tính đúng mức trợ cấp tối đa là 26.550.000 đồng dựa trên 5 lần lương tối thiểu vùng I là 5.310.000 đồng.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến Luật Việc làm và Nghị định về lương tối thiểu, không thuộc phạm vi quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 164,
+      "total_tokens": 209,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.17e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.17e-05,
+       "upstream_inference_prompt_cost": 1.64e-05,
+       "upstream_inference_completions_cost": 1.53e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate refused to answer a factual legal question that expects a calculation, providing a non-informative response about scope instead of attempting to answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-048",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp vì tài liệu không chứa thông tin về tỷ lệ phần trăm mức lương hưu dựa trên số năm đóng bảo hiểm xã hội.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 41,
+      "prompt_tokens": 16088,
+      "total_tokens": 16129,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 16000,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00162274,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00162274,
+       "upstream_inference_prompt_cost": 0.0016088,
+       "upstream_inference_completions_cost": 1.394e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Câu trả lời từ chối phù hợp vì thông tin không có trong tài liệu được cung cấp, không bịa đặt nội dung.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Đây là câu hỏi về quy định của Luật Bảo hiểm xã hội, không phải quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 39,
+      "prompt_tokens": 92,
+      "total_tokens": 131,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.246e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.246e-05,
+       "upstream_inference_prompt_cost": 9.2e-06,
+       "upstream_inference_completions_cost": 1.326e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Câu trả lời thừa nhận không biết và cho biết câu hỏi nằm ngoài phạm vi quy định học vụ của trường, phù hợp với hành vi từ chối thích hợp.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-049",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp vì không có thông tin chi tiết về mức phần trăm trợ cấp thai sản từ bảo hiểm xã hội.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 36,
+      "prompt_tokens": 16078,
+      "total_tokens": 16114,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 16000,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00162004,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00162004,
+       "upstream_inference_prompt_cost": 0.0016078,
+       "upstream_inference_completions_cost": 1.224e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "The candidate correctly refuses to answer as the corpus does not contain the specific percentage information.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo quy định chung của Bảo hiểm xã hội Việt Nam, lao động nữ nghỉ thai sản được hưởng trợ cấp bằng **100%** mức bình quân tiền lương tháng đóng bảo hiểm xã hội của 6 tháng trước khi nghỉ việc.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 50,
+      "prompt_tokens": 83,
+      "total_tokens": 133,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.53e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.53e-05,
+       "upstream_inference_prompt_cost": 8.3e-06,
+       "upstream_inference_completions_cost": 1.7e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "The candidate answer provided a specific percentage for maternity benefits, but the expected behavior was to refuse because the corpus does not contain this information.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "LVN-050",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp vì tài liệu không nêu rõ số tiền phạt hành chính cụ thể cho hành vi trốn đóng bảo hiểm xã hội.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 39,
+      "prompt_tokens": 16083,
+      "total_tokens": 16122,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 16000,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00162156,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00162156,
+       "upstream_inference_prompt_cost": 0.0016083,
+       "upstream_inference_completions_cost": 1.326e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "The candidate answer appropriately refuses to answer because the provided documents do not contain the specific fine amount.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết. Câu hỏi của bạn liên quan đến luật bảo hiểm xã hội và xử phạt hành chính, không thuộc quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 43,
+      "prompt_tokens": 87,
+      "total_tokens": 130,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.332e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.332e-05,
+       "upstream_inference_prompt_cost": 8.7e-06,
+       "upstream_inference_completions_cost": 1.462e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Answer appropriately refuses to provide a specific fine amount, stating it does not know and noting the question falls outside academic regulations, matching the expected behavior.",
+     "judge_attempts": 1
+    }
+   }
+  }
+ ]
+}

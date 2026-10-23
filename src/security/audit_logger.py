@@ -7,6 +7,17 @@ import os
 import time
 from datetime import datetime, timezone
 from typing import Dict, Any, Optional
+from src.memory.sqlite_store import sanitize_pii
+
+
+def _redact(value):
+    if isinstance(value, str):
+        return sanitize_pii(value)
+    if isinstance(value, dict):
+        return {k: _redact(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_redact(v) for v in value]
+    return value
 
 
 class AuditLogger:
@@ -29,7 +40,7 @@ class AuditLogger:
             "event_type": event_type,
             "latency_ms": latency_ms,
             "token_count": token_count,
-            "payload": payload
+            "payload": _redact(payload)
         }
         with open(self.log_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")

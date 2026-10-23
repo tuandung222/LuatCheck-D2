@@ -1,0 +1,13 @@
+{
+  "run_id": "bench-smoke-20261023-045055",
+  "packets": 6,
+  "execution_errors_not_judged": 0,
+  "runs_sha256_at_build": "69d48e72a4e2777af553b7364673c42b3b1fac1f7e030127612a45cc13e8d358",
+  "files_sha256": {
+    "SEMANTIC_JUDGING.md": "33409ac24fba7691b5710f17b60e47bd0a9e2202e95233b6e82e94ad0c44efab",
+    "judge_packets.json": "fa38743ea27c326108f2b02afe2ae818c6ea677f30ded58c1f85019b7abff5fd",
+    "private_mapping.json": "aa84cc70891686c46a86ae7895a6cd9f768dcc95bd44408eee58ceed580689e4"
+  },
+  "labels_generated": false,
+  "instructions": "A reviewer gets only judge_packets.json and SEMANTIC_JUDGING.md; private_mapping.json stays private."
+}

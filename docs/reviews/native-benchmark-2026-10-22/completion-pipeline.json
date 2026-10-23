@@ -1,0 +1,33 @@
+{
+  "started_at": "2026-10-22T09:58:10.942417+00:00",
+  "steps": [
+    {
+      "name": "main-analysis",
+      "returncode": 0
+    },
+    {
+      "name": "main-blind-export",
+      "returncode": 0
+    },
+    {
+      "name": "main-table",
+      "returncode": 0
+    },
+    {
+      "name": "post-main-real-tests",
+      "returncode": 0
+    },
+    {
+      "name": "post-main-report-build",
+      "returncode": 0
+    },
+    {
+      "name": "post-main-report-render",
+      "returncode": 0
+    }
+  ],
+  "semantic_judging_executed": false,
+  "human_labels_created": false,
+  "status": "operational_artifacts_ready_pending_visual_review_and_semantic_validation",
+  "completed_at": "2026-10-22T10:25:43.712402+00:00"
+}

@@ -1,0 +1,318 @@
+{
+  "recorded_at": "2026-10-22T22:06:57+00:00",
+  "backend_status": {
+    "numpy": {
+      "package": "numpy",
+      "version": "2.5.4",
+      "available": true
+    },
+    "faiss": {
+      "package": "faiss-cpu",
+      "version": "1.15.1",
+      "available": true,
+      "usable_with_torch": false,
+      "note": "faiss-cpu and torch each bundle their own libomp on macOS; one process that loads both aborts ('OMP: Error #15') or segfaults (reproduced on this Mac with faiss-cpu 1.15.1 + torch 2.14.1, in both import orders, also with KMP_DUPLICATE_LIB_OK=TRUE). FAISS therefore refuses to load in a process where torch is imported, and the local sentence-transformers provider refuses to load in a process where faiss is imported. Use HTTP embeddings (ollama / openai_compatible) with FAISS, or write the FAISS store in a separate process with `python -m src.indexing add-store`.",
+      "torch_loaded_in_this_process": false
+    },
+    "sqlite_vec": {
+      "package": "sqlite-vec",
+      "version": "0.1.9",
+      "available": true
+    },
+    "lancedb": {
+      "package": "lancedb",
+      "version": "0.40.0",
+      "available": true
+    },
+    "qdrant": {
+      "package": "qdrant-client",
+      "version": "1.20.0",
+      "available": true
+    },
+    "chroma": {
+      "package": "chromadb",
+      "version": "1.5.9",
+      "available": true
+    }
+  },
+  "embedding_model": {
+    "load_seconds": 5.03,
+    "device": "mps",
+    "rss_before_load_mb": 696.3,
+    "memory_rss_plus_mps_after_load_mb": 2525.5,
+    "native_max_seq_length": 8192,
+    "configured_max_seq_length": 2048,
+    "dimension": 1024,
+    "model_revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568",
+    "mps_allocated_after_close_mb": 0.0,
+    "memory_peak_seen_mb": 2689.9,
+    "memory_loaded_end_mb": 2489.8,
+    "rss_after_close_mb": 956.7,
+    "process_peak_rss_mb": 1144.6
+  },
+  "http_provider_error_path": {
+    "model": "qwen2.5:3b",
+    "checked": "HTTP error from a real server raises EmbeddingError"
+  },
+  "build": {
+    "wall_seconds": 31.6,
+    "records": 363,
+    "chunks": 421,
+    "embed_seconds": 29.103,
+    "embed_texts_per_second": 14.47,
+    "keyword_build_seconds": 0.018,
+    "keyword_size_bytes": 1249280,
+    "stores": {
+      "numpy": {
+        "write_seconds": 0.01,
+        "size_bytes": 2099881,
+        "count": 421,
+        "version": "2.5.4"
+      },
+      "faiss": {
+        "write_seconds": 0.007,
+        "size_bytes": 2113512,
+        "count": 421,
+        "version": "1.15.1"
+      },
+      "faiss_hnsw": {
+        "write_seconds": 0.051,
+        "size_bytes": 2227673,
+        "count": 421,
+        "version": "1.15.1"
+      },
+      "sqlite_vec": {
+        "write_seconds": 0.05,
+        "size_bytes": 4694016,
+        "count": 421,
+        "version": "0.1.9"
+      },
+      "lancedb": {
+        "write_seconds": 0.307,
+        "size_bytes": 1951357,
+        "count": 421,
+        "version": "0.40.0"
+      },
+      "qdrant": {
+        "write_seconds": 0.396,
+        "size_bytes": 5210705,
+        "count": 421,
+        "version": "1.20.0"
+      },
+      "chroma": {
+        "write_seconds": 0.324,
+        "size_bytes": 5921444,
+        "count": 421,
+        "version": "1.5.9"
+      }
+    }
+  },
+  "fts5_probation_ids_top5": [
+    "Dieu_27",
+    "Dieu_25",
+    "Dieu_26",
+    "Dieu_24",
+    "HCMUT_HVDT1260_Dieu_1_S5_3"
+  ],
+  "query_embedding_ms_per_query": 21.5,
+  "exact_backends_compared": [
+    "numpy",
+    "sqlite_vec",
+    "lancedb",
+    "qdrant"
+  ],
+  "query_latency_ms_top10": {
+    "numpy": {
+      "median": 0.04,
+      "max": 0.067,
+      "n_queries": 8
+    },
+    "sqlite_vec": {
+      "median": 1.055,
+      "max": 3.831,
+      "n_queries": 8
+    },
+    "lancedb": {
+      "median": 2.397,
+      "max": 30.192,
+      "n_queries": 8
+    },
+    "qdrant": {
+      "median": 0.655,
+      "max": 3.376,
+      "n_queries": 8
+    },
+    "chroma": {
+      "median": 1.444,
+      "max": 3.733,
+      "n_queries": 8
+    }
+  },
+  "approximate_recall_at_10_vs_numpy": {
+    "chroma": 1.0
+  },
+  "faiss_isolated_process": {
+    "latency_ms_median_top10": {
+      "faiss": 0.093,
+      "faiss_hnsw": 0.116
+    },
+    "hnsw_recall_at_10_vs_flat": 1.0,
+    "n_queries": 8
+  },
+  "benchmark_gold_rank_summary_bll2019_v1": {
+    "note": "retrieval-only, gold = ground_truth_article_ids (AI-checked, not expert certified); documents = whole articles; searched in the multi-domain test index (labour code + HCMUT). NOT held-out: the keyword `bigrams` default was chosen after comparing ranks on these same 9 tasks, and the questions quote statute wording",
+    "summary": {
+      "numpy": {
+        "hybrid": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "keyword": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "vector": {
+          "gold_in_top1": 8,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 0.9444
+        }
+      },
+      "sqlite_vec": {
+        "hybrid": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "keyword": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "vector": {
+          "gold_in_top1": 8,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 0.9444
+        }
+      },
+      "lancedb": {
+        "hybrid": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "keyword": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "vector": {
+          "gold_in_top1": 8,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 0.9444
+        }
+      },
+      "qdrant": {
+        "hybrid": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "keyword": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "vector": {
+          "gold_in_top1": 8,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 0.9444
+        }
+      },
+      "chroma": {
+        "hybrid": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "keyword": {
+          "gold_in_top1": 9,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 1.0
+        },
+        "vector": {
+          "gold_in_top1": 8,
+          "gold_in_top5": 9,
+          "gold_in_top10": 9,
+          "n_tasks": 9,
+          "mrr_at_20": 0.9444
+        }
+      }
+    },
+    "ranks_numpy_hybrid": {
+      "BLL19-01-PROBATION": {
+        "Dieu_25": 1
+      },
+      "BLL19-02-PROBATION_WAGE": {
+        "Dieu_26": 1
+      },
+      "BLL19-03-NOTICE": {
+        "Dieu_35": 1
+      },
+      "BLL19-04-ABSENCE": {
+        "Dieu_36": 1
+      },
+      "BLL19-05-PREGNANCY": {
+        "Dieu_37": 1
+      },
+      "BLL19-06-UNLAWFUL_RESIGNATION": {
+        "Dieu_40": 1
+      },
+      "BLL19-07-NOTICE_AND_SEVERANCE": {
+        "Dieu_35": 5,
+        "Dieu_46": 1
+      },
+      "BLL19-08-UNLAWFUL_TERMINATION": {
+        "Dieu_41": 1,
+        "Dieu_46": 5
+      },
+      "BLL19-09-DEPOSIT": {
+        "Dieu_17": 1
+      }
+    }
+  },
+  "hybrid_search_ms_incl_query_embedding": {
+    "median": 38.3,
+    "max": 39.7,
+    "n_queries": 8
+  }
+}

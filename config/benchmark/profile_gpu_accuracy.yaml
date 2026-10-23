@@ -1,0 +1,7 @@
+# Run profile for accuracy collection against a (possibly port-forwarded) llama-server started with matching
+# parallel slots (-np N, -c >= 8192*N). Concurrency inflates and varies latency: it is recorded but not reportable.
+name: gpu-accuracy
+workers: 8
+latency_reportable: false
+record_memory: false
+description: N concurrent workers, one agent instance per worker. Latency is recorded for diagnosis only and is not reportable; server memory is not sampled.

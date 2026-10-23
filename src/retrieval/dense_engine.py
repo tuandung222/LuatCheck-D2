@@ -8,8 +8,8 @@ Features:
      * 'bge-m3' (1024-dim multilingual SOTA)
      * 'nomic-embed-text' (768-dim)
    - Pre-computes normalized dense vector representations and performs matrix cosine similarity.
-   - Built-in graceful fallback when offline.
-2. TfidfDenseRetriever: Statistical n-gram fallback retriever for offline baseline comparisons.
+   - Explicit failure when the configured embedding service is unavailable.
+2. TfidfDenseRetriever: Statistical n-gram retriever selected explicitly for local comparisons.
 3. DenseSemanticRetriever: Alias to NeuralDenseRetriever.
 """
 import os
@@ -60,7 +60,7 @@ class TfidfDenseRetriever(BaseDenseRetriever):
 class NeuralDenseRetriever(BaseDenseRetriever):
     """
     True Deep Learning Neural Dense Embedding Retriever for Legal Text.
-    Executes 100% on CPU using lightweight quantized/compact embedding models.
+    Execution hardware is determined by the configured embedding service.
     """
 
     def __init__(
@@ -100,8 +100,6 @@ class NeuralDenseRetriever(BaseDenseRetriever):
         ).rstrip("/")
         self.timeout_seconds = timeout_seconds
 
-        # Fallback offline statistical retriever
-        self._offline_fallback = TfidfDenseRetriever(self.corpus)
         self.doc_matrix: Optional[np.ndarray] = None
         self._is_online: bool = False
 
@@ -154,7 +152,7 @@ class NeuralDenseRetriever(BaseDenseRetriever):
         first_vec = self._embed_single(self.raw_texts[0])
         if first_vec is None:
             self._is_online = False
-            return
+            raise ConnectionError("Neural embeddings unavailable. Choose retrieval_mode='tfidf' explicitly; no implicit fallback.")
 
         dim = len(first_vec)
         vectors = [first_vec]
@@ -163,10 +161,10 @@ class NeuralDenseRetriever(BaseDenseRetriever):
         for text in self.raw_texts[1:]:
             vec = self._embed_single(text)
             if vec is None or len(vec) != dim:
-                # If any document fails, abort neural mode and fallback
+                # If any document fails, abort neural initialization
                 self._is_online = False
                 self.doc_matrix = None
-                return
+                raise ConnectionError("Embedding corpus initialization failed; neural retrieval was not initialized.")
             vectors.append(vec)
 
         # Assemble and L2-normalize document matrix (N x D)
@@ -178,7 +176,7 @@ class NeuralDenseRetriever(BaseDenseRetriever):
     def search(self, query: str, top_k: int = 5) -> List[Tuple[str, float]]:
         """
         Search articles using neural dense vector cosine similarity.
-        Falls back gracefully to statistical retriever if embedding server is offline.
+        Raises an error if neural query embeddings are unavailable.
         """
         if not query.strip():
             return []
@@ -201,8 +199,7 @@ class NeuralDenseRetriever(BaseDenseRetriever):
                             results.append((self.doc_ids[idx], score))
                     return results
 
-        # Graceful fallback for offline test environments
-        return self._offline_fallback.search(query, top_k=top_k)
+        raise ConnectionError("Neural query embedding unavailable; no implicit statistical fallback.")
 
 
 DenseSemanticRetriever = NeuralDenseRetriever

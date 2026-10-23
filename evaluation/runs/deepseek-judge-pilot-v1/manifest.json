@@ -1,0 +1,50 @@
+{
+  "status": "collected_pending_human_validation",
+  "created_at": "2026-10-22T11:55:11.875939+00:00",
+  "phase": "pilot",
+  "config": {
+    "base_url": "https://ai-gateway01.qualgo.ai/v1",
+    "credential_env": "LUATCHECK_JUDGE_API_KEY",
+    "model": "deepseek/deepseek-v4-flash",
+    "requested_family": "DeepSeek V4.1 Flash",
+    "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+    "revision_pinned": false,
+    "model_identity_note": "Gateway /model/info identifies provider deepseek and upstream deepseek/deepseek-v4-flash. Official DeepSeek documentation maps the legacy deepseek-v4-flash alias to V4.1-Flash-1017. Actual gateway routing is not independently attested; preserve returned model IDs.",
+    "model_identity_source": "https://api-docs.deepseek.com/",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 8192,
+    "timeout_seconds": 180,
+    "max_attempts": 2,
+    "concurrency": 2,
+    "temperature": null,
+    "seed": null,
+    "billing_note": "Use real gateway usage and cost headers if present. Actual invoiced charges are unknown unless separately obtained; do not apply official direct-API prices to a gateway."
+  },
+  "source_runs_sha256": "631480b2989859bd95d39bc8b7754caa1687a221cfd3858210c7129d0920b06e",
+  "expected_review_ids": [
+    "008dfaa6565b0abc730607b1",
+    "0d3daae8b9b605a0bdf9cc77"
+  ],
+  "input_sha256": {
+    "judge_prompt.txt": "9d863c6560b6ac95ad1b601e848a3418cae40590b75c111a517efb5b91afc402",
+    "input-manifest.json": "393b69a704ea1cb5922b45ac4aff758813d20a4b69f1886e5a444bc0141d6db5",
+    "input-SEMANTIC_JUDGING.md": "d9dbee8fc6659e3f9921ae4ada015788516a4372bd728ebccc8e7a8b0fd445ff",
+    "config.json": "4624f3d1db42b782fe8718444ee0e4204740dff3eaf0fa6334e9ca6f287ba81e",
+    "judge_gateway.py": "f41107ccb6cb3fb3789c06b3adf6a987d8fd586901d8aa41f8bb4ba834a595ce",
+    "input-judge_packets.json": "359dcccc5480941552d3ebdaee5b89e41a1a28ddf1f5cf4bcb46f4a18ddfbd43"
+  },
+  "human_labels": false,
+  "human_judge_agreement": null,
+  "actual_invoiced_charge_usd": null,
+  "collected": 2,
+  "valid": 2,
+  "invalid": 0,
+  "judgments_sha256": "31411b7fae8a93278565f43cc850a8444475d165d4f00cb8cb48b6a7b5fc47f3",
+  "attempts_sha256": {
+    "008dfaa6565b0abc730607b1-a1.json": "4b6cf2756c1e998bacbb99bb919c73bb15bd07da2a6e81f7ae90126e9ea4f1cc",
+    "0d3daae8b9b605a0bdf9cc77-a1.json": "0f8397b3067a1866e16129958ad0db3b3d107c862101d05c0c68f130a06d75f7"
+  }
+}

@@ -1,0 +1,29 @@
+model:
+  provider: ollama
+  endpoint: http://127.0.0.1:9
+  name: qwen2.5:3b
+  temperature: 0.1
+  timeout_seconds: 30
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+retrieval:
+  bm25_top_k: 5
+  dense_top_k: 5
+  rrf_k: 60
+  final_top_k: 5
+  corpus_path: data/corpus/labor_code_2019_official.json
+  dense_model_type: tfidf
+verifier:
+  mode: l1
+  l1_overlap_threshold: 0.25
+  l2_use_slm: false
+memory:
+  sqlite_path: /Users/admin/Desktop/Recents/LuatCheck-D2/output/playwright/web-ui-review-2026-10-22/memory.sqlite3
+  similarity_threshold: 0.85
+  index_version: native-v2026.10.22
+  enabled: false
+security:
+  audit_log_path: /Users/admin/Desktop/Recents/LuatCheck-D2/output/playwright/web-ui-review-2026-10-22/audit.jsonl
+  egress_requires_confirmation: true
+  outbox_path: /Users/admin/Desktop/Recents/LuatCheck-D2/output/playwright/web-ui-review-2026-10-22/outbox.jsonl

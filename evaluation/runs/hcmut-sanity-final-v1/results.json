@@ -1,0 +1,3872 @@
+{
+ "answer_model": "google/gemma-4-31b-it",
+ "judge_model": "deepseek/deepseek-v4-flash",
+ "tasks": "evaluation/benchmarks/hcmut_v1/tasks.json",
+ "note": "LLM answers and LLM judgments; not human labels.",
+ "summary": {
+  "oracle": {
+   "appropriate_refusal": 5,
+   "correct": 44,
+   "partially_correct": 1
+  },
+  "closed_book": {
+   "appropriate_refusal": 2,
+   "correct": 15,
+   "inappropriate_refusal": 2,
+   "incorrect": 19,
+   "partially_correct": 12
+  }
+ },
+ "rows": [
+  {
+   "task_id": "HCMUT-001",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) được tối đa 14 học kỳ chính để hoàn thành khóa học.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 34,
+      "prompt_tokens": 452,
+      "total_tokens": 486,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.836e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.836e-05,
+       "upstream_inference_prompt_cost": 6.102e-05,
+       "upstream_inference_completions_cost": 1.734e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states the maximum of 14 official semesters, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Quyết định 1260/QĐ-ĐHBK, chương trình PFIEV được tối đa **12 học kỳ chính** để hoàn thành khóa học.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 39,
+      "prompt_tokens": 104,
+      "total_tokens": 143,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.009e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.009e-05,
+       "upstream_inference_prompt_cost": 1.02e-05,
+       "upstream_inference_completions_cost": 1.989e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "The candidate answer says 12 học kỳ chính, but the reference answer states 14 học kỳ chính.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-002",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi đăng ký thêm các lớp dự thính, tổng số tín chỉ tối đa trong một học kỳ chính của sinh viên chính quy là 28 tín chỉ.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 34,
+      "prompt_tokens": 482,
+      "total_tokens": 516,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.857e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.857e-05,
+       "upstream_inference_prompt_cost": 6.123e-05,
+       "upstream_inference_completions_cost": 1.734e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời nêu đúng tổng số tín chỉ tối đa là 28, khớp với nội dung chính của đáp án tham khảo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Quyết định 1260/QĐ-ĐHBK, khi đăng ký thêm lớp dự thính, tổng số tín chỉ tối đa trong một học kỳ chính là **25 tín chỉ**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 112,
+      "total_tokens": 157,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.06e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.06e-05,
+       "upstream_inference_prompt_cost": 3.36e-05,
+       "upstream_inference_completions_cost": 2.7e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "候选答案给出的25 tín chỉ与参考答案规定的28 tín chỉ不符。",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-003",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Hạng tốt nghiệp xuất sắc hoặc giỏi của sinh viên sẽ bị giảm một mức nếu khối lượng của các học phần phải học lại vượt quá 5% so với tổng số tín chỉ quy định cho toàn chương trình.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 509,
+      "total_tokens": 554,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.7825e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.7825e-05,
+       "upstream_inference_prompt_cost": 6.4875e-05,
+       "upstream_inference_completions_cost": 2.295e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states the threshold of 5% as per the reference.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Hạng tốt nghiệp xuất sắc hoặc giỏi của sinh viên bị giảm một mức nếu khối lượng học phần phải học lại vượt quá **5%** tổng số tín chỉ của chương trình.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 122,
+      "total_tokens": 160,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.585e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.585e-05,
+       "upstream_inference_prompt_cost": 1.647e-05,
+       "upstream_inference_completions_cost": 1.938e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp chính xác với đáp án tham chiếu về ngưỡng 5% tổng số tín chỉ.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-004",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Sinh viên chính quy bị buộc thôi học (không phải do vi phạm kỷ luật ở mức buộc thôi học) có thể được xem xét thu nhận lại để chuyển sang hình thức đào tạo vừa làm vừa học hoặc đào tạo từ xa.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 48,
+      "prompt_tokens": 409,
+      "total_tokens": 457,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.5855e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.5855e-05,
+       "upstream_inference_prompt_cost": 5.1375e-05,
+       "upstream_inference_completions_cost": 2.448e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the two forms of training (vừa làm vừa học hoặc đào tạo từ xa) as per the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Sinh viên trong trường hợp này có thể được xem xét thu nhận lại để chuyển sang hình thức đào tạo **Vừa làm vừa học**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 29,
+      "prompt_tokens": 127,
+      "total_tokens": 156,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.8095e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.8095e-05,
+       "upstream_inference_prompt_cost": 1.3305e-05,
+       "upstream_inference_completions_cost": 1.479e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "The candidate answer only mentions 'Vừa làm vừa học' but omits 'đào tạo từ xa', which is also included in the reference answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-005",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Kết quả kiểm tra trình độ tiếng Anh đầu vào theo định dạng TOEIC vào cuối học kỳ 1 năm nhất được dùng để xét miễn các học phần Anh văn 1, 2, 3, 4 tương ứng theo thang điểm quy đổi tại bảng quy đổi tại tiểu mục 3.1 mục 3 của Phụ lục. Kết quả này chỉ được sử dụng để xét miễn một lần duy nhất.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 86,
+      "prompt_tokens": 3212,
+      "total_tokens": 3298,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00047364,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00047364,
+       "upstream_inference_prompt_cost": 0.00042978,
+       "upstream_inference_completions_cost": 4.386e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Nội dung câu trả lời khớp hoàn toàn với đáp án tham khảo về mục đích và tính một lần của việc xét miễn.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Kết quả kiểm tra tiếng Anh theo định dạng TOEIC vào cuối học kỳ 1 năm nhất được dùng để:\n1. **Xếp lớp** học tiếng Anh phù hợp với trình độ.\n2. **Miễn học/miễn thi** các học phần tiếng Anh tương ứng (nếu đạt điểm theo quy định).\n\nKết quả này **không được dùng nhiều lần** (chỉ có giá trị cho đợt xếp lớp/miễn học tại thời điểm đó).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 101,
+      "prompt_tokens": 116,
+      "total_tokens": 217,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000188,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000188,
+       "upstream_inference_prompt_cost": 8.7e-05,
+       "upstream_inference_completions_cost": 0.000101
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Câu trả lời đúng về việc dùng để miễn học phần tiếng Anh và chỉ dùng một lần, nhưng thêm mục đích xếp lớp/miễn thi không khớp với quy định tham chiếu.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-006",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Sinh viên khóa 2024 về sau có chứng chỉ JLPT N2 trong vòng 12 tháng được xét miễn các học phần: Tiếng Nhật 1, 2, 3, 4.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 46,
+      "prompt_tokens": 3215,
+      "total_tokens": 3261,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000457485,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000457485,
+       "upstream_inference_prompt_cost": 0.000434025,
+       "upstream_inference_completions_cost": 2.346e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer matches the reference answer exactly, listing Tiếng Nhật 1, 2, 3, and 4 as the exempted courses.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Sinh viên khóa 2024 trở về sau có chứng chỉ JLPT N2 (còn thời hạn 12 tháng) được xét miễn các học phần: **Tiếng Nhật 1, Tiếng Nhật 2, Tiếng Nhật 3 và Tiếng Nhật 4**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 61,
+      "prompt_tokens": 120,
+      "total_tokens": 181,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.84e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.84e-05,
+       "upstream_inference_prompt_cost": 2.4e-05,
+       "upstream_inference_completions_cost": 2.44e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer matches the reference answer exactly.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-007",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi xét điều kiện đăng ký học phần Khóa luận tốt nghiệp, chuẩn ngoại ngữ tốt nghiệp tiếng Anh chỉ được áp dụng đối với kỹ năng Nghe – Đọc.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 36,
+      "prompt_tokens": 3210,
+      "total_tokens": 3246,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0009846,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0009846,
+       "upstream_inference_prompt_cost": 0.000963,
+       "upstream_inference_completions_cost": 2.16e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp hoàn toàn với đáp án tham khảo, nêu đúng chỉ có kỹ năng Nghe – Đọc.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Phụ lục 1 sửa đổi bởi Quyết định 2749/QĐ-ĐHBK, chuẩn ngoại ngữ tốt nghiệp tiếng Anh chỉ được áp dụng đối với kỹ năng **Nghe và Đọc**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 48,
+      "prompt_tokens": 115,
+      "total_tokens": 163,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.8085e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.8085e-05,
+       "upstream_inference_prompt_cost": 1.3605e-05,
+       "upstream_inference_completions_cost": 2.448e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly identifies that the English graduation foreign language standard applies only to Listening and Reading skills, matching the reference answer exactly.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-008",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Sinh viên Chương trình định hướng Nhật Bản từ khóa 2026 về sau, để đăng ký môn học cho năm thứ ba, cần đạt các học phần **Tiếng Nhật 1, 2, 3, 4** tính đến **hết năm hai**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 58,
+      "prompt_tokens": 3217,
+      "total_tokens": 3275,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 3072,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000279555,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000279555,
+       "upstream_inference_prompt_cost": 0.000249975,
+       "upstream_inference_completions_cost": 2.958e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly identifies the required Japanese courses (1,2,3,4) and the timeframe (end of second year), matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin chi tiết về yêu cầu cụ thể cho sinh viên khóa 2026 trong Quyết định 2749/QĐ-ĐHBK. Bạn vui lòng kiểm tra lại văn bản này hoặc liên hệ Phòng Đào tạo để có thông tin chính xác nhất.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 63,
+      "prompt_tokens": 122,
+      "total_tokens": 185,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.96e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.96e-05,
+       "upstream_inference_prompt_cost": 2.44e-05,
+       "upstream_inference_completions_cost": 2.52e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Candidate answer refuses to answer when expected to provide specific information.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-009",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Điểm trung bình học kỳ và điểm trung bình tích lũy được làm tròn đến 0.01, áp dụng từ học kỳ 1 năm học 2026-2027 và từ đợt tốt nghiệp tháng 04/2027.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 60,
+      "prompt_tokens": 758,
+      "total_tokens": 818,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00012909,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00012909,
+       "upstream_inference_prompt_cost": 9.849e-05,
+       "upstream_inference_completions_cost": 3.06e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời khớp chính xác với nội dung tham chiếu về quy định làm tròn và thời điểm áp dụng.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Quyết định 1259/QĐ-ĐHBK:\n\n*   **Làm tròn:** Điểm trung bình học kỳ và điểm trung bình tích lũy được làm tròn đến **2 chữ số thập phân**.\n*   **Thời điểm áp dụng:** Áp dụng từ **Học kỳ 1 năm học 2023-2024**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 82,
+      "prompt_tokens": 117,
+      "total_tokens": 199,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00016975,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00016975,
+       "upstream_inference_prompt_cost": 8.775e-05,
+       "upstream_inference_completions_cost": 8.2e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Candidate correctly states rounding to 2 decimal places, but incorrectly identifies the application semester as 2023-2024 instead of 2026-2027.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-010",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Đối với các học phần thuộc khối kiến thức tốt nghiệp đại học, điểm đạt là từ điểm C.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 22,
+      "prompt_tokens": 971,
+      "total_tokens": 993,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00075025,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00075025,
+       "upstream_inference_prompt_cost": 0.00072825,
+       "upstream_inference_completions_cost": 2.2e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer matches reference answer: stating that the passing grade starts from letter grade C.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Quyết định 1259/QĐ-ĐHBK, đối với học phần tính theo loại đạt có phân mức, điểm đạt bắt đầu từ điểm chữ **D**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 40,
+      "prompt_tokens": 117,
+      "total_tokens": 157,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.4275e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.4275e-05,
+       "upstream_inference_prompt_cost": 1.3875e-05,
+       "upstream_inference_completions_cost": 2.04e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "参考答案为从C开始，候选答案却说是D，与规定不符。",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-011",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Sinh viên được dự thi để lấy điểm thay thế cho điểm I trong thời hạn tối đa một năm.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 22,
+      "prompt_tokens": 708,
+      "total_tokens": 730,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0001504,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0001504,
+       "upstream_inference_prompt_cost": 0.0001416,
+       "upstream_inference_completions_cost": 8.8e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời khớp với tham chiếu về thời hạn tối đa một năm.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Quyết định 1259/QĐ-ĐHBK, sinh viên được hoãn thi (nhận điểm I) phải dự thi lấy điểm thay thế trong **học kỳ tiếp theo** mà học phần đó được tổ chức.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 52,
+      "prompt_tokens": 125,
+      "total_tokens": 177,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.9555e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.9555e-05,
+       "upstream_inference_prompt_cost": 1.3035e-05,
+       "upstream_inference_completions_cost": 2.652e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời nêu thời hạn là học kỳ tiếp theo có tổ chức học phần, không khớp với đáp án tham chiếu 'tối đa một năm'.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-012",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Sĩ số tối thiểu để mở các học phần thực hành, thực tập, thí nghiệm là 20.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 24,
+      "prompt_tokens": 673,
+      "total_tokens": 697,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000103095,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000103095,
+       "upstream_inference_prompt_cost": 9.0855e-05,
+       "upstream_inference_completions_cost": 1.224e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states the minimum class size as 20, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Điều 4 của Quyết định 1259/QĐ-ĐHBK, sĩ số tối thiểu để mở một lớp học phần thực hành, thực tập hoặc thí nghiệm là **10 sinh viên**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 47,
+      "prompt_tokens": 116,
+      "total_tokens": 163,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.771e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.771e-05,
+       "upstream_inference_prompt_cost": 1.374e-05,
+       "upstream_inference_completions_cost": 2.397e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer says 10 students, but the reference answer is 20 learners.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-013",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Số phiên học bố trí dạy thay của một lớp không được vượt quá 20% tổng số phiên học.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 24,
+      "prompt_tokens": 1114,
+      "total_tokens": 1138,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00015879,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00015879,
+       "upstream_inference_prompt_cost": 0.00014655,
+       "upstream_inference_completions_cost": 1.224e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời nêu đúng tỷ lệ 20% tổng số phiên học theo yêu cầu của câu hỏi.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Số phiên học bố trí dạy thay của một lớp không được vượt quá **20%** tổng số phiên học.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 25,
+      "prompt_tokens": 113,
+      "total_tokens": 138,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.6085e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.6085e-05,
+       "upstream_inference_prompt_cost": 1.3335e-05,
+       "upstream_inference_completions_cost": 1.275e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời đúng đáp ứng yêu cầu về phần trăm tối đa cho phép (20%) theo quy định, phù hợp với câu hỏi.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-014",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi đăng ký dạy bù, giảng viên phải đăng ký trước ngày dạy bù tối thiểu 01 ngày làm việc và tối đa 07 ngày (trước 16g00 của ngày làm việc đó).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 46,
+      "prompt_tokens": 1115,
+      "total_tokens": 1161,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 1056,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000110625,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000110625,
+       "upstream_inference_prompt_cost": 8.7165e-05,
+       "upstream_inference_completions_cost": 2.346e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Đáp án thí sinh đưa ra đúng số ngày tối thiểu và tối đa (01 và 07) nhưng thêm điều kiện 'ngày làm việc' và 'trước 16g00' so với tham chiếu chỉ nêu 'ngày', làm thay đổi phạm vi ý nghĩa.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Quyết định 2282/QĐ-ĐHBK, khi đăng ký dạy bù, giảng viên phải đăng ký trước ngày dạy bù:\n- Tối thiểu: **03 ngày**.\n- Tối đa: **15 ngày**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 56,
+      "prompt_tokens": 114,
+      "total_tokens": 170,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.011e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.011e-05,
+       "upstream_inference_prompt_cost": 1.155e-05,
+       "upstream_inference_completions_cost": 2.856e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "候选答案中给出的最少和最多天数与参考答案不符，属于内容错误。",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-015",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Giảng viên sẽ bị xem xét hoãn phân công ở học kỳ tiếp theo đối với cùng môn học nếu có kết quả khảo sát học phần trong học kỳ liền trước từ 3.4/5 trở xuống và có cỡ mẫu đạt.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 50,
+      "prompt_tokens": 2417,
+      "total_tokens": 2467,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00186275,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00186275,
+       "upstream_inference_prompt_cost": 0.00181275,
+       "upstream_inference_completions_cost": 5e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời khớp đầy đủ với đáp án tham chiếu về ngưỡng 3,4/5 trở xuống và điều kiện cỡ mẫu đạt.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Giảng viên chương trình quốc tế có kết quả khảo sát học phần của học kỳ liền trước ở mức **\"Kém\"** (hoặc không đạt yêu cầu theo quy định cụ thể của nhà trường) sẽ được xem xét hoãn phân công giảng dạy môn học đó ở học kỳ tiếp theo.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 63,
+      "prompt_tokens": 123,
+      "total_tokens": 186,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.6815e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.6815e-05,
+       "upstream_inference_prompt_cost": 1.4685e-05,
+       "upstream_inference_completions_cost": 3.213e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Candidate answer correctly identifies low evaluation but lacks the precise numeric threshold (3.4/5) from the reference.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-016",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Giảng viên có trình độ Thạc sĩ phải tốt nghiệp tại các trường Đại học nước ngoài đúng ngành hoặc thuộc ngành gần.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 27,
+      "prompt_tokens": 675,
+      "total_tokens": 702,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000101055,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000101055,
+       "upstream_inference_prompt_cost": 8.7285e-05,
+       "upstream_inference_completions_cost": 1.377e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states that the master's degree must be from a foreign university and in the correct or related field, matching the key requirements of the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Phụ lục 2 sửa đổi bởi Quyết định 2282/QĐ-ĐHBK, giảng viên chương trình PFIEV hoặc Tài năng có trình độ thạc sĩ (không có bằng tiến sĩ) phải đáp ứng:\n\n*   **Nơi cấp bằng:** Được cấp bởi các trường đại học uy tín ở nước ngoài hoặc các trường đại học trong nước được công nhận tương đương.\n*   **Ngành đào tạo:** Phải thuộc ngành chuyên môn giảng dạy hoặc ngành gần.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 108,
+      "prompt_tokens": 123,
+      "total_tokens": 231,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.78e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.78e-05,
+       "upstream_inference_prompt_cost": 2.46e-05,
+       "upstream_inference_completions_cost": 4.32e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer incorrectly allows domestic universities, while the reference answer requires a master's degree from a foreign university.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-017",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Nếu bản thân người học bị ốm đau, cần nộp giấy nhập viện hoặc giấy xuất viện của bệnh viện hoặc đơn vị có chức năng.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 32,
+      "prompt_tokens": 479,
+      "total_tokens": 511,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.7145e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.7145e-05,
+       "upstream_inference_prompt_cost": 6.0825e-05,
+       "upstream_inference_completions_cost": 1.632e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời khớp đúng với tham chiếu về loại giấy tờ cần nộp khi bản thân người học bị ốm đau.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Để được xét gia hạn nộp học phí do bị ốm đau, người học cần nộp **Giấy xác nhận của cơ sở y tế có thẩm quyền** (ví dụ: Giấy ra viện, giấy chứng nhận bệnh lý...).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 51,
+      "prompt_tokens": 100,
+      "total_tokens": 151,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000126,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000126,
+       "upstream_inference_prompt_cost": 7.5e-05,
+       "upstream_inference_completions_cost": 5.1e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "The candidate answer includes giấy ra viện (discharge paper) as an example but omits giấy nhập viện (admission paper) and adds giấy chứng nhận bệnh lý not specified in the reference.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-018",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Người học phải nộp đơn đăng ký gia hạn trước thời điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 457,
+      "total_tokens": 488,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0001557,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0001557,
+       "upstream_inference_prompt_cost": 0.0001371,
+       "upstream_inference_completions_cost": 1.86e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states the required minimum of 05 working days, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Người học phải nộp đơn đăng ký gia hạn trước thời điểm kết thúc thời gian nộp học phí ít nhất **05 ngày làm việc**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 101,
+      "total_tokens": 132,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00010675,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00010675,
+       "upstream_inference_prompt_cost": 7.575e-05,
+       "upstream_inference_completions_cost": 3.1e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the required 05 working days, matching the reference answer exactly in meaning.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-019",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Việc gia hạn thời gian nộp học phí được áp dụng trong các học kỳ chính (không áp dụng cho học kỳ dự thính và học kỳ hè).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 34,
+      "prompt_tokens": 287,
+      "total_tokens": 321,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.1e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.1e-05,
+       "upstream_inference_prompt_cost": 5.74e-05,
+       "upstream_inference_completions_cost": 1.36e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states that the extension applies only to main semesters and not to audit and summer semesters, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Việc gia hạn thời gian nộp học phí tại Trường Đại học Bách khoa - ĐHQG-HCM thường được áp dụng cho **Học kỳ chính** (Học kỳ 1 và Học kỳ 2).\n\nĐối với học kỳ hè hoặc các khóa học ngắn hạn, quy định về gia hạn thường khắt khe hơn hoặc không áp dụng tùy theo thông báo cụ thể của nhà trường cho từng đợt.\n\n*Lưu ý: Bạn nên kiểm tra thông báo mới nhất trên cổng thông tin sinh viên hoặc phòng Tài chính - Kế hoạch để biết chính xác điều kiện và thời hạn áp dụng cho học kỳ hiện tại.*",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 134,
+      "prompt_tokens": 87,
+      "total_tokens": 221,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.8165e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.8165e-05,
+       "upstream_inference_prompt_cost": 9.825e-06,
+       "upstream_inference_completions_cost": 6.834e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "The candidate answer correctly identifies that extension applies to main semester but does not explicitly exclude audit semester and is less definitive about summer semester, whereas the reference states it does not apply to audit and summer semesters.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-020",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Phó Hiệu trưởng là Chủ tịch Hội đồng xét hồ sơ xin gia hạn thời gian nộp học phí.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 24,
+      "prompt_tokens": 295,
+      "total_tokens": 319,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.86e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.86e-05,
+       "upstream_inference_prompt_cost": 5.9e-05,
+       "upstream_inference_completions_cost": 9.6e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly identifies the Vice Rector as the Chairman of the committee, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Chủ tịch Hội đồng xét hồ sơ xin gia hạn thời gian nộp học phí là **Hiệu trưởng** (hoặc Phó Hiệu trưởng được Hiệu trưởng ủy quyền).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 91,
+      "total_tokens": 129,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00010625,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00010625,
+       "upstream_inference_prompt_cost": 6.825e-05,
+       "upstream_inference_completions_cost": 3.8e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Câu trả lời có đề cập đến Phó Hiệu trưởng nhưng lại nêu Hiệu trưởng là lựa chọn chính, không khớp chính xác với đáp án tham chiếu là Phó Hiệu trưởng.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-021",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công tác sinh viên. Trong Hội đồng xét hồ sơ, Phòng Công tác sinh viên giữ các chức danh: Phó Chủ tịch Hội đồng (Trưởng Phòng) và thư ký (Phó Trưởng phòng).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 60,
+      "prompt_tokens": 623,
+      "total_tokens": 683,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000110865,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000110865,
+       "upstream_inference_prompt_cost": 8.0265e-05,
+       "upstream_inference_completions_cost": 3.06e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Nội dung câu trả lời khớp với đáp án tham khảo về phòng tiếp nhận và chức danh trong Hội đồng.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Bạn nộp đơn đăng ký về **Phòng Kế hoạch Tài chính**.\n\nVề chức danh trong Hội đồng xét hồ sơ, tôi **không biết** thông tin chi tiết về việc phòng này giữ những chức danh cụ thể nào trong Hội đồng.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 53,
+      "prompt_tokens": 98,
+      "total_tokens": 151,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.834e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.834e-05,
+       "upstream_inference_prompt_cost": 1.131e-05,
+       "upstream_inference_completions_cost": 2.703e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Câu trả lời nộp đơn về Phòng Kế hoạch Tài chính là sai so với đáp án tham chiếu là Phòng Công tác sinh viên, và phần chức danh không được trả lời.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-022",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "- Điểm trung bình tích lũy (GPA) tối thiểu để đăng ký các học phần tốt nghiệp là từ 2.0 trở lên (theo thang điểm 4).\n- Sinh viên có điểm trung bình tích lũy 2,35 đạt ngưỡng điểm này.\n- Với điểm trung bình tích lũy 2,35, học lực được xếp loại: Trung bình.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 82,
+      "prompt_tokens": 895,
+      "total_tokens": 977,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000158805,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000158805,
+       "upstream_inference_prompt_cost": 0.000116985,
+       "upstream_inference_completions_cost": 4.182e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Nội dung câu trả lời khớp chính xác với đáp án tham khảo về ngưỡng GPA, việc đạt ngưỡng và xếp loại học lực.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "- Điểm trung bình tích lũy tối thiểu để đăng ký học phần tốt nghiệp là **2.0**.\n- Sinh viên có điểm 2,35 **đạt** ngưỡng này.\n- Theo khoản 15.2 (QĐ 1259), học lực của sinh viên này được xếp loại: **Trung bình**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 74,
+      "prompt_tokens": 191,
+      "total_tokens": 265,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.1605e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.1605e-05,
+       "upstream_inference_prompt_cost": 2.3865e-05,
+       "upstream_inference_completions_cost": 3.774e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp chính xác với đáp án tham chiếu về ngưỡng GPA tối thiểu, việc đạt ngưỡng và xếp loại học lực.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-023",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Thời gian đào tạo tối đa của hình thức vừa làm vừa học là 16 học kỳ chính và kết quả học tập của người học được giữ nguyên.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 33,
+      "prompt_tokens": 1019,
+      "total_tokens": 1052,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000150555,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000150555,
+       "upstream_inference_prompt_cost": 0.000133725,
+       "upstream_inference_completions_cost": 1.683e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Đáp án đúng với nội dung chính: tối đa 16 học kỳ chính và kết quả học tập được giữ nguyên.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo quy định hiện hành của Trường Đại học Bách khoa - ĐHQG-HCM:\n\n1. **Thời gian đào tạo tối đa:** Đối với hình thức vừa làm vừa học, thời gian đào tạo tối đa thường là **gấp 2 lần** thời gian đào tạo chính thức của chương trình.\n2. **Kết quả học tập:** Các học phần đã tích lũy và được công nhận ở hệ chính quy **được bảo lưu/chuyển đổi** sang hệ vừa làm vừa học nếu có cùng mã học phần hoặc nội dung tương đương (theo quyết định của Hội đồng chuyên môn).\n\n*Lưu ý: Bạn nên liên hệ Phòng Đào tạo để được hướng dẫn chi tiết về thủ tục chuyển đổi cụ thể cho ngành học của mình.*",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 160,
+      "prompt_tokens": 104,
+      "total_tokens": 264,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 9.372e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 9.372e-05,
+       "upstream_inference_prompt_cost": 1.212e-05,
+       "upstream_inference_completions_cost": 8.16e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Candidate answer gives a general rule (2x) instead of the specific 16 học kỳ chính, and adds conditions for credit transfer not present in the reference.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-024",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp vì tài liệu không chứa thông tin về đơn giá học phí cụ thể cho năm học 2026–2027.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 43,
+      "prompt_tokens": 5223,
+      "total_tokens": 5266,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000723195,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000723195,
+       "upstream_inference_prompt_cost": 0.000701265,
+       "upstream_inference_completions_cost": 2.193e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Thí sinh từ chối trả lời vì tài liệu không có thông tin, đúng với hành vi mong đợi.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin này vì hiện tại chưa có quy định về đơn giá học phí cho năm học 2026–2027.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 33,
+      "prompt_tokens": 89,
+      "total_tokens": 122,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.6925e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.6925e-05,
+       "upstream_inference_prompt_cost": 1.0095e-05,
+       "upstream_inference_completions_cost": 1.683e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Thí sinh từ chối trả lời vì chưa có quy định, phù hợp với hành vi từ chối dự kiến.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-025",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 16,
+      "prompt_tokens": 5219,
+      "total_tokens": 5235,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000708885,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000708885,
+       "upstream_inference_prompt_cost": 0.000700725,
+       "upstream_inference_completions_cost": 8.16e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "The candidate correctly refuses to answer based on the lack of information in the provided materials.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Sinh viên phải nộp đơn phúc khảo trong thời hạn **05 ngày làm việc** kể từ ngày công bố điểm.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 26,
+      "prompt_tokens": 85,
+      "total_tokens": 111,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.74e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.74e-05,
+       "upstream_inference_prompt_cost": 1.7e-05,
+       "upstream_inference_completions_cost": 1.04e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer invents a specific timeframe (05 ngày làm việc) whereas the corpus does not contain any regulation on the procedure or deadline for grade review, so the expected behavior was to refuse.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-026",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mỗi GVCN chủ nhiệm tối đa 02 lớp (áp dụng với tất cả các hệ đào tạo, trường hợp đặc biệt do Hiệu trưởng quyết định).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 35,
+      "prompt_tokens": 433,
+      "total_tokens": 468,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.2465e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.2465e-05,
+       "upstream_inference_prompt_cost": 5.4615e-05,
+       "upstream_inference_completions_cost": 1.785e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Nội dung trả lời khớp với đáp án tham chiếu là tối đa 02 lớp, phần bổ sung thêm không làm sai lệch nghĩa.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo quy định, mỗi giảng viên chủ nhiệm được chủ nhiệm **tối đa 02 lớp**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 22,
+      "prompt_tokens": 82,
+      "total_tokens": 104,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.037e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.037e-05,
+       "upstream_inference_prompt_cost": 9.15e-06,
+       "upstream_inference_completions_cost": 1.122e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the maximum number of classes as 02, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-027",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "GVCN & CVHT có thể bị Hiệu trưởng miễn nhiệm khi bị kỷ luật từ hình thức cảnh cáo trở lên.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 26,
+      "prompt_tokens": 433,
+      "total_tokens": 459,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 384,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.8675e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.8675e-05,
+       "upstream_inference_prompt_cost": 3.5415e-05,
+       "upstream_inference_completions_cost": 1.326e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly restates that dismissal applies when disciplinary action is at the level of warning or higher, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo quy định, GVCN hoặc CVHT có thể bị Hiệu trưởng miễn nhiệm khi bị kỷ luật từ mức **Cảnh cáo** trở lên.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 32,
+      "prompt_tokens": 82,
+      "total_tokens": 114,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.92e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.92e-05,
+       "upstream_inference_prompt_cost": 1.64e-05,
+       "upstream_inference_completions_cost": 1.28e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states that the disciplinary level is from 'Cảnh cáo' upwards, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-028",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi người học yếu, kém hoặc thuộc diện cảnh báo học vụ, GVCN cần liên hệ để thông báo tình trạng của người học cho gia đình và ghi nhận lại kết quả.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 513,
+      "total_tokens": 551,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.4795e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.4795e-05,
+       "upstream_inference_prompt_cost": 6.5415e-05,
+       "upstream_inference_completions_cost": 1.938e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của học sinh khớp hoàn toàn với đáp án tham khảo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Khi người học yếu, kém hoặc thuộc diện cảnh báo học vụ, GVCN cần liên hệ để:\n\n1. **Mục đích:** Động viên, nhắc nhở và hướng dẫn người học xây dựng kế hoạch học tập, cải thiện kết quả học tập.\n2. **Ghi nhận:** Ghi nhận tình trạng, lý do dẫn đến kết quả kém và các cam kết/phương hướng khắc phục của người học.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 91,
+      "prompt_tokens": 86,
+      "total_tokens": 177,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 5.802e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 5.802e-05,
+       "upstream_inference_prompt_cost": 1.161e-05,
+       "upstream_inference_completions_cost": 4.641e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Thí sinh đưa ra mục đích và ghi nhận khác biệt so với đáp án tham chiếu (không nhắc đến thông báo cho gia đình), nhưng vẫn thể hiện đúng tinh thần hỗ trợ người học.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-029",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi có quyết định xử lý biến động người học như đình chỉ học tập hoặc buộc thôi học, Phòng Đào tạo gửi quyết định đến Khoa.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 32,
+      "prompt_tokens": 332,
+      "total_tokens": 364,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 5.73e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 5.73e-05,
+       "upstream_inference_prompt_cost": 4.098e-05,
+       "upstream_inference_completions_cost": 1.632e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp hoàn toàn với nội dung của đáp án tham chiếu.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Phòng Đào tạo gửi quyết định đến:\n1. Người học.\n2. Đơn vị quản lý người học (Khoa/Viện).\n3. Các đơn vị liên quan (ví dụ: Phòng Công tác Sinh viên, đơn vị thu học phí).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 58,
+      "prompt_tokens": 89,
+      "total_tokens": 147,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.9675e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.9675e-05,
+       "upstream_inference_prompt_cost": 1.0095e-05,
+       "upstream_inference_completions_cost": 2.958e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Candidate answer includes the correct destination (Khoa/Viện) but also adds other recipients not specified in the reference answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-030",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Sinh viên phải đeo thẻ sinh viên khi ở trong khuôn viên Trường.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 15,
+      "prompt_tokens": 432,
+      "total_tokens": 447,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.213e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.213e-05,
+       "upstream_inference_prompt_cost": 5.448e-05,
+       "upstream_inference_completions_cost": 7.65e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh có ý nghĩa tương tự với câu trả lời tham khảo.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Sinh viên bắt buộc phải đeo thẻ sinh viên khi **ở trong khuôn viên nhà trường**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 19,
+      "prompt_tokens": 72,
+      "total_tokens": 91,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.3e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.3e-05,
+       "upstream_inference_prompt_cost": 2.16e-05,
+       "upstream_inference_completions_cost": 1.14e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Nội dung câu trả lời khớp với đáp án tham khảo về phạm vi bắt buộc đeo thẻ sinh viên.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-031",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Trong khuôn viên Trường, sinh viên không được phép đi xe máy và xe đạp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 18,
+      "prompt_tokens": 919,
+      "total_tokens": 937,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000129405,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000129405,
+       "upstream_inference_prompt_cost": 0.000120225,
+       "upstream_inference_completions_cost": 9.18e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states that students are prohibited from using motorbikes and bicycles, matching the reference answer exactly.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo quy định, sinh viên bị cấm điều khiển các loại phương tiện sau trong khuôn viên Trường:\n\n1. **Xe ô tô** (trừ trường hợp đặc biệt được phép).\n2. **Xe máy** (trừ khi có thẻ xe/giấy phép ra vào theo quy định của nhà trường).\n\n*Lưu ý: Sinh viên được khuyến khích đi bộ hoặc sử dụng các phương tiện di chuyển xanh trong khuôn viên.*",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 94,
+      "prompt_tokens": 76,
+      "total_tokens": 170,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 5.628e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 5.628e-05,
+       "upstream_inference_prompt_cost": 8.34e-06,
+       "upstream_inference_completions_cost": 4.794e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Câu trả lời đã đề cập đến xe máy bị cấm nhưng không nhắc đến xe đạp và thêm thông tin về xe ô tô không có trong tham chiếu.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-032",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Quy định cấm hút thuốc lá trong khuôn viên Trường bao gồm cả thuốc lá điện tử.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 21,
+      "prompt_tokens": 933,
+      "total_tokens": 954,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 864,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.4825e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.4825e-05,
+       "upstream_inference_prompt_cost": 7.4115e-05,
+       "upstream_inference_completions_cost": 1.071e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp chính xác với nội dung đáp án tham khảo là bao gồm cả thuốc lá điện tử.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Nội quy học đường, quy định cấm hút thuốc lá trong khuôn viên Trường bao gồm cả **thuốc lá điện tử**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 28,
+      "prompt_tokens": 90,
+      "total_tokens": 118,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.451e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.451e-05,
+       "upstream_inference_prompt_cost": 1.023e-05,
+       "upstream_inference_completions_cost": 1.428e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp chính xác với nội dung đáp án tham khảo, nêu rõ bao gồm cả thuốc lá điện tử.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-033",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Sinh viên vi phạm Nội quy sẽ bị xử lý theo Quy chế Công tác sinh viên Trường và quy định của pháp luật; mức xử lý phụ thuộc vào mức độ vi phạm.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 37,
+      "prompt_tokens": 362,
+      "total_tokens": 399,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.774e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.774e-05,
+       "upstream_inference_prompt_cost": 4.887e-05,
+       "upstream_inference_completions_cost": 1.887e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Nội dung trả lời hoàn toàn khớp với đáp án tham khảo về căn cứ xử lý và yếu tố phụ thuộc.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Sinh viên vi phạm Nội quy học đường sẽ được xử lý dựa trên các căn cứ và yếu tố sau:\n\n*   **Căn cứ xử lý:** Dựa trên **Quy chế công tác sinh viên** của Trường Đại học Bách khoa - ĐHQG-HCM và các quy định hiện hành của pháp luật.\n*   **Yếu tố quyết định mức xử lý:** Phụ thuộc vào **tính chất, mức độ vi phạm** và **tình tiết giảm nhẹ hoặc tăng nặng** của từng trường hợp cụ thể.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 113,
+      "prompt_tokens": 86,
+      "total_tokens": 199,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.732e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.732e-05,
+       "upstream_inference_prompt_cost": 9.69e-06,
+       "upstream_inference_completions_cost": 5.763e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "候选答案准确传达了依据学校规章和法律规定处理，且处理程度取决于违规程度，与参考答案一致。",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-034",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Sinh viên tốt nghiệp trình độ đại học từ khóa 2026 làm đồ án/khóa luận tốt nghiệp 6 tín chỉ vào học kỳ 8.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 35,
+      "prompt_tokens": 7027,
+      "total_tokens": 7062,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0021291,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0021291,
+       "upstream_inference_prompt_cost": 0.0021081,
+       "upstream_inference_completions_cost": 2.1e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer matches reference answer exactly: 6 tín chỉ, học kỳ 8.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin chi tiết về số tín chỉ và học kỳ làm đồ án/khóa luận tốt nghiệp cho sinh viên khóa 2026 trong Quyết định 1862/QĐ-ĐHBK. Bạn vui lòng kiểm tra lại tại Cổng thông tin sinh viên hoặc liên hệ Phòng Đào tạo của trường.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 73,
+      "prompt_tokens": 115,
+      "total_tokens": 188,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 7.83e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 7.83e-05,
+       "upstream_inference_prompt_cost": 3.45e-05,
+       "upstream_inference_completions_cost": 4.38e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer does not provide the required specific information (6 credits, semester 8) from the reference, instead refusing to answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-035",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Theo điểm b khoản 2 Điều 2, học phần được tổ chức dưới dạng lý thuyết bao gồm giảng dạy lý thuyết và thực hành thì phần thực hành phải chiếm tối thiểu 20% khối lượng tín chỉ học phần.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 48,
+      "prompt_tokens": 7019,
+      "total_tokens": 7067,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000968205,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000968205,
+       "upstream_inference_prompt_cost": 0.000943725,
+       "upstream_inference_completions_cost": 2.448e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the minimum percentage as 20%.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo quy định này, phần thực hành phải chiếm tối thiểu **20%** khối lượng tín chỉ của học phần.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 26,
+      "prompt_tokens": 107,
+      "total_tokens": 133,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.5785e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.5785e-05,
+       "upstream_inference_prompt_cost": 1.2525e-05,
+       "upstream_inference_completions_cost": 1.326e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states the minimum percentage as 20%, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-036",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Theo Điều 6, chương trình đại học các ngành kỹ thuật và kiến trúc theo khung ABET có:\n- Tổng tín chỉ: 128–132 tín chỉ.\n- Khối Toán tối thiểu: 11 tín chỉ.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 54,
+      "prompt_tokens": 7024,
+      "total_tokens": 7078,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 6912,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00056106,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00056106,
+       "upstream_inference_prompt_cost": 0.00053352,
+       "upstream_inference_completions_cost": 2.754e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer matches the reference answer exactly, providing the correct total credits range and minimum Mathematics credits.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo Điều 6 của Quyết định 1862/QĐ-ĐHBK:\n\n*   **Tổng số tín chỉ:** Tối thiểu **145** tín chỉ.\n*   **Khối Toán tối thiểu:** **30** tín chỉ.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 59,
+      "prompt_tokens": 112,
+      "total_tokens": 171,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.329e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.329e-05,
+       "upstream_inference_prompt_cost": 1.32e-05,
+       "upstream_inference_completions_cost": 3.009e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "The candidate answer states 145 total credits and 30 math credits, which does not match the reference answer of 128–132 total credits and 11 math credits.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-037",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Theo khoản 1 Điều 16, Hội đồng ngành có tối thiểu 07 thành viên và tối đa 15 thành viên (không bao gồm thư ký hành chính).",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 7012,
+      "total_tokens": 7050,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 6944,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00054936,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00054936,
+       "upstream_inference_prompt_cost": 0.00052998,
+       "upstream_inference_completions_cost": 1.938e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states minimum 7 and maximum 15 members as in reference, and the additional note about excluding executive secretary does not contradict the question.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Một Hội đồng ngành có tối thiểu **05** và tối đa **11** thành viên.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 22,
+      "prompt_tokens": 100,
+      "total_tokens": 122,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.88e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.88e-05,
+       "upstream_inference_prompt_cost": 2e-05,
+       "upstream_inference_completions_cost": 8.8e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Số lượng thành viên tối thiểu và tối đa trong câu trả lời không khớp với tham chiếu (05 và 11 thay vì 07 và 15).",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-038",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Mỗi đội thi chỉ được hỗ trợ/vinh danh 01 lần ở mỗi mức.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 21,
+      "prompt_tokens": 888,
+      "total_tokens": 909,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00012675,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00012675,
+       "upstream_inference_prompt_cost": 0.00011604,
+       "upstream_inference_completions_cost": 1.071e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer conveys the same meaning as the reference answer: each team is supported/honored only once per level.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin cụ thể về quy định này trong quy chế học vụ của Trường Đại học Bách khoa - ĐHQG-HCM. Bạn vui lòng kiểm tra lại trong văn bản hướng dẫn chi tiết của cuộc thi hoặc liên hệ Phòng Công tác Sinh viên/Phòng Đào tạo để được giải đáp chính xác.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 68,
+      "prompt_tokens": 77,
+      "total_tokens": 145,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00012575,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00012575,
+       "upstream_inference_prompt_cost": 5.775e-05,
+       "upstream_inference_completions_cost": 6.8e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "inappropriate_refusal",
+     "reason": "Câu hỏi yêu cầu trả lời theo quy định nhưng ứng viên từ chối và không đưa ra đáp án chính xác.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-039",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Giảng viên hướng dẫn nhóm SV đạt giải thưởng trong các cuộc thi được xếp loại III trở lên cần hệ số khen thưởng (Kpl) từ 18 trở lên để được Hội đồng cố vấn xem xét và đề xuất mức vinh danh.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 52,
+      "prompt_tokens": 904,
+      "total_tokens": 956,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 832,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 9.864e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 9.864e-05,
+       "upstream_inference_prompt_cost": 7.212e-05,
+       "upstream_inference_completions_cost": 2.652e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh khớp hoàn toàn với đáp án tham khảo về hệ số khen thưởng Kpl từ 18 trở lên.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết thông tin chi tiết về hệ số khen thưởng Kpl cụ thể cho giảng viên hướng dẫn trong quy định của Trường Đại học Bách khoa - ĐHQG-HCM. Bạn vui lòng kiểm tra lại trong Quyết định về Quy chế Khen thưởng hoặc liên hệ Phòng Đào tạo/Phòng Công tác Sinh viên để được giải đáp chính xác.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 76,
+      "prompt_tokens": 94,
+      "total_tokens": 170,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.953e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.953e-05,
+       "upstream_inference_prompt_cost": 1.077e-05,
+       "upstream_inference_completions_cost": 3.876e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer does not provide the required numerical value (at least 18) but instead states lack of knowledge, failing to answer the question as expected.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-040",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Hiện kim khen thưởng cho nhóm SV (từ 02 SV trở lên) có giá trị bằng 02 lần so với hiện kim khen thưởng dành cho cá nhân.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 37,
+      "prompt_tokens": 910,
+      "total_tokens": 947,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0007195,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0007195,
+       "upstream_inference_prompt_cost": 0.0006825,
+       "upstream_inference_completions_cost": 3.7e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer accurately matches the reference answer: group reward is twice the individual reward.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Theo quy định, mức khen thưởng hiện kim cho một nhóm sinh viên (từ 2 người trở lên) được tính bằng **1,5 lần** mức khen thưởng dành cho cá nhân.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 41,
+      "prompt_tokens": 85,
+      "total_tokens": 126,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.34e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.34e-05,
+       "upstream_inference_prompt_cost": 1.7e-05,
+       "upstream_inference_completions_cost": 1.64e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer states 1.5 times, but reference answer states 2 times.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-041",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "SV phải nộp hồ sơ tại Phòng Công tác sinh viên kể từ ngày công bố cuộc thi cho đến trước 10 ngày làm việc tính từ thời gian kết thúc nhận đơn đăng ký tham gia của cuộc thi.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 684,
+      "total_tokens": 729,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00011145,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00011145,
+       "upstream_inference_prompt_cost": 8.85e-05,
+       "upstream_inference_completions_cost": 2.295e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer accurately reproduces the time period from the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Sinh viên phải nộp hồ sơ đề xuất hỗ trợ tham gia cuộc thi tại Phòng Công tác sinh viên **trước ít nhất 07 ngày làm việc** tính đến ngày kết thúc nhận đơn đăng ký của cuộc thi.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 47,
+      "prompt_tokens": 98,
+      "total_tokens": 145,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.528e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.528e-05,
+       "upstream_inference_prompt_cost": 1.131e-05,
+       "upstream_inference_completions_cost": 2.397e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "The candidate answer states 'at least 07 working days before' while the reference answer specifies 'before 10 working days', so the time frame is different.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-042",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi tham gia các hoạt động, sự kiện, hội nghị, người học phải đến trước giờ khai mạc ít nhất 5 phút.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 29,
+      "prompt_tokens": 659,
+      "total_tokens": 688,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 9.9915e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 9.9915e-05,
+       "upstream_inference_prompt_cost": 8.5125e-05,
+       "upstream_inference_completions_cost": 1.479e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states the minimum time of 5 minutes before opening, matching the reference answer exactly.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Người học phải có mặt trước giờ khai mạc ít nhất **15 phút**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 18,
+      "prompt_tokens": 88,
+      "total_tokens": 106,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 1.914e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 1.914e-05,
+       "upstream_inference_prompt_cost": 9.96e-06,
+       "upstream_inference_completions_cost": 9.18e-06
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "The candidate answer says 15 minutes, but the reference answer is 5 minutes, so it is factually wrong.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-043",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi trao đổi công việc học tập, hành chính với giảng viên và các đơn vị trong Trường, người học sử dụng địa chỉ thư điện tử do Nhà trường cấp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 35,
+      "prompt_tokens": 460,
+      "total_tokens": 495,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000106,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000106,
+       "upstream_inference_prompt_cost": 9.2e-05,
+       "upstream_inference_completions_cost": 1.4e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Nội dung chính xác với đáp án tham khảo, chỉ thêm từ 'hành chính' nhưng không thay đổi ý nghĩa.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Người học phải dùng địa chỉ thư điện tử (email) do Nhà trường cấp.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 18,
+      "prompt_tokens": 84,
+      "total_tokens": 102,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.1e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.1e-05,
+       "upstream_inference_prompt_cost": 6.3e-05,
+       "upstream_inference_completions_cost": 1.8e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states that the learner must use the email address provided by the school, matching the reference answer in meaning.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-044",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Khi phát hiện tài khoản bị xâm nhập, giả mạo hoặc sử dụng trái phép, người học phải kịp thời thông báo cho đơn vị chức năng của Nhà trường.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 35,
+      "prompt_tokens": 398,
+      "total_tokens": 433,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 9.36e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 9.36e-05,
+       "upstream_inference_prompt_cost": 7.96e-05,
+       "upstream_inference_completions_cost": 1.4e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Câu trả lời của thí sinh truyền đạt chính xác cùng một hành động bắt buộc như trong câu trả lời tham chiếu, chỉ khác về cách diễn đạt.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Khi phát hiện tài khoản cá nhân bị xâm nhập, giả mạo hoặc sử dụng trái phép, người học phải:\n\n1. **Thay đổi mật khẩu** ngay lập tức.\n2. **Thông báo cho cơ quan/đơn vị quản lý** (Trung tâm Mạng máy tính hoặc đơn vị quản lý tài khoản của Trường) để phối hợp xử lý.\n3. **Thông báo cho những người liên quan** để cảnh báo, tránh bị lừa đảo hoặc gây hiểu lầm.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 104,
+      "prompt_tokens": 93,
+      "total_tokens": 197,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.3675e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.3675e-05,
+       "upstream_inference_prompt_cost": 1.0635e-05,
+       "upstream_inference_completions_cost": 5.304e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer includes the core requirement of informing the university's functional unit as per the reference, along with additional reasonable steps that do not contradict the expected behavior.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-045",
+   "category": "single",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Hành vi vi phạm xảy ra trước thời điểm Quy định này có hiệu lực được xem xét, xử lý theo quy định có hiệu lực tại thời điểm xảy ra hành vi.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 37,
+      "prompt_tokens": 327,
+      "total_tokens": 364,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.00028225,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.00028225,
+       "upstream_inference_prompt_cost": 0.00024525,
+       "upstream_inference_completions_cost": 3.7e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer correctly states that violations occurring before the regulation's effective date are handled according to the regulation in effect at the time of the violation, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Hành vi vi phạm xảy ra trước ngày Quy định ứng xử có hiệu lực thì được xem xét theo quy định tại thời điểm hành vi đó xảy ra.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 33,
+      "prompt_tokens": 83,
+      "total_tokens": 116,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 2.6115e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 2.6115e-05,
+       "upstream_inference_prompt_cost": 9.285e-06,
+       "upstream_inference_completions_cost": 1.683e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "The candidate answer correctly states that violations are considered under the regulations in effect at the time of the act, matching the reference answer.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-046",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "Việc xử lý vi phạm được căn cứ như sau:\n\n- **Nội quy học đường:** Tùy theo mức độ vi phạm, sinh viên sẽ bị xử lý theo Quy chế Công tác sinh viên Trường và quy định của pháp luật.\n- **Quy tắc ứng xử:** Tùy theo tính chất, mức độ vi phạm sẽ bị xử lý theo quy định của pháp luật và quy định nội bộ của Nhà trường.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 91,
+      "prompt_tokens": 493,
+      "total_tokens": 584,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 256,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 9.7605e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 9.7605e-05,
+       "upstream_inference_prompt_cost": 5.1195e-05,
+       "upstream_inference_completions_cost": 4.641e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer accurately paraphrases the reference answer for both documents.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Việc xử lý vi phạm đồng thời Nội quy học đường và Quy tắc ứng xử được thực hiện như sau:\n\n1. **Nội quy học đường:** Là căn cứ để áp dụng các **hình thức kỷ luật** cụ thể (như khiển trách, cảnh cáo, đình chỉ học tập...).\n2. **Quy tắc ứng xử:** Là căn cứ để **nhắc nhở, phê bình** hoặc làm tình tiết tăng nặng/giảm nhẹ khi xem xét kỷ luật theo Nội quy học đường.\n\n**Lưu ý:** Thông thường, hình thức xử lý kỷ luật chính thức sẽ căn cứ vào Nội quy học đường và Quy chế quản lý học vụ.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 140,
+      "prompt_tokens": 88,
+      "total_tokens": 228,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 8.136e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 8.136e-05,
+       "upstream_inference_prompt_cost": 9.96e-06,
+       "upstream_inference_completions_cost": 7.14e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "partially_correct",
+     "reason": "Candidate correctly identifies Nội quy học đường as basis for disciplinary actions but inaccurately limits Quy tắc ứng xử to reminders or aggravating factors, whereas the reference states it independently leads to handling per law and internal regulations.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-047",
+   "category": "multi",
+   "expected_behavior": "answer",
+   "oracle": {
+    "answer": {
+     "content": "- Nhiệm vụ của cố vấn học tập: Tư vấn cho người học về các tín chỉ tự chọn tự do.\n- Số tín chỉ tự chọn tự do tối thiểu cho chương trình đào tạo trình độ đại học khóa 2025 về trước: 9 tín chỉ.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 59,
+      "prompt_tokens": 7239,
+      "total_tokens": 7298,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0014714,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0014714,
+       "upstream_inference_prompt_cost": 0.0014478,
+       "upstream_inference_completions_cost": 2.36e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "correct",
+     "reason": "Candidate answer accurately matches the reference answer, stating the advisor's duty and the minimum 9 free elective credits.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "- **Nhiệm vụ của CVHT:** Hướng dẫn sinh viên lựa chọn các học phần tự chọn tự do phù hợp với định hướng nghề nghiệp và yêu cầu của chương trình đào tạo.\n- **Số tín chỉ tự chọn tự do:** Tối thiểu **06 tín chỉ**.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 61,
+      "prompt_tokens": 137,
+      "total_tokens": 198,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 4.7685e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 4.7685e-05,
+       "upstream_inference_prompt_cost": 1.6575e-05,
+       "upstream_inference_completions_cost": 3.111e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Số tín chỉ tự chọn tự do tối thiểu theo đáp án là 9 tín chỉ, trong khi câu trả lời nêu 06 tín chỉ nên sai.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-048",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp vì không có thông tin về mức điểm trung bình học kỳ và điểm rèn luyện tối thiểu để xét học bổng khuyến khích học tập.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 45,
+      "prompt_tokens": 5223,
+      "total_tokens": 5268,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0015939,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0015939,
+       "upstream_inference_prompt_cost": 0.0015669,
+       "upstream_inference_completions_cost": 2.7e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Candidate correctly refuses to answer due to lack of information in the provided documents, matching the expected behavior of refusing when the corpus does not contain the required details.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Để được xét học bổng khuyến khích học tập, sinh viên cần đạt:\n\n*   **Điểm trung bình học kỳ:** Từ **2.0** (thang điểm 4) trở lên.\n*   **Điểm rèn luyện:** Từ **70** điểm (loại Khá) trở lên.\n\n*Lưu ý: Mức điểm cụ thể để được nhận học bổng sẽ phụ thuộc vào quỹ học bổng và xếp hạng từ cao xuống thấp của sinh viên trong khoa/ngành.*",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 111,
+      "prompt_tokens": 89,
+      "total_tokens": 200,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 6.6705e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 6.6705e-05,
+       "upstream_inference_prompt_cost": 1.0095e-05,
+       "upstream_inference_completions_cost": 5.661e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Candidate answer invents specific thresholds for academic and conduct scores, while the corpus contains no such criteria, making it fabricated information.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-049",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp vì tài liệu không chứa thông tin về thủ tục đăng ký ký túc xá.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 33,
+      "prompt_tokens": 5218,
+      "total_tokens": 5251,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0015852,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0015852,
+       "upstream_inference_prompt_cost": 0.0015654,
+       "upstream_inference_completions_cost": 1.98e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Candidate answer appropriately refuses to answer, matching the expected behavior and reference.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Hiện tại, Trường Đại học Bách khoa (ĐHQG-HCM) không có ký túc xá riêng mà sinh viên sẽ đăng ký ở tại **Ký túc xá ĐHQG-HCM**.\n\nĐể đăng ký cho học kỳ tới, sinh viên cần:\n1. Theo dõi thông báo tuyển sinh/đăng ký nội trú trên website hoặc fanpage chính thức của **Ký túc xá ĐHQG-HCM**.\n2. Đăng ký trực tuyến qua cổng thông tin của KTX ĐHQG-HCM khi có đợt mở đơn.\n3. Chuẩn bị hồ sơ theo yêu cầu (thường gồm: Giấy xác nhận sinh viên, CCCD, ảnh thẻ và các giấy tờ ưu tiên nếu có).\n\nBạn nên kiểm tra thông tin chính xác tại trang web của KTX ĐHQG-HCM để biết thời hạn và quy trình chi tiết.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 190,
+      "prompt_tokens": 84,
+      "total_tokens": 274,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 0,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.0001392,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.0001392,
+       "upstream_inference_prompt_cost": 2.52e-05,
+       "upstream_inference_completions_cost": 0.000114
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "incorrect",
+     "reason": "Mặc dù câu trả lời có vẻ hữu ích, nhưng hành vi mong đợi là từ chối trả lời vì corpus không có thông tin, và câu trả lời đã bịa ra nội dung không có trong corpus.",
+     "judge_attempts": 1
+    }
+   }
+  },
+  {
+   "task_id": "HCMUT-050",
+   "category": "out_of_scope",
+   "expected_behavior": "refuse",
+   "oracle": {
+    "answer": {
+     "content": "Tôi không thể trả lời câu hỏi này từ tài liệu được cung cấp vì tài liệu không chứa thông tin về luật giao thông đường bộ hay mức phạt vi phạm mũ bảo hiểm.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 37,
+      "prompt_tokens": 5221,
+      "total_tokens": 5258,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 64,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 0.000719865,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 0.000719865,
+       "upstream_inference_prompt_cost": 0.000700995,
+       "upstream_inference_completions_cost": 1.887e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "The candidate answer appropriately refuses to answer because the provided document does not contain the required information.",
+     "judge_attempts": 1
+    }
+   },
+   "closed_book": {
+    "answer": {
+     "content": "Tôi không biết quy định cụ thể về mức phạt tiền đối với trường hợp này trong nội quy của Trường Đại học Bách khoa - ĐHQG-HCM. Bạn nên tham khảo Sổ tay sinh viên hoặc liên hệ Phòng Công tác Chính trị - Sinh viên để biết chi tiết.",
+     "model": "google/gemma-4-31b-it",
+     "usage": {
+      "completion_tokens": 59,
+      "prompt_tokens": 87,
+      "total_tokens": 146,
+      "completion_tokens_details": {
+       "audio_tokens": 0,
+       "reasoning_tokens": 0,
+       "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+       "audio_tokens": 0,
+       "cached_tokens": 32,
+       "video_tokens": 0,
+       "cache_write_tokens": 0,
+       "cache_creation_tokens": 0
+      },
+      "cost": 3.9915e-05,
+      "is_byok": false,
+      "cost_details": {
+       "upstream_inference_cost": 3.9915e-05,
+       "upstream_inference_prompt_cost": 9.825e-06,
+       "upstream_inference_completions_cost": 3.009e-05
+      }
+     },
+     "error": null
+    },
+    "judgment": {
+     "verdict": "appropriate_refusal",
+     "reason": "Candidate answer refuses to provide the fine, correctly states the info is not in the university rules, and directs to official sources.",
+     "judge_attempts": 1
+    }
+   }
+  }
+ ]
+}

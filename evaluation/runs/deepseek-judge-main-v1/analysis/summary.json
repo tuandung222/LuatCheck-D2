@@ -1,0 +1,282 @@
+{
+  "evaluation_type": "LLM-judge estimates, not human-validated correctness",
+  "judge_config": {
+    "base_url": "https://ai-gateway01.qualgo.ai/v1",
+    "credential_env": "LUATCHECK_JUDGE_API_KEY",
+    "model": "deepseek/deepseek-v4-flash",
+    "requested_family": "DeepSeek V4.1 Flash",
+    "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+    "revision_pinned": false,
+    "allowed_returned_models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek-v4-flash",
+      "deepseek-flash",
+      "deepseek-v4.1-flash",
+      "deepseek-v4.1-flash-1017"
+    ],
+    "model_identity_note": "Gateway /model/info identifies provider deepseek and upstream deepseek/deepseek-v4-flash. Official DeepSeek documentation maps the legacy deepseek-v4-flash alias to V4.1-Flash-1017. Actual gateway routing is not independently attested; preserve returned model IDs.",
+    "model_identity_source": "https://api-docs.deepseek.com/",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 8192,
+    "timeout_seconds": 180,
+    "max_attempts": 2,
+    "concurrency": 4,
+    "temperature": null,
+    "seed": null,
+    "billing_note": "Use real gateway usage and cost headers if present. Actual invoiced charges are unknown unless separately obtained; do not apply official direct-API prices to a gateway."
+  },
+  "native_runs_sha256": "631480b2989859bd95d39bc8b7754caa1687a221cfd3858210c7129d0920b06e",
+  "analysis_source_sha256": "42c437db34278d5f98c1fa5337bfeb0cad9a94ac742ee85878b0caa6a9251d6c",
+  "validation_source_sha256": "d9a3864c42ffd7ade96a2dc7aa772c44c426f3e41e342bd86d85f637874a7bd9",
+  "parser_revalidation_overrides": [
+    {
+      "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+      "attempt_path": "evaluation/runs/deepseek-judge-recovery-v1/attempts/41cc0dcbdc12a6bdc7c3bfa9-a1.json",
+      "attempt_sha256": "8271f5c88bdc2f65e02e059ca99a8b0995b0bee8475bf1e25293e904423eb70b",
+      "original_status": "error",
+      "original_error": "ValueError: Optional source reference is invalid",
+      "revalidated_status": "valid",
+      "note": "Parser correction: a known article ID with null source_quote is permitted for not_established claims by the frozen rubric. No model scores, quotes or labels edited."
+    }
+  ],
+  "judgments_sha256": "834e27ef6bfb253a4119ef7bfda100b86f0ec06408b301d5d775c697e20976db",
+  "trials": 60,
+  "human_judge_agreement": null,
+  "human_cohens_kappa": null,
+  "human_labels_received": false,
+  "modes": {
+    "l1_on": {
+      "trials": 30,
+      "valid_judgments": 30,
+      "judgeable_judgments": 30,
+      "unknown_task_outcomes": 0,
+      "success_count_estimate": 11,
+      "known_outcome_denominator": 30,
+      "task_success_rate_estimate_known": 0.36666666666666664,
+      "success_rate_lower_bound_all_trials": 0.36666666666666664,
+      "success_rate_upper_bound_all_trials": 0.36666666666666664,
+      "behaviour_appropriate_count": 13,
+      "correctness_0_1_2": {
+        "0": 17,
+        "2": 12,
+        "1": 1
+      },
+      "completeness_0_1_2": {
+        "0": 17,
+        "2": 12,
+        "1": 1
+      },
+      "factual_claims": 35,
+      "supported_claims": 28,
+      "contradicted_claims": 6,
+      "not_established_claims": 1,
+      "claim_faithfulness_estimate": 0.8,
+      "unsupported_claim_rate_estimate": 0.2,
+      "claim_rate_note": "Micro-average over factual claims in valid judgeable outputs, including any claims in refusals/clarifications; zero-claim outputs do not create artificial perfect faithfulness.",
+      "reference_issues": []
+    },
+    "off": {
+      "trials": 30,
+      "valid_judgments": 27,
+      "judgeable_judgments": 27,
+      "unknown_task_outcomes": 3,
+      "success_count_estimate": 8,
+      "known_outcome_denominator": 27,
+      "task_success_rate_estimate_known": 0.2962962962962963,
+      "success_rate_lower_bound_all_trials": 0.26666666666666666,
+      "success_rate_upper_bound_all_trials": 0.36666666666666664,
+      "behaviour_appropriate_count": 13,
+      "correctness_0_1_2": {
+        "0": 13,
+        "2": 10,
+        "1": 4
+      },
+      "completeness_0_1_2": {
+        "0": 14,
+        "2": 10,
+        "1": 3
+      },
+      "factual_claims": 41,
+      "supported_claims": 33,
+      "contradicted_claims": 5,
+      "not_established_claims": 3,
+      "claim_faithfulness_estimate": 0.8048780487804879,
+      "unsupported_claim_rate_estimate": 0.1951219512195122,
+      "claim_rate_note": "Micro-average over factual claims in valid judgeable outputs, including any claims in refusals/clarifications; zero-claim outputs do not create artificial perfect faithfulness.",
+      "reference_issues": []
+    }
+  },
+  "api_usage": {
+    "attempts_including_failed": 83,
+    "valid_attempts": 56,
+    "prompt_tokens": null,
+    "reported_completion_tokens": null,
+    "usage_complete": false,
+    "usage_consistency_anomalies": [
+      {
+        "review_id": "0efabcf9eb987c2353c95882",
+        "attempt": 1,
+        "reported_completion_tokens": 2015,
+        "reported_reasoning_tokens": 2020,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+        "attempt": 1,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8993,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+        "attempt": 2,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8993,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "e07c5760529528b8b221fcb7",
+        "attempt": 1,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8957,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "e07c5760529528b8b221fcb7",
+        "attempt": 2,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8957,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "e1fd4353ad8dd1205dc6b290",
+        "attempt": 1,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8669,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "e1fd4353ad8dd1205dc6b290",
+        "attempt": 2,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8669,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "e74d36035dd3dde9b5c7277a",
+        "attempt": 1,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8995,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "e74d36035dd3dde9b5c7277a",
+        "attempt": 2,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8995,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "e9f42b6509c3f04c8fec3aba",
+        "attempt": 1,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8715,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "e9f42b6509c3f04c8fec3aba",
+        "attempt": 2,
+        "reported_completion_tokens": 8192,
+        "reported_reasoning_tokens": 8715,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+        "attempt": 1,
+        "reported_completion_tokens": 15264,
+        "reported_reasoning_tokens": 15543,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      },
+      {
+        "review_id": "6ca79b2c862614767055bc4d",
+        "attempt": 1,
+        "reported_completion_tokens": 14053,
+        "reported_reasoning_tokens": 14090,
+        "issue": "Reasoning detail exceeds reported completion_tokens; provider counts are retained without correction."
+      }
+    ],
+    "metered_attempts": 76,
+    "missing_usage_attempts": 7,
+    "observed_prompt_tokens_subtotal": 376352,
+    "observed_completion_tokens_subtotal": 344963,
+    "gateway_reported_cost_usd": null,
+    "gateway_reported_cost_subtotal_usd": 0.1512612738,
+    "attempts_with_reported_cost": 76,
+    "missing_cost_attempts": 7,
+    "actual_invoiced_charge_usd": null,
+    "returned_model_ids": {
+      "deepseek/deepseek-v4-flash": 76,
+      "None": 7
+    },
+    "cost_note": "Gateway usage.cost, including retained failed attempts when reported; not an independently verified invoice. Missing usage or cost is unknown, not zero."
+  },
+  "recovery": {
+    "manifest_sha256": "639de471a1b18c433749bc874632fe49b9a7a35a07c1cb3ee751703435557a0a",
+    "judgments_sha256": "9aaa0baeb6d1f2c5d31b05b3220bab3b288ec7e4882ac7cb1bef97b354052d24",
+    "trials": 11,
+    "valid": 8,
+    "original_collector_valid": 7,
+    "config": {
+      "base_url": "https://ai-gateway01.qualgo.ai/v1",
+      "credential_env": "LUATCHECK_JUDGE_API_KEY",
+      "model": "deepseek/deepseek-v4-flash",
+      "requested_family": "DeepSeek V4.1 Flash",
+      "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+      "revision_pinned": false,
+      "allowed_returned_models": [
+        "deepseek/deepseek-v4-flash",
+        "deepseek-v4-flash",
+        "deepseek-flash",
+        "deepseek-v4.1-flash",
+        "deepseek-v4.1-flash-1017"
+      ],
+      "model_identity_note": "Gateway /model/info identifies provider deepseek and upstream deepseek/deepseek-v4-flash. Official DeepSeek documentation maps the legacy deepseek-v4-flash alias to V4.1-Flash-1017. Actual gateway routing is not independently attested; preserve returned model IDs.",
+      "model_identity_source": "https://api-docs.deepseek.com/",
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "high",
+      "max_tokens": 16384,
+      "timeout_seconds": 180,
+      "max_attempts": 1,
+      "concurrency": 2,
+      "temperature": null,
+      "seed": null,
+      "billing_note": "Use real gateway usage and cost headers if present. Actual invoiced charges are unknown unless separately obtained; do not apply official direct-API prices to a gateway.",
+      "stream": true
+    },
+    "selection": "All and only initial status != valid. No valid judgment resampled; no selection by semantic scores.",
+    "note": "One streamed retry with 16384 output tokens was added after observing initial truncation/HTTP errors. Semantic prompts and task inputs are unchanged. Not preregistered."
+  },
+  "human_audit_sample": {
+    "count": 12,
+    "selected_review_ids": [
+      "0efabcf9eb987c2353c95882",
+      "41cc0dcbdc12a6bdc7c3bfa9",
+      "6ca79b2c862614767055bc4d",
+      "807283e79df1820ec7de2364",
+      "9213280d76509d8751353ed8",
+      "9a5c3f97678401d9abbd0317",
+      "9f972fff965b79d71e6f5b7e",
+      "a40ba41e2ea6d4881d63a75a",
+      "ac462bb5d8f317e57c5ffc50",
+      "b276cb11ee141cb7b475b2b3",
+      "dbd45deb49ef72c38f4b0b01",
+      "f0fcba9d7146734f87f5698f"
+    ],
+    "method": "One hash-selected record per nonempty mode/category/judge-outcome stratum; hash-ordered fill to at least 12. Sample selected after judging; no human labels generated."
+  }
+}

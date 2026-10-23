@@ -1,0 +1,309 @@
+[
+  {
+    "review_id": "5d99a944ed44b05f8e90a6af",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc chỉ để bảo đảm việc thực hiện hợp đồng lao động có được phép không?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được phép yêu cầu biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_17",
+        "exact_quote": "2. Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động.",
+        "pdf_pages": [
+          8
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 220 của Bộ luật Lao động 2019, việc người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc không được phép. Điều này được quy định trong hiệu lực thi hành của Bộ luật này, cụ thể là tại Khoản 2 Điều 220, trong đó quy định rằng từ ngày Bộ luật này có hiệu lực, hợp đồng lao động, thỏa ước lao động tập thể, các thỏa thuận hợp pháp đã giao kết có nội dung không trái hoặc bảo đảm cho người lao động có quyền và điều kiện thuận lợi hơn so với quy định của Bộ luật này được tiếp tục thực hiện, trừ trường hợp các bên có thỏa thuận về việc sửa đổi, bổ sung để phù hợp và để áp dụng quy định của Bộ luật này. Do đó, việc yêu cầu người lao động nộp tiền đặt cọc không được phép.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_220",
+        "exact_quote": "Kể từ ngày Bộ luật này có hiệu lực thi hành, hợp đồng lao động, thỏa ước lao động tập thể, các thỏa thuận hợp pháp đã giao kết có nội dung không trái hoặc bảo đảm cho người lao động có quyền và điều kiện thuận lợi hơn so với quy định của Bộ luật này được tiếp tục thực hiện, trừ trường hợp các bên có thỏa thuận về việc sửa đổi, bổ sung để phù hợp và để áp dụng quy định của Bộ luật này."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_1",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 1. Phạm vi điều chỉnh",
+        "content": "Điều 1. Phạm vi điều chỉnh Bộ luật Lao động quy định tiêu chuẩn lao động; quyền, nghĩa vụ, trách nhiệm của người lao động, người sử dụng lao động, tổ chức đại diện người lao động tại cơ sở, tổ chức đại diện người sử dụng lao động trong quan hệ lao động và các quan hệ khác liên quan trực tiếp đến quan hệ lao động; quản lý nhà nước về lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          1
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_17",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 17. Hành vi người sử dụng lao động không được làm khi giao kết,",
+        "content": "Điều 17. Hành vi người sử dụng lao động không được làm khi giao kết, thực hiện hợp đồng lao động 1. Giữ bản chính giấy tờ tùy thân, văn bằng, chứng chỉ của người lao động. 2. Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động. 3. Buộc người lao động thực hiện hợp đồng lao động để trả nợ cho người sử dụng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          8
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_220",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 220. Hiệu lực thi hành",
+        "content": "Điều 220. Hiệu lực thi hành 1. Bộ luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2021. Bộ luật Lao động số 10/2012/QH13 hết hiệu lực thi hành kể từ ngày Bộ luật này có hiệu lực. 2. Kể từ ngày Bộ luật này có hiệu lực thi hành, hợp đồng lao động, thỏa ước lao động tập thể, các thỏa thuận hợp pháp đã giao kết có nội dung không trái hoặc bảo đảm cho người lao động có quyền và điều kiện thuận lợi hơn so với quy định của Bộ luật này được tiếp tục thực hiện, trừ trường hợp các bên có thỏa thuận về việc sửa đổi, bổ sung để phù hợp và để áp dụng quy định của Bộ luật này. 3. Chế độ lao động đối với cán bộ, công chức, viên chức, người thuộc lực lượng Quân đội nhân dân, Công an nhân dân, tổ chức xã hội, xã viên hợp tác xã, người làm việc không có quan hệ lao động do các văn bản pháp luật khác quy định nhưng tùy từng đối tượng mà được áp dụng một số quy định trong Bộ luật này. Bộ luật này được Quốc hội nước Cộng hòa xã hội chủ nghĩa Việt Nam khóa XIV, kỳ họp thứ 8 thông qua ngày 20 tháng 11 năm 2019./.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          92,
+          93
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_45",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 45. Thông báo chấm dứt hợp đồng lao động",
+        "content": "Điều 45. Thông báo chấm dứt hợp đồng lao động 1. Người sử dụng lao động phải thông báo bằng văn bản cho người lao động về việc chấm dứt hợp đồng lao động khi hợp đồng lao động chấm dứt theo quy định của Bộ luật này, trừ trường hợp quy định tại các khoản 4, 5, 6, 7 và 8 Điều 34 của Bộ luật này. 2. Trường hợp người sử dụng lao động không phải là cá nhân chấm dứt hoạt động thì thời điểm chấm dứt hợp đồng lao động tính từ thời điểm có thông báo chấm dứt hoạt động. Trường hợp người sử dụng lao động không phải là cá nhân bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật theo quy định tại khoản 7 Điều 34 của Bộ luật này thì thời điểm chấm dứt hợp đồng lao động tính từ ngày ra thông báo.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "aa3f78dd01828ec87126a690",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là bao nhiêu ngày?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không quá 60 ngày.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_25",
+        "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+        "pdf_pages": [
+          11,
+          12
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_25",
+        "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_151",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 151. Điều kiện người lao động nước ngoài làm việc tại Việt Nam",
+        "content": "Điều 151. Điều kiện người lao động nước ngoài làm việc tại Việt Nam 1. Người lao động nước ngoài làm việc tại Việt Nam là người có quốc tịch nước ngoài và phải đáp ứng các điều kiện sau đây: a) Đủ 18 tuổi trở lên và có năng lực hành vi dân sự đầy đủ; b) Có trình độ chuyên môn, kỹ thuật, tay nghề, kinh nghiệm làm việc; có đủ sức khỏe theo quy định của Bộ trưởng Bộ Y tế; c) Không phải là người đang trong thời gian chấp hành hình phạt hoặc chưa được xóa án tích hoặc đang trong thời gian bị truy cứu trách nhiệm hình sự theo quy định của pháp luật nước ngoài hoặc pháp luật Việt Nam; d) Có giấy phép lao động do cơ quan nhà nước có thẩm quyền của Việt Nam cấp, trừ trường hợp quy định tại Điều 154 của Bộ luật này. 2. Thời hạn của hợp đồng lao động đối với người lao động nước ngoài làm việc tại Việt Nam không được vượt quá thời hạn của Giấy phép lao động. Khi sử dụng người lao động nước ngoài làm việc tại Việt Nam, hai bên có thể thỏa thuận giao kết nhiều lần hợp đồng lao động xác định thời hạn. 3. Người lao động nước ngoài làm việc tại Việt Nam phải tuân theo pháp luật lao động Việt Nam và được pháp luật Việt Nam bảo vệ, trừ trường hợp điều ước quốc tế mà nước Cộng hòa xã hội chủ nghĩa Việt Nam là thành viên có quy định khác.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          62
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_152",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 152. Điều kiện tuyển dụng, sử dụng người lao động nước ngoài làm",
+        "content": "Điều 152. Điều kiện tuyển dụng, sử dụng người lao động nước ngoài làm việc tại Việt Nam 1. Doanh nghiệp, cơ quan, tổ chức, cá nhân, nhà thầu chỉ được tuyển dụng người lao động nước ngoài vào làm vị trí công việc quản lý, điều hành, chuyên gia và lao động kỹ thuật mà người lao động Việt Nam chưa đáp ứng được theo nhu cầu sản xuất, kinh doanh. 2. Doanh nghiệp, cơ quan, tổ chức, cá nhân trước khi tuyển dụng người lao động nước ngoài vào làm việc tại Việt Nam phải giải trình nhu cầu sử dụng lao động và được sự chấp thuận bằng văn bản của cơ quan nhà nước có thẩm quyền. 3. Nhà thầu trước khi tuyển và sử dụng lao động nước ngoài làm việc tại Việt Nam phải kê khai cụ thể các vị trí công việc, trình độ chuyên môn, kỹ thuật, kinh nghiệm làm việc, thời gian làm việc cần sử dụng lao động nước ngoài để thực hiện gói thầu và được sự chấp thuận bằng văn bản của cơ quan nhà nước có thẩm quyền.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          62,
+          63
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_25",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 25. Thời gian thử việc",
+        "content": "Điều 25. Thời gian thử việc Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp; 2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên; 3. Không quá 30 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật trung cấp, công nhân kỹ thuật, nhân viên nghiệp vụ; 4. Không quá 06 ngày làm việc đối với công việc khác.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          11,
+          12
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "d9aca1c892f18cf2df7935e2",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là bao nhiêu ngày?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không quá 60 ngày.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_25",
+        "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;",
+        "pdf_pages": [
+          11,
+          12
+        ]
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 25 của Bộ luật Lao động 2019, thời gian thử việc tối đa cho công việc cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên là 60 ngày.",
+    "candidate_citations": [
+      {
+        "article_id": "Dieu_25",
+        "exact_quote": "2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên;"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "Dieu_151",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 151. Điều kiện người lao động nước ngoài làm việc tại Việt Nam",
+        "content": "Điều 151. Điều kiện người lao động nước ngoài làm việc tại Việt Nam 1. Người lao động nước ngoài làm việc tại Việt Nam là người có quốc tịch nước ngoài và phải đáp ứng các điều kiện sau đây: a) Đủ 18 tuổi trở lên và có năng lực hành vi dân sự đầy đủ; b) Có trình độ chuyên môn, kỹ thuật, tay nghề, kinh nghiệm làm việc; có đủ sức khỏe theo quy định của Bộ trưởng Bộ Y tế; c) Không phải là người đang trong thời gian chấp hành hình phạt hoặc chưa được xóa án tích hoặc đang trong thời gian bị truy cứu trách nhiệm hình sự theo quy định của pháp luật nước ngoài hoặc pháp luật Việt Nam; d) Có giấy phép lao động do cơ quan nhà nước có thẩm quyền của Việt Nam cấp, trừ trường hợp quy định tại Điều 154 của Bộ luật này. 2. Thời hạn của hợp đồng lao động đối với người lao động nước ngoài làm việc tại Việt Nam không được vượt quá thời hạn của Giấy phép lao động. Khi sử dụng người lao động nước ngoài làm việc tại Việt Nam, hai bên có thể thỏa thuận giao kết nhiều lần hợp đồng lao động xác định thời hạn. 3. Người lao động nước ngoài làm việc tại Việt Nam phải tuân theo pháp luật lao động Việt Nam và được pháp luật Việt Nam bảo vệ, trừ trường hợp điều ước quốc tế mà nước Cộng hòa xã hội chủ nghĩa Việt Nam là thành viên có quy định khác.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          62
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_152",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 152. Điều kiện tuyển dụng, sử dụng người lao động nước ngoài làm",
+        "content": "Điều 152. Điều kiện tuyển dụng, sử dụng người lao động nước ngoài làm việc tại Việt Nam 1. Doanh nghiệp, cơ quan, tổ chức, cá nhân, nhà thầu chỉ được tuyển dụng người lao động nước ngoài vào làm vị trí công việc quản lý, điều hành, chuyên gia và lao động kỹ thuật mà người lao động Việt Nam chưa đáp ứng được theo nhu cầu sản xuất, kinh doanh. 2. Doanh nghiệp, cơ quan, tổ chức, cá nhân trước khi tuyển dụng người lao động nước ngoài vào làm việc tại Việt Nam phải giải trình nhu cầu sử dụng lao động và được sự chấp thuận bằng văn bản của cơ quan nhà nước có thẩm quyền. 3. Nhà thầu trước khi tuyển và sử dụng lao động nước ngoài làm việc tại Việt Nam phải kê khai cụ thể các vị trí công việc, trình độ chuyên môn, kỹ thuật, kinh nghiệm làm việc, thời gian làm việc cần sử dụng lao động nước ngoài để thực hiện gói thầu và được sự chấp thuận bằng văn bản của cơ quan nhà nước có thẩm quyền.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          62,
+          63
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_25",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 25. Thời gian thử việc",
+        "content": "Điều 25. Thời gian thử việc Thời gian thử việc do hai bên thỏa thuận căn cứ vào tính chất và mức độ phức tạp của công việc nhưng chỉ được thử việc một lần đối với một công việc và bảo đảm điều kiện sau đây: 1. Không quá 180 ngày đối với công việc của người quản lý doanh nghiệp theo quy định của Luật Doanh nghiệp, Luật Quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp; 2. Không quá 60 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật từ cao đẳng trở lên; 3. Không quá 30 ngày đối với công việc có chức danh nghề nghiệp cần trình độ chuyên môn, kỹ thuật trung cấp, công nhân kỹ thuật, nhân viên nghiệp vụ; 4. Không quá 06 ngày làm việc đối với công việc khác.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          11,
+          12
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "ec9b05964028c4de10f9caf7",
+    "question": "Theo nguyên bản Bộ luật Lao động 45/2019/QH14 (không xét sửa đổi sau này), người sử dụng lao động yêu cầu người lao động nộp tiền đặt cọc chỉ để bảo đảm việc thực hiện hợp đồng lao động có được phép không?",
+    "scope": "Original 45/2019/QH14 Gazette snapshot; not current-law advice",
+    "expected_behavior": "answer",
+    "reference_answer": "Không được phép yêu cầu biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "Dieu_17",
+        "exact_quote": "2. Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động.",
+        "pdf_pages": [
+          8
+        ]
+      }
+    ],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "Dieu_1",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 1. Phạm vi điều chỉnh",
+        "content": "Điều 1. Phạm vi điều chỉnh Bộ luật Lao động quy định tiêu chuẩn lao động; quyền, nghĩa vụ, trách nhiệm của người lao động, người sử dụng lao động, tổ chức đại diện người lao động tại cơ sở, tổ chức đại diện người sử dụng lao động trong quan hệ lao động và các quan hệ khác liên quan trực tiếp đến quan hệ lao động; quản lý nhà nước về lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          1
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_17",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 17. Hành vi người sử dụng lao động không được làm khi giao kết,",
+        "content": "Điều 17. Hành vi người sử dụng lao động không được làm khi giao kết, thực hiện hợp đồng lao động 1. Giữ bản chính giấy tờ tùy thân, văn bằng, chứng chỉ của người lao động. 2. Yêu cầu người lao động phải thực hiện biện pháp bảo đảm bằng tiền hoặc tài sản khác cho việc thực hiện hợp đồng lao động. 3. Buộc người lao động thực hiện hợp đồng lao động để trả nợ cho người sử dụng lao động.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          8
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_220",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 220. Hiệu lực thi hành",
+        "content": "Điều 220. Hiệu lực thi hành 1. Bộ luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2021. Bộ luật Lao động số 10/2012/QH13 hết hiệu lực thi hành kể từ ngày Bộ luật này có hiệu lực. 2. Kể từ ngày Bộ luật này có hiệu lực thi hành, hợp đồng lao động, thỏa ước lao động tập thể, các thỏa thuận hợp pháp đã giao kết có nội dung không trái hoặc bảo đảm cho người lao động có quyền và điều kiện thuận lợi hơn so với quy định của Bộ luật này được tiếp tục thực hiện, trừ trường hợp các bên có thỏa thuận về việc sửa đổi, bổ sung để phù hợp và để áp dụng quy định của Bộ luật này. 3. Chế độ lao động đối với cán bộ, công chức, viên chức, người thuộc lực lượng Quân đội nhân dân, Công an nhân dân, tổ chức xã hội, xã viên hợp tác xã, người làm việc không có quan hệ lao động do các văn bản pháp luật khác quy định nhưng tùy từng đối tượng mà được áp dụng một số quy định trong Bộ luật này. Bộ luật này được Quốc hội nước Cộng hòa xã hội chủ nghĩa Việt Nam khóa XIV, kỳ họp thứ 8 thông qua ngày 20 tháng 11 năm 2019./.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          92,
+          93
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      },
+      {
+        "article_id": "Dieu_45",
+        "law_id": "45/2019/QH14",
+        "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+        "title": "Điều 45. Thông báo chấm dứt hợp đồng lao động",
+        "content": "Điều 45. Thông báo chấm dứt hợp đồng lao động 1. Người sử dụng lao động phải thông báo bằng văn bản cho người lao động về việc chấm dứt hợp đồng lao động khi hợp đồng lao động chấm dứt theo quy định của Bộ luật này, trừ trường hợp quy định tại các khoản 4, 5, 6, 7 và 8 Điều 34 của Bộ luật này. 2. Trường hợp người sử dụng lao động không phải là cá nhân chấm dứt hoạt động thì thời điểm chấm dứt hợp đồng lao động tính từ thời điểm có thông báo chấm dứt hoạt động. Trường hợp người sử dụng lao động không phải là cá nhân bị cơ quan chuyên môn về đăng ký kinh doanh thuộc Ủy ban nhân dân cấp tỉnh ra thông báo không có người đại diện theo pháp luật, người được ủy quyền thực hiện quyền và nghĩa vụ của người đại diện theo pháp luật theo quy định tại khoản 7 Điều 34 của Bộ luật này thì thời điểm chấm dứt hợp đồng lao động tính từ ngày ra thông báo.",
+        "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+        "source_pages": [
+          21
+        ],
+        "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+        "extraction": "pdfplumber x_tolerance=1.5; remove running Gazette headers; NFC; join whitespace",
+        "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law"
+      }
+    ],
+    "unknown_citation_ids": []
+  }
+]

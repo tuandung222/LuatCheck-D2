@@ -1,0 +1,482 @@
+[
+  {
+    "review_id": "1272a2d463364a0f1728fe43",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "b17de6a27d7656149e80a45d",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "7638ca0d0ac3c0558eb6a2b2",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "ce1ca11d88a5571ef7746261",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "80a84e240c1cd7c1bab53131",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "d26f834a9525b5760f49efe7",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "44d31749b1543c91d8152506",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true
+  },
+  {
+    "review_id": "f61a12015b2a1d74d3695ad7",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": true
+  },
+  {
+    "review_id": "dbd45deb49ef72c38f4b0b01",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "807283e79df1820ec7de2364",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "6ca79b2c862614767055bc4d",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "b6ad1f31b97538d4c89688ca",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "3b8dc9a2015f1c71c11e4737",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 42,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": false
+  },
+  {
+    "review_id": "a40ba41e2ea6d4881d63a75a",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": false
+  },
+  {
+    "review_id": "4b59ef449eb089e1aa7d7a58",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": false
+  },
+  {
+    "review_id": "e1fd4353ad8dd1205dc6b290",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 42,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": false
+  },
+  {
+    "review_id": "e9f42b6509c3f04c8fec3aba",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 42,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "ac94412a557f4ecdc756b8f6",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "9213280d76509d8751353ed8",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 42,
+    "mode": "l1_on",
+    "category": "scope",
+    "system_error": false
+  },
+  {
+    "review_id": "f0fcba9d7146734f87f5698f",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 42,
+    "mode": "off",
+    "category": "scope",
+    "system_error": false
+  },
+  {
+    "review_id": "30bceb1e819fdce4c49e0d1d",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "73580e1ce23e2ef725de0c58",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "92871a50b4af46e46b702c92",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "99d25b4a9d8373352568af8e",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "e74d36035dd3dde9b5c7277a",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "0d3daae8b9b605a0bdf9cc77",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "0efabcf9eb987c2353c95882",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true
+  },
+  {
+    "review_id": "d5be62d4e70509cb7587eb88",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": true
+  },
+  {
+    "review_id": "b276cb11ee141cb7b475b2b3",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "b52a9eb20ff77ad7021a41b8",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "9f972fff965b79d71e6f5b7e",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "89d5947f699a6e6e835aabff",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "ae8f7e4fb3d8f0344e63f096",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 123,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": false
+  },
+  {
+    "review_id": "c31a3382678759495c864e1d",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": false
+  },
+  {
+    "review_id": "d60f0334d266aea2347455d2",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": true
+  },
+  {
+    "review_id": "9a5c3f97678401d9abbd0317",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 123,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": true
+  },
+  {
+    "review_id": "e07c5760529528b8b221fcb7",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 123,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "cd32efad61fb6cd71288413b",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true
+  },
+  {
+    "review_id": "a8b7ba96afe4eb07b3530b39",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 123,
+    "mode": "l1_on",
+    "category": "scope",
+    "system_error": false
+  },
+  {
+    "review_id": "ec8047bbb818be1b2bf0f347",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 123,
+    "mode": "off",
+    "category": "scope",
+    "system_error": false
+  },
+  {
+    "review_id": "3c934e967a3c8c35b7c00272",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "fc27c417625b1b6f96e9d1b9",
+    "task_id": "BLL19-01-PROBATION",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "248fa46257a83d440b251968",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "8a0b72150b88421542f0eaf1",
+    "task_id": "BLL19-02-PROBATION_WAGE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "95d33ca5e958414b7be5bc66",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "15b4202699ef30b56bceb619",
+    "task_id": "BLL19-03-NOTICE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "d052cb149b55f530e179ff24",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true
+  },
+  {
+    "review_id": "e619e41770b77b37779c0b65",
+    "task_id": "BLL19-04-ABSENCE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": true
+  },
+  {
+    "review_id": "41cc0dcbdc12a6bdc7c3bfa9",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "2868aa8ba2b354b0d92a7406",
+    "task_id": "BLL19-05-PREGNANCY",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "008dfaa6565b0abc730607b1",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": true
+  },
+  {
+    "review_id": "ac462bb5d8f317e57c5ffc50",
+    "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "90819b991564349ba6e49071",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": true
+  },
+  {
+    "review_id": "d2633fe3c7b020820117029d",
+    "task_id": "BLL19-07-NOTICE_AND_SEVERANCE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": true
+  },
+  {
+    "review_id": "6d11a1ae3b7337d8a5709d6f",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "synthesis",
+    "system_error": false
+  },
+  {
+    "review_id": "1ac23e95a8a8f224634ad7f7",
+    "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+    "seed": 2026,
+    "mode": "off",
+    "category": "synthesis",
+    "system_error": false
+  },
+  {
+    "review_id": "e1b80b6edddfb86b76546f56",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 2026,
+    "mode": "off",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "766fd5b97a7e67b8e0a0b386",
+    "task_id": "BLL19-09-DEPOSIT",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "single",
+    "system_error": false
+  },
+  {
+    "review_id": "b2ef5d296020655f187fadb0",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 2026,
+    "mode": "l1_on",
+    "category": "scope",
+    "system_error": false
+  },
+  {
+    "review_id": "117a08fb3d0365d26543eac7",
+    "task_id": "BLL19-10-FOREIGN_SCOPE",
+    "seed": 2026,
+    "mode": "off",
+    "category": "scope",
+    "system_error": false
+  }
+]

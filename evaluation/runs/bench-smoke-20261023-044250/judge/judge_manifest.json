@@ -1,0 +1,52 @@
+{
+  "updated_at": "2026-10-22T21:47:33.879669+00:00",
+  "config": {
+    "base_url": "https://ai-gateway01.qualgo.ai/v1",
+    "credential_env": "LUATCHECK_JUDGE_API_KEY",
+    "model": "deepseek/deepseek-v4-flash",
+    "requested_family": "DeepSeek V4.1 Flash",
+    "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+    "revision_pinned": false,
+    "allowed_returned_models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek-v4-flash",
+      "deepseek-flash",
+      "deepseek-v4.1-flash",
+      "deepseek-v4.1-flash-1017"
+    ],
+    "model_identity_note": "Same gateway model and thinking/effort settings as config/d2_judge_gateway.json. Gateway routing is not independently attested; returned model IDs are preserved in every attempt record.",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 24000,
+    "timeout_seconds": 300,
+    "max_attempts": 3,
+    "concurrency": 8,
+    "temperature": null,
+    "seed": null,
+    "billing_note": "Cost is the gateway-reported usage.cost / x-litellm-response-cost per attempt, retained failed attempts included; it is not an invoice and missing cost is unknown, not zero."
+  },
+  "summary": {
+    "packets": 5,
+    "valid": 5,
+    "invalid": 0,
+    "judged_this_session": {
+      "valid": 1
+    }
+  },
+  "human_labels": false,
+  "actual_invoiced_charge_usd": null,
+  "judgments_sha256": "e77692ecbc65c58e2c40f848732e1fa140877b33ca15da4303f8b7596f1b58b1",
+  "attempts_sha256": {
+    "119ce27599bd12b7a9b0eca3-a1.json": "3c7546f576220ea0dc4f97e78731bfb72d6fea97dcdabc9c0b90f54fb8ebb16b",
+    "31151c029b36902fbc419ecf-a1.json": "432ddeeb69dd6f48acb59de7514fca0c231aa9de14f9c5bd66fff5692762d924",
+    "b8911c519e7fdaf4aa47f34e-a1.json": "a9de0d2aa06ff3dabb3709b6d00a7df7d906df740a4dd9683023ebd7ee6201d8",
+    "d96e42d0504aba63384357b1-a1.json": "1160d5d26579c02204a5b2805c4e7ef13c40285dcae471811faec12c5bc7513c",
+    "d96e42d0504aba63384357b1-a2.json": "7546927c7782373ec37ed140aeedb8c8b346ef5c20a9db3b6c17809adf53eea8",
+    "d96e42d0504aba63384357b1-a3.json": "b930d11d187c8d7245869655851c5d82ed45068e15d1f85ec3988ea047f37d13",
+    "d96e42d0504aba63384357b1-a4.json": "c4482534837de0a0265d93615019ab733e8ae753412a55b2bd855047e7f51dd2",
+    "ff8ef9321cb3d80e1aa4fb75-a1.json": "6269f85bb3c30dd9f64700cd8288ade292d6859a74fbd0b4f6e75fbadfbf9715"
+  },
+  "note": "LLM-judge estimates, not human labels. Attempts are retained; only invalid/unparseable judgments were retried."
+}

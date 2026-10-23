@@ -1,0 +1,165 @@
+[
+  {
+    "check": "native_answer",
+    "pass": true,
+    "observed": {
+      "model_call_count": 2,
+      "input_tokens": 3766,
+      "output_tokens": 293,
+      "model_wall_ms": 16285.833
+    }
+  },
+  {
+    "check": "foreign_session",
+    "pass": true,
+    "observed": 404
+  },
+  {
+    "check": "foreign_session/events",
+    "pass": true,
+    "observed": 404
+  },
+  {
+    "check": "foreign_session/articles/Dieu_26",
+    "pass": true,
+    "observed": 404
+  },
+  {
+    "check": "same_request_key_replay",
+    "pass": true,
+    "observed": {
+      "run_id": "ade8f337-ecb2-4c7d-9af7-fe5fe1024e58",
+      "job_status": "finished",
+      "replayed": true
+    }
+  },
+  {
+    "check": "changed_request_key_conflict",
+    "pass": true,
+    "observed": 409
+  },
+  {
+    "check": "missing_csrf",
+    "pass": true,
+    "observed": 403
+  },
+  {
+    "check": "foreign_origin",
+    "pass": true,
+    "observed": 403
+  },
+  {
+    "check": "disabled_semantic",
+    "pass": true,
+    "observed": 422
+  },
+  {
+    "check": "citation_exact_match",
+    "pass": true,
+    "observed": {
+      "article_id": "Dieu_26",
+      "pages": [
+        12
+      ],
+      "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c"
+    }
+  },
+  {
+    "check": "sse_resume_after_last_event",
+    "pass": true,
+    "observed": {
+      "event_count": 10,
+      "resume": ""
+    }
+  },
+  {
+    "check": "tampered_approval_hash",
+    "pass": true,
+    "observed": 409
+  },
+  {
+    "check": "foreign_proposal",
+    "pass": true,
+    "observed": 404
+  },
+  {
+    "check": "local_outbox_receipt",
+    "pass": true,
+    "observed": {
+      "proposal_id": "prop_5eb6dfcba3dea124",
+      "status": "completed",
+      "replayed": false,
+      "result": {
+        "status": "queued_locally",
+        "delivered": false,
+        "message": "Đã lưu vào hàng đợi cục bộ; chưa gửi email/webhook.",
+        "hash": "5eb6dfcba3dea1246b17dfdb872999ba582e14e845cda52a5b88816917f1a591"
+      },
+      "event_id": 12,
+      "event_created_at": 1792680053.004247,
+      "display_message": "Đã lưu hàng đợi cục bộ; chưa gửi email/webhook."
+    }
+  },
+  {
+    "check": "outbox_confirm_retry",
+    "pass": true,
+    "observed": {
+      "status": 200,
+      "rows": 2
+    }
+  },
+  {
+    "check": "concurrent_identical_proposal",
+    "pass": false,
+    "observed": [
+      {
+        "status": 200,
+        "body": "{\"proposal_id\":\"prop_6b1ba33bb3e3ce68\",\"recipient\":\"concurrent-review@example.invalid\",\"content\":\"Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 8"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 500,
+        "body": "Internal Server Error"
+      },
+      {
+        "status": 200,
+        "body": "{\"proposal_id\":\"prop_6b1ba33bb3e3ce68\",\"recipient\":\"concurrent-review@example.invalid\",\"content\":\"Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 8"
+      }
+    ]
+  }
+]

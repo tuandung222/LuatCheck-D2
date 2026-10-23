@@ -1,0 +1,82 @@
+{
+  "run_id": "ade8f337-ecb2-4c7d-9af7-fe5fe1024e58",
+  "query": "Tiền lương trong thời gian thử việc được quy định thế nào?",
+  "verification_mode": "lexical_grounding",
+  "job_status": "finished",
+  "terminal_status": "answered",
+  "created_at": 1792679918.3214169,
+  "updated_at": 1792679934.684582,
+  "snapshot": {
+    "terminal_status": "answered",
+    "final_output": {
+      "action": "answer",
+      "citations": [
+        {
+          "article_id": "Dieu_26",
+          "law_name": "Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019",
+          "exact_quote": "Điều 26. Tiền lương thử việc Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó.",
+          "title": "Điều 26. Tiền lương thử việc",
+          "source_url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf",
+          "source_pages": [
+            12
+          ],
+          "source_sha256": "3c865f3d92ba23604e316360b902297ddbc0d1c394d3c08a466029a9d43b5b6c",
+          "scope": "Original 2019 enactment, not a consolidated statement of current 2026 law",
+          "available": true
+        }
+      ],
+      "verified": true,
+      "from_cache": false,
+      "content": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó. Điều này được quy định tại Điều 26 của Bộ luật Lao động 2019."
+    },
+    "verification_mode": "lexical_grounding",
+    "budgets": {
+      "tool_calls": {
+        "used": 1,
+        "limit": 5
+      },
+      "repairs": {
+        "used": 0,
+        "limit": 2
+      },
+      "steps": {
+        "used": 2,
+        "limit": 10
+      }
+    },
+    "retrieved_article_ids": [
+      "Dieu_26",
+      "Dieu_24",
+      "Dieu_27"
+    ],
+    "grounding": {
+      "label": "lexical proxy",
+      "grounded_ratio": 1.0,
+      "sentences": [
+        {
+          "sentence": "Tiền lương của người lao động trong thời gian thử việc do hai bên thỏa thuận nhưng ít nhất phải bằng 85% mức lương của công việc đó",
+          "overlap_ratio": 1.0,
+          "is_supported": true,
+          "best_article_id": "Dieu_26",
+          "best_overlap": 1.0
+        },
+        {
+          "sentence": "Điều này được quy định tại Điều 26 của Bộ luật Lao động 2019.",
+          "overlap_ratio": 0.5,
+          "is_supported": true,
+          "best_article_id": "Dieu_26",
+          "best_overlap": 0.5
+        }
+      ],
+      "unsupported_claims": [],
+      "invalid_citations": []
+    },
+    "usage": {
+      "model_call_count": 2,
+      "input_tokens": 3766,
+      "output_tokens": 293,
+      "model_wall_ms": 16285.833
+    },
+    "elapsed_ms": 16351.5
+  }
+}
