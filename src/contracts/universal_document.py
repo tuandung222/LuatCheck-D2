@@ -3,7 +3,7 @@ Universal Document and Citation Schemas for Multi-Domain Knowledge Representatio
 
 Supports arbitrary domain corpora (Legal, Medical, Financial, Enterprise IT SOPs).
 """
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field
 
 

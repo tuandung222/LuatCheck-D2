@@ -17,8 +17,13 @@ import threading
 from collections import Counter
 from typing import Dict, Any, List, Optional, Tuple
 
+from src.domains import DomainProfile, load_profile
 from src.retrieval.hybrid_domain import HybridDomainRetriever
-from src.tools.permissions import PermissionManager, PermissionError
+from src.tools.permissions import PermissionManager
+
+
+def _doc_id(record: Dict[str, Any]) -> str:
+    return str(record.get("doc_id") or record.get("article_id") or "")
 
 
 class DomainKnowledgeRegistry:
@@ -38,8 +43,11 @@ class DomainKnowledgeRegistry:
         rrf_k: int = 60,
         reranker: Optional[Any] = None,
         rerank_top_k_in: int = 20,
-        rerank_top_k_out: int = 5
+        rerank_top_k_out: int = 5,
+        profile: Optional[DomainProfile] = None
     ):
+        # Tool-visible wording (no hits / unknown ID) comes from the domain profile (default: labour).
+        self.messages = (profile or load_profile()).messages
         self.retriever = retriever or HybridDomainRetriever(
             corpus_path=corpus_path,
             dense_endpoint=dense_endpoint,
@@ -151,37 +159,15 @@ class DomainKnowledgeRegistry:
         min(top_k, top_k_out) are returned in reranked order. A reranker failure raises (ModelComponentError):
         there is no fallback to first-stage order.
         """
-        metadata: Optional[Dict[str, Any]] = None
-        if self.reranker is None:
-            results = self.retriever.search(query, top_k=top_k)
-        else:
-            started = time.perf_counter()
-            candidates = self.retriever.search(query, top_k=self.rerank_top_k_in)
-            retrieval_ms = (time.perf_counter() - started) * 1000.0
-            results = []
-            metadata = {"rerank": {"requested_top_k": top_k, "top_k_in": self.rerank_top_k_in, "top_k_out": self.rerank_top_k_out,
-                                   "n_candidates": len(candidates), "first_stage_ms": retrieval_ms,
-                                   "first_stage_ids": [str(c.get("doc_id") or c.get("article_id") or "") for c in candidates],
-                                   "score_note": "backend-specific relevance scores; not comparable across backends, not answer correctness"}}
-            if candidates:
-                with self.reranker.use() as component:
-                    # Every candidate is scored and its score recorded; only the best min(top_k, top_k_out) are returned.
-                    ranked = component.rerank(query, candidates, top_k=len(candidates))
-                    run = dict(component.last_run)
-                results = [doc for doc, _ in ranked][:min(top_k, self.rerank_top_k_out)]
-                metadata["rerank"].update({
-                    "backend": run.get("backend"), "model": run.get("model"), "device": run.get("device"),
-                    "dtype": run.get("dtype"), "max_length": run.get("max_length"), "n_scored": run.get("n_scored"),
-                    "n_truncated": run.get("n_truncated"), "wall_ms": run.get("wall_ms"), "ms_per_pair": run.get("ms_per_pair"),
-                    "ranking": run.get("ranking"), "reranked_ids": [str(d.get("doc_id") or d.get("article_id") or "") for d in results]})
+        results, metadata = self._first_stage(query, top_k) if self.reranker is None else self._reranked(query, top_k)
         if not results:
-            return ({"status": "not_found", "message": f"Không tìm thấy tài liệu phù hợp cho truy vấn '{query}'",
+            return ({"status": "not_found", "message": self.messages.search_not_found.format(query=query),
                      "articles": []}, metadata)
         articles = []
         for r in results:
             content = r.get("content") or r.get("text") or ""
             title = r.get("title") or r.get("section_title", "")
-            articles.append({"article_id": str(r.get("doc_id") or r.get("article_id") or ""), "title": title,
+            articles.append({"article_id": _doc_id(r), "title": title,
                              **self._snippet(query, title, content), "full_content_chars": len(content)})
         sources = [str(r.get("law_name") or r.get("source_name") or "") for r in results]
         if len(set(sources)) > 1:
@@ -190,6 +176,33 @@ class DomainKnowledgeRegistry:
                 article["law_name"] = source
             return ({"status": "success", "count": len(articles), "articles": articles}, metadata)
         return ({"status": "success", "law_name": sources[0], "count": len(articles), "articles": articles}, metadata)
+
+    def _first_stage(self, query: str, top_k: int) -> Tuple[List[Dict[str, Any]], None]:
+        return self.retriever.search(query, top_k=top_k), None
+
+    def _reranked(self, query: str, top_k: int) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+        """First stage returns `top_k_in` candidates; every one is scored and recorded, the best
+        min(top_k, top_k_out) are returned in reranked order."""
+        started = time.perf_counter()
+        candidates = self.retriever.search(query, top_k=self.rerank_top_k_in)
+        retrieval_ms = (time.perf_counter() - started) * 1000.0
+        rerank: Dict[str, Any] = {
+            "requested_top_k": top_k, "top_k_in": self.rerank_top_k_in, "top_k_out": self.rerank_top_k_out,
+            "n_candidates": len(candidates), "first_stage_ms": retrieval_ms,
+            "first_stage_ids": [_doc_id(c) for c in candidates],
+            "score_note": "backend-specific relevance scores; not comparable across backends, not answer correctness"}
+        results: List[Dict[str, Any]] = []
+        if candidates:
+            with self.reranker.use() as component:
+                ranked = component.rerank(query, candidates, top_k=len(candidates))
+                run = dict(component.last_run)
+            results = [doc for doc, _ in ranked][:min(top_k, self.rerank_top_k_out)]
+            rerank.update({
+                "backend": run.get("backend"), "model": run.get("model"), "device": run.get("device"),
+                "dtype": run.get("dtype"), "max_length": run.get("max_length"), "n_scored": run.get("n_scored"),
+                "n_truncated": run.get("n_truncated"), "wall_ms": run.get("wall_ms"), "ms_per_pair": run.get("ms_per_pair"),
+                "ranking": run.get("ranking"), "reranked_ids": [_doc_id(d) for d in results]})
+        return results, {"rerank": rerank}
 
     search_law = search_knowledge
 
@@ -203,10 +216,7 @@ class DomainKnowledgeRegistry:
         )(doc_id)
 
         if not doc:
-            return {
-                "status": "error",
-                "message": f"Mã tài liệu '{doc_id}' không tồn tại trong cơ sở dữ liệu."
-            }
+            return {"status": "error", "message": self.messages.document_not_found.format(doc_id=doc_id)}
 
         canonical_id = str(doc.get("doc_id") or doc.get("article_id") or doc_id)
         source_name = str(doc.get("source_name") or doc.get("law_name", "Knowledge Base"))

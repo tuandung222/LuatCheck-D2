@@ -2,26 +2,27 @@
 Unified Multi-Stage Evidence Verification Pipeline.
 
 Orchestrates multi-stage evidence verification into a decoupled pipeline:
-1. Lexical Grounding Verification: Validates citation existence, provenance, and token overlap.
-2. Semantic Entailment Verification: Validates logical entailment via NLI or local SLM cross-examination.
+1. Lexical Grounding Verification (L1): validates citation existence, provenance, token overlap and exact quantities.
+2. Optional NLI step (`verifier.nli`): per (sentence, cited record) NLI probabilities, flag or repair.
+3. Semantic Entailment Verification (L2): native-model cross-examination, only in the L2 modes.
 """
-import re
 import time
 from dataclasses import dataclass
-from enum import Enum
 from typing import Callable, List, Dict, Any, Optional
 
 from src.agent.state import Citation, GroundingVerificationResult
-from src.verifier.lexical_grounding import LexicalGroundingVerifier
+from src.domains import load_profile
+from src.domains.profile import MessagesSpec
+from src.verifier.lexical_grounding import LexicalGroundingVerifier, split_sentences
+from src.verifier.modes import LEXICAL_GROUNDING, OFF, VALID_MODES, VerificationMode, canonical_mode
 from src.verifier.semantic_nli import SemanticNLIVerifier
 from src.model_runtime import ModelComponentError, doc_text
 
+__all__ = ["VerificationMode", "PipelineVerificationResult", "NLIStep", "VerificationPipeline"]
 
-class VerificationMode(str, Enum):
-    OFF = "off"
-    LEXICAL_GROUNDING = "lexical_grounding"
-    SEMANTIC_ENTAILMENT = "semantic_entailment"
-    FULL = "full"
+
+def _failed_claim_lines(sentences: List[str]) -> str:
+    return "\n".join(f'- "{s}"' for s in sentences[:2])
 
 
 @dataclass
@@ -53,19 +54,20 @@ class NLIStep:
     a pass, a flag or a repair request.
     """
 
-    _SENTENCES = re.compile(r'(?:(?<=[?!;])\s*|(?<!\b\d[.])(?<=[.])\s+|\n+)')   # same split as the L1 verifier
     _DETAIL_KEYS = ("backend", "wall_ms", "device", "n_windows", "selected_window", "remote_inference", "input_tokens")
 
     def __init__(self, handle: Any, lookup: Callable[[str], Optional[Dict[str, Any]]], threshold: float = 0.9,
-                 action: str = "flag"):
+                 action: str = "flag", messages: Optional[MessagesSpec] = None):
         if action not in ("flag", "repair"):
             raise ModelComponentError(f"NLI action must be 'flag' or 'repair', got {action!r}", kind="config_error")
         if not 0.0 <= threshold <= 1.0:
             raise ModelComponentError(f"NLI threshold must be in [0, 1], got {threshold!r}", kind="config_error")
         self.handle, self.lookup, self.threshold, self.action = handle, lookup, float(threshold), action
+        self.messages = messages or load_profile().messages
 
     def sentences(self, answer_text: str) -> List[str]:
-        return [x.strip() for x in self._SENTENCES.split(answer_text) if x.strip()]
+        """Same sentence split as the L1 verifier."""
+        return split_sentences(answer_text)
 
     def run(self, answer_text: str, citations: List[Citation]) -> Dict[str, Any]:
         premises: Dict[str, str] = {}
@@ -100,29 +102,20 @@ class NLIStep:
 
     def repair_feedback(self, result: Dict[str, Any]) -> str:
         bad = [p for p in result["pairs"] if p["contradicted"]]
-        return (f"CẢNH BÁO NLI: {len(bad)} cặp (câu trả lời, điều luật dẫn) có xác suất mâu thuẫn >= {self.threshold}:\n"
-                + "\n".join(f"- \"{p['sentence']}\" mâu thuẫn với {p['premise_id']} (P={p['contradiction']:.2f})" for p in bad[:2]))
+        pairs = "\n".join(self.messages.nli_pair_line.format(
+            sentence=p["sentence"], premise_id=p["premise_id"], probability=p["contradiction"]) for p in bad[:2])
+        return self.messages.nli_repair_feedback.format(count=len(bad), threshold=self.threshold, pairs=pairs)
 
 
 class VerificationPipeline:
     """
     Decoupled verification pipeline orchestrating Lexical Grounding and Semantic NLI verifiers.
+
+    `mode` (see `src.verifier.modes`): ``off`` accepts every answer; the L1 modes run the lexical grounding verifier;
+    the L2 modes add the semantic entailment verifier. An optional `nli_step` runs after L1 in every non-off mode.
     """
 
-    VALID_MODES = {
-        "off",
-        "lexical_grounding",
-        "lexical",
-        "grounding",
-        "l1",
-        "l1_only",
-        "l1_on",
-        "semantic_entailment",
-        "semantic",
-        "full",
-        "l1_l2",
-        "l1_l2_on"
-    }
+    VALID_MODES = VALID_MODES
 
     def __init__(
         self,
@@ -136,7 +129,8 @@ class VerificationPipeline:
         ollama_url: Optional[str] = None,
         model_name: Optional[str] = None,
         l2_use_slm: bool = False,
-        nli_step: Optional[NLIStep] = None
+        nli_step: Optional[NLIStep] = None,
+        messages: Optional[MessagesSpec] = None
     ):
         corpus_data = corpus or []
         self.lexical_verifier = lexical_verifier or verifier or LexicalGroundingVerifier(corpus_data)
@@ -149,25 +143,21 @@ class VerificationPipeline:
         )
         self.verifier = self.lexical_verifier
         self.l2_verifier = self.semantic_verifier
+        self.messages = messages or self.lexical_verifier.profile.messages
 
+        self._check_mode(mode)
         self.mode = mode
         self.nli_step = nli_step
 
+    def _check_mode(self, mode: Any) -> None:
+        if mode not in self.VALID_MODES and canonical_mode(mode) not in self.VALID_MODES:
+            raise ValueError(f"Invalid verification mode: {mode}. Must be one of {sorted(self.VALID_MODES)}")
+
     def _normalize_mode(self, mode: Any) -> str:
-        raw_val = mode.value if hasattr(mode, "value") else str(mode)
-        m = str(raw_val).strip().lower()
-        if m in ["off"]:
-            return "off"
-        if m in ["lexical_grounding", "lexical", "grounding", "l1", "l1_only", "l1_on"]:
-            return "lexical_grounding"
-        if m in ["semantic_entailment", "semantic", "full", "l1_l2", "l1_l2_on"]:
-            return "semantic_entailment"
-        return m
+        return canonical_mode(mode)
 
     def set_mode(self, mode: str):
-        normalized = self._normalize_mode(mode)
-        if mode not in self.VALID_MODES and normalized not in self.VALID_MODES:
-            raise ValueError(f"Invalid verification mode: {mode}. Must be one of {sorted(list(self.VALID_MODES))}")
+        self._check_mode(mode)
         self.mode = mode
 
     def verify(
@@ -179,76 +169,40 @@ class VerificationPipeline:
         """
         Executes verification according to the active mode contract.
         """
-        norm_mode = self._normalize_mode(self.mode)
-
-        if norm_mode == "off":
+        norm_mode = canonical_mode(self.mode)
+        if norm_mode == OFF:
             return PipelineVerificationResult(is_valid=True, repair_feedback=None, mode=self.mode)
 
-        # 1. Execute Stage 1: Lexical Grounding Verification
+        # Stage 1: lexical grounding (L1)
         grounding_res = self.lexical_verifier.verify(
             answer_text=answer_text,
             citations=citations,
             retrieved_article_ids=retrieved_article_ids
         )
-
         if not grounding_res.is_valid:
-            return PipelineVerificationResult(
-                is_valid=False,
-                repair_feedback=grounding_res.repair_feedback,
-                mode=self.mode,
-                grounding_result=grounding_res
-            )
+            return PipelineVerificationResult(is_valid=False, repair_feedback=grounding_res.repair_feedback,
+                                              mode=self.mode, grounding_result=grounding_res)
 
         # Optional NLI step after L1 (verifier.nli): records every pair; fails verification only in "repair" action.
         nli_res = self.nli_step.run(answer_text, citations) if self.nli_step is not None else None
         if nli_res is not None and nli_res["triggers_repair"]:
-            return PipelineVerificationResult(
-                is_valid=False,
-                repair_feedback=self.nli_step.repair_feedback(nli_res),
-                mode=self.mode,
-                grounding_result=grounding_res,
-                nli_result=nli_res
-            )
+            return PipelineVerificationResult(is_valid=False, repair_feedback=self.nli_step.repair_feedback(nli_res),
+                                              mode=self.mode, grounding_result=grounding_res, nli_result=nli_res)
 
-        # If lexical grounding only, return success
-        if norm_mode == "lexical_grounding":
-            return PipelineVerificationResult(
-                is_valid=True,
-                repair_feedback=None,
-                mode=self.mode,
-                grounding_result=grounding_res,
-                nli_result=nli_res
-            )
+        if norm_mode == LEXICAL_GROUNDING:
+            return PipelineVerificationResult(is_valid=True, repair_feedback=None, mode=self.mode,
+                                              grounding_result=grounding_res, nli_result=nli_res)
 
-        # 2. Execute Stage 2: Semantic NLI Entailment Verification
-        if norm_mode == "semantic_entailment":
-            cit_ids = [c.article_id for c in citations]
-            semantic_res = self.semantic_verifier.verify_all_claims(answer_text, cit_ids)
-
-            if not semantic_res.get("is_entailed", False):
-                failed_claims = semantic_res.get("failed_claims", [])
-                failed_sentences = [f["sentence"] for f in failed_claims]
-                repair_fb = (
-                    f"CẢNH BÁO XÁC THỰC NGỮ NGHĨA (Semantic Entailment): Phát hiện {len(failed_sentences)} câu khẳng định "
-                    f"chưa đạt căn cứ kéo theo ngữ nghĩa (entailment score < {self.semantic_verifier.entailment_threshold}):\n"
-                    + "\n".join(f"- \"{s}\"" for s in failed_sentences[:2])
-                )
-                return PipelineVerificationResult(
-                    is_valid=False,
-                    repair_feedback=repair_fb,
-                    mode=self.mode,
-                    grounding_result=grounding_res,
-                    semantic_result=semantic_res,
-                    nli_result=nli_res
-                )
-
-            return PipelineVerificationResult(
-                is_valid=True,
-                repair_feedback=None,
-                mode=self.mode,
-                grounding_result=grounding_res,
-                semantic_result=semantic_res,
-                nli_result=nli_res
-            )
-
-        return PipelineVerificationResult(is_valid=True, repair_feedback=None, mode=self.mode)
+        # Stage 2: semantic entailment (L2), norm_mode == SEMANTIC_ENTAILMENT
+        semantic_res = self.semantic_verifier.verify_all_claims(answer_text, [c.article_id for c in citations])
+        if not semantic_res.get("is_entailed", False):
+            failed = [f["sentence"] for f in semantic_res.get("failed_claims", [])]
+            feedback = self.messages.l2_repair_feedback.format(
+                count=len(failed), threshold=self.semantic_verifier.entailment_threshold,
+                claims=_failed_claim_lines(failed))
+            return PipelineVerificationResult(is_valid=False, repair_feedback=feedback, mode=self.mode,
+                                              grounding_result=grounding_res, semantic_result=semantic_res,
+                                              nli_result=nli_res)
+        return PipelineVerificationResult(is_valid=True, repair_feedback=None, mode=self.mode,
+                                          grounding_result=grounding_res, semantic_result=semantic_res,
+                                          nli_result=nli_res)

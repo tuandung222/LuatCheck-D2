@@ -27,6 +27,7 @@ class NativeLLMClient:
         self.endpoint = endpoint.rstrip("/")
         # The profile names the model-facing tools; it defaults to the labour profile used before profiles existed.
         self.profile = profile or load_profile()
+        self.allowed_actions = None   # None = every canonical action; see restrict_actions
         self.action_schema = build_action_schema(self.profile)
         self.model_name = model_name
         self.temperature = temperature
@@ -35,6 +36,12 @@ class NativeLLMClient:
         self.max_output_tokens = max_output_tokens
         self.context_tokens = context_tokens
         self.sampling = dict(sampling or {})
+
+    def restrict_actions(self, allowed) -> None:
+        """Limit the actions the model may take (e.g. answer / clarify / refuse for a no-tool baseline). Constrained decoding
+        then samples only the allowed branches, and validate_action rejects any other action as a model_output_error."""
+        self.allowed_actions = frozenset(ActionType(a) for a in allowed)
+        self.action_schema = build_action_schema(self.profile, self.allowed_actions)
 
     def validate_action(self, action: Any) -> Dict[str, Any]:
         """Check a parsed model response against the action contract of this client's domain profile.
@@ -45,6 +52,9 @@ class NativeLLMClient:
         canonical = self.profile.canonical_action(action.get("action")) if isinstance(action, dict) else None
         if canonical is None:
             raise InferenceError("Model returned an invalid or missing action.", "model_output_error")
+        if self.allowed_actions is not None and canonical not in self.allowed_actions:
+            raise InferenceError(f"Model chose the action {action.get('action')!r}, which is not available in this configuration.",
+                                 "model_output_error")
         if not isinstance(action.get("tool_args"), dict):
             raise InferenceError("Model action requires a tool_args object.", "model_output_error")
         args = action["tool_args"]
@@ -174,12 +184,13 @@ REQUIRED_ARGUMENT = {ActionType.SEARCH: "query", ActionType.READ: "article_id", 
                      ActionType.CLARIFY: "question", ActionType.REFUSE: "reason"}
 
 
-def build_action_schema(profile: DomainProfile) -> Dict[str, Any]:
+def build_action_schema(profile: DomainProfile, allowed=None) -> Dict[str, Any]:
     """JSON schema of the controller's action contract for a domain profile, used for grammar-constrained decoding.
 
-    The client still validates every response; the schema only restricts what can be sampled.
+    The client still validates every response; the schema only restricts what can be sampled. `allowed` (canonical
+    ActionTypes) keeps only those branches; None keeps all five (the default, unchanged).
     """
-    return {"anyOf": [
+    schema = {"anyOf": [
         _action_branch(profile.model_action_name(ActionType.SEARCH),
                        {"query": {"type": "string"}, "top_k": {"type": "integer"}}, ["query"]),
         _action_branch(profile.model_action_name(ActionType.READ), {"article_id": {"type": "string"}}, ["article_id"]),
@@ -193,6 +204,10 @@ def build_action_schema(profile: DomainProfile) -> Dict[str, Any]:
         _action_branch("clarify", {"question": {"type": "string"}}, ["question"]),
         _action_branch("refuse", {"reason": {"type": "string"}}, ["reason"]),
     ]}
+    if allowed is not None:
+        keep = {profile.model_action_name(a) if a in (ActionType.SEARCH, ActionType.READ) else a.value for a in allowed}
+        schema["anyOf"] = [b for b in schema["anyOf"] if b["properties"]["action"]["const"] in keep]
+    return schema
 
 
 # Schema of the default (labour) profile, kept for callers that import the constant.

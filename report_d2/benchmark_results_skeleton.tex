@@ -1,0 +1,98 @@
+% SKELETON (all cells red [PENDING]), derived from evaluation/render_benchmark_tables.py render() on an empty summary.
+% main_d2.tex inputs benchmark_results.tex instead when that file exists (publish it with the renderer; no hand editing).
+% Requires: booktabs, multirow, graphicx, xcolor. report_eligible=False.
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrrrrrrr@{}}
+\toprule
+Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@5 & MRR & Cit.\ P & Cit.\ R & Cit.\ F1\\
+\midrule
+\multirow{3}{*}{HCMUT-v1} & OFF & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1{+}rerank & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\midrule
+\multirow{3}{*}{Labour-VI-v1} & OFF & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1{+}rerank & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\bottomrule
+\end{tabular}}
+\caption{\textcolor{red}{\textbf{Skeleton, no run yet: no cell is a result.}} Strict success per variant (Succ.; lower bound over all planned trials, task-level bootstrap 95\% interval, execution errors count as failures, $\dagger k$ marks $k$ judge-unknown trials counted as failures), behaviour appropriateness (Beh.) and faithfulness (Faith.). These three are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking on, effort high, revision not pinned), \textbf{not human labels}; the human audit of the judge is \tbd. Recall@5 and MRR measure retrieval of gold ids over the agent's trace (near ceiling, so they cannot separate variants); Cit.\ P/R/F1 are macro cited-id matches to gold ids. Both are source-ID proxies, not answer correctness. Run id: \tbd.}
+\label{tab:benchmark-main}
+\end{table}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrrrrrrr@{}}
+\toprule
+Benchmark & Variant & Ans/Ref/Clar/Err & Err.\ (\%) & Trial p50/p95 (s) & Call p50/p95 (s) & tok/s & Tok.\ in/out & Calls/trial & Unknown & Judge USD\\
+\midrule
+\multirow{3}{*}{HCMUT-v1} & OFF & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1{+}rerank & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\midrule
+\multirow{3}{*}{Labour-VI-v1} & OFF & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1{+}rerank & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\bottomrule
+\end{tabular}}
+\caption{\textcolor{red}{\textbf{Skeleton, no run yet: no cell is a result.}} Operations and judge cost per variant. Counts are answered, refused, clarified and execution-error trials; Err.\ is the execution-error rate. Latency is sequential single-request wall time on the recorded machine, warm-up excluded; p50/p95 are over non-error trials; a call is one controller request; tok/s is decode speed from server timings. Tokens are controller input/output per trial (complete usage only). Judge cost is the gateway-reported usage cost over all retained attempts, not an invoice.}
+\label{tab:benchmark-ops}
+\end{table}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Comparison & Scope & Tasks & $\Delta$ Succ.\ (pp) & $\Delta$ Beh.\ match (pp) & $\Delta$ Rec.@5 (pp) & $\Delta$ Cit.\ F1 (pp) & $\Delta$ Err.\ (pp)\\
+\midrule
+\multirow{3}{*}{L1 vs OFF} & HCMUT-v1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & Labour-VI-v1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & pooled & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\midrule
+\multirow{3}{*}{L1{+}rerank vs L1} & HCMUT-v1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & Labour-VI-v1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & pooled & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\midrule
+\multirow{3}{*}{L1{+}rerank vs OFF} & HCMUT-v1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & Labour-VI-v1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & pooled & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\bottomrule
+\end{tabular}}
+\caption{\textcolor{red}{\textbf{Skeleton, no run yet: no cell is a result.}} Paired variant differences (treatment minus baseline, percentage points) with 95\% paired bootstrap intervals over tasks (seeds averaged per task; 5,000 resamples; pooled = both benchmarks together). Succ.\ is strict success (LLM-judge estimate), Beh.\ the structural behaviour match, Rec.@5 trace retrieval, Cit.\ F1 the cited-id F1, Err.\ the execution-error rate. No multiplicity correction; an interval that includes 0 shows no detectable difference at this sample size.}
+\label{tab:benchmark-paired}
+\end{table}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Benchmark & Row & Trials & Succ.\ (all, \%) & Succ.\ (answerable, \%) & Answer rate (\%) & Cit.\ P & Cit.\ R\\
+\midrule
+\multirow{5}{*}{HCMUT-v1} & \emph{closed-book} (diagnostic) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & \emph{oracle} (diagnostic) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & OFF (reference) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1 (reference) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1{+}rerank (reference) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\midrule
+\multirow{5}{*}{Labour-VI-v1} & \emph{closed-book} (diagnostic) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & \emph{oracle} (diagnostic) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & OFF (reference) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1 (reference) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1{+}rerank (reference) & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\bottomrule
+\end{tabular}}
+\caption{\textcolor{red}{\textbf{Skeleton, no run yet: no cell is a result.}} \textbf{Diagnostic baselines}, one seed (42), same Bonsai controller, sampler, domain prompt and constrained decoding, \emph{no tools}, verification off; they are not system variants and are never pooled with them. \emph{Closed-book}: question only, all tasks; \emph{oracle}: the full gold records are given up front in the read-tool observation format, answerable tasks only (refuse tasks have no gold context and are excluded). Succ.\ (all) is over every task the row ran; Succ.\ (answerable) is restricted to answerable tasks (the like-for-like column) with a task-level bootstrap interval; both are LLM-judge estimates, lower bounds, errors count as failures. Answer rate = answered / non-error trials on answerable tasks. Cit.\ P/R: cited-id match to gold ids (meaningful for the oracle and the system rows; a closed-book model has no document ids). Reference rows repeat the system variants' answerable-only results (seed-averaged) for comparison; the oracle bounds what a 2B reader achieves with perfect retrieval, closed-book what parametric knowledge alone achieves.}
+\label{tab:benchmark-baselines}
+\end{table}

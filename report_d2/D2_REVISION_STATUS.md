@@ -1,3 +1,5 @@
+> **Historical (superseded 24 October 2026).** This note describes the Qwen2.5-3B / `bll2019_v1` pilot. Current D2 status: README.md and docs/RUNBOOK_D2.md; requirements gap: docs/reviews/d2_requirements_gap_2026-10-23.md.
+
 # Trạng thái D2 — 22/10/2026
 
 Trạng thái này thay thế ghi chú chuẩn bị trước khi chạy native. PDF vẫn là draft; đã có ước lượng LLM judge; chưa có nhãn người hoặc chứng nhận chuyên gia.

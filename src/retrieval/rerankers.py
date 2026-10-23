@@ -14,7 +14,8 @@ backend             score
                     ``activation: sigmoid``
 ``qwen3``           P("yes") in [0, 1] from the yes/no next-token logits
                     (Qwen3-Reranker model-card formula)
-``llama_cpp``       ``relevance_score`` returned by the server's /v1/rerank
+``llama_cpp``       ``relevance_score`` returned by the server's /v1/rerank (raw
+                    logit for a cross-encoder GGUF)
 ``decision_model``  P(yes) in [0, 1] from a one-pass System-One yes/no decision
 ``qev_http``        P(yes) in [0, 1] of an official Qev server's ``noul`` answer
                     (remote inference; network latency included)
@@ -27,6 +28,11 @@ Usage::
                                "top_k_in": 30, "top_k_out": 5})
     ranked = reranker.rerank(query, candidates)       # [(doc, score), ...]
     reranker.last_run                                   # timing / device / counts
+
+Long documents: ``cross_encoder`` and ``llama_cpp`` split a candidate longer than ``chunk_chars`` (default 1500
+characters, ``null`` = off) into overlapping windows, score every (query, window) pair and use the **maximum** window
+score as the document score (``last_run['n_chunks']``, ``['best_chunk']``).  Without this a long record is cut to its
+first ``max_length`` tokens and evidence later in the record is never seen.
 
 ``documents`` are the dicts produced by ``HybridDomainRetriever`` (``title`` and
 ``content`` are used by default) or plain strings.
@@ -65,6 +71,46 @@ __all__ = [
 
 RankedDoc = Tuple[Any, float]
 
+DEFAULT_CHUNK_CHARS = 1500
+DEFAULT_CHUNK_OVERLAP = 200
+
+
+def split_chunks(text: str, chunk_chars: int, overlap: int = DEFAULT_CHUNK_OVERLAP,
+                 title_chars: int = 200) -> List[str]:
+    """Split ``text`` into windows of about ``chunk_chars`` characters (deterministic, no model involved).
+
+    A text that fits is returned unchanged.  Windows end at the last clause boundary (newline, ``. ``, ``; ``,
+    ``: ``) in the final 30 % of the window, else at the last space; consecutive windows overlap by ``overlap``
+    characters.  The first line of the text (the section title, when it is at most ``title_chars`` characters)
+    is repeated in front of every later window so each chunk stays attributable to its section.
+    """
+    if len(text) <= chunk_chars:
+        return [text]
+    first_line = text.split("\n", 1)[0].strip()
+    prefix = first_line + "\n" if 0 < len(first_line) <= title_chars and len(first_line) < chunk_chars // 3 else ""
+    body_room = chunk_chars - len(prefix)
+    n = len(text)
+
+    def cut(lo: int, hi: int) -> int:
+        if hi >= n:
+            return n
+        floor = lo + int((hi - lo) * 0.7)
+        for sep in ("\n", ". ", "; ", ": ", " "):
+            idx = text.rfind(sep, floor, hi)
+            if idx != -1:
+                return idx + len(sep)
+        return hi
+    chunks = []
+    end = cut(0, chunk_chars)
+    chunks.append(text[:end])
+    while end < n:
+        start = max(end - overlap, 0)
+        nxt = text.find(" ", start, end)
+        start = nxt + 1 if nxt != -1 else start
+        end = cut(start, min(start + body_room, n))
+        chunks.append(prefix + text[start:end].lstrip())
+    return chunks
+
 
 class BaseReranker(abc.ABC):
     """Interface: ``rerank(query, documents, top_k) -> [(doc, score), ...]`` (best first)."""
@@ -72,7 +118,18 @@ class BaseReranker(abc.ABC):
     backend = "base"
 
     def __init__(self, top_k_in: Optional[int] = None, top_k_out: Optional[int] = None,
-                 text_fields: Sequence[str] = ("title", "content")):
+                 text_fields: Sequence[str] = ("title", "content"), chunk_chars: Optional[int] = None,
+                 chunk_overlap_chars: int = DEFAULT_CHUNK_OVERLAP):
+        if chunk_chars is not None and (isinstance(chunk_chars, bool) or not isinstance(chunk_chars, int)
+                                        or chunk_chars < 200):
+            raise ModelComponentError(f"chunk_chars must be an integer >= 200 or null, got {chunk_chars!r}",
+                                      kind="config_error")
+        if (isinstance(chunk_overlap_chars, bool) or not isinstance(chunk_overlap_chars, int)
+                or chunk_overlap_chars < 0 or (chunk_chars is not None and chunk_overlap_chars >= chunk_chars // 2)):
+            raise ModelComponentError(
+                f"chunk_overlap_chars must be an integer in [0, chunk_chars/2), got {chunk_overlap_chars!r}",
+                kind="config_error")
+        self.chunk_chars, self.chunk_overlap_chars = chunk_chars, chunk_overlap_chars
         for name, value in (("top_k_in", top_k_in), ("top_k_out", top_k_out)):
             if value is not None and (not isinstance(value, int) or value < 1):
                 raise ModelComponentError(f"{name} must be a positive integer or null, got {value!r}",
@@ -138,7 +195,26 @@ class BaseReranker(abc.ABC):
         if not texts:
             return []
         started = time.perf_counter()
-        scores = self._score_texts(query, texts)
+        n_chunks = best_chunks = None
+        if self.chunk_chars:
+            flat: List[str] = []
+            owner: List[int] = []
+            for i, text in enumerate(texts):
+                parts = split_chunks(text, self.chunk_chars, self.chunk_overlap_chars)
+                flat.extend(parts)
+                owner.extend([i] * len(parts))
+            flat_scores = self._score_texts(query, flat)
+            if len(flat_scores) != len(flat):
+                raise ModelComponentError(
+                    f"{self.backend}: returned {len(flat_scores)} scores for {len(flat)} chunks", kind="bad_response")
+            scores, best_chunks, n_chunks = [], [], len(flat)
+            for i in range(len(texts)):
+                idxs = [j for j, o in enumerate(owner) if o == i]
+                best = max(idxs, key=lambda j: (flat_scores[j], -j))     # max over chunks, earliest chunk on ties
+                scores.append(flat_scores[best])
+                best_chunks.append(best - idxs[0])
+        else:
+            scores = self._score_texts(query, texts)
         wall_ms = (time.perf_counter() - started) * 1000.0
         if len(scores) != len(texts):
             raise ModelComponentError(
@@ -150,6 +226,8 @@ class BaseReranker(abc.ABC):
             "backend": self.backend, "n_input": n_input, "n_scored": len(texts), "n_dropped_unscored": n_dropped,
             "wall_ms": wall_ms, "ms_per_pair": wall_ms / len(texts), **self.info(),
         }
+        if n_chunks is not None:     # score of a document = max over its chunks; ms_per_pair is per document
+            self.last_run.update({"n_chunks": n_chunks, "best_chunk": best_chunks})
         return [float(s) for s in scores]
 
 
@@ -172,9 +250,10 @@ class CrossEncoderReranker(LazyComponent, BaseReranker):
     def __init__(self, model: str, device: str = "auto", dtype: Optional[str] = None,
                  local_files_only: bool = False, max_length: int = 1024, batch_size: int = 1,
                  activation: str = "none", top_k_in: Optional[int] = None, top_k_out: Optional[int] = None,
-                 text_fields: Sequence[str] = ("title", "content")):
+                 text_fields: Sequence[str] = ("title", "content"), chunk_chars: Optional[int] = DEFAULT_CHUNK_CHARS,
+                 chunk_overlap_chars: int = DEFAULT_CHUNK_OVERLAP):
         LazyComponent.__init__(self, model, device, dtype, local_files_only)
-        BaseReranker.__init__(self, top_k_in, top_k_out, text_fields)
+        BaseReranker.__init__(self, top_k_in, top_k_out, text_fields, chunk_chars, chunk_overlap_chars)
         if activation not in ("none", "sigmoid"):
             raise ModelComponentError("activation must be 'none' or 'sigmoid'", kind="config_error")
         self.max_length, self.batch_size, self.activation = int(max_length), int(batch_size), activation
@@ -196,7 +275,8 @@ class CrossEncoderReranker(LazyComponent, BaseReranker):
 
     def info(self) -> Dict[str, Any]:
         return {**LazyComponent.info(self), "top_k_in": self.top_k_in, "top_k_out": self.top_k_out,
-                "max_length": self.max_length, "activation": self.activation}
+                "max_length": self.max_length, "activation": self.activation, "chunk_chars": self.chunk_chars,
+                "chunk_overlap_chars": self.chunk_overlap_chars}
 
     def _score_texts(self, query: str, texts: List[str]) -> List[float]:
         self.load()
@@ -306,51 +386,173 @@ class Qwen3Reranker(LazyComponent, BaseReranker):
 # --------------------------------------------------------------------------- #
 
 class LlamaCppReranker(BaseReranker):
-    """Client for llama-server's reranking endpoint (``--reranking``, e.g. a
-    Qwen3-Reranker or bge-reranker GGUF).
+    """Client for llama-server's reranking endpoint (``llama-server --reranking``),
+    e.g. a GGUF of ``AITeamVN/Vietnamese_Reranker`` / bge-reranker-v2-m3 or a
+    Qwen3-Reranker (see ``scripts/reranker/serve_mac.sh``).
 
     Request: ``POST {endpoint}/v1/rerank`` with ``{"model", "query", "documents",
     "top_n"}``.  Response: ``{"results": [{"index": i, "relevance_score": s}, ...]}``.
+    For a cross-encoder GGUF the score is the raw relevance logit of the model head
+    (same scale as :class:`CrossEncoderReranker` with ``activation: none``).
     Every input index must appear exactly once or the call fails.  The endpoint
     host must be loopback.  A server started without ``--reranking`` answers with
     an HTTP error, which is raised (never converted to a score).
     This module never starts or stops a server.
+
+    ``max_length`` (default 1024, ``None`` = no client-side limit) mirrors
+    :class:`CrossEncoderReranker`: llama-server does not truncate, so a (query,
+    passage) pair longer than ``max_length`` tokens (4 special tokens included) is
+    cut ``longest_first`` here, using the *server's own* tokenizer (``/tokenize`` +
+    ``/detokenize``, only called for passages that can exceed the limit).  Cut pairs
+    are counted in ``last_run['n_truncated']``.  A pair that still exceeds the
+    server's physical batch (``-ub``/``-c``) is rejected by the server and raised.
+
+    The first call checks ``GET /v1/models`` (the server must answer and, when
+    ``model`` is configured, serve a model/alias with that name) so that a wrong
+    process on the port is an error rather than a silent answer.
     """
 
     backend = "llama_cpp"
+    N_SPECIAL_TOKENS = 4          # <s> query </s></s> passage </s>  (XLM-RoBERTa pair template)
 
     def __init__(self, endpoint: str, model: Optional[str] = None, timeout_seconds: float = 60.0,
+                 max_length: Optional[int] = 1024,
                  top_k_in: Optional[int] = None, top_k_out: Optional[int] = None,
-                 text_fields: Sequence[str] = ("title", "content")):
-        super().__init__(top_k_in, top_k_out, text_fields)
+                 text_fields: Sequence[str] = ("title", "content"), chunk_chars: Optional[int] = DEFAULT_CHUNK_CHARS,
+                 chunk_overlap_chars: int = DEFAULT_CHUNK_OVERLAP):
+        super().__init__(top_k_in, top_k_out, text_fields, chunk_chars, chunk_overlap_chars)
         base = require_loopback_url(endpoint, "LlamaCppReranker")
         self.endpoint = base[:-3] if base.endswith("/v1") else base
         self.model_name = model
         self.timeout_seconds = float(timeout_seconds)
+        if max_length is not None and (isinstance(max_length, bool) or not isinstance(max_length, int)
+                                       or max_length < 16):
+            raise ModelComponentError(f"max_length must be an integer >= 16 or null, got {max_length!r}",
+                                      kind="config_error")
+        self.max_length = max_length
         self.device = "server"
+        self._checked = False
+        self._truncated = 0
+        self._prompt_tokens: Optional[int] = None
 
     def info(self) -> Dict[str, Any]:
         return {"backend": self.backend, "endpoint": self.endpoint, "model": self.model_name,
-                "device": self.device, "timeout_seconds": self.timeout_seconds,
+                "device": self.device, "timeout_seconds": self.timeout_seconds, "max_length": self.max_length,
+                "chunk_chars": self.chunk_chars, "chunk_overlap_chars": self.chunk_overlap_chars,
                 "top_k_in": self.top_k_in, "top_k_out": self.top_k_out}
 
-    def _score_texts(self, query: str, texts: List[str]) -> List[float]:
+    # ---- HTTP helpers --------------------------------------------------- #
+    _START_HINT = "start it with scripts/reranker/serve_mac.sh (this module never starts a server)"
+
+    def _call(self, method: str, path: str, payload: Optional[Dict[str, Any]] = None) -> Any:
         import requests
+        url = f"{self.endpoint}{path}"
+        try:
+            resp = requests.request(method, url, json=payload, timeout=self.timeout_seconds)
+        except requests.RequestException as exc:
+            raise ModelComponentError(
+                f"llama.cpp reranker server request to {url} failed: {type(exc).__name__}: {exc}; "
+                f"{self._START_HINT}", kind="backend_error") from exc
+        if resp.status_code != 200:
+            raise ModelComponentError(
+                f"llama.cpp reranker server returned HTTP {resp.status_code} from {url}: {resp.text[:300]!r}",
+                kind="backend_error")
+        try:
+            return resp.json()
+        except ValueError as exc:
+            raise ModelComponentError(f"llama.cpp reranker server returned non-JSON from {url}: {resp.text[:200]!r}",
+                                      kind="bad_response") from exc
+
+    def _check_server(self) -> None:
+        body = self._call("GET", "/v1/models")
+        try:
+            names = set()
+            for item in body["data"]:
+                names.add(str(item.get("id")))
+                names.update(str(a) for a in (item.get("aliases") or []))
+                names.add(str(item.get("name")))
+        except (KeyError, TypeError, AttributeError) as exc:
+            raise ModelComponentError(f"malformed llama.cpp /v1/models response: {body!r:.200}",
+                                      kind="bad_response") from exc
+        if self.model_name and self.model_name not in names:
+            raise ModelComponentError(
+                f"llama.cpp server at {self.endpoint} serves {sorted(names)}, not the configured model "
+                f"{self.model_name!r}", kind="config_error")
+        self._checked = True
+
+    def _tokenize(self, text: str) -> List[int]:
+        body = self._call("POST", "/tokenize", {"content": text, "add_special": False})
+        try:
+            return [int(t) for t in body["tokens"]]
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ModelComponentError(f"malformed llama.cpp /tokenize response: {str(body)[:200]}",
+                                      kind="bad_response") from exc
+
+    def _detokenize(self, tokens: List[int]) -> str:
+        body = self._call("POST", "/detokenize", {"tokens": tokens})
+        if not isinstance(body, dict) or not isinstance(body.get("content"), str):
+            raise ModelComponentError(f"malformed llama.cpp /detokenize response: {str(body)[:200]}",
+                                      kind="bad_response")
+        return body["content"]
+
+    @staticmethod
+    def _longest_first(len_a: int, len_b: int, budget: int) -> Tuple[int, int]:
+        """Token counts kept by HF ``truncation='longest_first'`` (ties trim the passage first)."""
+        over = len_a + len_b - budget
+        if over <= 0:
+            return len_a, len_b
+        trim = min(over, abs(len_a - len_b))
+        if len_a > len_b:
+            len_a -= trim
+        else:
+            len_b -= trim
+        over -= trim
+        return len_a - over // 2, len_b - (over - over // 2)
+
+    def _fit(self, query: str, texts: List[str]) -> Tuple[str, List[str]]:
+        """Apply ``max_length`` to (query, passage) pairs; returns the query and passages to send."""
+        self._truncated = 0
+        if self.max_length is None:
+            return query, texts
+        budget = self.max_length - self.N_SPECIAL_TOKENS
+        # A SentencePiece token covers at least one character, so short texts cannot exceed the budget.
+        if len(query) + max(len(t) for t in texts) <= budget:
+            return query, texts
+        q_tok = self._tokenize(query)
+        new_q_tok, out = q_tok, []
+        for text in texts:
+            if len(query) + len(text) <= budget:
+                out.append(text)
+                continue
+            t_tok = self._tokenize(text)
+            keep_q, keep_t = self._longest_first(len(q_tok), len(t_tok), budget)
+            if keep_t < len(t_tok) or keep_q < len(q_tok):
+                self._truncated += 1
+            if keep_q < len(q_tok):
+                new_q_tok = q_tok[:keep_q]
+            out.append(self._detokenize(t_tok[:keep_t]) if keep_t < len(t_tok) else text)
+        if new_q_tok is not q_tok:     # query itself cut (pathologically long query): same cut for every passage
+            query = self._detokenize(new_q_tok)
+        return query, out
+
+    def _timed_score(self, query, texts, n_input, n_dropped):
+        scores = super()._timed_score(query, texts, n_input, n_dropped)
+        if texts:
+            self.last_run["n_truncated"] = self._truncated
+            self.last_run["server_prompt_tokens"] = self._prompt_tokens
+        return scores
+
+    def _score_texts(self, query: str, texts: List[str]) -> List[float]:
+        if not self._checked:
+            self._check_server()
+        query, texts = self._fit(query, texts)
         payload: Dict[str, Any] = {"query": query, "documents": texts, "top_n": len(texts)}
         if self.model_name:
             payload["model"] = self.model_name
         url = f"{self.endpoint}/v1/rerank"
+        body = self._call("POST", "/v1/rerank", payload)
         try:
-            resp = requests.post(url, json=payload, timeout=self.timeout_seconds)
-        except requests.RequestException as exc:
-            raise ModelComponentError(f"llama.cpp rerank request to {url} failed: {type(exc).__name__}: {exc}",
-                                      kind="backend_error") from exc
-        if resp.status_code != 200:
-            raise ModelComponentError(
-                f"llama.cpp rerank returned HTTP {resp.status_code} from {url}: {resp.text[:300]!r}",
-                kind="backend_error")
-        try:
-            results = resp.json()["results"]
+            results = body["results"]
             scores: List[Optional[float]] = [None] * len(texts)
             for item in results:
                 idx, val = item["index"], item["relevance_score"]
@@ -361,8 +563,9 @@ class LlamaCppReranker(BaseReranker):
                 scores[idx] = float(val)
             if any(s is None for s in scores):
                 raise ValueError("response is missing some document indices")
-        except (ValueError, KeyError, TypeError) as exc:
-            raise ModelComponentError(f"malformed llama.cpp rerank response: {type(exc).__name__}: {exc}",
+            self._prompt_tokens = (body.get("usage") or {}).get("prompt_tokens")
+        except (ValueError, KeyError, TypeError, AttributeError) as exc:
+            raise ModelComponentError(f"malformed llama.cpp rerank response from {url}: {type(exc).__name__}: {exc}",
                                       kind="bad_response") from exc
         return scores  # type: ignore[return-value]
 
@@ -465,11 +668,12 @@ _COMMON = ("backend", "top_k_in", "top_k_out", "text_fields")
 _BACKENDS = {
     "cross_encoder": (CrossEncoderReranker,
                       _COMMON + ("model", "device", "dtype", "local_files_only", "max_length", "batch_size",
-                                 "activation")),
+                                 "activation", "chunk_chars", "chunk_overlap_chars")),
     "qwen3": (Qwen3Reranker,
               _COMMON + ("model", "device", "dtype", "local_files_only", "max_length", "batch_size",
                          "instruction")),
-    "llama_cpp": (LlamaCppReranker, _COMMON + ("endpoint", "model", "timeout_seconds")),
+    "llama_cpp": (LlamaCppReranker, _COMMON + ("endpoint", "model", "timeout_seconds", "max_length",
+                                               "chunk_chars", "chunk_overlap_chars")),
     "decision_model": (DecisionModelReranker,
                        _COMMON + ("model", "device", "dtype", "local_files_only", "max_prompt_tokens",
                                   "question")),

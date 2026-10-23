@@ -4,8 +4,11 @@ import re
 import time
 import unicodedata
 from enum import Enum
+from typing import Optional
+
 import requests
 from src.agent.llm_client import InferenceError
+from src.domains import DomainProfile, load_profile
 
 class VerdictType(str, Enum):
     ENTAILMENT = "ENTAILMENT"
@@ -13,22 +16,23 @@ class VerdictType(str, Enum):
     NEUTRAL = "NEUTRAL"
 
 class SemanticNLIVerifier:
+    """L2: native-model entailment of each answer sentence against the cited records. Off unless `use_slm`."""
+
     def __init__(self, legal_corpus, entailment_threshold=0.55,
-                 ollama_url="http://localhost:11434", model_name="qwen2.5:3b",
-                 use_slm=False, slm_timeout=30.0):
+                 ollama_url: Optional[str] = None, model_name: Optional[str] = None,
+                 use_slm=False, slm_timeout=30.0, profile: Optional[DomainProfile] = None):
+        self.profile = profile or load_profile()
         self.entailment_threshold = entailment_threshold
-        self.ollama_url = ollama_url.rstrip("/")
-        self.model_name = model_name
+        self.ollama_url = (ollama_url or "http://localhost:11434").rstrip("/")
+        self.model_name = model_name or "qwen2.5:3b"
         self.use_slm = use_slm
         self.slm_timeout = slm_timeout
         self.calls = []
         self.corpus_lookup = {self._normalize_id(d.get("doc_id") or d.get("article_id") or d.get("id")):
                               f"{d.get('title', '')}\n{d.get('content', '')}" for d in legal_corpus}
 
-    @staticmethod
-    def _normalize_id(value):
-        value = unicodedata.normalize("NFC", str(value)).lower().strip().replace(" ", "_")
-        return "dieu_" + value[5:] if value.startswith("điều_") else value
+    def _normalize_id(self, value):
+        return self.profile.normalize_id(unicodedata.normalize("NFC", str(value)))
 
     def _call_slm_nli(self, premise, hypothesis):
         if not self.use_slm:

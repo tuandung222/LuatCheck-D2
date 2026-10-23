@@ -1,0 +1,510 @@
+{
+ "note": "LLM answers + LLM judgments with a neutral prompt; not human labels.",
+ "answer_model": "google/gemma-4-31b-it",
+ "judge_model": "deepseek/deepseek-v4-flash",
+ "system_prompt": "Trả lời ngắn gọn bằng tiếng Việt câu hỏi về pháp luật lao động, công đoàn, việc làm và bảo hiểm của Việt Nam. Hãy đưa ra câu trả lời cụ thể nhất theo hiểu biết của bạn; chỉ nói không biết nếu thực sự không có thông tin.",
+ "summary": {
+  "correct": 12,
+  "partially_correct": 10,
+  "incorrect": 19,
+  "appropriate_refusal": 4
+ },
+ "cost_usd_reported": 0.01132923194,
+ "rows": [
+  {
+   "task_id": "LVN-001",
+   "answer": "Người lao động làm công việc đặc biệt nặng nhọc, độc hại, nguy hiểm làm đủ 12 tháng cho một người sử dụng lao động được nghỉ hằng năm là **16 ngày** làm việc hưởng nguyên lương.",
+   "answer_error": null,
+   "answer_cost": 4.203e-05,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Candidate answer correctly states 16 working days, matching the reference answer from Bộ luật Lao động 2019.",
+    "cost": 2.788884e-05
+   }
+  },
+  {
+   "task_id": "LVN-002",
+   "answer": "Theo Bộ luật Lao động 2019:\n\n1. **Mức tối đa thông thường:** Người lao động làm thêm giờ không quá **200 giờ** trong một năm.\n2. **Trường hợp được nâng hạn mức:** Được nâng lên tối đa **300 giờ** trong một năm đối với các trường hợp sau:\n   - Sản xuất hàng xuất khẩu (gia công).\n   - Giải quyết công việc cấp bách trong trường hợp xảy ra thiên tai, hỏa hoạn, dịch bệnh hoặc sự cố điện, nước.\n   - Thực hiện đơn hàng giao gấp hoặc cấp bách theo yêu cầu của khách hàng.\n   - Các trường hợp đặc biệt khác do Chính phủ quy định.\n\n*Lưu ý: Khi làm thêm giờ vượt quá mức 200 giờ, người sử dụng lao động phải thông báo cho cơ quan chuyên môn về lao động cấp tỉnh.*",
+   "answer_error": null,
+   "answer_cost": 7.624e-05,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "Candidate answer correctly states 200 and 300 hours but omits several specific industries and situations listed in the reference, such as telecommunications, oil refining, high-skilled labor, and seasonal/force majeure details.",
+    "cost": 0.00010575768
+   }
+  },
+  {
+   "task_id": "LVN-003",
+   "answer": "Theo Bộ luật Lao động 2019, thời hiệu xử lý kỷ luật lao động được quy định như sau:\n\n1. **Thời hiệu thông thường:** **06 tháng** kể từ ngày xảy ra hành vi vi phạm.\n2. **Trường hợp đặc biệt:** **12 tháng** kể từ ngày xảy ra hành vi vi phạm đối với những trường hợp đặc biệt nghiêm trọng hoặc hành vi vi phạm mà theo nội quy công ty cần phải xem xét, kiểm tra, xác minh phức tạp.\n\n**Lưu ý:** Thời hiệu xử lý kỷ luật lao động bắt đầu tính từ ngày xảy ra hành vi vi phạm. Nếu hết thời hạn này mà người sử dụng lao động không ra quyết định xử lý thì không được quyền xử lý kỷ luật đối với người lao động.",
+   "answer_error": null,
+   "answer_cost": 6.836e-05,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "Candidate answer correctly states 6 and 12 months but misidentifies the 12-month condition as 'especially serious' or 'complex verification' instead of the specific legal grounds of direct financial/property/technology/business secret impact.",
+    "cost": 5.922e-05
+   }
+  },
+  {
+   "task_id": "LVN-004",
+   "answer": "Theo quy định tại Điều 139 Bộ luật Lao động 2019 và Luật Bảo hiểm xã hội, lao động nữ sinh đôi được nghỉ thai sản tổng cộng **6 tháng**.\n\nCụ thể:\n- Thời gian nghỉ thai sản cơ bản là **6 tháng**.\n- Cứ mỗi con sinh thêm từ con thứ hai trở đi, người mẹ được nghỉ thêm **1 tháng**.\n- Như vậy, sinh đôi (2 con) thì tổng thời gian nghỉ là: 6 + 1 = **7 tháng**.\n\n*(Lưu ý: Bạn cần phân biệt giữa Bộ luật Lao động và Luật Bảo hiểm xã hội; quyền lợi nghỉ thêm 1 tháng cho mỗi con sinh thêm được áp dụng đồng nhất để đảm bảo quyền lợi cho người lao động).*",
+   "answer_error": null,
+   "answer_cost": 8.46e-05,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "Câu trả lời có mâu thuẫn: đầu tiên nói tổng cộng 6 tháng nhưng phần giải thích lại tính ra 7 tháng, dẫn đến thông tin không nhất quán.",
+    "cost": 7.077168e-05
+   }
+  },
+  {
+   "task_id": "LVN-005",
+   "answer": "Hiện nay, Việt Nam **chưa có \"Luật Việc làm 2025\"**. Các quy định hiện hành vẫn áp dụng theo **Luật Việc làm 2013** và các văn bản hướng dẫn.\n\n**Cách tính mức trợ cấp thất nghiệp hằng tháng:**\nMức hưởng = **60%** $\\times$ **Mức bình quân tiền lương tháng** của 60 tháng liền kề trước khi thất nghiệp.\n\n**Về mức trần tối đa:**\nCó quy định mức trần tối đa tùy theo đối tượng:\n1. **Người lao động làm việc theo hợp đồng lao động:** Mức trợ cấp hằng tháng **không vượt quá 5 lần mức lương cơ sở**.\n2. **Người lao động là cán bộ, công chức, viên chức:** Mức trợ cấp hằng tháng **không vượt quá 5 lần mức lương cơ sở**.\n\n*(Lưu ý: Mức lương cơ sở hiện nay là 2.340.000 đồng/tháng, áp dụng từ 01/07/2024).*",
+   "answer_error": null,
+   "answer_cost": 9.03e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "The candidate answer does not provide the calculation according to the specified Luật Việc làm 2025 and instead gives different details from the current law, which does not match the reference answer.",
+    "cost": 0.000856395
+   }
+  },
+  {
+   "task_id": "LVN-006",
+   "answer": "Hiện tại, Việt Nam **chưa có Luật Việc làm 2025**. Luật Việc làm hiện hành là Luật Việc làm 2013.\n\nTheo quy định hiện nay (áp dụng cho đến khi có luật mới), mức đóng bảo hiểm thất nghiệp là:\n*   **Người lao động:** Đóng **1%** mức tiền lương tháng.\n*   **Người sử dụng lao động:** Đóng **1%** mức tiền lương tháng.\n\n**Lưu ý:** Mức tiền lương tháng làm căn cứ đóng bảo hiểm thất nghiệp có mức trần (tối đa) tùy theo loại hình lương (lương theo hợp đồng hoặc lương tối thiểu vùng).",
+   "answer_error": null,
+   "answer_cost": 8.367e-05,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Candidate answer provides the same percentage (1% each) as the reference answer, and correctly clarifies that the law cited does not exist yet, which does not contradict the expected information.",
+    "cost": 7.886844e-05
+   }
+  },
+  {
+   "task_id": "LVN-007",
+   "answer": "Theo quy định hiện hành (và các dự thảo Luật Việc làm), người lao động phải nộp hồ sơ hưởng trợ cấp thất nghiệp trong thời hạn **03 tháng (90 ngày)** kể từ ngày chấm dứt hợp đồng lao động.\n\nNếu quá thời hạn này mà chưa nộp hồ sơ, thời gian đóng bảo hiểm thất nghiệp sẽ được bảo lưu cho lần hưởng sau.",
+   "answer_error": null,
+   "answer_cost": 3.94e-05,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "The candidate answer correctly states a 3-month deadline for submitting the unemployment benefit application, matching the reference answer.",
+    "cost": 7.586964e-05
+   }
+  },
+  {
+   "task_id": "LVN-008",
+   "answer": "Mức tiền lương làm căn cứ đóng bảo hiểm thất nghiệp cao nhất bằng **20 lần** mức lương cơ sở (đối với người hưởng lương từ ngân sách nhà nước) hoặc **20 lần** mức lương tối thiểu vùng (đối với người lao động làm việc theo hợp đồng lao động).",
+   "answer_error": null,
+   "answer_cost": 0.00013825,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Candidate answer correctly states 20 times the regional minimum wage as the maximum base for unemployment insurance contributions, consistent with the reference answer, and provides additional accurate context.",
+    "cost": 7.232106e-05
+   }
+  },
+  {
+   "task_id": "LVN-009",
+   "answer": "Hiện tại không có Nghị định số 293/2025/NĐ-CP. Có thể bạn đã nhầm lẫn về số hiệu văn bản.\n\nTheo quy định hiện hành mới nhất (Nghị định 74/2024/NĐ-CP áp dụng từ 01/07/2024), mức lương tối thiểu vùng đối với **Vùng IV** là **3.450.000 đồng/tháng**. \n\nViệt Nam hiện áp dụng mức lương tối thiểu theo **tháng** cho hợp đồng lao động và mức lương tối thiểu theo **giờ** cho một số trường hợp đặc biệt (nhưng mức lương giờ không được quy định cứng một con số cho từng vùng trong Nghị định mà do thỏa thuận, miễn là không thấp hơn mức lương tối thiểu tháng chia cho số giờ làm việc bình thường).",
+   "answer_error": null,
+   "answer_cost": 0.00010611,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Thí sinh khẳng định không có Nghị định 293/2025/NĐ-CP trong khi câu hỏi dựa trên văn bản đó, dẫn đến cung cấp thông tin sai lệch so với đáp án tham khảo.",
+    "cost": 8.226708e-05
+   }
+  },
+  {
+   "task_id": "LVN-010",
+   "answer": "Theo quy định về lương tối thiểu vùng, đối với doanh nghiệp hoạt động trong khu công nghiệp (KCN) nằm trên địa bàn có mức lương tối thiểu khác nhau, nguyên tắc áp dụng như sau:\n\n**Áp dụng mức lương tối thiểu của địa bàn nơi doanh nghiệp đặt trụ sở hoặc cơ sở sản xuất kinh doanh.**\n\nCụ thể:\n1. Nếu KCN nằm trên địa bàn của **một huyện/thành phố** thuộc một vùng: Áp dụng mức lương của vùng đó.\n2. Nếu KCN nằm trên địa bàn của **nhiều huyện/thành phố** thuộc các vùng khác nhau: Doanh nghiệp được quyền **lựa chọn** áp dụng mức lương tối thiểu của một trong các địa bàn đó, nhưng phải đảm bảo mức lương này không thấp hơn mức lương tối thiểu vùng thấp nhất trong số các địa bàn mà KCN đó trải qua.\n\n*Lưu ý: Bạn vui lòng kiểm tra lại số hiệu Nghị định (vì hiện tại năm 2024, các quy định về lương tối thiểu thường nằm trong Nghị định của Chính phủ ban hành hàng năm hoặc theo quyết định của Hội đồng lương quốc gia). Nếu là văn bản mới cho năm 2025, nguyên tắc phân vùng cơ bản vẫn tuân thủ theo địa giới hành chính nơi làm việc.*",
+   "answer_error": null,
+   "answer_cost": 0.0001053,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "The candidate answer states that enterprises can choose the minimum wage from the areas, while the reference answer explicitly requires applying the highest minimum wage among the areas the industrial park lies on.",
+    "cost": 7.84686e-05
+   }
+  },
+  {
+   "task_id": "LVN-011",
+   "answer": "Để quy đổi lương tuần sang lương tháng nhằm so sánh với mức lương tối thiểu vùng, bạn tính theo công thức sau:\n\n**Mức lương tháng = (Mức lương tuần $\\times$ 52 tuần) $\\div$ 12 tháng**\n\n*Giải thích:* Một năm có 52 tuần. Việc nhân với 52 rồi chia cho 12 sẽ cho ra con số trung bình chính xác nhất cho một tháng.\n\n**Ví dụ:** Nếu lương tuần là 2.000.000 VNĐ:\n$(2.000.000 \\times 52) \\div 12 \\approx 8.666.667$ VNĐ/tháng.\n\n**Lưu ý:** Khi so sánh với lương tối thiểu, bạn chỉ tính dựa trên **mức lương cơ bản** (không bao gồm các khoản phụ cấp, trợ cấp, tiền thưởng).",
+   "answer_error": null,
+   "answer_cost": 0.000102,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "The candidate answer correctly provides the same conversion formula as the reference answer (multiply weekly wage by 52 and divide by 12) and includes additional helpful explanation.",
+    "cost": 0.000281646
+   }
+  },
+  {
+   "task_id": "LVN-012",
+   "answer": "Hiện tại, không có **Nghị định 293/2025** quy định về mức lương tối thiểu. Có thể bạn đã nhầm lẫn về số hiệu văn bản.\n\nTheo quy định hiện hành tại Việt Nam (Nghị định 74/2024/NĐ-CP), mức lương tối thiểu tháng là mức lương thấp nhất trả cho người lao động làm công việc **không đòi hỏi trình độ nghề** trong điều kiện **lao động bình thường**.",
+   "answer_error": null,
+   "answer_cost": 6.561e-05,
+   "judgment": {
+    "verdict": "appropriate_refusal",
+    "reason": "Candidate correctly identifies that Nghị định 293/2025 does not exist, thus appropriately refuses to answer based on nonexistent regulation.",
+    "cost": 6.477408e-05
+   }
+  },
+  {
+   "task_id": "LVN-013",
+   "answer": "Hiện tại, không có **Nghị định 318/2025/NĐ-CP**. Hệ thống văn bản quy phạm pháp luật của Việt Nam hiện nay chưa ban hành nghị định có số hiệu này (vì hiện tại mới là năm 2024).\n\nNếu bạn đang nhầm lẫn với một văn bản khác hoặc một dự thảo, vui lòng cung cấp lại chính xác số hiệu hoặc nội dung cụ thể để tôi hỗ trợ.",
+   "answer_error": null,
+   "answer_cost": 4.398e-05,
+   "judgment": {
+    "verdict": "appropriate_refusal",
+    "reason": "Thí sinh từ chối trả lời vì cho rằng Nghị định 318/2025/NĐ-CP chưa được ban hành, điều này hợp lý do hiện tại là năm 2024.",
+    "cost": 3.468612e-05
+   }
+  },
+  {
+   "task_id": "LVN-014",
+   "answer": "Hiện tại, trong hệ thống pháp luật Việt Nam **không có Nghị định 318/2025**. Các Nghị định thường được đánh số theo năm ban hành (ví dụ: Nghị định số.../2024/NĐ-CP).\n\nCó thể bạn đang nhầm lẫn về số hiệu văn bản hoặc đang đề cập đến một dự thảo chưa được ban hành chính thức.\n\n**Để tôi có thể hỗ trợ chính xác nhất, vui lòng kiểm tra lại:**\n1. Số hiệu chính xác của Nghị định.\n2. Nội dung chính của chính sách bạn đang muốn áp dụng (ví dụ: hỗ trợ việc làm, đăng ký tìm việc, hay chính sách cho lao động tự do).\n\nNếu bạn cung cấp đúng số hiệu hoặc tên chính sách, tôi sẽ trả lời chi tiết về hình thức đăng ký, thời gian có kết quả và thời điểm áp dụng.",
+   "answer_error": null,
+   "answer_cost": 7.664e-05,
+   "judgment": {
+    "verdict": "appropriate_refusal",
+    "reason": "Candidate answer correctly identifies that Nghị định 318/2025 does not exist in official Vietnamese law, thus appropriately refusing to answer with invented content.",
+    "cost": 7.1442e-05
+   }
+  },
+  {
+   "task_id": "LVN-015",
+   "answer": "Hiện tại, hệ thống pháp luật Việt Nam **chưa có Nghị định 318/2025** (vì hiện nay mới là năm 2024).\n\nTuy nhiên, theo nguyên tắc chung của pháp luật hành chính và lao động Việt Nam đối với các thủ tục kê khai, đăng ký: **Người lao động (người tự kê khai)** là người chịu trách nhiệm trước pháp luật về tính trung thực và chính xác của thông tin mình cung cấp trong hồ sơ.",
+   "answer_error": null,
+   "answer_cost": 4.706e-05,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "答案正确指出了劳动者自行申报应负责任，但未提及用人单位的相关责任，且质疑法规存在属于多余信息，因此部分正确。",
+    "cost": 8.411634e-05
+   }
+  },
+  {
+   "task_id": "LVN-016",
+   "answer": "Các thông tin cơ bản như họ tên khai sinh, số định danh cá nhân, ngày sinh và giới tính được xác thực và khai thác từ **Cơ sở dữ liệu quốc gia về dân cư**.",
+   "answer_error": null,
+   "answer_cost": 2.718e-05,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Candidate answer correctly identifies the database as 'Cơ sở dữ liệu quốc gia về dân cư', matching the reference answer.",
+    "cost": 0.000182
+   }
+  },
+  {
+   "task_id": "LVN-017",
+   "answer": "Hiện tại, **không có Nghị định số 219/2025/NĐ-CP**. Có thể bạn đã nhầm lẫn về số hiệu văn bản vì hiện nay chưa đến năm 2025 và hệ thống pháp luật Việt Nam chưa ban hành nghị định này.\n\nTuy nhiên, theo quy định hiện hành tại **Nghị định 152/2020/NĐ-CP** (được sửa đổi, bổ sung bởi **Nghị định 70/2023/NĐ-CP**), thời hạn cấp giấy phép lao động như sau:\n\nTrong thời hạn **05 ngày làm việc** kể từ ngày nhận đủ hồ sơ hợp lệ, cơ quan có thẩm quyền cấp giấy phép lao động cho người lao động nước ngoài. Trường hợp không cấp phải trả lời bằng văn bản và nêu rõ lý do.",
+   "answer_error": null,
+   "answer_cost": 7.57e-05,
+   "judgment": {
+    "verdict": "appropriate_refusal",
+    "reason": "The candidate correctly identified that the referenced decree does not exist and provided the current regulation instead, which is an appropriate response to a question based on a non-existent legal document.",
+    "cost": 0.00026292
+   }
+  },
+  {
+   "task_id": "LVN-018",
+   "answer": "Hiện tại, không có **Nghị định 219/2025** quy định về cấp giấy phép lao động. Các quy định hiện hành về lao động nước ngoài đang áp dụng theo **Nghị định 152/2020/NĐ-CP** (được sửa đổi, bổ sung bởi Nghị định 70/2023/NĐ-CP).\n\nTheo quy định hiện hành:\nThời hạn tối đa của giấy phép lao động là **02 năm**. \n\nKể cả khi thời hạn hợp đồng lao động dự kiến dài hơn, giấy phép lao động cũng chỉ được cấp tối đa 02 năm. Sau khi hết hạn, người lao động phải làm thủ tục gia hạn hoặc cấp mới.",
+   "answer_error": null,
+   "answer_cost": 9.4575e-05,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "The candidate answer correctly gives the maximum term as 2 years but incorrectly states that Decree 219/2025 does not exist, which contradicts the premise of the question.",
+    "cost": 0.0015513798
+   }
+  },
+  {
+   "task_id": "LVN-019",
+   "answer": "Theo quy định tại **Nghị định 219/2025/NĐ-CP**, khi giấy phép lao động của người lao động nước ngoài hết hiệu lực do chấm dứt hợp đồng lao động hoặc các trường hợp tương tự, người sử dụng lao động phải thu hồi và nộp lại giấy phép lao động cho cơ quan cấp phép trong thời hạn **15 ngày** kể từ ngày giấy phép lao động hết hiệu lực.",
+   "answer_error": null,
+   "answer_cost": 4.776e-05,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "Câu trả lời đúng về thời hạn 15 ngày nhưng thiếu yêu cầu phải nộp kèm văn bản báo cáo trường hợp thu hồi (hoặc nêu rõ lý do nếu không thu hồi được) theo quy định tại Nghị định 219/2025.",
+    "cost": 7.477008e-05
+   }
+  },
+  {
+   "task_id": "LVN-020",
+   "answer": "Hiện tại, không có **Nghị định 219/2025** quy định về vấn đề này (vì chưa đến năm 2025 và số hiệu nghị định thường không chạy trước như vậy).\n\nTuy nhiên, theo quy định hiện hành (Nghị định 152/2020/NĐ-CP và Nghị định 70/2023/NĐ-CP), thời hạn nộp hồ sơ đề nghị cấp giấy phép lao động là **ít nhất 15 ngày** trước ngày người lao động nước ngoài dự kiến bắt đầu làm việc tại Việt Nam.",
+   "answer_error": null,
+   "answer_cost": 7.76e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Câu trả lời không đưa ra khoảng thờ gan nh trong Ngh đn 219/2025 mà ch trngh vào quy đnh khác, không đáp ng yêu cu câu h.",
+    "cost": 0.00011350458
+   }
+  },
+  {
+   "task_id": "LVN-021",
+   "answer": "Theo Bộ luật Lao động 2019, mức lương tối thiểu được xác lập và ấn định theo hai đơn vị: **mức lương tối thiểu tháng** và **mức lương tối thiểu giờ**.\n\nVề Nghị định 293/2025, tôi không có thông tin về nghị định này trong cơ sở dữ liệu. Bạn vui lòng kiểm tra lại số hiệu văn bản.",
+   "answer_error": null,
+   "answer_cost": 4.16e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Mặc dù câu trả lời đúng về đơn vị xác lập mức lương tối thiểu theo Bộ luật Lao động 2019, nhưng đã từ chối cung cấp số liệu cụ thể từ Nghị định 293/2025 thay vì trả lời theo yêu cầu, dẫn đến thiếu thông tin quan trọng so với đáp án tham khảo.",
+    "cost": 6.1544e-05
+   }
+  },
+  {
+   "task_id": "LVN-022",
+   "answer": "Hiện nay, Việt Nam đang áp dụng **Luật Việc làm 2013** (chưa có Luật Việc làm 2025, các quy định hiện hành vẫn giữ nguyên). Câu trả lời cụ thể như sau:\n\n1.  **Điều kiện về thời gian đóng:** Để hưởng trợ cấp thất nghiệp, người lao động phải đóng bảo hiểm thất nghiệp (BHTN) đủ **12 tháng trở lên** trong vòng **24 tháng** trước khi chấm dứt hợp đồng lao động.\n2.  **Mức hưởng khi đóng đủ 12 tháng:** Nếu đóng đủ 12 tháng (và không quá 36 tháng), người lao động được hưởng trợ cấp thất nghiệp là **3 tháng** lương.\n\n**Công thức tính thời gian hưởng:**\n*   Đóng đủ 12 - 36 tháng: Hưởng 3 tháng trợ cấp.\n*   Sau đó, cứ đóng đủ thêm 12 tháng thì được hưởng thêm 1 tháng trợ cấp.\n*   Tối đa không quá 60 tháng.",
+   "answer_error": null,
+   "answer_cost": 9.04e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "The candidate answer does not address the question about the hypothetical Luật Việc làm 2025 and instead provides information based on the current law, which does not match the reference answer.",
+    "cost": 0.000324639
+   }
+  },
+  {
+   "task_id": "LVN-023",
+   "answer": "Hiện tại, **không có Nghị định 219/2025/NĐ-CP**. Có thể bạn đã nhầm lẫn về số hiệu văn bản vì hiện nay chưa đến năm 2025.\n\nVề quy định hiện hành theo **Bộ luật Lao động 2019** và **Nghị định 152/2020/NĐ-CP** (được sửa đổi, bổ sung bởi Nghị định 70/2023/NĐ-CP):\n\n1. **Mức góp vốn để miễn giấy phép lao động (GPLĐ):**\n   Người nước ngoài là chủ sở hữu công ty TNHH hoặc thành viên góp vốn được miễn GPLĐ nếu giá trị góp vốn vào công ty đạt từ **3 tỷ đồng trở lên**.\n\n2. **Quy định của Bộ luật Lao động 2019:**\n   Bộ luật Lao động 2019 không quy định con số cụ thể (3 tỷ đồng) mà chỉ đưa ra **nguyên tắc chung** tại **Khoản 2 Điều 154**, quy định các trường hợp không thuộc đối tượng áp dụng cấp GPLĐ bao gồm: *\"Chủ sở hữu hoặc thành viên góp vốn của công ty trách nhiệm hữu hạn... theo quy định của pháp luật\"*. \n\nChi tiết về mức vốn 3 tỷ đồng được cụ thể hóa tại **Điều 7 Nghị định 152/2020/NĐ-CP**.",
+   "answer_error": null,
+   "answer_cost": 0.00017703,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "Đáp án nêu đúng mức 3 tỷ đồng và việc Bộ luật Lao động 2019 giao Chính phủ quy định, nhưng lại phủ nhận Nghị định 219/2025/NĐ-CP và viện dẫn sai văn bản nên chỉ đúng một phần.",
+    "cost": 0.000644826
+   }
+  },
+  {
+   "task_id": "LVN-026",
+   "answer": "Theo Luật Công đoàn 2024, mức đóng kinh phí công đoàn của doanh nghiệp là **2%** quỹ tiền lương làm căn cứ đóng bảo hiểm xã hội cho người lao động.",
+   "answer_error": null,
+   "answer_cost": 3.84e-05,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Câu trả lời của thí sinh khớp với đáp án tham chiếu về tỷ lệ 2%, chỉ thiếu từ 'bắt buộc' nhưng không làm thay đổi ý nghĩa chính xác.",
+    "cost": 4.718112e-05
+   }
+  },
+  {
+   "task_id": "LVN-027",
+   "answer": "Theo quy định hiện hành của Tổng Liên đoàn Lao động Việt Nam:\n\n**1. Thời hạn tạm dừng đóng:**\nDoanh nghiệp gặp khó khăn, tạm dừng sản xuất kinh doanh có thể được xem xét tạm dừng đóng kinh phí công đoàn **tối đa là 12 tháng**.\n\n**2. Cách đóng bù sau thời hạn tạm dừng:**\nKhi hết thời hạn tạm dừng hoặc khi doanh nghiệp hoạt động trở lại, doanh nghiệp phải đóng bù số kinh phí công đoàn còn thiếu. Việc đóng bù được thực hiện theo một trong hai cách:\n*   **Đóng một lần:** Thanh toán toàn bộ số tiền kinh phí công đoàn chưa đóng trong thời gian tạm dừng.\n*   **Đóng dần:** Lập lộ trình đóng bù chia nhỏ số tiền vào các tháng tiếp theo (phải được sự chấp thuận bằng văn bản của cơ quan quản lý công đoàn cấp trên trực tiếp).\n\n**Lưu ý:** Doanh nghiệp cần làm văn bản đề nghị, nêu rõ lý do, thời gian xin tạm dừng và cam kết đóng bù để gửi cơ quan thu kinh phí công đoàn xem xét phê duyệt.",
+   "answer_error": null,
+   "answer_cost": 9.108e-05,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Câu trả lời của thí sinh khớp với nội dung chính của đáp án tham khảo: thời gian tạm dừng tối đa 12 tháng và phải đóng bù số tiền còn thiếu sau khi hết thời hạn tạm dừng.",
+    "cost": 6.64734e-05
+   }
+  },
+  {
+   "task_id": "LVN-028",
+   "answer": "Luật Công đoàn 2024 có hiệu lực thi hành từ ngày **01 tháng 01 năm 2025**.\n\nLuật Công đoàn 2012 hết hiệu lực vào thời điểm Luật Công đoàn 2024 có hiệu lực (tức là hết hiệu lực từ ngày **01 tháng 01 năm 2025**).",
+   "answer_error": null,
+   "answer_cost": 3.858e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Candidate answer states effective date as 01/01/2025, but reference answer specifies 01/07/2025.",
+    "cost": 2.628948e-05
+   }
+  },
+  {
+   "task_id": "LVN-029",
+   "answer": "Có, người lao động là công dân nước ngoài làm việc tại Việt Nam **được quyền gia nhập và hoạt động công đoàn**.\n\nĐiều kiện cụ thể như sau:\n1. **Thời hạn hợp đồng lao động:** Phải có hợp đồng lao động **không xác định thời hạn** hoặc hợp đồng lao động **có thời hạn từ 12 tháng trở lên**.\n2. **Cấp gia nhập:** Gia nhập tại **Công đoàn cơ sở** (tổ chức công đoàn tại doanh nghiệp/đơn vị nơi họ đang làm việc).",
+   "answer_error": null,
+   "answer_cost": 5.09e-05,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "The candidate correctly states that foreign workers can join trade unions at the grassroots level with a fixed-term contract of at least 12 months, but incorrectly adds that an indefinite-term contract also qualifies, deviating from the reference answer.",
+    "cost": 0.00024655134
+   }
+  },
+  {
+   "task_id": "LVN-030",
+   "answer": "Theo Nghị định 135/2020/NĐ-CP, tuổi nghỉ hưu của lao động nam làm việc trong điều kiện bình thường từ năm 2028 trở đi là **62 tuổi**.",
+   "answer_error": null,
+   "answer_cost": 3.7485e-05,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Candidate answer matches the reference answer exactly, both stating the retirement age for male workers under normal conditions from 2028 is 62.",
+    "cost": 2.678928e-05
+   }
+  },
+  {
+   "task_id": "LVN-031",
+   "answer": "Có, người lao động bị suy giảm khả năng lao động từ 61% trở lên được nghỉ hưu ở tuổi thấp hơn tuổi nghỉ hưu trong điều kiện lao động bình thường.\n\nMức thấp hơn tối đa là **5 tuổi**.",
+   "answer_error": null,
+   "answer_cost": 4.2255e-05,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Đáp án khớp đúng nội dung tham chiếu: có được nghỉ hưu sớm và tối đa 05 tuổi.",
+    "cost": 3.26508e-05
+   }
+  },
+  {
+   "task_id": "LVN-032",
+   "answer": "Theo Nghị định 135/2020/NĐ-CP và các quy định liên quan, câu trả lời như sau:\n\n**1. Thời điểm nghỉ hưu khi đủ tuổi vào giữa tháng:**\nThời điểm nghỉ hưu được xác định là **ngày cuối cùng của tháng** mà người lao động đủ tuổi nghỉ hưu. \n*Ví dụ: Nếu người lao động đủ tuổi nghỉ hưu vào ngày 15/10/2023, thì thời điểm nghỉ hưu là ngày 31/10/2023.*\n\n**2. Nếu tiếp tục làm việc sau khi đủ tuổi:**\nNgười lao động có quyền tiếp tục làm việc nếu có đủ sức khỏe và được người sử dụng lao động đồng ý. Khi đó:\n*   **Về hợp đồng:** Hai bên ký kết hợp đồng lao động (thường là hợp đồng xác định thời hạn).\n*   **Về lương hưu:** \n    *   Nếu đã đủ điều kiện hưởng lương hưu, họ có thể vừa làm việc vừa hưởng lương hưu.\n    *   Nếu chưa đủ điều kiện hưởng lương hưu (thiếu năm đóng BHXH), họ tiếp tục đóng BHXH bắt buộc cho đến khi đủ điều kiện.\n*   **Về bảo hiểm:** Người sử dụng lao động không phải đóng bảo hiểm thất nghiệp, bảo hiểm tai nạn lao động, bệnh nghề nghiệp nếu người đó đã hưởng lương hưu hàng tháng.",
+   "answer_error": null,
+   "answer_cost": 0.00017076,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "The candidate correctly identifies that the retirement time is the last day of the month for mid-month retirement, but does not explicitly state that when continuing to work after retirement age, the retirement time is the termination date of the labor contract.",
+    "cost": 8.991402e-05
+   }
+  },
+  {
+   "task_id": "LVN-033",
+   "answer": "Dựa trên quy định tại Nghị định 135/2020/NĐ-CP, trường hợp của bạn được xác định như sau:\n\n1. **Tuổi nghỉ hưu:**\n   - Lao động nam sinh tháng 12/1960 thuộc nhóm đối tượng chuyển tiếp. Theo lộ trình tăng tuổi nghỉ hưu, nam sinh năm 1960 có tuổi nghỉ hưu là **61 tuổi**.\n\n2. **Thời điểm nghỉ hưu và hưởng lương hưu:**\n   - Tuổi nghỉ hưu đạt đủ 61 tuổi vào: **Tháng 12/2021**.\n   - Thời điểm nghỉ hưu và bắt đầu hưởng lương hưu là: **Ngày 01 tháng 01 năm 2022**.",
+   "answer_error": null,
+   "answer_cost": 0.00010119,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "The candidate answer incorrectly calculates the retirement age as 61 and the dates as 2021/2022, while the reference answer correctly states the retirement date is 31/12/2020 and pension start is 01/01/2021.",
+    "cost": 5.265e-05
+   }
+  },
+  {
+   "task_id": "LVN-034",
+   "answer": "Theo quy định tại **Điều 3 Nghị định 274/2025/NĐ-CP**, khi phát hiện người sử dụng lao động chậm đóng hoặc trốn đóng BHXH bắt buộc, BHTN (ngoài các trường hợp đặc biệt), cơ quan bảo hiểm xã hội phải đôn đốc bằng văn bản trong thời hạn **15 ngày** kể từ ngày phát hiện.",
+   "answer_error": null,
+   "answer_cost": 4.246e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "候选答案将期限错误地表述为15天，而参考答案规定为05 ngày làm việc，因此答案不正确。",
+    "cost": 3.92343e-05
+   }
+  },
+  {
+   "task_id": "LVN-035",
+   "answer": "Cơ quan bảo hiểm xã hội cấp tỉnh phải gửi thông tin về người sử dụng lao động chậm đóng, trốn đóng đến cơ quan quản lý nhà nước về bảo hiểm xã hội và cơ quan thanh tra **trước ngày 10 của tháng đầu quý tiếp theo**.",
+   "answer_error": null,
+   "answer_cost": 4.92e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Candidate answer states 'trước ngày 10' but reference answer requires 'trước ngày 15'.",
+    "cost": 0.0001367418
+   }
+  },
+  {
+   "task_id": "LVN-036",
+   "answer": "**Có, vẫn bị coi là chậm đóng hoặc trốn đóng bảo hiểm xã hội (BHXH).**\n\n**Lý do:**\n1. **Nghĩa vụ bắt buộc:** Luật Bảo hiểm xã hội quy định việc đóng BHXH là bắt buộc và không có điều khoản miễn giảm đóng do thiên tai, bão lũ.\n2. **Không phải lý do miễn trừ:** Việc thiên tai được cơ quan có thẩm quyền công bố chỉ là căn cứ để đơn vị xem xét các chính sách hỗ trợ người lao động hoặc xin gia hạn nộp thuế (nếu có quy định), nhưng không tự động xóa bỏ nghĩa vụ đóng BHXH.\n\n**Hệ quả:**\n* Nếu không đóng, đơn vị sẽ bị tính **lãi chậm đóng**.\n* Nếu cố tình không đóng kéo dài, có thể bị xử phạt hành chính hoặc truy cứu trách nhiệm hình sự về tội \"Trốn đóng bảo hiểm xã hội\" theo Bộ luật Hình sự.\n\n**Giải pháp cho đơn vị:**\nĐơn vị nên chủ động liên hệ với cơ quan BHXH quản lý để báo cáo tình hình khó khăn và tìm phương án đóng dần hoặc xin hướng dẫn cụ thể để giảm thiểu rủi ro pháp lý.",
+   "answer_error": null,
+   "answer_cost": 0.000125,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Candidate answer states that non-payment due to natural disaster is still considered evasion, while the reference answer says it is not considered evasion under the specified conditions.",
+    "cost": 0.0002715408
+   }
+  },
+  {
+   "task_id": "LVN-037",
+   "answer": "Số ngày trốn đóng bảo hiểm xã hội (BHXH) được tính từ **ngày tiếp theo sau ngày hết hạn 45 ngày** kể từ khi cơ quan có thẩm quyền ra thông báo đôn đốc.\n\nCụ thể:\n1. Cơ quan BHXH ra thông báo đôn đốc đóng.\n2. Thời hạn đôn đốc là 45 ngày.\n3. Nếu hết 45 ngày này doanh nghiệp vẫn không đóng, thì kể từ **ngày thứ 46** trở đi mới bắt đầu tính là hành vi \"trốn đóng\" để làm căn cứ xử lý vi phạm hành chính hoặc hình sự.",
+   "answer_error": null,
+   "answer_cost": 8.2215e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Candidate answer incorrectly states that the evasion days are counted from after 45 days of the notice, while the correct calculation is from 60 days after the latest contribution deadline.",
+    "cost": 6.567372e-05
+   }
+  },
+  {
+   "task_id": "LVN-038",
+   "answer": "Theo quy định hiện hành về bảo hiểm tai nạn lao động, bệnh nghề nghiệp tự nguyện, mức đóng đối với người chọn đóng 12 tháng một lần là **1%** mức lương tối thiểu vùng IV.",
+   "answer_error": null,
+   "answer_cost": 3.396e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Candidate answer states 1% but reference answer requires 12%.",
+    "cost": 2.359056e-05
+   }
+  },
+  {
+   "task_id": "LVN-039",
+   "answer": "Theo quy định hiện hành tại Việt Nam, **không có chính sách Nhà nước hỗ trợ tiền đóng bảo hiểm tai nạn lao động tự nguyện** cho đối tượng người lao động không theo hợp đồng lao động và không thuộc hộ nghèo/cận nghèo.\n\nMức hỗ trợ đóng bảo hiểm tai nạn lao động tự nguyện (thường áp dụng cho người lao động tự do) chỉ dành cho đối tượng là **hộ nghèo, hộ cận nghèo** (mức hỗ trợ tùy theo quy định cụ thể của từng địa phương hoặc chương trình mục tiêu quốc gia). Những người không thuộc nhóm ưu tiên này phải tự đóng 100% mức phí bảo hiểm.",
+   "answer_error": null,
+   "answer_cost": 5.984e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Candidate answer denies state support exists, while reference answer states support is 10% for this specific group.",
+    "cost": 5.3606e-05
+   }
+  },
+  {
+   "task_id": "LVN-040",
+   "answer": "Theo quy định tại Điều 7 Nghị định 58/2020/NĐ-CP, mức trợ cấp một lần cho người tham gia bảo hiểm tai nạn lao động tự nguyện bị suy giảm 30% khả năng lao động được tính như sau:\n\nMức trợ cấp = **1,3 lần** mức lương tối thiểu vùng IV.",
+   "answer_error": null,
+   "answer_cost": 5.301e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Đáp án tham chiếu yêu cầu 10,5 lần nhưng câu trả lời chỉ nêu 1,3 lần, sai về cách tính.",
+    "cost": 3.438624e-05
+   }
+  },
+  {
+   "task_id": "LVN-041",
+   "answer": "Đối với bảo hiểm tai nạn lao động tự nguyện (thường áp dụng cho đối tượng tham gia tự nguyện theo quy định của pháp luật hoặc các gói bảo hiểm thương mại), câu trả lời như sau:\n\n**1. Trạng thái:**\nKhi không đóng phí đúng thời điểm quy định, người tham gia được coi là **tạm dừng đóng** hoặc **mất hiệu lực hợp đồng/quyền lợi bảo hiểm** (tùy vào thời gian chậm đóng và điều khoản cụ thể của gói bảo hiểm). Trong thời gian này, nếu xảy ra tai nạn, người tham gia sẽ không được chi trả quyền lợi bảo hiểm.\n\n**2. Thủ tục để đóng tiếp:**\nĐể khôi phục quyền lợi, người tham gia cần thực hiện:\n*   **Đóng bù:** Thanh toán toàn bộ số tiền phí bảo hiểm còn thiếu (bao gồm cả lãi chậm đóng nếu có).\n*   **Yêu cầu khôi phục:** Gửi đơn đề nghị khôi phục hiệu lực hợp đồng/thẻ bảo hiểm cho cơ quan bảo hiểm hoặc đơn vị cung cấp dịch vụ.\n*   **Khám sức khỏe/Kê khai lại (nếu cần):** Trong một số trường hợp gián đoạn quá lâu, đơn vị bảo hiểm có thể yêu cầu kê khai lại tình trạng sức khỏe hiện tại để xem xét chấp nhận cho đóng tiếp.\n\n*Lưu ý: Nếu đây là bảo hiểm bắt buộc do người sử dụng lao động đóng cho người lao động, trách nhiệm đóng thuộc về doanh nghiệp; người lao động không tự đóng.*",
+   "answer_error": null,
+   "answer_cost": 0.0001516,
+   "judgment": {
+    "verdict": "partially_correct",
+    "reason": "Câu trả lời đúng một phần khi nêu 'tạm dừng đóng' nhưng lại thêm 'mất hiệu lực' và thủ tục không khớp với quy định cụ thể tại Nghị định 143/2024/NĐ-CP.",
+    "cost": 0.00027804
+   }
+  },
+  {
+   "task_id": "LVN-042",
+   "answer": "Thời gian làm việc từ ngày 01/7/2025 đến trước ngày 01/01/2026 tại vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn được xác định theo **quy định tại thời điểm làm việc đó**.\n\nCụ thể, việc xác định vùng đặc biệt khó khăn để tính thời gian nghỉ hưu sớm sẽ căn cứ vào **Quyết định của Thủ tướng Chính phủ** về danh mục địa bàn xuất hiện tại thời điểm người lao động đang công tác. Nếu trong khoảng thời gian này có sự thay đổi về phân loại vùng (ví dụ: từ vùng đặc biệt khó khăn chuyển thành vùng khó khăn), thì thời gian được tính là vùng đặc biệt khó khăn chỉ được tính đến hết ngày trước khi quyết định thay đổi có hiệu lực.",
+   "answer_error": null,
+   "answer_cost": 7.102e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "The candidate answer does not specify that the time is determined according to the working time in June 2025, as stated in the reference answer, but instead provides a general principle.",
+    "cost": 0.0005129478
+   }
+  },
+  {
+   "task_id": "LVN-043",
+   "answer": "Các Bộ, ngành và Ủy ban nhân dân tỉnh, thành phố phải phản ánh về **Bộ Nội vụ** để tổng hợp, trình cấp có thẩm quyền xem xét, quyết định điều chỉnh.",
+   "answer_error": null,
+   "answer_cost": 0.00012925,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Câu trả lời của thí sinh khớp chính xác với đáp án tham khảo là Bộ Nội vụ, không có lỗi nội dung.",
+    "cost": 2.943822e-05
+   }
+  },
+  {
+   "task_id": "LVN-044",
+   "answer": "Thông tư quy định Danh mục vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn được ban hành căn cứ theo:\n\n1. **Bộ luật Lao động 2019:** Căn cứ theo **Khoản 2 Điều 169**. (Quy định người lao động có thời gian làm nghề, công việc nặng nhọc, độc hại, nguy hiểm hoặc làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn được nghỉ hưu thấp hơn tối đa 5 tuổi).\n\n2. **Nghị định 135/2020/NĐ-CP:** Căn cứ theo **Khoản 1 Điều 8**. (Quy định chi tiết về điều kiện và tuổi nghỉ hưu thấp hơn đối với người lao động làm việc tại vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn).",
+   "answer_error": null,
+   "answer_cost": 7.762e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Candidate answer cites Khoản 2 Điều 169 and Khoản 1 Điều 8 while reference answer correctly cites Khoản 3 Điều 169 and Điều 5.",
+    "cost": 4.743102e-05
+   }
+  },
+  {
+   "task_id": "LVN-045",
+   "answer": "**Chủ tịch Ủy ban nhân dân cấp tỉnh** là người có trách nhiệm chỉ đạo Sở Nội vụ và các cơ quan liên quan kiểm tra, đôn đốc việc thực hiện các quy định về danh mục vùng kinh tế - xã hội đặc biệt khó khăn tại địa phương.",
+   "answer_error": null,
+   "answer_cost": 3.058e-05,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "Câu trả lời quy trách nhiệm cho Chủ tịch UBND cấp tỉnh, trong khi đáp án tham chiếu nêu rõ trách nhiệm thuộc về Ủy ban nhân dân các tỉnh, thành phố trực thuộc Trung ương.",
+    "cost": 0.0002137954
+   }
+  },
+  {
+   "task_id": "LVN-046",
+   "answer": "Câu trả lời ngắn gọn cho bạn như sau:\n\n**1. Về việc tính thời gian làm việc:**\n**Có.** Thời gian làm việc trước ngày 01/01/2021 tại nơi có phụ cấp khu vực từ hệ số 0,7 trở lên **được tính** vào thời gian làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn để hưởng chế độ hưu trí theo Nghị định 135/2020/NĐ-CP.\n\n**2. Thông tư xác định danh mục vùng:**\nĐể xác định vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn (bao gồm cả giai đoạn trước 2021), bạn căn cứ vào các văn bản sau:\n*   **Hiện nay:** Quyết định của Thủ tướng Chính phủ về danh mục địa bàn đặc biệt khó khăn (thay đổi theo từng giai đoạn).\n*   **Để đối chiếu thời gian trước 2021:** Căn cứ vào các **Quyết định của Thủ tướng Chính phủ** và **Thông tư hướng dẫn của Bộ Nội vụ/Bộ Lao động - Thương binh và Xã hội** quy định về danh mục vùng đặc biệt khó khăn, vùng sâu, vùng xa tại thời điểm bạn công tác.\n*   **Đặc biệt:** Đối với trường hợp xác định theo \"phụ cấp khu vực hệ số 0,7\", bạn căn cứ vào **Quyết định số 10-CTTT của Thủ tướng Chính phủ** (và các văn bản sửa đổi, bổ sung) quy định về chế độ phụ cấp khu vực.\n\n**Lưu ý:** Bạn cần cung cấp sổ bảo hiểm xã hội và hợp đồng lao động/quyết định điều động công tác có ghi rõ địa điểm làm việc để cơ quan BHXH đối chiếu với danh mục vùng tại thời điểm đó.",
+   "answer_error": null,
+   "answer_cost": 0.000187,
+   "judgment": {
+    "verdict": "correct",
+    "reason": "Candidate answer correctly confirms that time before 01/01/2021 in areas with regional allowance coefficient 0.7 or higher counts toward the 15-year requirement for early retirement, and provides appropriate references for determining the list of areas.",
+    "cost": 8.986404e-05
+   }
+  },
+  {
+   "task_id": "LVN-047",
+   "answer": "Theo quy định tại Luật Việc làm 2025 và Nghị định 293/2025/NĐ-CP:\n\n1. **Mức lương tối thiểu vùng I** (theo Nghị định 293/2025/NĐ-CP): **5.250.000 đồng/tháng**.\n2. **Công thức tính trợ cấp thất nghiệp (TCTN)**: 60% bình quân tiền lương tháng đóng BHTN của 06 tháng liền kề trước khi thất nghiệp.\n3. **Mức TCTN tối đa**: Không quá 5 lần mức lương cơ sở. Theo Nghị định 293/2025/NĐ-CP, mức lương cơ sở từ 01/01/2025 là **2.340.000 đồng/tháng**.\n\n**Tính toán:**\n*   Mức trần TCTN = 5 x 2.340.000 = **11.700.000 đồng/tháng**.\n\n**Kết luận:** Mức trợ cấp thất nghiệp hằng tháng tối đa người này có thể được hưởng là **11.700.000 đồng**.",
+   "answer_error": null,
+   "answer_cost": 0.00011106,
+   "judgment": {
+    "verdict": "incorrect",
+    "reason": "候选答案错误地使用了mức lương cơ sở（2.340.000 đồng）而非mức lương tối thiểu vùng I，且给出了错误的mức lương tối thiểu vùng I数字（5.250.000 đồng thay vì 5.310.000 đồng），导致计算出的11.700.000 đồng与参考答案的26.550.000 đồng不符。",
+    "cost": 0.00010850658
+   }
+  }
+ ]
+}

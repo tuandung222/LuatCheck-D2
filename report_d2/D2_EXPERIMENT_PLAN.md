@@ -1,3 +1,5 @@
+> **Historical (superseded 24 October 2026).** This note describes the Qwen2.5-3B / `bll2019_v1` pilot. Current D2 status: README.md and docs/RUNBOOK_D2.md; requirements gap: docs/reviews/d2_requirements_gap_2026-10-23.md.
+
 # Kế hoạch thực nghiệm D2 — cập nhật 22/10/2026
 
 Yêu cầu mới nhất cho phép chạy thật trên Mac, thay thế kế hoạch hoãn cũ. Không mock, HTTP doubles, monkeypatch hoặc component thay thế, kể cả trong tests.

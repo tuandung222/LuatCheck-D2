@@ -22,7 +22,11 @@ For a justified, accurate scope refusal, both scores can be 2. For an unjustifie
 refusal/clarification of an answerable question, completeness is 0. For execution
 errors, correctness/completeness are 0 and behaviour_appropriate is false.
 
-Extract ALL factual claims, including claims in refusals or questions if present.
+Extract ALL factual claims the candidate asserts (a claim in a question or an invented assertion
+inside a refusal counts). A refusal, abstention or statement that the information is absent
+from the sources (for example "Không có thông tin ... trong các văn bản đã tra cứu", "không thể
+trả lời", a request for clarification) is NOT a factual claim: do not list it. A correct
+refusal therefore has an empty claims list.
 Each answer_quote must be an exact nonempty span from candidate_answer. Keep
 claims atomic and nonoverlapping where practical. Nonfactual boilerplate and
 error messages are not factual legal claims. Empty claims is valid if there are

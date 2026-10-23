@@ -1,0 +1,1831 @@
+{
+ "note": "LLM opinion only; not ground truth. Verify every flag against corpus text.",
+ "model": "openrouter/google/gemini-3-flash-preview",
+ "total_cost_usd_reported": 0.09853649999999996,
+ "n": 100,
+ "rows": [
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-001",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000488,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 814,
+    "total_tokens": 841
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-002",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000521,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 880,
+    "total_tokens": 907
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-003",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0005235,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 885,
+    "total_tokens": 912
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-004",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004655,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 769,
+    "total_tokens": 796
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-005",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.001922,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 3694,
+    "total_tokens": 3719
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-006",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.001872,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 3582,
+    "total_tokens": 3609
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-007",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.001859,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 3568,
+    "total_tokens": 3593
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-008",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.001872,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 3594,
+    "total_tokens": 3619
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-009",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0006695,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1177,
+    "total_tokens": 1204
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-010",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000733,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1304,
+    "total_tokens": 1331
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-011",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0006025,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1043,
+    "total_tokens": 1070
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-012",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000589,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1016,
+    "total_tokens": 1043
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-013",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0008385,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1515,
+    "total_tokens": 1542
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-014",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000846,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1530,
+    "total_tokens": 1557
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-015",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.001476,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 2790,
+    "total_tokens": 2817
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-016",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0006195,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1077,
+    "total_tokens": 1104
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-017",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000497,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 832,
+    "total_tokens": 859
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-018",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004855,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 809,
+    "total_tokens": 836
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-019",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004055,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 649,
+    "total_tokens": 676
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-020",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000395,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 628,
+    "total_tokens": 655
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-021",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000618,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1074,
+    "total_tokens": 1101
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-022",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000773,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1384,
+    "total_tokens": 1411
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-023",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000848,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1546,
+    "total_tokens": 1571
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-024",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.004578,
+   "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 8964,
+    "total_tokens": 8996
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-025",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.003042,
+   "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 5892,
+    "total_tokens": 5924
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-026",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0007815,
+   "usage": {
+    "completion_tokens": 131,
+    "prompt_tokens": 777,
+    "total_tokens": 908
+   },
+   "opinion": {
+    "verdict": "minor_issue",
+    "issues": [
+     {
+      "type": "missing_condition",
+      "detail": "Đáp án thiếu ngoại lệ quan trọng là 'trường hợp đặc biệt do Hiệu trưởng quyết định' vốn có thể làm thay đổi giới hạn tối đa 02 lớp.",
+      "quote": "Mỗi GVCN chủ nhiệm tối đa 02 lớp (áp dụng với tất cả các hệ đào tạo, trường hợp đặc biệt do Hiệu trưởng quyết định)"
+     }
+    ],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-027",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004715,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 781,
+    "total_tokens": 808
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-028",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0005185,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 875,
+    "total_tokens": 902
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-029",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004215,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 681,
+    "total_tokens": 708
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-030",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004735,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 785,
+    "total_tokens": 812
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-031",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000711,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1260,
+    "total_tokens": 1287
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-032",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0007225,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1283,
+    "total_tokens": 1310
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-033",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000445,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 728,
+    "total_tokens": 755
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-034",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.002136,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 4110,
+    "total_tokens": 4137
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-035",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0008725,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1583,
+    "total_tokens": 1610
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-036",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.001908,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 3654,
+    "total_tokens": 3681
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-037",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0010605,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1959,
+    "total_tokens": 1986
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-038",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0006985,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1235,
+    "total_tokens": 1262
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-039",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000716,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1270,
+    "total_tokens": 1297
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-040",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0007245,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1287,
+    "total_tokens": 1314
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-041",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0006135,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1065,
+    "total_tokens": 1092
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-042",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.00058,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 998,
+    "total_tokens": 1025
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-043",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.00049,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 818,
+    "total_tokens": 845
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-044",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000462,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 762,
+    "total_tokens": 789
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-045",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004275,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 693,
+    "total_tokens": 720
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-046",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000544,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 926,
+    "total_tokens": 953
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-047",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0012655,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 2369,
+    "total_tokens": 2396
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-048",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.002931,
+   "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 5670,
+    "total_tokens": 5702
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-049",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.003821,
+   "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 7450,
+    "total_tokens": 7482
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-050",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.004102,
+   "usage": {
+    "completion_tokens": 269,
+    "prompt_tokens": 6590,
+    "total_tokens": 6859
+   },
+   "opinion": {
+    "verdict": "partially_answerable",
+    "answering_records": [
+     {
+      "doc_id": "HCMUT_NOIQUY1924_Dieu_5",
+      "quote": "Điều 5. Những hành vi sinh viên KHÔNG được phép thực hiện... 3. Đi xe máy, xe đạp trong khuôn viên Trường.",
+      "why": "Bản ghi này xác nhận hành vi đi xe máy trong khuôn viên trường là hành vi bị cấm đối với sinh viên, tuy nhiên không quy định mức phạt tiền cụ thể."
+     },
+     {
+      "doc_id": "HCMUT_UNGXU3408_Dieu_9",
+      "quote": "1. Chấp hành nhiệm vụ của người học tại các quy chế , quy định của Bộ Giáo dục và Đào tạo, Nội quy học đường Trường Đại học Bách khoa – ĐHQG-HCM.",
+      "why": "Bản ghi này yêu cầu người học phải chấp hành nội quy học đường và các quy định pháp luật, làm cơ sở để áp dụng các hình thức xử lý khi vi phạm."
+     }
+    ],
+    "confidence": 0.5
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-001",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000588,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1014,
+    "total_tokens": 1041
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-002",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0008145,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1467,
+    "total_tokens": 1494
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-003",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.00048,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 798,
+    "total_tokens": 825
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-004",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000535,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 908,
+    "total_tokens": 935
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-005",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000566,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 970,
+    "total_tokens": 997
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-006",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0006715,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1181,
+    "total_tokens": 1208
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-007",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000556,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 950,
+    "total_tokens": 977
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-008",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000549,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 936,
+    "total_tokens": 963
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-009",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0005705,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 979,
+    "total_tokens": 1006
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-010",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0005875,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1013,
+    "total_tokens": 1040
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-011",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000542,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 922,
+    "total_tokens": 949
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-012",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.00055,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 938,
+    "total_tokens": 965
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-013",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0003795,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 597,
+    "total_tokens": 624
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-014",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0007585,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1355,
+    "total_tokens": 1382
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-015",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000493,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 824,
+    "total_tokens": 851
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-016",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0009505,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1739,
+    "total_tokens": 1766
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-017",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0006205,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1079,
+    "total_tokens": 1106
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-018",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0005865,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1011,
+    "total_tokens": 1038
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-019",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000603,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1044,
+    "total_tokens": 1071
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-020",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0006235,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1085,
+    "total_tokens": 1112
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-021",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0007265,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1291,
+    "total_tokens": 1318
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-022",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000812,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1462,
+    "total_tokens": 1489
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-023",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0010505,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1951,
+    "total_tokens": 1976
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-024",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.002428,
+   "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 4664,
+    "total_tokens": 4696
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-025",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0032065,
+   "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 6221,
+    "total_tokens": 6253
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-026",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000455,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 748,
+    "total_tokens": 775
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-027",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0005425,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 923,
+    "total_tokens": 950
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-028",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000411,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 660,
+    "total_tokens": 687
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-029",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000422,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 682,
+    "total_tokens": 709
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-030",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000608,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1054,
+    "total_tokens": 1081
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-031",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000762,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1362,
+    "total_tokens": 1389
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-032",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000454,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 746,
+    "total_tokens": 773
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-033",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000789,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1416,
+    "total_tokens": 1443
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-034",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0007375,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1313,
+    "total_tokens": 1340
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-035",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000734,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1306,
+    "total_tokens": 1333
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-036",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0005195,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 877,
+    "total_tokens": 904
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-037",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.001008,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1854,
+    "total_tokens": 1881
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-038",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000479,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 796,
+    "total_tokens": 823
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-039",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000612,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1062,
+    "total_tokens": 1089
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-040",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0011685,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 2175,
+    "total_tokens": 2202
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-041",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004455,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 729,
+    "total_tokens": 756
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-042",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.00065,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1138,
+    "total_tokens": 1165
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-043",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0004085,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 655,
+    "total_tokens": 682
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-044",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000444,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 726,
+    "total_tokens": 753
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-045",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.000413,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 664,
+    "total_tokens": 691
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-046",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0011425,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 2123,
+    "total_tokens": 2150
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-047",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0008965,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 1631,
+    "total_tokens": 1658
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-048",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.0030505,
+   "usage": {
+    "completion_tokens": 154,
+    "prompt_tokens": 5177,
+    "total_tokens": 5331
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [
+     {
+      "doc_id": "BLLD2019_Dieu_219",
+      "quote": "khi nghỉ việc có đủ 20 năm đóng bảo hiểm xã hội trở lên thì được hưởng lương hưu nếu thuộc một trong các trường hợp sau đây",
+      "why": "Bản ghi này chỉ nêu điều kiện về số năm đóng bảo hiểm xã hội (20 năm) để được hưởng lương hưu, không quy định tỷ lệ phần trăm (%) mức hưởng lương hưu là bao nhiêu."
+     }
+    ],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-049",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.002595,
+   "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 4998,
+    "total_tokens": 5030
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-050",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "openrouter/google/gemini-3-flash-preview",
+   "cost_usd": 0.003104,
+   "usage": {
+    "completion_tokens": 34,
+    "prompt_tokens": 6004,
+    "total_tokens": 6038
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1.0
+   }
+  }
+ ]
+}

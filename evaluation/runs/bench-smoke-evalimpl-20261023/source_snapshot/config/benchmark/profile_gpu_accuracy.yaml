@@ -1,0 +1,20 @@
+# Run profile for ACCURACY collection on the GPU server (server 82, H100). The runner process runs ON the GPU server next
+# to the llama-server (loopback), with one worker per llama-server slot: start the server with -np N and -c >= 8192 x N.
+# Concurrency inflates and varies latency: latency is recorded for diagnosis only and is NOT reportable.
+name: gpu-accuracy
+workers: auto            # = the server's slots (/props total_slots), capped by max_workers
+max_workers: 8
+sequential: false
+latency_reportable: false
+record_memory: false
+trial_timeout_seconds: 300   # hard watchdog per trial; the agent's own wall budget is 180 s and each request times out at 60 s
+warmup_trials: 1
+# Reranker runtime for variants that rerank (l1_rerank): torch fp16 cross-encoder on CUDA, weights loaded from the local
+# Hugging Face cache only (pre-download them: docs/RUNBOOK_D2.md). One copy per worker, all on the visible GPU.
+reranker:
+  backend: cross_encoder
+  model: AITeamVN/Vietnamese_Reranker
+  device: cuda
+  dtype: float16
+  local_files_only: true
+description: N concurrent workers (one agent per worker), CUDA reranker. Accuracy and retrieval metrics only; latency not reportable.

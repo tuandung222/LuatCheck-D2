@@ -1,0 +1,146 @@
+# LuatCheck configuration reference.
+#
+# Every key of `src/config/app_config.py` with its default and allowed values. The values below ARE the defaults,
+# so this file loads (`python -m src.pipeline config/reference.yaml`) and behaves like an empty config.
+# It is not an app profile: the defaults are not the settings used for the demo or the experiments
+# (see config/config.yaml, config/profiles/*.yaml, config/d2_*.yaml, config/benchmark/*.yaml).
+# tests/test_pipeline_builder.py checks that this file names every config key and no unknown key.
+#
+# A config file may contain only the keys you want to change. Unknown keys are ignored with a warning.
+# Environment overrides: LUATCHECK_CONFIG_PATH / LOCAL_SLM_CONFIG_PATH (file), MODEL_ENDPOINT or OLLAMA_ENDPOINT,
+# MODEL_NAME, MODEL_PROVIDER.
+#
+# Components you can switch from here (each is built only when its section asks for it):
+#   controller LLM   model.provider
+#   retriever        retrieval.mode, retrieval.dense_model_type
+#   reranker         retrieval.reranker.enabled / backend
+#   verifier L1/L2   verifier.mode (+ verifier.l2_use_slm)
+#   verifier NLI     verifier.nli.enabled / backend
+#   memory           memory.enabled / reuse_answers / backend
+#   guardrails       security.guardrails.enabled
+#   domain           domain.profile
+
+# ---------------------------------------------------------------------------------------------------------------
+# Domain: prompts, model-facing tool names, document-ID convention, domain guardrail patterns, L1 quantity units,
+# controller messages. Everything domain-specific lives in config/domains/<profile>.yaml (and the language message
+# pack config/domains/messages/<language>.yaml), never in the shared code.
+domain:
+  profile: labour_vi_2019        # a profile id (file name in config/domains/) or a path to a profile YAML
+
+# ---------------------------------------------------------------------------------------------------------------
+# Controller model. The loop calls it once per step and validates every response against the action schema;
+# an unreachable or malformed backend ends the run as an execution error (never a substitute answer).
+model:
+  provider: ollama               # ollama | mlx | llamacpp | gateway
+                                 # llamacpp aliases: llama.cpp, openai, prism, prism_llamacpp, prism-llamacpp, prismml
+                                 # (all OpenAI-compatible llama-server). gateway = remote API, diagnostics only.
+  endpoint: http://localhost:11434   # ollama: server root; others: OpenAI-compatible base URL (".../v1")
+  name: qwen2.5:3b               # model identifier sent to the server
+  temperature: 0.1               # 0.0 - 2.0
+  timeout_seconds: 30.0          # per request; also capped by budgets.wall_seconds
+  seed: null                     # int; evaluation runners set it per trial
+  max_output_tokens: 512         # >= 32
+  context_tokens: 4096           # >= 1024 (ollama num_ctx; informational for the OpenAI-compatible servers)
+  top_p: null                    # sampling, sent only when set (mlx, llamacpp)
+  top_k: null
+  min_p: null
+  presence_penalty: null
+  constrained_json: true         # decode against the action JSON schema (mlx, llamacpp)
+  enable_thinking: null          # chat-template thinking switch (llamacpp); null = not sent
+  api_key_env: null              # gateway only: NAME of the environment variable holding the credential
+  reasoning_effort: null         # gateway only
+
+# ---------------------------------------------------------------------------------------------------------------
+# Execution budgets of one run.
+budgets:
+  max_tool_calls: 5              # search + read calls per run
+  max_repairs: 2                 # verifier-driven rewrites of an answer before the run ends in a refusal
+  max_steps: 10                  # model calls per run
+  wall_seconds: 180              # whole-run wall clock; exceeded -> terminal_status error (wall_timeout)
+
+# ---------------------------------------------------------------------------------------------------------------
+# Retrieval: first stage (mode, corpus) and optional second stage (reranker).
+retrieval:
+  mode: bm25_tfidf               # bm25_tfidf: in-memory BM25 fused by RRF with `dense_model_type`, over corpus_path
+                                 # hybrid_index: a built src/indexing index (see `index`); faiss stores are refused
+  corpus_path: data/corpus/labor_code_2019_official.json   # bm25_tfidf mode; the verifier checks IDs against it
+  dense_model_type: tfidf        # tfidf | bm25 | bge-m3 | phobert | all-minilm | nomic-embed-text
+                                 # tfidf: BM25 + TF-IDF/RRF (default, no model).  bm25: BM25 alone.
+                                 # others: the embedding model of that name, served at model.endpoint; raises if unavailable
+  rrf_k: 60                      # Reciprocal Rank Fusion constant (>= 1)
+  final_top_k: 5                 # upper bound of the `top_k` the model may request per search (>= 1)
+  bm25_top_k: 5                  # accepted for compatibility, not read by any component
+  dense_top_k: 5                 # accepted for compatibility, not read by any component
+  index:                         # only for mode: hybrid_index
+    path: null                   # REQUIRED for hybrid_index: index name under data/index, or a directory
+    store: null                  # vector store inside the index; null = the manifest's default
+    search_mode: hybrid          # hybrid | keyword | vector
+    verify_corpus: true          # refuse an index whose corpus hash changed
+  reranker:                      # second stage; loaded through the ModelManager (see `models`)
+    enabled: false               # false: first-stage order is returned
+    backend: cross_encoder       # cross_encoder | qwen3 (local) | qev_http | llamacpp_http (HTTP, loopback only)
+    model: null                  # REQUIRED when enabled (local: HF repo id or path; qev_http: served model name)
+    top_k_in: 20                 # first-stage candidates handed to the reranker (>= 1)
+    top_k_out: 5                 # at most this many returned; must be <= top_k_in
+    device: auto                 # auto | cpu | mps (local backends)
+    max_length: 1024             # tokens per (query, document) pair (cross_encoder, llamacpp_http); longer pairs are truncated and counted
+    chunk_chars: 1500            # cross_encoder, llamacpp_http: a candidate longer than this is split into overlapping windows, each is scored,
+                                 # document score = max over windows (MaxP); null = no chunking (the pair is cut at max_length tokens)
+    chunk_overlap_chars: 200     # overlap between windows (< chunk_chars / 2)
+    dtype: null                  # float32 | float16 | bfloat16 (local backends)
+    base_url: null               # REQUIRED for qev_http and llamacpp_http
+    allow_remote: false          # qev_http only: permit a non-loopback host (document text leaves the machine)
+    local_files_only: false      # local backends: never touch the network when loading weights
+    batch_size: 1                # local backends
+    timeout_seconds: 60.0        # HTTP backends
+
+# ---------------------------------------------------------------------------------------------------------------
+# Verification of the model's answer.
+verifier:
+  mode: l1                       # off: no verification
+                                 # l1: lexical grounding (IDs, retrieval provenance, token overlap, exact quantities)
+                                 #     with repair; lexical proxies, not a correctness check
+                                 # l1_l2: l1, then native-model entailment (needs l2_use_slm: true)
+                                 # aliases: lexical_grounding, lexical, grounding, l1_only, l1_on = l1;
+                                 #          semantic_entailment, semantic, full, l1_l2_on = l1_l2
+  l1_overlap_threshold: 0.25     # minimum fraction of an answer sentence's tokens found in the cited text (0 - 1)
+  l2_use_slm: false              # true: L2 uses the controller endpoint as entailment judge; false: L2 raises if the mode asks for it
+  l2_entailment_threshold: 0.30  # minimum judge confidence for ENTAILMENT (0 - 1)
+  similarity_threshold: 0.70     # accepted for compatibility, not read by any component
+  nli:                           # optional step after L1 in every non-off mode: per (sentence, cited record) probabilities
+    enabled: false
+    backend: cross_encoder       # cross_encoder | llm | decision_model | qev_http
+    model: null                  # REQUIRED when enabled
+    threshold: 0.9               # P(contradiction) at which `action: repair` fires (0 - 1)
+    action: flag                 # flag: record in the ledger only.  repair: also fail verification and rewrite
+    # Any other key (device, max_length, base_url, timeout_seconds, dtype, ...) goes to the backend, which rejects unknown ones.
+
+# ---------------------------------------------------------------------------------------------------------------
+# Episodic memory of verified answers.
+memory:
+  enabled: true                  # false: no store is created, nothing is read or written
+  backend: sqlite                # sqlite
+  reuse_answers: true            # serve a stored answer to a similar later question (after re-verification;
+                                 # only answers with native-inference evidence; never while verifier.nli is enabled)
+  sqlite_path: data/db/local_slm_memory.db
+  similarity_threshold: 0.85     # question similarity needed for reuse (0 - 1)
+  index_version: native-v2026.10.22   # stored answers are reused only under the same version string
+
+# ---------------------------------------------------------------------------------------------------------------
+security:
+  guardrails:
+    enabled: true                # false: skip the pre-model input pattern check (generic + domain patterns).
+                                 # Untrusted text is still wrapped in delimiters in the prompt.
+  audit_log_path: data/audit_log.jsonl
+  outbox_path: data/outbox/sent_summaries.jsonl   # local queue for user-approved summaries; nothing is delivered
+  egress_requires_confirmation: true   # accepted for compatibility, not read by any component
+
+# ---------------------------------------------------------------------------------------------------------------
+# Policy of the ModelManager that holds the reranker / NLI / index-embedding models loaded in this process.
+# Unknown keys here are rejected.
+models:
+  idle_unload_seconds: 600.0     # unload a model unused for this long (checked on the next access)
+  max_resident_gb: 4.0           # estimated resident budget; least-recently-used models are unloaded first
+  min_free_gb: 1.0               # refuse to load below this much available system memory
+  default_estimate_gb: 2.5       # used when a model's weights cannot be sized from the local cache
+  wait_for_quiet_machine_gb: null   # optional: before a load, wait while another python process holds more than this

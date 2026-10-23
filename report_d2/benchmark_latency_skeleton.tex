@@ -1,0 +1,16 @@
+% SKELETON for the Mac latency table. main_d2.tex inputs benchmark_latency_mac.tex instead when it exists
+% (generate it with: .venv/bin/python report_d2/make_latency_table.py --run-dir evaluation/runs/<mac run>).
+\begin{table}[t]\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrrrr@{}}\toprule
+Benchmark & Variant & Trials & Err.\ (\%) & Trial p50/p95 (s) & Call p50/p95 (s) & Decode tok/s & Rerank call p50 (s)\\\midrule
+\multirow{3}{*}{HCMUT-v1} & OFF & \tbd & \tbd & \tbd & \tbd & \tbd & --\\
+ & L1 & \tbd & \tbd & \tbd & \tbd & \tbd & --\\
+ & L1{+}rerank & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\\midrule
+\multirow{3}{*}{Labour-VI-v1} & OFF & \tbd & \tbd & \tbd & \tbd & \tbd & --\\
+ & L1 & \tbd & \tbd & \tbd & \tbd & \tbd & --\\
+ & L1{+}rerank & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\bottomrule\end{tabular}}
+\caption{\textcolor{red}{\textbf{Skeleton, no Mac run yet: no cell is a result.}} Latency and memory on the Apple M4 (16\,GiB, Metal), run \tbd: strictly sequential, warm-up excluded, non-error trials. Trial = whole agent run; call = one controller request; decode tok/s from server timings. The Mac L1+rerank reranker is the GGUF runtime, not the runtime of the accuracy run, so accuracy is never pooled across machines. Peak resident memory over the whole run: llama-server \tbd\,MB, runner \tbd\,MB (sampled).}
+\label{tab:benchmark-latency}
+\end{table}

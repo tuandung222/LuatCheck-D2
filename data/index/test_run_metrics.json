@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-22T22:06:57+00:00",
+  "recorded_at": "2026-10-23T17:34:54+00:00",
   "backend_status": {
     "numpy": {
       "package": "numpy",
@@ -36,72 +36,68 @@
     }
   },
   "embedding_model": {
-    "load_seconds": 5.03,
+    "load_seconds": 11.08,
     "device": "mps",
-    "rss_before_load_mb": 696.3,
-    "memory_rss_plus_mps_after_load_mb": 2525.5,
+    "rss_before_load_mb": 106.1,
+    "memory_rss_plus_mps_after_load_mb": 2207.9,
     "native_max_seq_length": 8192,
     "configured_max_seq_length": 2048,
     "dimension": 1024,
     "model_revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568",
     "mps_allocated_after_close_mb": 0.0,
-    "memory_peak_seen_mb": 2689.9,
-    "memory_loaded_end_mb": 2489.8,
-    "rss_after_close_mb": 956.7,
-    "process_peak_rss_mb": 1144.6
-  },
-  "http_provider_error_path": {
-    "model": "qwen2.5:3b",
-    "checked": "HTTP error from a real server raises EmbeddingError"
+    "memory_peak_seen_mb": 2479.0,
+    "memory_loaded_end_mb": 2378.7,
+    "rss_after_close_mb": 898.8,
+    "process_peak_rss_mb": 898.8
   },
   "build": {
-    "wall_seconds": 31.6,
+    "wall_seconds": 63.13,
     "records": 363,
     "chunks": 421,
-    "embed_seconds": 29.103,
-    "embed_texts_per_second": 14.47,
-    "keyword_build_seconds": 0.018,
+    "embed_seconds": 50.68,
+    "embed_texts_per_second": 8.31,
+    "keyword_build_seconds": 0.035,
     "keyword_size_bytes": 1249280,
     "stores": {
       "numpy": {
-        "write_seconds": 0.01,
+        "write_seconds": 0.037,
         "size_bytes": 2099881,
         "count": 421,
         "version": "2.5.4"
       },
       "faiss": {
-        "write_seconds": 0.007,
+        "write_seconds": 0.013,
         "size_bytes": 2113512,
         "count": 421,
         "version": "1.15.1"
       },
       "faiss_hnsw": {
-        "write_seconds": 0.051,
+        "write_seconds": 0.069,
         "size_bytes": 2227673,
         "count": 421,
         "version": "1.15.1"
       },
       "sqlite_vec": {
-        "write_seconds": 0.05,
+        "write_seconds": 0.366,
         "size_bytes": 4694016,
         "count": 421,
         "version": "0.1.9"
       },
       "lancedb": {
-        "write_seconds": 0.307,
-        "size_bytes": 1951357,
+        "write_seconds": 3.506,
+        "size_bytes": 1955518,
         "count": 421,
         "version": "0.40.0"
       },
       "qdrant": {
-        "write_seconds": 0.396,
+        "write_seconds": 4.989,
         "size_bytes": 5210705,
         "count": 421,
         "version": "1.20.0"
       },
       "chroma": {
-        "write_seconds": 0.324,
-        "size_bytes": 5921444,
+        "write_seconds": 0.92,
+        "size_bytes": 5929636,
         "count": 421,
         "version": "1.5.9"
       }
@@ -114,7 +110,7 @@
     "Dieu_24",
     "HCMUT_HVDT1260_Dieu_1_S5_3"
   ],
-  "query_embedding_ms_per_query": 21.5,
+  "query_embedding_ms_per_query": 97.4,
   "exact_backends_compared": [
     "numpy",
     "sqlite_vec",
@@ -123,28 +119,28 @@
   ],
   "query_latency_ms_top10": {
     "numpy": {
-      "median": 0.04,
-      "max": 0.067,
+      "median": 0.042,
+      "max": 0.099,
       "n_queries": 8
     },
     "sqlite_vec": {
-      "median": 1.055,
-      "max": 3.831,
+      "median": 1.574,
+      "max": 5.53,
       "n_queries": 8
     },
     "lancedb": {
-      "median": 2.397,
-      "max": 30.192,
+      "median": 3.059,
+      "max": 61.705,
       "n_queries": 8
     },
     "qdrant": {
-      "median": 0.655,
-      "max": 3.376,
+      "median": 0.775,
+      "max": 32.006,
       "n_queries": 8
     },
     "chroma": {
-      "median": 1.444,
-      "max": 3.733,
+      "median": 1.771,
+      "max": 6.569,
       "n_queries": 8
     }
   },
@@ -153,8 +149,8 @@
   },
   "faiss_isolated_process": {
     "latency_ms_median_top10": {
-      "faiss": 0.093,
-      "faiss_hnsw": 0.116
+      "faiss": 0.107,
+      "faiss_hnsw": 0.133
     },
     "hnsw_recall_at_10_vs_flat": 1.0,
     "n_queries": 8
@@ -311,8 +307,8 @@
     }
   },
   "hybrid_search_ms_incl_query_embedding": {
-    "median": 38.3,
-    "max": 39.7,
+    "median": 43.0,
+    "max": 48.9,
     "n_queries": 8
   }
 }

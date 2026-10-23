@@ -1,53 +1,49 @@
 \pdfobjcompresslevel=0\relax
 \pdfminorversion=5\relax
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 % ---------------------------------------------------------------------
-% Language and page layout
+% Language, fonts and page layout
 % ---------------------------------------------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T5]{fontenc}
+\usepackage{lmodern}
 \usepackage[english]{babel}
+\usepackage{microtype}
 
-\usepackage{geometry}
-\geometry{
-    a4paper,
-    left=19mm,
-    right=19mm,
-    top=22mm,
-    bottom=22mm
-}
-\usepackage{setspace}
+\usepackage[a4paper,left=19mm,right=19mm,top=22mm,bottom=22mm]{geometry}
 \usepackage{indentfirst}
 
 % ---------------------------------------------------------------------
-% Core mathematical and tabular packages
+% Tables, figures, colour
 % ---------------------------------------------------------------------
 \usepackage{float}
 \usepackage{array}
 \usepackage{tabularx}
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{graphicx}
+\usepackage{adjustbox}
 \usepackage{caption}
-\usepackage{subcaption}
-\usepackage{amsmath,amssymb}
-\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{arrows,backgrounds,positioning,shapes.geometric}
+\usetikzlibrary{arrows.meta,calc}
 \usepackage{enumitem}
-% ---------------------------------------------------------------------
-% Spacing adjustments for conference progress report format (LaTeX2e hook compliant)
-% ---------------------------------------------------------------------
+\setlist{nosep,leftmargin=1.4em,itemsep=1pt,topsep=2pt}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Section spacing (compact, but with a clear gap above each heading).
 \makeatletter
 \renewcommand\section{\@startsection{section}{1}{\z@}%
-                                   {-7pt \@plus -1pt \@minus -1pt}%
-                                   {3pt \@plus 1pt \@minus 1pt}%
+                                   {-11pt \@plus -2pt \@minus -1pt}%
+                                   {4pt \@plus 1pt \@minus 1pt}%
                                    {\normalfont\large\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                                     {-5pt \@plus -1pt \@minus -1pt}%
-                                     {2pt \@plus 1pt \@minus 1pt}%
+                                     {-8pt \@plus -1pt \@minus -1pt}%
+                                     {3pt \@plus 1pt \@minus 1pt}%
                                      {\normalfont\normalsize\bfseries}}
 \makeatother
 \setlength{\parskip}{1.5pt plus 0.5pt minus 0.5pt}
@@ -55,31 +51,28 @@
 \setlength{\emergencystretch}{3em}
 
 % ---------------------------------------------------------------------
-% Hyperlinks
+% Bibliography and hyperlinks
 % ---------------------------------------------------------------------
+\usepackage[numbers,sort&compress]{natbib}
+\bibliographystyle{plainnat}
 \usepackage[unicode,breaklinks,plainpages=false,pdfpagelabels]{hyperref}
 \hypersetup{
-    urlcolor=black,
-    linkcolor=black,
-    citecolor=black,
-    colorlinks=true
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=blue!50!black,
+    urlcolor=blue!50!black,
+    pdftitle={LuatCheck: D2 Interim Report (CO5151, Group 8)},
+    pdfauthor={CO5151 Group 8}
 }
 
 % ---------------------------------------------------------------------
-% Bibliography
-% ---------------------------------------------------------------------
-\usepackage[numbers]{natbib}
-\bibliographystyle{plainnat}
-
-% ---------------------------------------------------------------------
-% Header / footer
+% Header and footer
 % ---------------------------------------------------------------------
 \usepackage{fancyhdr}
 \setlength{\headheight}{36pt}
 \pagestyle{fancy}
-
 \fancyhead{}
-\fancyhead[L]{
+\fancyhead[L]{%
  \begin{tabular}{rl}
     \begin{picture}(25,15)(0,0)
         \put(0,-8){\includegraphics[width=8mm]{images/hcmut.png}}
@@ -92,32 +85,41 @@
  \end{tabular}
 }
 \fancyhead[R]{}
-
 \fancyfoot{}
-\fancyfoot[L]{%
-    \scriptsize\ttfamily
-    CO5151 · Advanced Agentic Artificial Intelligence · D2 Interim Report
-}
-\fancyfoot[R]{%
-    \scriptsize\ttfamily
-    Page \thepage
-}
-
+\fancyfoot[L]{\scriptsize\ttfamily CO5151 · Advanced Agentic Artificial Intelligence · D2 Interim Report}
+\fancyfoot[R]{\scriptsize\ttfamily Page \thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 \renewcommand{\footrulewidth}{0.3pt}
 
-\captionsetup[figure]{labelfont={small,bf},textfont={small},aboveskip=4pt,belowskip=2pt}
-\captionsetup[table]{labelfont={small,bf},textfont={small},aboveskip=4pt,belowskip=2pt}
+\captionsetup{font=small,labelfont=bf,aboveskip=4pt,belowskip=2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
 
-\setlength{\floatsep}{6pt plus 2pt minus 2pt}
-\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
-\setlength{\intextsep}{6pt plus 2pt minus 2pt}
-
-\newcommand{\hdr}[1]{\vspace{2pt}\noindent\textbf{#1}}
-
-
+% ---------------------------------------------------------------------
+% Macros
+% ---------------------------------------------------------------------
+% Run-in paragraph heading.
+\newcommand{\hdr}[1]{\par\smallskip\noindent\textbf{#1}}
+% Red placeholders: every missing result, input or decision uses one of these two macros
+% (the generated tables use the identical red bold [PENDING] marker).
 \newcommand{\pending}[1]{\textcolor{red}{\textbf{[PENDING: #1]}}}
+\newcommand{\tbd}{\textcolor{red}{\textbf{[PENDING]}}}
+% Code identifiers and paths (not hyperlinked) and shell commands (spaces preserved).
 \newcommand{\code}[1]{\nolinkurl{#1}}
+\newcommand{\cmd}[1]{\texttt{\detokenize{#1}}}
+% Table style shared by all hand-written tables.
+\newcommand{\tabstyle}{\centering\footnotesize\renewcommand{\arraystretch}{1.05}\setlength{\tabcolsep}{3.5pt}}
+
+% The generated result tables use \resizebox{\textwidth}{!}{...}, which also scales narrow tables up.
+% Cap the width instead: a narrow table keeps its natural size, a wide one shrinks to the text width.
+\renewcommand{\resizebox}[3]{\adjustbox{max width=#1}{#3}}
+
+% \inputhere: input a generated table file but place its floats where they appear (the renderer emits [t]).
+\makeatletter
+\newcommand{\inputhere}[1]{\begingroup\renewcommand\table[1][]{\@float{table}[!htb]}\input{#1}\endgroup}
+\makeatother
+
 \begin{document}
 \hypersetup{pageanchor=false}
 \begin{titlepage}\begin{center}
@@ -127,9 +129,9 @@
 \includegraphics[width=2.7cm]{images/hcmut.png}\\[15pt]
 {\Large CO5151 -- Advanced Agentic Artificial Intelligence}\\[12pt]
 {\Huge\bfseries D2 Interim Report}\\[12pt]
-{\Large LuatCheck: A Local Vietnamese Legal Assistant}\\[12pt]
+{\Large LuatCheck: A Local, Source-Grounded Assistant\\ over Vietnamese Regulations}\\[12pt]
 Application Track -- Group 8\\[15pt]
-\pending{Draft: judge validation and team confirmations remain outstanding.}\\[15pt]
+\pending{Draft of 23 October 2026. All result tables stay empty until the main runs, the judge audit and the team's inputs exist.}\\[15pt]
 \begin{tabular}{ll}
 Instructor & TS. Lê Xuân Bách\\
 Members & Lê Trí Quyền (2470740)\\
@@ -139,198 +141,248 @@ Members & Lê Trí Quyền (2470740)\\
 \textbf{Repository:} \url{https://github.com/tuandung222/LuatCheck-D2}\\[8pt]
 \textbf{Reported revision:} \pending{Insert the full final commit hash after freezing the source.}\\[8pt]
 \textbf{Access:} \pending{Confirm the instructor can read the repository.}\\[8pt]
-\textbf{Status:} At risk: native collection is complete; human validation and rehearsal remain outstanding.
+\textbf{Status:} At risk (provisional). The benchmark design is frozen and the pipeline is in place; main-run results, the human audit of the judge and the demo rehearsal are outstanding.
 \vfill HO CHI MINH CITY, OCTOBER 2026
 \end{center}\end{titlepage}
 \hypersetup{pageanchor=true}\setcounter{page}{1}
 
-\section{Changes from the Proposal}
-LuatCheck targets employees and SME HR staff who need an understandable answer linked to the provisions loaded into a local knowledge base. It covers a frozen original-2019 Vietnamese labour-law corpus, not all legal advice. Results produced by earlier versions that substituted rule-based answers for model output are excluded from all conclusions.
+\begin{center}
+\fbox{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{\small
+\textbf{Summary.} LuatCheck is a local agent that answers only from a document collection, cites the sections it used, checks those citations in code, and refuses or asks a clarifying question when the sources do not answer. One bounded agent loop drives a 2B ternary controller that fits a 16\,GiB Mac.\par\smallskip
+\textbf{Implemented:} the loop, a read-only tool layer with gated writes, lexical citation checking (L1) with bounded repair, an optional cross-encoder reranker, two ingested corpora (academic regulations of the Ho Chi Minh City University of Technology, HCMUT, and Vietnamese labour-law texts) and a one-command, hash-locked benchmark pipeline (Sections~\ref{sec:arch}--\ref{sec:memory}).\par\smallskip
+\textbf{Evaluation design, frozen but not yet run:} two 50-task benchmarks $\times$ three variants (OFF: no verification; L1: lexical verification with repair; L1+rerank: L1 plus reranker) $\times$ three seeds, plus two diagnostic baselines (closed-book and oracle, one seed, not system variants), scored by a large language model (LLM) judge whose reliability is to be checked against human labels (Section~\ref{sec:eval}).\par\smallskip
+\textbf{Pending, in red throughout:} the results of the planned 1,090 trials (900 system plus 190 baseline), the judge audit, member contribution evidence, the commit hash and the demo rehearsal. Self-assessment: \textbf{at risk} (Section~\ref{sec:plan}).}}
+\end{center}
 
-\hdr{Application scenarios.} (1) An employee checks a probation or wage condition and inspects the cited article. (2) SME HR staff ask an employment question using a local model; the corpus scope and privacy limitations still apply. (3) A careless or malicious user pastes a contract with injected instructions or requests evasion of a legal duty; the system should enforce its tool boundary and ask for clarification or refuse as appropriate. These are intended scenarios, not completed user-study evidence.
+\section{Changes from the Proposal}\label{sec:changes}
+\hdr{Scope and users.} The proposal (D1, Application Track) targeted employees and small-business HR staff asking labour-law questions. For D2 we added a second, non-legal corpus: the academic-affairs regulations of HCMUT, used by students and advisors. It tests whether the code is domain-agnostic, since domain wording, tool names and ID rules live in \code{config/domains/} as data. We claim only what is evaluated: ten HCMUT regulations and ten labour-law documents (the 2019 Labour Code and nine laws, decrees and circulars of 2020--2025), snapshotted on 22 October 2026 with later amendments unchecked. LuatCheck is not legal advice and has not been tried by real users.
 
-\begin{table}[H]\centering\footnotesize
-\begin{tabularx}{\textwidth}{@{}L{3.1cm}L{2.0cm}X@{}}
-\toprule Proposal commitment & State & Delta and remaining evidence\\\midrule
-Budgeted loop and citation verification & Done & Loop, budgets, L1 checks and bounded repair run end-to-end; a real native trace is reported in Section~2.\\
-Qwen3-4B/8B, Qdrant and dense retrieval & Dropped & Changed to Qwen2.5-3B Q4\_K\_M on the available Mac (Metal) and to BM25 + TF-IDF/RRF, to fit 16\,GiB unified memory. Retrieval is measured as trajectory Recall/Hit@5 and MRR; no dense-vs-hybrid comparison is claimed.\\
-Embedding-based span support and optional L2 & In progress & Replaced for D2 by lexical and exact-quantity checks, which are proxies rather than semantic guarantees; threshold calibration is not done. The earlier heuristic NLI substitute was removed.\\
-$\geq$10 end-to-end tasks at D2 & Done & Sixty native trials on ten source-checked local tasks, including twelve model-output errors; LLM-judge estimates are reported. Human calibration of the judge is in progress.\\
-HR walkthrough in W5 & Not started & The group reported on 22 October that the walkthrough has not taken place. No user-study result is claimed. \pending{Confirm the rescheduled date and owner.}\\
-Guarded \code{send_summary}, UI, audit log & Done (changed) & Model can only propose; a trusted UI approves the exact payload. Changed from an irreversible send to a reversible local outbox; no external sender.\\
-Threat model v1 & Done & Section~6.\\
-First injection results & Not started & Earlier input-filter results are excluded because they did not test real entry points; entry-point attack tests are planned for W47.\\
+\hdr{Scenarios.} (1) A student looks up a rule (e.g.\ make-up class registration) and opens the cited section. (2) An employee or HR officer asks a labour-law question and checks the cited article. (3) A careless or malicious user pastes a document with injected instructions, or asks how to evade a rule; the system must hold its tool boundary and clarify or refuse. These are intended uses, not user-study results.
+
+\hdr{Commitments and their state.} Table~\ref{tab:commit} compares the D1 commitments due at the D2 checkpoint (week 7) with their current state.
+\begin{table}[!htb]\tabstyle
+\begin{tabularx}{\textwidth}{@{}L{3.5cm}L{1.7cm}Y@{}}
+\toprule Proposal commitment (D1) & State & Delta and reason\\\midrule
+Budgeted loop, schema output, L1 citation check & Done & Runs end to end (Section~\ref{sec:arch}); budgets and failure semantics unchanged.\\
+Qwen3-4B/8B controllers; 32B comparator & Dropped & The controller is Ternary Bonsai 2 2B (GGUF). It fits a 16\,GiB Mac and one GPU slot, so the same weights serve the benchmark and the demo. A 20-trial diagnostic on the earlier task set ran about $2\times$ faster than the MLX build (\code{gguf2b-bonsai-diag-v1}).\\
+BM25 + Qdrant dense retrieval; 200 held-out VLQA pairs & Dropped & Replaced by BM25 + TF-IDF fused by reciprocal rank fusion (RRF). The persisted vector index exists but is not used in D2 runs. The VLQA record mapping could not be established, so retrieval is measured as source-ID metrics on the new benchmarks.\\
+$\ge$10 end-to-end tasks; 3 configurations $\times$ 3 seeds & In progress & Two frozen 50-task benchmarks, variants OFF / L1 / L1+rerank, seeds 42, 123 and 2026 (900 planned system trials per machine run), plus 190 planned diagnostic-baseline trials. Collection pending: \tbd.\\
+Reranker (optional in D1) & In progress & Implemented and wired as variant L1+rerank; parity of its two runtimes pending (Section~\ref{sec:memory}).\\
+L2 entailment with natural language inference (NLI), optional & In progress & Implemented as optional components; excluded from all D2 runs.\\
+Guarded \code{send_summary}, UI, audit log & Done & Changed: the model can only propose; a trusted UI approves an exact payload; reversible local outbox, no sender.\\
+Verifier audit (30 pairs) & Not started & Changed: replaced by a human audit of the LLM judge (about 30 items per benchmark), scheduled for Sat 24 Oct: \tbd.\\
+Threat model v1 & Done & Updated in Section~\ref{sec:threat}.\\
+First injection results & Not started & Not required in D2; planned for W47.\\
+HR walkthrough (W5) & Not started & Reported by the group on 22 October. \pending{New date and owner.}\\
 \bottomrule\end{tabularx}
-\caption{Commitments due at the D2 checkpoint (D1, W7) and their current state.}
+\caption{D1 commitments due at the D2 checkpoint and their state (done, in progress, not started, dropped).}\label{tab:commit}
 \end{table}
-The group reported on 22 October that no pitch feedback has yet been received; no feedback-driven changes are claimed.
-The model and retrieval changes limit resource use to one consumer machine and make the actual retrieval method explicit. The verification claim is limited to checks implemented in code.
 
-\hdr{Models and framework.} Development, both pilots and every main-run controller number use the same local model: \code{qwen2.5:3b} (Qwen2.5-3B-Instruct, Q4\_K\_M GGUF, Ollama digest \code{357c53fb}) served by Ollama 0.34.4 on the Mac, with JSON-mode output, temperature 0.1, 8,192-token context and a 768-token output cap. No API model runs inside the agent. \textbf{The live demonstration uses a different model from the reported numbers.} After collection, the application default on the Mac was switched to Ternary Bonsai 2 2B (ternary weights derived from Qwen3.5-2B; GGUF \code{PQ2_0} served by the PrismML \code{llama.cpp} fork, with decoding constrained to the action JSON schema and thinking disabled), and the D2 demo runs this model. The same loop, corpus and L1 checks are used (with the compacted tool outputs described under Reproduction), but Bonsai was not part of the main benchmark: every main-result number in Section~5 comes from Qwen2.5-3B (\code{config/d2_native.yaml}) and does not describe demo behaviour. DeepSeek V4.1 Flash is used through an API gateway only as the offline evaluation judge (Section~5). No agent framework (LangChain, LangGraph, LlamaIndex or similar) is used. The controller loop, action-schema validation, tool registry, L1 verifier, case ledger, SQLite memory, outbox gating and evaluation harness are implemented in this repository, with AI-assisted coding disclosed in Section~8. Third-party libraries cover lexical indexing (\code{rank-bm25}, scikit-learn TF-IDF), the MCP Python SDK v2, PDF extraction (\code{pypdf}) and the user interfaces (Streamlit; FastAPI with React/Vite).
+\hdr{Feedback and earlier pilot.} The group received no feedback on the D1 pitch (22 October), so no change is attributed to feedback. An earlier pilot (Qwen2.5-3B on Ollama, ten-task \code{bll2019_v1}) is superseded; none of its numbers appears here.
 
-\section{Implemented Architecture (R1)}
-The application currently uses one agent. Its ReAct-style loop~\citep{yao2023react} calls a Python tool registry directly; the separate MCP server is not a transport used by the main loop. No multi-agent coordination is claimed.
-This pattern permits additional source lookup and bounded repair after a failed check. A single controller keeps tool permissions and budgets inspectable on one local machine. Its benefit over the simpler OFF configuration remains an empirical question.
-\begin{figure}[H]\centering
-\begin{tikzpicture}[font=\footnotesize,
-box/.style={draw,rounded corners,align=center,minimum height=0.85cm,inner sep=3pt},
-term/.style={draw,rounded corners,align=center,minimum height=0.6cm,inner sep=2pt,fill=gray!8},
-plan/.style={draw,dashed,rounded corners,align=center,minimum height=0.6cm,inner sep=2pt,text=gray!70!black},
-arrow/.style={->,>=stealth,thick},
-lbl/.style={font=\scriptsize,fill=white,inner sep=1pt}]
-\node[box,text width=3.2cm] (in) {Question / pasted document\\input checks, untrusted delimiters};
-\node[box,text width=4.3cm,right=0.6cm of in] (llm) {\textbf{Controller step}\\Qwen2.5-3B (results)\\Bonsai 2 2B (demo)\\JSON action $\in$ \{tool, answer, clarify, refuse\}};
-\node[box,text width=3.7cm,right=1.7cm of llm] (tools) {\textbf{Tool registry}\\\code{search_law}, \code{get_article}\\BM25 + TF-IDF / RRF};
-\node[box,text width=4.3cm,below=1.25cm of llm] (ver) {\textbf{L1 verifier} (ON only)\\IDs, provenance, quotes,\\lexical overlap, quantities};
-\node[term,text width=3.2cm,left=0.6cm of ver] (ans) {Answer + citations;\\verified memory write};
-\node[term,text width=3.7cm,right=1.7cm of ver] (other) {Clarify / refuse;\\budget stop; \textbf{error}};
-\node[box,text width=3.7cm,above=0.4cm of tools] (ledger) {Case ledger: queries, IDs,\\article text, budgets, telemetry};
-\node[plan,text width=3.2cm,above=0.4cm of in] (ui) {Trusted UI approval $\rightarrow$\\local outbox (no sender)};
-\draw[arrow] (in)--(llm);
-\draw[arrow] ([yshift=5pt]llm.east)--node[lbl,above]{tool call ($\le$5)}([yshift=5pt]tools.west);
-\draw[arrow] ([yshift=-5pt]tools.west)--node[lbl,below]{observation}([yshift=-5pt]llm.east);
-\draw[arrow] (tools)--(ledger);
-\draw[arrow] ([xshift=-14pt]llm.south)--node[lbl,left]{answer}([xshift=-14pt]ver.north);
-\draw[arrow] ([xshift=14pt]ver.north)--node[lbl,right]{fail: repair ($\le$2)}([xshift=14pt]llm.south);
-\draw[arrow] (ver)--node[lbl,above]{pass}(ans);
-\draw[arrow] (ver)--node[lbl,above]{repairs spent}(other);
-\draw[arrow] (llm.south east)--node[lbl,right,pos=0.6]{clarify / refuse / invalid}(other.north);
-\end{tikzpicture}
-\caption{Implemented control loop (one agent). The controller iterates tool calls and observations until it emits a terminal action, within 8 steps, 5 tool calls, 2 repairs and 180\,s. In OFF mode the verifier is bypassed and an answer goes directly to the output. Solid boxes run end-to-end in the reported experiment; the dashed box is implemented in the UI but outside the experiment; external email/webhook delivery and optional NLI are not part of the reported loop.}
+\hdr{Models and framework.} Table~\ref{tab:models} lists the components behind the reported numbers. We use no agent framework. The loop, action validation, tool registry, verifier, ledger, memory and harness are our own code (AI-assisted coding is disclosed in Section~\ref{sec:contrib}), built on \code{rank-bm25}, scikit-learn, \code{pypdf}, the Model Context Protocol (MCP) SDK, FastAPI/React and Streamlit.
+\begin{table}[!htb]\tabstyle
+\begin{tabularx}{\textwidth}{@{}L{2.5cm}L{5.7cm}Y@{}}
+\toprule Component & Choice & Runtime and role\\\midrule
+Controller & Ternary Bonsai 2 2B, GGUF, PQ2\_0 quantisation (\code{prism-ml/Ternary-Bonsai-2-2B-gguf}; file SHA-256 \code{d5f01a4e}\ldots) & PrismML fork of \code{llama.cpp}, commit \code{73bfe6c}; Metal on the Mac, CUDA on server 82 (\pending{result of the PQ2\_0-on-CUDA gate}). Used for every reported number and for the live demo.\\
+Reranker & \code{AITeamVN/Vietnamese_Reranker}, cross-encoder, revision \code{f5369762} (weights SHA-256 \code{1cecccab}\ldots) & Variant L1+rerank only: torch fp16 on server 82, a GGUF conversion on the Mac.\\
+First-stage retrieval & BM25 + TF-IDF fused by RRF; no neural embeddings & In memory; all variants.\\
+Judge & DeepSeek V4.1 Flash & Through an API gateway; offline evaluation only.\\
+\bottomrule\end{tabularx}
+\caption{Models and software behind the reported numbers. Server 82 is the shared GPU server (one H100 used).}\label{tab:models}
+\end{table}
+Controller sampling is fixed: temperature 0.7, top-p 0.8, top-k 20, presence penalty 1.5, decoding constrained to the action JSON schema, thinking off, at most 1,024 output tokens. The live demo runs the same model file, \code{llama.cpp} commit, sampler, prompts, budgets and corpora, one query at a time through the web UI. It illustrates the tables; it is not evidence for them.
+
+\section{Implemented Architecture (R1)}\label{sec:arch}
+LuatCheck is a single agent running a ReAct-style loop~\citep{yao2023react} over retrieval-augmented generation~\citep{lewis2020rag} (Figure~\ref{fig:arch}). At each step the controller emits one JSON action: \code{search}, \code{read}, \code{answer}, \code{clarify} or \code{refuse}. The Python tool registry executes searches and reads and returns the result as an observation. An \code{answer} passes through the verifier; if the check fails, the verifier's feedback goes back to the controller for at most two repairs, which is external feedback rather than self-critique~\citep{huang2024selfcorrect}. Input guardrails refuse unsafe input before any model call. The loop is bounded to 8 steps, 5 tool calls, 2 repairs and 180\,s per task (60\,s per model request). A backend or model-format failure ends the run as \code{error}; it is never turned into an answer or a refusal.
+
+There is one controller and no multi-agent coordination, which keeps permissions and budgets easy to inspect. The MCP server exposes the same tools but the loop does not use it. The three variants test whether verification and reranking help (Section~\ref{sec:eval}).
+\begin{figure}[!t]\centering
+\input{images/architecture.tikz}
+\caption{Implemented architecture and control flow. Blue boxes run in every D2 variant; orange boxes run only in the variants they name (OFF skips the verifier; without the reranker, retrieval returns the top five directly); dashed boxes are implemented but outside every D2 run; grey boxes are the terminal states of a run. The dotted arrow marks that every step is written to the ledger.}\label{fig:arch}
 \end{figure}
-The frozen main limits are five tool calls, two repairs, eight loop steps, 180 seconds per task and 768 output tokens per generation. The native timeout is 60 seconds, bounded by the remaining task deadline. These are configured limits, not measured latency. Backend errors are distinct from safety refusals. A budget stop may appear as a refusal in the controller ledger; it is not evidence of an appropriate safety decision.
 
-\hdr{Observed native task trace.}
-For \code{BLL19-01-PROBATION}, seed 42, ON: the model issued \code{search_law} for the probation-period question; it then called \code{get_article(Dieu_25)} because search returned a truncated snippet. Reading the complete article exposed clause 2. The next native action answered \emph{60 days} and cited its actual text. The configured L1 checks passed, with two tool calls, zero repairs and three native generations: 7,456 input and 448 output tokens, 16.627 seconds end-to-end. This establishes this observed task, not general legal accuracy. The full requests, responses and observations are retained in \code{evaluation/runs/bll2019-main-v2/runs.jsonl}; the runtime source snapshot is stored beside it.
+\hdr{What runs end to end.} Every D2 run uses input guardrails, the controller loop, \code{search} and \code{read_document}, first-stage retrieval, the ledger and the audit log. The L1 verifier with repair runs in L1 and L1+rerank, and the reranker only in L1+rerank. Four components are implemented but outside all D2 runs: the L2/NLI step, the persisted hybrid index with dense retrieval, answer memory and the trusted-UI outbox. An external sender and code execution do not exist.
 
-\section{Tools and Permissions (R2)}
-\begin{table}[H]\centering\footnotesize
-\begin{tabularx}{\textwidth}{@{}L{2.6cm}L{2.5cm}X@{}}
-\toprule Interface & State / permission & Enforced boundary\\\midrule
-\code{search_law} & Implemented; read-only & Reads the configured article corpus.\\
-\code{get_article} & Implemented; read-only & ID lookup returns local source text.\\
-Agent memory write & Implemented; reversible write & SQLite write follows the agent verification gate; that gate is not independent legal validation.\\
-MCP \code{save_case} & Write blocked & Model caller cannot self-attest verification; no SQLite write through this tool.\\
-\code{send_summary} & Proposal only & Model-facing tool cannot approve or execute.\\
-Trusted UI outbox & Implemented; reversible local write & Conservatively gated: host approval/token bound to payload. Caller boolean alone is insufficient. Queue receipt is not delivery.\\
-External sender; code execution & Not implemented & No email/webhook transport or arbitrary-code tool is claimed.\\
-\bottomrule\end{tabularx}
-\caption{Tool state and permissions. Every non-read-only interface is blocked or gated in code, not only by the prompt.}
+\hdr{Real task trace.} A trial from the main run will be rendered from its ledger (\code{trials.jsonl}) as Table~\ref{tab:trace}. \pending{Select trial id and run id; fill the table from the recorded steps only.}
+\begin{table}[!htb]\tabstyle
+\begin{tabular}{@{}llllrr@{}}
+\toprule Step & Action & Tool call / result ids & Verifier verdict & Tokens in/out & Time (s)\\\midrule
+1 & \tbd & \tbd & \tbd & \tbd & \tbd\\
+2 & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\ldots & \tbd & \tbd & \tbd & \tbd & \tbd\\
+Total & & & & \tbd & \tbd\\
+\bottomrule\end{tabular}
+\caption{Trace of one completed main-run trial (task, variant, seed, run id: \tbd). Placeholder rows: nothing here is a recorded step.}\label{tab:trace}
 \end{table}
-An outbox failure does not produce a delivery receipt. Identical payload/key pairs are deduplicated locally. The demo targets a single user/process; multi-user isolation and cross-process outbox guarantees are not certified.
-A local stdio MCP integration check confirmed tool discovery, search, article lookup, blocked unverified writes and proposal-only summaries. The script and result are in \code{docs/reviews/native-integrity-revision-2026-10-22}. This is tool-contract evidence, not a native model task. \pending{Attach the actual application demo evidence.}
 
-\section{Memory and Knowledge Sources (R3)}
-\hdr{Short-term state.} The ledger stores the question, issued searches, retrieved IDs/text, budgets, action/verification events and native-call telemetry. It supports task inspection, not another autonomous agent.
-
-\hdr{Episodic memory.} The agent writes answers following its configured verification gate and native-call evidence. Query, answer and citation strings undergo supported-pattern filtering. Reuse requires matching index version, native-origin metadata and similarity threshold 0.85. Legacy records without native-origin metadata are skipped; records are retained, not silently relabelled. The similarity combines TF-IDF cosine and Jaccard. Cached answers are rechecked in the selected verification mode. D2 experiments disable memory reads/writes. The demo configuration also disables answer reuse while still storing verified answers: matching considers only the question text, not a pasted document or case facts, so a question that differs in one legally decisive detail could be served another case's answer; re-running L1 on the cached answer does not establish that it applies. Pattern filtering is incomplete data minimisation, not proof of legal compliance or removal of all personal data. Native-origin metadata assumes trusted code/storage; it is not a signed backend attestation.
-
-\hdr{Knowledge corpus.} The current retrieval corpus contains all \textbf{220 numbered articles} of the original Labour Code 45/2019/QH14 in the official Gazette dated 26 December 2019~\citep{bll2019gazette}. It is not a consolidated representation of current 2026 law. The 94-page text PDF, SHA-256 manifest, extraction script and page-level text are preserved in \code{docs/materials/benchmark-sources}. Each retrieval record has its source URL, source-PDF hash and page numbers. Extraction removes running Gazette headers, normalises Unicode/whitespace and segments article headings; it does not rewrite legal provisions. Automated checks establish unique coverage of articles 1--220 and exact containment of the selected reference excerpts.
-
-BM25 indexes titles/content; TF-IDF uses word n-grams 1--3. RRF uses $k=60$. Each search component considers twice the requested result count; the final count is capped at five. No neural embedding is silently substituted. Source checking and task curation were assisted by OpenAI Codex; \pending{a legal expert has not yet certified the corpus extraction, task conditions or gold answers.}
-
-\section{Evaluation Set and Initial Results (R5)}
-\hdr{Benchmark provenance and selection.}
-\code{evaluation/benchmarks/bll2019_v1/tasks.json} contains ten purposively selected, source-grounded local tasks: seven single-provision questions, two multi-article synthesis questions and one foreign-jurisdiction refusal. The nine answerable tasks have frozen reference answers and exact source excerpts with Gazette page numbers. The original drafts were revised before main outputs: an inconsistent contract-duration scenario was removed, disciplinary dismissal was distinguished from unlawful unilateral termination, notice-period exceptions were stated, and the explicit contract-guarantee deposit question was corrected to be answerable under Article 17. No task or gold is changed to fit model output.
-
-These are \textbf{local curated tasks, not a verified public VLQA split}. The legacy VLQA record mapping could not be established; ALQAC file access was restricted and was not bypassed. The source-review manifest names the AI reviewer and marks expert review pending. This small development set does not establish broad or held-out legal performance. The proposal's final targets of twenty end-to-end tasks and 200 held-out retrieval pairs remain separate work.
-
-\hdr{Native configurations and controls.}
-OFF and L1 ON use the same Qwen2.5:3B Q4\_K\_M model, prompt, corpus, budgets and explicit BM25/TF-IDF retrieval. OFF removes verification; ON checks citation existence, retrieved provenance, verbatim-quote containment, lexical overlap and quantities, then permits bounded repair. Optional NLI requires a real native model and is excluded from this comparison. There are no response substitutes, injected stand-in components or answer-cache hits. Episodic memory is disabled by a real configuration flag, rather than replacing methods.
-
-The first environment is the user's Apple M4, 10 CPU cores and 16 GiB unified memory. Ollama 0.34.4 reports Metal placement, 8,192 context tokens and model allocation in GPU memory. Runs are sequential. Seeds 42, 123 and 2026 are passed to the native API; OFF/ON order alternates by task. Three seeds repeat ten tasks, not thirty independent legal questions. Native prefix caching is backend behaviour; response-cache reuse is disabled. Some software checks and report compilations ran on the same Mac during collection; no second model inference workload was run concurrently. Timings are observations of this desktop environment, not isolated throughput or causal speedup measurements.
-
-\hdr{Measured metrics and semantic judging.}
-Retrieval recall counts the fraction of gold IDs recovered; hit and MRR remain distinct. Trajectory Recall/Hit@5 use the first five unique IDs accumulated during the tool trace; MRR uses the first relevant ID in the complete ordered unique trajectory. Neither is a separate held-out retrieval test. Citation-ID precision/recall use the reference ID set and are aggregated only over answerable trials. Empty-gold foreign-scope rows have no applicable source-ID recall; their raw legacy convention is excluded. These do not establish whether a cited provision entails a claim. Gold ID sets may also omit a valid alternative source; semantic review must inspect the actual text rather than equate ID mismatch with a wrong answer. Separating answer correctness from citation support follows the evaluation distinction in ALCE~\citep{gao2023alce}.
-
-Latency includes the agent loop; tokens come from native usage fields, including additional repairs. Missing usage stays unknown. Model service-hours sum backend request durations on the Metal-backed model; they are \emph{not} a hardware GPU-active measurement. A local API fee is not a claim of free compute.
-
-Task correctness, completeness, claim support and the appropriateness of refusal/clarification require semantic review. The prepared judge protocol supplies question, frozen reference/rubric, source articles and a blinded candidate answer; it excludes OFF/ON and L1 acceptance. Judge bias and agreement with human ratings must be checked rather than assumed~\citep{zheng2023judge}. The group selected DeepSeek V4.1 Flash. The Qualgo gateway exposes \code{deepseek/deepseek-v4-flash}, identifies the provider as DeepSeek, and returns that same model ID. Official DeepSeek documentation maps the legacy upstream alias to V4.1-Flash-1017~\citep{deepseek2026api}; this mutable gateway route is not an independently attested or pinned model revision. The judge uses thinking enabled, high reasoning effort, an 8,192-token completion cap, JSON output and at most two initial attempts per output, with a separately disclosed streamed recovery for invalid judgments; no seed or effective sampling temperature is claimed. Strict success requires appropriate behaviour, correctness 2/2, completeness 2/2 and every factual claim supported. The gateway receives curated benchmark questions, answers and statutory sources separately from local controller inference. Full prompts, raw responses, model IDs and usage are retained. \textbf{Planned human check:} group members label the 12-output stratified audit sample blind to the judge verdict on Saturday 24 October 2026; agreement and Cohen's kappa against the judge's strict-success label will then be reported. \pending{Human audit scheduled for 24 October; not yet performed.}
-
-\input{native_results.tex}
-\input{semantic_results.tex}
-The complete main batch records 264 native calls and complete token usage for all 60 trials. OFF returned 18 answers and had 5 model-output errors; ON returned 14 answers and had 7 such errors. These are action/status counts, not correctness labels. The observed source-ID metrics do not establish an improvement from L1, and no semantic superiority is claimed. An earlier ten-trial attempt was interrupted and remains excluded from these aggregates.
-
-
-\hdr{Controller diagnostic: task difficulty or model capacity?}
-To separate the two, the same ten tasks were rerun once (seed 42, OFF and ON) with only the controller model changed: \code{openai/gpt-5.5} through the API gateway (reasoning effort low, 2,048-token cap) and Ternary Bonsai 2 4B on the Mac (MLX, schema-constrained decoding, 768-token cap). Corpus, retrieval, budgets and L1 are unchanged; both diagnostic runs use the post-collection prompt revision described under Reproduction, so the Qwen column (seed-42 trials of the main run, original prompt) is not an exact same-prompt baseline (Table~\ref{tab:diag}). GPT-5.5 had no execution errors, cited exactly the gold article IDs and reached trajectory Recall@5 of 1.0. An AI inspection against the frozen references (not a human label and not the frozen judge protocol) found its 18 answers consistent with the reference answers and both foreign-scope trials appropriately refused. The tasks, corpus and loop are therefore solvable. We treat controller capacity as the leading hypothesis for the failures in Table~\ref{tab:errors}, not an established cause: the diagnostic runs also differ in prompt revision, decoding and output cap, and use one seed. Bonsai 2 4B sits between the two: by the same AI inspection, 12 of 20 trials were consistent with the reference, it read the wrong provision on three tasks (absence, unlawful termination, deposit), and both trials of the two-provision notice/severance task exceeded the 60-second per-call timeout after the context grew to about 10,000 tokens. Unlike Ollama's 8,192-token window, \code{mlx_vlm.server} does not truncate the context; one recorded call reached 9,606 input tokens. On the deposit task, L1 rejected an answer whose conclusion was right but whose citation was wrong, and the repair ended in a refusal.
-L1 forced six repairs on GPT-5.5 answers that were then accepted, mostly because a paraphrased \code{exact_quote} was not verbatim; the quote check therefore also rejects acceptable answers. Caveats: one seed; the gateway cached byte-identical requests (20 of 48 response IDs recur), so OFF and ON are not independent samples and the second trial's latency is not model latency; the gateway route is not a pinned revision. For the demo model, the same Bonsai 2 2B weights were also run on both runtimes after the tool change: across the 20 diagnostic trials the \code{llama.cpp} GGUF build took 197\,s in total against 427\,s for MLX (median 7.6 vs 13.7\,s per trial), with no execution errors against two, and its server used about 0.7\,GB against a 6.6\,GB peak; their answers differ because sampling differs between runtimes, so this is a speed and stability comparison only. The 2B demo model is also the least accurate controller in Table~\ref{tab:diag} (11/20 expected actions, citation-ID precision and recall 0.22), so the demo illustrates the loop, not answer quality. These diagnostic runs (\code{evaluation/runs/*-diag-v1}) are not main results; the table is regenerated by \code{evaluation.render_diagnostic_table}.
-\input{diagnostic_results.tex}
-
-\hdr{Pilot findings and limitations.}
-The first pilot retained eight native trials. The controller sometimes asked users for statutory information hidden beyond a 300-character snippet; it also produced a legally wrong synthesis that passed L1. Search responses were changed to expose truncation explicitly and the prompt now requires reading the full article instead of treating a snippet's omission as missing user facts. A second four-trial interface pilot retained all outputs, including an unnecessary clarification. Neither pilot is merged into main results or presented as held-out validation.
-
-A concrete first-pilot failure conflated the notice period with service time used for severance in Article 46. This illustrates why lexical acceptance cannot be called legal correctness. Main failures and raw native responses, including parse errors, truncation and deadlines, remain in the result artifact. There is no statistically established superiority claim from this small set. The saved backend log also records context shifting in some calls at the configured 8,192-token limit. Full request text is retained, but that does not establish that all earlier evidence remained in the model's active context. Reducing duplicate observation fields or increasing context requires a separately versioned rerun, rather than revising this frozen batch.
-
-\hdr{Execution errors in the main batch.}
-All twelve errors are \code{model_output_error}: the native call succeeded, but the controller rejected the returned action. Table~\ref{tab:errors} classifies them by the validator message and the backend \code{done_reason} stored for the failing call.
-\begin{table}[H]\centering\footnotesize
-\begin{tabularx}{\textwidth}{@{}L{4.6cm}cc X@{}}
-\toprule Error class (stored evidence) & OFF & ON & Trials (task, seed)\\\midrule
-Output hit the 768-token cap (\code{done_reason=length}) & 3 & 3 & 04-ABSENCE s123, s2026; 07-NOTICE s2026 (both modes)\\
-JSON returned without a valid \code{action} field & 1 & 2 & 04-ABSENCE s42 (both modes); 06-RESIGNATION s2026 (ON)\\
-Answer without a valid citation list & 1 & 1 & 08-UNLAWFUL\_TERMINATION s123 (both modes)\\
-Action with an empty \code{reason} & 0 & 1 & 09-DEPOSIT s123 (ON)\\\midrule
-Total & 5 & 7 & 12 of 60 trials\\
+\section{Tools and Permissions (R2)}\label{sec:tools}
+Table~\ref{tab:tools} lists every tool and model-facing interface with its state and permission level. The controller's action space (\code{ActionType}) contains no write action, so it has no direct write path.
+A stdio MCP check confirmed discovery, search, lookup, blocked unverified writes and proposal-only summaries (\code{docs/reviews/native-integrity-revision-2026-10-22}). It tests the tool contract, not a model task. The demo serves one user in one process; multi-user isolation is not certified. \pending{Attach application demo evidence from the rehearsal.}
+\begin{table}[!htb]\tabstyle
+% PROVENANCE: n/a descriptive tool inventory, no measured values
+\begin{tabularx}{\textwidth}{@{}L{3.0cm}L{2.1cm}L{2.3cm}Y@{}}
+\toprule Interface & State & Permission level & Enforced boundary\\\midrule
+\code{search}, \code{read_document} (labour profile: \code{search_law}, \code{get_article}) & Implemented & Read-only & Return local corpus text only.\\
+Reranker (inside \code{search}) & Implemented & Read-only (model component) & Scores candidates; a failure is an execution error (\code{ModelComponentError}), never a first-stage fallback.\\
+Answer-memory write & Implemented; off in D2 & Reversible write & SQLite write only after the verification gate.\\
+MCP \code{save_case} & Implemented; blocked & Reversible write & A model caller cannot self-attest verification; the call returns blocked.\\
+\code{send_summary} & Proposal only & Irreversible write & The model-facing tool can only create a proposal; it cannot approve or execute.\\
+Trusted-UI outbox (\code{dispatch_external_action}) & Implemented & Irreversible write (local queue only) & Needs host approval and a token bound to the payload hash; a caller flag is insufficient; a queue receipt is not a delivery.\\
+External sender; code execution & Not implemented & Irreversible write; code execution & No e-mail or webhook transport and no code-running tool exists.\\
 \bottomrule\end{tabularx}
-\caption{Classification of the twelve retained execution errors (\code{evaluation/runs/bll2019-main-v2/runs.jsonl}).}\label{tab:errors}
+\caption{Tool inventory (\code{src/tools/permissions.py}, \code{domain_tools.py}). Permission levels are those classified in code, and every non-read-only interface is blocked or gated there, not just in the prompt.}\label{tab:tools}
 \end{table}
-Ten errors form five OFF/ON pairs whose failing native request is byte-identical (same SHA-256), so they occurred before the two modes diverged and are not caused by the L1 verifier. The two ON-only errors explain the gap of 7 vs 5. In \code{09-DEPOSIT} s123, L1 rejected the answer that OFF accepted, and the repair call returned an action with an empty reason. In \code{06-RESIGNATION} s2026, the failing request is byte-identical to the request for which OFF obtained a valid answer, so the difference comes from backend nondeterminism under a fixed seed, not from verification. Ten of the twelve trials had already used all five tool calls, and the failing requests carried 5,640--8,112 input tokens against an 8,192-token context. \code{BLL19-04-ABSENCE} failed in all six trials. Predicted causes, not yet tested: (1) the accumulated article text leaves little room and the 3B model writes a long \code{thought} that exceeds the output cap; (2) free JSON mode does not force the action schema, so the model sometimes returns \code{content} instead of an action. Planned mitigations for a separately versioned rerun are shorter observations, schema-constrained decoding and a higher output cap.
 
-\hdr{Observed main-run failure (AI inspection, not an aggregate judge score).}
-For \code{BLL19-10-FOREIGN_SCOPE}, seed 123, ON answered that California overtime was limited to 200 hours per year, citing Vietnam's Article 107; the ledger marked the output \code{verified=true}. The configured corpus contains only the original Vietnamese statute and supplies no California authority. This is a concrete jurisdiction/support failure that the implemented L1 checks did not reject. Its native output is preserved in \code{evaluation/runs/bll2019-main-v2/runs.jsonl}. Independent LLM-judge estimates are reported separately; this qualitative inspection is not a human correctness label.
+\section{Memory and Knowledge Sources (R3)}\label{sec:memory}
+\hdr{Short-term context.} Each run keeps one message list: the domain system prompt, the question (and any pasted document) wrapped as untrusted input, then alternating action and tagged observation turns. Observations are compacted. \code{search} returns at most the two clauses that best match the query, plus a truncation flag; a repeated query or re-read returns a short notice; budget notices tell the model to answer or refuse. The benchmark uses an 8,192-token context, and the largest controller input in the smoke runs was 3,944 tokens. The ledger records queries, retrieved text and ids, budgets and per-call telemetry.
 
-\hdr{Reproduction.}
-The run directory stores frozen task/corpus hashes, environment metadata and a source snapshot. The main-collection table is regenerated from the stored trials by \code{evaluation.render_native_table} (and the summary by \code{evaluation.analyze_native}), each taking \code{--run-dir}, \code{--tasks} and \code{--output}; a new collection requires \code{python -m evaluation.run_eval --execute} with a fresh output directory (full commands in \code{report_d2/D2_EXPERIMENT_PLAN.md}). After collection, the source was revised without rerunning: the system prompt now names only the labour-law corpus and uses an ID placeholder instead of example article IDs (one main trial had copied the example ID); a keyword-based actor-title rule was removed from L1 (it never triggered in any pilot or main trial); and unreachable fallback branches were replaced by explicit errors. Later, tool observations were compacted: duplicated fields were removed, search returns the two clauses that best match the query (with their lead-in) instead of the first 300 characters, and a repeated query or article read returns a short notice. Replaying the main run's own tool calls offline, observation text shrinks by 60\% and the reference excerpt appears in the search snippet for 66 instead of 36 of 110 gold-article hits (\code{evaluation.measure_tool_observations}). The GPT-5.5 and Bonsai 4B diagnostics predate this change. All reported numbers come from the stored source snapshots; a rerun on the revised source may differ. \pending{Freeze the final reported source commit and confirm instructor access.}
-\section{Threat Model (R6)}
-An attacker can craft questions/documents and, in a separate future poisoning test, a lower-trust retrieved item. The attacker cannot modify trusted code, the approved reference corpus or trusted UI approval state under the current assumptions.
-\begin{table}[H]\centering\footnotesize
-\begin{tabularx}{\textwidth}{@{}L{2.3cm}L{2.4cm}X@{}}
-\toprule Entry / asset & Attacker capability & Boundary and remaining risk\\\midrule
-Question / answer integrity & Arbitrary instructions & Pattern checks, delimiters, fixed dispatch; paraphrase bypasses remain possible.\\
-Pasted document / case data & Embedded directives & Untrusted delimiters and read-only lookup; assess bypasses and benign false positives later.\\
-Retrieval/tool text / evidence & Poison returned text & ID/provenance and support review; input-filter tests do not establish retrieved-shard resistance.\\
-Memory / privacy & Request prior cases & Versioned/rechecked memory, no dump tool; user-level isolation remains a deployment risk.\\
-Audit / personal data & Supply sensitive strings & Recursive supported-pattern filtering; retention and remaining data categories need review.\\
-Outbox / unauthorised write & Request action or forge flag & Proposal-only tool; host approval/token bound to payload. Local queue only, no network sender.\\
-Resources / availability & Long or invalid action loops & Tool/repair/step/time/token bounds; errors are not counted as successful defense.\\
+\hdr{Episodic memory (implemented, not exercised in D2).} Verified answers can be stored in SQLite after the verification gate. Reuse requires a matching index version, native-origin metadata and a question similarity of at least 0.85 (TF-IDF cosine and Jaccard), and the reused answer is re-verified. Memory is off in every D2 run, so trials stay independent. Reuse is also off in the demo, because matching sees only the question and not the facts that decide a case. The filter for personally identifiable information (PII) covers a fixed set of patterns.
+
+\hdr{Knowledge sources.} \code{src/ingestion} built both corpora from public PDFs: \code{pypdf} text extraction, Unicode normalisation and segmentation at section headings. Each record carries its source URL, file SHA-256 and page numbers (manifests in \code{docs/materials/*-sources}), and IDs have the form \code{<DOC>\_<section>}. Table~\ref{tab:corpora} gives size and known limits.
+\begin{table}[!htb]\tabstyle
+% PROVENANCE: n/a corpus sizes counted from data/corpus, not a benchmark result
+\begin{tabularx}{\textwidth}{@{}L{3.3cm}rrY@{}}
+\toprule Corpus & Documents & Records & Known limits\\\midrule
+\code{hcmut_academic_v1} & 10 & 143 & Several documents are amendment-only; the image-only base regulations are absent; one record has about 19,600 characters; printed decision numbers come from a web listing.\\
+\code{labour_vi_v1} & 10 & 458 & Decree 145/2020 (over 40 pages) and unnumbered annexes are absent; texts as promulgated, later amendments unchecked.\\
 \bottomrule\end{tabularx}
-\caption{System-specific threat model. Mitigations are implementation boundaries, not measured attack-effectiveness guarantees.}
+\caption{Corpora used in D2 (\code{data/corpus/}, snapshot of 22 October 2026). Neither has been certified by a domain expert: \pending{university or legal reviewer, if any}.}\label{tab:corpora}
 \end{table}
-D2 does not require injection experiments. Final tests will place payloads at their actual entry points, check attacker objectives using tool/outbox receipts and measure legitimate correctness separately. Historical 100\% defense/utility claims are excluded.
 
-\section{Weekly Plan to the First Final Presentation}
-\begin{table}[H]\centering\footnotesize
-\begin{tabularx}{\textwidth}{@{}L{1.7cm}L{2.0cm}X@{}}
-\toprule Week / date & Proposed owner & Deliverable / acceptance\\\midrule
-Sat 24 Oct & All & Human audit of the 12-output judge sample; compute agreement and kappa.\\
-Before 25 Oct & All & Confirm gold, report, slides and backup video.\\
-W45, 2--8 Nov & Quyền / Phong & Document HR walkthrough status/findings, corpus provenance and scenarios.\\
-W46, 9--15 Nov & Dũng / Quyền & Expand approved tasks; independently audit verifier and answer failures.\\
-W47, 16--22 Nov & Phong / Dũng & Real entry-point attack tests and permission/fault checks; inspect committed effects.\\
-W48, 23--29 Nov & All & Frozen-artifact reproduction, demo hardening, final report. Optional NLI/reranking only after core evidence.\\
-W49, 30 Nov--2 Dec & All & Tagged release, final checks and Round 1 presentation on 2 December.\\
-\bottomrule\end{tabularx}
-\caption{Proposed plan. \pending{Team to confirm owners, walkthrough dates and commitments.}}
-\end{table}
-The riskiest assumption is that the native 3B controller answers correctly within budget. Real pilots exposed source-reading and semantic errors. If this assumption fails, keep the ten approved tasks and the two configurations; cut task expansion, optional NLI/reranking and external delivery. The core kept is the real loop, trace, bounded tools, human-scored outputs and reproducibility.
-\textbf{Self-assessment: at risk}, pending human validation of judge estimates, team confirmations and demo rehearsal.
+\hdr{Retrieval and reranking.} Search runs in memory: BM25 over title and content and TF-IDF over word 1--3-grams, fused by RRF ($k=60$). Variants OFF and L1 return the top five first-stage results. L1+rerank takes the top 20 candidates, rescores them with the cross-encoder and returns the best five. Long records would lose late evidence if truncated, so a record longer than one window is split into overlapping windows (about 1,500 characters, 200 overlap). Each (query, window) pair is scored and the record keeps the maximum (MaxP).
 
-\clearpage
-\section{Member Contributions and AI-Use Statement}
-\begin{table}[H]\centering\footnotesize
-\begin{tabularx}{\textwidth}{@{}L{3.2cm}X L{3.0cm}@{}}
-\toprule Member & Earlier draft responsibilities & Attribution evidence\\\midrule
-Lê Trí Quyền & Retrieval and corpus & \textcolor{red}{Evidence pending}\\
-Võ Phạm Tuấn Dũng & Agent, verifier and evaluation & \textcolor{red}{Evidence pending}\\
-Nguyễn Hoàng Phong & Tools, security and UI & \textcolor{red}{Evidence pending}\\
+The reranker's input policy and weights are identical on both machines, but the runtimes differ: torch fp16 on CUDA on server 82, and a GGUF conversion on the \code{llama.cpp} server on the Mac (quantisation: \pending{confirm after the parity check}). Scores are therefore not bit-identical: \pending{rank and score parity between the two runtimes, from the parity probe}. Accuracy comes from the GPU run and latency from the Mac run; the two L1+rerank rows are not pooled. The persisted hybrid index and dense retrieval (\code{src/indexing}) are outside D2.
+
+\section{Evaluation Set and Initial Results (R5)}\label{sec:eval}
+\hdr{Benchmarks and provenance.} \code{hcmut_v1} and \code{labour_vi_v1} each hold 50 Vietnamese tasks: 40 single-record, 5 two-record and 5 out-of-scope tasks that expect a refusal. Each task has gold record IDs, a short reference answer and verbatim evidence quotes, and both files are frozen with hashes (\code{benchmark.lock.json}). \textbf{No human wrote or reviewed any task.} Claude Haiku drafted them; two independent Claude Sonnet verifiers checked every task against the cited records; a Sonnet adjudicator fixed or replaced flagged items; mechanical checks confirmed that quotes are verbatim and IDs exist; and Gemma-4-31B answers given the gold context served as a sanity pointer (LLM estimates, not labels). The items are AI-written questions over real documents, not real user questions; real use (long, vague, pasted contracts) will differ. \pending{Member spot-check against the source PDFs, if done.}
+
+A later AI audit (\code{docs/reviews/benchmark_quality_2026-10-23.md}) found no wrong gold answer and no refusal item answerable from the corpus. It did flag three limits:
+\begin{itemize}
+\item \textbf{B1.} Plain BM25 already ranks a gold record first for 89\% (HCMUT) and 78\% (labour) of questions, so retrieval cannot separate the variants.
+\item \textbf{B2.} About one third of answerable tasks can be answered without the corpus (closed-book correct for 15 of 45 and 12 of 45; LLM estimate), so we also stratify by closed-book guessability.
+\item \textbf{B3.} 22 HCMUT questions pin a document by a decision number taken from a web listing.
+\end{itemize}
+
+\hdr{Design and machines.} Two benchmarks $\times$ three variants $\times$ three seeds $\times$ 50 tasks give 900 planned system trials per run; the two diagnostic baselines below add 190 planned trials, so the planned matrix is 1,090 trials per machine profile (plan figures, not recorded counts). The same model file, \code{llama.cpp} commit, prompts and budgets are required on both machines; preflight enforces this against \code{config/benchmark/expected_server.yaml}.
+\begin{itemize}
+\item \textbf{Accuracy:} server 82 (shared; one H100, 8 parallel slots, CUDA build of the same commit; GPU model and driver \pending{from the manifest}). Latency measured there is not reported.
+\item \textbf{Latency and memory:} Apple M4, 10 cores, 16\,GiB, Metal, strictly sequential after warm-up, planned for seed 42 only (300 trials).
+\end{itemize}
+Seeds average out the controller's sampling variance (temperature 0.7) but add no tasks, so confidence intervals are taken over tasks. With 50 tasks per benchmark, paired differences below about 10 percentage points (pp) are not detectable.
+
+\hdr{Diagnostic baselines (not system variants).} Two extra cells run in the same run with the same Bonsai file, sampler, domain prompt and constrained decoding, verification off (L1 not applied), seed 42 only, and the same judge. A disclosed prompt addendum says there are no tools and only answer, clarify or refuse are allowed. \emph{Closed-book:} the question only, no tools and no documents, all 50 tasks per benchmark (100 planned trials); it isolates the parametric-knowledge share of the score (and over-refusal or unsafe answers without evidence). \emph{Oracle:} the full text of the gold records is given up front in the user turn in the read-tool observation format, with no search, on the 45 answerable tasks per benchmark (90 planned trials; refusal tasks have no gold context and are excluded); it isolates the reading and reasoning ceiling of the 2B controller under perfect retrieval, without tool-use burden. Both are separate cells, reported only in Table~\ref{tab:benchmark-baselines} beside the system variants restricted to answerable tasks (reference rows), and never pooled with the variants or used in the paired differences. They are not the stronger-model closed-book probes behind B2.
+
+\emph{Error split (answerable tasks).} Let $S$ be a system variant's strict success and $O$ the oracle's: $O-S$ is what retrieval, tool use and verification cost relative to perfect evidence, while the closed-book rate is the parametric floor. Within a variant, answerable trials are split by whether the agent surfaced all gold ids: a failure after all gold surfaced is a reading or tool-use failure, a failure with gold missed is a retrieval failure. Caveats: one seed (intervals over tasks only); the baselines use the addendum prompt, so $O-S$ mixes evidence access with that difference; all values are LLM-judge estimates. \pending{The gold-surfaced split is computed in the analysis summary (\code{answerable_by_gold_surfaced}) but has no table yet; report it from the run or drop this sentence.}
+
+\hdr{Metrics.} Table~\ref{tab:metrics} defines the metrics.
+\begin{table}[!htb]\tabstyle
+% PROVENANCE: n/a metric definitions, no measured values
+\begin{tabularx}{\textwidth}{@{}L{3.0cm}Y@{}}
+\toprule Metric & Definition (code: \code{evaluation/metrics.py}, \code{judge_rules.py}, \code{stats.py})\\\midrule
+Strict success (LLM-judge estimate) & A trial succeeds only if the run completes, the judgment is valid, behaviour is appropriate, correctness and completeness are both 2/2 and every factual claim is supported (for refusals, absence statements are not claims; a contradicted claim still fails). An execution error counts as failure; an invalid judgment is unknown and also counts as failure. Reported over \emph{all planned} trials, so it is a lower bound, with a 95\% bootstrap interval over tasks (seeds averaged per task).\\
+Behaviour confusion (no judge) & Expected behaviour (answer or refuse) against terminal status (answered, refused, clarified, error): over-refusal, unsafe-answer rate, refusal precision and recall, strict match (errors count as mismatches).\\
+Faithfulness & Supported claims over all judged claims (support judged against gold and cited records).\\
+Retrieval (ID proxy) & Recall@5, MRR and nDCG@5 over the agent's trace (distinct ids in order of first appearance, searches then reads), on answerable trials. Near ceiling by B1.\\
+Citation P/R/F1 (ID proxy) & Cited ids against gold ids; nothing cited counts as 0 (macro average). Says nothing about answer correctness.\\
+Errors, latency, tokens & Error rate with Wilson interval by kind; trial and per-call p50/p95 (non-error trials, Mac only); controller tokens from server usage; judge cost as reported by the gateway (not an invoice). Local controller cost is not an API cost, and GPU-active hours are not measured, only wall time and hardware.\\
+Paired difference & Treatment minus baseline per task; paired bootstrap, 5,000 draws, no multiplicity correction.\\
 \bottomrule\end{tabularx}
-\caption{The group has not yet supplied confirmed contribution/verification evidence. Earlier responsibility labels are not completed-work claims.}
+\caption{Metric definitions. Strict success, behaviour appropriateness and faithfulness are LLM-judge estimates; retrieval and citation numbers are source-ID proxies, not answer correctness.}\label{tab:metrics}
 \end{table}
-The earlier draft named Claude and GitHub Copilot for scaffolding and formatting. This revision also used OpenAI Codex for source review, native-only runtime changes, test maintenance, report restructuring and experiment planning.
-\pending{Confirm the full AI tool list and actual uses, including other assistants if used.}
-DeepSeek Flash was also used through the gateway for independent semantic evaluation; its outputs are AI judgments, not member verification or human labels. Native measurements were collected on the Mac under the frozen protocol. The earlier 509-test suite relied on mocked components and was retired under the group's integrity rule; its count is not evidence for this revision. The replacement suite exercises real source data, retrieval, storage, MCP transport and native inference; the post-collection run passed all 11 tests in 26.09 seconds. These test results do not replace benchmark quality measurements.
-The group reported on 22 October that member-specific contribution/verification evidence is not yet available. \pending{Supply actual member checks and supporting commits/artifacts before submission.}
+
+\hdr{Judge and its reliability.} DeepSeek V4.1 Flash judges each output through the gateway, blind to the variant and the verifier outcome (thinking on, high effort, JSON validated, up to three attempts plus extra rounds for invalid ones). We claim no seed or temperature, and the model revision behind the route is not pinned~\citep{deepseek2026api}. The gateway sees only benchmark questions, candidate answers and gold sources, never user data. LLM judges can be biased~\citep{zheng2023judge}, so we check this one against human labels. On Saturday 24 October the group labels a stratified blind sample of about 30 items per benchmark with the same claim-counting rule, and \cmd{make audit-score} computes agreement and Cohen's $\kappa$ against the judge's strict-success label. \pending{Human audit not yet performed; agreement and $\kappa$ unavailable.} Separating answer correctness from citation support follows~\citet{gao2023alce}.
+
+\hdr{Results.} Results will be reported per benchmark and variant in eight tables: strict success with retrieval and citation proxies (Table~\ref{tab:benchmark-main}), operations and judge cost (Table~\ref{tab:benchmark-ops}), paired differences (Table~\ref{tab:benchmark-paired}), the diagnostic baselines (Table~\ref{tab:benchmark-baselines}), behaviour without a judge (Table~\ref{tab:benchmark-behaviour}), closed-book strata (Table~\ref{tab:benchmark-strata}), Mac latency (Table~\ref{tab:benchmark-latency}) and errors (Table~\ref{tab:errors}). Every cell stays a red placeholder until the main runs exist.
+
+\IfFileExists{benchmark_results.tex}{\inputhere{benchmark_results.tex}}{\inputhere{benchmark_results_skeleton.tex}}
+\IfFileExists{benchmark_diagnostics.tex}{\inputhere{benchmark_diagnostics.tex}}{\inputhere{benchmark_diagnostics_skeleton.tex}}
+\IfFileExists{benchmark_latency_mac.tex}{\inputhere{benchmark_latency_mac.tex}}{\inputhere{benchmark_latency_skeleton.tex}}
+
+\begin{table}[!htb]\tabstyle
+% PROVENANCE: n/a placeholder table, every cell is a red pending marker; replace with run=<run-id> when filled from a current report-eligible run
+\begin{tabular}{@{}lrrr@{}}
+\toprule Execution error kind (\code{error_kind}) & OFF & L1 & L1+rerank\\\midrule
+\code{model_output_error} (invalid or truncated action) & \tbd & \tbd & \tbd\\
+\code{wall_timeout}, \code{runner_trial_timeout} & \tbd & \tbd & \tbd\\
+\code{backend_error} (controller or reranker down) & \tbd & \tbd & \tbd\\
+Total errors out of 300 trials (Wilson 95\% interval) & \tbd & \tbd & \tbd\\
+\bottomrule\end{tabular}
+\caption{Execution errors per variant (both benchmarks, three seeds; GPU accuracy run), to be filled from \code{analysis/summary.json}. Errors count as failures in strict success and are never recoded as refusals.}\label{tab:errors}
+\end{table}
+
+\hdr{Reading the results and failure analysis.} \pending{After the main run: one paragraph per finding, each tied to a table cell, with the caveats that (i) retrieval is saturated, so no reranker benefit is claimed from Recall or MRR; (ii) success on closed-book-guessable tasks measures parametric knowledge as much as grounding; (iii) differences under about 10\,pp are within noise; (iv) numbers are LLM estimates until the audit agreement is known. Then execution errors by kind with Wilson intervals, per-task consistency across seeds, and three or four failures read from the ledgers, with causes marked as untested.}
+
+\hdr{Cost, latency and reproduction.} We will report judge spend (as reported by the gateway), controller tokens, and device wall-hours with hardware. Planned, not measured: about USD 2.9 of judge spend for the 1,090 planned packets (an extrapolation from smoke runs at about USD 0.0026 per valid packet, guard USD 6). On the shared H100 only wall time is available; the Mac is an M4. Run ids: \tbd. One command per machine runs the whole pipeline: \cmd{make benchmark-d2-gpu} on server 82 (see \code{docs/RUNBOOK_D2.md}) and \cmd{make benchmark-d2-mac}. Each writes a run directory (\code{evaluation/runs/<id>}: manifest, trials, source snapshot, judge attempts, analysis, tables) and refuses to start if the lock or the source has drifted. \cmd{make judge RUN=<run>} and \cmd{make tables RUN=<run>} re-run the judge and the tables. \cmd{make benchmark-smoke} is a pipeline check whose output is not reportable. The GPU run needs a CUDA machine and the pinned weights; the Mac command reproduces the whole matrix more slowly.
+
+\hdr{Provenance of reported tables.} Every generated result table carries a machine-readable header and a visible source line with its run id, commit and harness version. Runs are listed in \code{evaluation/runs/REGISTRY.md} with a freshness status (current, stale, historical, incomplete); only a report-eligible, current main run may feed the report. \cmd{make report-check} refreshes the registry (\cmd{make runs}) and refuses tables from a stale, smoke, incomplete or ineligible run, and hand-written numeric tables without a provenance marker. Historical results stay in the registry, not in any table. \pending{Confirm \cmd{make report-check} passes on the final tree; quote the run ids.}
+
+\section{Threat Model (R6)}\label{sec:threat}
+\hdr{Assets.} (A1) Faithfulness: answers and citations that users rely on must trace to source sections~\citep{magesh2025hallucination}. (A2) User data: questions, pasted documents, memory, audit log and web-run store. (A3) Integrity of corpora, domain profiles, prompts, model weights and the frozen benchmark and evidence. (A4) The tool boundary: no unreviewed write or egress. (A5) Availability of a bounded local machine. (A6) The judge-gateway credential.
+
+\hdr{Attacker.} The attacker can submit arbitrary questions and pasted documents through the UI or API (instruction override, delimiter spoofing, prompt or memory exfiltration, requests to evade a regulation), including content copied from a hostile third party. The attacker cannot change code, corpora, configs, weights, the ledger or the trusted-UI approval state, and cannot reach loopback servers or other users' sessions. \emph{Non-goals:} compromised host or supply chain, poisoned official sources, multi-tenant isolation, model jailbreaks beyond the listed mitigations, and the correctness of the regulations themselves.
+
+\hdr{Entry points and mitigations.} Table~\ref{tab:threat} gives the mitigation and residual risk for each entry point.
+\begin{table}[!htb]\tabstyle
+\begin{tabularx}{\textwidth}{@{}L{2.8cm}L{5.3cm}Y@{}}
+\toprule Entry point (asset) & Mitigation (code) & Residual risk\\\midrule
+Question, pasted document (A1, A4) & Pre-model pattern checks, Unicode and delimiter sanitising, untrusted wrapper tags, fixed action space without a write action (\code{src/security/guardrails.py}, domain profiles) & Paraphrase bypass; Vietnamese and English patterns only; benign false positives; not attack-tested in D2.\\
+Retrieved text (A1) & Tagged \code{[OBSERVATION_TOOL_RESULT]}; L1 checks ids, provenance and quotes (\code{lexical_grounding.py}) & Observations are tagged, not filtered: an injected instruction inside a source document would reach the model.\\
+Ingested documents (A3) & Offline, manual ingestion; URL, SHA-256 and pages per record; benchmark locks hash the corpora & No signature check; trust in the official site; image-only files excluded.\\
+Memory (A1, A2) & Disabled in D2 runs; demo reuse off; index version, similarity, re-verification, PII patterns & Earlier-user poisoning; incomplete PII filter.\\
+Config, weights, binaries (A3) & Pinned SHA-256 and commit, preflight identity checks, loopback-only endpoints & Third-party weights and the \code{llama.cpp} fork are not audited.\\
+Judge gateway egress (A2, A6) & Offline only; benchmark data only; key from environment, never in the repository; blind packets; JSON and quote validation; human audit & Candidate text could steer the judge (untested); route not pinned.\\
+Web UI and API, outbox (A4) & Loopback bind, session cookie and CSRF, size bounds; proposal-only tools; host approval bound to the payload & Single-user assumption; no external sender exists.\\
+Loops, long inputs (A5) & Step, tool, repair, token and wall-time limits; trial watchdog & Errors are failures, not defences.\\
+Web pages & Not applicable: there is no browsing tool. & ---\\
+\bottomrule\end{tabularx}
+\caption{Threat model by entry point. Mitigations are implementation boundaries, not measured attack effectiveness; the full-system injection tests of the final report~\citep{greshake2023indirect,debenedetti2024agentdojo} are \pending{planned for W47; no D2 numbers}.}\label{tab:threat}
+\end{table}
+
+\section{Weekly Plan to the First Final Presentation}\label{sec:plan}
+Table~\ref{tab:plan} runs to the first final presentation in week 49.
+\begin{table}[!htb]\tabstyle
+\begin{tabularx}{\textwidth}{@{}L{3.5cm}L{2.2cm}Y@{}}
+\toprule Week (dates) & Owner (proposed) & Deliverable and acceptance\\\midrule
+Sat 24 Oct & All & Human audit of the judge sample; agreement and $\kappa$ entered in Table~\ref{tab:benchmark-main}.\\
+Sun 25 Oct, Wed 28 Oct & Group leader, all & Submit report and slides; presentation, live demo, backup video.\\
+W45 (2--8 Nov) & Quyền, Phong & HR walkthrough and findings; harder benchmark slice (unnamed documents, paraphrases) for B1.\\
+W46 (9--15 Nov) & Dũng, Quyền & Failure analysis; verifier false accepts and rejects; reranker parity report.\\
+W47 (16--22 Nov) & Phong, Dũng & Entry-point attack tests and permission and fault checks.\\
+W48 (23--29 Nov) & All & Frozen-artifact reproduction, demo hardening, final report; L2/NLI and vector index only after core evidence.\\
+W49 (30 Nov--2 Dec) & All & Tagged release and Round 1 presentation on 2 December.\\
+\bottomrule\end{tabularx}
+\caption{Proposed plan. \pending{Team to confirm owners, the walkthrough date and the commitments.}}\label{tab:plan}
+\end{table}
+\hdr{Riskiest assumptions and fallback.} A 2B ternary controller may not answer correctly within its budget, and the benchmarks may be too easy for the variants to differ (B1, B2). If so, we keep the loop, the frozen benchmarks, the variants and the pipeline, report the measured numbers as they are, and cut the vector index, L2/NLI and further domains.
+
+\hdr{Self-assessment: at risk.} The design is frozen and the pipeline has run end to end in smoke checks (not reportable). No main-run result exists yet. \pending{Re-assess after the main run and the audit.}
+
+\section{Member Contributions and AI-Use Statement}\label{sec:contrib}
+\begin{table}[!htb]\tabstyle
+\begin{tabularx}{\textwidth}{@{}L{3.6cm}L{4.4cm}Y@{}}
+\toprule Member & D1 responsibility (not a completed-work claim) & Evidence of contribution\\\midrule
+Lê Trí Quyền & Retrieval and corpus & \pending{team to supply}\\
+Võ Phạm Tuấn Dũng & Agent, verifier and evaluation & \pending{team to supply}\\
+Nguyễn Hoàng Phong & Tools, security and UI & \pending{team to supply}\\
+\bottomrule\end{tabularx}
+\caption{Member contributions. Evidence must match the commit history; none is supplied, and the git history shows a single author account.}\label{tab:contrib}
+\end{table}
+
+\hdr{AI tools used} (Table~\ref{tab:ai}). Their outputs are AI judgments, not human checks. \pending{Team to confirm the list and who used which tool.}
+\begin{table}[!htb]\tabstyle
+\begin{tabularx}{\textwidth}{@{}L{5.0cm}Y@{}}
+\toprule Tool & Used for\\\midrule
+Claude (Claude Code with Sonnet and Haiku sub-agents) & Benchmark drafting, verification, adjudication and QA review; code and report drafting\\
+OpenAI Codex; GitHub Copilot & Earlier code and report revisions; D1 draft\\
+Gemma-4-31B & Oracle and closed-book sanity probes (LLM estimates)\\
+DeepSeek V4 Pro, Gemini 3 Flash & Second opinions on benchmark QA\\
+DeepSeek V4.1 Flash & Evaluation judge\\
+\bottomrule\end{tabularx}
+\caption{AI tools used in the project. The controller and reranker are system components (Table~\ref{tab:models}).}\label{tab:ai}
+\end{table}
+
+\hdr{Verified by the group.} \pending{Members to state what they checked themselves (audit labels, source spot-checks, code review, demo rehearsal); nothing is claimed here.} Automated tests run real implementations, no mocks. \pending{Test count from a recorded run at the frozen commit.}
 
 \bibliography{refs}
 \end{document}

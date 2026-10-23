@@ -31,3 +31,8 @@ venv/
 frontend/node_modules/
 frontend/dist/
 data/db/*.sqlite3
+
+# Runtime outputs (benchmark launcher logs, demo audit logs, provenance stamp)
+logs/
+data/demo_audit_log*.jsonl
+PROVENANCE.json

@@ -1,0 +1,17 @@
+benchmark,variant,seed,task_id,category,expected_behavior,state,terminal_status,error_kind,stratum,gold_ids,strict_success,wall_s,recall_at_5,citation_f1,native_calls,input_tokens,output_tokens
+hcmut_v1,off,42,HCMUT-001,single,answer,judged,answered,,closed_book_unsolved,1,False,23.762,1.0,1.0,2,3779,849
+hcmut_v1,l1_rerank,42,HCMUT-001,single,answer,judged,refused,,closed_book_unsolved,1,False,27.134,0.0,0.0,2,3959,499
+hcmut_v1,off,42,HCMUT-021,multi,answer,judged,clarified,,closed_book_unsolved,2,False,15.695,0.5,0.0,2,3492,396
+hcmut_v1,l1_rerank,42,HCMUT-021,multi,answer,judged,clarified,,closed_book_unsolved,2,False,17.977,0.5,0.0,4,8608,458
+labour_vi_v1,off,42,LVN-001,single,answer,judged,answered,,closed_book_guessable,1,False,16.319,1.0,0.6666666666666666,2,3557,612
+labour_vi_v1,l1_rerank,42,LVN-001,single,answer,judged,refused,,closed_book_guessable,1,True,26.03,1.0,0.0,3,6305,707
+labour_vi_v1,off,42,LVN-021,multi,answer,judged,answered,,closed_book_unsolved,2,False,15.631,1.0,0.6666666666666666,2,3537,497
+labour_vi_v1,l1_rerank,42,LVN-021,multi,answer,judged,answered,,closed_book_unsolved,2,False,35.525,1.0,0.6666666666666666,3,6321,926
+hcmut_v1,closed_book,42,HCMUT-001,single,answer,judged,refused,,closed_book_unsolved,1,False,3.081,0.0,0.0,1,1450,151
+hcmut_v1,closed_book,42,HCMUT-021,multi,answer,judged,refused,,closed_book_unsolved,2,False,2.69,0.0,0.0,1,1444,134
+labour_vi_v1,closed_book,42,LVN-001,single,answer,judged,answered,,closed_book_guessable,1,False,9.487,0.0,0.0,1,1509,274
+labour_vi_v1,closed_book,42,LVN-021,multi,answer,judged,clarified,,closed_book_unsolved,2,False,5.994,0.0,0.0,1,1507,166
+hcmut_v1,oracle,42,HCMUT-001,single,answer,judged,answered,,closed_book_unsolved,1,False,8.718,1.0,1.0,1,1882,320
+hcmut_v1,oracle,42,HCMUT-021,multi,answer,judged,answered,,closed_book_unsolved,2,True,15.096,1.0,1.0,1,2091,540
+labour_vi_v1,oracle,42,LVN-001,single,answer,judged,answered,,closed_book_guessable,1,False,13.822,1.0,1.0,1,2000,483
+labour_vi_v1,oracle,42,LVN-021,multi,answer,judged,answered,,closed_book_unsolved,2,True,10.22,1.0,1.0,1,2321,366

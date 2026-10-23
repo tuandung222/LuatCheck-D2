@@ -1,0 +1,10 @@
+# Identity of the controller server every D2 run must have (checked by preflight; a mismatch refuses the run).
+# Same model file + same llama.cpp commit on every machine is what makes the Mac and GPU runs the same system.
+alias: prism-ml/Ternary-Bonsai-2-2B-gguf
+gguf_repo: prism-ml/Ternary-Bonsai-2-2B-gguf
+gguf_file: Ternary-Bonsai-2-2B-PQ2_0.gguf
+gguf_sha256: d5f01a4ecaf49239653308ee732ad1a0c5f802c0ddb997549fc7b694c8b45928
+quantisation: PQ2_0
+llama_cpp_repo: https://github.com/PrismML-Eng/llama.cpp
+llama_cpp_branch: prism
+llama_cpp_commit: 73bfe6c   # prefix of the commit shown in /props build_info (b1-73bfe6c)

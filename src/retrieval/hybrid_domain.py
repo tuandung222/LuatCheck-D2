@@ -6,13 +6,27 @@ across any knowledge corpus (Legal, Medical, Technical, SOPs, Documentation).
 """
 import json
 import os
-from typing import List, Dict, Any, Optional, Union
+from typing import Callable, List, Dict, Any, Optional
 from collections import defaultdict
 
 from src.interfaces.base import BaseRetriever, BaseDenseRetriever
 from src.retrieval.bm25_engine import BM25Retriever
 from src.retrieval.dense_engine import NeuralDenseRetriever, TfidfDenseRetriever
-from src.contracts.universal_document import UniversalDocument
+
+# Field pairs that are mirrored so that records using either spelling can be read through both.
+_FIELD_ALIASES = (("section_title", "title"), ("article_id", "doc_id"), ("source_name", "law_name"))
+
+
+def _normalized_record(doc: Dict[str, Any]) -> Dict[str, Any]:
+    """Copy of a corpus record in which each alias pair (title/section_title, doc_id/article_id, law_name/source_name)
+    is present under both names when either is."""
+    record = dict(doc)
+    for first, second in _FIELD_ALIASES:
+        if first not in record and second in record:
+            record[first] = record[second]
+        if second not in record and first in record:
+            record[second] = record[first]
+    return record
 
 
 class HybridDomainRetriever(BaseRetriever):
@@ -28,7 +42,8 @@ class HybridDomainRetriever(BaseRetriever):
         dense_retriever: Optional[BaseDenseRetriever] = None,
         dense_model_name: str = "all-minilm",
         dense_endpoint: Optional[str] = None,
-        retrieval_mode: str = "tfidf"
+        retrieval_mode: str = "tfidf",
+        id_normalizer: Optional[Callable[[str], str]] = None
     ):
         self.corpus_path = corpus_path or "data/corpus/labor_code_2019_official.json"
         self.rrf_k = rrf_k
@@ -37,29 +52,19 @@ class HybridDomainRetriever(BaseRetriever):
         else:
             self.corpus = self._load_corpus(self.corpus_path)
 
+        # `id_normalizer` (the domain profile's ID convention) maps a cited ID to its canonical lower-case form.
+        # Without one, the labour-style "Điều_N" <-> "Dieu_N" alias is tried (kept for callers built before profiles).
+        self.id_normalizer = id_normalizer
+
         # Build multi-key index for fast lookups
         self.doc_lookup: Dict[str, Dict[str, Any]] = {}
         for doc in self.corpus:
             doc_id = str(doc.get("doc_id") or doc.get("article_id") or doc.get("id") or "").strip()
             if doc_id:
-                norm_doc = dict(doc)
-                if "title" not in norm_doc and "section_title" in norm_doc:
-                    norm_doc["title"] = norm_doc["section_title"]
-                if "section_title" not in norm_doc and "title" in norm_doc:
-                    norm_doc["section_title"] = norm_doc["title"]
-                if "doc_id" not in norm_doc and "article_id" in norm_doc:
-                    norm_doc["doc_id"] = norm_doc["article_id"]
-                if "article_id" not in norm_doc and "doc_id" in norm_doc:
-                    norm_doc["article_id"] = norm_doc["doc_id"]
-                if "law_name" not in norm_doc and "source_name" in norm_doc:
-                    norm_doc["law_name"] = norm_doc["source_name"]
-                if "source_name" not in norm_doc and "law_name" in norm_doc:
-                    norm_doc["source_name"] = norm_doc["law_name"]
-
+                norm_doc = _normalized_record(doc)
                 self.doc_lookup[doc_id] = norm_doc
                 self.doc_lookup[doc_id.lower()] = norm_doc
-                norm = doc_id.replace(" ", "_").lower()
-                self.doc_lookup[norm] = norm_doc
+                self.doc_lookup[doc_id.replace(" ", "_").lower()] = norm_doc
 
         # Lexical and Dense engines
         self.bm25 = BM25Retriever(self.corpus)
@@ -102,7 +107,9 @@ class HybridDomainRetriever(BaseRetriever):
         if norm in self.doc_lookup:
             return self.doc_lookup[norm]
 
-        # Domain alias normalization (e.g. Điều 35 <-> Dieu_35)
+        # Domain alias normalization (e.g. Điều 35 -> Dieu_35)
+        if self.id_normalizer is not None:
+            return self.doc_lookup.get(self.id_normalizer(clean_id))
         if norm.startswith("điều_"):
             alt = "dieu_" + norm[5:]
             if alt in self.doc_lookup:

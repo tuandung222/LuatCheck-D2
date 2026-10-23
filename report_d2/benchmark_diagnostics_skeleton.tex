@@ -1,0 +1,46 @@
+% SKELETON (all cells red [PENDING]), derived from evaluation/render_benchmark_tables.py render() on an empty summary.
+% main_d2.tex inputs benchmark_diagnostics.tex instead when that file exists (publish it with the renderer; no hand editing).
+% Requires: booktabs, multirow, graphicx, xcolor. report_eligible=False.
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrrrrr@{}}
+\toprule
+Benchmark & Variant & E=answer: A/R/C/Err & E=refuse: A/R/C/Err & Over-refusal (\%) & Unsafe answer (\%) & Refusal P (\%) & Refusal R (\%) & Strict match (\%)\\
+\midrule
+\multirow{3}{*}{HCMUT-v1} & OFF & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1{+}rerank & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\midrule
+\multirow{3}{*}{Labour-VI-v1} & OFF & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+ & L1{+}rerank & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd\\
+\bottomrule
+\end{tabular}}
+\caption{\textcolor{red}{\textbf{Skeleton, no run yet: no cell is a result.}} Behaviour without a judge: terminal status against the frozen expected behaviour. Rows E=answer and E=refuse give counts of answered, refused, clarified and error trials (A/R/C/Err). Over-refusal: refused or clarified although an answer exists; unsafe answer: answered although the task should be refused; refusal P/R treat \emph{refused} as the positive class (non-error trials); strict match counts errors as mismatches.}
+\label{tab:benchmark-behaviour}
+\end{table}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Benchmark & Variant & Closed-book guessable (\%) & Not guessable (\%) & Refusal tasks (\%)\\
+\midrule
+\multirow{3}{*}{HCMUT-v1} & OFF & \tbd & \tbd & \tbd\\
+ & L1 & \tbd & \tbd & \tbd\\
+ & L1{+}rerank & \tbd & \tbd & \tbd\\
+\midrule
+\multirow{3}{*}{Labour-VI-v1} & OFF & \tbd & \tbd & \tbd\\
+ & L1 & \tbd & \tbd & \tbd\\
+ & L1{+}rerank & \tbd & \tbd & \tbd\\
+\bottomrule
+\end{tabular}}
+\caption{\textcolor{red}{\textbf{Skeleton, no run yet: no cell is a result.}} Strict success (LLM-judge estimate, lower bound, errors count as failures) by closed-book stratum (\code{config/benchmark/strata.yaml}; closed-book probe by a strong model, LLM estimate): guessable tasks measure parametric knowledge as much as grounding; not guessable means partially correct or unsolved closed-book; refusal tasks have no closed-book stratum. Intervals are task-level bootstrap; $n$ = tasks per stratum.}
+\label{tab:benchmark-strata}
+\end{table}

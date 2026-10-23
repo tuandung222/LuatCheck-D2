@@ -1,0 +1,34 @@
+# Run registry
+
+Generated 2026-10-24T01:00:21.281352+07:00 by `python evaluation/run_d2.py registry` against HEAD `4633913aac03` (dirty collection paths), harness `1.1.0`. Do not edit by hand: marks live in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
+
+Freshness: **current** = same collection sources / harness / locks / models as HEAD; **stale** = differs, re-run before quoting; **historical** / **superseded_by** = kept for the record, never in current report tables; **incomplete**; **n/a**. Only `report_eligible = yes` AND `current` runs may feed the report (`make report-check` enforces this).
+
+Counts: historical 17, incomplete 1, n/a 1, stale 5
+
+| run | kind | state | commit | harness | created | report_eligible | freshness | note |
+|---|---|---|---|---|---|---|---|---|
+| bench-smoke-20261023-044250 | smoke | collected | 3996f1f84d0d | unversioned | 2026-10-22T21:42:50 | no | stale: harness version not recorded (run predates 1.1.0; current harness is 1.1.0); run predates collection-source fingerprints | smoke: never report evidence |
+| bench-smoke-20261023-045055 | smoke | collected | 3996f1f84d0d | unversioned | 2026-10-22T21:50:58 | no | stale: harness version not recorded (run predates 1.1.0; current harness is 1.1.0); run predates collection-source fingerprints | smoke: never report evidence |
+| bench-smoke-baselines-20261024 | smoke | collecting | 9ee48da01af7 | unversioned | 2026-10-23T17:04:47 | no | incomplete (collecting) | smoke: never report evidence |
+| bench-smoke-baselines-rerank-20261024 | smoke | collected | 67a48ece642f | unversioned | 2026-10-23T17:12:58 | no | stale: harness version not recorded (run predates 1.1.0; current harness is 1.1.0); 7 collection files changed, 1 added since the run (e.g. evaluation/run_benchmark.py, src/api/__init__.py, src/api/app.py, src/services/__init__.py) | smoke: never report evidence |
+| bench-smoke-both-20261023 | smoke | collected | 3996f1f84d0d | unversioned | 2026-10-22T21:59:45 | no | stale: harness version not recorded (run predates 1.1.0; current harness is 1.1.0); run predates collection-source fingerprints | smoke: never report evidence |
+| bench-smoke-evalimpl-20261023 | smoke | collected | 9ee48da01af7 | unversioned | 2026-10-23T15:06:56 | no | stale: harness version not recorded (run predates 1.1.0; current harness is 1.1.0); 17 collection files changed, 2 added since the run (e.g. config/benchmark/expected_server.yaml, config/benchmark/profile_mac_latency.yaml, config/benchmark/variants.yaml, evaluation/bench_preflight.py) | smoke: never report evidence |
+| bll2019-main-v1 | historical | legacy | - | - | - | no | historical: old D2 protocol: 10-task bll2019_v1 benchmark, Qwen2.5-3B (Ollama) controller; superseded by the two frozen 50-task benchmarks with the Bonsai 2B GGUF controller |  |
+| bll2019-main-v2 | historical | legacy | - | - | - | no | historical: old D2 protocol: 10-task bll2019_v1 benchmark, Qwen2.5-3B (Ollama) controller; superseded by the two frozen 50-task benchmarks with the Bonsai 2B GGUF controller |  |
+| bll2019-pilot-v1 | historical | legacy | - | - | - | no | historical: old D2 protocol: 10-task bll2019_v1 benchmark, Qwen2.5-3B (Ollama) controller; superseded by the two frozen 50-task benchmarks with the Bonsai 2B GGUF controller |  |
+| bll2019-pilot-v2 | historical | legacy | - | - | - | no | historical: old D2 protocol: 10-task bll2019_v1 benchmark, Qwen2.5-3B (Ollama) controller; superseded by the two frozen 50-task benchmarks with the Bonsai 2B GGUF controller |  |
+| deepseek-judge-main-v1 | historical | legacy | - | - | - | no | historical: judge runs of the old 10-task native batch (including recovery runs); the judge protocol has since changed (refusal-claim rule, harness 1.1) |  |
+| deepseek-judge-pilot-v1 | historical | legacy | - | - | - | no | historical: judge runs of the old 10-task native batch (including recovery runs); the judge protocol has since changed (refusal-claim rule, harness 1.1) |  |
+| deepseek-judge-recovery-v1 | historical | legacy | - | - | - | no | historical: judge runs of the old 10-task native batch (including recovery runs); the judge protocol has since changed (refusal-claim rule, harness 1.1) |  |
+| deepseek-judge-recovery-v2 | historical | legacy | - | - | - | no | historical: judge runs of the old 10-task native batch (including recovery runs); the judge protocol has since changed (refusal-claim rule, harness 1.1) |  |
+| gateway-gpt55-diag-v1 | historical | legacy | - | - | - | no | historical: earlier controller-capacity diagnostic (other model / backend, old 10-task benchmark); kept for the record, not on the frozen benchmarks |  |
+| gguf2b-bonsai-diag-v1 | historical | legacy | - | - | - | no | historical: earlier controller-capacity diagnostic (other model / backend, old 10-task benchmark); kept for the record, not on the frozen benchmarks |  |
+| hcmut-sanity-draft-v1 | historical | n/a | - | - | - | no | historical: benchmark sanity / oracle / closed-book check with a gateway model (benchmark construction evidence, not a system result); the labour closed-book column is invalid (HCMUT-scoped prompt, QA finding B4) |  |
+| hcmut-sanity-draft-v2 | historical | n/a | - | - | - | no | historical: benchmark sanity / oracle / closed-book check with a gateway model (benchmark construction evidence, not a system result); the labour closed-book column is invalid (HCMUT-scoped prompt, QA finding B4) |  |
+| hcmut-sanity-final-v1 | historical | n/a | - | - | - | no | historical: benchmark sanity / oracle / closed-book check with a gateway model (benchmark construction evidence, not a system result); the labour closed-book column is invalid (HCMUT-scoped prompt, QA finding B4) |  |
+| labour-sanity-draft-v1 | historical | n/a | - | - | - | no | historical: benchmark sanity / oracle / closed-book check with a gateway model (benchmark construction evidence, not a system result); the labour closed-book column is invalid (HCMUT-scoped prompt, QA finding B4) |  |
+| labour-sanity-final-v1 | historical | n/a | - | - | - | no | historical: benchmark sanity / oracle / closed-book check with a gateway model (benchmark construction evidence, not a system result); the labour closed-book column is invalid (HCMUT-scoped prompt, QA finding B4) |  |
+| mlx-bonsai4b-diag-v1 | historical | legacy | - | - | - | no | historical: earlier controller-capacity diagnostic (other model / backend, old 10-task benchmark); kept for the record, not on the frozen benchmarks |  |
+| mlx2b-bonsai-diag-v1 | historical | legacy | - | - | - | no | historical: earlier controller-capacity diagnostic (other model / backend, old 10-task benchmark); kept for the record, not on the frozen benchmarks |  |
+| reranker-parity-2026-10-23 | diagnostic | n/a | - | - | - | no | n/a: reranker runtime parity / latency probe (evaluation/probes/reranker_parity.py), not a D2 matrix run |  |

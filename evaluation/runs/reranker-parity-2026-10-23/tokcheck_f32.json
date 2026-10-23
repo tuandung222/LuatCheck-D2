@@ -1,0 +1,17 @@
+{
+ "created": "2026-10-23 23:17:29 +07 (UTC+0700)",
+ "endpoint": "http://127.0.0.1:8082",
+ "max_length": 1024,
+ "pairs_checked": 400,
+ "token_count_mismatches": 1,
+ "mismatch_examples": [
+  {
+   "bench": "labour_vi_v1",
+   "task_id": "LVN-009",
+   "doc_id": "ND143_2024_Dieu_7",
+   "server": 1023,
+   "hf": 1024
+  }
+ ],
+ "meaning": "server usage.prompt_tokens (one pair per request, after client-side longest_first fit) vs len(HF tokenizer(query, text, truncation=longest_first, max_length))"
+}

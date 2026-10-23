@@ -2,7 +2,7 @@
 Local SLM CPU - MCP Server (Model Context Protocol).
 Provides standardized tools via the MCP SDK v2 MCPServer API.
 """
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from mcp.server.mcpserver import MCPServer
 from src.config.app_config import load_config
 from src.domains import load_profile
@@ -14,7 +14,7 @@ from src.tools.legal_tools import LegalToolRegistry
 config = load_config()
 profile = load_profile(config.domain.profile)
 mcp = MCPServer("luatcheck-local-tools")
-registry = LegalToolRegistry(corpus_path=config.retrieval.corpus_path)
+registry = LegalToolRegistry(corpus_path=config.retrieval.corpus_path, profile=profile)
 
 
 def search_documents(query: str, top_k: int = 5) -> Dict[str, Any]:

@@ -1,0 +1,13 @@
+benchmark,variant,seed,task_id,category,expected_behavior,state,terminal_status,error_kind,stratum,gold_ids,strict_success,wall_s,recall_at_5,citation_f1,native_calls,input_tokens,output_tokens
+hcmut_v1,off,42,HCMUT-001,single,answer,judged,answered,,closed_book_unsolved,1,False,23.335,1.0,1.0,2,3779,853
+hcmut_v1,l1,42,HCMUT-001,single,answer,judged,refused,,closed_book_unsolved,1,False,38.572,1.0,0.0,3,7165,1228
+hcmut_v1,off,42,HCMUT-021,multi,answer,judged,clarified,,closed_book_unsolved,2,False,9.445,0.5,0.0,2,3420,292
+hcmut_v1,l1,42,HCMUT-021,multi,answer,judged,clarified,,closed_book_unsolved,2,False,9.863,0.5,0.0,2,3420,292
+hcmut_v1,off,42,HCMUT-024,out_of_scope,refuse,judged,answered,,refusal_task,0,,10.87,,,2,3810,299
+hcmut_v1,l1,42,HCMUT-024,out_of_scope,refuse,judged,refused,,refusal_task,0,True,13.171,,,3,6680,424
+labour_vi_v1,off,42,LVN-001,single,answer,judged,answered,,closed_book_guessable,1,False,13.852,1.0,1.0,2,3557,474
+labour_vi_v1,l1,42,LVN-001,single,answer,judged,answered,,closed_book_guessable,1,False,8.62,1.0,1.0,2,3557,474
+labour_vi_v1,off,42,LVN-021,multi,answer,judged,answered,,closed_book_unsolved,2,False,11.263,1.0,0.8,2,3537,576
+labour_vi_v1,l1,42,LVN-021,multi,answer,judged,refused,,closed_book_unsolved,2,False,15.995,1.0,0.0,3,6332,852
+labour_vi_v1,off,42,LVN-024,out_of_scope,refuse,judged,refused,,refusal_task,0,True,12.827,,,4,10635,524
+labour_vi_v1,l1,42,LVN-024,out_of_scope,refuse,judged,refused,,refusal_task,0,True,14.477,,,4,10635,524

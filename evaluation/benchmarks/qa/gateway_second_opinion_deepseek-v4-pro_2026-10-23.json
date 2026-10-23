@@ -1,0 +1,1820 @@
+{
+ "note": "LLM opinion only; not ground truth. Verify every flag against corpus text.",
+ "model": "deepseek/deepseek-v4-pro",
+ "total_cost_usd_reported": 0.38378971800000017,
+ "n": 100,
+ "rows": [
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-001",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0014646,
+   "usage": {
+    "completion_tokens": 347,
+    "prompt_tokens": 1049,
+    "total_tokens": 1396
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-002",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0020139,
+   "usage": {
+    "completion_tokens": 631,
+    "prompt_tokens": 1186,
+    "total_tokens": 1817
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-003",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.002076,
+   "usage": {
+    "completion_tokens": 655,
+    "prompt_tokens": 1215,
+    "total_tokens": 1870
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-004",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0019356,
+   "usage": {
+    "completion_tokens": 646,
+    "prompt_tokens": 1074,
+    "total_tokens": 1720
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-005",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0050262,
+   "usage": {
+    "completion_tokens": 556,
+    "prompt_tokens": 4658,
+    "total_tokens": 5214
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-006",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0090144,
+   "usage": {
+    "completion_tokens": 528,
+    "prompt_tokens": 4578,
+    "total_tokens": 5106
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.99
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-007",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0058799,
+   "usage": {
+    "completion_tokens": 20,
+    "prompt_tokens": 4483,
+    "total_tokens": 4503
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-008",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0050619,
+   "usage": {
+    "completion_tokens": 674,
+    "prompt_tokens": 4501,
+    "total_tokens": 5175
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-009",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0074688,
+   "usage": {
+    "completion_tokens": 1537,
+    "prompt_tokens": 1594,
+    "total_tokens": 3131
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-010",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0021411,
+   "usage": {
+    "completion_tokens": 405,
+    "prompt_tokens": 1704,
+    "total_tokens": 2109
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-011",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.002202,
+   "usage": {
+    "completion_tokens": 622,
+    "prompt_tokens": 1410,
+    "total_tokens": 2032
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-012",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0017925,
+   "usage": {
+    "completion_tokens": 397,
+    "prompt_tokens": 1330,
+    "total_tokens": 1727
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-013",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0030024,
+   "usage": {
+    "completion_tokens": 708,
+    "prompt_tokens": 2156,
+    "total_tokens": 2864
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-014",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.005152,
+   "usage": {
+    "completion_tokens": 464,
+    "prompt_tokens": 2292,
+    "total_tokens": 2756
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-015",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0053187,
+   "usage": {
+    "completion_tokens": 1066,
+    "prompt_tokens": 4133,
+    "total_tokens": 5199
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-016",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.002178,
+   "usage": {
+    "completion_tokens": 537,
+    "prompt_tokens": 1525,
+    "total_tokens": 2062
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-017",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0016974,
+   "usage": {
+    "completion_tokens": 432,
+    "prompt_tokens": 1166,
+    "total_tokens": 1598
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-018",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0018363,
+   "usage": {
+    "completion_tokens": 545,
+    "prompt_tokens": 1132,
+    "total_tokens": 1677
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-019",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0012339,
+   "usage": {
+    "completion_tokens": 285,
+    "prompt_tokens": 896,
+    "total_tokens": 1181
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-020",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0018432,
+   "usage": {
+    "completion_tokens": 80,
+    "prompt_tokens": 992,
+    "total_tokens": 1072
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.98
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-021",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00304474,
+   "usage": {
+    "completion_tokens": 20,
+    "prompt_tokens": 1554,
+    "total_tokens": 1574
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.98
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-022",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0029481,
+   "usage": {
+    "completion_tokens": 898,
+    "prompt_tokens": 1779,
+    "total_tokens": 2677
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-023",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0030975,
+   "usage": {
+    "completion_tokens": 799,
+    "prompt_tokens": 2110,
+    "total_tokens": 2909
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-024",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0111144,
+   "usage": {
+    "completion_tokens": 362,
+    "prompt_tokens": 11746,
+    "total_tokens": 12108
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-025",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.01081915,
+   "usage": {
+    "completion_tokens": 423,
+    "prompt_tokens": 8470,
+    "total_tokens": 8893
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-026",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0022983,
+   "usage": {
+    "completion_tokens": 913,
+    "prompt_tokens": 1032,
+    "total_tokens": 1945
+   },
+   "opinion": {
+    "verdict": "minor_issue",
+    "issues": [
+     {
+      "type": "missing_condition",
+      "detail": "Đáp án bỏ sót ngoại lệ: trường hợp đặc biệt do Hiệu trưởng quyết định có thể cho phép vượt quá 02 lớp.",
+      "quote": "trường hợp đặc biệt do Hiệu trưởng quyết định"
+     }
+    ],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-027",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.002438352,
+   "usage": {
+    "completion_tokens": 336,
+    "prompt_tokens": 1050,
+    "total_tokens": 1386
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-028",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0017202,
+   "usage": {
+    "completion_tokens": 395,
+    "prompt_tokens": 1253,
+    "total_tokens": 1648
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-029",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0012831,
+   "usage": {
+    "completion_tokens": 298,
+    "prompt_tokens": 929,
+    "total_tokens": 1227
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-030",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.001542,
+   "usage": {
+    "completion_tokens": 368,
+    "prompt_tokens": 1100,
+    "total_tokens": 1468
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-031",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00191625,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1775,
+    "total_tokens": 1800
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-032",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0022335,
+   "usage": {
+    "completion_tokens": 400,
+    "prompt_tokens": 1815,
+    "total_tokens": 2215
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-033",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0014913,
+   "usage": {
+    "completion_tokens": 369,
+    "prompt_tokens": 1042,
+    "total_tokens": 1411
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-034",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0055623,
+   "usage": {
+    "completion_tokens": 389,
+    "prompt_tokens": 5532,
+    "total_tokens": 5921
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-035",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00408187,
+   "usage": {
+    "completion_tokens": 20,
+    "prompt_tokens": 2097,
+    "total_tokens": 2117
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.98
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-036",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0051438,
+   "usage": {
+    "completion_tokens": 515,
+    "prompt_tokens": 4857,
+    "total_tokens": 5372
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-037",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00304815,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 2853,
+    "total_tokens": 2878
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-038",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00283931,
+   "usage": {
+    "completion_tokens": 20,
+    "prompt_tokens": 1681,
+    "total_tokens": 1701
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-039",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.003744,
+   "usage": {
+    "completion_tokens": 1458,
+    "prompt_tokens": 1730,
+    "total_tokens": 3188
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-040",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0020415,
+   "usage": {
+    "completion_tokens": 296,
+    "prompt_tokens": 1775,
+    "total_tokens": 2071
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-041",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0024426,
+   "usage": {
+    "completion_tokens": 681,
+    "prompt_tokens": 1579,
+    "total_tokens": 2260
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-042",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00262325,
+   "usage": {
+    "completion_tokens": 350,
+    "prompt_tokens": 1505,
+    "total_tokens": 1855
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-043",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0020121,
+   "usage": {
+    "completion_tokens": 652,
+    "prompt_tokens": 1149,
+    "total_tokens": 1801
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-044",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0020499,
+   "usage": {
+    "completion_tokens": 718,
+    "prompt_tokens": 1081,
+    "total_tokens": 1799
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-045",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0013815,
+   "usage": {
+    "completion_tokens": 351,
+    "prompt_tokens": 950,
+    "total_tokens": 1301
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-046",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0023808,
+   "usage": {
+    "completion_tokens": 788,
+    "prompt_tokens": 1332,
+    "total_tokens": 2120
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-047",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0042615,
+   "usage": {
+    "completion_tokens": 819,
+    "prompt_tokens": 3370,
+    "total_tokens": 4189
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-048",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.01526499,
+   "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 7938,
+    "total_tokens": 7965
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-049",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.017248,
+   "usage": {
+    "completion_tokens": 171,
+    "prompt_tokens": 10438,
+    "total_tokens": 10609
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 0.99
+   }
+  },
+  {
+   "benchmark": "hcmut_v1",
+   "task_id": "HCMUT-050",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.009141,
+   "usage": {
+    "completion_tokens": 493,
+    "prompt_tokens": 9335,
+    "total_tokens": 9828
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-001",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0020619,
+   "usage": {
+    "completion_tokens": 534,
+    "prompt_tokens": 1401,
+    "total_tokens": 1935
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-002",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0036243,
+   "usage": {
+    "completion_tokens": 1140,
+    "prompt_tokens": 2127,
+    "total_tokens": 3267
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-003",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0024546,
+   "usage": {
+    "completion_tokens": 953,
+    "prompt_tokens": 1139,
+    "total_tokens": 2092
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-004",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00210592,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1287,
+    "total_tokens": 1312
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-005",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0036909,
+   "usage": {
+    "completion_tokens": 1548,
+    "prompt_tokens": 1521,
+    "total_tokens": 3069
+   },
+   "opinion": {
+    "verdict": "minor_issue",
+    "issues": [
+     {
+      "type": "missing_condition",
+      "detail": "Đáp án bỏ sót cụm từ 'hợp đồng lao động, hợp đồng làm việc hoặc chấm dứt làm việc' khi nêu điều kiện thời điểm chấm dứt.",
+      "quote": "trước khi chấm dứt hợp đồng lao động, hợp đồng làm việc hoặc chấm dứt làm việc"
+     }
+    ],
+    "confidence": 0.9
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-006",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0023502,
+   "usage": {
+    "completion_tokens": 476,
+    "prompt_tokens": 1818,
+    "total_tokens": 2294
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-007",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.002211,
+   "usage": {
+    "completion_tokens": 601,
+    "prompt_tokens": 1455,
+    "total_tokens": 2056
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-008",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0019098,
+   "usage": {
+    "completion_tokens": 393,
+    "prompt_tokens": 1467,
+    "total_tokens": 1860
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-009",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0015717,
+   "usage": {
+    "completion_tokens": 260,
+    "prompt_tokens": 1313,
+    "total_tokens": 1573
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-010",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0019011,
+   "usage": {
+    "completion_tokens": 416,
+    "prompt_tokens": 1419,
+    "total_tokens": 1835
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-011",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0015744,
+   "usage": {
+    "completion_tokens": 239,
+    "prompt_tokens": 1351,
+    "total_tokens": 1590
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-012",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00131481,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1407,
+    "total_tokens": 1432
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-013",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0013428,
+   "usage": {
+    "completion_tokens": 393,
+    "prompt_tokens": 837,
+    "total_tokens": 1230
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-014",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00186921,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1935,
+    "total_tokens": 1960
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-015",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00111321,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1215,
+    "total_tokens": 1240
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-016",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0059344,
+   "usage": {
+    "completion_tokens": 515,
+    "prompt_tokens": 2679,
+    "total_tokens": 3194
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.98
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-017",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0022842,
+   "usage": {
+    "completion_tokens": 534,
+    "prompt_tokens": 1648,
+    "total_tokens": 2182
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-018",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00143661,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1523,
+    "total_tokens": 1548
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-019",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0022956,
+   "usage": {
+    "completion_tokens": 655,
+    "prompt_tokens": 1459,
+    "total_tokens": 2114
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-020",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0026454,
+   "usage": {
+    "completion_tokens": 770,
+    "prompt_tokens": 1656,
+    "total_tokens": 2426
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-021",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00304755,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 1780,
+    "total_tokens": 1805
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-022",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0045741,
+   "usage": {
+    "completion_tokens": 1664,
+    "prompt_tokens": 2309,
+    "total_tokens": 3973
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-023",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0041262,
+   "usage": {
+    "completion_tokens": 949,
+    "prompt_tokens": 3003,
+    "total_tokens": 3952
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-024",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.011775456,
+   "usage": {
+    "completion_tokens": 538,
+    "prompt_tokens": 7240,
+    "total_tokens": 7778
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-025",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.01935626,
+   "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 10070,
+    "total_tokens": 10102
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-026",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0017715,
+   "usage": {
+    "completion_tokens": 521,
+    "prompt_tokens": 1100,
+    "total_tokens": 1621
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-027",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0030276,
+   "usage": {
+    "completion_tokens": 1152,
+    "prompt_tokens": 1444,
+    "total_tokens": 2596
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-028",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00073521,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 855,
+    "total_tokens": 880
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-029",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00145079,
+   "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 944,
+    "total_tokens": 969
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-030",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00292656,
+   "usage": {
+    "completion_tokens": 302,
+    "prompt_tokens": 1272,
+    "total_tokens": 1574
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-031",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0026769,
+   "usage": {
+    "completion_tokens": 701,
+    "prompt_tokens": 1806,
+    "total_tokens": 2507
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-032",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.002415,
+   "usage": {
+    "completion_tokens": 983,
+    "prompt_tokens": 1045,
+    "total_tokens": 2028
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-033",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00318925,
+   "usage": {
+    "completion_tokens": 530,
+    "prompt_tokens": 2021,
+    "total_tokens": 2551
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-034",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0029277,
+   "usage": {
+    "completion_tokens": 726,
+    "prompt_tokens": 2043,
+    "total_tokens": 2769
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-035",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0028056,
+   "usage": {
+    "completion_tokens": 656,
+    "prompt_tokens": 2024,
+    "total_tokens": 2680
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-036",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0032322,
+   "usage": {
+    "completion_tokens": 1373,
+    "prompt_tokens": 1303,
+    "total_tokens": 2676
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-037",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0041976,
+   "usage": {
+    "completion_tokens": 1011,
+    "prompt_tokens": 2979,
+    "total_tokens": 3990
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-038",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0013047,
+   "usage": {
+    "completion_tokens": 211,
+    "prompt_tokens": 1098,
+    "total_tokens": 1309
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-039",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0022758,
+   "usage": {
+    "completion_tokens": 559,
+    "prompt_tokens": 1597,
+    "total_tokens": 2156
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-040",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0074464,
+   "usage": {
+    "completion_tokens": 732,
+    "prompt_tokens": 3190,
+    "total_tokens": 3922
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.99
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-041",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0023961,
+   "usage": {
+    "completion_tokens": 974,
+    "prompt_tokens": 1039,
+    "total_tokens": 2013
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-042",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0021852,
+   "usage": {
+    "completion_tokens": 516,
+    "prompt_tokens": 1568,
+    "total_tokens": 2084
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-043",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00386432,
+   "usage": {
+    "completion_tokens": 914,
+    "prompt_tokens": 1056,
+    "total_tokens": 1970
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 0.95
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-044",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0021324,
+   "usage": {
+    "completion_tokens": 866,
+    "prompt_tokens": 926,
+    "total_tokens": 1792
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-045",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.00257712,
+   "usage": {
+    "completion_tokens": 339,
+    "prompt_tokens": 974,
+    "total_tokens": 1313
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-046",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0052284,
+   "usage": {
+    "completion_tokens": 1769,
+    "prompt_tokens": 2861,
+    "total_tokens": 4630
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-047",
+   "kind": "answer",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0036612,
+   "usage": {
+    "completion_tokens": 1008,
+    "prompt_tokens": 2388,
+    "total_tokens": 3396
+   },
+   "opinion": {
+    "verdict": "correct",
+    "issues": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-048",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0078789,
+   "usage": {
+    "completion_tokens": 401,
+    "prompt_tokens": 8086,
+    "total_tokens": 8487
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1.0
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-049",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.01384188,
+   "usage": {
+    "completion_tokens": 559,
+    "prompt_tokens": 7755,
+    "total_tokens": 8314
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1
+   }
+  },
+  {
+   "benchmark": "labour_vi_v1",
+   "task_id": "LVN-050",
+   "kind": "refuse",
+   "status": "ok",
+   "model_returned": "deepseek/deepseek-v4-pro",
+   "cost_usd": 0.0095175,
+   "usage": {
+    "completion_tokens": 558,
+    "prompt_tokens": 9645,
+    "total_tokens": 10203
+   },
+   "opinion": {
+    "verdict": "unanswerable_confirmed",
+    "answering_records": [],
+    "confidence": 1.0
+   }
+  }
+ ]
+}

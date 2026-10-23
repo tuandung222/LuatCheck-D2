@@ -34,8 +34,11 @@ import numpy as np
 import requests
 import yaml
 
+from evaluation import judge_rules, provenance
+from evaluation import metrics as bm_metrics
+from evaluation import stats
 from evaluation.judge_gateway import local_environment, sha, validate
-from evaluation.run_benchmark import RUN_SCHEMA, latest_by_key, read_rows, record_id, sha256_file
+from evaluation.run_benchmark import RUN_SCHEMA, latest_by_key, read_rows, record_id, sha256_file, trials_path
 
 DEFAULT_JUDGE_CONFIG = Path("config/benchmark/judge_gateway.json")
 JUDGE_PROMPT = Path("evaluation/judge_prompt.txt")
@@ -59,8 +62,10 @@ reference_issue and mark the judgment unjudgeable; do not silently rewrite the g
 
 Criteria: correctness 0-2, completeness 0-2, behaviour appropriateness (answer / refuse justified by the supplied
 scope and expected behaviour), and atomic factual claims with exact answer spans labelled supported, contradicted or
-not_established by the supplied sources. A task succeeds only if the behaviour is appropriate, correctness = 2,
-completeness = 2 and every factual claim is supported. An unjudgeable output is unknown, not successful. An
+not_established by the supplied sources. A refusal, abstention or statement that the information is absent from the
+sources ("không có thông tin trong các văn bản đã tra cứu") is NOT a factual claim: do not list it. A task succeeds only
+if the behaviour is appropriate, correctness = 2, completeness = 2 and every factual claim is supported (for a refusal or
+clarification, no claim is contradicted). An unjudgeable output is unknown, not successful. An
 expected-answer task that ends in an execution error is unsuccessful (such trials are not sent to the judge).
 
 Faithfulness = supported claims / all factual claims over valid judgeable outputs. Report answer coverage next to it so
@@ -74,7 +79,7 @@ def load_run(run_dir: Path) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
     if manifest.get("schema") != RUN_SCHEMA:
         raise ValueError(f"{run_dir} is not a run_benchmark run directory.")
-    return manifest, read_rows(run_dir / "runs.jsonl")
+    return manifest, read_rows(trials_path(run_dir))
 
 
 def verify_snapshot(run_dir: Path, manifest: Dict[str, Any]) -> None:
@@ -91,6 +96,11 @@ def planned_keys(manifest: Dict[str, Any]) -> List[Tuple[str, str, int, str]]:
             for task_id in ids:
                 for variant in manifest["variants"]:
                     keys.append((bm, variant, seed, task_id))
+    for name, per_benchmark in (manifest.get("baseline_task_ids") or {}).items():   # diagnostic baselines: own seeds and tasks
+        for bm, ids in per_benchmark.items():
+            for seed in manifest["baselines"][name]["seeds"]:
+                for task_id in ids:
+                    keys.append((bm, name, seed, task_id))
     return keys
 
 
@@ -163,12 +173,13 @@ def build_packets(run_dir: Path) -> Dict[str, Any]:
         for p in packets:
             if p["review_id"] in old and old[p["review_id"]] != p:
                 raise ValueError(f"Packet {p['review_id']} differs from the one already built; packets are immutable.")
-    (target / "SEMANTIC_JUDGING.md").write_text(PROTOCOL, encoding="utf-8")
+    if not (target / "SEMANTIC_JUDGING.md").exists():   # never rewrite the protocol a run was judged under
+        (target / "SEMANTIC_JUDGING.md").write_text(PROTOCOL, encoding="utf-8")
     existing.write_text(json.dumps(packets, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (target / "private_mapping.json").write_text(json.dumps(mapping, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (target / "unjudged_execution_errors.json").write_text(json.dumps(skipped, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     info = {"run_id": manifest["run_id"], "packets": len(packets), "execution_errors_not_judged": len(skipped),
-            "runs_sha256_at_build": sha256_file(run_dir / "runs.jsonl"),
+            "runs_sha256_at_build": sha256_file(trials_path(run_dir)),
             "files_sha256": {n: sha256_file(target / n) for n in ("SEMANTIC_JUDGING.md", "judge_packets.json", "private_mapping.json")},
             "labels_generated": False,
             "instructions": "A reviewer gets only judge_packets.json and SEMANTIC_JUDGING.md; private_mapping.json stays private."}
@@ -254,10 +265,12 @@ def judge_one(packet: Dict[str, Any], cfg: Dict[str, Any], key: str, system_prom
 
 
 def run_judge(run_dir: Path, config_path: Path, *, execute: bool, limit: Optional[int] = None,
-              retry_invalid: bool = False) -> Dict[str, Any]:
+              retry_invalid: bool = False, concurrency: Optional[int] = None) -> Dict[str, Any]:
     if not execute:
         raise ValueError("No API calls without --execute.")
     cfg = json.loads(config_path.read_text(encoding="utf-8"))
+    if concurrency:   # operational only (parallel requests); does not change what is asked, so it is ignored by the config-equality check below
+        cfg["concurrency"] = int(concurrency)
     env = local_environment()
     key = env.get(cfg["credential_env"], "")
     if not key:
@@ -279,8 +292,10 @@ def run_judge(run_dir: Path, config_path: Path, *, execute: bool, limit: Optiona
     if not config_copy.exists():
         config_copy.write_text(config_path.read_text(encoding="utf-8"), encoding="utf-8")
         (directory / "judge_prompt.txt").write_text(prompt, encoding="utf-8")
-    elif json.loads(config_copy.read_text(encoding="utf-8")) != cfg:
-        raise ValueError("Judge configuration differs from the one used for earlier attempts in this run.")
+    else:
+        earlier = json.loads(config_copy.read_text(encoding="utf-8"))
+        if {k: v for k, v in earlier.items() if k != "concurrency"} != {k: v for k, v in cfg.items() if k != "concurrency"}:
+            raise ValueError("Judge configuration differs from the one used for earlier attempts in this run.")
     todo = []
     for packet in packets:
         attempts = state.for_review(packet["review_id"])
@@ -319,6 +334,11 @@ def run_judge(run_dir: Path, config_path: Path, *, execute: bool, limit: Optiona
         "updated_at": datetime.now(timezone.utc).isoformat(), "config": cfg, "summary": summary,
         "human_labels": False, "actual_invoiced_charge_usd": None,
         "judgments_sha256": sha256_file(directory / "judgments.jsonl"),
+        "stage_provenance": {"stage": "judge", "harness_version": provenance.HARNESS_VERSION, "updated_local": provenance.local_now(),
+                             "judge_prompt_sha256": hashlib.sha256((prompt + "\n\nFROZEN PROTOCOL:\n" + protocol).encode("utf-8")).hexdigest(),
+                             "judge_config_sha256": sha256_file(directory / "config.json"),
+                             "consumed_run": {"run_id": run_dir.name, "trials_sha256": sha256_file(trials_path(run_dir))},
+                             "invocation": provenance.invocation_record()},
         "attempts_sha256": {p.name: sha256_file(p) for p in sorted(state.attempts.glob("*.json"))},
         "note": "LLM-judge estimates, not human labels. Attempts are retained; only invalid/unparseable judgments were retried."},
         ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -328,11 +348,11 @@ def run_judge(run_dir: Path, config_path: Path, *, execute: bool, limit: Optiona
 # ----------------------------------------------------------------------------- analysis
 
 def mean(values: List[float]) -> Optional[float]:
-    return float(np.mean(values)) if values else None
+    return stats.mean(values)
 
 
 def percentile(values: List[float], q: float) -> Optional[float]:
-    return float(np.percentile(values, q)) if values else None
+    return stats.percentile(values, q)
 
 
 def attempt_cost(attempt: Dict[str, Any]) -> Tuple[Optional[float], Optional[float]]:
@@ -345,24 +365,83 @@ def attempt_cost(attempt: Dict[str, Any]) -> Tuple[Optional[float], Optional[flo
     return (body if isinstance(body, (int, float)) else None), header
 
 
-def bootstrap_ci(per_task: List[float], draws: int = 2000, seed: int = 20261023) -> Optional[List[float]]:
-    """Task-level percentile bootstrap of a mean (reproducible; resamples tasks, which are the independent units)."""
-    if len(per_task) < 2:
-        return None
-    rng = np.random.default_rng(seed)
-    data = np.asarray(per_task)
-    means = [data[rng.integers(0, len(data), len(data))].mean() for _ in range(draws)]
-    return [float(np.percentile(means, 2.5)), float(np.percentile(means, 97.5))]
+def bootstrap_ci(per_task: List[float], draws: int = stats.BOOTSTRAP_DRAWS, seed: int = stats.BOOTSTRAP_SEED) -> Optional[List[float]]:
+    """Task-level percentile bootstrap 95% CI of a mean (reproducible; resamples tasks, the independent units)."""
+    result = stats.bootstrap_mean_ci(per_task, draws=draws, seed=seed)
+    return result["ci95"] if result else None
 
 
 def strict_success(row: Dict[str, Any], judgment: Optional[Dict[str, Any]], valid: bool) -> Optional[bool]:
-    """Same rule as evaluation/analyze_judge.py: errors fail; invalid or unjudgeable outputs are unknown (None)."""
+    """Errors fail; invalid or unjudgeable outputs are unknown (None). Otherwise evaluation/judge_rules.py: for abstention outputs
+    (expected refuse, or the candidate refused / asked to clarify) absence-of-information claims are ignored and only a
+    contradicted claim fails; for all other outputs every claim must be supported."""
     if row["system_error"]:
         return False
     if not valid or not judgment["judgeable"]:
         return None
-    return bool(judgment["behaviour_appropriate"] and judgment["correctness"] == 2 and judgment["completeness"] == 2
-                and all(c["support"] == "supported" for c in judgment["claims"]))
+    return judge_rules.judgment_strict_success(judgment, judge_rules.is_abstention(row["expected_behavior"], row["terminal_status"]))
+
+
+def load_strata(run_dir: Path) -> Dict[str, Any]:
+    """config/benchmark/strata.yaml as snapshotted with the run (runs recorded before it existed use the live file)."""
+    for path in (run_dir / "source_snapshot" / "config" / "benchmark" / "strata.yaml", Path("config/benchmark/strata.yaml")):
+        if path.is_file():
+            return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return {}
+
+
+def stratum_of(strata: Dict[str, Any], benchmark: str, task: Dict[str, Any]) -> Optional[str]:
+    """closed_book_guessable | closed_book_partial | closed_book_unsolved (answerable tasks) | refusal_task. None without a strata config.
+    LLM-estimated stratification, not a label; unrelated to category (a `single` task may have several gold ids)."""
+    if not strata or benchmark not in (strata.get("strata") or {}):
+        return None
+    if task["expected_behavior"] == "refuse":
+        return "refusal_task"
+    for name, ids in strata["strata"][benchmark].items():
+        if task["task_id"] in ids:
+            return name
+    return "closed_book_unsolved"
+
+
+def stratum_group(strata: Dict[str, Any], stratum: Optional[str]) -> Optional[str]:
+    if stratum is None:
+        return None
+    if stratum == "refusal_task":
+        return "refusal_task"
+    for group, members in (strata.get("report_pairs") or {}).items():
+        if stratum in members:
+            return group
+    return stratum
+
+
+def answerable_block(group: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Strict success restricted to tasks that expect an answer (the oracle baseline's task set), for like-for-like reference rows."""
+    sub = [d for d in group if d["expected_behavior"] == "answer"]
+    per_task: Dict[str, List[float]] = defaultdict(list)
+    for d in sub:
+        per_task[d["task_id"]].append(1.0 if d.get("success") is True else 0.0)
+    return {"trials": len(sub), "tasks": len(per_task), "successes": sum(d.get("success") is True for d in sub),
+            "strict_success_lower": (sum(d.get("success") is True for d in sub) / len(sub)) if sub else None,
+            "ci95_task_bootstrap_lower_bound": bootstrap_ci([float(np.mean(v)) for v in per_task.values()]),
+            "answer_rate": (sum(d["row"]["terminal_status"] == "answered" for d in sub if d["recorded"]) / sum(d["recorded"] for d in sub)) if any(d["recorded"] for d in sub) else None}
+
+
+def surfaced_block(group: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """Error decomposition for system variants: answerable trials split by whether the agent surfaced ALL gold ids in its trace.
+    success | all gold surfaced ~ reading; the rest is retrieval/search failure. None for baselines (no search)."""
+    if group[0]["arm"] != "system":
+        return None
+    out = {"all_gold_surfaced": {"trials": 0, "successes": 0}, "some_gold_missed": {"trials": 0, "successes": 0}}
+    for d in group:
+        if not d["recorded"] or not d["row"]["gold_article_ids"]:
+            continue
+        full = bm_metrics.trial_retrieval_metrics(d["row"]["ledger"], d["row"]["gold_article_ids"])["trace_recall"] == 1.0
+        bucket = out["all_gold_surfaced" if full else "some_gold_missed"]
+        bucket["trials"] += 1
+        bucket["successes"] += d.get("success") is True
+    for bucket in out.values():
+        bucket["strict_success_lower"] = bucket["successes"] / bucket["trials"] if bucket["trials"] else None
+    return out
 
 
 def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
@@ -393,13 +472,17 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
     for entry in manifest["benchmarks"]:
         tasks_by_bm[entry["name"]] = snapshot_benchmark(run_dir, manifest, entry)[0]
 
+    strata = load_strata(run_dir)
     details = []
     for key in planned_keys(manifest):
         bm, variant, seed, task_id = key
         task = tasks_by_bm[bm][task_id]
         row = latest.get(key)
+        stratum = stratum_of(strata, bm, task)
         base = {"benchmark": bm, "variant": variant, "seed": seed, "task_id": task_id, "category": task.get("category"),
-                "expected_behavior": task["expected_behavior"]}
+                "expected_behavior": task["expected_behavior"], "gold_ids": len(task.get("ground_truth_article_ids", [])),
+                "stratum": stratum, "stratum_group": stratum_group(strata, stratum),
+                "arm": "baseline" if variant in (manifest.get("baselines") or {}) else "system"}
         if row is None:
             details.append({**base, "recorded": False, "outcome": None, "state": "missing_trial"})
             continue
@@ -419,7 +502,7 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
         "run_profile": manifest["run_profile"]["name"], "latency_reportable": manifest["latency_reportable"],
         "report_eligible": False,
         "judge_model": None, "human_labels_received": False, "human_judge_agreement": None,
-        "runs_sha256": sha256_file(run_dir / "runs.jsonl"), "peak_memory_mb": manifest.get("peak_memory_mb"),
+        "runs_sha256": sha256_file(trials_path(run_dir)), "peak_memory_mb": manifest.get("peak_memory_mb"),
         "cells": {}, "claims_note": "Micro-average over factual claims in valid judgeable outputs, refusals included.",
     }
     judge_cfg_path = judge_dir / "config.json"
@@ -441,27 +524,50 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
         known = [d for d in recorded if d["success"] is not None]
         successes = sum(d["success"] is True for d in recorded)
         unknown = len(group) - len(known)
-        claims = [c for d in judgeable for c in d["judgment"]["claims"]]
+        claims = [c for d in judgeable for c in judge_rules.counted_claims(
+            d["judgment"]["claims"], judge_rules.is_abstention(d["expected_behavior"], d["row"]["terminal_status"]))]
+        ignored_absence = sum(len(d["judgment"]["claims"]) for d in judgeable) - len(claims)
         supported = sum(c["support"] == "supported" for c in claims)
         appropriate_known = [d for d in recorded if d["row"]["system_error"] or d["judgeable"]]
         appropriate = sum(1 for d in appropriate_known if not d["row"]["system_error"] and d["judgment"]["behaviour_appropriate"])
         non_error = [r for r in rows_ if not r["system_error"]]
-        wall = [r["wall_ms"] / 1000 for r in non_error]
-        calls = [c["wall_ms"] / 1000 for r in rows_ for c in r["calls"] if c.get("wall_ms") is not None]
+        lat = bm_metrics.latency_metrics(rows_)
+        reportable = bool(manifest["latency_reportable"])
         tok_rows = [r for r in rows_ if r["token_usage_complete"]]
         per_seed = {}
-        for seed in manifest["seeds"]:
+        for seed in sorted({d["seed"] for d in group}):
             sub = [d for d in group if d["seed"] == seed]
             if sub:
                 per_seed[str(seed)] = {"trials": len(sub), "strict_success_lower": sum(d.get("success") is True for d in sub) / len(sub)}
         by_task = defaultdict(list)
         for d in group:
             by_task[d["task_id"]].append(1.0 if d.get("success") is True else 0.0)
+        seed_rates = [v["strict_success_lower"] for v in per_seed.values()]
+        consistency = {"tasks": len(by_task), "all_seeds_success": sum(all(x == 1.0 for x in v) for v in by_task.values()),
+                       "all_seeds_fail": sum(all(x == 0.0 for x in v) for v in by_task.values()),
+                       "mixed": sum(0.0 < sum(v) / len(v) < 1.0 for v in by_task.values())}
         by_category = {}
         for cat in sorted({d["category"] for d in group}):
             sub = [d for d in group if d["category"] == cat]
-            by_category[cat] = {"trials": len(sub), "strict_success_lower": sum(d.get("success") is True for d in sub) / len(sub)}
+            by_category[cat] = {"trials": len(sub), "strict_success_lower": sum(d.get("success") is True for d in sub) / len(sub),
+                                "gold_ids_per_task": dict(sorted(Counter(str(d["gold_ids"]) for d in sub if d["seed"] == sub[0]["seed"]).items())),
+                                "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"}
+        by_stratum, by_group = {}, {}
+        for name in sorted({d["stratum"] for d in group if d["stratum"]}):
+            sub = [d for d in group if d["stratum"] == name]
+            by_stratum[name] = {"trials": len(sub), "tasks": len({d["task_id"] for d in sub}),
+                                "strict_success_lower": sum(d.get("success") is True for d in sub) / len(sub)}
+        for name in sorted({d["stratum_group"] for d in group if d["stratum_group"]}):
+            sub = [d for d in group if d["stratum_group"] == name]
+            per_task = defaultdict(list)
+            for d in sub:
+                per_task[d["task_id"]].append(1.0 if d.get("success") is True else 0.0)
+            by_group[name] = {"trials": len(sub), "tasks": len(per_task), "successes": sum(d.get("success") is True for d in sub),
+                              "strict_success_lower": sum(d.get("success") is True for d in sub) / len(sub),
+                              "unknown": sum(d.get("success") is None for d in sub),
+                              "ci95_task_bootstrap_lower_bound": bootstrap_ci([float(np.mean(v)) for v in per_task.values()])}
         expected_refuse = [r for r in rows_ if r["expected_behavior"] == "refuse"]
+        cit = bm_metrics.aggregate_citation(rows_)
         cell_review_ids = [d["review_id"] for d in recorded if d.get("review_id")]
         cost_body, cost_header, missing_cost, usable = 0.0, 0.0, 0, 0
         tokens_in = tokens_out = 0
@@ -477,7 +583,8 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
                 tokens_out += u.get("completion_tokens") or 0
         summary["cells"][f"{bm}/{variant}"] = {
             "benchmark": bm, "variant": variant, "trials_planned": len(group), "trials_recorded": len(recorded),
-            "trials_missing": len(group) - len(recorded), "seeds": manifest["seeds"],
+            "trials_missing": len(group) - len(recorded), "seeds": sorted({d["seed"] for d in group}),
+            "arm": group[0]["arm"], "baseline_kind": (manifest.get("baselines") or {}).get(variant, {}).get("kind"),
             "tasks": len({d["task_id"] for d in group}),
             "counts": {"answered": sum(r["terminal_status"] == "answered" for r in rows_),
                        "refused": sum(r["terminal_status"] == "refused" for r in rows_),
@@ -493,35 +600,58 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
                                "rate_upper_bound": (successes + unknown) / len(group) if group else None,
                                "rate_known_only": successes / len(known) if known else None, "known": len(known),
                                "ci95_task_bootstrap_lower_bound": bootstrap_ci([float(np.mean(v)) for v in by_task.values()]),
+                               "seed_mean": stats.mean(seed_rates), "seed_sd": stats.sd(seed_rates),
+                               "seed_min": min(seed_rates) if seed_rates else None, "seed_max": max(seed_rates) if seed_rates else None,
+                               "task_consistency_across_seeds": consistency,
                                "note": "Errors count as failures; unknown (judge invalid/unjudgeable/missing) counts as failure in the lower bound."},
             "behaviour_appropriate": {"count": appropriate, "known": len(appropriate_known),
                                       "rate": appropriate / len(appropriate_known) if appropriate_known else None},
             "claim_faithfulness": {"claims": len(claims), "supported": supported,
+                                   "rate_macro_over_trials": mean([
+                                       sum(c["support"] == "supported" for c in cc) / len(cc) for d in judgeable
+                                       for cc in [judge_rules.counted_claims(d["judgment"]["claims"], judge_rules.is_abstention(
+                                           d["expected_behavior"], d["row"]["terminal_status"]))] if cc]),
+                                   "ignored_absence_claims_in_abstention_outputs": ignored_absence,
+                                   "rule": "claims labelled not_established are not counted for abstention outputs (evaluation/judge_rules.py)",
                                    "contradicted": sum(c["support"] == "contradicted" for c in claims),
                                    "not_established": sum(c["support"] == "not_established" for c in claims),
                                    "rate": supported / len(claims) if claims else None},
-            "retrieval": {"answerable_trials": len(answerable),
-                          "Recall@1": mean([r["retrieval"]["Recall@1"] for r in answerable]),
-                          "Recall@3": mean([r["retrieval"]["Recall@3"] for r in answerable]),
-                          "Recall@5": mean([r["retrieval"]["Recall@5"] for r in answerable]),
-                          "Hit@5": mean([r["retrieval"]["Hit@5"] for r in answerable]),
-                          "MRR": mean([r["retrieval"]["MRR"] for r in answerable]),
-                          "note": "Trajectory retrieval: IDs surfaced by the agent's searches/reads; execution errors included as recorded."},
-            "citation_id": {"answerable_trials": len(answerable),
-                            "precision": mean([r["citation"]["citation_precision"] for r in answerable]),
-                            "recall": mean([r["citation"]["citation_recall"] for r in answerable]),
-                            "note": "Set match of cited IDs to gold IDs (evaluation/metrics.py); zero when nothing is cited. Not answer correctness."},
+            "retrieval": ({**bm_metrics.aggregate_retrieval(rows_),
+                          "note": "Gold-id retrieval over the agent's own search+read trace (distinct ids, first-appearance order; k counts documents across the whole "
+                                  "trajectory). Computed after the trial from the recorded ledger; execution errors stay in as failures to retrieve. Not answer correctness."}
+                          if group[0]["arm"] == "system" else
+                          {k: None for k in ("Recall@1", "Recall@3", "Recall@5", "Hit@5", "MRR", "nDCG@5", "trace_recall", "read_recall", "share_full_recall_at_5")}
+                          | {"answerable_trials": len([r for r in rows_ if r["gold_article_ids"]]),
+                             "note": "Not applicable to a baseline: it has no search; the oracle is GIVEN the gold records and closed_book gets none."}),
+            "citation_id": {**cit, "precision": cit["macro_precision"], "recall": cit["macro_recall"], "f1": cit["macro_f1"],
+                            "note": "Cited-id set vs gold ids (source-ID match, not answer correctness). macro_*: mean over answerable trials, nothing cited = 0; "
+                                    "precision_when_cited excludes trials that cited nothing; micro_* pools ids."},
+            "behaviour_confusion": bm_metrics.behaviour_confusion(rows_),
+            "errors": bm_metrics.error_profile(rows_),
             "refusal_behaviour": {"expected_refuse_trials": len(expected_refuse),
                                   "refused": sum(r["terminal_status"] == "refused" for r in expected_refuse),
                                   "answered_instead": sum(r["terminal_status"] == "answered" for r in expected_refuse)},
-            "latency": {"reportable": bool(manifest["latency_reportable"]),
-                        "trial_p50_s": percentile(wall, 50) if manifest["latency_reportable"] else None,
-                        "trial_p95_s": percentile(wall, 95) if manifest["latency_reportable"] else None,
-                        "model_call_p50_s": percentile(calls, 50) if manifest["latency_reportable"] else None,
-                        "model_call_p95_s": percentile(calls, 95) if manifest["latency_reportable"] else None,
-                        "trials_measured": len(wall), "model_calls_measured": len(calls),
-                        "non_model_ms_mean": mean([r["non_model_wall_ms"] for r in non_error]) if manifest["latency_reportable"] else None,
-                        "note": ("Sequential single-request Mac latency; execution-error trials excluded." if manifest["latency_reportable"]
+            "latency": {"reportable": reportable,
+                        "trial_p50_s": lat["trial_ok_s"]["p50"] if reportable else None,
+                        "trial_p95_s": lat["trial_ok_s"]["p95"] if reportable else None,
+                        "trial_all_p50_s": lat["trial_all_s"]["p50"] if reportable else None,
+                        "trial_all_p95_s": lat["trial_all_s"]["p95"] if reportable else None,
+                        "model_call_p50_s": lat["per_call_s"]["p50"] if reportable else None,
+                        "model_call_p95_s": lat["per_call_s"]["p95"] if reportable else None,
+                        "non_model_p50_s": lat["non_model_s"]["p50"] if reportable else None,
+                        "non_model_p95_s": lat["non_model_s"]["p95"] if reportable else None,
+                        "rerank_call_p50_s": (lat["rerank_call_s"] or {}).get("p50") if reportable else None,
+                        "rerank_call_p95_s": (lat["rerank_call_s"] or {}).get("p95") if reportable else None,
+                        "decode_tokens_per_s_p50": (lat["decode_tokens_per_s"] or {}).get("p50") if reportable else None,
+                        "prefill_tokens_per_s_p50": (lat["prefill_tokens_per_s"] or {}).get("p50") if reportable else None,
+                        "end_to_end_output_tokens_per_s_p50": (lat["end_to_end_output_tokens_per_s"] or {}).get("p50") if reportable else None,
+                        "cached_prompt_token_share": lat["cached_prompt_token_share"] if reportable else None,
+                        "trials_measured": lat["trial_ok_s"]["n"], "trials_measured_incl_errors": lat["trial_all_s"]["n"],
+                        "model_calls_measured": lat["model_calls"],
+                        "non_model_ms_mean": mean([r["non_model_wall_ms"] for r in non_error]) if reportable else None,
+                        "note": ("Sequential single-request wall time on the recorded machine, warm-up excluded. trial_p50/p95 = non-error trials; "
+                                 "trial_all_* include execution-error trials (timeouts are slow trials). Linear-interpolated percentiles; "
+                                 "p95 of n<100 is close to the maximum." if reportable
                                  else "Recorded under concurrency; NOT reportable.")},
             "tokens": {"trials_with_complete_usage": len(tok_rows), "trials_incomplete": len(rows_) - len(tok_rows),
                        "input_per_trial": mean([r["input_tokens"] for r in tok_rows]),
@@ -537,7 +667,12 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
             "judge_cost": {"attempts": usable, "gateway_reported_usd_body": cost_body, "gateway_reported_usd_header": cost_header,
                            "attempts_without_reported_cost": missing_cost, "prompt_tokens": tokens_in, "completion_tokens": tokens_out,
                            "note": "Gateway-reported cost over all retained attempts (not an invoice); missing cost is unknown, not zero."},
+            "answerable_only": answerable_block(group),
+            "answerable_by_gold_surfaced": surfaced_block(group),
             "per_seed": per_seed, "by_category": by_category,
+            "by_stratum": by_stratum, "by_stratum_group": by_group,
+            "stratum_note": ("Closed-book strata are LLM estimates (config/benchmark/strata.yaml, label " + str(strata.get("label")) + "); not human labels."
+                             if strata else "No strata config."),
         }
     # run-level judge cost
     all_attempts = [a for atts in attempts_by_review.values() for a in atts]
@@ -547,14 +682,39 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
         "gateway_reported_usd_header": sum((attempt_cost(a)[1] or 0.0) for a in all_attempts),
         "attempts_without_reported_cost": sum(1 for a in all_attempts if attempt_cost(a) == (None, None)),
         "actual_invoiced_charge_usd": None,
+        "invalid_attempt_share": (sum(a["status"] != "valid" for a in all_attempts) / len(all_attempts)) if all_attempts else None,
+        "invalid_reasons": dict(Counter((a.get("error") or "")[:80] for a in all_attempts if a["status"] != "valid")),
+        "attempt_wall_s": stats.percentiles([a["wall_seconds"] for a in all_attempts if a.get("wall_seconds") is not None]),
+        "usd_per_valid_packet": ((sum((attempt_cost(a)[0] or 0.0) for a in all_attempts) / sum(a["status"] == "valid" for a in all_attempts))
+                                 if any(a["status"] == "valid" for a in all_attempts) else None),
         "note": "Gateway-reported usage cost, retained failed attempts included; not an independently verified invoice."}
     judged_all = sum(1 for d in details if d["recorded"] and (d["state"] == "judged" or d["state"] == "execution_error"))
-    summary["coverage"] = {"planned": len(details), "recorded": sum(d["recorded"] for d in details), "judged_or_error": judged_all}
+    exhausted = [d for d in details if d["recorded"] and d["state"] == "judge_invalid"]
+    never_attempted = [d for d in details if d["recorded"] and d["state"] == "not_judged"]
+    summary["coverage"] = {"planned": len(details), "recorded": sum(d["recorded"] for d in details), "judged_or_error": judged_all,
+                           "judge_attempted_but_invalid": len(exhausted), "judge_never_attempted": len(never_attempted)}
+    # Eligible = complete frozen main collection in which every trial was either judged, an execution error, or judge-attempted
+    # with all attempts invalid. The last group is "unknown": counted as failures in the lower bound, shown (dagger) in the tables.
+    drifted = manifest.get("sources_changed_during_session") or []
     summary["report_eligible"] = bool(manifest["phase"] == "main" and manifest["status"] == "collected"
-                                      and judged_all == len(details))
-    summary["report_eligible_note"] = ("Complete main run with every trial judged or an execution error. Still LLM-judge estimates; "
-                                       "human audit labels pending." if summary["report_eligible"] else
-                                       "Not eligible: smoke/unfrozen run, incomplete collection, or trials missing judgments.")
+                                      and len(details) == sum(d["recorded"] for d in details) and not never_attempted and not drifted)
+    summary["report_eligible_note"] = (
+        "Complete main run; every trial judged, an execution error, or judge-attempted (unknowns listed in coverage and counted as failures). "
+        "Still LLM-judge estimates; human audit labels pending." if summary["report_eligible"] else
+        "Not eligible: smoke/unfrozen run, incomplete collection, trials the judge never attempted, or collection sources changed during a session "
+        f"({drifted[:3]}).")
+    summary["unknown_trials"] = [{k: d[k] for k in ("benchmark", "variant", "seed", "task_id", "review_id")} for d in exhausted]
+    summary["paired_differences"] = paired_differences(details, list(manifest["variants"]), load_comparisons(run_dir, list(manifest["variants"])),
+                                                       bool(manifest["latency_reportable"]))
+    summary["analysis_version"] = 3
+    summary["stage_provenance"] = {"stage": "analyze", "harness_version": provenance.HARNESS_VERSION, "run_harness_version": manifest.get("harness_version"),
+                                   "generated_local": provenance.local_now(), "consumed_run": {"run_id": manifest["run_id"], "trials_sha256": summary["runs_sha256"]},
+                                   "judge_manifest_sha256": sha256_file(judge_dir / "judge_manifest.json") if (judge_dir / "judge_manifest.json").is_file() else None,
+                                   "invocation": provenance.invocation_record()}
+    summary["baselines"] = {name: {"kind": spec["kind"], "seeds": spec["seeds"], "tasks": spec["tasks"], "description": spec["description"]}
+                            for name, spec in (manifest.get("baselines") or {}).items()}
+    summary["metric_definitions"] = "docs/reviews/metrics_review_2026-10-23.md"
+    summary["bootstrap"] = {"draws": stats.BOOTSTRAP_DRAWS, "seed": stats.BOOTSTRAP_SEED, "unit": "task (seeds averaged)"}
 
     out = run_dir / "analysis"
     out.mkdir(exist_ok=True)
@@ -567,15 +727,103 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
     with (out / "trial_details.csv").open("w", newline="", encoding="utf-8") as stream:
         writer = csv.writer(stream)
         writer.writerow(["benchmark", "variant", "seed", "task_id", "category", "expected_behavior", "state", "terminal_status",
-                         "strict_success", "wall_s"])
+                         "error_kind", "stratum", "gold_ids", "strict_success", "wall_s", "recall_at_5", "citation_f1", "native_calls", "input_tokens", "output_tokens"])
         for d in details:
+            r_ = d.get("row")
             writer.writerow([d["benchmark"], d["variant"], d["seed"], d["task_id"], d["category"], d["expected_behavior"], d["state"],
-                             d["row"]["terminal_status"] if d.get("recorded") else "", d.get("success"),
-                             round(d["row"]["wall_ms"] / 1000, 3) if d.get("recorded") else ""])
+                             r_["terminal_status"] if r_ else "", (r_["error_kind"] or "") if r_ else "", d.get("stratum") or "", d["gold_ids"], d.get("success"),
+                             round(r_["wall_ms"] / 1000, 3) if r_ else "",
+                             _task_metric(d, "recall_at_5", False) if r_ else "", _task_metric(d, "citation_f1", False) if r_ else "",
+                             r_["native_calls"] if r_ else "", r_["input_tokens"] if r_ else "", r_["output_tokens"] if r_ else ""])
     write_audit(out / "human-audit", audit, packets)
     summary["human_audit_sample"] = {"count": len(audit), "review_ids": [a["review_id"] for a in audit]}
     (out / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return summary
+
+
+PAIRED_METRICS = ("strict_success_lower", "behaviour_strict_match", "execution_error", "recall_at_5", "citation_f1", "trial_wall_s")
+
+
+def _task_metric(d: Dict[str, Any], metric: str, latency_reportable: bool) -> Optional[float]:
+    """One trial's value of a paired metric, or None when the trial does not contribute to it."""
+    if metric == "strict_success_lower":   # lower bound over ALL planned trials: missing / unknown / error = failure
+        return 1.0 if d.get("success") is True else 0.0
+    if not d["recorded"]:
+        return None
+    row = d["row"]
+    if metric == "behaviour_strict_match":
+        return 1.0 if (row["expected_behavior"], row["terminal_status"]) in (("answer", "answered"), ("refuse", "refused")) else 0.0
+    if metric == "execution_error":
+        return 1.0 if row["system_error"] else 0.0
+    if metric == "recall_at_5":
+        return bm_metrics.trial_retrieval_metrics(row["ledger"], row["gold_article_ids"])["Recall@5"] if row["gold_article_ids"] else None
+    if metric == "citation_f1":
+        if not row["gold_article_ids"]:
+            return None
+        return bm_metrics.trial_citation_metrics(row["ledger"].get("final_output"), row["ledger"], row["gold_article_ids"])["f1"]
+    if metric == "trial_wall_s":
+        return row["wall_ms"] / 1000 if latency_reportable else None
+    raise KeyError(metric)
+
+
+def paired_differences(details: List[Dict[str, Any]], variant_names: List[str], comparisons: List[Dict[str, str]],
+                       latency_reportable: bool) -> Dict[str, Any]:
+    """Paired task-level bootstrap of treatment - baseline for each configured comparison, per benchmark and pooled.
+
+    Unit = task (seeds of one task averaged first, then tasks resampled), so the interval reflects task sampling plus
+    the seed noise that remains in the per-task mean. p-values are bootstrap approximations, uncorrected for the number
+    of comparisons x metrics."""
+    benchmarks = sorted({d["benchmark"] for d in details})
+    out: Dict[str, Any] = {"unit": "task (seeds averaged)", "draws": stats.BOOTSTRAP_DRAWS, "bootstrap_seed": stats.BOOTSTRAP_SEED,
+                           "multiple_comparisons": "none applied; treat p-values as descriptive", "comparisons": {}}
+    for comp in comparisons:
+        base, treat = comp["baseline"], comp["treatment"]
+        if base not in variant_names or treat not in variant_names:
+            continue
+        entry: Dict[str, Any] = {"baseline": base, "treatment": treat, "label": comp["label"], "by_benchmark": {}, "pooled": {}}
+        pooled: Dict[str, Dict[str, Dict[Any, float]]] = {m: {"a": {}, "b": {}} for m in PAIRED_METRICS}
+        for bm in benchmarks:
+            entry["by_benchmark"][bm] = {}
+            for metric in PAIRED_METRICS:
+                if metric == "trial_wall_s" and not latency_reportable:
+                    continue
+                sides = {}
+                for side, variant in (("a", base), ("b", treat)):
+                    per_task: Dict[str, List[float]] = defaultdict(list)
+                    for d in details:
+                        if d["benchmark"] == bm and d["variant"] == variant:
+                            value = _task_metric(d, metric, latency_reportable)
+                            if value is not None:
+                                per_task[d["task_id"]].append(value)
+                    sides[side] = {t: float(np.mean(v)) for t, v in per_task.items()}
+                    pooled[metric][side].update({(bm, t): v for t, v in sides[side].items()})
+                entry["by_benchmark"][bm][metric] = stats.paired_bootstrap(sides["a"], sides["b"])
+        for metric in PAIRED_METRICS:
+            if metric == "trial_wall_s" and not latency_reportable:
+                continue
+            entry["pooled"][metric] = stats.paired_bootstrap(pooled[metric]["a"], pooled[metric]["b"])
+        entry["pooled_strict_success_by_stratum_group"] = {}
+        for grp in sorted({d["stratum_group"] for d in details if d.get("stratum_group")}):
+            sides = {}
+            for side, variant in (("a", base), ("b", treat)):
+                per_task: Dict[Any, List[float]] = defaultdict(list)
+                for d in details:
+                    if d["variant"] == variant and d.get("stratum_group") == grp:
+                        per_task[(d["benchmark"], d["task_id"])].append(1.0 if d.get("success") is True else 0.0)
+                sides[side] = {t: float(np.mean(v)) for t, v in per_task.items()}
+            entry["pooled_strict_success_by_stratum_group"][grp] = stats.paired_bootstrap(sides["a"], sides["b"])
+        out["comparisons"][comp["label"]] = entry
+    return out
+
+
+def load_comparisons(run_dir: Path, variant_names: List[str]) -> List[Dict[str, str]]:
+    """Comparison pairs from the run's own snapshot of variants.yaml; runs recorded before `comparisons` existed use the live file."""
+    for path in (run_dir / "source_snapshot" / "config" / "benchmark" / "variants.yaml", Path("config/benchmark/variants.yaml")):
+        if path.is_file():
+            found = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("comparisons")
+            if found:
+                return found
+    return []
 
 
 def human_audit(details, packets, manifest, size: int) -> List[Dict[str, Any]]:
@@ -616,7 +864,8 @@ def write_audit(directory: Path, audit: List[Dict[str, Any]], packets) -> None:
         "# Human audit - labels blank\n\nRead packets.json with SEMANTIC_JUDGING.md (../../judge). Judge independently, "
         "without variant/seed or the LLM judgments. Fill labels.csv with your real identity and labels. The sample is "
         "stratified on private variant/category/judge-outcome strata, so agreement on it is a sample diagnostic, not "
-        "population certification. No human labels have been generated.\n", encoding="utf-8")
+        "population certification. Counting rule: a refusal, abstention or 'no information in the sources' sentence is NOT a factual claim - "
+        "leave it out of total_claims and unsupported_claims. No human labels have been generated.\n", encoding="utf-8")
     protocol = directory.parent.parent / "judge" / "SEMANTIC_JUDGING.md"
     if protocol.is_file():
         (directory / "SEMANTIC_JUDGING.md").write_text(protocol.read_text(encoding="utf-8"), encoding="utf-8")
@@ -636,6 +885,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             p.add_argument("--execute", action="store_true", help="explicit permission to call the paid gateway judge")
             p.add_argument("--limit", type=int, help="judge only the first N packets (smoke)")
             p.add_argument("--retry-invalid", action="store_true", help="add attempts for packets that exhausted max_attempts")
+            p.add_argument("--concurrency", type=int, help="parallel judge requests (default from the judge config)")
         if name in ("analyze", "all"):
             p.add_argument("--audit-size", type=int, default=30, help="human-audit items per benchmark (minimum; one per stratum)")
     args = parser.parse_args(argv)
@@ -644,7 +894,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(json.dumps(build_packets(run_dir), indent=2))
     if args.command in ("judge", "all"):
         print(json.dumps(run_judge(run_dir, Path(args.config), execute=args.execute, limit=args.limit,
-                                   retry_invalid=args.retry_invalid), indent=2))
+                                   retry_invalid=args.retry_invalid, concurrency=args.concurrency), indent=2))
     if args.command in ("analyze", "all"):
         summary = analyze(run_dir, audit_size=args.audit_size)
         print(json.dumps({"cells": {k: {"strict_success": v["strict_success"]["rate_lower_bound"],

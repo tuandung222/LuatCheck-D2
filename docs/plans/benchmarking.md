@@ -1,169 +1,111 @@
-# D2 benchmarking: runner, judge, tables
+# D2 benchmarking: matrix runner, judge, analysis, tables
 
-One command runs the two official benchmarks on real native inference and produces the report tables:
+Updated 2026-10-23 22:35 +07. Step-by-step operation: `docs/RUNBOOK_D2.md`. Metric definitions and the review of the D2 scenario: `docs/reviews/metrics_review_2026-10-23.md`.
+Benchmark quality caveats (saturated retrieval, closed-book guessable items): `docs/reviews/benchmark_quality_2026-10-23.md`.
+
+One command runs the whole matrix (benchmark x variant x seed) on real native inference, judges it and renders the tables:
 
 ```
-make benchmark-d2                        # RUN_PROFILE=mac-latency (default)
-make benchmark-d2 RUN_PROFILE=gpu-accuracy BENCH_EXTRA="--endpoint http://127.0.0.1:18081/v1 --workers 8"
-make benchmark-smoke                     # 3 tasks, 1 seed, off+l1, pipeline check only
+make benchmark-d2-gpu                    # server 82, profile gpu-accuracy (workers = server slots, latency not reportable)
+make benchmark-d2-mac                    # the Mac, profile mac-latency (sequential, reportable latency)
+make benchmark-smoke                     # 3 tasks, 1 seed, both benchmarks, off+l1: pipeline check, never report evidence
+make benchmark-d2-gpu RUN_ID=<existing>  # RESUME: the same RUN_ID is the same run directory (append only)
+scripts/run_d2_benchmarks.sh gpu|mac     # same, plus starts/stops the llama-servers it needs; for tmux/nohup on 82
 ```
 
-Nothing here starts or stops a model server. `AGENTS.md` applies: no mocks, no rule-based fallback, a backend failure is an
-execution-error row (never a refusal or a zero-cost success), failed runs are preserved, and no score, token count, label
-or cost is ever filled in.
+`AGENTS.md` applies: no mocks, no rule-based fallback, a backend failure is an execution-error row (never a refusal or a zero-cost success), failed runs are preserved, nothing is ever filled in.
+Nothing starts a model server except `scripts/run_d2_benchmarks.sh` (and only ones it started are stopped).
 
 ## Files
 
 | File | Role |
 |---|---|
-| `evaluation/benchmarks/<name>/benchmark.yaml` | `tasks` (relative to the dir), `corpus`, `profile`, `review_status` |
-| `evaluation/run_benchmark.py` | `freeze`, `run`, `status` |
-| `evaluation/judge_benchmark.py` | `packets`, `judge`, `analyze`, `all` (blinded packets, gateway judge, metrics, human-audit export) |
-| `evaluation/render_benchmark_tables.py` | LaTeX tables -> `report_d2/benchmark_results.tex` (`main_d2.tex` is never edited) |
-| `config/benchmark/model_prism_gguf2b.yaml` | controller model block, budgets, retrieval/verifier defaults |
-| `config/benchmark/variants.yaml` | `off`, `l1`, `l1_rerank` (selected through config only) |
-| `config/benchmark/profile_{mac_latency,gpu_accuracy}.yaml` | run profiles |
+| `evaluation/benchmarks/<name>/benchmark.yaml` | `tasks`, `corpus`, `profile`, `review_status` (frozen: `benchmark.lock.json`) |
+| `config/benchmark/d2_matrix.yaml` | the matrix (benchmarks, variants, seeds), model config, judge config, judge spend guard and extra judge rounds |
+| `config/benchmark/variants.yaml` | `off`, `l1`, `l1_rerank` (what is compared) and `comparisons` (paired pairs). The reranker RUNTIME is not here. |
+| `config/benchmark/profile_{gpu_accuracy,mac_latency}.yaml` | run profiles: workers (`auto` = server slots), `sequential`, `latency_reportable`, `require_idle`, `trial_timeout_seconds`, `warmup_trials`, and the `reranker:` runtime (mac: `llamacpp_http` at 127.0.0.1:8082; gpu: `cross_encoder`, CUDA, fp16, `${RERANKER_MODEL_DIR}`). Any `profile_*.yaml` is discovered; `--run-profile` also takes a YAML path. |
+| `config/benchmark/model_prism_gguf2b.yaml` | controller model block (Bonsai 2B GGUF, sampler, budgets) |
+| `config/benchmark/expected_server.yaml` | identity every run must have: GGUF sha256, PQ2_0, llama.cpp commit 73bfe6c, reranker revision + weights sha256 |
+| `config/benchmark/warmup.yaml` | un-scored warm-up questions (never benchmark tasks) |
+| `config/benchmark/strata.yaml` | closed-book strata (LLM estimates) for stratified reporting |
+| `config/benchmark/sanity_prompts.yaml` | prompts of `evaluation/benchmark_sanity.py`, filled from the benchmark's domain profile |
 | `config/benchmark/judge_gateway.json` | judge: `deepseek/deepseek-v4-flash`, thinking enabled, effort high, 24 000 max tokens, 3 attempts, 8 concurrent |
-| `tests/test_benchmark_runner.py` | real-component tests (needs the llama-server on 8081 for the inference tests) |
+| `evaluation/run_d2.py` | the pipeline: `all`, `preflight`, `collect`, `judge`, `tables`, `notes`, `status`, `compare`, `registry`, `stamp` |
+| `evaluation/provenance.py`, `registry.py`, `check_report_provenance.py` | harness version + main-run gate; run registry with freshness; report provenance check |
+| `evaluation/baselines.py` | diagnostic baselines `closed_book` / `oracle` (no tools; `variants.yaml: baselines`; own table, never pooled) |
+| `evaluation/run_benchmark.py` | collection engine: `freeze`, `preflight`, `run`, `status` |
+| `evaluation/bench_preflight.py` | preflight checks (real server canaries) |
+| `evaluation/judge_benchmark.py` | blinded packets, gateway judge, `analyze` (metrics, paired differences, strata, human-audit export) |
+| `evaluation/metrics.py`, `evaluation/stats.py` | per-trial metrics; bootstrap / Wilson / kappa |
+| `evaluation/render_benchmark_tables.py` | LaTeX + Markdown tables |
+| `evaluation/score_benchmark_audit.py` | judge-vs-human agreement and kappa from filled `labels.csv` (no labels, no numbers) |
+| `tests/test_benchmark_runner.py`, `tests/test_benchmark_metrics.py` | real-component tests (the first needs the llama-server on 8081) |
 
-Benchmarks: `hcmut_v1` (50 tasks, ready) and `labour_vi_v1` (50 tasks over 10 documents; `tasks.json`, `data/corpus/labour_vi_v1.json`
-and the `labour_vi_multi` profile are being built elsewhere). `run`/`freeze` refuse a benchmark until all three exist and pass the
-mechanical checks; they do not silently drop it. Task schema: `task_id, category, question, expected_behavior (answer|refuse),
-expected_answer, ground_truth_article_ids, reference_evidence[{article_id, exact_quote}]`. Corpus records are keyed by `doc_id` or `article_id`.
+## Run directory layout (`evaluation/runs/<run-id>/`)
+
+`manifest.json` (git commit + dirty, hardware, packages, server identity from `/props` + GGUF sha256, preflight report, fingerprint, profile, effective configs, source hashes, planned / recorded / missing trials, wall time, memory),
+`trials.jsonl` (one row per benchmark / variant / seed / task / attempt incl. error rows, full ledger; legacy runs call it `runs.jsonl` and are still read), `warmup.jsonl` (un-scored warm-up trials), `progress.json` (trials/min, ETA),
+`source_snapshot/` (byte copies of code, configs, benchmark files, corpus, domain profile), `state/`, `judge/` (packets, every attempt, judgments), `analysis/` (`summary.json`, `trial_details.csv`, `human-audit/`),
+`tables/` (`benchmark_results.tex`, `benchmark_diagnostics.tex`, `summary.md`), `RUN_NOTES.md` (facts copied from artifacts + independent recomputation of the headline counts + an operator section), `pipeline.log`.
 
 ## 1. Freeze (before any main collection)
 
-```
-make benchmark-freeze                    # or: .venv/bin/python evaluation/run_benchmark.py freeze --benchmark hcmut_v1
-```
+`make benchmark-freeze` (`run_benchmark.py freeze --benchmark all`). Mechanical checks: unique ids and questions, required fields, `expected_behavior` in {answer, refuse}, gold ids exist, evidence ids equal gold ids, every `exact_quote` verbatim in its record, the domain profile loads and its corpus equals the benchmark corpus.
+`benchmark.lock.json` stores sha256 of tasks, corpus, profile, `benchmark.yaml` and the verification files. `freeze` on an unchanged benchmark is a no-op; a changed one needs `--refreeze` (the old lock is archived). `run` refuses a main run when any hash differs. `--allow-unfrozen` is for `--limit` smoke runs only.
+The checks do not certify the gold answers; both benchmarks are AI-verified, not human-reviewed.
 
-Mechanical checks (the lock is refused if any fails): unique `task_id`s and questions, required fields, `expected_behavior` in
-{answer, refuse}, gold ids exist in the corpus, `reference_evidence` ids equal the gold ids, every `exact_quote` is a verbatim substring
-of its record, the domain profile loads and its `corpus_path` equals the benchmark corpus. `benchmark.lock.json` stores sha256 of
-`tasks.json`, the corpus, the profile YAML, `benchmark.yaml` and every verification file present (`verify_*.json`, `recheck_*.json`,
-`review*.json`, `provenance.json`, `ADJUDICATION.md`, `README.md`, `*_BRIEF.md`, `draft_*.json`). These checks do not certify the gold
-answers; `hcmut_v1` is AI-verified, not human-reviewed, and the report must say so.
+## 1b. Diagnostic baselines
 
-`freeze` on an unchanged benchmark is a no-op; on a changed one it refuses unless `--refreeze`, which archives the old lock as
-`benchmark.lock.superseded-<time>.json`. `run` refuses a main run when any hash differs from the lock, or when there is no lock.
-`--allow-unfrozen` exists for `--limit` smoke runs only and marks the run non-eligible.
+`d2_matrix.yaml: baselines` adds `closed_book` (all tasks) and `oracle` (answerable tasks, gold records given up front in the read-tool observation format) at seed 42, same controller / sampler / domain prompt / constrained decoding, answer-clarify-refuse only, verification off (190 extra trials). `--baselines closed_book,oracle|none` overrides. They are separate cells (`arm: baseline`), judged by the same judge, shown in `tab:benchmark-baselines` with system rows as answerable-only reference rows, and excluded from the system tables and paired comparisons. See `docs/reviews/metrics_review_2026-10-23.md` section 1.6.
 
-## 2. Run
+## 2. Preflight (every run, also `run_d2.py preflight`)
 
-```
-.venv/bin/python evaluation/run_benchmark.py run --benchmark all --variants off,l1,l1_rerank --seeds 42 123 2026 \
-    --run-profile mac-latency --model-config config/benchmark/model_prism_gguf2b.yaml --output evaluation/runs/<new-dir> --execute
-```
+Nothing is run or written when a check fails. Checks: git state, lock hashes, controller reachable / alias / `/health` / GGUF sha256 / PQ2_0 / llama.cpp commit / slots and context for the workers, a 4-request **seed canary** (do different seeds differ? is the same seed reproducible?),
+reranker (HTTP server health and props, or CUDA + weights sha256 against the pinned revision, then a **real first-stage + rerank search**), free disk, machine load (an error for profiles with `require_idle`). The report is stored in the manifest.
 
-* `--benchmark` is repeatable (`hcmut_v1`, a directory, or `all`). `--output` must be new; `--resume` continues the same directory.
-* `--limit N` (smoke): N tasks per benchmark, round-robin over categories (`single`, `multi`, `out_of_scope`), file order inside a category.
-* `--endpoint URL` overrides `model.endpoint` (loopback only, e.g. a forwarded port). `MODEL_ENDPOINT`/`MODEL_NAME`/`MODEL_PROVIDER`
-  environment overrides are refused so the model cannot change silently.
-* Variants: `off` (verification off), `l1` (`l1_on`), `l1_rerank` (`l1_on` + `retrieval.reranker` {enabled, cross_encoder,
-  `AITeamVN/Vietnamese_Reranker`, top_k_in 20, top_k_out 5, max_length 1024}). The runner builds every benchmark x variant config before the first
-  request and raises `ConfigError` if `src/` does not honour a key (pydantic would otherwise drop it silently). There is no runner-side reranking.
-* `mac-latency`: one worker, one request in flight, one agent per benchmark x variant. Per-trial and per-model-call latency (also the server's
-  `timings`: prompt/decode ms, cached prompt tokens), plus peak RSS of the runner and of the local `llama-server` (sampled with `ps` every 0.5 s;
-  Metal/unified-memory buffers that are not resident in the process are not captured). Latency is reportable.
-* `gpu-accuracy`: `--workers N` (default 8), one agent per worker. The runner refuses unless `/props` reports `total_slots >= N` and `-c` is at least
-  `context_tokens x N`. Latency is recorded but flagged `latency_reportable: false`; the tables print "n/r".
-* Budgets (`max_tool_calls 5`, `max_repairs 2`, `max_steps 8`, `wall_seconds 180`, `timeout_seconds 60`) come from the model config and are enforced by the agent loop.
-  Model output cap: `max_output_tokens 1024` (the app default; the 768 of `d2_gguf2b_diagnostic.yaml` produced "truncated by token limit" execution errors in a smoke run).
-* Errors: each failure is a row (`system_error: true`, `error_kind`, `error_message`) and counts as a failed trial. A run stops after 5 consecutive `backend_error`
-  rows (server down) with the rows kept. `--resume --retry-errors` appends a new `attempt` only for `backend_error` rows; earlier rows stay and
-  analysis uses the latest attempt but counts the superseded ones. `model_output_error`, `wall_timeout` and similar are never retried.
-* Resume refuses if variants, seeds, limit, profile, model config, endpoint, tasks/corpus or any snapshotted source file changed (the run's sources are
-  byte-snapshotted in `source_snapshot/`; edits to `src/` while a run is in progress make a resume impossible, so freeze the checkout first).
+## 3. Run
 
-Run directory: `manifest.json` (git commit + dirty counts, hardware, server `/props` + GGUF sha256 + llama-server command line when local, run profile, effective configs per
-benchmark/variant, source sha256s, planned/recorded/missing trials, peak memory, `runs_sha256`), `runs.jsonl` (one row per benchmark/variant/seed/task/attempt, the
-`evaluation/run_eval.py` row schema plus `benchmark`, `variant`, `category`, `attempt`, per-call `calls`, `model_call_wall_ms`, `non_model_wall_ms`, `peak_memory_mb`,
-full `ledger`), `source_snapshot/`, `state/` (per-worker SQLite/audit files; memory is disabled and answer reuse off).
+`run_d2.py all --profile <p> --run-dir <dir> --execute` (or the make targets). Behaviour:
+* Matrix from `d2_matrix.yaml`; `--limit/--benchmarks/--variants/--seeds` override it for smoke runs. Without `--execute` it only prints the plan and the judge estimate.
+* `mac-latency`: one worker, one request in flight, one agent per benchmark x variant, 2 un-scored warm-up trials per agent (from `warmup.yaml`), per-trial and per-call latency and peak RSS of runner and llama-server. `gpu-accuracy`: `workers: auto` = the server's slots (cap 8), one agent per worker; the runner refuses unless `/props total_slots >= workers` and `-c >= 8192 x workers`; latency is recorded but flagged not reportable.
+* Per-trial watchdog (`trial_timeout_seconds`, 300 s, above the agent's 180 s task budget and 60 s request timeout): a hung trial becomes a `runner_trial_timeout` error row and its agent is discarded.
+* Errors: every failure is a row (`system_error`, `error_kind`, `error_message`) counted as a failed trial and reported separately. Each error row gets `error_diagnosis` (failing component, `/health` right after, HTTP status). Only dependency-down rows count toward the "5 consecutive" stop and are retried by `--resume --retry-errors` (new `attempt`, old rows kept); a healthy server rejecting one request (e.g. oversized prompt) or a `wall_timeout` / `model_output_error` is a result, not retried.
+* Resume: same command. Refused on any change of variants / seeds / limit / profile content / worker count / model config / endpoint / tasks / corpus / collection sources, or of the controller identity (GGUF, build, chat template, sampler). A truncated last line is moved to `trials.jsonl.partial-*`. Sources are re-checked before every agent construction; a change stops the run and makes it non-eligible.
+* SIGTERM / SIGINT: in-flight trials finish, rows are kept, exit code 2.
+* The manifest `fingerprint` splits `must_match` (controller identity, sampler, code, configs, locks, seeds) from `may_differ` (hardware, parallelism, reranker runtime, packages). `run_d2.py compare A B` lists the differences.
 
-Check progress: `.venv/bin/python evaluation/run_benchmark.py status --run-dir <dir>`.
+## 4. Judge and analysis
 
-### Latency caveats (Mac)
+Strict success rule (`evaluation/judge_rules.py`): behaviour appropriate, correctness 2, completeness 2, and every claim supported; for abstention outputs (expected refuse, or the candidate refused / asked to clarify) "no information in the sources" statements are not claims, `not_established` claims are ignored and only a `contradicted` claim fails. The human audit counts the same way.
 
-* `llama-server` keeps prompt-cache slots, so repeated prompt prefixes make later trials faster than a cold start; all variants share this effect, but trial order matters
-  (variants alternate per task). The first trial of each agent includes warm-up (and, for `l1_rerank`, the first reranker call), which shows in p95.
-* The Mac must be otherwise idle and on power. Other agents running tests on the same machine perturb latency; the manifest cannot detect that.
-* `l1_rerank` adds reranker time to `non_model_wall_ms` and typically longer prompts.
+Packets are blinded (no variant, seed, benchmark, timing); the judge sees the question, scope, expected behaviour, reference, full gold and cited records, and the candidate. Execution errors are not sent to the judge (strict success = failure).
+Judge attempts are stored one file each and never overwritten; invalid / unparseable / unfinished judgments are retried (3 attempts, then `judge_extra_rounds` more rounds); packets still invalid are `unknown` (failure in the lower bound, listed, dagger in the tables).
+The judge stage is refused when `packets_to_judge x planning_usd_per_packet` exceeds `max_judge_usd`. Key from `evaluation.judge_gateway.local_environment()` only; without it the stage reports `judge_unavailable` (exit 6) and collection / tables still complete.
 
-## 3. Judge and analysis
+`analysis/summary.json` per benchmark x variant (details and definitions: `docs/reviews/metrics_review_2026-10-23.md`): strict success (lower / upper bound, task-level bootstrap CI, seed spread, pass^k-style consistency), judge behaviour, claim faithfulness (micro, macro),
+retrieval trace metrics (Recall@k, Hit@k, MRR, nDCG@5, trace/read recall, saturation share, rerank first-stage vs returned), citation-ID precision / recall / F1 (macro, conditional, micro) and groundedness checks, behaviour confusion matrix with abstention rates,
+error profile (rate, Wilson CI, kinds, timeouts), latency (trial p50/p95 non-error and all, per call, non-model, rerank, decode / prefill tokens/s; mac-latency only), tokens, calls, lexical proxy (labelled), judge cost (gateway-reported; not an invoice),
+strict success by closed-book stratum, and `paired_differences` (paired task-level bootstrap for the comparisons in `variants.yaml`, per benchmark and pooled, also by stratum).
+`report_eligible` = frozen main run, complete collection, no packet the judge never attempted, no source change during a session. Everything judged is an LLM estimate until `analysis/human-audit/agreement.json` exists.
 
-```
-.venv/bin/python evaluation/judge_benchmark.py all --run-dir <run-dir> --execute   # packets -> judge -> analyze
-```
+## 5. Tables
 
-* Packets (`<run>/judge/judge_packets.json`): question, scope, expected behaviour, reference answer, reference evidence, **full text** of the gold records and of every record the
-  candidate cited, candidate behaviour/answer/citations. No variant, seed, benchmark, mode or timing. `private_mapping.json` maps `review_id` back (the id is a hash of the run id and trial key).
-  Execution-error trials are not sent to the judge (strict success = failure; listed in `unjudged_execution_errors.json`).
-* Judge: the gateway model `deepseek/deepseek-v4-flash` (same thinking/effort settings as `config/d2_judge_gateway.json`; `max_tokens` 24 000 because observed completions reach about 10 000
-  tokens), prompt `evaluation/judge_prompt.txt` + the generalised protocol embedded in `judge_benchmark.py`, validation by `evaluation/judge_gateway.validate`. Only invalid/unparseable/unfinished
-  judgments are retried (up to 3 attempts; `--retry-invalid` adds more). Retries add one disclosed line to the user message because the gateway appears to serve identical completions for byte-identical
-  requests. Every attempt is stored as `judge/attempts/<review_id>-a<N>.json` with request, raw body, returned model id, usage and cost; attempts are never overwritten and a rerun skips packets that already have a valid judgment.
-* Metrics (`<run>/analysis/summary.json`, per benchmark x variant): strict success (behaviour appropriate, correctness 2, completeness 2, all claims supported; errors count as failures;
-  the headline rate is the lower bound over all planned trials with unknown/invalid counted as failures, with the unknown count, an upper bound, and a task-level bootstrap 95% interval),
-  behaviour-appropriate rate, claim faithfulness (micro over claims), Recall@1/3/5, Hit@5, MRR over answerable tasks, citation-ID precision/recall (`evaluation/metrics.py`), latency p50/p95
-  (mac-latency only), tokens per trial, answered/refused/clarified/error counts, tool calls/repairs, lexical unsupported proxy (labelled as a proxy), per-seed and per-category success, judge cost
-  (gateway-reported `usage.cost` and `x-litellm-response-cost`; not an invoice).
-* `analysis/human-audit/`: stratified (benchmark x variant x category x judge outcome, one hash-selected item per stratum, filled to 30 per benchmark) blinded packets + `labels.csv` with blank labels.
-  These are LLM-judge estimates until people label the sample; `human_judge_agreement` stays null.
-* `report_eligible` is true only for a complete, frozen, non-smoke run in which every trial is judged or an execution error.
+`run_d2.py tables --run-dir <run>` (or `make tables RUN=...`) writes `<run>/tables/`: `benchmark_results.tex` (`tab:benchmark-main`, `tab:benchmark-ops`, `tab:benchmark-paired`), `benchmark_diagnostics.tex` (`tab:benchmark-behaviour`, `tab:benchmark-strata`) and `summary.md`.
+Needs `booktabs`, `multirow`, `graphicx`, `xcolor`. Missing cells, variants or benchmarks are red `[PENDING]`; non-eligible runs carry a red banner and cannot be published. `render_benchmark_tables.py --publish` copies `benchmark_results.tex` to `report_d2/` (eligible runs only, explicit).
+The main caption names the judge, says "not human labels", and shows the human-audit agreement or a red placeholder.
 
-## 4. Tables
+## 6. Human audit
 
-```
-.venv/bin/python evaluation/render_benchmark_tables.py --run-dir <run-dir>      # -> report_d2/benchmark_results.tex
-```
+`analysis/human-audit/` holds a stratified blinded sample (benchmark x variant x category x judge outcome, hash-selected, about 30 per benchmark), `packets.json` and a blank `labels.csv`. After people fill it: `make audit-score RUN=<run> LABELS=<csv...>`
+(percent agreement and Cohen's kappa per dimension, per reviewer, design-weighted variants). Blank, partial or malformed labels yield `no_labels` / `invalid_labels` and no numbers.
 
-Two tables to `\input` (needs `booktabs`, `multirow`, `graphicx`, `xcolor`): `tab:benchmark-main` (benchmark x variant: success with interval, behaviour, faithfulness, Recall@5, MRR, citation P/R; caption says
-LLM-judge estimates, not human labels) and `tab:benchmark-ops` (counts, latency, tokens, calls, unknown judgments, judge cost). Missing cells, missing variants and missing benchmarks are red `[PENDING]`.
-A smoke/non-eligible run is refused for the report path.
+## 6b. Experiment tracking (provenance, registry, report check)
 
-## 5. Mac (latency) procedure
+`evaluation/provenance.py` holds `HARNESS_VERSION` (bump MAJOR/MINOR on any change to collection, metrics, judge rule/prompt, analysis or table content; PATCH for neutral edits) and the main-run gate: a main run needs a clean tree in all collection paths and a commit on origin (or a valid `PROVENANCE.json` on a host without `.git`, written by `run_d2.py stamp`). The manifest records kind, harness version + collection-source hash, git commit / branch / remote, argv + environment, host and package versions, model and reranker identities, lock and config hashes, run state and local times; judge / analysis / table stages record the harness version and the run they consumed.
+`run_d2.py registry` (`make runs`) writes `evaluation/runs/REGISTRY.md`: kind, state, commit, harness, `report_eligible` and freshness (`current` / `stale: <reason>` / `historical` / `superseded_by` / `incomplete` / `n/a`) against HEAD; curated marks in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
+Every rendered table carries a provenance comment block and a visible source line; `make report-check` (`evaluation/check_report_provenance.py`) fails when the report would mix outdated and current results and writes `report_d2/RESULTS_PROVENANCE.md`.
 
-1. `make prism-server` in its own terminal (loopback 8081, alias `prism-ml/Ternary-Bonsai-2-2B-gguf`).
-2. Idle machine, plugged in, no other model servers competing (the Ollama runner on this machine also holds memory).
-3. `make benchmark-smoke` (a few minutes), then `make benchmark-d2`.
+## 7. Cost and time (extrapolations from recorded smoke runs; the real totals are in the manifest and `RUN_NOTES.md`)
 
-## 6. GPU server 82 (accuracy) procedure
-
-Requires the PrismML fork built with CUDA and PQ2_0 support on CUDA. Confirm this first (load the GGUF, check a short completion matches the Mac output in kind); if the fork cannot run PQ2_0 on CUDA,
-a different quantization is a different model and its results must be labelled as such. Server 82 is shared: no sudo, pick a free GPU (`gpu_status`), keep files on the NFS path.
-
-1. Build once (on 82, under `/home/dungvpt/...`): `git clone --depth 1 -b prism https://github.com/PrismML-Eng/llama.cpp && cmake -S llama.cpp -B llama.cpp/build -DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF && cmake --build llama.cpp/build -j --target llama-server`.
-   Download the same GGUF (`prism-ml/Ternary-Bonsai-2-2B-gguf`, `Ternary-Bonsai-2-2B-PQ2_0.gguf`) and compare its sha256 with the Mac manifest's `server.model_file_sha256`.
-2. Start the server with `-np N` and `-c = 8192 x N` (gpu-bridge `job_start`, so the log and git/env metadata are kept):
-   `CUDA_VISIBLE_DEVICES=<free> llama-server -m <gguf> -ngl 99 -fa on -c 65536 -np 8 --host 127.0.0.1 --port 8081 --alias prism-ml/Ternary-Bonsai-2-2B-gguf --jinja --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0 --presence-penalty 1.5 --repeat-penalty 1.0 --repeat-last-n 64`.
-3. Forward the port to the Mac on a free local port (gpu-bridge `port_forward`, 82:8081 -> 127.0.0.1:18081).
-4. `make benchmark-d2 RUN_PROFILE=gpu-accuracy BENCH_EXTRA="--endpoint http://127.0.0.1:18081/v1 --workers 8 --server-note 'H100 <n>, llama.cpp prism <build>, -np 8 -c 65536'"`.
-   The runner records the server `/props` and your note (operator text, not measured).
-5. `l1_rerank` loads one reranker copy per worker. With 8 workers on a 16 GB Mac that is too much memory; either lower `--workers`, or run the runner itself on 82 (sync the repo, create the environment, use the server on
-   loopback, then `sync_pull` the run directory and run `judge_benchmark.py all` / the renderer locally). The runner warns about this on macOS.
-6. Latency from this profile is not reportable. Report mac-latency latency from a separate sequential Mac run, and say which run each number comes from.
-
-## Reproducibility
-
-A run directory holds everything needed to audit it: byte copies of the code, configs, benchmark files, corpus and profile (`source_snapshot/`, hashes in the manifest), the model server identity, every row with its full
-ledger (all prompts and raw native responses), and, after judging, every judge attempt. `analyze` recomputes all numbers from those files and verifies the snapshot hashes. The model sampling seed is set per trial
-(`--seeds`), but llama.cpp output is not guaranteed bit-reproducible across runs or hardware; the frozen quantity is the recorded run, not a promise of identical regeneration.
-
-## Cost and time estimates (extrapolations)
-
-Basis: 2 benchmarks x 3 variants x 3 seeds x 50 tasks = 900 trials. Per-trial wall times observed on the Apple M4 (16 GB) in smoke runs of 3-6 trials: `off` roughly 7-26 s, `l1` roughly 8-41 s, `l1_rerank` 29-61 s
-(first trials include warm-up). Judge: about $0.0016 and 40 s per packet in 11 packets (about 1.6-2.8 k prompt tokens, 2-11 k completion tokens each).
-
-| Item | Estimate |
-|---|---|
-| mac-latency collection, 900 trials | about 4.5-6.5 h wall (about 60 s per task-seed across the three variants; dominated by `l1_rerank`) |
-| gpu-accuracy collection, 8 workers on one H100 | about 20-60 min if the GPU server is not contended; unmeasured here |
-| Judge, about 850-900 packets at 8 concurrent | about 1.2-1.5 h wall, about $1.5-3 gateway-reported (more if many retries) |
-| Local model cost | not an API charge; energy and device time are not measured |
-
-These are planning figures from a handful of trials, not measurements of the full run; the real totals are in the run manifest and `analysis/summary.json`.
-
-## Blocked on other work
-
-* `labour_vi_v1`: `tasks.json`, `data/corpus/labour_vi_v1.json`, profile `labour_vi_multi` (and its `corpus_path`) must exist; then `make benchmark-freeze`.
-* Gold review: both benchmarks are AI-verified; human review/audit labels are not part of this tooling's output.
+900 system + 190 baseline trials per machine profile. Judge about $2.8-2.9 gateway-reported ($0.0026-0.0027 per valid packet incl. failed attempts), about 2.2 h at 8 concurrent / 1.1 h at 16 (about 30% of attempts fail validation and are retried, 1.45 attempts per valid packet).
+Mac collection about 2.4 h on an idle machine, up to 4 h on a shared one. GPU collection: unmeasured, order of 15-40 minutes. Local model cost is not an API charge; energy and device hours are not measured.

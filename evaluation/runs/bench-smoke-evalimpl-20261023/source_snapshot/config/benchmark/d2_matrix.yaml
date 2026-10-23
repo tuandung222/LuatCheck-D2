@@ -1,0 +1,14 @@
+# The D2 collection matrix: what `evaluation/run_d2.py all` runs when given only a run profile.
+# 2 benchmarks x 3 variants x 3 seeds x 50 tasks = 900 trials per profile.
+benchmarks: [hcmut_v1, labour_vi_v1]
+variants: ["off", l1, l1_rerank]   # "off" must stay quoted: YAML 1.1 reads a bare off as false
+seeds: [42, 123, 2026]
+model_config: config/benchmark/model_prism_gguf2b.yaml
+judge_config: config/benchmark/judge_gateway.json
+# Judge spend guard: the judge stage is refused when (packets still to judge) x planning_usd_per_packet exceeds max_judge_usd.
+# planning_usd_per_packet is measured from the smoke run evaluation/runs/bench-smoke-both-20261023 (gateway-reported
+# usage.cost over all attempts incl. failed ones / judged packets), i.e. a planning figure, not an invoice.
+planning_usd_per_packet: 0.0026
+max_judge_usd: 6.0
+# Extra judge rounds for packets whose judgment stayed invalid after max_attempts (judge JSON/quote validation failures).
+judge_extra_rounds: 2

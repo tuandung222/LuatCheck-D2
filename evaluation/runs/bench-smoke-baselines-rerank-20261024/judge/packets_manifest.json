@@ -1,0 +1,13 @@
+{
+  "run_id": "bench-smoke-baselines-rerank-20261024",
+  "packets": 16,
+  "execution_errors_not_judged": 0,
+  "runs_sha256_at_build": "cf5b0384c89142484a354ba24e8a1176fbddbb6a3590c578d97bc9b25f003aad",
+  "files_sha256": {
+    "SEMANTIC_JUDGING.md": "6407a5548ce798e1eff5640118205fbd2b5b03b2821f1ba9907949e5a75e20e5",
+    "judge_packets.json": "e5d478f548ff63d3bf150b5e41fd935cb9ae9d88c7a4f1fbab5bf8bbfe38cecc",
+    "private_mapping.json": "ee16323a9f172f92fad651ea484b248527a2cac71e18ff7dfe590cdf9dc7d69d"
+  },
+  "labels_generated": false,
+  "instructions": "A reviewer gets only judge_packets.json and SEMANTIC_JUDGING.md; private_mapping.json stays private."
+}

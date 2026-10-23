@@ -2,7 +2,6 @@
 BM25 Retrieval Engine for Vietnamese Legal Documents
 """
 import re
-import json
 from typing import List, Dict, Any, Tuple
 from rank_bm25 import BM25Okapi
 

@@ -1,0 +1,207 @@
+[
+ {
+  "task_id": "LVN-002",
+  "verdict": "accept",
+  "issues": [
+   "All 8 quotes contained in BLLD2019_Dieu_107; answer matches khoản 2.c and khoản 3 (a-đ) with correct paraphrase.",
+   "Minor note, no change needed: Điều 108 lifts the Điều 107 cap entirely in mobilisation/disaster cases; the question asks only where the 200h cap is raised (to 300h), which Điều 107(3) answers."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "200 giờ",
+   "300 giờ",
+   "làm thêm",
+   "số giờ làm thêm"
+  ]
+ },
+ {
+  "task_id": "LVN-010",
+  "verdict": "accept",
+  "issues": [
+   "Điều 3 khoản 3.c of ND293_2025 states exactly: industrial/export-processing/hi-tech/digital-tech zones spanning regions with different minimum wages apply the highest-wage region. Quote contained. No conflict elsewhere in corpus."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "khu công nghiệp",
+   "lương tối thiểu cao nhất",
+   "địa bàn có mức lương"
+  ]
+ },
+ {
+  "task_id": "LVN-014",
+  "verdict": "fix",
+  "issues": [
+   "Answer is textually correct for Điều 6, but ND318_2025 Điều 25 khoản 3 states the Điều 6/Điều 7 procedure for employed workers outside compulsory social insurance is only implemented from 01/01/2027. With the benchmark dated 23 Oct 2026 the gold answer omits a temporal qualifier present in the corpus and could mislead (implies registration is possible now). Add Điều 25 to evidence and answer."
+  ],
+  "fix": {
+   "question": "Người lao động đang có việc làm nhưng không thuộc diện tham gia bảo hiểm xã hội bắt buộc muốn đăng ký lao động theo Nghị định 318/2025 thì đăng ký bằng hình thức nào, khi nào biết kết quả, và thủ tục này được thực hiện từ thời điểm nào?",
+   "expected_answer": "Đăng ký trực tuyến bằng Tờ khai điện tử qua Sàn giao dịch việc làm quốc gia hoặc ứng dụng VNeID (Điều 6); nếu thành công, hệ thống trả kết quả ngay sau khi người lao động hoàn thành Tờ khai; nếu không thành công thì hệ thống phản hồi lý do. Theo khoản 3 Điều 25, hồ sơ, trình tự đăng ký này (Điều 6, Điều 7) được thực hiện từ ngày 01/01/2027.",
+   "ground_truth_article_ids": [
+    "ND318_2025_Dieu_6",
+    "ND318_2025_Dieu_25"
+   ],
+   "reference_evidence": [
+    {
+     "article_id": "ND318_2025_Dieu_6",
+     "exact_quote": "Hình thức đăng ký lao động: Trực tuyến.",
+     "pdf_pages": [
+      4,
+      5
+     ]
+    },
+    {
+     "article_id": "ND318_2025_Dieu_6",
+     "exact_quote": "Người lao động truy cập vào Sàn giao dịch việc làm quốc gia (https://www.vieclam.gov.vn) hoặc trên ứng dụng định danh điện tử VNeID",
+     "pdf_pages": [
+      4,
+      5
+     ]
+    },
+    {
+     "article_id": "ND318_2025_Dieu_6",
+     "exact_quote": "trả kết quả đăng ký thành công ngay sau khi người lao động hoàn thành Tờ khai điện tử, nếu đăng ký không thành công hệ thống phản hồi lý do",
+     "pdf_pages": [
+      4,
+      5
+     ]
+    },
+    {
+     "article_id": "ND318_2025_Dieu_25",
+     "exact_quote": "Hồ sơ, trình tự đăng ký, điều chỉnh thông tin đăng ký lao động đối với người lao động đang có việc làm không thuộc đối tượng tham gia bảo hiểm bắt buộc, người thất nghiệp theo quy định tại Điều 6, Điều 7 Nghị định này được thực hiện từ ngày 01 tháng 01 năm 2027"
+    }
+   ]
+  },
+  "confidence": "medium",
+  "searched_terms": [
+   "thực hiện từ ngày",
+   "Điều 6, Điều 7",
+   "không thuộc đối tượng tham gia bảo hiểm"
+  ]
+ },
+ {
+  "task_id": "LVN-016",
+  "verdict": "accept",
+  "issues": [
+   "Điều 8 khoản 2.a: info under khoản 1 Điều 4 validated/extracted from Cơ sở dữ liệu quốc gia về dân cư; Điều 4 khoản 1 lists the four fields asked. Quotes contained. Điều 8 khoản 2.h fallback (CSDL tổng hợp quốc gia) applies only when info cannot be collected from the named source; not a conflict."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "xác thực",
+   "số định danh cá nhân",
+   "cơ sở dữ liệu quốc gia về dân cư"
+  ]
+ },
+ {
+  "task_id": "LVN-019",
+  "verdict": "accept",
+  "issues": [
+   "Điều 30 khoản 1 + Điều 31 khoản 1 ND219_2025: 15 days from the date the permit expires, employer recovers and returns it with a report (reason if not recovered). Both quotes contained; BLLD Điều 156 khoản 2 is chấm dứt HĐLĐ, so the example is right. No other deadline found; Điều 34 transitional does not alter it."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "thu hồi giấy phép",
+   "nộp lại giấy phép",
+   "15 ngày"
+  ]
+ },
+ {
+  "task_id": "LVN-023",
+  "verdict": "accept",
+  "issues": [
+   "BLLD Điều 154 khoản 1 delegates the contribution value to the Government; ND219 Điều 7 khoản 2 sets 3 tỷ đồng trở lên (consistent with Điều 2 'dưới 3 tỷ đồng'). Both quotes contained."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "tỷ đồng",
+   "giá trị góp vốn",
+   "góp vốn"
+  ]
+ },
+ {
+  "task_id": "LVN-024",
+  "verdict": "accept",
+  "issues": [
+   "Out-of-scope confirmed: no BHYT contribution rate anywhere in the corpus. BHYT mentions are only cross-references (BLLD Điều 5, 6, 16, 19, 21, 41, 48, 62, 102, 163, 168, 188, 219; LVL Điều 39, 45, 46; LCD). All percentages in corpus reviewed; none is a BHYT rate. The distractor claims in expected_answer verified: LVL2025 Điều 33 'tối đa bằng 1%' (BHTN), BLLD Điều 102 khoản 3 30% deduction cap, Điều 168 only cross-references."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "bảo hiểm y tế",
+   "BHYT",
+   "tỷ lệ",
+   "mức đóng",
+   "phần trăm",
+   "%"
+  ]
+ },
+ {
+  "task_id": "LVN-025",
+  "verdict": "accept",
+  "issues": [
+   "Out-of-scope confirmed: corpus has no administrative fine amount for late wage payment. BLLD Điều 217 is a generic referral to xử phạt VPHC; Điều 97 khoản 4 is the compensation (not a fine) for force-majeure late pay of >=15 days, correctly described in expected_answer. No penalty decree in corpus."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "xử phạt",
+   "phạt tiền",
+   "vi phạm hành chính",
+   "chậm trả",
+   "trả lương chậm",
+   "đền bù"
+  ]
+ },
+ {
+  "task_id": "LVN-031",
+  "verdict": "accept",
+  "issues": [
+   "ND135_2020 Điều 5 khoản 1 điểm c: 'không quá 05 tuổi' for >=61% incapacity; quote contained; question explicitly anchored to that provision so single answer.",
+   "Low-severity note: BLLD2019 Điều 219 (amending Luật BHXH 2014 Điều 55) mentions up to 10 years lower for >=81% incapacity in a pension-eligibility context. It is a different instrument/question (reduced pension), and the question is explicitly scoped to 'khoản 1 Điều 5 Nghị định 135/2020', so no change is required."
+  ],
+  "fix": null,
+  "confidence": "medium",
+  "searched_terms": [
+   "thấp hơn tối đa",
+   "suy giảm khả năng lao động từ 61",
+   "nghỉ hưu ở tuổi thấp hơn"
+  ]
+ },
+ {
+  "task_id": "LVN-044",
+  "verdict": "accept",
+  "issues": [
+   "TT26_2025 Điều 2 states the legal basis exactly: khoản 3 Điều 169 BLLĐ 2019 and Điều 5 NĐ 135/2020. Quote contained and consistent with BLLD Điều 169(3) and ND135 Điều 5. Question is close to the source wording but needs both a khoản and an điều, acceptable. Caveat: TT26 number/date not printed in source (manifest), irrelevant to this answer."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "Điều 169",
+   "nghỉ hưu ở tuổi thấp hơn",
+   "Danh mục vùng"
+  ]
+ },
+ {
+  "task_id": "LVN-047",
+  "verdict": "accept",
+  "issues": [
+   "Arithmetic verified: 5 x 5,310,000 = 26,550,000. LVL2025 Điều 39 khoản 1: cap 'không quá 05 lần mức lương tối thiểu tháng theo vùng ... áp dụng tại tháng cuối cùng đóng BHTN'; ND293 Điều 3 khoản 1: vùng I 5.310.000 đồng/tháng.",
+   "Temporal check: LVL2025 Điều 54 khoản 1 effective 01/01/2026; ND293 Điều 5 khoản 1 effective 01/01/2026 and repeals ND74/2024 from that date; April 2026 is within both. Điều 55 transitional (khoản 4) concerns only claims filed before 01/01/2026, not relevant. ND293 Điều 5 khoản 5 (grandfathering) only concerns wages where a region's rate drops, not vùng I.",
+   "Cap is reachable: LVL Điều 34 khoản 2 allows contribution salary up to 20x regional minimum (60% of that far exceeds 5x), so 'tối đa có thể' = cap. Quotes contained. Partial topical overlap with LVN-005 (cap in general) but 047 needs the regional figure and calculation, not a duplicate."
+  ],
+  "fix": null,
+  "confidence": "high",
+  "searched_terms": [
+   "lương tối thiểu",
+   "05 lần",
+   "20 lần",
+   "mức hưởng",
+   "trợ cấp thất nghiệp hằng tháng",
+   "Vùng I"
+  ]
+ }
+]

@@ -1,0 +1,60 @@
+{
+  "updated_at": "2026-10-23T17:23:42.781678+00:00",
+  "config": {
+    "base_url": "https://ai-gateway01.qualgo.ai/v1",
+    "credential_env": "LUATCHECK_JUDGE_API_KEY",
+    "model": "deepseek/deepseek-v4-flash",
+    "requested_family": "DeepSeek V4.1 Flash",
+    "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+    "revision_pinned": false,
+    "allowed_returned_models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek-v4-flash",
+      "deepseek-flash",
+      "deepseek-v4.1-flash",
+      "deepseek-v4.1-flash-1017"
+    ],
+    "model_identity_note": "Same gateway model and thinking/effort settings as config/d2_judge_gateway.json. Gateway routing is not independently attested; returned model IDs are preserved in every attempt record.",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 24000,
+    "timeout_seconds": 300,
+    "max_attempts": 3,
+    "concurrency": 8,
+    "temperature": null,
+    "seed": null,
+    "billing_note": "Cost is the gateway-reported usage.cost / x-litellm-response-cost per attempt, retained failed attempts included; it is not an invoice and missing cost is unknown, not zero."
+  },
+  "summary": {
+    "packets": 16,
+    "valid": 16,
+    "invalid": 0,
+    "judged_this_session": {
+      "valid": 16
+    }
+  },
+  "human_labels": false,
+  "actual_invoiced_charge_usd": null,
+  "judgments_sha256": "fc9a196bba201176f89353056f20505540ff487ca709d07587ba8a3908d7d008",
+  "attempts_sha256": {
+    "1e421771913cb15e5cfbad3e-a1.json": "79bfe5752a95e23286f9881fafbc1ad7ef280fcee110d68c19721d5ee4537d55",
+    "30e30d7157cc32784f6a9989-a1.json": "5550aafc7da0a88961581085c41691be1bd74541beb5bd11a1214bf54299eabe",
+    "31995a3a5073ce859eb068ee-a1.json": "67d9c0acbd49d9dece98d81b60ab648d2e1d562ef113f00c2bc340933c11db18",
+    "35e0b695aca1c654f30a0181-a1.json": "abac5c4310fa266afcaf04ce605b8061dbb552f14d916721d8859eff7ea2bcb1",
+    "41618fc5a285e568d57fcc09-a1.json": "43414b1b34320a1a719c5bb83e3f0adeb87d2d804edca4e34e3933df2b27a67d",
+    "4d0088ef1c25790610a48e7e-a1.json": "62f1d7c08e5dfe08ebc8270a218362e72812c66511aa56f379ffb4a4dda54797",
+    "523faad38cee7d7eb3efe6e6-a1.json": "ac98c016bdfcdfacef9c676ca646e0c950eacdf2a9b15dbebe9f1416ec0c60c8",
+    "5477c8422868160b0666ad45-a1.json": "b00b415e93de611cd29e7a6799dbd5386ad537e0b686c4f818a42c15200ddb2d",
+    "588a8fecb29baffd5d1d8a09-a1.json": "379adfc1c8d575fde7f7bb446c20c6ef774e2b65e8f845aebf98e8e9d2953add",
+    "8f3b422515769831fa779fd7-a1.json": "fb1820c7fa30308fbb363209236cf98d30873e343ef31b12bbb835982c4eeed9",
+    "90067cea12697d1ee6261928-a1.json": "5e4deea23d3920d7e2dead99d612224a47bd3bdf32bd53b96692af8723bac045",
+    "9ea118199b9a93ed10031b03-a1.json": "52ce74eed3e801fe829ac3aca482dd67caa1662cd93faa4d4067e9b92ec658cc",
+    "b3d728f7cab327c26e73ee48-a1.json": "f98754031f5a18af7ddc957c0c44c9388c1d7ed7d3806d95239686d0cdad20c9",
+    "fc9237616be66567e6dee7d5-a1.json": "d0e7f18dddad493bfb32117a41388e5d10cf51dc31111ec4846d7e5f3863e604",
+    "fe1b066e4412adaeb27e7833-a1.json": "e438a3c9a99fdaa909706ac1a0c18a14c90d9c3b0c60c1f18c5a9e38554fbeaa",
+    "fe819d85563b1bde674a59ce-a1.json": "8774ff9711a05623d0a34cea88e1d43365ed3c616c4db13eff7d748f850a5e1e"
+  },
+  "note": "LLM-judge estimates, not human labels. Attempts are retained; only invalid/unparseable judgments were retried."
+}

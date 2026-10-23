@@ -1,3 +1,5 @@
+> **Historical (superseded 24 October 2026).** This note describes the Qwen2.5-3B / `bll2019_v1` pilot. Current D2 status: README.md and docs/RUNBOOK_D2.md; requirements gap: docs/reviews/d2_requirements_gap_2026-10-23.md.
+
 # LuatCheck - Review gap giữa project, report D2 và yêu cầu môn học
 
 Ngày review: 21/10/2026. Commit được đọc: `3996f1f84d0dbd1356744b51758f96e829d3c1de`. Đối tượng: source hiện tại, D1, [D2 LaTeX](main_d2.tex), [D2 PDF](main_d2.pdf), các task/kết quả trong repo và [ba nguồn yêu cầu](../docs/materials/d2/README.md).

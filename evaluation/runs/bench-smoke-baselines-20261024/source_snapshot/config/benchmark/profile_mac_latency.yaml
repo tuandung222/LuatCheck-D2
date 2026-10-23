@@ -1,0 +1,17 @@
+# Run profile for REPORTABLE LATENCY on the Mac (Apple M4, 16 GB): strictly sequential, one request in flight, one agent
+# per benchmark x variant, warm-up trials excluded (they are written to warmup.jsonl and never scored or timed in metrics).
+name: mac-latency
+workers: 1
+sequential: true
+latency_reportable: true
+record_memory: true
+require_idle: true      # preflight refuses a busy machine (1-min load > 0.5 x CPUs): other work corrupts reportable latency; --allow-busy overrides and is recorded
+trial_timeout_seconds: 300
+warmup_trials: 2
+# Reranker runtime for variants that rerank (l1_rerank): the llama.cpp reranking server on loopback (a GGUF conversion of the
+# reranker, started with `make rerank-server-mac`). The model is whatever that server loaded; its /props and GGUF sha256 are
+# recorded by preflight. This is NOT the same numeric runtime as gpu-accuracy (torch fp16) - see docs/reviews/metrics_review_2026-10-23.md.
+reranker:
+  backend: llamacpp_http
+  base_url: http://127.0.0.1:8082
+description: Sequential, one agent, one in-flight request. Per-trial and per-call latency and process memory are recorded and reportable for this device.

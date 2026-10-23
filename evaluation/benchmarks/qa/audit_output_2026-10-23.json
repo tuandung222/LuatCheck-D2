@@ -1,0 +1,2402 @@
+{
+ "generated_at": "2026-10-23 (+07)",
+ "script": "evaluation/benchmarks/qa/audit_benchmarks.py",
+ "results": {
+  "hcmut_v1": {
+   "benchmark": "hcmut_v1",
+   "n_tasks": 50,
+   "checks": {
+    "lock_hashes_match": {
+     "pass": true,
+     "detail": {
+      "tasks": {
+       "path": "evaluation/benchmarks/hcmut_v1/tasks.json",
+       "expected": "591513d0f8fc59fafee661d4b16c82213fc7ee1924236da72193cce49c3a5a46",
+       "actual": "591513d0f8fc59fafee661d4b16c82213fc7ee1924236da72193cce49c3a5a46",
+       "match": true
+      },
+      "corpus": {
+       "path": "data/corpus/hcmut_academic_v1.json",
+       "expected": "107bec43d5fe3549ee1dcab61fbcbddbe2e1d632a69bf0f0079884d9c840ec48",
+       "actual": "107bec43d5fe3549ee1dcab61fbcbddbe2e1d632a69bf0f0079884d9c840ec48",
+       "match": true
+      },
+      "profile": {
+       "path": "config/domains/hcmut_academic.yaml",
+       "expected": "3b649876a0e9a397348a043add0c7380e769bc7e94c302d89f1cadbab6b36347",
+       "actual": "3b649876a0e9a397348a043add0c7380e769bc7e94c302d89f1cadbab6b36347",
+       "match": true
+      },
+      "benchmark_yaml": {
+       "path": "evaluation/benchmarks/hcmut_v1/benchmark.yaml",
+       "expected": "753631d6f1a68984aa0caeacc190b621dd10afc46d29a3003e5ab8f0631ab13a",
+       "actual": "753631d6f1a68984aa0caeacc190b621dd10afc46d29a3003e5ab8f0631ab13a",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/ADJUDICATION.md": {
+       "path": "evaluation/benchmarks/hcmut_v1/ADJUDICATION.md",
+       "expected": "022c16a6199a64d9359361db5dd81e40d9819320787c16be4c16682d61e7b2da",
+       "actual": "022c16a6199a64d9359361db5dd81e40d9819320787c16be4c16682d61e7b2da",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/README.md": {
+       "path": "evaluation/benchmarks/hcmut_v1/README.md",
+       "expected": "4fafb291f1acf818b997694d0e2f448e32c3271d667231ae0a733d6cb87bdd9f",
+       "actual": "4fafb291f1acf818b997694d0e2f448e32c3271d667231ae0a733d6cb87bdd9f",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/VERIFIER_BRIEF.md": {
+       "path": "evaluation/benchmarks/hcmut_v1/VERIFIER_BRIEF.md",
+       "expected": "fa7b1958717d4eb72fd680448c5243f0f1c55dfd369040ab0c5a09c4fdff67c1",
+       "actual": "fa7b1958717d4eb72fd680448c5243f0f1c55dfd369040ab0c5a09c4fdff67c1",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/WRITER_BRIEF.md": {
+       "path": "evaluation/benchmarks/hcmut_v1/WRITER_BRIEF.md",
+       "expected": "7bc002958263bf3414a9f20624816ebc6834a6343478ca1dcfda0951c93d82ca",
+       "actual": "7bc002958263bf3414a9f20624816ebc6834a6343478ca1dcfda0951c93d82ca",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/draft_all.json": {
+       "path": "evaluation/benchmarks/hcmut_v1/draft_all.json",
+       "expected": "f0cd895ba192da50b5c8155c0dd818cab1e95b6f2c333e28c50a71ec6f6819e6",
+       "actual": "f0cd895ba192da50b5c8155c0dd818cab1e95b6f2c333e28c50a71ec6f6819e6",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/draft_part1.json": {
+       "path": "evaluation/benchmarks/hcmut_v1/draft_part1.json",
+       "expected": "f6764bb7893049e5ec191dab78c2aa61277e9642e8af059ece0c47ae538bfadb",
+       "actual": "f6764bb7893049e5ec191dab78c2aa61277e9642e8af059ece0c47ae538bfadb",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/draft_part2.json": {
+       "path": "evaluation/benchmarks/hcmut_v1/draft_part2.json",
+       "expected": "e83b3a6c75580b59a264d08dadbe1e7c7702cfc37735e51e5ad30273c083d631",
+       "actual": "e83b3a6c75580b59a264d08dadbe1e7c7702cfc37735e51e5ad30273c083d631",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/recheck_C.json": {
+       "path": "evaluation/benchmarks/hcmut_v1/recheck_C.json",
+       "expected": "a5b5691b69b0467c87be5e1fa3d785774531018e1a8d641afaa5966ea6f1fa8a",
+       "actual": "a5b5691b69b0467c87be5e1fa3d785774531018e1a8d641afaa5966ea6f1fa8a",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/verify_A.json": {
+       "path": "evaluation/benchmarks/hcmut_v1/verify_A.json",
+       "expected": "51d5088013cad714a93d7a5150296de7e059732c015b1133c0f5275bfea0c4bd",
+       "actual": "51d5088013cad714a93d7a5150296de7e059732c015b1133c0f5275bfea0c4bd",
+       "match": true
+      },
+      "evaluation/benchmarks/hcmut_v1/verify_B.json": {
+       "path": "evaluation/benchmarks/hcmut_v1/verify_B.json",
+       "expected": "f73bfd6f359af433eabd8a69414c961181ec29e07880a578c4571b55e9dd0121",
+       "actual": "f73bfd6f359af433eabd8a69414c961181ec29e07880a578c4571b55e9dd0121",
+       "match": true
+      }
+     }
+    },
+    "yaml_review_status_equals_lock": {
+     "pass": true,
+     "yaml": "ai_verified_not_human_reviewed",
+     "lock": "ai_verified_not_human_reviewed"
+    },
+    "lock_counts_match": {
+     "pass": true,
+     "categories": {
+      "single": 40,
+      "multi": 5,
+      "out_of_scope": 5
+     },
+     "behaviors": {
+      "answer": 45,
+      "refuse": 5
+     },
+     "records": 143
+    },
+    "ids_unique": {
+     "pass": true
+    },
+    "required_fields": {
+     "pass": true,
+     "missing": []
+    },
+    "category_values": {
+     "pass": true,
+     "bad": []
+    },
+    "behavior_values": {
+     "pass": true,
+     "bad": []
+    },
+    "questions_unique": {
+     "pass": true
+    },
+    "gold_ids_exist": {
+     "pass": true,
+     "missing": []
+    },
+    "evidence_ids_equal_gold": {
+     "pass": true,
+     "mismatch": []
+    },
+    "category_behaviour_gold_coherence": {
+     "pass": true,
+     "issues": []
+    },
+    "quotes_verbatim": {
+     "pass": true,
+     "n_quotes": 68,
+     "failures": []
+    },
+    "pdf_pages_equal_source_pages": {
+     "pass": true,
+     "mismatch": []
+    },
+    "doc_code_matches_first_gold": {
+     "pass": true,
+     "mismatch": []
+    },
+    "answer_numbers_in_evidence": {
+     "pass": null,
+     "info": "heuristic; not a pass/fail",
+     "flagged": [
+      {
+       "task_id": "HCMUT-009",
+       "answer_numbers_not_in_quotes": [
+        "0,01"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "0,01"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "HCMUT-015",
+       "answer_numbers_not_in_quotes": [
+        "3,4"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "3,4"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "HCMUT-021",
+       "answer_numbers_not_in_quotes": [
+        "7",
+        "8"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "HCMUT-022",
+       "answer_numbers_not_in_quotes": [
+        "1",
+        "2,35",
+        "2025",
+        "2026",
+        "235",
+        "5.5",
+        "55"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "2,35",
+        "235"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "HCMUT-023",
+       "answer_numbers_not_in_quotes": [
+        "3.1",
+        "31"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "HCMUT-040",
+       "answer_numbers_not_in_quotes": [
+        "2"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "HCMUT-047",
+       "answer_numbers_not_in_quotes": [
+        "12",
+        "15",
+        "4",
+        "5"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      }
+     ]
+    },
+    "answer_token_overlap_with_question_top10": {
+     "pass": null,
+     "info": "share of expected_answer tokens (len>=4) found in question; descriptive",
+     "top": [
+      [
+       "HCMUT-006",
+       1.0
+      ],
+      [
+       "HCMUT-008",
+       1.0
+      ],
+      [
+       "HCMUT-010",
+       1.0
+      ],
+      [
+       "HCMUT-018",
+       1.0
+      ],
+      [
+       "HCMUT-036",
+       1.0
+      ],
+      [
+       "HCMUT-037",
+       1.0
+      ],
+      [
+       "HCMUT-039",
+       1.0
+      ],
+      [
+       "HCMUT-043",
+       1.0
+      ],
+      [
+       "HCMUT-022",
+       0.85
+      ],
+      [
+       "HCMUT-003",
+       0.83
+      ]
+     ]
+    },
+    "near_duplicate_or_shared_gold_pairs": {
+     "pass": null,
+     "info": "pairs with jaccard>=.45 or seq>=.6 or a shared gold record",
+     "pairs": [
+      {
+       "a": "HCMUT-001",
+       "b": "HCMUT-002",
+       "jaccard": 0.41,
+       "seq": 0.64,
+       "shared_gold": []
+      },
+      {
+       "a": "HCMUT-013",
+       "b": "HCMUT-014",
+       "jaccard": 0.4,
+       "seq": 0.65,
+       "shared_gold": [
+        "HCMUT_GIANGDAY2282_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-035",
+       "b": "HCMUT-037",
+       "jaccard": 0.38,
+       "seq": 0.67,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-017",
+       "b": "HCMUT-019",
+       "jaccard": 0.46,
+       "seq": 0.58,
+       "shared_gold": []
+      },
+      {
+       "a": "HCMUT-018",
+       "b": "HCMUT-020",
+       "jaccard": 0.37,
+       "seq": 0.67,
+       "shared_gold": []
+      },
+      {
+       "a": "HCMUT-035",
+       "b": "HCMUT-036",
+       "jaccard": 0.33,
+       "seq": 0.56,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-006",
+       "b": "HCMUT-007",
+       "jaccard": 0.38,
+       "seq": 0.49,
+       "shared_gold": [
+        "HCMUT_HVDT2749_PhuLuc_1"
+       ]
+      },
+      {
+       "a": "HCMUT-018",
+       "b": "HCMUT-019",
+       "jaccard": 0.46,
+       "seq": 0.41,
+       "shared_gold": []
+      },
+      {
+       "a": "HCMUT-033",
+       "b": "HCMUT-046",
+       "jaccard": 0.32,
+       "seq": 0.52,
+       "shared_gold": [
+        "HCMUT_NOIQUY1924_Dieu_6"
+       ]
+      },
+      {
+       "a": "HCMUT-005",
+       "b": "HCMUT-007",
+       "jaccard": 0.3,
+       "seq": 0.52,
+       "shared_gold": [
+        "HCMUT_HVDT2749_PhuLuc_1"
+       ]
+      },
+      {
+       "a": "HCMUT-036",
+       "b": "HCMUT-037",
+       "jaccard": 0.31,
+       "seq": 0.5,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-034",
+       "b": "HCMUT-036",
+       "jaccard": 0.29,
+       "seq": 0.49,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-006",
+       "b": "HCMUT-008",
+       "jaccard": 0.36,
+       "seq": 0.41,
+       "shared_gold": [
+        "HCMUT_HVDT2749_PhuLuc_1"
+       ]
+      },
+      {
+       "a": "HCMUT-007",
+       "b": "HCMUT-008",
+       "jaccard": 0.33,
+       "seq": 0.42,
+       "shared_gold": [
+        "HCMUT_HVDT2749_PhuLuc_1"
+       ]
+      },
+      {
+       "a": "HCMUT-019",
+       "b": "HCMUT-020",
+       "jaccard": 0.45,
+       "seq": 0.28,
+       "shared_gold": []
+      },
+      {
+       "a": "HCMUT-034",
+       "b": "HCMUT-037",
+       "jaccard": 0.24,
+       "seq": 0.46,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-034",
+       "b": "HCMUT-047",
+       "jaccard": 0.33,
+       "seq": 0.37,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-034",
+       "b": "HCMUT-035",
+       "jaccard": 0.24,
+       "seq": 0.44,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-020",
+       "b": "HCMUT-021",
+       "jaccard": 0.32,
+       "seq": 0.34,
+       "shared_gold": [
+        "HCMUT_HOCPHI2800_Dieu_8"
+       ]
+      },
+      {
+       "a": "HCMUT-005",
+       "b": "HCMUT-006",
+       "jaccard": 0.25,
+       "seq": 0.38,
+       "shared_gold": [
+        "HCMUT_HVDT2749_PhuLuc_1"
+       ]
+      },
+      {
+       "a": "HCMUT-031",
+       "b": "HCMUT-032",
+       "jaccard": 0.23,
+       "seq": 0.4,
+       "shared_gold": [
+        "HCMUT_NOIQUY1924_Dieu_5"
+       ]
+      },
+      {
+       "a": "HCMUT-005",
+       "b": "HCMUT-008",
+       "jaccard": 0.29,
+       "seq": 0.3,
+       "shared_gold": [
+        "HCMUT_HVDT2749_PhuLuc_1"
+       ]
+      },
+      {
+       "a": "HCMUT-018",
+       "b": "HCMUT-021",
+       "jaccard": 0.22,
+       "seq": 0.36,
+       "shared_gold": [
+        "HCMUT_HOCPHI2800_Dieu_7"
+       ]
+      },
+      {
+       "a": "HCMUT-001",
+       "b": "HCMUT-023",
+       "jaccard": 0.15,
+       "seq": 0.42,
+       "shared_gold": [
+        "HCMUT_HVDT1260_Dieu_1_S3_1"
+       ]
+      },
+      {
+       "a": "HCMUT-036",
+       "b": "HCMUT-047",
+       "jaccard": 0.31,
+       "seq": 0.25,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-035",
+       "b": "HCMUT-047",
+       "jaccard": 0.25,
+       "seq": 0.27,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-038",
+       "b": "HCMUT-039",
+       "jaccard": 0.12,
+       "seq": 0.36,
+       "shared_gold": [
+        "HCMUT_VINHDANH658_Dieu_5"
+       ]
+      },
+      {
+       "a": "HCMUT-037",
+       "b": "HCMUT-047",
+       "jaccard": 0.23,
+       "seq": 0.23,
+       "shared_gold": [
+        "HCMUT_CTDT1862_Dieu_1"
+       ]
+      },
+      {
+       "a": "HCMUT-026",
+       "b": "HCMUT-027",
+       "jaccard": 0.19,
+       "seq": 0.2,
+       "shared_gold": [
+        "HCMUT_GVCN2977_Dieu_5"
+       ]
+      }
+     ]
+    },
+    "alternative_support_records_not_in_gold": {
+     "pass": null,
+     "info": "non-gold records containing >=70% of an evidence quote's 6-grams (possible equally valid citations / superseded duplicates)",
+     "flagged": [
+      {
+       "task_id": "HCMUT-005",
+       "other_records_containing_quote_text": {
+        "HCMUT_HVDT1260_PhuLuc_1": 1.0
+       }
+      },
+      {
+       "task_id": "HCMUT-006",
+       "other_records_containing_quote_text": {
+        "HCMUT_HVDT1260_PhuLuc_1": 1.0
+       }
+      },
+      {
+       "task_id": "HCMUT-008",
+       "other_records_containing_quote_text": {
+        "HCMUT_HVDT1260_PhuLuc_1": 1.0
+       }
+      }
+     ]
+    },
+    "evidence_beyond_first_3000_chars": {
+     "pass": null,
+     "info": "quote starts after char 3000 of its record",
+     "flagged": [
+      {
+       "task_id": "HCMUT-005",
+       "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+       "quote_offset_chars": 6402,
+       "record_chars": 8032
+      },
+      {
+       "task_id": "HCMUT-005",
+       "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+       "quote_offset_chars": 6577,
+       "record_chars": 8032
+      },
+      {
+       "task_id": "HCMUT-006",
+       "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+       "quote_offset_chars": 5756,
+       "record_chars": 8032
+      },
+      {
+       "task_id": "HCMUT-007",
+       "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+       "quote_offset_chars": 3791,
+       "record_chars": 8032
+      },
+      {
+       "task_id": "HCMUT-015",
+       "article_id": "HCMUT_GIANGDAY2282_PhuLuc_1",
+       "quote_offset_chars": 5056,
+       "record_chars": 7709
+      },
+      {
+       "task_id": "HCMUT-034",
+       "article_id": "HCMUT_CTDT1862_Dieu_1",
+       "quote_offset_chars": 4698,
+       "record_chars": 19613
+      },
+      {
+       "task_id": "HCMUT-034",
+       "article_id": "HCMUT_CTDT1862_Dieu_1",
+       "quote_offset_chars": 4786,
+       "record_chars": 19613
+      },
+      {
+       "task_id": "HCMUT-037",
+       "article_id": "HCMUT_CTDT1862_Dieu_1",
+       "quote_offset_chars": 8055,
+       "record_chars": 19613
+      },
+      {
+       "task_id": "HCMUT-047",
+       "article_id": "HCMUT_CTDT1862_Dieu_1",
+       "quote_offset_chars": 7106,
+       "record_chars": 19613
+      }
+     ]
+    },
+    "questions_citing_instrument_number_absent_from_gold_text": {
+     "pass": null,
+     "info": "document pin lives only in metadata/doc_id, not in text that BM25 indexes (title+content)",
+     "count": 22,
+     "tasks": [
+      {
+       "task_id": "HCMUT-001",
+       "cited_numbers": [
+        "1260"
+       ]
+      },
+      {
+       "task_id": "HCMUT-002",
+       "cited_numbers": [
+        "1260"
+       ]
+      },
+      {
+       "task_id": "HCMUT-003",
+       "cited_numbers": [
+        "1260"
+       ]
+      },
+      {
+       "task_id": "HCMUT-004",
+       "cited_numbers": [
+        "1260"
+       ]
+      },
+      {
+       "task_id": "HCMUT-005",
+       "cited_numbers": [
+        "2749"
+       ]
+      },
+      {
+       "task_id": "HCMUT-006",
+       "cited_numbers": [
+        "2749"
+       ]
+      },
+      {
+       "task_id": "HCMUT-007",
+       "cited_numbers": [
+        "2749"
+       ]
+      },
+      {
+       "task_id": "HCMUT-008",
+       "cited_numbers": [
+        "2749"
+       ]
+      },
+      {
+       "task_id": "HCMUT-009",
+       "cited_numbers": [
+        "1259"
+       ]
+      },
+      {
+       "task_id": "HCMUT-010",
+       "cited_numbers": [
+        "1259"
+       ]
+      },
+      {
+       "task_id": "HCMUT-011",
+       "cited_numbers": [
+        "1259"
+       ]
+      },
+      {
+       "task_id": "HCMUT-012",
+       "cited_numbers": [
+        "1259"
+       ]
+      },
+      {
+       "task_id": "HCMUT-013",
+       "cited_numbers": [
+        "2282"
+       ]
+      },
+      {
+       "task_id": "HCMUT-014",
+       "cited_numbers": [
+        "2282"
+       ]
+      },
+      {
+       "task_id": "HCMUT-015",
+       "cited_numbers": [
+        "2282"
+       ]
+      },
+      {
+       "task_id": "HCMUT-016",
+       "cited_numbers": [
+        "2282"
+       ]
+      },
+      {
+       "task_id": "HCMUT-022",
+       "cited_numbers": [
+        "1260",
+        "1259"
+       ]
+      },
+      {
+       "task_id": "HCMUT-034",
+       "cited_numbers": [
+        "1862"
+       ]
+      },
+      {
+       "task_id": "HCMUT-035",
+       "cited_numbers": [
+        "1862"
+       ]
+      },
+      {
+       "task_id": "HCMUT-036",
+       "cited_numbers": [
+        "1862"
+       ]
+      },
+      {
+       "task_id": "HCMUT-037",
+       "cited_numbers": [
+        "1862"
+       ]
+      },
+      {
+       "task_id": "HCMUT-047",
+       "cited_numbers": [
+        "1862"
+       ]
+      }
+     ]
+    }
+   },
+   "per_task": {
+    "HCMUT-005": [
+     "ALT_SUPPORT_RECORD"
+    ],
+    "HCMUT-006": [
+     "ALT_SUPPORT_RECORD"
+    ],
+    "HCMUT-008": [
+     "ALT_SUPPORT_RECORD"
+    ]
+   },
+   "findings_mech": [],
+   "distribution": {
+    "category": {
+     "single": 40,
+     "multi": 5,
+     "out_of_scope": 5
+    },
+    "expected_behavior": {
+     "answer": 45,
+     "refuse": 5
+    },
+    "doc_code_field": {
+     "HVDT1260": 5,
+     "HVDT2749": 4,
+     "HVCHUNG1259": 7,
+     "GIANGDAY2282": 4,
+     "HOCPHI2800": 5,
+     "GVCN2977": 6,
+     "NOIQUY1924": 6,
+     "CTDT1862": 4,
+     "VINHDANH658": 5,
+     "UNGXU3408": 4
+    },
+    "gold_records_by_doc": {
+     "HVDT1260": 6,
+     "HVDT2749": 4,
+     "HVCHUNG1259": 6,
+     "GIANGDAY2282": 4,
+     "HOCPHI2800": 6,
+     "GVCN2977": 5,
+     "NOIQUY1924": 5,
+     "CTDT1862": 5,
+     "VINHDANH658": 4,
+     "UNGXU3408": 5
+    },
+    "corpus_records_by_doc": {
+     "HVDT1260": 18,
+     "HVDT2749": 4,
+     "HVCHUNG1259": 25,
+     "GIANGDAY2282": 6,
+     "HOCPHI2800": 14,
+     "GVCN2977": 25,
+     "NOIQUY1924": 9,
+     "CTDT1862": 4,
+     "VINHDANH658": 19,
+     "UNGXU3408": 19
+    },
+    "unique_gold_records": 35,
+    "corpus_records": 143,
+    "gold_records_used_by_more_than_one_task": {
+     "HCMUT_CTDT1862_Dieu_1": [
+      "HCMUT-034",
+      "HCMUT-035",
+      "HCMUT-036",
+      "HCMUT-037",
+      "HCMUT-047"
+     ],
+     "HCMUT_GIANGDAY2282_Dieu_1": [
+      "HCMUT-013",
+      "HCMUT-014"
+     ],
+     "HCMUT_GVCN2977_Dieu_5": [
+      "HCMUT-026",
+      "HCMUT-027"
+     ],
+     "HCMUT_HOCPHI2800_Dieu_7": [
+      "HCMUT-018",
+      "HCMUT-021"
+     ],
+     "HCMUT_HOCPHI2800_Dieu_8": [
+      "HCMUT-020",
+      "HCMUT-021"
+     ],
+     "HCMUT_HVDT1260_Dieu_1_S3_1": [
+      "HCMUT-001",
+      "HCMUT-023"
+     ],
+     "HCMUT_HVDT2749_PhuLuc_1": [
+      "HCMUT-005",
+      "HCMUT-006",
+      "HCMUT-007",
+      "HCMUT-008"
+     ],
+     "HCMUT_NOIQUY1924_Dieu_5": [
+      "HCMUT-031",
+      "HCMUT-032"
+     ],
+     "HCMUT_NOIQUY1924_Dieu_6": [
+      "HCMUT-033",
+      "HCMUT-046"
+     ],
+     "HCMUT_VINHDANH658_Dieu_5": [
+      "HCMUT-038",
+      "HCMUT-039"
+     ]
+    },
+    "gold_status": {
+     "ai_verified_two_independent_reviewers_adjudicated": 49,
+     "ai_verified_adjudicator_plus_independent_recheck": 1
+    },
+    "answer_length_words_median": 13,
+    "numeric_questions_by_answer_has_digit": 26,
+    "question_starts_with_explicit_law_reference": [
+     "HCMUT-001",
+     "HCMUT-002",
+     "HCMUT-003",
+     "HCMUT-004",
+     "HCMUT-005",
+     "HCMUT-006",
+     "HCMUT-007",
+     "HCMUT-008",
+     "HCMUT-009",
+     "HCMUT-010",
+     "HCMUT-011",
+     "HCMUT-012",
+     "HCMUT-013",
+     "HCMUT-014",
+     "HCMUT-015",
+     "HCMUT-016",
+     "HCMUT-022",
+     "HCMUT-034",
+     "HCMUT-035",
+     "HCMUT-036",
+     "HCMUT-037",
+     "HCMUT-047"
+    ]
+   },
+   "sanity_run_signals": {
+    "run": "hcmut-sanity-final-v1",
+    "summary": {
+     "oracle": {
+      "appropriate_refusal": 5,
+      "correct": 44,
+      "partially_correct": 1
+     },
+     "closed_book": {
+      "appropriate_refusal": 2,
+      "correct": 15,
+      "inappropriate_refusal": 2,
+      "incorrect": 19,
+      "partially_correct": 12
+     }
+    },
+    "closed_book_correct": [
+     "HCMUT-003",
+     "HCMUT-006",
+     "HCMUT-007",
+     "HCMUT-013",
+     "HCMUT-018",
+     "HCMUT-022",
+     "HCMUT-026",
+     "HCMUT-027",
+     "HCMUT-030",
+     "HCMUT-032",
+     "HCMUT-033",
+     "HCMUT-035",
+     "HCMUT-043",
+     "HCMUT-044",
+     "HCMUT-045"
+    ],
+    "closed_book_partial": [
+     "HCMUT-004",
+     "HCMUT-005",
+     "HCMUT-009",
+     "HCMUT-015",
+     "HCMUT-017",
+     "HCMUT-019",
+     "HCMUT-020",
+     "HCMUT-023",
+     "HCMUT-028",
+     "HCMUT-029",
+     "HCMUT-031",
+     "HCMUT-046"
+    ],
+    "oracle_not_correct": [
+     [
+      "HCMUT-014",
+      "partially_correct"
+     ]
+    ],
+    "oracle_errors": [],
+    "closed_book_answers_mentioning_HCMUT_scope": 9,
+    "closed_book_answers_total": 50,
+    "sanity_script_closed_prompt_is_HCMUT_scoped": true,
+    "sanity_oracle_refusal_context_is_titles_only": true
+   },
+   "refusal_candidate_records": {
+    "HCMUT-024": {
+     "question": "Đơn giá học phí mỗi tín chỉ năm học 2026–2027 cho sinh viên đại học chính quy là bao nhiêu?",
+     "top_records_by_idf_overlap": [
+      [
+       15.88,
+       "HCMUT_HVDT1260_PhuLuc_3"
+      ],
+      [
+       12.34,
+       "HCMUT_CTDT1862_Dieu_1"
+      ],
+      [
+       11.25,
+       "HCMUT_HVDT2749_PhuLuc_1"
+      ],
+      [
+       11.25,
+       "HCMUT_HVDT1260_PhuLuc_1"
+      ],
+      [
+       10.89,
+       "HCMUT_HVDT1260_PhuLuc_4"
+      ],
+      [
+       10.38,
+       "HCMUT_HVCHUNG1259_Dieu_1_S15_1"
+      ]
+     ]
+    },
+    "HCMUT-025": {
+     "question": "Sinh viên muốn phúc khảo điểm một học phần thì phải nộp đơn trong thời hạn bao nhiêu ngày kể từ ngày công bố điểm?",
+     "top_records_by_idf_overlap": [
+      [
+       14.91,
+       "HCMUT_HVCHUNG1259_Dieu_1_S16_2"
+      ],
+      [
+       13.55,
+       "HCMUT_GIANGDAY2282_PhuLuc_1"
+      ],
+      [
+       11.86,
+       "HCMUT_HOCPHI2800_QD_Dieu_3"
+      ],
+      [
+       11.64,
+       "HCMUT_HVDT1260_PhuLuc_4"
+      ],
+      [
+       11.2,
+       "HCMUT_HOCPHI2800_Dieu_7"
+      ],
+      [
+       9.99,
+       "HCMUT_NOIQUY1924_Dieu_5"
+      ]
+     ]
+    },
+    "HCMUT-048": {
+     "question": "Để được xét học bổng khuyến khích học tập, sinh viên cần đạt điểm trung bình học kỳ và điểm rèn luyện tối thiểu bao nhiêu?",
+     "top_records_by_idf_overlap": [
+      [
+       18.23,
+       "HCMUT_HVDT1260_Dieu_1_S5_5"
+      ],
+      [
+       17.63,
+       "HCMUT_HVDT1260_PhuLuc_6"
+      ],
+      [
+       15.82,
+       "HCMUT_HVDT1260_Dieu_1_S10_1"
+      ],
+      [
+       15.25,
+       "HCMUT_HVDT1260_PhuLuc_4"
+      ],
+      [
+       13.93,
+       "HCMUT_GIANGDAY2282_Dieu_1"
+      ],
+      [
+       13.89,
+       "HCMUT_GVCN2977_Dieu_13"
+      ]
+     ]
+    },
+    "HCMUT-049": {
+     "question": "Sinh viên năm nhất muốn đăng ký ở ký túc xá của trường cho học kỳ tới thì cần làm thủ tục nào?",
+     "top_records_by_idf_overlap": [
+      [
+       16.04,
+       "HCMUT_HVCHUNG1259_Dieu_1_S16_2"
+      ],
+      [
+       14.84,
+       "HCMUT_HVDT1260_PhuLuc_4"
+      ],
+      [
+       14.1,
+       "HCMUT_CTDT1862_Dieu_1"
+      ],
+      [
+       13.61,
+       "HCMUT_UNGXU3408_Dieu_9"
+      ],
+      [
+       13.19,
+       "HCMUT_NOIQUY1924_Dieu_5"
+      ],
+      [
+       13.17,
+       "HCMUT_GIANGDAY2282_PhuLuc_1"
+      ]
+     ]
+    },
+    "HCMUT-050": {
+     "question": "Theo luật giao thông đường bộ, sinh viên đi xe máy vào khuôn viên trường mà không đội mũ bảo hiểm thì bị phạt bao nhiêu tiền?",
+     "top_records_by_idf_overlap": [
+      [
+       27.41,
+       "HCMUT_NOIQUY1924_Dieu_5"
+      ],
+      [
+       16.75,
+       "HCMUT_HVCHUNG1259_PhuLuc_1"
+      ],
+      [
+       15.76,
+       "HCMUT_NOIQUY1924_Dieu_3"
+      ],
+      [
+       15.03,
+       "HCMUT_HVDT1260_PhuLuc_6"
+      ],
+      [
+       14.79,
+       "HCMUT_UNGXU3408_Dieu_9"
+      ],
+      [
+       13.92,
+       "HCMUT_UNGXU3408_Dieu_4"
+      ]
+     ]
+    }
+   },
+   "record_length_stats": {
+    "gold_record_chars_max": 19613,
+    "corpus_chars_median": 660,
+    "corpus_chars_max": 19613
+   },
+   "bm25_gold_rank_baseline": {
+    "n": 45,
+    "top1": 40,
+    "top5": 45,
+    "top10": 45,
+    "median_rank": 1,
+    "worst": [
+     [
+      "HCMUT-021",
+      2
+     ],
+     [
+      "HCMUT-030",
+      2
+     ],
+     [
+      "HCMUT-034",
+      2
+     ],
+     [
+      "HCMUT-035",
+      2
+     ],
+     [
+      "HCMUT-039",
+      2
+     ],
+     [
+      "HCMUT-001",
+      1
+     ],
+     [
+      "HCMUT-002",
+      1
+     ],
+     [
+      "HCMUT-003",
+      1
+     ]
+    ],
+    "ranks": {
+     "HCMUT-001": 1,
+     "HCMUT-002": 1,
+     "HCMUT-003": 1,
+     "HCMUT-004": 1,
+     "HCMUT-005": 1,
+     "HCMUT-006": 1,
+     "HCMUT-007": 1,
+     "HCMUT-008": 1,
+     "HCMUT-009": 1,
+     "HCMUT-010": 1,
+     "HCMUT-011": 1,
+     "HCMUT-012": 1,
+     "HCMUT-013": 1,
+     "HCMUT-014": 1,
+     "HCMUT-015": 1,
+     "HCMUT-016": 1,
+     "HCMUT-017": 1,
+     "HCMUT-018": 1,
+     "HCMUT-019": 1,
+     "HCMUT-020": 1,
+     "HCMUT-021": 2,
+     "HCMUT-022": 1,
+     "HCMUT-023": 1,
+     "HCMUT-026": 1,
+     "HCMUT-027": 1,
+     "HCMUT-028": 1,
+     "HCMUT-029": 1,
+     "HCMUT-030": 2,
+     "HCMUT-031": 1,
+     "HCMUT-032": 1,
+     "HCMUT-033": 1,
+     "HCMUT-034": 2,
+     "HCMUT-035": 2,
+     "HCMUT-036": 1,
+     "HCMUT-037": 1,
+     "HCMUT-038": 1,
+     "HCMUT-039": 2,
+     "HCMUT-040": 1,
+     "HCMUT-041": 1,
+     "HCMUT-042": 1,
+     "HCMUT-043": 1,
+     "HCMUT-044": 1,
+     "HCMUT-045": 1,
+     "HCMUT-046": 1,
+     "HCMUT-047": 1
+    }
+   },
+   "questions_naming_a_document_or_article": 29
+  },
+  "labour_vi_v1": {
+   "benchmark": "labour_vi_v1",
+   "n_tasks": 50,
+   "checks": {
+    "lock_hashes_match": {
+     "pass": true,
+     "detail": {
+      "tasks": {
+       "path": "evaluation/benchmarks/labour_vi_v1/tasks.json",
+       "expected": "f6bfe0efb47167699f26657888276597196e1c36598cb9ff895b8a90614eb1db",
+       "actual": "f6bfe0efb47167699f26657888276597196e1c36598cb9ff895b8a90614eb1db",
+       "match": true
+      },
+      "corpus": {
+       "path": "data/corpus/labour_vi_v1.json",
+       "expected": "51154b6e9c9320b507d7ee19512e729f7908e45840c7ea701d92bf28fe65bea8",
+       "actual": "51154b6e9c9320b507d7ee19512e729f7908e45840c7ea701d92bf28fe65bea8",
+       "match": true
+      },
+      "profile": {
+       "path": "config/domains/labour_vi_multi.yaml",
+       "expected": "e11d17f2def6b41996486aed7624c5a938a349d7d77fe07e812d0418cf00fcc3",
+       "actual": "e11d17f2def6b41996486aed7624c5a938a349d7d77fe07e812d0418cf00fcc3",
+       "match": true
+      },
+      "benchmark_yaml": {
+       "path": "evaluation/benchmarks/labour_vi_v1/benchmark.yaml",
+       "expected": "c008d40accdc92d8ef3fe879c954cd0c66f4f6c3dab7d2ec34c49f5c4553bd1a",
+       "actual": "c008d40accdc92d8ef3fe879c954cd0c66f4f6c3dab7d2ec34c49f5c4553bd1a",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/ADJUDICATION.md": {
+       "path": "evaluation/benchmarks/labour_vi_v1/ADJUDICATION.md",
+       "expected": "0278b715f1887e9b7efa57767292618ec024e672364bc9603940f558a93a89a7",
+       "actual": "0278b715f1887e9b7efa57767292618ec024e672364bc9603940f558a93a89a7",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/README.md": {
+       "path": "evaluation/benchmarks/labour_vi_v1/README.md",
+       "expected": "898e9a09daea87dcae66ea0be2443091ee4ca779e1d0f26077135efea71c03d1",
+       "actual": "898e9a09daea87dcae66ea0be2443091ee4ca779e1d0f26077135efea71c03d1",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/VERIFIER_BRIEF.md": {
+       "path": "evaluation/benchmarks/labour_vi_v1/VERIFIER_BRIEF.md",
+       "expected": "99276cdb601fcf9ba60c4dac426d8f4cc4507bcf704d782ac035f736c5c06b3c",
+       "actual": "99276cdb601fcf9ba60c4dac426d8f4cc4507bcf704d782ac035f736c5c06b3c",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/WRITER_BRIEF.md": {
+       "path": "evaluation/benchmarks/labour_vi_v1/WRITER_BRIEF.md",
+       "expected": "8a8996491e71ebe9d8602e74578c8ec2509ef06a4c05808fca31c35c40e4e123",
+       "actual": "8a8996491e71ebe9d8602e74578c8ec2509ef06a4c05808fca31c35c40e4e123",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/draft_all.json": {
+       "path": "evaluation/benchmarks/labour_vi_v1/draft_all.json",
+       "expected": "ecd6eda7fc9a03ace73ad9bdd200b6fb54173073d671497d7b2a88c64c48d998",
+       "actual": "ecd6eda7fc9a03ace73ad9bdd200b6fb54173073d671497d7b2a88c64c48d998",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/draft_part1.json": {
+       "path": "evaluation/benchmarks/labour_vi_v1/draft_part1.json",
+       "expected": "6863fd3a52d798c61876323751330ff60b0dfb58d9949b1ec65fc5fdda359c55",
+       "actual": "6863fd3a52d798c61876323751330ff60b0dfb58d9949b1ec65fc5fdda359c55",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/draft_part2.json": {
+       "path": "evaluation/benchmarks/labour_vi_v1/draft_part2.json",
+       "expected": "2e1dcfabbb3abab3f96a85592f5bb2b1bf8c429f50968728c70db00564055005",
+       "actual": "2e1dcfabbb3abab3f96a85592f5bb2b1bf8c429f50968728c70db00564055005",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/recheck_C.json": {
+       "path": "evaluation/benchmarks/labour_vi_v1/recheck_C.json",
+       "expected": "ed9496e00f13770ad9a661858999b741f1f890a682598f59fbfdd19e06ef682f",
+       "actual": "ed9496e00f13770ad9a661858999b741f1f890a682598f59fbfdd19e06ef682f",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/verify_A.json": {
+       "path": "evaluation/benchmarks/labour_vi_v1/verify_A.json",
+       "expected": "b4a09a7d43fde3a862e17f9340a28e46eae5763e06fb86734c23f504df33c789",
+       "actual": "b4a09a7d43fde3a862e17f9340a28e46eae5763e06fb86734c23f504df33c789",
+       "match": true
+      },
+      "evaluation/benchmarks/labour_vi_v1/verify_B.json": {
+       "path": "evaluation/benchmarks/labour_vi_v1/verify_B.json",
+       "expected": "14f009776c70016d47ba8433de475b4194e561832e71241be0fd8a925165daf3",
+       "actual": "14f009776c70016d47ba8433de475b4194e561832e71241be0fd8a925165daf3",
+       "match": true
+      }
+     }
+    },
+    "yaml_review_status_equals_lock": {
+     "pass": true,
+     "yaml": "pending",
+     "lock": "pending"
+    },
+    "lock_counts_match": {
+     "pass": true,
+     "categories": {
+      "single": 40,
+      "multi": 5,
+      "out_of_scope": 5
+     },
+     "behaviors": {
+      "answer": 45,
+      "refuse": 5
+     },
+     "records": 458
+    },
+    "ids_unique": {
+     "pass": true
+    },
+    "required_fields": {
+     "pass": true,
+     "missing": []
+    },
+    "category_values": {
+     "pass": true,
+     "bad": []
+    },
+    "behavior_values": {
+     "pass": true,
+     "bad": []
+    },
+    "questions_unique": {
+     "pass": true
+    },
+    "gold_ids_exist": {
+     "pass": true,
+     "missing": []
+    },
+    "evidence_ids_equal_gold": {
+     "pass": true,
+     "mismatch": []
+    },
+    "category_behaviour_gold_coherence": {
+     "pass": false,
+     "issues": [
+      [
+       "LVN-014",
+       "single with 2 gold"
+      ],
+      [
+       "LVN-016",
+       "single with 2 gold"
+      ],
+      [
+       "LVN-019",
+       "single with 2 gold"
+      ]
+     ]
+    },
+    "quotes_verbatim": {
+     "pass": true,
+     "n_quotes": 77,
+     "failures": []
+    },
+    "pdf_pages_equal_source_pages": {
+     "pass": true,
+     "mismatch": []
+    },
+    "doc_code_matches_first_gold": {
+     "pass": false,
+     "mismatch": [
+      [
+       "LVN-023",
+       "ND219_2025",
+       "BLLD2019"
+      ],
+      [
+       "LVN-046",
+       "TT26_2025",
+       "ND135_2020"
+      ]
+     ]
+    },
+    "answer_numbers_in_evidence": {
+     "pass": null,
+     "info": "heuristic; not a pass/fail",
+     "flagged": [
+      {
+       "task_id": "LVN-001",
+       "answer_numbers_not_in_quotes": [
+        "1",
+        "113",
+        "2019"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "2019"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-002",
+       "answer_numbers_not_in_quotes": [
+        "107",
+        "2"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-004",
+       "answer_numbers_not_in_quotes": [
+        "7"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "7"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-014",
+       "answer_numbers_not_in_quotes": [
+        "25",
+        "3"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-016",
+       "answer_numbers_not_in_quotes": [
+        "2",
+        "8"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-018",
+       "answer_numbers_not_in_quotes": [
+        "1",
+        "21"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-021",
+       "answer_numbers_not_in_quotes": [
+        "2019",
+        "2025",
+        "293"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "2019",
+        "2025",
+        "293"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-022",
+       "answer_numbers_not_in_quotes": [
+        "1",
+        "2",
+        "38",
+        "39"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-023",
+       "answer_numbers_not_in_quotes": [
+        "1",
+        "154",
+        "2",
+        "2019",
+        "2025",
+        "219",
+        "7"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "2019",
+        "2025",
+        "219"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-028",
+       "answer_numbers_not_in_quotes": [
+        "2024"
+       ],
+       "answer_numbers_not_in_gold_records": [],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-031",
+       "answer_numbers_not_in_quotes": [
+        "1",
+        "135",
+        "2020",
+        "5"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "135",
+        "2020"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-040",
+       "answer_numbers_not_in_quotes": [
+        "10,5",
+        "105",
+        "25",
+        "3"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "10,5",
+        "105",
+        "25"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-041",
+       "answer_numbers_not_in_quotes": [
+        "143",
+        "2024"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "143",
+        "2024"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-046",
+       "answer_numbers_not_in_quotes": [
+        "1",
+        "135",
+        "2",
+        "2020",
+        "4",
+        "5"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "135",
+        "2020"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      },
+      {
+       "task_id": "LVN-047",
+       "answer_numbers_not_in_quotes": [
+        "1",
+        "2025",
+        "26.550.000",
+        "26550000",
+        "293",
+        "3",
+        "39"
+       ],
+       "answer_numbers_not_in_gold_records": [
+        "2025",
+        "26.550.000",
+        "26550000",
+        "293"
+       ],
+       "note": "numbers may be derived (sum/product) or spelled out; manual review"
+      }
+     ]
+    },
+    "answer_token_overlap_with_question_top10": {
+     "pass": null,
+     "info": "share of expected_answer tokens (len>=4) found in question; descriptive",
+     "top": [
+      [
+       "LVN-021",
+       1.0
+      ],
+      [
+       "LVN-030",
+       1.0
+      ],
+      [
+       "LVN-035",
+       1.0
+      ],
+      [
+       "LVN-038",
+       1.0
+      ],
+      [
+       "LVN-020",
+       0.92
+      ],
+      [
+       "LVN-044",
+       0.9
+      ],
+      [
+       "LVN-010",
+       0.89
+      ],
+      [
+       "LVN-047",
+       0.89
+      ],
+      [
+       "LVN-028",
+       0.88
+      ],
+      [
+       "LVN-029",
+       0.87
+      ]
+     ]
+    },
+    "near_duplicate_or_shared_gold_pairs": {
+     "pass": null,
+     "info": "pairs with jaccard>=.45 or seq>=.6 or a shared gold record",
+     "pairs": [
+      {
+       "a": "LVN-048",
+       "b": "LVN-049",
+       "jaccard": 0.45,
+       "seq": 0.53,
+       "shared_gold": []
+      },
+      {
+       "a": "LVN-017",
+       "b": "LVN-020",
+       "jaccard": 0.4,
+       "seq": 0.53,
+       "shared_gold": [
+        "ND219_2025_Dieu_22"
+       ]
+      },
+      {
+       "a": "LVN-038",
+       "b": "LVN-040",
+       "jaccard": 0.48,
+       "seq": 0.44,
+       "shared_gold": []
+      },
+      {
+       "a": "LVN-007",
+       "b": "LVN-022",
+       "jaccard": 0.54,
+       "seq": 0.36,
+       "shared_gold": [
+        "LVL2025_Dieu_38"
+       ]
+      },
+      {
+       "a": "LVN-009",
+       "b": "LVN-021",
+       "jaccard": 0.39,
+       "seq": 0.5,
+       "shared_gold": [
+        "ND293_2025_Dieu_3"
+       ]
+      },
+      {
+       "a": "LVN-024",
+       "b": "LVN-049",
+       "jaccard": 0.27,
+       "seq": 0.6,
+       "shared_gold": []
+      },
+      {
+       "a": "LVN-011",
+       "b": "LVN-012",
+       "jaccard": 0.42,
+       "seq": 0.41,
+       "shared_gold": [
+        "ND293_2025_Dieu_4"
+       ]
+      },
+      {
+       "a": "LVN-010",
+       "b": "LVN-021",
+       "jaccard": 0.22,
+       "seq": 0.45,
+       "shared_gold": [
+        "ND293_2025_Dieu_3"
+       ]
+      },
+      {
+       "a": "LVN-043",
+       "b": "LVN-045",
+       "jaccard": 0.24,
+       "seq": 0.37,
+       "shared_gold": [
+        "TT26_2025_Dieu_5"
+       ]
+      },
+      {
+       "a": "LVN-009",
+       "b": "LVN-047",
+       "jaccard": 0.31,
+       "seq": 0.21,
+       "shared_gold": [
+        "ND293_2025_Dieu_3"
+       ]
+      },
+      {
+       "a": "LVN-034",
+       "b": "LVN-035",
+       "jaccard": 0.21,
+       "seq": 0.27,
+       "shared_gold": [
+        "ND274_2025_Dieu_3"
+       ]
+      },
+      {
+       "a": "LVN-005",
+       "b": "LVN-047",
+       "jaccard": 0.31,
+       "seq": 0.16,
+       "shared_gold": [
+        "LVL2025_Dieu_39"
+       ]
+      },
+      {
+       "a": "LVN-042",
+       "b": "LVN-046",
+       "jaccard": 0.43,
+       "seq": 0.04,
+       "shared_gold": [
+        "TT26_2025_Dieu_4"
+       ]
+      },
+      {
+       "a": "LVN-009",
+       "b": "LVN-010",
+       "jaccard": 0.29,
+       "seq": 0.17,
+       "shared_gold": [
+        "ND293_2025_Dieu_3"
+       ]
+      },
+      {
+       "a": "LVN-021",
+       "b": "LVN-047",
+       "jaccard": 0.31,
+       "seq": 0.14,
+       "shared_gold": [
+        "ND293_2025_Dieu_3"
+       ]
+      },
+      {
+       "a": "LVN-005",
+       "b": "LVN-022",
+       "jaccard": 0.29,
+       "seq": 0.16,
+       "shared_gold": [
+        "LVL2025_Dieu_39"
+       ]
+      },
+      {
+       "a": "LVN-022",
+       "b": "LVN-047",
+       "jaccard": 0.3,
+       "seq": 0.14,
+       "shared_gold": [
+        "LVL2025_Dieu_39"
+       ]
+      },
+      {
+       "a": "LVN-010",
+       "b": "LVN-047",
+       "jaccard": 0.29,
+       "seq": 0.1,
+       "shared_gold": [
+        "ND293_2025_Dieu_3"
+       ]
+      },
+      {
+       "a": "LVN-031",
+       "b": "LVN-046",
+       "jaccard": 0.17,
+       "seq": 0.1,
+       "shared_gold": [
+        "ND135_2020_Dieu_5"
+       ]
+      }
+     ]
+    },
+    "alternative_support_records_not_in_gold": {
+     "pass": null,
+     "info": "non-gold records containing >=70% of an evidence quote's 6-grams (possible equally valid citations / superseded duplicates)",
+     "flagged": [
+      {
+       "task_id": "LVN-014",
+       "other_records_containing_quote_text": {
+        "ND318_2025_Dieu_7": 1.0
+       }
+      },
+      {
+       "task_id": "LVN-046",
+       "other_records_containing_quote_text": {
+        "BLLD2019_Dieu_219": 0.81,
+        "ND135_2020_Dieu_7": 0.79
+       }
+      }
+     ]
+    },
+    "evidence_beyond_first_3000_chars": {
+     "pass": null,
+     "info": "quote starts after char 3000 of its record",
+     "flagged": [
+      {
+       "task_id": "LVN-037",
+       "article_id": "ND274_2025_Dieu_6",
+       "quote_offset_chars": 3673,
+       "record_chars": 4511
+      },
+      {
+       "task_id": "LVN-037",
+       "article_id": "ND274_2025_Dieu_6",
+       "quote_offset_chars": 3849,
+       "record_chars": 4511
+      }
+     ]
+    },
+    "questions_citing_instrument_number_absent_from_gold_text": {
+     "pass": null,
+     "info": "document pin lives only in metadata/doc_id, not in text that BM25 indexes (title+content)",
+     "count": 21,
+     "tasks": [
+      {
+       "task_id": "LVN-009",
+       "cited_numbers": [
+        "293"
+       ]
+      },
+      {
+       "task_id": "LVN-010",
+       "cited_numbers": [
+        "293"
+       ]
+      },
+      {
+       "task_id": "LVN-011",
+       "cited_numbers": [
+        "293"
+       ]
+      },
+      {
+       "task_id": "LVN-012",
+       "cited_numbers": [
+        "293"
+       ]
+      },
+      {
+       "task_id": "LVN-013",
+       "cited_numbers": [
+        "318"
+       ]
+      },
+      {
+       "task_id": "LVN-014",
+       "cited_numbers": [
+        "318"
+       ]
+      },
+      {
+       "task_id": "LVN-015",
+       "cited_numbers": [
+        "318"
+       ]
+      },
+      {
+       "task_id": "LVN-016",
+       "cited_numbers": [
+        "318"
+       ]
+      },
+      {
+       "task_id": "LVN-017",
+       "cited_numbers": [
+        "219"
+       ]
+      },
+      {
+       "task_id": "LVN-018",
+       "cited_numbers": [
+        "219"
+       ]
+      },
+      {
+       "task_id": "LVN-019",
+       "cited_numbers": [
+        "219"
+       ]
+      },
+      {
+       "task_id": "LVN-020",
+       "cited_numbers": [
+        "219"
+       ]
+      },
+      {
+       "task_id": "LVN-021",
+       "cited_numbers": [
+        "293"
+       ]
+      },
+      {
+       "task_id": "LVN-023",
+       "cited_numbers": [
+        "219"
+       ]
+      },
+      {
+       "task_id": "LVN-030",
+       "cited_numbers": [
+        "135"
+       ]
+      },
+      {
+       "task_id": "LVN-031",
+       "cited_numbers": [
+        "135"
+       ]
+      },
+      {
+       "task_id": "LVN-032",
+       "cited_numbers": [
+        "135"
+       ]
+      },
+      {
+       "task_id": "LVN-033",
+       "cited_numbers": [
+        "135"
+       ]
+      },
+      {
+       "task_id": "LVN-034",
+       "cited_numbers": [
+        "274"
+       ]
+      },
+      {
+       "task_id": "LVN-046",
+       "cited_numbers": [
+        "135"
+       ]
+      },
+      {
+       "task_id": "LVN-047",
+       "cited_numbers": [
+        "293"
+       ]
+      }
+     ]
+    }
+   },
+   "per_task": {
+    "LVN-014": [
+     "SINGLE_GOLD_COUNT",
+     "ALT_SUPPORT_RECORD"
+    ],
+    "LVN-016": [
+     "SINGLE_GOLD_COUNT"
+    ],
+    "LVN-019": [
+     "SINGLE_GOLD_COUNT"
+    ],
+    "LVN-023": [
+     "DOC_CODE_MISMATCH"
+    ],
+    "LVN-046": [
+     "DOC_CODE_MISMATCH",
+     "ALT_SUPPORT_RECORD"
+    ]
+   },
+   "findings_mech": [
+    {
+     "task_id": "LVN-014",
+     "code": "SINGLE_GOLD_COUNT",
+     "msg": "2"
+    },
+    {
+     "task_id": "LVN-016",
+     "code": "SINGLE_GOLD_COUNT",
+     "msg": "2"
+    },
+    {
+     "task_id": "LVN-019",
+     "code": "SINGLE_GOLD_COUNT",
+     "msg": "2"
+    },
+    {
+     "task_id": "LVN-023",
+     "code": "DOC_CODE_MISMATCH",
+     "msg": "ND219_2025 vs BLLD2019"
+    },
+    {
+     "task_id": "LVN-046",
+     "code": "DOC_CODE_MISMATCH",
+     "msg": "TT26_2025 vs ND135_2020"
+    }
+   ],
+   "distribution": {
+    "category": {
+     "single": 40,
+     "multi": 5,
+     "out_of_scope": 5
+    },
+    "expected_behavior": {
+     "answer": 45,
+     "refuse": 5
+    },
+    "doc_code_field": {
+     "BLLD2019": 6,
+     "LVL2025": 7,
+     "ND293_2025": 4,
+     "ND318_2025": 4,
+     "ND219_2025": 5,
+     "LCD2024": 4,
+     "ND135_2020": 5,
+     "ND274_2025": 6,
+     "ND143_2024": 4,
+     "TT26_2025": 5
+    },
+    "gold_records_by_doc": {
+     "BLLD2019": 6,
+     "LVL2025": 7,
+     "ND293_2025": 6,
+     "ND318_2025": 6,
+     "ND219_2025": 6,
+     "LCD2024": 4,
+     "ND135_2020": 5,
+     "ND274_2025": 4,
+     "ND143_2024": 4,
+     "TT26_2025": 5
+    },
+    "corpus_records_by_doc": {
+     "BLLD2019": 220,
+     "LVL2025": 55,
+     "ND293_2025": 5,
+     "ND318_2025": 25,
+     "ND219_2025": 36,
+     "LCD2024": 37,
+     "ND135_2020": 12,
+     "ND274_2025": 16,
+     "ND143_2024": 47,
+     "TT26_2025": 5
+    },
+    "unique_gold_records": 41,
+    "corpus_records": 458,
+    "gold_records_used_by_more_than_one_task": {
+     "LVL2025_Dieu_38": [
+      "LVN-007",
+      "LVN-022"
+     ],
+     "LVL2025_Dieu_39": [
+      "LVN-005",
+      "LVN-022",
+      "LVN-047"
+     ],
+     "ND135_2020_Dieu_5": [
+      "LVN-031",
+      "LVN-046"
+     ],
+     "ND219_2025_Dieu_22": [
+      "LVN-017",
+      "LVN-020"
+     ],
+     "ND274_2025_Dieu_3": [
+      "LVN-034",
+      "LVN-035"
+     ],
+     "ND293_2025_Dieu_3": [
+      "LVN-009",
+      "LVN-010",
+      "LVN-021",
+      "LVN-047"
+     ],
+     "ND293_2025_Dieu_4": [
+      "LVN-011",
+      "LVN-012"
+     ],
+     "TT26_2025_Dieu_4": [
+      "LVN-042",
+      "LVN-046"
+     ],
+     "TT26_2025_Dieu_5": [
+      "LVN-043",
+      "LVN-045"
+     ]
+    },
+    "gold_status": {
+     "ai_verified_two_independent_reviewers_adjudicated": 49,
+     "ai_verified_adjudicator_plus_independent_recheck": 1
+    },
+    "answer_length_words_median": 35,
+    "numeric_questions_by_answer_has_digit": 37,
+    "question_starts_with_explicit_law_reference": [
+     "LVN-001",
+     "LVN-002",
+     "LVN-003",
+     "LVN-004",
+     "LVN-009",
+     "LVN-010",
+     "LVN-011",
+     "LVN-012",
+     "LVN-013",
+     "LVN-014",
+     "LVN-015",
+     "LVN-016",
+     "LVN-017",
+     "LVN-018",
+     "LVN-019",
+     "LVN-020",
+     "LVN-021",
+     "LVN-023",
+     "LVN-030",
+     "LVN-031",
+     "LVN-032",
+     "LVN-033",
+     "LVN-034",
+     "LVN-037",
+     "LVN-040",
+     "LVN-042",
+     "LVN-044",
+     "LVN-045",
+     "LVN-046",
+     "LVN-047"
+    ]
+   },
+   "sanity_run_signals": {
+    "run": "labour-sanity-final-v1",
+    "summary": {
+     "oracle": {
+      "appropriate_refusal": 5,
+      "correct": 45
+     },
+     "closed_book": {
+      "appropriate_refusal": 4,
+      "inappropriate_refusal": 28,
+      "incorrect": 18
+     }
+    },
+    "closed_book_correct": [],
+    "closed_book_partial": [],
+    "oracle_not_correct": [],
+    "oracle_errors": [],
+    "closed_book_answers_mentioning_HCMUT_scope": 48,
+    "closed_book_answers_total": 50,
+    "sanity_script_closed_prompt_is_HCMUT_scoped": true,
+    "sanity_oracle_refusal_context_is_titles_only": true
+   },
+   "refusal_candidate_records": {
+    "LVN-024": {
+     "question": "Người sử dụng lao động và người lao động phải đóng bảo hiểm y tế với tỷ lệ bao nhiêu phần trăm tiền lương hiện hành?",
+     "top_records_by_idf_overlap": [
+      [
+       16.79,
+       "ND143_2024_Dieu_12"
+      ],
+      [
+       12.22,
+       "ND135_2020_Dieu_7"
+      ],
+      [
+       12.1,
+       "ND219_2025_Dieu_7"
+      ],
+      [
+       12.1,
+       "BLLD2019_Dieu_30"
+      ],
+      [
+       11.38,
+       "LCD2024_Dieu_32"
+      ],
+      [
+       11.32,
+       "LVL2025_Dieu_46"
+      ]
+     ]
+    },
+    "LVN-025": {
+     "question": "Công ty trả lương chậm cho nhân viên thì bị cơ quan nhà nước xử phạt vi phạm hành chính bao nhiêu tiền?",
+     "top_records_by_idf_overlap": [
+      [
+       18.08,
+       "ND219_2025_Dieu_7"
+      ],
+      [
+       17.9,
+       "ND219_2025_Dieu_36"
+      ],
+      [
+       17.9,
+       "LCD2024_Dieu_15"
+      ],
+      [
+       17.27,
+       "LCD2024_Dieu_10"
+      ],
+      [
+       17.16,
+       "ND274_2025_Dieu_11"
+      ],
+      [
+       16.86,
+       "LVL2025_Dieu_41"
+      ]
+     ]
+    },
+    "LVN-048": {
+     "question": "Người đóng đủ 20 năm bảo hiểm xã hội khi nghỉ hưu thì được hưởng lương hưu bằng bao nhiêu phần trăm mức bình quân tiền lương đóng bảo hiểm?",
+     "top_records_by_idf_overlap": [
+      [
+       20.33,
+       "BLLD2019_Dieu_219"
+      ],
+      [
+       15.93,
+       "LVL2025_Dieu_31"
+      ],
+      [
+       15.73,
+       "ND143_2024_Dieu_12"
+      ],
+      [
+       15.41,
+       "LVL2025_Dieu_46"
+      ],
+      [
+       14.93,
+       "LVL2025_Dieu_34"
+      ],
+      [
+       14.61,
+       "BLLD2019_Dieu_3"
+      ]
+     ]
+    },
+    "LVN-049": {
+     "question": "Lao động nữ nghỉ thai sản thì được trợ cấp thai sản từ bảo hiểm xã hội bằng bao nhiêu phần trăm tiền lương?",
+     "top_records_by_idf_overlap": [
+      [
+       16.36,
+       "BLLD2019_Dieu_139"
+      ],
+      [
+       14.51,
+       "BLLD2019_Dieu_219"
+      ],
+      [
+       14.38,
+       "ND143_2024_Dieu_12"
+      ],
+      [
+       14.25,
+       "BLLD2019_Dieu_137"
+      ],
+      [
+       14.11,
+       "LCD2024_Dieu_31"
+      ],
+      [
+       13.96,
+       "BLLD2019_Dieu_4"
+      ]
+     ]
+    },
+    "LVN-050": {
+     "question": "Doanh nghiệp trốn đóng bảo hiểm xã hội sẽ bị phạt hành chính bao nhiêu tiền (tính bằng đồng) cho mỗi lần vi phạm?",
+     "top_records_by_idf_overlap": [
+      [
+       20.63,
+       "LVL2025_Dieu_33"
+      ],
+      [
+       17.55,
+       "ND318_2025_Dieu_18"
+      ],
+      [
+       17.53,
+       "ND274_2025_Dieu_3"
+      ],
+      [
+       16.58,
+       "ND219_2025_Dieu_36"
+      ],
+      [
+       16.53,
+       "LVL2025_Dieu_41"
+      ],
+      [
+       16.46,
+       "LVL2025_Dieu_31"
+      ]
+     ]
+    }
+   },
+   "record_length_stats": {
+    "gold_record_chars_max": 5128,
+    "corpus_chars_median": 811,
+    "corpus_chars_max": 7247
+   },
+   "bm25_gold_rank_baseline": {
+    "n": 45,
+    "top1": 35,
+    "top5": 44,
+    "top10": 45,
+    "median_rank": 1,
+    "worst": [
+     [
+      "LVN-016",
+      6
+     ],
+     [
+      "LVN-002",
+      3
+     ],
+     [
+      "LVN-003",
+      3
+     ],
+     [
+      "LVN-018",
+      3
+     ],
+     [
+      "LVN-019",
+      3
+     ],
+     [
+      "LVN-006",
+      2
+     ],
+     [
+      "LVN-013",
+      2
+     ],
+     [
+      "LVN-014",
+      2
+     ]
+    ],
+    "ranks": {
+     "LVN-001": 1,
+     "LVN-002": 3,
+     "LVN-003": 3,
+     "LVN-004": 1,
+     "LVN-005": 1,
+     "LVN-006": 2,
+     "LVN-007": 1,
+     "LVN-008": 1,
+     "LVN-009": 1,
+     "LVN-010": 1,
+     "LVN-011": 1,
+     "LVN-012": 1,
+     "LVN-013": 2,
+     "LVN-014": 2,
+     "LVN-015": 1,
+     "LVN-016": 6,
+     "LVN-017": 2,
+     "LVN-018": 3,
+     "LVN-019": 3,
+     "LVN-020": 1,
+     "LVN-021": 1,
+     "LVN-022": 1,
+     "LVN-023": 1,
+     "LVN-026": 1,
+     "LVN-027": 1,
+     "LVN-028": 1,
+     "LVN-029": 1,
+     "LVN-030": 1,
+     "LVN-031": 1,
+     "LVN-032": 2,
+     "LVN-033": 1,
+     "LVN-034": 1,
+     "LVN-035": 1,
+     "LVN-036": 1,
+     "LVN-037": 1,
+     "LVN-038": 1,
+     "LVN-039": 1,
+     "LVN-040": 1,
+     "LVN-041": 1,
+     "LVN-042": 1,
+     "LVN-043": 1,
+     "LVN-044": 1,
+     "LVN-045": 1,
+     "LVN-046": 1,
+     "LVN-047": 1
+    }
+   },
+   "questions_naming_a_document_or_article": 30
+  }
+ }
+}

@@ -1,16 +1,22 @@
 """
-Centralized Configuration Module for LuatCheck.
+Centralized configuration for LuatCheck: Pydantic models loaded from YAML.
 
-Centralizes system configuration using Pydantic Models, loaded from YAML
-and environment variables. Allows data scientists to easily customize
-model parameters, retriever, verifier, and episodic memory settings.
+Every optional component has an explicit `enabled` switch (or, for verification, a `mode`) and a `backend` choice,
+and is validated here, so a wrong value fails at load time with the key named. `src/pipeline` turns a validated
+`AppConfig` into running components. The annotated list of every key is `config/README.md` /
+`config/reference.yaml`.
+
+Section models ignore unknown keys (older run configs and benchmark overrides rely on that);
+`find_unknown_keys` / `load_config` report them as warnings instead.
 """
 import os
+import warnings
 import yaml
-from typing import Optional, Dict, Any, Literal
+from typing import Optional, Dict, Any, List, Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from src.domains import DEFAULT_PROFILE_ID
+from src.verifier.modes import VALID_MODES
 
 
 class ModelConfig(BaseModel):
@@ -66,11 +72,18 @@ class RerankerConfig(BaseModel):
     local_files_only: bool = Field(default=False, description="Never touch the network when loading local weights")
     batch_size: int = Field(default=1, ge=1)
     timeout_seconds: float = Field(default=60.0, gt=0.0)
+    # Long candidates (cross_encoder and llamacpp_http): a text longer than chunk_chars is split into overlapping windows, every
+    # window is scored and the document score is the max (MaxP); null disables chunking (the pair is then cut at max_length tokens).
+    # Defaults equal the class defaults in src/retrieval/rerankers.py (a test pins them).
+    chunk_chars: Optional[int] = Field(default=1500, ge=200, description="Window size in characters for long candidates; null = no chunking")
+    chunk_overlap_chars: int = Field(default=200, ge=0, description="Overlap between consecutive windows (must be < chunk_chars / 2)")
 
     @model_validator(mode="after")
     def _check(self) -> "RerankerConfig":
         if self.top_k_out > self.top_k_in:
             raise ValueError("retrieval.reranker.top_k_out must not exceed top_k_in")
+        if self.chunk_chars is not None and self.chunk_overlap_chars >= self.chunk_chars // 2:
+            raise ValueError("retrieval.reranker.chunk_overlap_chars must be smaller than chunk_chars / 2")
         if self.enabled:
             if self.backend != "llamacpp_http" and not self.model:
                 raise ValueError(f"retrieval.reranker.model is required when enabled (backend {self.backend})")
@@ -92,11 +105,14 @@ class RerankerConfig(BaseModel):
                                    "batch_size": self.batch_size}
             if self.dtype:
                 cfg["dtype"] = self.dtype
+            if self.backend == "cross_encoder":
+                cfg.update(chunk_chars=self.chunk_chars, chunk_overlap_chars=self.chunk_overlap_chars)
             return cfg
         if self.backend == "qev_http":
             return {"backend": "qev_http", "base_url": self.base_url, "model": self.model or "",
                     "timeout_seconds": self.timeout_seconds, "allow_remote": self.allow_remote}
-        cfg = {"backend": "llama_cpp", "endpoint": self.base_url, "timeout_seconds": self.timeout_seconds}
+        cfg = {"backend": "llama_cpp", "endpoint": self.base_url, "timeout_seconds": self.timeout_seconds,
+               "max_length": self.max_length, "chunk_chars": self.chunk_chars, "chunk_overlap_chars": self.chunk_overlap_chars}
         if self.model:
             cfg["model"] = self.model
         return cfg
@@ -113,12 +129,15 @@ class IndexConfig(BaseModel):
 
 
 class RetrievalConfig(BaseModel):
-    bm25_top_k: int = Field(default=5, ge=1)
-    dense_top_k: int = Field(default=5, ge=1)
+    bm25_top_k: int = Field(default=5, ge=1, description="Accepted for compatibility; not read (each retriever fetches 2 x the requested top_k)")
+    dense_top_k: int = Field(default=5, ge=1, description="Accepted for compatibility; not read")
     rrf_k: int = Field(default=60, ge=1, description="Reciprocal Rank Fusion smoothing constant")
     final_top_k: int = Field(default=5, ge=1)
     corpus_path: str = Field(default="data/corpus/labor_code_2019_official.json")
-    dense_model_type: Literal["tfidf", "bm25", "bge-m3", "phobert", "all-minilm", "nomic-embed-text"] = "tfidf"
+    dense_model_type: Literal["tfidf", "bm25", "bge-m3", "phobert", "all-minilm", "nomic-embed-text"] = Field(
+        default="tfidf",
+        description="Second retriever fused with BM25 in mode bm25_tfidf: tfidf (statistical, default), bm25 (BM25 alone), "
+                    "or the name of an embedding model served at model.endpoint (neural; fails if unavailable)")
     mode: Literal["bm25_tfidf", "hybrid_index"] = Field(
         default="bm25_tfidf",
         description="bm25_tfidf: in-memory BM25 + TF-IDF/RRF over corpus_path (default). hybrid_index: src/indexing HybridSearcher over `index`")
@@ -159,26 +178,44 @@ class NLIConfig(BaseModel):
 
 
 class VerifierConfig(BaseModel):
-    mode: str = Field(default="l1", description="Verification mode: 'off', 'l1', 'l1_l2'")
-    similarity_threshold: float = Field(default=0.70, ge=0.0, le=1.0)
+    """`mode` switches verification: off | l1 (lexical grounding) | l1_l2 (plus native-model entailment, needs
+    `l2_use_slm: true`); aliases are listed in `src/verifier/modes.py`. `nli` is an independent optional step."""
+    mode: str = Field(default="l1", description="Verification mode: 'off', 'l1', 'l1_l2' (or an alias, see src/verifier/modes.py)")
+    similarity_threshold: float = Field(default=0.70, ge=0.0, le=1.0, description="Accepted for compatibility; not read by any verifier")
     l1_overlap_threshold: float = Field(default=0.25, ge=0.0, le=1.0, description="Minimum L1 token overlap threshold")
     l2_entailment_threshold: float = Field(default=0.30, ge=0.0, le=1.0, description="Minimum L2 semantic entailment threshold")
     l2_use_slm: bool = Field(default=False, description="Enable native-model L2 entailment; no heuristic substitute")
     nli: NLIConfig = Field(default_factory=NLIConfig)
 
+    @model_validator(mode="after")
+    def _check_mode(self) -> "VerifierConfig":
+        if self.mode not in VALID_MODES:
+            raise ValueError(f"verifier.mode {self.mode!r} is not valid; expected one of {sorted(VALID_MODES)}")
+        return self
+
 
 class MemoryConfig(BaseModel):
+    """Episodic memory of verified answers (`src/memory`). `enabled: false` creates no store at all."""
     enabled: bool = True
+    backend: Literal["sqlite"] = "sqlite"
     reuse_answers: bool = Field(default=True, description="Serve a stored answer to a similar later question")
     sqlite_path: str = Field(default="data/db/local_slm_memory.db")
     similarity_threshold: float = Field(default=0.85, ge=0.0, le=1.0)
     index_version: str = Field(default="native-v2026.10.22")
 
 
+class GuardrailsConfig(BaseModel):
+    """Pre-model input check (`SecurityGuardrails.check_input_safety`: shared injection patterns plus the domain
+    profile's patterns). Input delimiting of untrusted text (`wrap_untrusted_input`) is part of the prompt and is
+    always applied."""
+    enabled: bool = True
+
+
 class SecurityConfig(BaseModel):
+    guardrails: GuardrailsConfig = Field(default_factory=GuardrailsConfig)
     audit_log_path: str = Field(default="data/audit_log.jsonl")
     outbox_path: str = Field(default="data/outbox/sent_summaries.jsonl")
-    egress_requires_confirmation: bool = Field(default=True)
+    egress_requires_confirmation: bool = Field(default=True, description="Accepted for compatibility; no component reads it (the UI always asks)")
 
 
 class DomainConfig(BaseModel):
@@ -213,6 +250,22 @@ class AppConfig(BaseModel):
         return self.verifier
 
 
+def find_unknown_keys(raw: Dict[str, Any], model: type = AppConfig, prefix: str = "") -> List[str]:
+    """Dotted paths of keys in a raw config dict that no config model declares (typos, removed keys).
+
+    Sections that accept arbitrary keys (`verifier.nli`, whose extras go to the NLI backend) are not descended into.
+    """
+    unknown: List[str] = []
+    for key, value in (raw or {}).items():
+        field = model.model_fields.get(key)
+        if field is None:
+            unknown.append(f"{prefix}{key}")
+        elif isinstance(value, dict) and isinstance(field.annotation, type) and issubclass(field.annotation, BaseModel):
+            if field.annotation.model_config.get("extra") != "allow":
+                unknown.extend(find_unknown_keys(value, field.annotation, f"{prefix}{key}."))
+    return unknown
+
+
 def load_config(config_path: Optional[str] = None) -> AppConfig:
     """
     Load configuration from a YAML file. If the file does not exist,
@@ -232,6 +285,8 @@ def load_config(config_path: Optional[str] = None) -> AppConfig:
     elif config_path or os.getenv("LOCAL_SLM_CONFIG_PATH") or os.getenv("LUATCHECK_CONFIG_PATH"):
         raise FileNotFoundError(f"Explicit configuration not found: {target_path}")
 
+    for key in find_unknown_keys(raw_data):
+        warnings.warn(f"{target_path}: unknown config key '{key}' is ignored", UserWarning, stacklevel=2)
     cfg = AppConfig(**raw_data)
 
     # Dynamic environment variable overrides

@@ -7,6 +7,7 @@ domain guardrail patterns and L1 quantity vocabulary. Shared code must not hard-
 any of these.
 """
 import re
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Literal, Optional, Set, Union
 
@@ -17,6 +18,7 @@ from src.agent.state import ActionType
 
 DEFAULT_PROFILE_ID = "labour_vi_2019"
 PROFILE_DIR = Path(__file__).resolve().parents[2] / "config" / "domains"
+MESSAGE_PACK_DIR = PROFILE_DIR / "messages"
 
 _TOOL_NAME = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 _PROFILE_ID = re.compile(r"^[a-z0-9_]+$")
@@ -76,12 +78,63 @@ class GuardrailSpec(BaseModel):
         return patterns
 
 
+# Messages that a profile may leave out: they come from the language pack config/domains/messages/<language>.yaml.
+# name -> sample format arguments (also the placeholders a message may use). None = used verbatim.
+PACK_MESSAGES: Dict[str, Optional[Dict[str, Any]]] = {
+    "tool_budget_search": {"max_tool_calls": 1}, "tool_budget_read": {"max_tool_calls": 1},
+    "steps_exhausted": {"max_steps": 1}, "tool_budget_exhausted": {"max_tool_calls": 1},
+    "component_error_summary": {"kind": "x"}, "read_status": {"status": "x"},
+    "search_not_found": {"query": "x"}, "document_not_found": {"doc_id": "x"},
+    "l1_empty_answer_claim": None, "l1_empty_answer_feedback": None, "l1_missing_citation_feedback": None,
+    "l1_unknown_citation": {"doc_id": "x"}, "l1_quote_mismatch": {"doc_id": "x"},
+    "l1_unsupported_claims": {"count": 1, "claims": "x"},
+    "nli_repair_feedback": {"count": 1, "threshold": 0.9, "pairs": "x"},
+    "nli_pair_line": {"sentence": "x", "premise_id": "x", "probability": 0.5},
+    "l2_repair_feedback": {"count": 1, "threshold": 0.5, "claims": "x"},
+    "cache_l2_rejection": {"count": 1, "claims": "x"},
+}
+
+
+@lru_cache(maxsize=None)
+def load_message_pack(language: str) -> Dict[str, str]:
+    """Controller/tool/verifier messages for a language (config/domains/messages/<language>.yaml)."""
+    path = MESSAGE_PACK_DIR / f"{language}.yaml"
+    if not path.is_file():
+        raise FileNotFoundError(f"No message pack for language {language!r}: {path} is missing "
+                                "(add it, or set every message in the profile's own `messages:` block)")
+    return {str(k): str(v) for k, v in (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).items()}
+
+
 class MessagesSpec(BaseModel):
+    """Texts the controller and the verifiers write into observations, ledgers and repair feedback.
+
+    The first five are required in every profile. All others are optional; a profile that leaves one out gets
+    the text of its language pack (`load_message_pack`), see `DomainProfile`.
+    """
     duplicate_query: str = Field(description="Observation for a repeated search; {read_tool}")
     already_read: str = Field(description="Observation for a repeated read")
     unretrieved_citation: str = Field(description="L1 provenance feedback; {doc_id}")
     repair_exhausted: str = Field(description="Refusal reason after the repair budget; {max_repairs}, {repair_feedback}")
     search_summary: str = Field(description="Audit summary of a search; {count}")
+
+    tool_budget_search: Optional[str] = Field(default=None, description="Observation when the tool budget is spent (search action); {max_tool_calls}")
+    tool_budget_read: Optional[str] = Field(default=None, description="Same, for the read action; {max_tool_calls}")
+    steps_exhausted: Optional[str] = Field(default=None, description="Refusal reason when the step budget is spent; {max_steps}")
+    tool_budget_exhausted: Optional[str] = Field(default=None, description="Refusal reason when the tool budget is spent on the last step; {max_tool_calls}")
+    component_error_summary: Optional[str] = Field(default=None, description="Ledger summary of a failed model component; {kind}")
+    read_status: Optional[str] = Field(default=None, description="Ledger summary of a read; {status}")
+    search_not_found: Optional[str] = Field(default=None, description="Search result without hits; {query}")
+    document_not_found: Optional[str] = Field(default=None, description="Read of an unknown ID; {doc_id}")
+    l1_empty_answer_claim: Optional[str] = None
+    l1_empty_answer_feedback: Optional[str] = None
+    l1_missing_citation_feedback: Optional[str] = None
+    l1_unknown_citation: Optional[str] = Field(default=None, description="{doc_id}")
+    l1_quote_mismatch: Optional[str] = Field(default=None, description="{doc_id}")
+    l1_unsupported_claims: Optional[str] = Field(default=None, description="{count}, {claims}")
+    nli_repair_feedback: Optional[str] = Field(default=None, description="{count}, {threshold}, {pairs}")
+    nli_pair_line: Optional[str] = Field(default=None, description="{sentence}, {premise_id}, {probability}")
+    l2_repair_feedback: Optional[str] = Field(default=None, description="{count}, {threshold}, {claims}")
+    cache_l2_rejection: Optional[str] = Field(default=None, description="{count}, {claims}")
 
     @model_validator(mode="after")
     def _formattable(self) -> "MessagesSpec":
@@ -89,7 +142,22 @@ class MessagesSpec(BaseModel):
         self.unretrieved_citation.format(doc_id="x")
         self.repair_exhausted.format(max_repairs=1, repair_feedback="x")
         self.search_summary.format(count=1)
+        for name, sample in PACK_MESSAGES.items():
+            text = getattr(self, name)
+            if text is not None and sample is not None:
+                try:
+                    text.format(**sample)
+                except (KeyError, IndexError, ValueError) as exc:
+                    raise ValueError(f"messages.{name} {text!r} is not a valid template for {sorted(sample)}: {exc!r}") from exc
         return self
+
+    def filled_from(self, pack: Dict[str, str]) -> "MessagesSpec":
+        """Copy with every unset optional message taken from `pack`."""
+        missing = [name for name in PACK_MESSAGES if getattr(self, name) is None and name not in pack]
+        if missing:
+            raise ValueError(f"Messages {missing} are neither set in the profile nor in its language pack.")
+        values = {name: pack[name] for name in PACK_MESSAGES if getattr(self, name) is None}
+        return MessagesSpec(**{**self.model_dump(), **values})
 
 
 class DomainProfile(BaseModel):
@@ -132,6 +200,8 @@ class DomainProfile(BaseModel):
         self.system_prompt = fill(self.system_prompt)
         self.repair_prompt = fill(self.repair_prompt)
         self.repair_prompt.format(repair_feedback="x")
+        if any(getattr(self.messages, name) is None for name in PACK_MESSAGES):
+            self.messages = self.messages.filled_from(load_message_pack(self.language))
         return self
 
     # --- canonical action <-> model-facing name -------------------------------------------

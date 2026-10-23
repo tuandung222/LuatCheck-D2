@@ -1,0 +1,650 @@
+[
+  {
+    "task_id": "LVN-001",
+    "category": "single",
+    "question": "Người lao động làm nghề đặc biệt nặng nhọc, độc hại, nguy hiểm và đã làm đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm bao nhiêu ngày làm việc, hưởng nguyên lương theo Bộ luật Lao động 2019?",
+    "ground_truth_article_ids": [
+      "BLLD2019_Dieu_113"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "16 ngày làm việc (khoản 1 điểm c Điều 113 Bộ luật Lao động 2019), với điều kiện làm đủ 12 tháng cho một người sử dụng lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "BLLD2019_Dieu_113",
+        "exact_quote": "Người lao động làm việc đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm, hưởng nguyên lương theo hợp đồng lao động như sau",
+        "pdf_pages": [
+          47
+        ]
+      },
+      {
+        "article_id": "BLLD2019_Dieu_113",
+        "exact_quote": "16 ngày làm việc đối với người làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm",
+        "pdf_pages": [
+          47
+        ]
+      }
+    ],
+    "doc_code": "BLLD2019",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Nguyên văn Công báo BLLD 2019 (không xét sửa đổi sau này). Số ngày của các nhóm khác (12, 14) không được hỏi để câu có một đáp án."
+  },
+  {
+    "task_id": "LVN-002",
+    "category": "single",
+    "question": "Theo Bộ luật Lao động 2019, người lao động thông thường được làm thêm giờ tối đa bao nhiêu giờ trong một năm, và giới hạn này được nâng lên trong trường hợp nào?",
+    "ground_truth_article_ids": [
+      "BLLD2019_Dieu_107"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Thông thường không quá 200 giờ làm thêm trong 01 năm; trong một số ngành, nghề, công việc hoặc trường hợp liệt kê tại khoản 3 Điều 107 thì không quá 300 giờ trong 01 năm.",
+    "reference_evidence": [
+      {
+        "article_id": "BLLD2019_Dieu_107",
+        "exact_quote": "không quá 200 giờ trong 01 năm, trừ trường hợp quy định tại khoản 3 Điều này",
+        "pdf_pages": [
+          44,
+          45
+        ]
+      },
+      {
+        "article_id": "BLLD2019_Dieu_107",
+        "exact_quote": "không quá 300 giờ trong 01 năm trong một số ngành, nghề, công việc hoặc trường hợp sau đây",
+        "pdf_pages": [
+          44,
+          45
+        ]
+      }
+    ],
+    "doc_code": "BLLD2019",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 3 điểm đ (trường hợp khác do Chính phủ quy định) và khoản 4 (thông báo bằng văn bản) không nằm trong câu hỏi. Đáp án không liệt kê ngành cụ thể để tránh suy diễn ngoài các điểm a-d."
+  },
+  {
+    "task_id": "LVN-003",
+    "category": "single",
+    "question": "Người sử dụng lao động phát hiện người lao động gây thiệt hại trực tiếp đến tài sản của công ty và muốn xử lý kỷ luật. Thời hiệu xử lý kỷ luật lao động trong trường hợp này là bao lâu theo Bộ luật Lao động 2019?",
+    "ground_truth_article_ids": [
+      "BLLD2019_Dieu_123"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "12 tháng kể từ ngày xảy ra hành vi vi phạm (trường hợp hành vi liên quan trực tiếp đến tài chính, tài sản, bí mật công nghệ hoặc bí mật kinh doanh); các trường hợp khác là 06 tháng.",
+    "reference_evidence": [
+      {
+        "article_id": "BLLD2019_Dieu_123",
+        "exact_quote": "Thời hiệu xử lý kỷ luật lao động là 06 tháng kể từ ngày xảy ra hành vi vi phạm",
+        "pdf_pages": [
+          51
+        ]
+      },
+      {
+        "article_id": "BLLD2019_Dieu_123",
+        "exact_quote": "trường hợp hành vi vi phạm liên quan trực tiếp đến tài chính, tài sản, tiết lộ bí mật công nghệ, bí mật kinh doanh của người sử dụng lao động thì thời hiệu xử lý kỷ luật lao động là 12 tháng",
+        "pdf_pages": [
+          51
+        ]
+      }
+    ],
+    "doc_code": "BLLD2019",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Điều 123 khoản 2 cho phép kéo dài thời hiệu tối đa 60 ngày trong một số trường hợp; câu hỏi chỉ hỏi thời hiệu gốc. Khoản 3 (ra quyết định) không được hỏi. Điều 123 không nằm trong bll2019_v1."
+  },
+  {
+    "task_id": "LVN-004",
+    "category": "single",
+    "question": "Lao động nữ sinh đôi thì tổng thời gian nghỉ thai sản theo Bộ luật Lao động 2019 là bao nhiêu tháng?",
+    "ground_truth_article_ids": [
+      "BLLD2019_Dieu_139"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "7 tháng: thời gian nghỉ thai sản cơ bản là 06 tháng, và trường hợp sinh đôi trở lên thì tính từ con thứ hai, mỗi con được nghỉ thêm 01 tháng (06 + 01).",
+    "reference_evidence": [
+      {
+        "article_id": "BLLD2019_Dieu_139",
+        "exact_quote": "Lao động nữ được nghỉ thai sản trước và sau khi sinh con là 06 tháng",
+        "pdf_pages": [
+          57
+        ]
+      },
+      {
+        "article_id": "BLLD2019_Dieu_139",
+        "exact_quote": "Trường hợp lao động nữ sinh đôi trở lên thì tính từ con thứ 02 trở đi, cứ mỗi con, người mẹ được nghỉ thêm 01 tháng",
+        "pdf_pages": [
+          57
+        ]
+      }
+    ],
+    "doc_code": "BLLD2019",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Đáp án cần ghép hai khoản của cùng một điều (khoản 1). Chế độ trợ cấp thai sản bằng tiền thuộc pháp luật BHXH, không thuộc câu hỏi. Thời gian nghỉ trước khi sinh tối đa 02 tháng không được hỏi."
+  },
+  {
+    "task_id": "LVN-005",
+    "category": "single",
+    "question": "Mức trợ cấp thất nghiệp hằng tháng theo Luật Việc làm 2025 được tính thế nào, và có mức trần tối đa không?",
+    "ground_truth_article_ids": [
+      "LVL2025_Dieu_39"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Bằng 60% mức bình quân tiền lương tháng đóng bảo hiểm thất nghiệp của 06 tháng gần nhất trước khi chấm dứt, và tối đa không quá 05 lần mức lương tối thiểu tháng theo vùng áp dụng tại tháng cuối cùng đóng bảo hiểm thất nghiệp.",
+    "reference_evidence": [
+      {
+        "article_id": "LVL2025_Dieu_39",
+        "exact_quote": "Mức hưởng trợ cấp thất nghiệp hằng tháng bằng 60% mức bình quân tiền lương tháng đóng bảo hiểm thất nghiệp của 06 tháng đã đóng bảo hiểm thất nghiệp gần nhất",
+        "pdf_pages": [
+          20
+        ]
+      },
+      {
+        "article_id": "LVL2025_Dieu_39",
+        "exact_quote": "tối đa không quá 05 lần mức lương tối thiểu tháng theo vùng do Chính phủ công bố được áp dụng tại tháng cuối cùng đóng bảo hiểm thất nghiệp",
+        "pdf_pages": [
+          20
+        ]
+      }
+    ],
+    "doc_code": "LVL2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Luật Việc làm 74/2025/QH15 theo bản in trong corpus (hiệu lực 01-01-2026). Không xét sửa đổi sau này. Đáp án không đưa ra số tiền cụ thể vì mức lương tối thiểu vùng nằm ở văn bản khác."
+  },
+  {
+    "task_id": "LVN-006",
+    "category": "single",
+    "question": "Theo Luật Việc làm 2025, mức đóng bảo hiểm thất nghiệp tối đa của người lao động và của người sử dụng lao động là bao nhiêu phần trăm?",
+    "ground_truth_article_ids": [
+      "LVL2025_Dieu_33"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Mỗi bên tối đa 1%: người lao động đóng tối đa 1% tiền lương tháng; người sử dụng lao động đóng tối đa 1% quỹ tiền lương tháng của những người lao động đang tham gia.",
+    "reference_evidence": [
+      {
+        "article_id": "LVL2025_Dieu_33",
+        "exact_quote": "Người lao động đóng tối đa bằng 1% tiền lương tháng",
+        "pdf_pages": [
+          16,
+          17
+        ]
+      },
+      {
+        "article_id": "LVL2025_Dieu_33",
+        "exact_quote": "Người sử dụng lao động đóng tối đa bằng 1% quỹ tiền lương tháng của những người lao động đang tham gia bảo hiểm thất nghiệp",
+        "pdf_pages": [
+          16,
+          17
+        ]
+      }
+    ],
+    "doc_code": "LVL2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 điểm c (Nhà nước hỗ trợ tối đa 1%) không được hỏi. Khoản 6 (người khuyết tật) không nằm trong câu hỏi."
+  },
+  {
+    "task_id": "LVN-007",
+    "category": "single",
+    "question": "Người lao động đã đủ điều kiện đóng bảo hiểm thất nghiệp muốn hưởng trợ cấp thất nghiệp theo Luật Việc làm 2025 thì phải nộp đủ hồ sơ trong thời hạn bao lâu kể từ ngày chấm dứt hợp đồng lao động?",
+    "ground_truth_article_ids": [
+      "LVL2025_Dieu_38"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Trong thời hạn 03 tháng kể từ ngày chấm dứt hợp đồng lao động, hợp đồng làm việc hoặc chấm dứt làm việc.",
+    "reference_evidence": [
+      {
+        "article_id": "LVL2025_Dieu_38",
+        "exact_quote": "Đã nộp đủ hồ sơ hưởng trợ cấp thất nghiệp trong thời hạn 03 tháng kể từ ngày chấm dứt hợp đồng lao động",
+        "pdf_pages": [
+          19,
+          20
+        ]
+      }
+    ],
+    "doc_code": "LVL2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Một trong bốn điều kiện tại khoản 1 Điều 38 (điểm a-d). Đáp án chỉ nói về thời hạn nộp hồ sơ. Điểm b (đóng đủ 12 tháng) được dùng trong LVN-022."
+  },
+  {
+    "task_id": "LVN-008",
+    "category": "single",
+    "question": "Tiền lương làm căn cứ đóng bảo hiểm thất nghiệp có mức cao nhất bằng bao nhiêu lần mức lương tối thiểu tháng theo vùng?",
+    "ground_truth_article_ids": [
+      "LVL2025_Dieu_34"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "20 lần mức lương tối thiểu tháng theo vùng do Chính phủ công bố tại thời điểm đóng bảo hiểm thất nghiệp.",
+    "reference_evidence": [
+      {
+        "article_id": "LVL2025_Dieu_34",
+        "exact_quote": "Tiền lương làm căn cứ đóng bảo hiểm thất nghiệp cao nhất bằng 20 lần mức lương tối thiểu tháng theo vùng",
+        "pdf_pages": [
+          17,
+          18
+        ]
+      }
+    ],
+    "doc_code": "LVL2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Mức tiền cụ thể của lương tối thiểu vùng không được hỏi vì nó thuộc văn bản khác và thay đổi theo thời điểm. Khoản 1 (cách xác định tiền lương) không được hỏi."
+  },
+  {
+    "task_id": "LVN-009",
+    "category": "single",
+    "question": "Theo Nghị định 293/2025/NĐ-CP, mức lương tối thiểu giờ áp dụng cho vùng IV là bao nhiêu đồng một giờ?",
+    "ground_truth_article_ids": [
+      "ND293_2025_Dieu_3"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "17.800 đồng/giờ (mức lương tối thiểu tháng của vùng IV là 3.700.000 đồng/tháng).",
+    "reference_evidence": [
+      {
+        "article_id": "ND293_2025_Dieu_3",
+        "exact_quote": "Vùng IV 3.700.000 17.800",
+        "pdf_pages": [
+          1,
+          2
+        ]
+      }
+    ],
+    "doc_code": "ND293_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Bảng mức lương nằm trong khoản 1 Điều 3. Câu hỏi không hỏi địa bàn nào thuộc vùng IV, vì Phụ lục danh mục địa bàn không có trong corpus. Hiệu lực từ 01-01-2026 theo Điều 5 khoản 1."
+  },
+  {
+    "task_id": "LVN-010",
+    "category": "single",
+    "question": "Doanh nghiệp hoạt động trong khu công nghiệp mà khu này nằm trên các địa bàn có mức lương tối thiểu khác nhau thì phải áp dụng mức lương tối thiểu nào theo Nghị định 293/2025?",
+    "ground_truth_article_ids": [
+      "ND293_2025_Dieu_3"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Mức lương tối thiểu của địa bàn có mức lương tối thiểu cao nhất trong các địa bàn mà khu công nghiệp nằm trên đó.",
+    "reference_evidence": [
+      {
+        "article_id": "ND293_2025_Dieu_3",
+        "exact_quote": "thì áp dụng theo địa bàn có mức lương tối thiểu cao nhất",
+        "pdf_pages": [
+          1,
+          2
+        ]
+      }
+    ],
+    "doc_code": "ND293_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Quy tắc tại khoản 3 điểm c Điều 3. Không hỏi khu công nghiệp nào thuộc địa bàn nào (Phụ lục không có trong corpus). Các điểm b, d, đ của khoản 3 không được hỏi."
+  },
+  {
+    "task_id": "LVN-011",
+    "category": "single",
+    "question": "Người lao động được trả lương theo tuần, muốn quy đổi sang mức lương theo tháng để so với mức lương tối thiểu tháng theo Nghị định 293/2025 thì tính như thế nào?",
+    "ground_truth_article_ids": [
+      "ND293_2025_Dieu_4"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Lấy mức lương theo tuần nhân với 52 tuần rồi chia cho 12 tháng.",
+    "reference_evidence": [
+      {
+        "article_id": "ND293_2025_Dieu_4",
+        "exact_quote": "Mức lương quy đổi theo tháng bằng mức lương theo tuần nhân với 52 tuần chia cho 12 tháng",
+        "pdf_pages": [
+          2,
+          3
+        ]
+      }
+    ],
+    "doc_code": "ND293_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Quy đổi theo khoản 3 điểm a Điều 4. Cách quy đổi theo giờ (điểm b) không được hỏi."
+  },
+  {
+    "task_id": "LVN-012",
+    "category": "single",
+    "question": "Theo Nghị định 293/2025, mức lương tối thiểu tháng là mức lương thấp nhất với điều kiện người lao động phải làm việc và hoàn thành công việc như thế nào?",
+    "ground_truth_article_ids": [
+      "ND293_2025_Dieu_4"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Người lao động phải làm việc đủ thời giờ làm việc bình thường trong tháng và hoàn thành định mức lao động hoặc công việc đã thỏa thuận.",
+    "reference_evidence": [
+      {
+        "article_id": "ND293_2025_Dieu_4",
+        "exact_quote": "làm việc đủ thời giờ làm việc bình thường trong tháng và hoàn thành định mức lao động hoặc công việc đã thỏa thuận không được thấp hơn mức lương tối thiểu tháng",
+        "pdf_pages": [
+          2,
+          3
+        ]
+      }
+    ],
+    "doc_code": "ND293_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Điều kiện nêu tại khoản 1 Điều 4. Mức lương tối thiểu giờ (khoản 2) không được hỏi trong câu này."
+  },
+  {
+    "task_id": "LVN-013",
+    "category": "single",
+    "question": "Theo Nghị định 318/2025/NĐ-CP, cơ quan nào là cơ quan chủ quản và tiếp nhận cơ sở dữ liệu về người lao động?",
+    "ground_truth_article_ids": [
+      "ND318_2025_Dieu_9"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Bộ Nội vụ.",
+    "reference_evidence": [
+      {
+        "article_id": "ND318_2025_Dieu_9",
+        "exact_quote": "Bộ Nội vụ là cơ quan chủ quản, tiếp nhận cơ sở dữ liệu về người lao động",
+        "pdf_pages": [
+          7
+        ]
+      }
+    ],
+    "doc_code": "ND318_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 Điều 9. Khoản 2 (Trung tâm dữ liệu quốc gia đảm bảo hạ tầng) không được hỏi."
+  },
+  {
+    "task_id": "LVN-014",
+    "category": "single",
+    "question": "Người lao động đang có việc làm nhưng không thuộc diện tham gia bảo hiểm xã hội bắt buộc muốn đăng ký lao động theo Nghị định 318/2025 thì đăng ký bằng hình thức nào, và khi nào biết kết quả?",
+    "ground_truth_article_ids": [
+      "ND318_2025_Dieu_6"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Đăng ký trực tuyến bằng Tờ khai điện tử qua Sàn giao dịch việc làm quốc gia hoặc ứng dụng VNeID; nếu thành công, hệ thống trả kết quả ngay sau khi người lao động hoàn thành Tờ khai; nếu không thành công thì hệ thống phản hồi lý do.",
+    "reference_evidence": [
+      {
+        "article_id": "ND318_2025_Dieu_6",
+        "exact_quote": "Hình thức đăng ký lao động: Trực tuyến.",
+        "pdf_pages": [
+          4,
+          5
+        ]
+      },
+      {
+        "article_id": "ND318_2025_Dieu_6",
+        "exact_quote": "trả kết quả đăng ký thành công ngay sau khi người lao động hoàn thành Tờ khai điện tử",
+        "pdf_pages": [
+          4,
+          5
+        ]
+      }
+    ],
+    "doc_code": "ND318_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 2 và khoản 3 điểm b Điều 6. Thủ tục cho người tham gia BHXH bắt buộc (Điều 5) không được hỏi. Địa chỉ website trong Điều 6 không đưa vào đáp án."
+  },
+  {
+    "task_id": "LVN-015",
+    "category": "single",
+    "question": "Theo Nghị định 318/2025, khi người lao động tự kê khai hồ sơ đăng ký lao động thì ai chịu trách nhiệm trước pháp luật về tính trung thực và chính xác của thông tin?",
+    "ground_truth_article_ids": [
+      "ND318_2025_Dieu_3"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Người lao động tự kê khai chịu trách nhiệm trước pháp luật về tính trung thực, chính xác của các thông tin đã kê khai; người sử dụng lao động có trách nhiệm kê khai và cung cấp đầy đủ, chính xác, kịp thời thông tin về người lao động khi tuyển dụng, thay đổi hoặc chấm dứt quan hệ lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "ND318_2025_Dieu_3",
+        "exact_quote": "Người lao động tự kê khai hồ sơ đăng ký lao động và chịu trách nhiệm trước pháp luật về tính trung thực, chính xác của các thông tin đã kê khai",
+        "pdf_pages": [
+          2
+        ]
+      }
+    ],
+    "doc_code": "ND318_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 5 Điều 3. Đáp án có phần trách nhiệm của người sử dụng lao động trong cùng khoản, nên không rút gọn thành 'người lao động' duy nhất. Khoản 4 (cán bộ, công chức) không được hỏi."
+  },
+  {
+    "task_id": "LVN-016",
+    "category": "single",
+    "question": "Trong cơ sở dữ liệu về người lao động theo Nghị định 318/2025, các thông tin cơ bản như họ tên khai sinh, số định danh cá nhân, ngày sinh và giới tính được xác thực và khai thác từ cơ sở dữ liệu nào?",
+    "ground_truth_article_ids": [
+      "ND318_2025_Dieu_8"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Cơ sở dữ liệu quốc gia về dân cư.",
+    "reference_evidence": [
+      {
+        "article_id": "ND318_2025_Dieu_8",
+        "exact_quote": "Thông tin quy định tại khoản 1 Điều 4 Nghị định này được xác thực, khai thác từ Cơ sở dữ liệu quốc gia về dân cư",
+        "pdf_pages": [
+          6,
+          7
+        ]
+      }
+    ],
+    "doc_code": "ND318_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Điều 8 khoản 2 điểm a. Nguồn cho các nhóm thông tin khác (Bộ Giáo dục và Đào tạo, Bộ Nội vụ, BHXH, ...) không được hỏi."
+  },
+  {
+    "task_id": "LVN-017",
+    "category": "single",
+    "question": "Theo Nghị định 219/2025/NĐ-CP, sau khi cơ quan có thẩm quyền nhận đủ hồ sơ đề nghị cấp giấy phép lao động cho người lao động nước ngoài, trong bao lâu cơ quan phải xem xét và cấp giấy phép?",
+    "ground_truth_article_ids": [
+      "ND219_2025_Dieu_22"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Trong thời hạn 10 ngày làm việc kể từ ngày nhận đủ hồ sơ.",
+    "reference_evidence": [
+      {
+        "article_id": "ND219_2025_Dieu_22",
+        "exact_quote": "Trong thời hạn 10 ngày làm việc, kể từ ngày nhận đủ hồ sơ đề nghị cấp giấy phép lao động",
+        "pdf_pages": [
+          17,
+          18
+        ]
+      }
+    ],
+    "doc_code": "ND219_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 3 Điều 22. Thời hạn 03 ngày làm việc để trả lời khi không chấp thuận không được hỏi. Đoạn đó có khoảng trắng không chuẩn trong nguồn nên không trích."
+  },
+  {
+    "task_id": "LVN-018",
+    "category": "single",
+    "question": "Thời hạn tối đa của giấy phép lao động cấp cho người lao động nước ngoài theo Nghị định 219/2025 là bao lâu, kể cả khi thời hạn hợp đồng dự kiến dài hơn?",
+    "ground_truth_article_ids": [
+      "ND219_2025_Dieu_21"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Không quá 02 năm; thời hạn được cấp theo một trong các trường hợp liệt kê tại khoản 1 Điều 21 nhưng không quá 02 năm.",
+    "reference_evidence": [
+      {
+        "article_id": "ND219_2025_Dieu_21",
+        "exact_quote": "Thời hạn của giấy phép lao động, giấy xác nhận không thuộc diện cấp giấy phép lao động được cấp theo thời hạn của một trong các trường hợp sau đây nhưng không quá 02 năm",
+        "pdf_pages": [
+          16,
+          17
+        ]
+      }
+    ],
+    "doc_code": "ND219_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 Điều 21. Khoản 2 (giấy xác nhận cho trường hợp khoản 14, 15 Điều 7) không được hỏi. Các điểm a-k không được liệt kê trong đáp án."
+  },
+  {
+    "task_id": "LVN-019",
+    "category": "single",
+    "question": "Khi giấy phép lao động của người lao động nước ngoài đã hết hiệu lực theo quy định, người sử dụng lao động phải thu hồi và nộp lại giấy phép trong bao lâu theo Nghị định 219/2025?",
+    "ground_truth_article_ids": [
+      "ND219_2025_Dieu_31"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Trong thời hạn 15 ngày kể từ ngày giấy phép lao động hết hiệu lực.",
+    "reference_evidence": [
+      {
+        "article_id": "ND219_2025_Dieu_31",
+        "exact_quote": "trong thời hạn 15 ngày, kể từ ngày giấy phép lao động hết hiệu lực, người sử dụng lao động thu hồi giấy phép lao động để nộp lại cơ quan có thẩm quyền đã cấp giấy phép lao động",
+        "pdf_pages": [
+          21
+        ]
+      }
+    ],
+    "doc_code": "ND219_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 Điều 31, áp dụng cho trường hợp khoản 1 Điều 30 (hết hiệu lực theo Điều 156 BLLD). Trình tự thu hồi do cơ quan cấp quyết định (khoản 2) không được hỏi."
+  },
+  {
+    "task_id": "LVN-020",
+    "category": "single",
+    "question": "Người sử dụng lao động cần nộp hồ sơ đề nghị cấp giấy phép lao động cho người lao động nước ngoài trong khoảng thời gian nào trước ngày người đó dự kiến làm việc theo Nghị định 219/2025?",
+    "ground_truth_article_ids": [
+      "ND219_2025_Dieu_22"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Trong khoảng từ 60 ngày đến không ít hơn 10 ngày trước ngày người lao động nước ngoài dự kiến làm việc.",
+    "reference_evidence": [
+      {
+        "article_id": "ND219_2025_Dieu_22",
+        "exact_quote": "Trong thời hạn 60 ngày nhưng không ít hơn 10 ngày tính đến ngày người lao động nước ngoài dự kiến làm việc",
+        "pdf_pages": [
+          17,
+          18
+        ]
+      }
+    ],
+    "doc_code": "ND219_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 Điều 22 (cùng điều với LVN-017 nhưng khác khoản và khác đáp án). Hình thức nộp hồ sơ không được hỏi."
+  },
+  {
+    "task_id": "LVN-021",
+    "category": "multi",
+    "question": "Theo Bộ luật Lao động 2019, mức lương tối thiểu được xác lập và ấn định theo những đơn vị nào, và theo Nghị định 293/2025 mức lương tối thiểu tháng và giờ của Vùng I là bao nhiêu?",
+    "ground_truth_article_ids": [
+      "BLLD2019_Dieu_91",
+      "ND293_2025_Dieu_3"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Bộ luật Lao động 2019 quy định mức lương tối thiểu được xác lập theo vùng và ấn định theo tháng, giờ. Nghị định 293/2025 quy định Vùng I là 5.310.000 đồng/tháng và 25.500 đồng/giờ.",
+    "reference_evidence": [
+      {
+        "article_id": "BLLD2019_Dieu_91",
+        "exact_quote": "Mức lương tối thiểu được xác lập theo vùng, ấn định theo tháng, giờ",
+        "pdf_pages": [
+          39,
+          40
+        ]
+      },
+      {
+        "article_id": "ND293_2025_Dieu_3",
+        "exact_quote": "Vùng I 5.310.000 25.500",
+        "pdf_pages": [
+          1,
+          2
+        ]
+      }
+    ],
+    "doc_code": "BLLD2019",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Câu hỏi liên kết hai văn bản: BLLD 2019 Điều 91 (doc_code chính) và NĐ 293/2025 Điều 3 (doc_code phụ ND293_2025). Mức trong NĐ 293 là bản gốc ban hành, không xét các thay đổi sau này. Không hỏi địa bàn nào thuộc Vùng I."
+  },
+  {
+    "task_id": "LVN-022",
+    "category": "multi",
+    "question": "Người lao động ký hợp đồng có thời hạn 6 tháng muốn hưởng trợ cấp thất nghiệp theo Luật Việc làm 2025 thì phải đóng bảo hiểm thất nghiệp đủ bao nhiêu tháng trong bao nhiêu tháng trước khi chấm dứt hợp đồng, và nếu đóng đủ 12 tháng thì được hưởng bao nhiêu tháng trợ cấp?",
+    "ground_truth_article_ids": [
+      "LVL2025_Dieu_38",
+      "LVL2025_Dieu_39"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Phải đóng đủ 12 tháng trở lên trong thời gian 36 tháng trước khi chấm dứt hợp đồng (Điều 38 khoản 1 điểm b); đóng đủ 12 tháng thì được hưởng 03 tháng trợ cấp thất nghiệp (Điều 39 khoản 2).",
+    "reference_evidence": [
+      {
+        "article_id": "LVL2025_Dieu_38",
+        "exact_quote": "Trường hợp người lao động làm việc theo hợp đồng lao động có thời hạn từ đủ 01 tháng đến dưới 12 tháng thì phải đóng đủ 12 tháng trở lên trong thời gian 36 tháng trước khi chấm dứt hợp đồng lao động",
+        "pdf_pages": [
+          19,
+          20
+        ]
+      },
+      {
+        "article_id": "LVL2025_Dieu_39",
+        "exact_quote": "cứ đóng đủ 12 tháng đến đủ 36 tháng thì được hưởng 03 tháng trợ cấp thất nghiệp",
+        "pdf_pages": [
+          20
+        ]
+      }
+    ],
+    "doc_code": "LVL2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Hai điều cùng Luật Việc làm 2025. Mốc 24 tháng của điểm b (hợp đồng không thuộc diện đặc biệt) không được hỏi. Số tháng hưởng cho các mốc từ 36 tháng trở lên không được hỏi vì có cách hiểu khác nhau."
+  },
+  {
+    "task_id": "LVN-023",
+    "category": "multi",
+    "question": "Người nước ngoài là chủ sở hữu công ty trách nhiệm hữu hạn muốn không phải xin giấy phép lao động khi làm việc tại Việt Nam thì giá trị góp vốn tối thiểu là bao nhiêu? Bộ luật Lao động 2019 quy định mức này như thế nào?",
+    "ground_truth_article_ids": [
+      "BLLD2019_Dieu_154",
+      "ND219_2025_Dieu_7"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Theo Bộ luật Lao động 2019 (Điều 154 khoản 1), giá trị góp vốn do Chính phủ quy định; Nghị định 219/2025 (Điều 7 khoản 2) quy định từ 3 tỷ đồng trở lên.",
+    "reference_evidence": [
+      {
+        "article_id": "BLLD2019_Dieu_154",
+        "exact_quote": "Là chủ sở hữu hoặc thành viên góp vốn của công ty trách nhiệm hữu hạn có giá trị góp vốn theo quy định của Chính phủ",
+        "pdf_pages": [
+          63
+        ]
+      },
+      {
+        "article_id": "ND219_2025_Dieu_7",
+        "exact_quote": "Là chủ sở hữu hoặc thành viên góp vốn có giá trị góp vốn từ 3 tỷ đồng trở lên của công ty trách nhiệm hữu hạn",
+        "pdf_pages": [
+          5,
+          6
+        ]
+      }
+    ],
+    "doc_code": "ND219_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Câu hỏi liên kết BLLD 2019 Điều 154 (doc_code phụ BLLD2019) và NĐ 219/2025 Điều 7 (doc_code chính). Mức 3 tỷ đồng là quy định của NĐ 219 bản in trong corpus. Không hỏi về công ty cổ phần (khoản 3 Điều 7)."
+  },
+  {
+    "task_id": "LVN-024",
+    "category": "out_of_scope",
+    "question": "Người sử dụng lao động và người lao động phải đóng bảo hiểm y tế với tỷ lệ bao nhiêu phần trăm tiền lương hiện hành?",
+    "ground_truth_article_ids": [],
+    "expected_behavior": "refuse",
+    "expected_answer": "Kho dữ liệu không có tỷ lệ đóng bảo hiểm y tế. Các văn bản trong kho chỉ nhắc bảo hiểm y tế mà không nêu tỷ lệ; tỷ lệ cần tra trong pháp luật về bảo hiểm xã hội, không thuộc 10 văn bản đã thu thập.",
+    "reference_evidence": [],
+    "doc_code": "LVL2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Đã tìm toàn bộ corpus (458 bản ghi) bằng các chuỗi: 'bảo hiểm y tế' (20 bản ghi, ví dụ BLLD2019 Điều 5, 6, 16, 21), 'y tế' (24), 'tỷ lệ đóng' (0), '17,5' (0), '%' (25). Một câu có cả 'bảo hiểm y tế' và '%' là BLLD2019 Điều 102 khoản 3, nhưng 30% đó là mức khấu trừ tiền lương hằng tháng, không phải tỷ lệ đóng bảo hiểm y tế, nên không được dùng làm đáp án. Luật Bảo hiểm xã hội 41/2024 không có trong kho (ghi trong manifest rejected_candidates)."
+  },
+  {
+    "task_id": "LVN-025",
+    "category": "out_of_scope",
+    "question": "Công ty trả lương chậm cho nhân viên một tháng thì bị xử phạt hành chính bao nhiêu tiền?",
+    "ground_truth_article_ids": [],
+    "expected_behavior": "refuse",
+    "expected_answer": "Kho dữ liệu không nêu mức tiền phạt hành chính. Điều 217 Bộ luật Lao động 2019 chỉ dẫn xử phạt vi phạm hành chính theo quy định của pháp luật, không có số tiền cụ thể; nghị định xử phạt không nằm trong kho.",
+    "reference_evidence": [],
+    "doc_code": "BLLD2019",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Đã tìm toàn bộ corpus: 'phạt tiền', 'tiền phạt', 'mức phạt', 'triệu đồng', 'xử phạt'. 'xử phạt' xuất hiện ở BLLD2019 Điều 217, LVL2025 Điều 41 và LCD2024 Điều 36, không có số tiền. Nghị định xử phạt hiện hành (NĐ 283/2026) bị loại khỏi kho vì vượt giới hạn trang."
+  }
+]

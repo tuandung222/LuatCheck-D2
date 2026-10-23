@@ -1,0 +1,170 @@
+# Rebuild the HCMUT academic-regulations corpus with the generic ingestion pipeline.
+# Provenance (URL, listing number/date, retrieval time, verification note, expected sha256) is NOT retyped here:
+# it is read from docs/materials/hcmut-sources/manifest.json by `metadata_from`, and the build refuses to attach
+# it to a PDF whose sha256 differs from the one recorded there.
+# Output goes to a NEW path; data/corpus/hcmut_academic_v1.json is not touched.
+#   .venv/bin/python -m src.ingestion build --config config/ingestion/hcmut_academic.yaml
+# Excluded: CTDT3538 (115 pages, included_in_corpus: false in the collection manifest).
+version: 1
+output:
+  corpus: data/corpus/hcmut_academic_ingested.json
+  manifest: data/corpus/hcmut_academic_ingested.manifest.json
+defaults:
+  collection_id: hcmut_academic
+  ruleset: vi_legal
+  ruleset_options:
+    # Most files are a signing decision (its own Điều 1-3) followed by the attached regulation, whose numbering
+    # restarts at 1. The two article series get distinct ids: <doc>_QD_Dieu_1 (decision) and <doc>_Dieu_1.
+    series_tags: ["QD_", ""]
+  chunking:
+    granularity: article
+    content_whitespace: collapse
+  ids:
+    prefix: "HCMUT_"
+    templates:
+      article: "{prefix}{doc_code}_{series_tag}Dieu_{num}"
+      appendix: "{prefix}{doc_code}_PhuLuc_{num_ascii}"
+      chapter: "{prefix}{doc_code}_{series_tag}Chuong_{num_ascii}"
+      part: "{prefix}{doc_code}_{series_tag}Phan_{num_ascii}"
+      document: "{prefix}{doc_code}"
+sources:
+  - path: docs/materials/hcmut-sources/HVDT1260_1260-QD-DHBK_2026_sua-doi-quy-dinh-hoc-vu-va-dao-tao.pdf
+    doc_code: HVDT1260
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: HVDT1260}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/HVDT2749_2749-QD-DHBK_2026_sua-doi-quy-dinh-hoc-vu-va-dao-tao.pdf
+    doc_code: HVDT2749
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: HVDT2749}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/HVCHUNG1259_1259-QD-DHBK_2026_sua-doi-quy-dinh-chung-ve-hoc-vu-va-dao-tao.pdf
+    doc_code: HVCHUNG1259
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: HVCHUNG1259}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/GIANGDAY2282_2282-QD-DHBK_2026_sua-doi-quy-dinh-giang-day.pdf
+    doc_code: GIANGDAY2282
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: GIANGDAY2282}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/HOCPHI2800_2800-QD-DHBK_2025_quy-dinh-gia-han-nop-hoc-phi.pdf
+    doc_code: HOCPHI2800
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: HOCPHI2800}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/GVCN2977_2977-QD-DHBK_2025_quy-dinh-cong-tac-GVCN-CVHT.pdf
+    doc_code: GVCN2977
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: GVCN2977}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/NOIQUY1924_1924-QD-DHBK_2025_noi-quy-hoc-duong.pdf
+    doc_code: NOIQUY1924
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: NOIQUY1924}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/CTDT1862_1862-QD-DHBK_2026_sua-doi-quy-dinh-cau-truc-quy-trinh-chuong-trinh-dao-tao.pdf
+    doc_code: CTDT1862
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: CTDT1862}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/VINHDANH658_658-QD-DHBK_2025_quy-che-ho-tro-va-vinh-danh-sinh-vien.pdf
+    doc_code: VINHDANH658
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: VINHDANH658}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification
+  - path: docs/materials/hcmut-sources/UNGXU3408_3408-QD-DHBK_2026_quy-tac-ung-xu.pdf
+    doc_code: UNGXU3408
+    metadata_from:
+      file: docs/materials/hcmut-sources/manifest.json
+      records_key: documents
+      match: {doc_code: UNGXU3408}
+      verify_sha256_field: sha256
+      fields:
+        source_name: title
+        url: source_url
+        document_number: document_number
+        issued_date: issued_date
+        retrieved_at: retrieved_at
+        metadata_verification: metadata_verification

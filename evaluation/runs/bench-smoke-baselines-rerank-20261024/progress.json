@@ -1,0 +1,11 @@
+{
+  "updated_at": "2026-10-23T17:21:46.572954+00:00",
+  "completed_this_session": 16,
+  "to_run_this_session": 16,
+  "execution_errors_this_session": 0,
+  "elapsed_s": 477.4,
+  "eta_s": 0.0,
+  "trials_per_minute": 2.01,
+  "workers": 1,
+  "last": "labour_vi_v1/oracle/s42/LVN-021"
+}

@@ -15,9 +15,26 @@ available at `/docs`; the machine-readable OpenAPI document is `/openapi.json`.
 - Query, pasted text and summary sizes are bounded. The default server binds to
   `127.0.0.1` and refuses a non-loopback `LUATCHECK_WEB_HOST`.
 
+## Domain profiles (corpus switch)
+
+One API process can serve several domain profiles. `LUATCHECK_WEB_CONFIGS` is a
+comma-separated list of config files (for the D2 demo `make demo-web` sets it to
+`config/profiles/demo-hcmut.yaml,config/profiles/demo-labour.yaml`); without it the single
+default config (`LUATCHECK_CONFIG_PATH`) is served. Each profile has its own corpus, tool
+registry, reranker settings and budgets; they share the controller and reranker servers
+named in their configs. A profile that fails to load (missing corpus, bad config) is listed
+with `available=false` and its error, and the others keep working.
+`GET /api/v1/capabilities` returns `profiles[]` (id, display and short name, tool names, ID
+example, corpus record/document counts, retrieval and reranker settings, verifier mode,
+budgets, example questions from `src/api/ui_hints.json`), `default_profile` and
+`default_verification_mode`. `GET /api/v1/health` also reports whether the configured
+reranker server answers its `/health`. Domain wording (short names, scope notes, example
+questions) lives in `src/api/ui_hints.json`, keyed by profile id, not in the frontend.
+
 ## Runs
 
-`POST /api/v1/runs` accepts `query`, optional `pasted_document`, and one
+`POST /api/v1/runs` accepts `query`, optional `pasted_document`, optional `profile` (a
+profile id from `capabilities`; default: the first available; unknown id: `422`), and one
 `verification_mode` (`off`, `lexical_grounding`, or `semantic_entailment` only
 when native semantic verification is configured). It requires an
 `Idempotency-Key`, returns `202` with the server-created `run_id`, and rejects
@@ -40,13 +57,26 @@ inconsistent legacy terminal status is surfaced as an execution error instead
 of being presented as a successful answer. Restarted jobs keep
 `terminal_status=error` and `error_kind=api_restart`.
 
+A finished snapshot also carries `profile` (id and display name), `refusal_kind`
+(`guardrail` = blocked before any model call, `verification_failed` = the L1 check kept
+failing until the repair budget ran out, `model` = the controller chose to refuse) and
+`final_output.pre_model_policy_refusal`. The run summary has `profile_id`.
+
 `GET /api/v1/runs/{run_id}/events` streams persisted SSE records. It uses SSE
 event IDs and accepts `Last-Event-ID` to resume the same run. Event names are:
 `run_queued`, `run_started`, `model_call_started`, `tool_completed`,
 `verification_completed`, `repair_started`, `run_finished`, `run_persisted`,
 `run_failed`, `run_interrupted`, `summary_proposal_created`, and
 `summary_proposal_completed`. Activity events contain operational metadata,
-never model thoughts or token-by-token output.
+never model thoughts or token-by-token output. Each event carries `t_ms` (milliseconds since
+`run_started`). `tool_completed` also carries the search `query` or the requested id, the
+returned ids with titles, and for a reranked search the first-stage and reranked ids, the
+reranker model and its measured wall time; `tool_completed`, `verification_completed` and
+`run_finished` carry `model` (wall time, input/output tokens and chosen action of the model
+call that preceded them, as recorded by the client); `repair_started` carries the verifier
+feedback; `run_finished` carries `failed_tool` when a search failed (for example the
+reranker server is down). These values are copied from the case ledger; nothing is estimated.
+The UI timeline is built only from these events.
 
 `GET /api/v1/runs/{run_id}/articles/{article_id}` returns the corpus text and
 the recorded source URL, pages, SHA-256, extraction note and scope.

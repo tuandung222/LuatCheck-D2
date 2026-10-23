@@ -210,7 +210,8 @@ class ModelManager:
         from src.retrieval.rerankers import build_reranker
         comp_cfg = cfg.component_config()
         key = ("reranker", comp_cfg["backend"], str(cfg.model or cfg.base_url), cfg.device if cfg.is_local else "server",
-               cfg.dtype or "default", cfg.base_url or "", cfg.max_length if cfg.is_local else 0)
+               cfg.dtype or "default", cfg.base_url or "", cfg.max_length if (cfg.is_local or cfg.backend == "llamacpp_http") else 0,
+               cfg.chunk_chars, cfg.chunk_overlap_chars)
         return self._handle(key, "reranker", cfg.is_local, lambda: build_reranker(comp_cfg), cfg.model, cfg.dtype or "float32",
                             cfg.local_files_only)
 

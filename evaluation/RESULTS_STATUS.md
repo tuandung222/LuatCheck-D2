@@ -32,3 +32,7 @@ MLX). Both use the post-collection prompt revision. Each directory has a DIAGNOS
 
 Two further runs, `runs/gguf2b-bonsai-diag-v1` and `runs/mlx2b-bonsai-diag-v1`, compare the same Bonsai 2 2B weights on
 llama.cpp (GGUF) and MLX after the tool-output compaction; they support the runtime choice for the demo, not accuracy.
+
+## Current D2 runs (24 October 2026)
+
+No main D2 run has been collected yet. Smoke runs (`bench-smoke-*`, `report_eligible: false`) only check the pipeline. The `bll2019-*` runs are a historical Qwen2.5-3B pilot and are not used in the D2 report. Main runs will be written to `evaluation/runs/d2-*` following docs/RUNBOOK_D2.md.

@@ -3,7 +3,7 @@ Short-term memory: Case Ledger Manager.
 
 Manages conversational context, execution budgets, and provenance tracking for legal advisory sessions.
 """
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Optional
 from src.agent.state import CaseLedger
 
 

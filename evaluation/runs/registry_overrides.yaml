@@ -1,0 +1,10 @@
+# Curated marks for evaluation/runs/* (read by evaluation/registry.py). Runs are never deleted or edited: a mark is metadata.
+# `kind`: historical | smoke | diagnostic (anything else comes from the run's own manifest). Later patterns override earlier ones;
+# <run>/RUN_STATUS.json overrides both. `superseded_by: <run-id>` marks a run replaced by a newer one.
+overrides:
+  - {match: "bll2019-*", kind: historical, reason: "old D2 protocol: 10-task bll2019_v1 benchmark, Qwen2.5-3B (Ollama) controller; superseded by the two frozen 50-task benchmarks with the Bonsai 2B GGUF controller"}
+  - {match: "*-diag-v1", kind: historical, reason: "earlier controller-capacity diagnostic (other model / backend, old 10-task benchmark); kept for the record, not on the frozen benchmarks"}
+  - {match: "*-sanity-*", kind: historical, reason: "benchmark sanity / oracle / closed-book check with a gateway model (benchmark construction evidence, not a system result); the labour closed-book column is invalid (HCMUT-scoped prompt, QA finding B4)"}
+  - {match: "deepseek-judge-*", kind: historical, reason: "judge runs of the old 10-task native batch (including recovery runs); the judge protocol has since changed (refusal-claim rule, harness 1.1)"}
+  - {match: "bench-smoke-*", kind: smoke, reason: "pipeline check on a few tasks; never report evidence"}
+  - {match: "reranker-parity-*", kind: diagnostic, reason: "reranker runtime parity / latency probe (evaluation/probes/reranker_parity.py), not a D2 matrix run"}
