@@ -307,3 +307,19 @@ def test_real_mcp_server_exposes_the_configured_profile_tool_names():
     assert labour_tools["search_law"].description == profile("labour_vi_2019").tools.search.description
     assert hcmut_tools["read_document"].description == profile("hcmut_academic").tools.read.description
     assert set(hcmut_tools["search"].input_schema["properties"]) == {"query", "top_k"}
+
+
+def test_l1_quantity_with_unit_split_across_a_line_break():
+    """The real HCMUT record below writes '17 tín\\nchỉ' (unit broken by a newline in the source PDF text). That source
+    quantity used to crash L1 (regression from the 2026-10-24 GPU run); it must equal '17 tín chỉ'."""
+    from src.agent.state import Citation
+    from src.verifier.lexical_grounding import LexicalGroundingVerifier, _quantity_key
+    hcmut = profile("hcmut_academic")
+    corpus = json.loads((Path(__file__).resolve().parents[1] / "data/corpus/hcmut_academic_v1.json").read_text(encoding="utf-8"))
+    record_id = "HCMUT_HVDT1260_Dieu_1_S5_3"
+    assert "17 tín\nchỉ" in next(r for r in corpus if r["doc_id"] == record_id)["content"]
+    assert _quantity_key("17 tín\nchỉ") == _quantity_key("17 tín chỉ") == "17:tínchỉ"
+    verifier = LexicalGroundingVerifier(corpus, profile=hcmut)
+    cite = [Citation(article_id=record_id)]
+    assert not verifier.verify("Sinh viên được đăng ký 17 tín chỉ.", cite, [record_id]).unsupported_claims
+    assert verifier.verify("Sinh viên được đăng ký 97 tín chỉ.", cite, [record_id]).unsupported_claims

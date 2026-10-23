@@ -23,8 +23,10 @@ def split_sentences(text: str) -> List[str]:
 
 
 def _quantity_key(value: str) -> str:
-    """'3,5 tháng' -> '3.5:tháng': number normalised, unit without inner whitespace."""
-    match = re.fullmatch(r"(\d+(?:[.,]\d+)?)\s*(.+)", value.strip().lower())
+    """'3,5 tháng' -> '3.5:tháng': number normalised, unit without inner whitespace.
+
+    DOTALL: the profile's quantity pattern lets a multi-word unit span a line break ('2 tín\\nchỉ')."""
+    match = re.fullmatch(r"(\d+(?:[.,]\d+)?)\s*(.+)", value.strip().lower(), re.S)
     return str(Decimal(match.group(1).replace(",", ".")).normalize()) + ":" + re.sub(r"\s+", "", match.group(2))
 
 
