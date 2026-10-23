@@ -116,7 +116,7 @@ else
   require_free_port "$PRISM_PORT" "controller server"
   [ -n "${GGUF_PATH:-}" ] && [ -f "$GGUF_PATH" ] || { log "no healthy server on $PRISM_PORT and GGUF_PATH is not a file; cannot start one"; exit 2; }
   [ -x "$PRISM_DIR/build/bin/llama-server" ] || { log "missing $PRISM_DIR/build/bin/llama-server (build it: docs/RUNBOOK_D2.md)"; exit 2; }
-  if [ "$KIND" = gpu ]; then SLOTS="-np $NP -c $((NP * CTX_PER_SLOT))"; else SLOTS="-c ${MAC_CTX:-65536}"; fi
+  if [ "$KIND" = gpu ]; then SLOTS="-np $NP -c $((NP * CTX_PER_SLOT)) --kv-unified"; else SLOTS="-c ${MAC_CTX:-65536}"; fi
   log "starting controller llama-server on $PRISM_PORT ($SLOTS)"
   nohup "$PRISM_DIR/build/bin/llama-server" -m "$GGUF_PATH" -ngl 99 -fa on $SLOTS --host 127.0.0.1 --port "$PRISM_PORT" \
     --alias prism-ml/Ternary-Bonsai-2-2B-gguf --jinja \

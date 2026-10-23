@@ -193,7 +193,7 @@ class DomainKnowledgeRegistry:
             "score_note": "backend-specific relevance scores; not comparable across backends, not answer correctness"}
         results: List[Dict[str, Any]] = []
         if candidates:
-            with self.reranker.use() as component:
+            with self.reranker.use() as component, component.lock:   # rerank + read its last_run atomically
                 ranked = component.rerank(query, candidates, top_k=len(candidates))
                 run = dict(component.last_run)
             results = [doc for doc, _ in ranked][:min(top_k, self.rerank_top_k_out)]

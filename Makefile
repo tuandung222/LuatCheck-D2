@@ -41,7 +41,7 @@ prism-server-gpu:
 	@if (command -v ss >/dev/null && ss -ltnH "sport = :$(GPU_PORT)" | grep -q .) || (command -v lsof >/dev/null && lsof -nP -iTCP:$(GPU_PORT) -sTCP:LISTEN -t | grep -q .); then \
 	  echo "port $(GPU_PORT) is already in use; pick another GPU_PORT (never reuse or kill someone else's server)"; exit 4; fi
 	CUDA_VISIBLE_DEVICES=$(GPU) $(PRISM_DIR)/build/bin/llama-server \
-	  -m "$(GGUF_PATH)" -ngl 99 -fa on -c $$(( $(NP) * $(CTX_PER_SLOT) )) -np $(NP) --host 127.0.0.1 --port $(GPU_PORT) \
+	  -m "$(GGUF_PATH)" -ngl 99 -fa on -c $$(( $(NP) * $(CTX_PER_SLOT) )) -np $(NP) --kv-unified --host 127.0.0.1 --port $(GPU_PORT) \
 	  --alias $(GGUF_REPO) --jinja \
 	  --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0 --presence-penalty 1.5 --repeat-penalty 1.0 --repeat-last-n 64
 

@@ -221,3 +221,28 @@ class TestLlamaCppServer:
             want = torch_reference.score(query, texts)
             assert max(abs(a - b) for a, b in zip(got, want)) < 0.5, (got, want)
             assert (got[0] > got[1]) == (want[0] > want[1])
+
+
+# --------------------------------------------------------------------------- #
+# concurrency: one cached instance is shared by the benchmark's worker threads
+# --------------------------------------------------------------------------- #
+def test_shared_cross_encoder_is_thread_safe(torch_reference):
+    """Concurrent reranks on one real instance neither collide in the tokenizer ("Already borrowed") nor
+    mix up per-call telemetry when the caller reads `last_run` under the instance lock (as domain_tools does)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    tasks = json.loads((ROOT / "evaluation/benchmarks/hcmut_v1/tasks.json").read_text(encoding="utf-8"))
+    queries = [t["question"] for t in tasks[:8]]
+    candidates = [r for r in HCMUT if len(doc_text(r)) < 1200][:4]
+
+    def call(query):
+        with torch_reference.lock:
+            ranked = torch_reference.rerank(query, candidates, top_k=len(candidates))
+            run = dict(torch_reference.last_run)
+        return [doc for doc, _ in ranked], run
+
+    with ThreadPoolExecutor(8) as pool:
+        results = list(pool.map(call, queries))
+    for ranked_docs, run in results:
+        assert [r["doc_id"] for r in run["ranking"]] == [d["doc_id"] for d in ranked_docs]
+        assert run["n_scored"] == len(candidates)

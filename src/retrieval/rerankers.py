@@ -41,6 +41,7 @@ from __future__ import annotations
 
 import abc
 import math
+import threading
 import time
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
@@ -138,6 +139,9 @@ class BaseReranker(abc.ABC):
         self.top_k_out = top_k_out
         self.text_fields = tuple(text_fields)
         self.last_run: Dict[str, Any] = {}
+        # One instance is shared by concurrent benchmark workers (ModelManager cache). Tokenizers are not
+        # thread-safe and `last_run` is per-call state, so a call and the read of its `last_run` hold this lock.
+        self.lock = threading.RLock()
 
     # ---- to implement -------------------------------------------------- #
     @abc.abstractmethod
@@ -150,8 +154,9 @@ class BaseReranker(abc.ABC):
     # ---- public API ---------------------------------------------------- #
     def score(self, query: str, documents: Sequence[Any]) -> List[float]:
         """Scores in input order (no sorting, no ``top_k_in`` cut)."""
-        texts = self._prepare(query, documents)
-        return self._timed_score(query, texts, n_input=len(documents), n_dropped=0)
+        with self.lock:
+            texts = self._prepare(query, documents)
+            return self._timed_score(query, texts, n_input=len(documents), n_dropped=0)
 
     def rerank(self, query: str, documents: Sequence[Any], top_k: Optional[int] = None) -> List[RankedDoc]:
         """Score and sort ``documents`` (best first, ties keep retrieval order).
@@ -161,6 +166,10 @@ class BaseReranker(abc.ABC):
         The input list and its dicts are never mutated.  ``top_k`` overrides
         ``top_k_out``.
         """
+        with self.lock:
+            return self._rerank_locked(query, documents, top_k)
+
+    def _rerank_locked(self, query: str, documents: Sequence[Any], top_k: Optional[int]) -> List[RankedDoc]:
         documents = list(documents)
         if not documents:
             self.last_run = {"backend": self.backend, "n_input": 0, "n_scored": 0, "n_returned": 0}

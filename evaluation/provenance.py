@@ -24,7 +24,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # 1.0.0  first D2 matrix harness (runner, judge, analysis, tables)
 # 1.1.0  strict-success rule for refusals (judge_rules), baselines (closed_book / oracle), reranker chunk policy wiring, provenance + registry
-HARNESS_VERSION = "1.1.0"
+HARNESS_VERSION = "1.1.1"
 
 STAMP_FILE = REPO_ROOT / "PROVENANCE.json"
 # Paths whose uncommitted state invalidates a main run (everything that can change a trial or its scoring), relative to the repo root.
