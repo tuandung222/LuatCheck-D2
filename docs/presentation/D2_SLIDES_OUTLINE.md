@@ -4,7 +4,7 @@ Written 2026-10-23 (UTC+7) for the presentation on Wed 28 Oct 2026, 18:00, room 
 Status: outline only; no slide file exists yet. Everything marked `[PENDING ...]` is filled from the main-run tables or by the team, never invented.
 
 Ground rules for every slide (AGENTS.md, rubric B2/B3):
-- Controller for numbers and demo is the same model: Ternary Bonsai 2 2B (GGUF PQ2_0). Put that on the architecture slide once; no "demo differs" banner.
+- The current system runs the same model for the reported numbers and the demo: Ternary Bonsai 2 4B (GGUF PQ2_0); a 2B controller is the lighter option. Put that on the architecture slide once. The built deck is slides_d2/main.pdf.
 - Strict success, behaviour and faithfulness are LLM-judge estimates (not human labels) until the human-audit agreement is known; retrieval and citation numbers are source-ID proxies.
 - Benchmarks are AI-written and AI-verified (no human review); retrieval is near-saturated, about one third of tasks are closed-book guessable. Say this on the evaluation slide.
 - Show red `[PENDING]` on a slide rather than a number we do not have. The old Qwen2.5-3B / ten-task results never appear.
@@ -37,7 +37,7 @@ Every member should speak at least once and be able to answer on their part (ann
 
 ### 2. What changed since the proposal (rubric A4/B2; report Section 1)
 - Done / in progress / dropped / not started (the commitments table): loop and L1 done; Qwen3 and Qdrant dropped; reranker and benchmark in progress.
-- Why: controller moved to Bonsai 2B so the same weights fit a 16 GiB Mac and a GPU slot; benchmark moved from 10 tasks to two frozen 50-task benchmarks, one of them a second domain.
+- Why: the controller is a small ternary model (4B, with a 2B option) so the same weights run on a 16 GiB Mac and on a GPU; benchmark moved from 10 tasks to two frozen 50-task benchmarks, one of them a second domain.
 - Honest items: no pitch feedback received, HR walkthrough not started.
 - Figure/table: report Table 1 (shortened to 6 rows). Do not show the old Qwen pilot.
 
