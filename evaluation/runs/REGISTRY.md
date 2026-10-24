@@ -1,10 +1,10 @@
 # Run registry
 
-Generated 2026-10-24T21:31:44.583448+07:00 by `python evaluation/run_d2.py registry` against HEAD `1cd9226031f2` (clean collection paths), harness `1.2.0`. Do not edit by hand: marks live in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
+Generated 2026-10-25T01:06:39.591701+07:00 by `python evaluation/run_d2.py registry` against HEAD `81ed0df40e85` (clean collection paths), harness `1.2.0`. Do not edit by hand: marks live in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
 
 Freshness: **current** = same collection sources / harness / locks / models as HEAD; **stale** = differs, re-run before quoting; **pinned@commit** = a deliberately frozen result whose recorded fingerprint equals that commit's sources (reportable, but never in one table with current runs); **historical** / **superseded_by** = kept for the record, never in current report tables; **remote/not synced** = lives only on server 82; **incomplete**; **n/a**. Only `report_eligible = yes` AND `current` (or `pinned`) runs may feed the report (`make report-check` enforces this).
 
-Counts: current 7, historical 20, incomplete 2, n/a 1, pinned 2, remote/not synced 5, stale 6
+Counts: current 1, historical 20, incomplete 2, n/a 1, pinned 8, remote/not synced 5, stale 6
 
 | run | kind | state | commit | harness | created | report_eligible | freshness | note |
 |---|---|---|---|---|---|---|---|---|
@@ -25,12 +25,12 @@ Counts: current 7, historical 20, incomplete 2, n/a 1, pinned 2, remote/not sync
 | d2-gpu-main-labour-v1 | main | remote | - | - | - | no | remote/not synced (superseded_by: d2-gpu-main-labour-v3) | attempt 1 of the Labour GPU matrix on server 82; directory not synced |
 | d2-gpu-main-labour-v2 | main | remote | - | - | - | no | remote/not synced (superseded_by: d2-gpu-main-labour-v3) | attempt 2 of the Labour GPU matrix on server 82; directory not synced |
 | d2-gpu-main-labour-v3 | main | complete | 957579b58f81 | 1.1.2 | 2026-10-23T18:30:47 | yes | pinned@957579b | frozen pre-planned D2 result (Bonsai 2B, protocol v3, harness 1.1.2); the post-hoc revision r2 is compared against it, never merged into it |
-| d2-gpu-r2-2b-hcmut-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:38:52 | yes | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
-| d2-gpu-r2-2b-labour-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:59:58 | yes | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
-| d2-gpu-r2-4b-hcmut-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:38:52 | yes | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
-| d2-gpu-r2-4b-labour-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T10:13:36 | yes | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
-| d2-mac-latency-r2-2b-l1rr-v1 | main | complete | 6e6e48a612aa | 1.2.0 | 2026-10-24T13:39:36 | no | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
-| d2-mac-latency-r2-4b-l1rr-v1 | main | complete | 8cdd28d80296 | 1.2.0 | 2026-10-24T12:31:17 | no | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
+| d2-gpu-r2-2b-hcmut-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:38:52 | yes | pinned@cdb6b24 | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. chosen D2 system runs (post-hoc revision r2, harness 1.2.0); frozen as reported |
+| d2-gpu-r2-2b-labour-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:59:58 | yes | pinned@cdb6b24 | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. chosen D2 system runs (post-hoc revision r2, harness 1.2.0); frozen as reported |
+| d2-gpu-r2-4b-hcmut-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:38:52 | yes | pinned@cdb6b24 | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. chosen D2 system runs (post-hoc revision r2, harness 1.2.0); frozen as reported |
+| d2-gpu-r2-4b-labour-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T10:13:36 | yes | pinned@cdb6b24 | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. chosen D2 system runs (post-hoc revision r2, harness 1.2.0); frozen as reported |
+| d2-mac-latency-r2-2b-l1rr-v1 | main | complete | 6e6e48a612aa | 1.2.0 | 2026-10-24T13:39:36 | no | pinned@6e6e48a | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. Mac latency of the chosen system (verifier + reranker); frozen as reported |
+| d2-mac-latency-r2-4b-l1rr-v1 | main | complete | 8cdd28d80296 | 1.2.0 | 2026-10-24T12:31:17 | no | pinned@8cdd28d | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. Mac latency of the chosen system (verifier + reranker); frozen as reported |
 | d2-mac-latency-r2-4b-v1 | main | incomplete | d149e0813b9d | 1.2.0 | 2026-10-24T12:25:04 | no | incomplete (incomplete) | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
 | d2-mac-latency-v3sys-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:43:53 | no | current |  |
 | deepseek-judge-main-v1 | historical | legacy | - | - | - | no | historical: judge runs of the old 10-task native batch (including recovery runs); the judge protocol has since changed (refusal-claim rule, harness 1.1) |  |
