@@ -64,11 +64,11 @@
 \newcommand{\cell}[1]{\multicolumn{1}{c}{#1}}
 \renewcommand{\arraystretch}{1.15}
 
-\title[LuatCheck \,|\, github.com/tuandung222/LuatCheck-D2]{\textbf{LuatCheck}\\[2pt]\normalsize A local, source-grounded assistant over Vietnamese regulations}
-\author[Group 8]{Lê Trí Quyền (2470740) \,|\, Võ Phạm Tuấn Dũng (2570015) \,|\, Nguyễn Hoàng Phong (2570477)}
+\title[LuatCheck | github.com/tuandung222/LuatCheck-D2]{\textbf{LuatCheck}\\[2pt]\normalsize A local, source-grounded assistant over Vietnamese regulations}
+\author[Group 8]{Lê Trí Quyền (2470740) \texorpdfstring{\,|\,}{ | } Võ Phạm Tuấn Dũng (2570015) \texorpdfstring{\,|\,}{ | } Nguyễn Hoàng Phong (2570477)}
 \institute[HCMUT]{%
-  \vspace{-0.3cm}
-  \includegraphics[height=1.0cm]{assets/hcmut.png}\\[2pt]
+  \vspace{-0.25cm}
+  \includegraphics[height=1.0cm]{assets/hcmut.png}\\[6pt]
   {\normalsize\textbf{\color{primaryblue}CO5151 Advanced Agentic AI \,|\, D2 interim report}}\\[1pt]
   Application Track, Group 8 \,|\, Instructor: TS. Lê Xuân Bách}
 \date[28 Oct 2026]{28 October 2026}
@@ -83,7 +83,7 @@
   \vspace{-0.45cm}
   \begin{block}{What it is}
     \footnotesize A local assistant that answers only from the loaded regulations, cites the sections it used, checks those citations in code, and refuses (or asks) when the sources do not answer.
-    Two evaluated collections: HCMUT academic regulations and Vietnamese labour law (2019 Labour Code plus nine later laws, decrees and circulars). Not legal advice.
+    Two evaluated collections: \textbf{HCMUT academic regulations} (10 documents, 143 sections; for students \& advisers) and \textbf{Vietnamese labour law} (10 documents, 458 sections; 2019 Labour Code plus 9 later laws, decrees and circulars; for employees \& HR). Not legal advice.
   \end{block}
 \end{frame}
 
@@ -91,9 +91,9 @@
 % 2. What changed since the proposal
 %====================================================================
 \begin{frame}{What changed since the proposal}
-  \footnotesize\renewcommand{\arraystretch}{1.0}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.9cm}>{\bfseries}p{1.95cm}X@{}}
-    \toprule Proposal commitment & State & What changed and why\\\midrule
+  \footnotesize\renewcommand{\arraystretch}{1.02}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.8cm}>{\bfseries}p{1.9cm}>{\raggedright\arraybackslash}X@{}}
+    \toprule Proposal commitment & State & What changed and why (no D1 pitch feedback received)\\\midrule
     Agent loop, citation check & \textcolor{successgreen}{Done} & Runs end to end; budgets unchanged\\
     Qwen3 controllers, 32B & \textcolor{dangerred}{Dropped} & Ternary Bonsai 2B and 4B: the same weights fit a 16\,GiB Mac and a GPU\\
     BM25 + Qdrant dense retrieval & \textcolor{dangerred}{Dropped} & BM25 + TF-IDF; vector index built, \emph{not evaluated}\\
@@ -106,7 +106,7 @@
   \vspace{2pt}
 
   \begin{alertblock}{How the system evolved, in plain words}
-    \footnotesize The \textbf{initial system} (2B controller) reached 12--19\% strict success (full system: 14.0\% HCMUT, 18.7\% labour). We built the \textbf{current system} (4B controller) from its failures. \textbf{The revision was designed after analysing the initial system's failures on these same questions, so gains may be optimistic; we confirm them on new questions for the final report.}
+    \scriptsize The \textbf{initial system} (2B controller) reached 12--19\% strict success (full system: 14.0\% HCMUT, 18.7\% labour). After analysing its failure modes, we built the \textbf{current system} (4B controller). \textbf{Because the revision was designed after inspecting failures on these same questions, gains may be optimistic and will be verified on unseen questions in W45.}
   \end{alertblock}
 \end{frame}
 
@@ -235,15 +235,16 @@
 %====================================================================
 \begin{frame}{Evaluation design and how correctness is decided}
   \centering
+  \adjustbox{max width=\textwidth}{%
   \begin{tikzpicture}[font=\footnotesize,
     b/.style={draw=primaryblue!80!black,fill=primaryblue!8,rounded corners=3pt,align=center,inner sep=4pt,minimum height=1.1cm,line width=0.7pt},
     flow/.style={-{Stealth[length=5pt,width=4.5pt]},line width=0.9pt}]
-    \node[b,text width=3.05cm] (a) at (0,0) {\textbf{2 benchmarks}\\50 questions each:\\45 answerable, 5 refuse};
-    \node[b,text width=3.0cm] (b) at (3.85,0) {\textbf{3 configurations}\\no verifier, verifier,\\verifier + reranker};
-    \node[b,text width=2.7cm] (c) at (7.45,0) {\textbf{3 runs}\\different\\random seeds};
-    \node[b,text width=3.35cm,fill=orange!15,draw=orange!70!black] (d) at (11.2,0) {\textbf{LLM judge}\\DeepSeek V4 Flash,\\blind \& offline};
+    \node[b,text width=3.35cm] (a) at (0,0) {\textbf{2 benchmarks}\\50 questions each\\(45 to answer, 5 to refuse)};
+    \node[b,text width=3.05cm] (b) at (4.0,0) {\textbf{3 configurations}\\no verifier, verifier,\\verifier + reranker};
+    \node[b,text width=2.65cm] (c) at (7.65,0) {\textbf{3 runs}\\different\\random seeds};
+    \node[b,text width=3.25cm,fill=orange!15,draw=orange!70!black] (d) at (11.4,0) {\textbf{LLM judge}\\DeepSeek V4 Flash,\\blind \& offline};
     \draw[flow] (a) -- (b); \draw[flow] (b) -- (c); \draw[flow] (c) -- (d);
-  \end{tikzpicture}
+  \end{tikzpicture}}
   \vspace{5pt}
 
   \begin{columns}[T]
@@ -277,11 +278,11 @@
 %====================================================================
 \begin{frame}{First numbers: strict success of the full system (verifier + reranker)}
   \begin{columns}[T]
-    \column{0.56\textwidth}
+    \column{0.55\textwidth}
     \centering
     \begin{tikzpicture}
       \begin{axis}[
-        ybar, bar width=20pt, width=1.04\linewidth, height=5.3cm,
+        ybar, bar width=20pt, width=1.0\linewidth, height=5.3cm,
         ymin=0, ymax=88, ytick={0,20,40,60,80},
         ylabel={Strict success (\%)}, ylabel style={font=\small},
         symbolic x coords={HCMUT,Labour}, xtick=data, xticklabels={HCMUT regulations,Labour law}, enlarge x limits=0.42,
@@ -303,12 +304,12 @@
     \end{tikzpicture}\\[-1pt]
     {\scriptsize Whiskers: 95\% paired bootstrap CI. 50 questions $\times$ 3 runs per bar.}
 
-    \column{0.40\textwidth}
+    \column{0.41\textwidth}
     \footnotesize
     \textbf{Paired differences, pp} (95\% interval)
     \vspace{3pt}
 
-    \begin{tabular}{@{}l@{\hskip 5pt}c@{\hskip 5pt}c@{}}
+    \begin{tabular}{@{}l@{\hskip 2pt}c@{\hskip 2pt}c@{}}
       \toprule & HCMUT & Labour\\\midrule
       \begin{tabular}[t]{@{}l@{}}system change\\{\scriptsize current 2B $-$ initial}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+14.7\\{\scriptsize [+6.0, +23.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+9.3\\{\scriptsize [+0.7, +18.0]}\end{tabular}\\
       \begin{tabular}[t]{@{}l@{}}model change\\{\scriptsize 4B $-$ 2B}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+32.0\\{\scriptsize [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+28.7\\{\scriptsize [+18.0, +39.3]}\end{tabular}\\
@@ -403,8 +404,8 @@
 \begin{frame}{Threat model}
   \footnotesize
   \textbf{Assets:} faithful answers \& citations; user data; corpus, config \& weights; read-only tool boundary; availability.\\
-  \textbf{Attacker:} submits arbitrary questions or pasted text; cannot alter code, corpus files, weights, logs or host approvals.\\[4pt]
-  \scriptsize\renewcommand{\arraystretch}{1.18}
+  \textbf{Attacker:} submits arbitrary questions or pasted text; cannot alter code, corpus files, weights, logs or host approvals.\\[3pt]
+  \scriptsize\renewcommand{\arraystretch}{1.08}
   \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
     \toprule Entry point & Mitigation (enforced in code) & Residual risk\\\midrule
     Question, pasted text & Pre-model regex guardrails, input sanitising, untrusted-content tags; no write tool exposed & Paraphrase bypass; Vietnamese/English patterns only; not red-teamed yet\\
@@ -414,7 +415,7 @@
     Judge gateway (offline) & Benchmark data only; API key in env; blind evaluation packets; strict JSON \& quote checks & Candidate answer text could steer the LLM judge (untested)\\
     \bottomrule
   \end{tabularx}
-  \vspace{5pt}
+  \vspace{3pt}
 
   \footnotesize \textcolor{dangerred}{\textbf{No attack results yet.}} Mitigations define architectural boundaries; red-team attack tests are scheduled for W47.
 \end{frame}
@@ -472,7 +473,7 @@
     \vspace{4pt}
 
     {\scriptsize Repository: \url{https://github.com/tuandung222/LuatCheck-D2}\\
-    Commit: \texttt{d74144099016}}
+    Commit: \texttt{138128e804bf}}
 
     \column{0.50\textwidth}
     \scriptsize\renewcommand{\arraystretch}{1.15}

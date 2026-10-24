@@ -1,6 +1,6 @@
 # LuatCheck: speaker notes (10-minute talk, then about 5 minutes of Q&A)
 
-Slides: `main.pdf` (12 presented slides, backup slides A to D that are not presented). Build: `make` in this folder.
+Slides: `main.pdf` (12 presented slides, backup slides A to E that are not presented). Build: `make` in this folder.
 Vocabulary used on the slides and here: "initial system" (2B controller), "current system" (4B controller; "current system, 2B controller" when the smaller model is meant), configurations "no verifier" / "verifier" / "verifier + reranker (full system)", "citation verifier", "semantic check (not used yet)", benchmarks "HCMUT regulations" and "Labour law" (50 questions each).
 Presenter assignment is not decided: every "Speaker" cell is a placeholder for the team. Rubric: live demo 20%, presentation 15%, Q&A 15%. Total time is exactly 10:00; if running long, shorten slide 6 first, then slide 9.
 
@@ -89,7 +89,7 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 
 **12. Team and takeaways (0:25)**
 - Takeaways: 12 to 19% became 57 to 61% for the full system (judge lower bound, may be optimistic); the weak link was the controller's behaviour, not retrieval; the citation verifier gives auditable citations without a measured correctness gain.
-- Ask the audience to challenge judge reliability, benchmark difficulty, and gains measured on the same questions. Repository link and commit hash `d74144099016` are on the slide.
+- Ask the audience to challenge judge reliability, benchmark difficulty, and gains measured on the same questions. Repository link and commit hash `138128e804bf` are on the slide.
 
 ## Likely questions and answers
 
