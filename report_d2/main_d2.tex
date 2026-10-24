@@ -1,6 +1,6 @@
 \pdfobjcompresslevel=0\relax
 \pdfminorversion=5\relax
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,11pt]{article}
 
 % ---------------------------------------------------------------------
 % Language, fonts and page layout
@@ -22,13 +22,18 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{makecell}
 \usepackage{graphicx}
 \usepackage{adjustbox}
 \usepackage{caption}
+\usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,calc}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.17}
 \usepackage{enumitem}
 \setlist{nosep,leftmargin=1.4em,itemsep=1pt,topsep=2pt}
 
@@ -46,7 +51,8 @@
                                      {3pt \@plus 1pt \@minus 1pt}%
                                      {\normalfont\normalsize\bfseries}}
 \makeatother
-\setlength{\parskip}{1.5pt plus 0.5pt minus 0.5pt}
+\setlength{\parskip}{3pt plus 0.5pt minus 0.5pt}
+\linespread{1.04}
 \setlength{\parindent}{12pt}
 \setlength{\emergencystretch}{3em}
 
@@ -92,34 +98,31 @@
 \renewcommand{\footrulewidth}{0.3pt}
 
 \captionsetup{font=small,labelfont=bf,aboveskip=4pt,belowskip=2pt}
-\setlength{\floatsep}{5pt plus 1pt minus 1pt}
-\setlength{\textfloatsep}{5pt plus 1pt minus 1pt}
-\setlength{\intextsep}{5pt plus 1pt minus 1pt}
+\setlength{\floatsep}{6pt plus 1pt minus 1pt}
+\setlength{\textfloatsep}{6pt plus 1pt minus 1pt}
+\setlength{\intextsep}{6pt plus 1pt minus 1pt}
 
 % ---------------------------------------------------------------------
 % Macros
 % ---------------------------------------------------------------------
 % Run-in paragraph heading.
 \newcommand{\hdr}[1]{\par\vspace{1.5pt}\noindent\textbf{#1}}
-% Red placeholders: every missing result, input or decision uses one of these two macros
-% (the generated tables use the identical red bold [PENDING] marker).
+% Red placeholder: every missing result, input or decision uses this macro.
 \newcommand{\pending}[1]{\textcolor{red}{\textbf{[PENDING: #1]}}}
-\newcommand{\tbd}{\textcolor{red}{\textbf{[PENDING]}}}
-% Code identifiers and paths (not hyperlinked) and shell commands (spaces preserved).
-\newcommand{\code}[1]{\nolinkurl{#1}}
-\newcommand{\cmd}[1]{\texttt{\detokenize{#1}}}
 % Table style shared by all hand-written tables.
-\newcommand{\tabstyle}{\centering\footnotesize\renewcommand{\arraystretch}{1.05}\setlength{\tabcolsep}{3.5pt}}
+\newcommand{\tabstyle}{\centering\small\renewcommand{\arraystretch}{1.1}\setlength{\tabcolsep}{4pt}}
+% Class colours of the bar chart (colour-blind safe, Okabe-Ito).
+\definecolor{cV}{HTML}{B8B8B8}
+\definecolor{cR2}{HTML}{56B4E9}
+\definecolor{cR4}{HTML}{0072B2}
 
-% The generated result tables use \resizebox{\textwidth}{!}{...}, which also scales narrow tables up.
+% The generated tables of the appendix use \resizebox{\textwidth}{!}{...}, which would scale narrow tables up.
 % Cap the width instead: a narrow table keeps its natural size, a wide one shrinks to the text width.
 \renewcommand{\resizebox}[3]{\adjustbox{max width=#1}{#3}}
 
-% \inputhere: input a generated table file but place its floats where they appear (the renderer emits [t]).
+% \inputrun{suffix}{file}: input a generated table file of ONE run; every \label inside gets "-suffix" appended,
+% so the same generated labels of the two benchmark runs do not collide (captions are set smaller).
 \makeatletter
-\newcommand{\inputhere}[1]{\begingroup\renewcommand\table[1][]{\@float{table}[!htb]}\input{#1}\endgroup}
-% \inputrun{suffix}{file}: like \inputhere for a generated table file of ONE run, but every \label inside gets "-suffix" appended,
-% so the same generated labels from the two benchmark runs (hcmut, labour) do not collide; captions are set smaller to save space.
 \newcommand{\inputrun}[2]{\begingroup\let\lc@origlabel\label\renewcommand\label[1]{\lc@origlabel{##1-#1}}%
   \captionsetup{font=scriptsize,labelfont=bf,aboveskip=2pt,belowskip=0pt}%
   \renewcommand\table[1][]{\@float{table}[!htb]}\input{#2}\endgroup}
@@ -136,7 +139,7 @@
 {\Huge\bfseries D2 Interim Report}\\[12pt]
 {\Large LuatCheck: A Local, Source-Grounded Assistant\\ over Vietnamese Regulations}\\[12pt]
 Application Track -- Group 8\\[15pt]
-\pending{Draft of 24 October 2026. Result tables are generated from the two frozen v3 runs; the human audit of the judge, the post-hoc revision r2 and the team's inputs are still pending.}\\[15pt]
+\pending{Draft of 24 October 2026. Human audit of the judge, member contribution evidence, the commit hash and the Mac latency of the chosen system are still pending.}\\[15pt]
 \begin{tabular}{ll}
 Instructor & TS. Lê Xuân Bách\\
 Members & Lê Trí Quyền (2470740)\\
@@ -144,262 +147,286 @@ Members & Lê Trí Quyền (2470740)\\
 & Nguyễn Hoàng Phong (2570477)
 \end{tabular}\\[18pt]
 \textbf{Repository:} \url{https://github.com/tuandung222/LuatCheck-D2}\\[8pt]
-\textbf{Reported revision:} \pending{Insert the full final commit hash after freezing the source.}\\[8pt]
-\textbf{Access:} \pending{Confirm the instructor can read the repository.}\\[8pt]
-\textbf{Status:} At risk (provisional). The benchmark design is frozen, the pipeline is in place and the v3 main runs exist (Section~\ref{sec:eval}); strict success is low for every variant, and the human audit of the judge, the post-hoc revision r2 and the demo rehearsal are outstanding.
+\textbf{Reported revision:} \pending{insert the full final commit hash after freezing the source}\\[8pt]
+\textbf{Access:} \pending{confirm that the instructor can read the repository}\\[8pt]
+\textbf{Status:} On track, with two risks: the gain of the revised system is not yet confirmed on unseen tasks, and the judge is not yet checked against human labels (Section~\ref{sec:plan}).
 \vfill HO CHI MINH CITY, OCTOBER 2026
 \end{center}\end{titlepage}
 \hypersetup{pageanchor=true}\setcounter{page}{1}
 
 \begin{center}
 \fbox{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{\small
-\textbf{Summary.} LuatCheck is a local agent that answers only from a document collection, cites the sections it used, checks those citations in code, and refuses or asks a clarifying question when the sources do not answer. One bounded agent loop drives a 2B ternary controller that fits a 16\,GiB Mac.\par\smallskip
-\textbf{Implemented:} the loop, a read-only tool layer with gated writes, lexical citation checking (L1) with bounded repair, an optional cross-encoder reranker, two ingested corpora (academic regulations of the Ho Chi Minh City University of Technology, HCMUT, and Vietnamese labour-law texts) and a one-command, hash-locked benchmark pipeline (Sections~\ref{sec:arch}--\ref{sec:memory}).\par\smallskip
-\textbf{Evaluation (frozen design, v3 runs collected and judged):} two 50-task benchmarks $\times$ three variants (OFF: no verification; L1: lexical verification with repair; L1+rerank: L1 plus reranker) $\times$ three seeds, plus two diagnostic baselines (closed-book and oracle, one seed, not system variants), scored by a large language model (LLM) judge whose reliability is to be checked against human labels (Section~\ref{sec:eval}).\par\smallskip
-\textbf{Main result (Bonsai 2B, LLM-judge lower bounds):} strict success is 12.0--18.7\% for every variant on both benchmarks; L1 and the reranker change it by no detectable amount, L1 lowers the judge-free behaviour match by 20.7 and 22.7\,pp, and the oracle with gold evidence reaches only 28.9\% and 44.4\%.\par\smallskip
-\textbf{Pending, in red throughout:} the judge audit, the post-hoc revision r2 (not yet run), member contribution evidence, the commit hash and the demo rehearsal. Self-assessment: \textbf{at risk} (Section~\ref{sec:plan}).}}
+\textbf{Summary.} LuatCheck answers a question only from a document collection, cites the sections it used, checks each citation against the source text in code, and refuses or asks for clarification when the sources do not answer. The chosen system, \emph{LuatCheck r2}, is one bounded agent. Its controller is a 4-billion-parameter model that runs on a laptop (a lighter 2B option exists). It uses read-only search and read tools, keyword retrieval with a neural reranker, a citation verifier with bounded repair, and input guardrails.\par\smallskip
+\textbf{Evaluated:} two 50-task Vietnamese benchmarks (university academic regulations, labour law), three configurations (verifier off, verifier on, verifier and reranker on), three seeds, plus two diagnostic baselines; 1{,}090 recorded trials per system. Success is judged by an LLM, as a lower bound; the check against human labels is pending.\par\smallskip
+\textbf{Result:} the chosen system reaches 60.7\% (HCMUT) and 56.7\% (labour) strict success; the first design (v3, 2B) reached 14.0\% and 18.7\%. The revised design r2 was made after we had seen the v3 results on the same tasks, so these gains are optimistic; D3 confirms them on a new held-out benchmark. In the ablation, neither the verifier nor the reranker raised strict success on these benchmarks. \textbf{Not yet available, in red:} human audit of the judge, member contribution evidence, commit hash, Mac latency of the chosen system.}}
 \end{center}
 
 \section{Changes from the Proposal}\label{sec:changes}
-\hdr{Scope and users.} The proposal (D1, Application Track) targeted employees and small-business HR staff asking labour-law questions. For D2 we added a second, non-legal corpus: the academic-affairs regulations of HCMUT, used by students and advisors. It tests whether the code is domain-agnostic, since domain wording, tool names and ID rules live in \code{config/domains/} as data. We claim only what is evaluated: ten HCMUT regulations and ten labour-law documents (the 2019 Labour Code and nine laws, decrees and circulars of 2020--2025), snapshotted on 22 October 2026 with later amendments unchecked. LuatCheck is not legal advice and has not been tried by real users.
+\hdr{Scope and users.} The proposal (D1, Application Track) targeted employees and HR staff asking labour-law questions. For D2 we added a second corpus, the academic-affairs regulations of HCMUT used by students and advisers, to test whether the same code serves another domain: wording, tool names and ID rules are per-domain configuration. We claim only what was evaluated: ten HCMUT documents and ten labour-law documents (the 2019 Labour Code with two laws, six decrees and one circular of 2020--2025), snapshot of 22 October 2026, later amendments unchecked. LuatCheck is not legal advice and has not been tried by real users. Intended scenarios: a student looks up a rule and opens the cited section; an HR officer checks a labour-law answer against the cited article; a careless or hostile user pastes a document with injected instructions, and the system must keep its tool boundary and refuse or clarify.
 
-\hdr{Scenarios.} (1) A student looks up a rule (e.g.\ make-up class registration) and opens the cited section. (2) An employee or HR officer asks a labour-law question and checks the cited article. (3) A careless or malicious user pastes a document with injected instructions, or asks how to evade a rule; the system must hold its tool boundary and clarify or refuse. These are intended uses, not user-study results.
+\hdr{Design history.} The first design (v3, controller 2B) was frozen and run first; it reached 12--19\% strict success. An error analysis of its recorded runs found four causes:
+\begin{itemize}
+\item the controller's own search queries retrieved worse than the question itself (an offline projection puts first-search Recall@3 at 0.71 and 0.62, against 0.95 and 0.98 if the question were the query);
+\item it asked for clarification as an exit whenever evidence was missing (37\% and 30\% of answerable tasks without the verifier), although no task expects one;
+\item after a verifier rejection it refused in 56\% and 53\% of cases instead of repairing the answer;
+\item most rejections were exact-quote mismatches caused by elided quotes.
+\end{itemize}
+The revision r2 addresses them. The first search is anchored on the question, the clarify and refuse rules are explicit, an answer needs a prior search, and the model's reasoning text is capped. Verifier v2 accepts elided and wrapped quotes, checks numbers in the claim's own sentence and shows the closest source span in its feedback. r2 runs with a 4B controller (chosen) and a 2B controller (lighter option).
 
-\hdr{Commitments and their state.} Table~\ref{tab:commit} compares the D1 commitments due at the D2 checkpoint (week 7) with their current state.
-\begin{table}[!htb]\tabstyle
-\begin{tabularx}{\textwidth}{@{}L{3.5cm}L{1.7cm}Y@{}}
+\hdr{Commitments and their state.} Table~\ref{tab:commit} compares the D1 commitments due at the D2 checkpoint with their state. We received no feedback on the D1 pitch (22 October), so no change is attributed to feedback.
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: n/a plan and status table, counts are task and trial numbers defined in Section 5, not measured results
+\begin{tabularx}{\textwidth}{@{}L{4.2cm}L{1.6cm}Y@{}}
 \toprule Proposal commitment (D1) & State & Delta and reason\\\midrule
-Budgeted loop, schema output, L1 citation check & Done & Runs end to end (Section~\ref{sec:arch}); budgets and failure semantics unchanged.\\
-Qwen3-4B/8B controllers; 32B comparator & Dropped & The controller is Ternary Bonsai 2 2B (GGUF). It fits a 16\,GiB Mac and one GPU slot, so the same weights serve the benchmark and the demo. A 20-trial diagnostic on the earlier task set ran about $2\times$ faster than the MLX build (\code{gguf2b-bonsai-diag-v1}).\\
-BM25 + Qdrant dense retrieval; 200 held-out VLQA pairs & Dropped & Replaced by BM25 + TF-IDF fused by reciprocal rank fusion (RRF). The persisted vector index exists but is not used in D2 runs. The VLQA record mapping could not be established, so retrieval is measured as source-ID metrics on the new benchmarks.\\
-$\ge$10 end-to-end tasks; 3 configurations $\times$ 3 seeds & Done & Two frozen 50-task benchmarks, variants OFF / L1 / L1+rerank, seeds 42, 123 and 2026 (900 system trials), plus 190 diagnostic-baseline trials; collected and judged as two runs of 545 trials (Section~\ref{sec:eval}).\\
-Reranker (optional in D1) & In progress & Implemented and wired as variant L1+rerank; parity of its two runtimes pending (Section~\ref{sec:memory}).\\
-L2 entailment with natural language inference (NLI), optional & In progress & Implemented as optional components; excluded from all D2 runs.\\
-Guarded \code{send_summary}, UI, audit log & Done & Changed: the model can only propose; a trusted UI approves an exact payload; reversible local outbox, no sender.\\
-Verifier audit (30 pairs) & Not started & Changed: replaced by a human audit of the LLM judge (about 30 items per benchmark), scheduled for Sat 24 Oct: \tbd.\\
+Budgeted loop, schema output, L1 citation check & Done & Runs end to end; extended with bounded repair and verifier v2.\\
+Qwen3 4B/8B controllers, 32B comparator & Dropped & Replaced by Ternary Bonsai 4B and 2B (GGUF, llama.cpp): one 16\,GiB laptop runs the demo and the benchmark model.\\
+BM25 + Qdrant dense retrieval; 200 held-out question pairs & Changed & BM25 + TF-IDF with RRF and a neural reranker. Dense index implemented, not evaluated. The pair mapping could not be established; two own benchmarks replace it.\\
+$\ge$10 end-to-end tasks, 3 configurations $\times$ 3 seeds & Done & 100 tasks, 3 configurations $\times$ 3 seeds, 1{,}090 trials per system.\\
+Reranker (optional) & Done & In the chosen system; ablated in Section~\ref{sec:eval}.\\
+L2 entailment (NLI), optional & In progress & Implemented, outside all D2 runs.\\
+Guarded \texttt{send\_summary}, UI, audit log & Done & Changed: the model can only propose; a trusted UI approves; web UI with cited sources and agent timeline.\\
+Verifier audit, 30 pairs & Changed & Human audit of the LLM judge, about 30 items per benchmark: \pending{agreement and $\kappa$}.\\
 Threat model v1 & Done & Updated in Section~\ref{sec:threat}.\\
 First injection results & Not started & Not required in D2; planned for W47.\\
-HR walkthrough (W5) & Not started & Reported by the group on 22 October. \pending{New date and owner.}\\
+HR walkthrough (W5) & Not started & \pending{new date and owner}\\
 \bottomrule\end{tabularx}
-\caption{D1 commitments due at the D2 checkpoint and their state (done, in progress, not started, dropped).}\label{tab:commit}
+\caption{D1 commitments due at the D2 checkpoint and their state.}\label{tab:commit}
 \end{table}
 
-\hdr{Feedback and earlier pilot.} The group received no feedback on the D1 pitch (22 October), so no change is attributed to feedback. An earlier pilot (Qwen2.5-3B on Ollama, ten-task \code{bll2019_v1}) is superseded; none of its numbers appears here.
+\section{Implemented Architecture}\label{sec:arch}
+LuatCheck is one agent running a ReAct-style loop~\citep{yao2023react} over retrieval-augmented generation~\citep{lewis2020rag} (Figure~\ref{fig:arch}). Before any model call, input guardrails (regular-expression patterns, shared and per domain; no learned classifier) refuse obviously unsafe input, and the question is wrapped as untrusted text. At each step the controller emits one JSON action: search, read, answer, clarify or refuse. A search ranks records with BM25 and TF-IDF fused by reciprocal rank fusion (RRF), rescores the top 20 with a neural cross-encoder reranker and returns the best five as the observation.
 
-\hdr{Models and framework.} Table~\ref{tab:models} lists the components behind the reported numbers. We use no agent framework. The loop, action validation, tool registry, verifier, ledger, memory and harness are our own code (AI-assisted coding is disclosed in Section~\ref{sec:contrib}), built on \code{rank-bm25}, scikit-learn, \code{pypdf}, the Model Context Protocol (MCP) SDK, FastAPI/React and Streamlit.
-\begin{table}[!htb]\tabstyle
-\begin{tabularx}{\textwidth}{@{}L{2.5cm}L{5.7cm}Y@{}}
-\toprule Component & Choice & Runtime and role\\\midrule
-Controller & Ternary Bonsai 2 2B, GGUF, PQ2\_0 quantisation (\code{prism-ml/Ternary-Bonsai-2-2B-gguf}; file SHA-256 \code{d5f01a4e}\ldots) & PrismML fork of \code{llama.cpp}, commit \code{73bfe6c}; Metal on the Mac, CUDA on server 82 (build \code{b10787-73bfe6cc4}; the PQ2\_0 file ran on CUDA in both v3 runs). Used for every reported number and for the live demo.\\
-Reranker & \code{AITeamVN/Vietnamese_Reranker}, cross-encoder, revision \code{f5369762} (weights SHA-256 \code{1cecccab}\ldots) & Variant L1+rerank only: torch fp16 on server 82, a GGUF conversion on the Mac.\\
-First-stage retrieval & BM25 + TF-IDF fused by RRF; no neural embeddings & In memory; all variants.\\
-Judge & DeepSeek V4.1 Flash & Through an API gateway; offline evaluation only.\\
-\bottomrule\end{tabularx}
-\caption{Models and software behind the reported numbers. Server 82 is the shared GPU server (one H100 used).}\label{tab:models}
-\end{table}
-Controller sampling is fixed: temperature 0.7, top-p 0.8, top-k 20, presence penalty 1.5, decoding constrained to the action JSON schema, thinking off, at most 1,024 output tokens. The live demo runs the same model file, \code{llama.cpp} commit, sampler, prompts, budgets and corpora, one query at a time through the web UI. It illustrates the tables; it is not evidence for them.
+An answer goes through the L1 verifier, which checks in code that each cited record exists and was retrieved, that the quoted sentence appears in it, and that the claim's terms and numbers match the cited text. If the check fails, the verifier's report goes back to the controller for at most two repairs, which is external feedback rather than self-critique~\citep{huang2024selfcorrect}. The loop is bounded to 8 steps, 5 tool calls, 2 repairs and 180\,s. A backend or format failure ends the run as an execution error; it is never turned into an answer or a refusal.
 
-\section{Implemented Architecture (R1)}\label{sec:arch}
-LuatCheck is a single agent running a ReAct-style loop~\citep{yao2023react} over retrieval-augmented generation~\citep{lewis2020rag} (Figure~\ref{fig:arch}). At each step the controller emits one JSON action: \code{search}, \code{read}, \code{answer}, \code{clarify} or \code{refuse}. The Python tool registry executes searches and reads and returns the result as an observation. An \code{answer} passes through the verifier; if the check fails, the verifier's feedback goes back to the controller for at most two repairs, which is external feedback rather than self-critique~\citep{huang2024selfcorrect}. Input guardrails refuse unsafe input before any model call. The loop is bounded to 8 steps, 5 tool calls, 2 repairs and 180\,s per task (60\,s per model request). A backend or model-format failure ends the run as \code{error}; it is never turned into an answer or a refusal.
-
-There is one controller and no multi-agent coordination, which keeps permissions and budgets easy to inspect. The MCP server exposes the same tools but the loop does not use it. The three variants test whether verification and reranking help (Section~\ref{sec:eval}).
-\begin{figure}[!t]\centering
+There is one controller and no multi-agent coordination, which keeps permissions and budgets easy to inspect. The chosen system uses the 4B controller; a lighter configuration uses the 2B controller. Both are ternary-quantised models (about 2.1 bits per weight) served by the same llama.cpp server. Everything in Figure~\ref{fig:arch} except the dashed boxes runs end to end; the two orange components, the reranker and the verifier, have on/off switches and are ablated in Section~\ref{sec:eval}. The dashed boxes are implemented but outside every D2 measurement. There is no code-execution tool and no external sender.
+\begin{figure}[!tbp]\centering
 \input{images/architecture.tikz}
-\caption{Implemented architecture and control flow. Blue boxes run in every D2 variant; orange boxes run only in the variants they name (OFF skips the verifier; without the reranker, retrieval returns the top five directly); dashed boxes are implemented but outside every D2 run; grey boxes are the terminal states of a run. The dotted arrow marks that every step is written to the ledger.}\label{fig:arch}
+\caption{Architecture and control flow of the chosen system. Blue: always on. Orange: on/off switch, ablated in Section~\ref{sec:eval}. Dashed: implemented, not part of any D2 measurement. Grey: terminal states of a run. The dotted arrow marks that every step is written to the case ledger.}\label{fig:arch}
 \end{figure}
 
-\hdr{What runs end to end.} Every D2 run uses input guardrails, the controller loop, \code{search} and \code{read_document}, first-stage retrieval, the ledger and the audit log. The L1 verifier with repair runs in L1 and L1+rerank, and the reranker only in L1+rerank. Four components are implemented but outside all D2 runs: the L2/NLI step, the persisted hybrid index with dense retrieval, answer memory and the trusted-UI outbox. An external sender and code execution do not exist.
+\hdr{A real trace and the interface.} Figure~\ref{fig:trace}(a) shows one recorded trial of the chosen system on a labour-law task (3 controller calls, 2 tool calls, no repair). The controller searches, reads the record it finds, and answers with a quote that the verifier accepts. Figure~\ref{fig:trace}(b) shows the web interface answering the same question in the earlier configuration, with the answer, the L1 verdict, the cited section and the agent timeline. The web interface is the demo; it illustrates the system and is not evidence for the numbers in Section~\ref{sec:eval}.
+\begin{figure}[!tbp]\centering
+\begin{minipage}[c]{0.46\textwidth}\centering
+% PROVENANCE: run=d2-gpu-r2-4b-labour-v1 trial=labour_vi_v1-l1_rerank-s42-LVN-009-a1 (ledger steps and token counts copied from trials.jsonl)
+\begin{tikzpicture}[font=\scriptsize,x=1cm,y=1cm,
+  st/.style={draw=blue!55!black,fill=blue!8,rounded corners=2pt,align=left,inner sep=3pt,text width=7.0cm,line width=0.6pt},
+  qq/.style={st,fill=black!5,draw=black!60},
+  rs/.style={st,fill=black!10,draw=black!70},
+  fl/.style={-{Stealth[length=4.5pt,width=4pt]},line width=0.7pt}]
+\node[qq] (q) at (0,0) {\textbf{Question} (translated): under Decree 293/2025, what is the hourly minimum wage in region IV?};
+\node[st,below=0.32cm of q] (a) {\textbf{1~search.} Query ``Nghị định 293/2025/NĐ-CP mức lương tối thiểu giờ vùng IV''; BM25 + TF-IDF give 20 candidates, the reranker keeps 5; Article 3 of the decree is ranked first. \emph{1,574 tokens in, 105 out.}};
+\node[st,below=0.32cm of a] (b) {\textbf{2~read.} Full text of Article 3 of Decree 293/2025. \emph{2,921 in, 166 out.}};
+\node[st,below=0.32cm of b] (c) {\textbf{3~answer.} ``17,800 VND per hour'', quote ``Vùng IV 3.700.000 17.800'' from Article 3. \textbf{L1 verifier: accepted, 0 repairs.} \emph{3,623 in, 211 out.}};
+\node[rs,below=0.32cm of c] (r) {\textbf{Outcome:} answered with a verified citation; 8,118 tokens in, 482 out in total. The answer equals the benchmark's reference answer.};
+\draw[fl] (q) -- (a); \draw[fl] (a) -- (b); \draw[fl] (b) -- (c); \draw[fl] (c) -- (r);
+\end{tikzpicture}\\[2pt]{\small (a) Trace of the chosen system (4B, verifier and reranker on).}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.52\textwidth}\centering
+\includegraphics[width=\linewidth]{images/demo_answer.png}\\[2pt]{\small (b) Web interface, same question.}
+\end{minipage}
+\caption{(a) One completed trial from the evaluation of the chosen system (benchmark task LVN-009, seed 42). (b) The web interface answering the same question, recorded on 24 October with the earlier configuration (Bonsai 2B controller, v3 system); the same interface serves the chosen configuration.}\label{fig:trace}
+\end{figure}
 
-\hdr{Real task trace.} A trial from the main run will be rendered from its ledger (\code{trials.jsonl}) as Table~\ref{tab:trace}. \pending{Select trial id and run id; fill the table from the recorded steps only.}
-\begin{table}[!htb]\tabstyle
-\begin{tabular}{@{}llllrr@{}}
-\toprule Step & Action & Tool call / result ids & Verifier verdict & Tokens in/out & Time (s)\\\midrule
-1 & \tbd & \tbd & \tbd & \tbd & \tbd\\
-2 & \tbd & \tbd & \tbd & \tbd & \tbd\\
-\ldots & \tbd & \tbd & \tbd & \tbd & \tbd\\
-Total & & & & \tbd & \tbd\\
-\bottomrule\end{tabular}
-\caption{Trace of one completed main-run trial (task, variant, seed, run id: \tbd). Placeholder rows: nothing here is a recorded step.}\label{tab:trace}
-\end{table}
-
-\section{Tools and Permissions (R2)}\label{sec:tools}
-Table~\ref{tab:tools} lists every tool and model-facing interface with its state and permission level. The controller's action space (\code{ActionType}) contains no write action, so it has no direct write path.
-A stdio MCP check confirmed discovery, search, lookup, blocked unverified writes and proposal-only summaries (\code{docs/reviews/native-integrity-revision-2026-10-22}). It tests the tool contract, not a model task. The demo serves one user in one process; multi-user isolation is not certified. \pending{Attach application demo evidence from the rehearsal.}
-\begin{table}[!htb]\tabstyle
+\section{Tools and Permissions}\label{sec:tools}
+Table~\ref{tab:tools} lists every tool and model-facing interface with its state and permission level. The controller's action space contains no write action, so it has no direct write path. Every interface that is not read-only is blocked or gated in code, not only in the prompt. The loop does not use the Model Context Protocol (MCP) server that exposes the same tools; a stdio test confirmed discovery, search, lookup, blocked unverified writes and proposal-only summaries. The demo serves one user in one process; multi-user isolation is not certified.
+\begin{table}[!htbp]\tabstyle
 % PROVENANCE: n/a descriptive tool inventory, no measured values
-\begin{tabularx}{\textwidth}{@{}L{3.0cm}L{2.1cm}L{2.3cm}Y@{}}
+\begin{tabularx}{\textwidth}{@{}L{3.3cm}L{2.2cm}L{2.5cm}Y@{}}
 \toprule Interface & State & Permission level & Enforced boundary\\\midrule
-\code{search}, \code{read_document} (labour profile: \code{search_law}, \code{get_article}) & Implemented & Read-only & Return local corpus text only.\\
-Reranker (inside \code{search}) & Implemented & Read-only (model component) & Scores candidates; a failure is an execution error (\code{ModelComponentError}), never a first-stage fallback.\\
-Answer-memory write & Implemented; off in D2 & Reversible write & SQLite write only after the verification gate.\\
-MCP \code{save_case} & Implemented; blocked & Reversible write & A model caller cannot self-attest verification; the call returns blocked.\\
-\code{send_summary} & Proposal only & Irreversible write & The model-facing tool can only create a proposal; it cannot approve or execute.\\
-Trusted-UI outbox (\code{dispatch_external_action}) & Implemented & Irreversible write (local queue only) & Needs host approval and a token bound to the payload hash; a caller flag is insufficient; a queue receipt is not a delivery.\\
-External sender; code execution & Not implemented & Irreversible write; code execution & No e-mail or webhook transport and no code-running tool exists.\\
+Search, read (labour profile: \texttt{search\_law}, \texttt{get\_article}) & Implemented, used & Read-only & Return local corpus text only.\\
+Reranker (inside search) & Implemented, used & Read-only model component & Scores candidates; a failure is an execution error, never a silent fallback.\\
+Answer-memory write & Implemented, off in D2 & Reversible write & Local database write only after the verification gate.\\
+MCP \texttt{save\_case} & Implemented, blocked & Reversible write & A model caller cannot self-attest verification; the call returns blocked.\\
+\texttt{send\_summary} & Proposal only & Irreversible write & The model-facing tool only creates a proposal; it cannot approve or execute.\\
+Trusted-UI outbox & Implemented & Irreversible write (local queue) & Needs host approval and a token bound to the payload hash; a queue receipt is not a delivery.\\
+External sender, code execution & Not implemented & Irreversible write, code execution & No e-mail or webhook transport and no code-running tool exists.\\
 \bottomrule\end{tabularx}
-\caption{Tool inventory (\code{src/tools/permissions.py}, \code{domain_tools.py}). Permission levels are those classified in code, and every non-read-only interface is blocked or gated there, not just in the prompt.}\label{tab:tools}
+\caption{Tool inventory with permission levels as classified in code.}\label{tab:tools}
 \end{table}
 
-\section{Memory and Knowledge Sources (R3)}\label{sec:memory}
-\hdr{Short-term context.} Each run keeps one message list: the domain system prompt, the question (and any pasted document) wrapped as untrusted input, then alternating action and tagged observation turns. Observations are compacted. \code{search} returns at most the two clauses that best match the query, plus a truncation flag; a repeated query or re-read returns a short notice; budget notices tell the model to answer or refuse. The benchmark uses an 8,192-token context, and the largest controller input in the smoke runs was 3,944 tokens. The ledger records queries, retrieved text and ids, budgets and per-call telemetry.
+\section{Memory and Knowledge Sources}\label{sec:memory}
+\hdr{Short-term context.} Each run keeps one message list: the domain system prompt, the question (and any pasted document) wrapped as untrusted input, then alternating action and observation turns. Observations are compacted: a search returns the best-matching clauses of each record with a truncation flag, a repeated query or read returns a short notice, and budget notices tell the model when to answer or refuse. The controller has an 8,192-token context window. The case ledger records queries, retrieved ids, repairs, token counts and times.
 
-\hdr{Episodic memory (implemented, not exercised in D2).} Verified answers can be stored in SQLite after the verification gate. Reuse requires a matching index version, native-origin metadata and a question similarity of at least 0.85 (TF-IDF cosine and Jaccard), and the reused answer is re-verified. Memory is off in every D2 run, so trials stay independent. Reuse is also off in the demo, because matching sees only the question and not the facts that decide a case. The filter for personally identifiable information (PII) covers a fixed set of patterns.
+\hdr{Long-term memory (implemented, not exercised in D2).} Verified answers can be stored in a local database after the verification gate. Reuse requires a matching index version and a question similarity of at least 0.85, and the reused answer is re-verified. Memory is off in every D2 run and in the demo, so trials stay independent; matching sees only the question and not the facts that decide a case. A fixed set of patterns screens for personal data before a write.
 
-\hdr{Knowledge sources.} \code{src/ingestion} built both corpora from public PDFs: \code{pypdf} text extraction, Unicode normalisation and segmentation at section headings. Each record carries its source URL, file SHA-256 and page numbers (manifests in \code{docs/materials/*-sources}), and IDs have the form \code{<DOC>\_<section>}. Table~\ref{tab:corpora} gives size and known limits.
-\begin{table}[!htb]\tabstyle
-% PROVENANCE: n/a corpus sizes counted from data/corpus, not a benchmark result
-\begin{tabularx}{\textwidth}{@{}L{3.3cm}rrY@{}}
-\toprule Corpus & Documents & Records & Known limits\\\midrule
-\code{hcmut_academic_v1} & 10 & 143 & Several documents are amendment-only; the image-only base regulations are absent; one record has about 19,600 characters; printed decision numbers come from a web listing.\\
-\code{labour_vi_v1} & 10 & 458 & Decree 145/2020 (over 40 pages) and unnumbered annexes are absent; texts as promulgated, later amendments unchecked.\\
-\bottomrule\end{tabularx}
-\caption{Corpora used in D2 (\code{data/corpus/}, snapshot of 22 October 2026). Neither has been certified by a domain expert: \pending{university or legal reviewer, if any}.}\label{tab:corpora}
+\hdr{Knowledge sources.} Both corpora were built from public PDFs by text extraction, Unicode normalisation and segmentation at section headings. Each record carries its source URL, file hash and page numbers, and the retrieval unit is a record (an article or a clause). The HCMUT corpus has 10 documents and 143 records; five documents are amendment-only and the image-only base regulations are absent, and printed decision numbers come from a web listing. The labour corpus has 10 documents and 458 records; Decree 145/2020 and unnumbered annexes are absent, texts are as promulgated and later amendments are unchecked. Neither corpus has been checked by a domain expert: \pending{university or legal reviewer, if any}.
+
+\hdr{Retrieval and reranking.} The index is built in memory at start-up. BM25 over title and content and TF-IDF over word 1--3-grams are fused by RRF. The top 20 candidates are rescored by a cross-encoder reranker (AITeamVN Vietnamese reranker); records longer than one window are split into overlapping windows of about 1,500 characters and the record keeps its best window. The first search of a run always uses the user's question together with the model's query. Dense embedding retrieval with a persisted vector index is implemented but not evaluated in D2; it is a planned ablation. The reranker runs as a GGUF export on the Mac and as torch fp16 on the GPU server. In a parity probe on 100 benchmark questions, the Mac runtime had a mean per-question Spearman correlation of 0.9994 with the fp32 reference and the same top-1 record in 99 of 100 questions (0.9943 and 100 of 100 for the GPU runtime), so accuracy (GPU) and latency (Mac) describe the same ranking behaviour; we still report them separately.
+
+\section{Evaluation Set and First Results}\label{sec:eval}
+\hdr{Benchmarks.} Each benchmark has 50 Vietnamese tasks over its own corpus: 40 single-record, 5 two-record and 5 out-of-scope tasks that must be refused. A task has gold record ids, a short reference answer and verbatim evidence quotes; both files are frozen with hash locks before collection. The tasks were drafted by an AI model, cross-checked by two independent AI verifiers and an AI adjudicator, and mechanical checks confirmed that every quote is verbatim; then group member Võ Phạm Tuấn Dũng reviewed all 100 tasks on 23 October and requested no change. They are AI-written questions over real documents, not real users' questions. A quality audit found no wrong gold answer and three limits:
+\begin{itemize}
+\item plain BM25 on the raw question already ranks a gold record first for 89\% (HCMUT) and 78\% (labour) of questions, so retrieval cannot separate the configurations;
+\item about one third of the answerable tasks can be answered without the corpus (LLM estimate);
+\item 22 HCMUT questions pin a document by a decision number taken from a web listing.
+\end{itemize}
+
+\hdr{How success is decided.} \emph{Strict success} counts a trial only if the run completed, the behaviour was appropriate (answer when the corpus answers, refuse when it does not), the answer is judged correct and complete, and every factual claim is supported by the sources. Execution errors and failed judgments count as failures, so the rate is a lower bound over all planned trials. It is an LLM estimate, not a human label. Judge-free measures are behaviour match, over-refusal and unsafe answers; Recall@5 of gold records in the agent's trace and citation F1 are lexical, source-id proxies and say nothing about answer correctness. Intervals are 95\% bootstrap intervals over tasks, with the three seeds averaged per task; with 50 tasks, differences below about 10 percentage points are not detectable. Definitions are in the repository (benchmark and metrics reference).
+
+\hdr{LLM judge and its check.} An LLM judge (DeepSeek V4.1 Flash, through an API gateway) rates each output blind to the configuration and the verifier outcome; it is used offline only, and the model revision behind the route is not pinned~\citep{deepseek2026api}. LLM judges can be biased~\citep{zheng2023judge}, so the group labels a stratified blind sample of about 30 items per benchmark, taken from the outputs of the chosen 4B system, and computes agreement and Cohen's $\kappa$ against the judge. \pending{Human audit not yet done: agreement and $\kappa$ unavailable.} Until then every success figure is an estimate. Separating answer correctness from citation support follows~\citet{gao2023alce}.
+
+\hdr{Design.} The chosen system, \emph{L1+rerank}, is compared with two simpler configurations: \emph{OFF} (no verifier, no reranker) and \emph{L1} (verifier with repair, no reranker). Each runs three seeds on 50 tasks per benchmark. Two diagnostic baselines (one seed, not system variants) bracket the results: \emph{closed-book} (the question only, no tools or documents) and \emph{oracle} (the gold records given up front, answerable tasks only). A run of one controller thus has 900 system trials plus 190 baseline trials, 1{,}090 in all, every one recorded. The first design (v3, 2B) and the revised design with the 2B controller (r2-2B) were run the same way. Accuracy was collected on a shared server GPU (one NVIDIA H100); latency is measured separately on an Apple M4 laptop (16\,GiB), one query at a time.
+
+\begin{figure}[!tbp]\centering
+% PROVENANCE: comparison=evaluation/comparisons/v3-2B_vs_r2-2B_vs_r2-4B (comparison.json: table.<benchmark>.<variant>.arms.<arm>.strict_success and strict_success_ci95, 3 variants x 2 benchmarks x 3 arms)
+\begin{tikzpicture}
+\pgfplotsset{barax/.style={ybar,bar width=6.5pt,width=8.0cm,height=5.0cm,ymin=0,ymax=100,ytick={0,20,40,60,80,100},
+  ymajorgrids,grid style={black!12},tick label style={font=\scriptsize},label style={font=\small},title style={font=\small\bfseries,yshift=-2pt},
+  symbolic x coords={off,l1,lrr},xtick=data,xticklabels={OFF,L1,L1+rerank},enlarge x limits=0.22,
+  error bars/y dir=both,error bars/y explicit,error bars/error bar style={black!80,line width=0.5pt}}}
+\begin{axis}[barax,title={HCMUT-v1},ylabel={Strict success (\%)},legend to name=barlegend,legend columns=3,legend style={font=\scriptsize,draw=none,column sep=8pt}]
+\addplot+[fill=cV,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 18.0 8.0 7.3
+l1 12.0 6.0 5.3
+lrr 14.0 7.3 6.0
+};
+\addplot+[fill=cR2,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 31.3 10.0 9.3
+l1 24.0 9.3 8.7
+lrr 28.7 8.7 8.7
+};
+\addplot+[fill=cR4,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 70.0 9.3 9.3
+l1 64.0 10.7 11.3
+lrr 60.7 10.0 10.7
+};
+\legend{{v3, 2B (first design)},{r2, 2B},{r2, 4B}}
+\end{axis}
+\begin{axis}[barax,title={Labour-VI-v1},at={(9.0cm,0)},yticklabels={}]
+\addplot+[fill=cV,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 14.7 8.0 7.3
+l1 14.7 8.0 7.3
+lrr 18.7 8.0 7.3
+};
+\addplot+[fill=cR2,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 31.3 9.3 9.3
+l1 28.0 10.0 9.3
+lrr 28.0 9.3 9.3
+};
+\addplot+[fill=cR4,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 62.0 10.0 10.0
+l1 52.7 10.7 10.0
+lrr 56.7 10.0 10.0
+};
+\end{axis}
+\end{tikzpicture}\\[1pt]
+\pgfplotslegendfromname{barlegend}
+\caption{Strict success (LLM-judge lower bound; bars: mean over three seeds; whiskers: 95\% interval over the 50 tasks) for the first design (v3, 2B) and the revised design r2 with the 2B and 4B controllers. The right-most group, L1+rerank, is the chosen system when the controller is 4B. r2 is a post-hoc revision evaluated on the same tasks as v3.}\label{fig:bars}
+\end{figure}
+
+\hdr{What the numbers say.}\par\noindent\textbf{(1) Model size and revision both matter, and the model matters more} (Figure~\ref{fig:bars}). For the chosen configuration, strict success is 60.7\% [50--71] on HCMUT and 56.7\% [47--67] on labour with the 4B controller, against 28.7\% and 28.0\% with the 2B controller and 14.0\% and 18.7\% for the first design. Swapping the controller, 2B to 4B, adds 32.0 points [21.3, 42.0] and 28.7 [18.0, 39.3]; the revision alone, v3 to r2 at 2B, adds 14.7 [6.0, 23.3] and 9.3 [0.7, 18.0] (paired differences, 95\% intervals; all twelve paired differences across the three configurations exclude zero; full tables in the appendix).
+
+\par\noindent\textbf{(2) The verifier and the reranker did not raise strict success.} In Table~\ref{tab:main}, OFF is highest (70.0\% and 62.0\%). L1 changes strict success against OFF by $-6.0$ [$-16.0$, $+4.0$] and $-9.3$ [$-18.7$, $0.0$] points, and the reranker against L1 by $-3.3$ [$-13.3$, $+6.7$] and $+4.0$ [$-6.0$, $+14.0$]. Table~\ref{tab:diag} shows why: both make the system refuse more, because an answer the verifier rejects twice ends as a refusal (10 to 18 of 150 trials per configuration, always on tasks where an answer was expected). Unsafe answers on the 15 out-of-scope trials per row do not fall consistently, from a very small base, and Recall@5 is already 0.98--0.99 without the reranker. The chosen system keeps both components for the guarantee of a checkable citation; D3 tests on a harder held-out benchmark whether the cost in refusals is justified.
+
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: run=d2-gpu-r2-4b-hcmut-v1,d2-gpu-r2-4b-labour-v1
+\begin{tabular}{@{}lcccc@{}}
+\toprule & \multicolumn{2}{c}{HCMUT-v1} & \multicolumn{2}{c}{Labour-VI-v1}\\\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Bonsai 4B configuration & All 50 tasks & 45 answerable & All 50 tasks & 45 answerable\\\midrule
+Closed-book (no documents) & 2.0 [0--6] & 0.0 [0--0] & 24.0 [12--36] & 24.4 [13--38]\\
+OFF (no verifier, no reranker) & 70.0 [61--79] & 69.6 [60--79] & 62.0 [52--72] & 60.7 [50--71]\\
+L1 (verifier and repair) & 64.0 [53--75] & 61.5 [50--73] & 52.7 [43--63] & 51.1 [40--62]\\
+\textbf{L1+rerank (chosen system)} & \textbf{60.7 [50--71]} & 59.3 [49--70] & \textbf{56.7 [47--67]} & 54.1 [43--64]\\
+Oracle (gold records given up front) & -- & 82.2 [71--93] & -- & 75.6 [62--87]\\
+\bottomrule\end{tabular}
+\caption{Strict success (\%, LLM-judge lower bound, 95\% interval over tasks) of the chosen 4B system, a post-hoc revision evaluated on the same tasks as v3. Variants: three seeds; closed-book and oracle: one seed. The oracle runs only on the 45 answerable tasks, so the right-hand columns of each benchmark put every row on the same 45 tasks.}\label{tab:main}
 \end{table}
 
-\hdr{Retrieval and reranking.} Search runs in memory: BM25 over title and content and TF-IDF over word 1--3-grams, fused by RRF ($k=60$). Variants OFF and L1 return the top five first-stage results. L1+rerank takes the top 20 candidates, rescores them with the cross-encoder and returns the best five. Long records would lose late evidence if truncated, so a record longer than one window is split into overlapping windows (about 1,500 characters, 200 overlap). Each (query, window) pair is scored and the record keeps the maximum (MaxP).
-
-The reranker's input policy and weights are identical on both machines, but the runtimes differ: torch fp16 on CUDA on server 82, and a GGUF conversion on the \code{llama.cpp} server on the Mac (quantisation: \pending{confirm after the parity check}). Scores are therefore not bit-identical: \pending{rank and score parity between the two runtimes, from the parity probe}. Accuracy comes from the GPU run and latency from the Mac run; the two L1+rerank rows are not pooled. The persisted hybrid index and dense retrieval (\code{src/indexing}) are outside D2.
-
-\section{Evaluation Set and Initial Results (R5)}\label{sec:eval}
-\hdr{Benchmarks and provenance.} \code{hcmut_v1} and \code{labour_vi_v1} each hold 50 Vietnamese tasks: 40 single-record, 5 two-record and 5 out-of-scope tasks that expect a refusal. Each task has gold record IDs, a short reference answer and verbatim evidence quotes, and both files are frozen with hashes (\code{benchmark.lock.json}). \textbf{No human wrote or reviewed any task.} Claude Haiku drafted them; two independent Claude Sonnet verifiers checked every task against the cited records; a Sonnet adjudicator fixed or replaced flagged items; mechanical checks confirmed that quotes are verbatim and IDs exist; and Gemma-4-31B answers given the gold context served as a sanity pointer (LLM estimates, not labels). The items are AI-written questions over real documents, not real user questions; real use (long, vague, pasted contracts) will differ. \pending{Member spot-check against the source PDFs, if done.}
-
-A later AI audit (\code{docs/reviews/benchmark_quality_2026-10-23.md}) found no wrong gold answer and no refusal item answerable from the corpus. It did flag three limits:
-\begin{itemize}
-\item \textbf{B1.} Plain BM25 already ranks a gold record first for 89\% (HCMUT) and 78\% (labour) of questions, so retrieval cannot separate the variants.
-\item \textbf{B2.} About one third of answerable tasks can be answered without the corpus (closed-book correct for 15 of 45 and 12 of 45; LLM estimate), so we also stratify by closed-book guessability.
-\item \textbf{B3.} 22 HCMUT questions pin a document by a decision number taken from a web listing.
-\end{itemize}
-
-\hdr{Design and machines.} Two benchmarks $\times$ three variants $\times$ three seeds $\times$ 50 tasks give 900 system trials; the two diagnostic baselines below add 190, so the matrix is 1,090 trials, collected as two runs (one per benchmark) of 545 trials each, all recorded. The same model file, \code{llama.cpp} commit, prompts and budgets are required on both machines; preflight enforces this against \code{config/benchmark/expected_server.yaml}.
-\begin{itemize}
-\item \textbf{Accuracy:} server 82 (shared; one NVIDIA H100 PCIe per run, driver 575.57.08, 16 parallel slots, CUDA build of the same commit; from the run manifests). Latency measured there is not reported.
-\item \textbf{Latency and memory:} Apple M4, 10 cores, 16\,GiB, Metal, strictly sequential after warm-up, planned for seed 42 only (300 trials).
-\end{itemize}
-Seeds average out the controller's sampling variance (temperature 0.7) but add no tasks, so confidence intervals are taken over tasks. With 50 tasks per benchmark, paired differences below about 10 percentage points (pp) are not detectable.
-
-\hdr{Diagnostic baselines (not system variants).} Two extra cells use the same Bonsai file, sampler, domain prompt, constrained decoding and judge, verification off, seed 42 only, with a disclosed prompt addendum (no tools; only answer, clarify or refuse). \emph{Closed-book:} the question only, no tools and no documents, all 50 tasks per benchmark (100 planned trials); it isolates the parametric-knowledge share of the score. \emph{Oracle:} the full text of the gold records is given up front in the user turn in the read-tool observation format, with no search, on the 45 answerable tasks per benchmark (90 planned trials; refusal tasks have no gold context and are excluded); it isolates the reading ceiling of the 2B controller under perfect retrieval. Both are separate cells, reported only in Tables~\ref{tab:benchmark-baselines-hcmut} and~\ref{tab:benchmark-baselines-labour} beside the system variants restricted to answerable tasks (reference rows), and never pooled with the variants or used in the paired differences (they are not the closed-book probes behind B2).
-
-\emph{Error split (answerable tasks).} With $S$ a variant's strict success and $O$ the oracle's, $O-S$ is what retrieval, tool use and verification cost relative to gold evidence, and the closed-book rate is the parametric floor. Caveats: the baselines have one seed and use the addendum prompt, so $O-S$ mixes evidence access with that difference; all values are LLM-judge estimates. The split of failures by whether all gold ids surfaced (\code{answerable_by_gold_surfaced}) is computed in the analysis summary but not tabulated, so it is not reported.
-
-\hdr{Metrics.} Table~\ref{tab:metrics} defines the metrics.
-\begin{table}[!htb]\tabstyle
-% PROVENANCE: n/a metric definitions, no measured values
-\begin{tabularx}{\textwidth}{@{}L{3.0cm}Y@{}}
-\toprule Metric & Definition (code: \code{evaluation/metrics.py}, \code{judge_rules.py}, \code{stats.py})\\\midrule
-Strict success (LLM-judge estimate) & A trial succeeds only if the run completes, the judgment is valid, behaviour is appropriate, correctness and completeness are both 2/2 and every factual claim is supported (for refusals, absence statements are not claims; a contradicted claim still fails). An execution error counts as failure; an invalid judgment is unknown and also counts as failure. Reported over \emph{all planned} trials, so it is a lower bound, with a 95\% bootstrap interval over tasks (seeds averaged per task).\\
-Behaviour confusion (no judge) & Expected behaviour (answer or refuse) against terminal status (answered, refused, clarified, error): over-refusal, unsafe-answer rate, refusal precision and recall, strict match (errors count as mismatches).\\
-Faithfulness & Supported claims over all judged claims (support judged against gold and cited records).\\
-Retrieval (ID proxy) & Recall@5, MRR and nDCG@5 over the agent's trace (distinct ids in order of first appearance, searches then reads), on answerable trials. Plain BM25 on the raw question is near ceiling by B1; the agent's own trace is lower (see Results).\\
-Citation P/R/F1 (ID proxy) & Cited ids against gold ids; nothing cited counts as 0 (macro average). Says nothing about answer correctness.\\
-Errors, latency, tokens & Error rate with Wilson interval by kind; trial and per-call p50/p95 (non-error trials, Mac only); controller tokens from server usage; judge cost as reported by the gateway (not an invoice). Local controller cost is not an API cost, and GPU-active hours are not measured, only wall time and hardware.\\
-Paired difference & Treatment minus baseline per task; paired bootstrap, 5,000 draws, no multiplicity correction.\\
-\bottomrule\end{tabularx}
-\caption{Metric definitions. Strict success, behaviour appropriateness and faithfulness are LLM-judge estimates; retrieval and citation numbers are source-ID proxies, not answer correctness.}\label{tab:metrics}
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: run=d2-gpu-r2-4b-hcmut-v1,d2-gpu-r2-4b-labour-v1
+\begin{tabular}{@{}llcccccc@{}}
+\toprule Benchmark & Configuration & \makecell{Behaviour\\match (\%)} & \makecell{Over-\\refusal (\%)} & \makecell{Unsafe\\answers (\%)} & \makecell{Faithful-\\ness (\%)} & \makecell{Citation\\F1} & Recall@5\\\midrule
+\multirow{3}{*}{HCMUT-v1} & OFF & 88.0 & 9.8 & 13.3 & 89.8 & 0.820 & 0.989\\
+ & L1 & 82.7 & 17.4 & 0.0 & 90.3 & 0.704 & 0.989\\
+ & L1+rerank & 80.0 & 18.9 & 13.3 & 89.3 & 0.714 & 0.978\\\midrule
+\multirow{3}{*}{Labour-VI-v1} & OFF & 94.0 & 4.4 & 20.0 & 87.3 & 0.841 & 0.989\\
+ & L1 & 81.3 & 16.8 & 13.3 & 86.3 & 0.728 & 0.989\\
+ & L1+rerank & 79.3 & 19.1 & 13.3 & 85.6 & 0.691 & 0.993\\
+\bottomrule\end{tabular}
+\caption{What the verifier and the reranker change (Bonsai 4B, post-hoc revision evaluated on the same tasks). Behaviour match: answered when an answer was expected, refused when not (no judge). Over-refusal: refused or clarified when an answer was expected. Unsafe answers: answered on the 15 out-of-scope trials. Faithfulness: supported claims over judged claims (LLM judge). Citation F1 and Recall@5 are source-id proxies.}\label{tab:diag}
 \end{table}
 
-\hdr{Judge and its reliability.} DeepSeek V4.1 Flash judges each output through the gateway, blind to the variant and the verifier outcome (thinking on, high effort, JSON validated, up to three attempts plus extra rounds for invalid ones). We claim no seed or temperature, and the model revision behind the route is not pinned~\citep{deepseek2026api}. The gateway sees only benchmark questions, candidate answers and gold sources, never user data. LLM judges can be biased~\citep{zheng2023judge}, so we check this one against human labels. On Saturday 24 October the group labels a stratified blind sample of about 30 items per benchmark with the same claim-counting rule, and \cmd{make audit-score} computes agreement and Cohen's $\kappa$ against the judge's strict-success label. \pending{Human audit not yet performed; agreement and $\kappa$ unavailable.} Separating answer correctness from citation support follows~\citet{gao2023alce}.
+\par\noindent\textbf{(3) Baselines.} Without documents the 4B model scores 2.0\% [0--6] on HCMUT and 24.0\% [12--36] on labour, so part of the labour score can come from the model's own knowledge. With the gold records in front of it, the oracle reaches 82.2\% [71--93] and 75.6\% [62--87] on the answerable tasks: even with perfect evidence the 4B controller misses strict success on about one task in five, against 69.6\% and 60.7\% for the agent without verifier on the same tasks. 17 of 1,090 trials ended as execution errors (wall-time limit); they count as failures.
 
-\hdr{Results (v3, Bonsai 2B).} Both benchmarks were collected in full and judged (545 of 545 trials per run: 450 system, 50 closed-book, 45 oracle). HCMUT is run \code{d2-gpu-main-hcmut-v3} and labour is run \code{d2-gpu-main-labour-v3} (commit 957579b without tracked changes, harness 1.1.2, one H100 PCIe each, 16 parallel slots). Each table below is rendered from one run by \code{render_benchmark_tables.py} and names it in its source line; nothing is pooled across benchmarks (in the paired tables the ``pooled'' rows repeat the benchmark rows, because a run holds one benchmark). Success, behaviour-appropriateness and faithfulness are LLM-judge estimates, not human labels (audit pending); strict success is a lower bound over all planned trials, with 95\% intervals over tasks. The Mac latency run has not been done (Table~\ref{tab:benchmark-latency} stays red).
+\hdr{How to read the gain.} The first design was frozen and run before any change. The revision r2 was designed after we had read the v3 results and their failure analysis on the same 100 tasks, so its gains are optimistic: they show that the diagnosed problems were real and fixable, not how the system will perform on unseen questions. D3 confirms them on a new held-out benchmark. Other limits: success is an unaudited LLM estimate; the benchmarks are AI-written, easy for retrieval, and partly answerable without documents; three seeds add no tasks, so intervals are over 50 tasks.
 
-\hdr{Headline.} Strict success is low for every variant (Tables~\ref{tab:benchmark-main-hcmut} and~\ref{tab:benchmark-main-labour}). On HCMUT it is 18.0\% [11--26] for OFF, 12.0\% [7--18] for L1 and 14.0\% [8--21] for L1+rerank; on labour it is 14.7\% [7--23], 14.7\% [7--23] and 18.7\% [11--27]. Intervals overlap within each benchmark. Trace Recall@5 is 0.674, 0.659 and 0.756 on HCMUT and 0.607, 0.659 and 0.815 on labour,, below the near-ceiling of BM25 on the raw question (Recall@5 0.99 in an offline probe; B1).
+\hdr{Cost and latency.} The controller and reranker run locally, so there is no per-call API cost. For the chosen system the controller reads on average 12,070 (HCMUT) and 11,477 (labour) tokens and writes 763 and 865 tokens per trial, over 3.4 and 3.7 model calls. The judge cost, as reported by the gateway and not an invoice, was USD 1.06 and USD 1.10 for the two 545-trial runs. Collecting a run took 34 and 33 minutes of wall time on the shared H100 (GPU-active hours were not measured). Latency on the laptop for the chosen system with the 4B and the 2B controller: \pending{Mac M4 trial latency (p50 and p95) and peak memory; runs in progress}.
 
-\hdr{Paired comparisons} (Tables~\ref{tab:benchmark-paired-hcmut} and~\ref{tab:benchmark-paired-labour}; 50 tasks, no multiplicity correction). L1 against OFF changes strict success by $-6.0$\,pp [$-13.3$, $+0.7$] on HCMUT and 0.0\,pp [$-6.7$, $+6.7$] on labour, so no detectable change; the judge-free behaviour match falls by 20.7\,pp [$-30.7$, $-10.7$] and 22.7\,pp [$-33.3$, $-12.0$], and the cited-id F1 (a source-ID proxy) by 15.2 and 10.0\,pp, with intervals that exclude zero. L1+rerank against L1 raises Recall@5 by 9.6\,pp [$-0.7$, $+20.7$] on HCMUT and by 15.6\,pp [$+3.0$, $+28.9$] on labour, but the strict-success differences ($+2.0$ [$-5.3$, $+9.3$] and $+4.0$ [$-5.3$, $+13.3$]) are not significant. So the reranker improves what the agent retrieves on labour (a retrieval proxy) without a measurable gain in judged success.
+\hdr{Reproducibility.} Repository: \url{https://github.com/tuandung222/LuatCheck-D2}; reported commit \pending{final commit hash}. Every number in this report traces to a recorded run in the repository (trials, judgments, manifests and the comparison files), and a provenance check rejects result tables from stale or incomplete runs. The guide \texttt{docs/REPRODUCE\_D2.md} gives the commands to audit stored runs, regenerate tables and re-collect trials. Runs: \texttt{d2-gpu-r2-4b-\{hcmut,labour\}-v1} (chosen system), \texttt{d2-gpu-r2-2b-\{hcmut,labour\}-v1}, \texttt{d2-gpu-main-\{hcmut,labour\}-v3} (first design), the comparison \texttt{v3-2B\_vs\_r2-2B\_vs\_r2-4B}, and \texttt{reranker-parity-2026-10-23}.
 
-\hdr{Answer, refuse, clarify.} Of 150 trials per variant, answered/refused/clarified counts are, on HCMUT, 66/25/59 for OFF, 33/59/58 for L1 and 38/55/55 plus 2 errors for L1+rerank; on labour 91/9/49 plus 1 error, 52/45/53 and 49/56/44 plus 1 error (Tables~\ref{tab:benchmark-ops-hcmut} and~\ref{tab:benchmark-ops-labour}). Over-refusal (refused or clarified when an answer exists) rises from 53.3\% for OFF to 77.0\% for L1 and 72.2\% for L1+rerank on HCMUT, and from 34.3\% to 62.2\% and 63.4\% on labour (Tables~\ref{tab:benchmark-behaviour-hcmut} and~\ref{tab:benchmark-behaviour-labour}). No task expects a clarification, so every clarify on an answerable task is a miss. Unsafe answers on the 15 out-of-scope trials per variant: 20.0\%, 13.3\%, 6.7\% (HCMUT) and 20.0\%, 6.7\%, 0.0\% (labour), from a very small base.
+\section{Threat Model}\label{sec:threat}
+\hdr{Assets.} (A1) Faithfulness: answers and citations that users rely on must trace to source sections~\citep{magesh2025hallucination}. (A2) User data: questions, pasted documents, memory and the audit log. (A3) Integrity of corpora, domain profiles, prompts, model weights and the frozen benchmark. (A4) The tool boundary: no unreviewed write or egress. (A5) Availability of a bounded local machine.
 
-\hdr{Baselines} (Tables~\ref{tab:benchmark-baselines-hcmut} and~\ref{tab:benchmark-baselines-labour}; seed 42, not variants). Closed-book strict success is 6.0\% on HCMUT (0.0\% on the 45 answerable tasks: its three successes are refusal tasks) and 14.0\% [6--24] on labour (13.3\% [4--24] on answerable tasks). The oracle, which sees the gold records and needs no retrieval, reaches only 28.9\% [16--42] on HCMUT and 44.4\% [31--58] on labour, although it answers 84.4\% of the answerable tasks: the 2B controller fails the strict criterion on most items even with gold evidence. The oracle is above every variant's answerable-only rate (OFF, L1, L1+rerank: 17.8\%, 10.4\%, 14.1\% on HCMUT; 14.1\%, 11.9\%, 16.3\% on labour), clearly on labour but not clearly on HCMUT (OFF [10--26]). On labour the closed-book interval overlaps every variant's, so there is no evidence that retrieval raised judged success over parametric knowledge.
+\hdr{Attacker.} The attacker can submit arbitrary questions and pasted documents through the interface or API (instruction override, delimiter spoofing, prompt or memory exfiltration, requests to evade a regulation), including text copied from a hostile third party. The attacker cannot change code, corpora, configuration, weights, the ledger or the approval state of the trusted UI, and cannot reach loopback servers or other users' sessions. Non-goals: a compromised host or supply chain, poisoned official sources, multi-tenant isolation, and the correctness of the regulations themselves.
 
-\hdr{Execution errors.} Five of the 1,090 trials ended in \code{model_output_error} (invalid or truncated action); there were no timeouts or backend errors. HCMUT L1+rerank had 2 of 150 (1.3\%, Wilson 95\% [0.4, 4.7]); labour OFF and L1+rerank 1 of 150 each (0.7\%, [0.1, 3.7]); labour oracle 1 of 45. They count as failures, never as refusals.
-
-\hdr{Failure analysis (diagnostics, not measured effects).} Computed offline from the recorded ledgers (probes \code{v3_failure_analysis.py} and \code{l1_replay.py} in \code{evaluation/probes}; write-up in \code{docs/reviews}) with lexical proxies and benchmark reference quotes; associations, not tested interventions, and not for tuning on these benchmarks.
-\begin{itemize}
-\item \textbf{Clarify is a missing-evidence exit.} OFF clarifies 50 of 135 answerable HCMUT trials (37\%) and 40 of 135 labour trials (30\%), and 9 of 15 out-of-scope trials (60\%) on both; the oracle clarifies 7 and 6 of 45. On single-evidence tasks OFF clarifies in 17\% (HCMUT) and 13\% (labour) of trials when the reference evidence was in the model's view, against 58\% and 45\% when the gold record was not retrieved. A keyword heuristic labels 86 of 90 OFF clarifications on answerable tasks as asking for more document detail and one as asking for a situational fact.
-\item \textbf{Model-written queries retrieve worse than the question.} For the first search of answerable OFF and L1 trials (n = 245 HCMUT, 267 labour), Recall@3 is 0.73 and 0.63 for the model's query against 0.97 and 0.98 for BM25 on the raw question.
-\item \textbf{Repair feedback leads to refusals.} After a verifier repair message the controller refuses in 61 of 109 cases (56\%) on HCMUT and 68 of 128 (53\%) on labour; only 10 of 90 and 8 of 106 trials with a repair end answered.
-\item \textbf{Quote mismatch dominates L1 rejections.} 172 of the 237 repair events (both benchmarks, L1 and L1+rerank) failed on the exact quote alone. The replay of the unchanged verifier reproduces all 429 recorded drafts. Snippets join clauses with ``[...]'', which quotes can elide; how much of the mismatch this explains is not isolated.
-\end{itemize}
-
-\hdr{Reading the results.} (i) The L1 variants lower the judge-free behaviour match and raise refusals and clarifications, with no measurable gain in judged success. (ii) Success on closed-book-guessable tasks reflects parametric knowledge as much as grounding (Tables~\ref{tab:benchmark-strata-hcmut} and~\ref{tab:benchmark-strata-labour}). (iii) Differences under about 10\,pp are within noise at 50 tasks, and all success figures are LLM estimates until the audit is done.
-
-\hdr{Post-hoc revision r2 (in progress).} The diagnostics above were read after the v3 results, so any change they motivate is a post-hoc revision evaluated on the same 100 tasks: exploratory, with v3 staying the pre-planned result (\code{docs/plans/D2_REVISION_L1_BONSAI4B.md}). Revision r2 targets the failure modes above: an L1 verifier v2 that accepts elided and wrapped quotes, checks quantities against the sentence and not the whole record, and returns feedback that shows the closest source span (its support threshold, 0.5, was chosen a priori on the 29 answers of the historical \code{bll2019} development set, not on these benchmarks, and is a coarse operating point); and controller-side fixes for the first-search query, the clarify and refuse contract, repair framing and observation cues, to be fixed when r2 is frozen. In an offline replay of the recorded drafts, v2 would have accepted 42 of the 237 repaired drafts and would also have rejected 74 of the 172 that v1 accepted (\code{evaluation/runs/l1-replay-2026-10-24}); lexical proxies, not correctness. r2 will run with Bonsai 2B (isolates the system change) and Bonsai 4B (isolates model size). \pending{r2 results for Bonsai 2B and 4B on both benchmarks (run ids, strict success, paired differences against v3); no r2 run exists yet.}
-
-\IfFileExists{tables_hcmut_v3/benchmark_results.tex}{\inputrun{hcmut}{tables_hcmut_v3/benchmark_results.tex}}{\pending{HCMUT result tables missing}}
-\IfFileExists{tables_labour_v3/benchmark_results.tex}{\inputrun{labour}{tables_labour_v3/benchmark_results.tex}}{\pending{Labour result tables missing}}
-\IfFileExists{tables_hcmut_v3/benchmark_diagnostics.tex}{\inputrun{hcmut}{tables_hcmut_v3/benchmark_diagnostics.tex}}{\pending{HCMUT behaviour tables missing}}
-\IfFileExists{tables_labour_v3/benchmark_diagnostics.tex}{\inputrun{labour}{tables_labour_v3/benchmark_diagnostics.tex}}{\pending{Labour behaviour tables missing}}
-\IfFileExists{benchmark_latency_mac.tex}{\inputhere{benchmark_latency_mac.tex}}{\inputhere{benchmark_latency_skeleton.tex}}
-
-\hdr{Cost, latency and reproduction.} Judge spend as reported by the gateway, failed attempts included and not an invoice, was USD 0.655 for the HCMUT run and USD 0.628 for the labour run (\code{analysis/summary.json}). Collection took 946\,s and 1,047\,s of wall time on the shared H100; GPU-active hours, Mac latency and memory are not measured. Run ids: \code{d2-gpu-main-hcmut-v3} and \code{d2-gpu-main-labour-v3}. One command per machine runs the whole pipeline: \cmd{make benchmark-d2-gpu} on server 82 (see \code{docs/RUNBOOK_D2.md}) and \cmd{make benchmark-d2-mac}. Each writes a run directory under \code{evaluation/runs/} and refuses to start if the lock or the source has drifted; \cmd{make judge RUN=<run>} and \cmd{make tables RUN=<run>} re-run the judge and the tables. \cmd{make benchmark-smoke} output is not reportable.
-
-\hdr{Provenance of reported tables.} Every generated result table carries a machine-readable header and a visible source line with its run id, commit and harness version. Runs are listed in \code{evaluation/runs/REGISTRY.md} with a freshness status (current, pinned, stale, historical, incomplete); only a report-eligible main run that is current or pinned may feed the report. The two v3 runs are \emph{pinned}: the frozen, pre-planned D2 result at commit 957579b, against which the post-hoc revision r2 will be compared and never merged. \cmd{make report-check} refreshes the registry (\cmd{make runs}) and refuses tables from a stale, smoke, incomplete or ineligible run, and hand-written numeric tables without a provenance marker; it passed on 24 October 2026 with the 12 generated tables from the two v3 runs. Earlier attempts v1 and v2 of each benchmark on server 82 were superseded by v3; their directories are not synced to this machine and no number from them is reported. \pending{Re-run \cmd{make report-check} on the final tree once r2 is added.}
-
-\section{Threat Model (R6)}\label{sec:threat}
-\hdr{Assets.} (A1) Faithfulness: answers and citations that users rely on must trace to source sections~\citep{magesh2025hallucination}. (A2) User data: questions, pasted documents, memory, audit log and web-run store. (A3) Integrity of corpora, domain profiles, prompts, model weights and the frozen benchmark and evidence. (A4) The tool boundary: no unreviewed write or egress. (A5) Availability of a bounded local machine. (A6) The judge-gateway credential.
-
-\hdr{Attacker.} The attacker can submit arbitrary questions and pasted documents through the UI or API (instruction override, delimiter spoofing, prompt or memory exfiltration, requests to evade a regulation), including content copied from a hostile third party. The attacker cannot change code, corpora, configs, weights, the ledger or the trusted-UI approval state, and cannot reach loopback servers or other users' sessions. \emph{Non-goals:} compromised host or supply chain, poisoned official sources, multi-tenant isolation, model jailbreaks beyond the listed mitigations, and the correctness of the regulations themselves.
-
-\hdr{Entry points and mitigations.} Table~\ref{tab:threat} gives the mitigation and residual risk for each entry point.
-\begin{table}[!htb]\tabstyle
-\begin{tabularx}{\textwidth}{@{}L{2.8cm}L{5.3cm}Y@{}}
-\toprule Entry point (asset) & Mitigation (code) & Residual risk\\\midrule
-Question, pasted document (A1, A4) & Pre-model pattern checks, Unicode and delimiter sanitising, untrusted wrapper tags, fixed action space without a write action (\code{src/security/guardrails.py}, domain profiles) & Paraphrase bypass; Vietnamese and English patterns only; benign false positives; not attack-tested in D2.\\
-Retrieved text (A1) & Tagged \code{[OBSERVATION_TOOL_RESULT]}; L1 checks ids, provenance and quotes (\code{lexical_grounding.py}) & Observations are tagged, not filtered: an injected instruction inside a source document would reach the model.\\
-Ingested documents (A3) & Offline, manual ingestion; URL, SHA-256 and pages per record; benchmark locks hash the corpora & No signature check; trust in the official site; image-only files excluded.\\
-Memory (A1, A2) & Disabled in D2 runs; demo reuse off; index version, similarity, re-verification, PII patterns & Earlier-user poisoning; incomplete PII filter.\\
-Config, weights, binaries (A3) & Pinned SHA-256 and commit, preflight identity checks, loopback-only endpoints & Third-party weights and the \code{llama.cpp} fork are not audited.\\
-Judge gateway egress (A2, A6) & Offline only; benchmark data only; key from environment, never in the repository; blind packets; JSON and quote validation; human audit & Candidate text could steer the judge (untested); route not pinned.\\
-Web UI and API, outbox (A4) & Loopback bind, session cookie and CSRF, size bounds; proposal-only tools; host approval bound to the payload & Single-user assumption; no external sender exists.\\
-Loops, long inputs (A5) & Step, tool, repair, token and wall-time limits; trial watchdog & Errors are failures, not defences.\\
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: n/a threat model table, no measured values
+\begin{tabularx}{\textwidth}{@{}L{3.0cm}L{6.3cm}Y@{}}
+\toprule Entry point (asset) & Mitigation & Residual risk\\\midrule
+Question, pasted document (A1, A4) & Regex guardrails (shared and per-domain patterns) before any model call, Unicode and delimiter sanitising, untrusted-text tags, fixed action space without a write action & Paraphrases bypass patterns; Vietnamese and English only; false positives; no learned classifier; not attack-tested in D2.\\
+Retrieved text (A1) & Observations are tagged as tool results; L1 checks ids, provenance and quotes & Tagged, not filtered: an instruction inside a source document would reach the model.\\
+Ingested documents (A3) & Offline, manual ingestion; source URL, hash and pages per record; benchmark locks hash the corpora & No signature check; trust in the official site.\\
+Memory (A1, A2) & Off in D2 runs and demo reuse; index version, similarity, re-verification, personal-data patterns & Poisoning by an earlier user; incomplete personal-data filter.\\
+Weights, configuration, binaries (A3) & Pinned hashes and commit, preflight identity checks, loopback-only endpoints & Third-party weights and the llama.cpp fork are not audited.\\
+Judge gateway (A2) & Offline only; benchmark data only; key kept in the environment; blind packets; output validation; human audit & Candidate text could steer the judge (untested); model route not pinned.\\
+Web interface, API, outbox, long inputs (A4, A5) & Loopback bind, session cookie and CSRF token, size limits; proposal-only tools with host approval; step, tool, repair, time limits & Single-user assumption; limits turn overload into errors, not into defences.\\
 Web pages & Not applicable: there is no browsing tool. & ---\\
 \bottomrule\end{tabularx}
-\caption{Threat model by entry point. Mitigations are implementation boundaries, not measured attack effectiveness; the full-system injection tests of the final report~\citep{greshake2023indirect,debenedetti2024agentdojo} are \pending{planned for W47; no D2 numbers}.}\label{tab:threat}
+\caption{Threat model by entry point. Mitigations are implementation boundaries, not measured attack effectiveness. The full-system injection tests~\citep{greshake2023indirect,debenedetti2024agentdojo} belong to the final report, \pending{planned for W47, no D2 numbers}.}\label{tab:threat}
 \end{table}
 
 \section{Weekly Plan to the First Final Presentation}\label{sec:plan}
-Table~\ref{tab:plan} runs to the first final presentation in week 49.
-\begin{table}[!htb]\tabstyle
-\begin{tabularx}{\textwidth}{@{}L{3.5cm}L{2.2cm}Y@{}}
+Table~\ref{tab:plan} runs to the first final presentation in week 49. D3 centres on one question: do the gains of r2 hold on tasks we have not seen?
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: n/a plan table, dates only
+\begin{tabularx}{\textwidth}{@{}L{3.3cm}L{2.2cm}Y@{}}
 \toprule Week (dates) & Owner (proposed) & Deliverable and acceptance\\\midrule
-Sat 24 Oct & All & Human audit of the judge sample; agreement and $\kappa$ entered in Tables~\ref{tab:benchmark-main-hcmut} and~\ref{tab:benchmark-main-labour}.\\
-Sun 25 Oct, Wed 28 Oct & Group leader, all & Submit report and slides; presentation, live demo, backup video.\\
-W45 (2--8 Nov) & Quyền, Phong & HR walkthrough and findings; harder benchmark slice (unnamed documents, paraphrases) for B1.\\
-W46 (9--15 Nov) & Dũng, Quyền & Failure analysis; verifier false accepts and rejects; reranker parity report.\\
-W47 (16--22 Nov) & Phong, Dũng & Entry-point attack tests and permission and fault checks.\\
-W48 (23--29 Nov) & All & Frozen-artifact reproduction, demo hardening, final report; L2/NLI and vector index only after core evidence.\\
+Sat 24 Oct & All & Human audit of the judge sample (outputs of the chosen 4B system); agreement and $\kappa$ added to Section~\ref{sec:eval}.\\
+Sun 25 Oct, Wed 28 Oct & Group leader, all & Submit report and slides; presentation with live demo and backup video.\\
+W45 (2--8 Nov) & Quyền, Phong & HR walkthrough with findings. Design and freeze a new held-out benchmark with harder question types (scenario, multi-hop, conditional and temporal, paraphrased), reviewed by members.\\
+W46 (9--15 Nov) & Dũng, Quyền & Run the chosen system and its ablations on the held-out benchmark; add the dense-retrieval ablation; failure analysis.\\
+W47 (16--22 Nov) & Phong, Dũng & Entry-point attack tests; permission and fault checks.\\
+W48 (23--29 Nov) & All & Reproduction from frozen artifacts, demo hardening, final report.\\
 W49 (30 Nov--2 Dec) & All & Tagged release and Round 1 presentation on 2 December.\\
 \bottomrule\end{tabularx}
 \caption{Proposed plan. \pending{Team to confirm owners, the walkthrough date and the commitments.}}\label{tab:plan}
 \end{table}
-\hdr{Riskiest assumptions and fallback.} A 2B ternary controller may not answer correctly within its budget, and the benchmarks may be too easy for the variants to differ (B1, B2). If so, we keep the loop, the frozen benchmarks, the variants and the pipeline, report the measured numbers as they are, and cut the vector index, L2/NLI and further domains.
+\hdr{Riskiest assumption and fallback.} The riskiest assumption is that the r2 gains hold on unseen tasks and on long, vague real questions; the first design reached only 12--19\%, and r2 was designed on the tasks it is scored on. If the gains vanish on the held-out benchmark, we keep the loop, the verifier, the benchmarks and the pipeline, report the measured numbers as they are, and cut the dense-retrieval ablation, the L2 entailment step and further domains.
 
-\hdr{Self-assessment: at risk.} The design is frozen and the pipeline has produced two complete, judged main runs, but their result is weak: strict success of 12.0--18.7\% for all variants, with the gold-evidence oracle at 28.9\% and 44.4\%, and the judge is not yet audited by humans. \pending{Re-assess after the audit and the r2 runs.}
+\hdr{Self-assessment: on track, with two risks.} The system, the benchmarks and the evaluation pipeline are complete and reproducible, and the chosen system answers about 57--61\% of tasks strictly. The two risks are the unconfirmed gain (D3) and the unaudited judge (audit pending).
 
 \section{Member Contributions and AI-Use Statement}\label{sec:contrib}
-\begin{table}[!htb]\tabstyle
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: n/a contribution table, no measured values
 \begin{tabularx}{\textwidth}{@{}L{3.6cm}L{4.4cm}Y@{}}
 \toprule Member & D1 responsibility (not a completed-work claim) & Evidence of contribution\\\midrule
-Lê Trí Quyền & Retrieval and corpus & \pending{team to supply}\\
-Võ Phạm Tuấn Dũng & Agent, verifier and evaluation & \pending{team to supply}\\
-Nguyễn Hoàng Phong & Tools, security and UI & \pending{team to supply}\\
+Lê Trí Quyền & Retrieval and corpus & \pending{to be completed by each member}\\
+Võ Phạm Tuấn Dũng & Agent, verifier and evaluation & \pending{to be completed by each member}\\
+Nguyễn Hoàng Phong & Tools, security and UI & \pending{to be completed by each member}\\
 \bottomrule\end{tabularx}
-\caption{Member contributions. Evidence must match the commit history; none is supplied, and the git history shows a single author account.}\label{tab:contrib}
+\caption{Member contributions. Each member supplies the evidence (modules, runs, report sections, audit labels), matched to the commit history.}\label{tab:contrib}
 \end{table}
 
-\hdr{AI tools used} (Table~\ref{tab:ai}). Their outputs are AI judgments, not human checks. \pending{Team to confirm the list and who used which tool.}
-\begin{table}[!htb]\tabstyle
-\begin{tabularx}{\textwidth}{@{}L{5.0cm}Y@{}}
-\toprule Tool & Used for\\\midrule
-Claude (Claude Code with Sonnet and Haiku sub-agents) & Benchmark drafting, verification, adjudication and QA review; code and report drafting\\
-OpenAI Codex; GitHub Copilot & Earlier code and report revisions; D1 draft\\
-Gemma-4-31B & Oracle and closed-book sanity probes (LLM estimates)\\
-DeepSeek V4 Pro, Gemini 3 Flash & Second opinions on benchmark QA\\
-DeepSeek V4.1 Flash & Evaluation judge\\
-\bottomrule\end{tabularx}
-\caption{AI tools used in the project. The controller and reranker are system components (Table~\ref{tab:models}).}\label{tab:ai}
-\end{table}
+\hdr{AI-use statement.} The group used a range of AI models from Anthropic (Claude), Google (Gemini, Gemma) and OpenAI (Codex) for discussion and execution support. The problem framing, system scope, design decisions, task assignment to coding agents, supervision and code review were done by the group; every change was reviewed and approved by a group member before it was committed. AI coding agents implemented code from specifications written or approved by the group. AI models were also used, under the group's direction, to draft and cross-check benchmark tasks (all tasks were then reviewed by a group member), to act as the evaluation judge (an LLM estimate, checked against the group's human audit), and to draft analyses and report text that the group edited.
 
-\hdr{Verified by the group.} \pending{Members to state what they checked themselves (audit labels, source spot-checks, code review, demo rehearsal); nothing is claimed here.} Automated tests run real implementations, no mocks. \pending{Test count from a recorded run at the frozen commit.}
+\hdr{Verified by the group.} Võ Phạm Tuấn Dũng reviewed all 100 benchmark tasks (23 October). Judge agreement with human labels: \pending{pending the audit}. The automated tests use real components and no mocks; the last full run passed 425 tests and skipped 2, and one test failed because it needs a separate Ollama backend that was not running. \pending{Members to add what else they checked themselves: audit labels, source spot-checks, code review, demo rehearsal.}
 
 \begingroup\footnotesize\setlength{\bibsep}{1pt plus 0.5pt}
 \bibliography{refs}\endgroup
+
+\clearpage
+\appendix
+\section*{Appendix: Generated Result Tables}
+The tables below are generated from recorded runs and carry their run, commit and harness version in a source line; they are the source of the numbers in Section~\ref{sec:eval}. \textbf{A.} Comparison of the first design (v3-2B), the revised design with the 2B controller (r2-2B) and with the 4B controller (r2-4B): strict success with paired differences, then behaviour match, Recall@5, answer rate and execution-error rate. \textbf{B.} Result tables of the two runs of the chosen system (r2-4B), one per benchmark.\par
+\IfFileExists{../evaluation/comparisons/v3-2B_vs_r2-2B_vs_r2-4B/comparison.tex}{\input{../evaluation/comparisons/v3-2B_vs_r2-2B_vs_r2-4B/comparison.tex}}{\pending{comparison tables missing}}
+\IfFileExists{tables_hcmut_r2_4b/benchmark_results.tex}{\inputrun{hcmut}{tables_hcmut_r2_4b/benchmark_results.tex}}{\pending{HCMUT result tables missing}}
+\IfFileExists{tables_labour_r2_4b/benchmark_results.tex}{\inputrun{labour}{tables_labour_r2_4b/benchmark_results.tex}}{\pending{Labour result tables missing}}
+\IfFileExists{tables_hcmut_r2_4b/benchmark_diagnostics.tex}{\inputrun{hcmut}{tables_hcmut_r2_4b/benchmark_diagnostics.tex}}{\pending{HCMUT behaviour tables missing}}
+\IfFileExists{tables_labour_r2_4b/benchmark_diagnostics.tex}{\inputrun{labour}{tables_labour_r2_4b/benchmark_diagnostics.tex}}{\pending{Labour behaviour tables missing}}
 \end{document}

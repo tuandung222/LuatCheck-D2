@@ -1,8 +1,8 @@
 % Figure 1 (architecture and control flow). Drawn at true size, 17.0 cm wide, no scaling.
 % Encoding (Okabe-Ito blue/orange; every class also differs in border style or tag text, so it reads in greyscale):
-%   blue fill   = runs in every D2 variant
-%   orange fill = runs only in some variants (the box names them)
-%   dashed      = implemented, not part of any D2 run
+%   blue fill   = part of the chosen system, always on
+%   orange fill = part of the chosen system with an on/off switch (ablated in Section 5)
+%   dashed      = implemented, not part of any D2 measurement
 %   grey fill   = terminal state of a run
 \begin{tikzpicture}[x=1cm,y=1cm,font=\scriptsize,line cap=round,
   box/.style={draw=blue!55!black,fill=blue!8,rounded corners=2pt,align=center,inner sep=3pt,minimum height=1.0cm,line width=0.6pt},
@@ -24,12 +24,12 @@
 \node[box,text width=2.0cm] (g) at (1.1,6.5) {\textbf{Input guardrails}\\pattern checks, sanitising, untrusted tags};
 
 % loop body
-\node[box,text width=3.0cm] (c) at (5.4,6.5) {\textbf{Controller}\\Bonsai 2B, one JSON action per step};
-\node[box,text width=2.0cm] (t) at (10.0,6.5) {\textbf{Tool registry}\\\code{search}, \code{read}\\read-only};
-\node[box,text width=3.2cm] (r) at (15.1,8.1) {\textbf{First-stage retrieval}\\BM25 + TF-IDF, RRF\\top-5 (top-20 if reranked)};
-\node[var,text width=3.2cm] (rr) at (15.1,5.5) {\textbf{Reranker}\\L1+rerank only\\cross-encoder, top-20 $\to$ top-5};
-\node[var,text width=3.0cm] (v) at (5.4,4.1) {\textbf{L1 verifier}\\L1, L1+rerank only\\ids, quotes,\\overlap, quantities};
-\node[off,text width=3.2cm] (l2) at (15.1,4.1) {L2 / NLI step\\optional, not run in D2};
+\node[box,text width=3.0cm] (c) at (5.4,6.5) {\textbf{Controller}\\Bonsai 4B (2B option), one JSON action per step};
+\node[box,text width=2.0cm] (t) at (10.0,6.5) {\textbf{Tool registry}\\search, read\\read-only};
+\node[box,text width=3.2cm] (r) at (15.1,8.1) {\textbf{First-stage retrieval}\\BM25 + TF-IDF, RRF\\top-20 candidates};
+\node[var,text width=3.2cm] (rr) at (15.1,5.5) {\textbf{Reranker} (switch)\\cross-encoder\\top-20 $\to$ top-5};
+\node[var,text width=3.0cm] (v) at (5.4,4.1) {\textbf{L1 verifier + repair} (switch)\\ids, quotes,\\overlap, quantities};
+\node[off,text width=3.2cm] (l2) at (15.1,4.1) {L2 / NLI step, dense retrieval\\implemented, not evaluated};
 
 % terminal states and side components (bottom row)
 \node[term,text width=2.0cm] (ref) at (1.1,1.7) {\textbf{Refused} or \textbf{clarified}};
@@ -48,9 +48,9 @@
 \draw[flow] ([xshift=0.7cm]v.north) -- node[lab,right=1pt]{repair} ([xshift=0.7cm]c.south);
 % search path: query goes out above, results come back below (nested, no crossings)
 \draw[flow] ([xshift=-0.4cm]t.north) |- node[lab,pos=0.8]{query} ([yshift=0.27cm]r.west);
-\draw[alt] ([yshift=-0.27cm]r.west) -| node[lab,pos=0.2]{top-5 (OFF, L1)} ([xshift=0.4cm]t.north);
+\draw[alt] ([yshift=-0.27cm]r.west) -| node[lab,pos=0.2]{top-5 (reranker off)} ([xshift=0.4cm]t.north);
 \draw[flow] (r) -- node[lab]{top-20} (rr);
-\draw[flow] (rr.west) -| node[lab,pos=0.2]{top-5 (L1+rerank)} (t.south);
+\draw[flow] (rr.west) -| node[lab,pos=0.2]{top-5 reranked} (t.south);
 \draw[alt] (v.east) -- node[lab]{optional} (l2.west);
 
 % exits
