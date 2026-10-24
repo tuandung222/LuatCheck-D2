@@ -84,6 +84,7 @@ export interface ProfileInfo {
   retrieval?: {
     mode: string;
     first_stage: string;
+    index?: { path: string | null; store: string | null; search_mode: string } | null;
     reranker: { enabled: boolean; backend: string | null; model: string | null; top_k_in: number | null; top_k_out: number | null };
   };
   verifier_mode?: string;

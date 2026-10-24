@@ -140,7 +140,8 @@ def build_retriever(retrieval: RetrievalConfig, *, corpus_path: str, endpoint: O
     """
     if retrieval.mode == "hybrid_index":
         from src.retrieval.hybrid_domain import IndexedRetriever
-        return IndexedRetriever(retrieval.index, manager=manager)
+        return IndexedRetriever(retrieval.index, manager=manager,
+                                id_normalizer=profile.normalize_id if profile is not None else None)
     from src.retrieval.hybrid_domain import HybridDomainRetriever
     kwargs: Dict[str, Any] = dict(corpus_path=corpus_path, dense_endpoint=endpoint,
                                   retrieval_mode=retrieval.dense_model_type, rrf_k=retrieval.rrf_k,

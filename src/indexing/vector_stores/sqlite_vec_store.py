@@ -46,7 +46,7 @@ class SqliteVecStore(VectorStore):
                     p.unlink()
             exists = False
         self._db_path = db_path
-        conn = sqlite3.connect(db_path)
+        conn = sqlite3.connect(db_path, check_same_thread=False)
         if not hasattr(conn, "enable_load_extension"):
             raise BackendUnavailableError("sqlite_vec: this Python's sqlite3 was built without loadable-extension support")
         try:

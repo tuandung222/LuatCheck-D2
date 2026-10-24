@@ -27,11 +27,13 @@ export function ProfileSwitch({ profiles, value, onChange, disabled }: {
 export function SystemStrip({ capabilities, health, profile }: { capabilities: Capabilities | null; health: Health | null; profile: ProfileInfo | null }) {
   const model = capabilities?.model;
   const rr = profile?.retrieval?.reranker;
+  const ret = profile?.retrieval;
+  const stage1 = ret?.mode === "hybrid_index" ? `Hybrid Index (${ret.index?.search_mode || "hybrid"})` : "BM25+TF-IDF";
   const mode = profile?.verifier_mode;
   return <div className="system-strip" aria-label="Hệ thống đang chạy">
     <div className="fact" title={profile?.display_name}><Database size={16} /><span><small>Bộ văn bản</small><b>{profile ? `${formatCount(profile.corpus?.documents)} văn bản · ${formatCount(profile.corpus?.records)} mục` : "—"}</b></span></div>
     <div className="fact" title={model?.endpoint}><Cpu size={16} /><span><small>Model điều khiển (local)</small><b>{shortModelName(model?.name)} <em>{providerLabel(model?.provider)}</em> <Dot state={health?.model.reachable} /></b></span></div>
-    <div className="fact" title={rr?.model ?? ""}><Layers size={16} /><span><small>Truy xuất</small><b>{rr?.enabled ? <>BM25+TF-IDF → reranker {rr.top_k_in}→{rr.top_k_out} <Dot state={health?.reranker?.reachable} /></> : profile ? "BM25+TF-IDF (không rerank)" : "—"}</b></span></div>
+    <div className="fact" title={rr?.model ?? ret?.index?.path ?? ""}><Layers size={16} /><span><small>Truy xuất</small><b>{rr?.enabled ? <>{stage1} → reranker {rr.top_k_in}→{rr.top_k_out} <Dot state={health?.reranker?.reachable} /></> : profile ? `${stage1} (không rerank)` : "—"}</b></span></div>
     <div className="fact"><ShieldCheck size={16} /><span><small>Kiểm tra mặc định</small><b>{verifierLabel(mode)}</b></span></div>
   </div>;
 }

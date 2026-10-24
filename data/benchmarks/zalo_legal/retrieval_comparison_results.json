@@ -1,0 +1,531 @@
+{
+  "pipeline_and_ui_verification": {
+    "retriever_class": "IndexedRetriever",
+    "search_law_top_articles": [
+      "Dieu_25",
+      "Dieu_219",
+      "Dieu_27",
+      "Dieu_53",
+      "Dieu_107"
+    ],
+    "read_law_resolved": true,
+    "alias_resolution_25_to_Dieu_25": false
+  },
+  "benchmarks": {
+    "bll2019_v1": {
+      "benchmark": "bll2019_v1 (Bộ luật Lao động 2019 - 220 điều)",
+      "queries_evaluated": 9,
+      "methods": {
+        "1_LuatCheck_BM25_TFIDF_RRF (current)": {
+          "Recall@1": 77.78,
+          "Recall@5": 100.0,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 94.44,
+          "NDCG@10": 93.34,
+          "MAP@10": 89.26,
+          "latency_ms_per_query": 1.88,
+          "build_seconds": 0.07
+        },
+        "2_LuatCheck_BM25_only": {
+          "Recall@1": 77.78,
+          "Recall@5": 100.0,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 94.44,
+          "NDCG@10": 93.34,
+          "MAP@10": 89.26,
+          "latency_ms_per_query": 1.12
+        },
+        "3_SQLite_FTS5_Keyword": {
+          "Recall@1": 77.78,
+          "Recall@5": 94.44,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 94.44,
+          "NDCG@10": 93.14,
+          "MAP@10": 88.89,
+          "latency_ms_per_query": 3.59
+        },
+        "4_EmbeddingGemma2_128d_Vector_NumPy": {
+          "Recall@1": 11.11,
+          "Recall@5": 61.11,
+          "Recall@10": 72.22,
+          "Recall@20": 83.33,
+          "MRR@10": 40.37,
+          "NDCG@10": 43.65,
+          "MAP@10": 32.04,
+          "search_only_ms_per_query": 0.068,
+          "latency_ms_per_query": 592.36,
+          "dimension": 128
+        },
+        "5_EmbeddingGemma2_128d_Hybrid_RRF (FTS5+Vector)": {
+          "Recall@1": 33.33,
+          "Recall@5": 83.33,
+          "Recall@10": 88.89,
+          "Recall@20": 100.0,
+          "MRR@10": 61.48,
+          "NDCG@10": 65.28,
+          "MAP@10": 55.46,
+          "latency_ms_per_query": 595.97,
+          "single_query_unbatched_ms": 136.93,
+          "dimension": 128
+        },
+        "6_EmbeddingGemma2_128d_Vector_Qdrant": {
+          "Recall@1": 11.11,
+          "Recall@5": 61.11,
+          "Recall@10": 72.22,
+          "Recall@20": 83.33,
+          "MRR@10": 40.37,
+          "NDCG@10": 43.65,
+          "MAP@10": 32.04,
+          "search_only_ms_per_query": 0.606,
+          "latency_ms_per_query": 592.9,
+          "dimension": 128
+        },
+        "7_EmbeddingGemma2_128d_Vector_FAISS_Flat": {
+          "Recall@1": 11.11,
+          "Recall@5": 61.11,
+          "Recall@10": 72.22,
+          "Recall@20": 83.33,
+          "MRR@10": 40.37,
+          "NDCG@10": 43.65,
+          "MAP@10": 32.04,
+          "search_only_ms_per_query": 0.474,
+          "latency_ms_per_query": 592.76,
+          "dimension": 128
+        },
+        "8_EmbeddingGemma2_128d_Vector_FAISS_HNSW": {
+          "Recall@1": 11.11,
+          "Recall@5": 61.11,
+          "Recall@10": 72.22,
+          "Recall@20": 83.33,
+          "MRR@10": 40.37,
+          "NDCG@10": 43.65,
+          "MAP@10": 32.04,
+          "search_only_ms_per_query": 0.379,
+          "latency_ms_per_query": 592.67,
+          "dimension": 128
+        }
+      },
+      "index_summary": {
+        "index_dir": "data/index/labor_code_2019_gemma2_128d",
+        "records": 220,
+        "chunks": 231,
+        "build_seconds": 35.054,
+        "texts_per_second": 10.03,
+        "stores": {
+          "numpy": {
+            "backend": "numpy",
+            "size_kb": 283.4,
+            "write_seconds": 0.005
+          },
+          "faiss": {
+            "backend": "faiss",
+            "size_kb": 288.9,
+            "write_seconds": 0.005
+          },
+          "faiss_hnsw": {
+            "backend": "faiss",
+            "size_kb": 350.0,
+            "write_seconds": 0.022
+          },
+          "qdrant": {
+            "backend": "qdrant",
+            "size_kb": 960.6,
+            "write_seconds": 0.206
+          }
+        }
+      }
+    },
+    "labour_vi_v1": {
+      "benchmark": "labour_vi_v1 (Đa văn bản Pháp luật Lao động - 458 điều)",
+      "queries_evaluated": 45,
+      "methods": {
+        "1_LuatCheck_BM25_TFIDF_RRF (current)": {
+          "Recall@1": 84.44,
+          "Recall@5": 98.89,
+          "Recall@10": 98.89,
+          "Recall@20": 100.0,
+          "MRR@10": 95.19,
+          "NDCG@10": 95.69,
+          "MAP@10": 94.07,
+          "latency_ms_per_query": 3.38,
+          "build_seconds": 0.16
+        },
+        "2_LuatCheck_BM25_only": {
+          "Recall@1": 80.0,
+          "Recall@5": 98.89,
+          "Recall@10": 98.89,
+          "Recall@20": 98.89,
+          "MRR@10": 92.41,
+          "NDCG@10": 93.33,
+          "MAP@10": 90.72,
+          "latency_ms_per_query": 1.7
+        },
+        "3_SQLite_FTS5_Keyword": {
+          "Recall@1": 84.44,
+          "Recall@5": 100.0,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 94.81,
+          "NDCG@10": 96.43,
+          "MAP@10": 95.19,
+          "latency_ms_per_query": 5.41
+        },
+        "4_EmbeddingGemma2_128d_Vector_NumPy": {
+          "Recall@1": 41.11,
+          "Recall@5": 67.78,
+          "Recall@10": 86.67,
+          "Recall@20": 92.22,
+          "MRR@10": 55.87,
+          "NDCG@10": 62.66,
+          "MAP@10": 54.63,
+          "search_only_ms_per_query": 0.066,
+          "latency_ms_per_query": 22.09,
+          "dimension": 128
+        },
+        "5_EmbeddingGemma2_128d_Hybrid_RRF (FTS5+Vector)": {
+          "Recall@1": 66.67,
+          "Recall@5": 91.11,
+          "Recall@10": 95.56,
+          "Recall@20": 98.89,
+          "MRR@10": 80.44,
+          "NDCG@10": 84.05,
+          "MAP@10": 79.86,
+          "latency_ms_per_query": 27.52,
+          "single_query_unbatched_ms": 66.15,
+          "dimension": 128
+        },
+        "6_EmbeddingGemma2_128d_Vector_Qdrant": {
+          "Recall@1": 41.11,
+          "Recall@5": 67.78,
+          "Recall@10": 86.67,
+          "Recall@20": 92.22,
+          "MRR@10": 55.87,
+          "NDCG@10": 62.66,
+          "MAP@10": 54.63,
+          "search_only_ms_per_query": 0.49,
+          "latency_ms_per_query": 22.51,
+          "dimension": 128
+        },
+        "7_EmbeddingGemma2_128d_Vector_FAISS_Flat": {
+          "Recall@1": 41.11,
+          "Recall@5": 67.78,
+          "Recall@10": 86.67,
+          "Recall@20": 92.22,
+          "MRR@10": 55.87,
+          "NDCG@10": 62.66,
+          "MAP@10": 54.63,
+          "search_only_ms_per_query": 0.127,
+          "latency_ms_per_query": 22.15,
+          "dimension": 128
+        },
+        "8_EmbeddingGemma2_128d_Vector_FAISS_HNSW": {
+          "Recall@1": 41.11,
+          "Recall@5": 67.78,
+          "Recall@10": 86.67,
+          "Recall@20": 92.22,
+          "MRR@10": 55.87,
+          "NDCG@10": 62.66,
+          "MAP@10": 54.63,
+          "search_only_ms_per_query": 0.162,
+          "latency_ms_per_query": 22.18,
+          "dimension": 128
+        }
+      },
+      "index_summary": {
+        "index_dir": "data/index/labour_vi_v1_gemma2_128d",
+        "records": 458,
+        "chunks": 531,
+        "build_seconds": 78.205,
+        "texts_per_second": 8.2,
+        "stores": {
+          "numpy": {
+            "backend": "numpy",
+            "size_kb": 866.5,
+            "write_seconds": 0.043
+          },
+          "faiss": {
+            "backend": "faiss",
+            "size_kb": 884.2,
+            "write_seconds": 0.009
+          },
+          "faiss_hnsw": {
+            "backend": "faiss",
+            "size_kb": 1024.7,
+            "write_seconds": 0.059
+          },
+          "qdrant": {
+            "backend": "qdrant",
+            "size_kb": 2188.6,
+            "write_seconds": 1.303
+          }
+        }
+      }
+    },
+    "hcmut_v1": {
+      "benchmark": "hcmut_v1 (Quy chế Học vụ ĐHBK HCMUT - 143 mục)",
+      "queries_evaluated": 45,
+      "methods": {
+        "1_LuatCheck_BM25_TFIDF_RRF (current)": {
+          "Recall@1": 85.56,
+          "Recall@5": 98.89,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 95.19,
+          "NDCG@10": 95.51,
+          "MAP@10": 93.33,
+          "latency_ms_per_query": 1.15,
+          "build_seconds": 0.06
+        },
+        "2_LuatCheck_BM25_only": {
+          "Recall@1": 86.67,
+          "Recall@5": 98.89,
+          "Recall@10": 98.89,
+          "Recall@20": 100.0,
+          "MRR@10": 95.19,
+          "NDCG@10": 95.16,
+          "MAP@10": 93.15,
+          "latency_ms_per_query": 0.47
+        },
+        "3_SQLite_FTS5_Keyword": {
+          "Recall@1": 90.0,
+          "Recall@5": 100.0,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 97.78,
+          "NDCG@10": 97.64,
+          "MAP@10": 96.3,
+          "latency_ms_per_query": 1.52
+        },
+        "4_EmbeddingGemma2_128d_Vector_NumPy": {
+          "Recall@1": 40.0,
+          "Recall@5": 74.44,
+          "Recall@10": 88.89,
+          "Recall@20": 88.89,
+          "MRR@10": 57.71,
+          "NDCG@10": 64.63,
+          "MAP@10": 56.15,
+          "search_only_ms_per_query": 0.066,
+          "latency_ms_per_query": 22.12,
+          "dimension": 128
+        },
+        "5_EmbeddingGemma2_128d_Hybrid_RRF (FTS5+Vector)": {
+          "Recall@1": 65.56,
+          "Recall@5": 91.11,
+          "Recall@10": 92.22,
+          "Recall@20": 95.56,
+          "MRR@10": 80.44,
+          "NDCG@10": 81.59,
+          "MAP@10": 76.72,
+          "latency_ms_per_query": 23.67,
+          "single_query_unbatched_ms": 54.49,
+          "dimension": 128
+        },
+        "6_EmbeddingGemma2_128d_Vector_Qdrant": {
+          "Recall@1": 40.0,
+          "Recall@5": 74.44,
+          "Recall@10": 88.89,
+          "Recall@20": 88.89,
+          "MRR@10": 57.71,
+          "NDCG@10": 64.63,
+          "MAP@10": 56.15,
+          "search_only_ms_per_query": 0.456,
+          "latency_ms_per_query": 22.51,
+          "dimension": 128
+        },
+        "7_EmbeddingGemma2_128d_Vector_FAISS_Flat": {
+          "Recall@1": 40.0,
+          "Recall@5": 74.44,
+          "Recall@10": 88.89,
+          "Recall@20": 88.89,
+          "MRR@10": 57.71,
+          "NDCG@10": 64.63,
+          "MAP@10": 56.15,
+          "search_only_ms_per_query": 0.119,
+          "latency_ms_per_query": 22.18,
+          "dimension": 128
+        },
+        "8_EmbeddingGemma2_128d_Vector_FAISS_HNSW": {
+          "Recall@1": 40.0,
+          "Recall@5": 74.44,
+          "Recall@10": 88.89,
+          "Recall@20": 88.89,
+          "MRR@10": 57.71,
+          "NDCG@10": 64.63,
+          "MAP@10": 56.15,
+          "search_only_ms_per_query": 0.159,
+          "latency_ms_per_query": 22.22,
+          "dimension": 128
+        }
+      },
+      "index_summary": {
+        "index_dir": "data/index/hcmut_academic_v1_gemma2_128d",
+        "records": 143,
+        "chunks": 206,
+        "build_seconds": 37.843,
+        "texts_per_second": 8.31,
+        "stores": {
+          "numpy": {
+            "backend": "numpy",
+            "size_kb": 318.0,
+            "write_seconds": 0.006
+          },
+          "faiss": {
+            "backend": "faiss",
+            "size_kb": 326.5,
+            "write_seconds": 0.008
+          },
+          "faiss_hnsw": {
+            "backend": "faiss",
+            "size_kb": 381.0,
+            "write_seconds": 0.021
+          },
+          "qdrant": {
+            "backend": "qdrant",
+            "size_kb": 856.6,
+            "write_seconds": 0.298
+          }
+        }
+      }
+    },
+    "zalo_legal": {
+      "benchmark": "zalo_legal_hard1.5k (GreenNode Zalo AI Legal - 1,500 Hard-Negative Pool, 818 queries)",
+      "queries_evaluated": 818,
+      "methods": {
+        "1_LuatCheck_BM25_TFIDF_RRF (current)": {
+          "Recall@1": 62.47,
+          "Recall@5": 93.22,
+          "Recall@10": 98.17,
+          "Recall@20": 99.27,
+          "MRR@10": 75.43,
+          "NDCG@10": 80.99,
+          "MAP@10": 75.34,
+          "latency_ms_per_query": 5.61,
+          "build_seconds": 0.69
+        },
+        "2_LuatCheck_BM25_only": {
+          "Recall@1": 58.68,
+          "Recall@5": 91.63,
+          "Recall@10": 96.64,
+          "Recall@20": 98.41,
+          "MRR@10": 72.62,
+          "NDCG@10": 78.5,
+          "MAP@10": 72.53,
+          "latency_ms_per_query": 1.81
+        },
+        "3_SQLite_FTS5_Keyword": {
+          "Recall@1": 68.83,
+          "Recall@5": 95.78,
+          "Recall@10": 98.78,
+          "Recall@20": 99.14,
+          "MRR@10": 80.2,
+          "NDCG@10": 84.73,
+          "MAP@10": 80.05,
+          "latency_ms_per_query": 3.72
+        },
+        "4_EmbeddingGemma2_128d_Vector_NumPy": {
+          "Recall@1": 39.98,
+          "Recall@5": 69.01,
+          "Recall@10": 80.75,
+          "Recall@20": 88.33,
+          "MRR@10": 53.61,
+          "NDCG@10": 60.01,
+          "MAP@10": 53.35,
+          "search_only_ms_per_query": 0.068,
+          "latency_ms_per_query": 8.52,
+          "dimension": 128
+        },
+        "5_EmbeddingGemma2_128d_Hybrid_RRF (FTS5+Vector)": {
+          "Recall@1": 59.9,
+          "Recall@5": 91.26,
+          "Recall@10": 96.27,
+          "Recall@20": 99.27,
+          "MRR@10": 73.34,
+          "NDCG@10": 78.83,
+          "MAP@10": 73.05,
+          "latency_ms_per_query": 12.25,
+          "single_query_unbatched_ms": 55.02,
+          "dimension": 128
+        },
+        "6_EmbeddingGemma2_128d_Vector_Qdrant": {
+          "Recall@1": 39.98,
+          "Recall@5": 69.01,
+          "Recall@10": 80.75,
+          "Recall@20": 88.33,
+          "MRR@10": 53.61,
+          "NDCG@10": 60.01,
+          "MAP@10": 53.35,
+          "search_only_ms_per_query": 0.546,
+          "latency_ms_per_query": 9.0,
+          "dimension": 128
+        },
+        "7_EmbeddingGemma2_128d_Vector_FAISS_Flat": {
+          "Recall@1": 39.98,
+          "Recall@5": 69.01,
+          "Recall@10": 80.75,
+          "Recall@20": 88.33,
+          "MRR@10": 53.61,
+          "NDCG@10": 60.01,
+          "MAP@10": 53.35,
+          "search_only_ms_per_query": 0.097,
+          "latency_ms_per_query": 8.55,
+          "dimension": 128
+        },
+        "8_EmbeddingGemma2_128d_Vector_FAISS_HNSW": {
+          "Recall@1": 39.98,
+          "Recall@5": 69.01,
+          "Recall@10": 80.87,
+          "Recall@20": 88.33,
+          "MRR@10": 53.62,
+          "NDCG@10": 60.04,
+          "MAP@10": 53.37,
+          "search_only_ms_per_query": 0.137,
+          "latency_ms_per_query": 8.59,
+          "dimension": 128
+        },
+        "0_SQLite_FTS5_Full_61425_Corpus (reference)": {
+          "Recall@1": 56.11,
+          "Recall@5": 83.44,
+          "Recall@10": 88.45,
+          "Recall@20": 92.11,
+          "MRR@10": 68.07,
+          "NDCG@10": 72.98,
+          "MAP@10": 67.88,
+          "latency_ms_per_query": 152.93,
+          "corpus_size": 61425
+        }
+      },
+      "index_summary": {
+        "index_dir": "data/index/zalo_legal_gemma2_128d",
+        "records": 1000,
+        "chunks": 1644,
+        "build_seconds": 179.065,
+        "texts_per_second": 9.95,
+        "stores": {
+          "numpy": {
+            "backend": "numpy",
+            "size_kb": 1415.7,
+            "write_seconds": 0.017
+          },
+          "faiss": {
+            "backend": "faiss",
+            "size_kb": 1474.6,
+            "write_seconds": 0.012
+          },
+          "faiss_hnsw": {
+            "backend": "faiss",
+            "size_kb": 1910.8,
+            "write_seconds": 0.12
+          },
+          "qdrant": {
+            "backend": "qdrant",
+            "size_kb": 3448.6,
+            "write_seconds": 1.337
+          }
+        }
+      }
+    }
+  }
+}

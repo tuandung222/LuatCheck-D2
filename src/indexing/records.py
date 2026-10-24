@@ -109,7 +109,7 @@ class RecordStore:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         if self.path.exists():
             self.path.unlink()
-        conn = sqlite3.connect(self.path)
+        conn = sqlite3.connect(self.path, check_same_thread=False)
         conn.execute("CREATE TABLE records (doc_id TEXT PRIMARY KEY, ord INTEGER NOT NULL, data TEXT NOT NULL)")
         conn.executemany(
             "INSERT INTO records (doc_id, ord, data) VALUES (?, ?, ?)",
@@ -121,7 +121,7 @@ class RecordStore:
     def open(self) -> "RecordStore":
         if not self.path.is_file():
             raise IndexingError(f"record store not found: {self.path}")
-        self._conn = sqlite3.connect(self.path)
+        self._conn = sqlite3.connect(self.path, check_same_thread=False)
         return self
 
     def close(self) -> None:

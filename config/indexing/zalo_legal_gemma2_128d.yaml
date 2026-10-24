@@ -1,0 +1,44 @@
+# Index of GreenNode/zalo-ai-legal-text-retrieval-vn Hard-Negative Evaluation Pool (1,000 legal articles:
+# all 447 gold test articles + 553 top FTS5 lexical confusers from 61,425 corpus)
+# with google/embeddinggemma-2 (270M text-only backbone, 128-d MRL).
+# Build:  PYTHONPATH=. .venv/bin/python -m src.indexing build --config config/indexing/zalo_legal_gemma2_128d.yaml --overwrite
+# Output: data/index/zalo_legal_gemma2_128d/
+name: zalo_legal_gemma2_128d
+corpora:
+  - path: data/benchmarks/zalo_legal/corpus_eval_hard2k.json
+    collection_id: zalo_legal_vn
+
+chunking:
+  max_tokens: 512
+  overlap_tokens: 64
+  contextual_title: true
+
+retrieval:
+  embedding:
+    provider: sentence_transformers
+    model: google/embeddinggemma-2
+    device: auto
+    batch_size: 8
+    max_seq_length: 2048
+    dtype: bfloat16
+    truncate_dim: 128
+    normalize: true
+    query_prefix: "task: search result | query: "
+    document_prefix: "title: none | text: "
+    config_kwargs:
+      vision_config: null
+      audio_config: null
+    max_rss_gb: 6.0
+  keyword_index:
+    backend: sqlite_fts5
+    tokenizer: "unicode61 remove_diacritics 0"
+    title_weight: 2.0
+    bigrams: true
+  vector_stores:
+    - {backend: numpy,  collection: chunks, metric: cosine}
+    - {backend: faiss,  collection: chunks, metric: cosine, index_type: flat}
+    - {backend: faiss,  name: faiss_hnsw, collection: chunks, metric: cosine, index_type: hnsw, hnsw_m: 32, ef_construction: 200, ef_search: 128}
+    - {backend: qdrant, collection: chunks, metric: cosine}
+  default_store: numpy
+  rrf_k: 60
+  candidates: 50

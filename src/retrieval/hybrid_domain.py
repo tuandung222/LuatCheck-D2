@@ -177,7 +177,7 @@ class IndexedRetriever(BaseRetriever):
     segfaults), and the application loads torch for rerankers, NLI and the embedding model.
     """
 
-    def __init__(self, index_cfg: Any, manager: Any = None):
+    def __init__(self, index_cfg: Any, manager: Any = None, id_normalizer: Optional[Callable[[str], str]] = None):
         from src.indexing import ConfigError, load_index
         from src.indexing.builder import resolve_index_dir
         from src.indexing.manifest import read_manifest
@@ -197,9 +197,10 @@ class IndexedRetriever(BaseRetriever):
                 "share a process with torch (duplicate libomp: abort or segfault). Choose another store of the index "
                 f"({sorted(n for n, e in entries.items() if e['backend'] != 'faiss')}) with retrieval.index.store")
         self.index_cfg = index_cfg
+        self.id_normalizer = id_normalizer
         self._loaded = load_index(index_dir, stores=[store], verify_corpus=index_cfg.verify_corpus)
         self.searcher = self._loaded.searcher(store)
-        self.corpus: List[Dict[str, Any]] = list(self._loaded.records)
+        self.corpus: List[Dict[str, Any]] = [_normalized_record(r) for r in self._loaded.records]
         self.retrieval_mode = f"hybrid_index:{index_cfg.search_mode}"
         provider = self._loaded.provider
         self.manager = manager or ModelManager.shared()
@@ -220,7 +221,22 @@ class IndexedRetriever(BaseRetriever):
             return self.searcher.search(query, top_k=top_k, mode=self.index_cfg.search_mode)
 
     def get_document_by_id(self, doc_id: str) -> Optional[Dict[str, Any]]:
-        return self.searcher.get_document_by_id(doc_id)
+        if not doc_id:
+            return None
+        clean_id = str(doc_id).strip()
+        rec = self.searcher.get_document_by_id(clean_id)
+        if rec is not None:
+            return _normalized_record(rec)
+        if self.id_normalizer is not None:
+            rec = self.searcher.get_document_by_id(self.id_normalizer(clean_id))
+            if rec is not None:
+                return _normalized_record(rec)
+        norm = clean_id.replace(" ", "_").lower()
+        if norm.startswith("điều_"):
+            rec = self.searcher.get_document_by_id("dieu_" + norm[5:])
+        elif norm.startswith("dieu_"):
+            rec = self.searcher.get_document_by_id("điều_" + norm[5:])
+        return _normalized_record(rec) if rec is not None else None
 
     get_article_by_id = get_document_by_id
 

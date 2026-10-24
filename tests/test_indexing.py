@@ -791,3 +791,17 @@ def test_hybrid_latency_recorded(loaded):
     METRICS["hybrid_search_ms_incl_query_embedding"] = {"median": round(statistics.median(times), 1), "max": round(max(times), 1),
                                                          "n_queries": len(times)}
     assert max(times) < 5000
+
+
+def test_matryoshka_truncate_dim_and_gemma_float16_guard():
+    with pytest.raises(ConfigError, match="overflows float16"):
+        SentenceTransformerProvider(model="google/embeddinggemma-2", dtype="float16", truncate_dim=128)
+    p = SentenceTransformerProvider(model="google/embeddinggemma-2", dtype="bfloat16", truncate_dim=128)
+    raw = np.arange(2 * 768, dtype=np.float32).reshape(2, 768) + 1.0
+    out = p._validate(raw, 2)
+    assert out.shape == (2, 128)
+    assert np.allclose(np.linalg.norm(out, axis=1), 1.0, atol=1e-6)
+    assert p.dimension == 128
+    assert p.identity()["truncate_dim"] == 128
+    assert p.info()["truncate_dim"] == 128
+

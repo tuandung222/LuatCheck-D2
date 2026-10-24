@@ -266,12 +266,25 @@ class SentenceTransformerProvider(EmbeddingProvider):
             "local_files_only": self.local_files_only,
             "trust_remote_code": self.trust_remote_code,
         }
-        if self.truncate_dim is not None:
-            st_kwargs["truncate_dim"] = self.truncate_dim
         if self.config_kwargs is not None:
             st_kwargs["config_kwargs"] = self.config_kwargs
         try:
-            st = SentenceTransformer(self.model, **st_kwargs)
+            import transformers
+            import sentence_transformers.base.modules.transformer as _st_tr
+
+            _orig_proc_from_pretrained = _st_tr.AutoProcessor.from_pretrained
+
+            def _safe_proc_from_pretrained(*args: Any, **kwargs: Any) -> Any:
+                try:
+                    return _orig_proc_from_pretrained(*args, **kwargs)
+                except ImportError:
+                    return transformers.AutoTokenizer.from_pretrained(*args, **kwargs)
+
+            _st_tr.AutoProcessor.from_pretrained = _safe_proc_from_pretrained
+            try:
+                st = SentenceTransformer(self.model, **st_kwargs)
+            finally:
+                _st_tr.AutoProcessor.from_pretrained = _orig_proc_from_pretrained
         except Exception as exc:  # network, missing model, bad config: all surface as an embedding error
             raise EmbeddingError(f"cannot load embedding model {self.model!r} on {device}: {exc}") from exc
         cfg_obj = getattr(getattr(st[0], "auto_model", None) or getattr(st[0], "model", None), "config", None)
@@ -297,9 +310,13 @@ class SentenceTransformerProvider(EmbeddingProvider):
         self.load_seconds = time.perf_counter() - t0
         dim_fn = getattr(st, "get_embedding_dimension", None) or st.get_sentence_embedding_dimension
         raw_dim = int(dim_fn())
-        if self.truncate_dim is not None and self.truncate_dim > raw_dim:
-            raise ConfigError(f"truncate_dim {self.truncate_dim} exceeds model's native dimension {raw_dim}")
-        self._dimension = int(self.truncate_dim) if self.truncate_dim is not None else raw_dim
+        if self.truncate_dim is not None:
+            if self.truncate_dim > raw_dim:
+                raise ConfigError(f"truncate_dim {self.truncate_dim} exceeds model's native dimension {raw_dim}")
+            st.truncate_dim = self.truncate_dim
+            self._dimension = int(self.truncate_dim)
+        else:
+            self._dimension = raw_dim
         self.model_revision = self._resolve_revision()
         self.memory_after_load_mb = self._check_memory("after model load")
         self.memory_peak_seen_mb = max(self.memory_peak_seen_mb, self.memory_after_load_mb)
@@ -359,6 +376,9 @@ class SentenceTransformerProvider(EmbeddingProvider):
             out = self._st.encode(
                 texts, batch_size=len(texts), convert_to_numpy=True, normalize_embeddings=False, show_progress_bar=False
             )
+            if self.device == "mps":
+                import torch
+                torch.mps.empty_cache()
         except Exception as exc:
             raise EmbeddingError(f"{self.model} inference failed on {self.device}: {exc}") from exc
         self.memory_peak_seen_mb = max(self.memory_peak_seen_mb, self._check_memory("during embedding"))

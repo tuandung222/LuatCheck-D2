@@ -78,7 +78,7 @@ class SqliteFts5Index(KeywordIndex):
         if mode == "open" and not self.path.is_file():
             raise BackendError(f"fts5 index not found: {self.path}")
         try:
-            self._conn = sqlite3.connect(self.path)
+            self._conn = sqlite3.connect(self.path, check_same_thread=False)
             self._conn.execute("CREATE VIRTUAL TABLE IF NOT EXISTS _probe USING fts5(x)")
             self._conn.execute("DROP TABLE _probe")
         except sqlite3.Error as exc:

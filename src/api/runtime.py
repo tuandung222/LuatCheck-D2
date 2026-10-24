@@ -152,7 +152,12 @@ def describe_runtime(runtime: ProfileRuntime, hints: Dict[str, Any]) -> Dict[str
         info.update({
             "corpus": {"records": runtime.corpus_records, "documents": runtime.corpus_documents},
             "retrieval": {
-                "mode": cfg.retrieval.mode, "first_stage": cfg.retrieval.dense_model_type,
+                "mode": cfg.retrieval.mode,
+                "first_stage": (f"hybrid_index:{cfg.retrieval.index.search_mode}"
+                                if cfg.retrieval.mode == "hybrid_index" else cfg.retrieval.dense_model_type),
+                "index": ({"path": cfg.retrieval.index.path, "store": cfg.retrieval.index.store,
+                           "search_mode": cfg.retrieval.index.search_mode}
+                          if cfg.retrieval.mode == "hybrid_index" else None),
                 "reranker": {"enabled": bool(rr.enabled), "backend": rr.backend if rr.enabled else None,
                              "model": rr.model if rr.enabled else None,
                              "top_k_in": rr.top_k_in if rr.enabled else None,
