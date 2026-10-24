@@ -11,6 +11,6 @@ Internal names: "initial system" = v3 (Bonsai 2B); "current system" = r2 (Bonsai
 | 9 | tokens per trial and calls per trial | same `summary.md` (Operations table) |
 | 9, backup C | judge USD 1.0635 and 1.1031 (sum 2.17), invalid-attempt shares 0.357 and 0.450 | `evaluation/runs/d2-gpu-r2-4b-*-v1/analysis/summary.json` (`judge_cost_total`) |
 | 9, Q&A 16 | reranker parity | `evaluation/runs/reranker-parity-2026-10-23/report.md` |
-| 12, backup A | initial-system oracle 28.9 / 44.4, failure findings, what the current system changes | `docs/HANDOFF_2026-10-24.md`, `docs/reviews/v3_failure_analysis_2026-10-24.md`, `docs/plans/D2_REVISION_L1_BONSAI4B.md`, `config/benchmark/model_prism_gguf4b_r2.yaml` |
+| 12, backup A | initial-system oracle 28.9 / 44.4, failure findings, what the current system changes | `docs/project/handoffs/HANDOFF_2026-10-24.md`, `docs/reviews/v3_failure_analysis_2026-10-24.md`, `docs/plans/D2_REVISION_L1_BONSAI4B.md`, `config/benchmark/model_prism_gguf4b_r2.yaml` |
 | 2, 3, 10 | commitments, architecture, threat model | `deliverables/d2/report/main_d2.tex`, `deliverables/d2/report/images/architecture.tikz` |
 | 5, backup D | demo plan, frames | `deliverables/d2/demo/DEMO_SCRIPT.md`; frames extracted from `deliverables/d2/demo/gifs/{11_hcmut_answer_4b,13_verifier_repair_4b,15_guardrail_4b}.gif` (current system, 4B, recorded 25 Oct 2026; slide 5 and backup D) and, for the reranker-down frame, `06_error_reranker_down.gif` (initial system, 2B, 24 Oct) |

@@ -5,7 +5,7 @@
 
 ## 1. Audit người cho LLM judge
 
-Làm theo `docs/HUMAN_AUDIT_GUIDE.md`; điền hai file:
+Làm theo `docs/guides/HUMAN_AUDIT_GUIDE.md`; điền hai file:
 - `evaluation/runs/d2-gpu-r2-4b-hcmut-v1/analysis/human-audit/labels.csv` (30 câu)
 - `evaluation/runs/d2-gpu-r2-4b-labour-v1/analysis/human-audit/labels.csv` (30 câu)
 
@@ -16,7 +16,7 @@ Làm theo `docs/HUMAN_AUDIT_GUIDE.md`; điền hai file:
 ## 2. Bằng chứng đóng góp (report mục 8, bảng đóng góp)
 
 Mỗi người 1–3 dòng: đã làm gì trong D2 và bằng chứng (file, run, phần report, nhãn audit…). Có thể chọn từ
-`docs/D2_WORK_ITEMS.md`.
+`docs/project/D2_WORK_ITEMS.md`.
 
 | Thành viên | Đã làm gì (bằng chứng) |
 |---|---|

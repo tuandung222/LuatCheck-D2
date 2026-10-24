@@ -39,7 +39,7 @@ demo-web-2b:
 	@curl -sf -m 2 127.0.0.1:8083/health >/dev/null || echo "WARNING: 2B controller not healthy on 127.0.0.1:8083 (make demo-model-server-2b)"
 	$(MAKE) demo-web DEMO_CONFIGS=config/profiles/demo-hcmut-2b.yaml,config/profiles/demo-labour-2b.yaml WEB_PORT=8001 DEMO_WEB_DB=data/db/web_demo_2b.sqlite3
 
-# D2 GPU server (server 82): same PrismML llama.cpp commit and same GGUF as the Mac, built with CUDA (docs/RUNBOOK_D2.md).
+# D2 GPU server (server 82): same PrismML llama.cpp commit and same GGUF as the Mac, built with CUDA (docs/guides/RUNBOOK_D2.md).
 #   make prism-server-gpu GPU=2 GPU_PORT=28081 NP=8 GGUF_PATH=/path/to/Ternary-Bonsai-2-2B-PQ2_0.gguf
 # -np slots x CTX_PER_SLOT context (unified KV: the pool is shared, so give it headroom: 16384 per slot); the runner (profile gpu-accuracy) uses one worker per slot. Foreground: run it in tmux/nohup.
 GPU ?= 0
@@ -57,8 +57,8 @@ prism-server-gpu:
 	  --alias $(GGUF_REPO) --jinja \
 	  --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0 --presence-penalty 1.5 --repeat-penalty 1.0 --repeat-last-n 64
 
-# D2 Mac latency run: the llama.cpp reranker server (GGUF f16 of the pinned Vietnamese reranker; scripts/reranker/, docs/plans/reranker.md).
-# Port rules (docs/RUNBOOK_D2.md A0): never start on a port anyone is already using, never reuse or kill a server that is not yours.
+# D2 Mac latency run: the llama.cpp reranker server (GGUF f16 of the pinned Vietnamese reranker; scripts/reranker/, docs/design/reranker.md).
+# Port rules (docs/guides/RUNBOOK_D2.md A0): never start on a port anyone is already using, never reuse or kill a server that is not yours.
 RERANKER_QUANT ?= f16
 RERANKER_PORT ?= 8082
 rerank-server-mac:
@@ -145,7 +145,7 @@ clean:
 	find deliverables/d2/report deliverables/d3/report -type f \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.bbl" -o -name "*.blg" -o -name "*.run.xml" -o -name "*-blx.bib" -o -name "*.toc" -o -name "*.lot" -o -name "*.lof" \) -delete 2>/dev/null || true
 
 # ---- D2 benchmarking: evaluation/run_d2.py drives run_benchmark.py, judge_benchmark.py, render_benchmark_tables.py
-# (docs/plans/benchmarking.md, docs/RUNBOOK_D2.md). It never starts a model server (see prism-server / prism-server-gpu /
+# (docs/design/benchmarking.md, docs/guides/RUNBOOK_D2.md). It never starts a model server (see prism-server / prism-server-gpu /
 # rerank-server-mac). All matrix/variant/profile choices are config: config/benchmark/{d2_matrix,variants,profile_*}.yaml.
 #
 #   make benchmark-d2-gpu                       # on server 82:   2 benchmarks x 3 variants x 3 seeds, profile gpu-accuracy
@@ -211,7 +211,7 @@ tables:
 audit-score:
 	$(PYTHON) evaluation/score_benchmark_audit.py --run-dir $(RUN) --labels $(LABELS)
 
-# ---- experiment tracking (docs/RUNBOOK_D2.md, docs/plans/benchmarking.md): which run, commit and harness produced which result, and is it current?
+# ---- experiment tracking (docs/guides/RUNBOOK_D2.md, docs/design/benchmarking.md): which run, commit and harness produced which result, and is it current?
 .PHONY: runs report-check stamp-provenance
 runs:
 	$(PYTHON) evaluation/run_d2.py registry

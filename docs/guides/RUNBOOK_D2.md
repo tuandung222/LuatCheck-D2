@@ -2,7 +2,7 @@
 
 Written 2026-10-23 22:30 +07 (UTC+7). For the agent that runs the D2 benchmarks tonight. Read `AGENTS.md` first: real inference only, a backend failure is an execution
 error (never an answer or refusal), nothing is filled in, failed runs are preserved, no commit/push, never print or read `.env` (the judge key is read by
-`evaluation.judge_gateway.local_environment()` only). Background: `docs/plans/D2_COMPLETION_PLAN.md`, `docs/plans/benchmarking.md`, `docs/reviews/metrics_review_2026-10-23.md`.
+`evaluation.judge_gateway.local_environment()` only). Background: `docs/plans/D2_COMPLETION_PLAN.md`, `docs/design/benchmarking.md`, `docs/reviews/metrics_review_2026-10-23.md`.
 
 What is being run: 2 benchmarks (`hcmut_v1`, `labour_vi_v1`, frozen, 50 tasks each) x 3 variants (`off`, `l1`, `l1_rerank`) x 3 seeds (42, 123, 2026) = **900 system trials per machine** plus **190 diagnostic-baseline trials** (`closed_book` on all 50 tasks and `oracle` on the 45 answerable tasks of each benchmark, seed 42, no tools; reported in their own table, never pooled; they run automatically in `all`, disable with `--baselines none`), controller
 Ternary Bonsai 2 2B GGUF (PQ2_0) on the PrismML llama.cpp fork **commit 73bfe6c**, judge DeepSeek Flash through the gateway. Everything is config

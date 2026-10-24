@@ -1,6 +1,6 @@
 # App profile: remote = lite + local reranker (AITeamVN/Vietnamese_Reranker, MPS fp16) and NLI through a Qev server
 # (OneJev1.6-4B at 127.0.0.1:18004, flag mode). Requires the SSH tunnel to be up before the run; a dead tunnel is an
-# execution error. See docs/plans/wiring.md.
+# execution error. See docs/design/wiring.md.
 # Local SLM CPU System Configuration
 # Default on the Mac: Ternary Bonsai 2 2B (ternary weights, GGUF PQ2_0) on the PrismML llama.cpp fork,
 # served by `make prism-server` (llama-server, OpenAI-compatible, loopback, port 8081). Measured on the

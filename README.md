@@ -41,7 +41,7 @@ Recordings with the 4B controller (the live-demo configuration) are in `delivera
 - **Guardrails:** pattern checks, sanitising and untrusted-input tagging run before the model; the tool layer is read-only and writes need a trusted-UI approval.
 - **On-device controller:** Ternary Bonsai 2B or 4B (PrismML llama.cpp fork, Metal) with decoding constrained to the action JSON schema.
 
-The drawing is the report's Figure 1 (source `docs/images/architecture.tex`); module map and data flow: [docs/architecture.md](docs/architecture.md).
+The drawing is the report's Figure 1 (source `docs/images/architecture.tex`); module map and data flow: [docs/reference/architecture.md](docs/reference/architecture.md).
 
 ## Chosen D2 system
 
@@ -101,7 +101,7 @@ print(ledger.terminal_status, ledger.final_output)    # answered | clarified | r
 
 ## Reproducing the numbers
 
-Every reported number comes from `evaluation/run_d2.py` runs (resumable, with preflight checks of benchmark locks, model files and servers); run directories are indexed in `evaluation/runs/REGISTRY.md`. Step-by-step commands: [docs/REPRODUCE_D2.md](docs/REPRODUCE_D2.md); machine setup and the run matrix: [docs/RUNBOOK_D2.md](docs/RUNBOOK_D2.md); metric definitions and their limits: [docs/BENCHMARKS_AND_METRICS.md](docs/BENCHMARKS_AND_METRICS.md). Judge scores stay LLM estimates until checked against the team's human audit ([guide](docs/HUMAN_AUDIT_GUIDE.md)).
+Every reported number comes from `evaluation/run_d2.py` runs (resumable, with preflight checks of benchmark locks, model files and servers); run directories are indexed in `evaluation/runs/REGISTRY.md`. Step-by-step commands: [docs/guides/REPRODUCE_D2.md](docs/guides/REPRODUCE_D2.md); machine setup and the run matrix: [docs/guides/RUNBOOK_D2.md](docs/guides/RUNBOOK_D2.md); metric definitions and their limits: [docs/reference/BENCHMARKS_AND_METRICS.md](docs/reference/BENCHMARKS_AND_METRICS.md). Judge scores stay LLM estimates until checked against the team's human audit ([guide](docs/guides/HUMAN_AUDIT_GUIDE.md)).
 
 ## Repository map
 
@@ -123,8 +123,8 @@ Development: `.venv/bin/python -m pytest tests/ -q` (includes real inference: do
 - Report: [deliverables/d2/report/main_d2.pdf](deliverables/d2/report/main_d2.pdf), source [main_d2.tex](deliverables/d2/report/main_d2.tex), [requirements](deliverables/d2/report/D2_REQUIREMENTS.md), [table provenance](deliverables/d2/report/RESULTS_PROVENANCE.md)
 - Slides: [outline](deliverables/d2/demo/D2_SLIDES_OUTLINE.md), [demo script](deliverables/d2/demo/DEMO_SCRIPT.md)
 - Reviews: [benchmark quality](docs/reviews/benchmark_quality_2026-10-23.md), [metrics](docs/reviews/metrics_review_2026-10-23.md), [v3 failure analysis](docs/reviews/v3_failure_analysis_2026-10-24.md), [requirements gap](docs/reviews/d2_requirements_gap_2026-10-23.md)
-- Plans: [completion plan](docs/plans/D2_COMPLETION_PLAN.md), [reranker](docs/plans/reranker.md), [benchmarking](docs/plans/benchmarking.md)
-- Configuration: [config/README.md](config/README.md), [web UI API](docs/web-ui-api.md)
+- Plans: [completion plan](docs/plans/D2_COMPLETION_PLAN.md), [reranker](docs/design/reranker.md), [benchmarking](docs/design/benchmarking.md)
+- Configuration: [config/README.md](config/README.md), [web UI API](docs/reference/web-ui-api.md)
 - Historical, not current evidence: the earlier Qwen2.5-3B pilot on `bll2019_v1`, [redteam/](redteam/README.md), [deliverables/d3/report/](deliverables/d3/report/README.md)
 
 ## Course and team

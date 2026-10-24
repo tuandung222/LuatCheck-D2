@@ -37,7 +37,7 @@ Verification tags used below: **[ran]** = executed read-only while writing this 
 | F6 | L1 verifier v1 vs v2 offline replay (429 recorded drafts) and bll2019 threshold selection | report "Post-hoc revision r2" paragraph | `evaluation/runs/l1-replay-2026-10-24/` (probe `evaluation/probes/l1_replay.py`) | no inference; generated 15:51 +07 before `cdb6b24` |
 | F7 | v3 failure analysis (clarify use, first-query recall, repair-to-refusal, quote mismatch share) | report "Failure analysis" bullets | stdout of `evaluation/probes/v3_failure_analysis.py`; write-up `docs/reviews/v3_failure_analysis_2026-10-24.md` (written 15:46 +07 with judge labels still arriving; the report bullets use structural counts only) | inputs: the two v3 runs |
 | F8 | full test-suite count | report "Verified by the group" | `evaluation/runs/test-suite-2026-10-24/{NOTE.txt,pytest.log}`: 425 passed, 2 skipped, 1 failed in 528.89 s, at commit `ca468adf409822a366cb379ab08e998e9dd5c286` (1 tracked change: report text) | the failure is `tests/test_real_system.py::test_real_native_end_to_end`, which needs Ollama on 127.0.0.1:11434 (not running) |
-| F9 | judge-vs-human agreement and Cohen's kappa | red placeholder in the main-results caption | **no labels exist yet**: `analysis/human-audit/labels.csv` is blank (30 items per benchmark) in the v3 runs and, since commit `fb1e8c3`, `docs/HUMAN_AUDIT_GUIDE.md` points the group at the r2-4B runs | no agreement number exists; none may be quoted until `make audit-score` produces one |
+| F9 | judge-vs-human agreement and Cohen's kappa | red placeholder in the main-results caption | **no labels exist yet**: `analysis/human-audit/labels.csv` is blank (30 items per benchmark) in the v3 runs and, since commit `fb1e8c3`, `docs/guides/HUMAN_AUDIT_GUIDE.md` points the group at the r2-4B runs | no agreement number exists; none may be quoted until `make audit-score` produces one |
 
 Not covered: `d2-mac-latency-r2-4b-v1` and `d2-mac-latency-r2-4b-l1rr-v1` (Mac latency runs in progress when this was written; add them as a family once they are complete and registered). Earlier GPU attempts `d2-gpu-main-{hcmut,labour}-v1/-v2` and the CUDA gate runs exist only on server 82 (registry state `remote/not synced`, superseded by v3); they are not evidence.
 
@@ -120,7 +120,7 @@ From the GPU manifests (identical across the six runs unless stated):
 | Python | 3.11.14, venv `/home/dungvpt/workspace/dungvpt/envs/luatcheck-d2/bin/python` |
 | Packages | torch 2.10.0+cu128 (CUDA runtime 12.8), transformers 5.14.1, sentence-transformers 5.2.3, numpy 2.4.6, pydantic 2.12.5, requests 2.34.2, PyYAML 6.0.3, huggingface_hub 1.26.0 |
 | Base env | the shared conda env `axolotl` (Python 3.11, torch 2.10.0+cu128, transformers 5.14.1 per `reranker-parity-2026-10-23/NOTE.md`) under `/home/dungvpt/workspace/dungvpt/anaconda3/envs/axolotl`; the plan `docs/plans/D2_TONIGHT_EXECUTION_PLAN.md` says "separate venv with `--system-site-packages` on the CUDA-12 env; never modify shared envs" |
-| Wrapper | `PYTHON=/home/dungvpt/workspace/dungvpt/d2-setup/py.sh` (v3 and r2 launches, per the git-ignored launcher logs `logs/d2/*/env.txt` and `docs/RUNBOOK_D2.md` F2); its content is not in the repository |
+| Wrapper | `PYTHON=/home/dungvpt/workspace/dungvpt/d2-setup/py.sh` (v3 and r2 launches, per the git-ignored launcher logs `logs/d2/*/env.txt` and `docs/guides/RUNBOOK_D2.md` F2); its content is not in the repository |
 
 Reconstruction of the environment (the recorded facts are above; these commands are not recorded and are **[read]**):
 
@@ -131,7 +131,7 @@ python -m venv --system-site-packages /home/dungvpt/workspace/dungvpt/envs/luatc
 /home/dungvpt/workspace/dungvpt/envs/luatcheck-d2/bin/python -c "import torch; print(torch.__version__, torch.cuda.is_available())"   # True
 ```
 
-Known failure (gate attempt 0, 2026-10-23 18:06 UTC): running the benchmark with the plain venv python failed on `import sqlite3` (`libstdc++.so.6: version CXXABI_1.3.15 not found`, required by the conda env's `libicui18n.so.78`). The later runs used the `py.sh` wrapper; presumably it makes the conda `libstdc++` visible, but that is not documented in the repository. Server rules: no sudo, pick a free GPU with `nvidia-smi`, bind to 127.0.0.1, files on the NFS path, touch only your own processes (`docs/RUNBOOK_D2.md` A0).
+Known failure (gate attempt 0, 2026-10-23 18:06 UTC): running the benchmark with the plain venv python failed on `import sqlite3` (`libstdc++.so.6: version CXXABI_1.3.15 not found`, required by the conda env's `libicui18n.so.78`). The later runs used the `py.sh` wrapper; presumably it makes the conda `libstdc++` visible, but that is not documented in the repository. Server rules: no sudo, pick a free GPU with `nvidia-smi`, bind to 127.0.0.1, files on the NFS path, touch only your own processes (`docs/guides/RUNBOOK_D2.md` A0).
 
 ### 2.3 llama.cpp (PrismML fork, controller server)
 
@@ -140,7 +140,7 @@ Known failure (gate attempt 0, 2026-10-23 18:06 UTC): running the benchmark with
 | Repository, branch, commit | `https://github.com/PrismML-Eng/llama.cpp`, branch `prism`, commit `73bfe6cc485554822f80c473a3c0c4f25e80f41b` (committer date 2026-10-19). Preflight accepts any build whose `/props build_info` contains `73bfe6c` and refuses others |
 | Build number | GPU (full clone): `b10787-73bfe6cc4`. Mac (shallow clone from `make prism-setup`): `b1-73bfe6c`. Same commit |
 | Mac build flags (`~/src/prism-llama.cpp/build/CMakeCache.txt`) | `CMAKE_BUILD_TYPE=Release`, `LLAMA_CURL=OFF`, `GGML_METAL=ON`, `GGML_METAL_EMBED_LIBRARY=ON`, `GGML_BLAS=ON`, `GGML_NATIVE=ON`, `GGML_CUDA=OFF` [ran] |
-| GPU build flags (`docs/RUNBOOK_D2.md` A4) | `-DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF -DCMAKE_CUDA_ARCHITECTURES=90`, target `llama-server`, `-j 16`. The CUDA toolkit (`nvcc`) version used is not recorded |
+| GPU build flags (`docs/guides/RUNBOOK_D2.md` A4) | `-DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF -DCMAKE_CUDA_ARCHITECTURES=90`, target `llama-server`, `-j 16`. The CUDA toolkit (`nvcc`) version used is not recorded |
 
 `make prism-setup` clones the **tip** of branch `prism` (`--depth 1 -b prism`); if the branch has moved the commit differs and preflight refuses it. Pin explicitly:
 
@@ -266,7 +266,7 @@ make rerank-server-mac                # 127.0.0.1:8082, GGUF f16 (refuses a port
 curl -s 127.0.0.1:8081/health; curl -s 127.0.0.1:8082/health      # {"status":"ok"} twice
 ```
 
-Server 82: start the servers as in section 2.3 (or let `scripts/run_d2_benchmarks.sh gpu` start one: it uses `-np $NP -c $((NP*CTX_PER_SLOT)) --kv-unified`, refuses a port that anyone uses, never reuses or stops a server that is not yours, and stops only the server it started). No reranker server is needed on the GPU: the runner loads the torch reranker per worker from `$RERANKER_MODEL_DIR` (`local_files_only`). The 4B controller uses about 11 GB of GPU memory (`docs/HANDOFF_2026-10-24.md`); the script refuses a GPU with more than 4000 MiB in use by others.
+Server 82: start the servers as in section 2.3 (or let `scripts/run_d2_benchmarks.sh gpu` start one: it uses `-np $NP -c $((NP*CTX_PER_SLOT)) --kv-unified`, refuses a port that anyone uses, never reuses or stops a server that is not yours, and stops only the server it started). No reranker server is needed on the GPU: the runner loads the torch reranker per worker from `$RERANKER_MODEL_DIR` (`local_files_only`). The 4B controller uses about 11 GB of GPU memory (`docs/project/handoffs/HANDOFF_2026-10-24.md`); the script refuses a GPU with more than 4000 MiB in use by others.
 
 ### 3.4 Preflight (nothing is written)
 
@@ -432,7 +432,7 @@ Server-free subset that carries the "v3 replay identity" claim (per the file hea
 
 ### 3.14 Human audit scoring (F9)
 
-Labels do not exist. When the group has filled them (blind to the judge verdicts, one row per item and reviewer, `reviewer` required; guide in Vietnamese: `docs/HUMAN_AUDIT_GUIDE.md`, which since `fb1e8c3` targets the r2-4B runs):
+Labels do not exist. When the group has filled them (blind to the judge verdicts, one row per item and reviewer, `reviewer` required; guide in Vietnamese: `docs/guides/HUMAN_AUDIT_GUIDE.md`, which since `fb1e8c3` targets the r2-4B runs):
 
 ```
 make audit-score RUN=evaluation/runs/d2-gpu-r2-4b-hcmut-v1  LABELS=evaluation/runs/d2-gpu-r2-4b-hcmut-v1/analysis/human-audit/labels.csv
@@ -546,7 +546,7 @@ The six USD figures sum to 5.4671 (gateway-reported, not an invoice). Invalid-at
 
 ### 4.5 Retrieval and citation metrics, status counts
 
-`python evaluation/run_d2.py status --run-dir evaluation/runs/<run>` prints per-cell terminal-status counts from `trials.jsonl` (for example `d2-gpu-main-hcmut-v3`, `l1_rerank`: 38 answered, 55 refused, 55 clarified, 2 error) [ran for that run]. Retrieval (Recall@k from the agent's trace) and citation metrics are pure functions of the ledgers and the frozen gold ids (`evaluation/metrics.py`); their definitions are in `docs/BENCHMARKS_AND_METRICS.md` section 3, which names the implementing function for every metric. That document describes the code at `40323a6`; the evaluation files it cites were unchanged afterwards except the three listed in section 3.13.
+`python evaluation/run_d2.py status --run-dir evaluation/runs/<run>` prints per-cell terminal-status counts from `trials.jsonl` (for example `d2-gpu-main-hcmut-v3`, `l1_rerank`: 38 answered, 55 refused, 55 clarified, 2 error) [ran for that run]. Retrieval (Recall@k from the agent's trace) and citation metrics are pure functions of the ledgers and the frozen gold ids (`evaluation/metrics.py`); their definitions are in `docs/reference/BENCHMARKS_AND_METRICS.md` section 3, which names the implementing function for every metric. That document describes the code at `40323a6`; the evaluation files it cites were unchanged afterwards except the three listed in section 3.13.
 
 ### 4.6 Re-render a published table and diff [ran for the HCMUT v3 table]
 
@@ -589,7 +589,7 @@ No replicate of any collection cell exists in this repository, so no tolerance b
 
 | Source of variation | Effect | What to expect |
 |---|---|---|
-| LLM judge via API (Level D) | The model revision behind the route is not pinned, routing is not attested, no temperature or seed is sent, and the judge is one model with one judgment per packet. The gateway also appears to return identical completions for byte-identical requests (`docs/BENCHMARKS_AND_METRICS.md` section 4), which is why attempts after the first prefix a disclosed line; a re-judge of an identical packet may therefore return a cached verdict, and is then not an independent judgment. Re-judging can change individual verdicts | Compare strict success per cell against the table in 1.2 and the CI width (about 7 to 10 percentage points per side for 150 trials). Report the number of invalid attempts (19 to 45 % of attempts in the recorded runs, mostly "quote absent from supplied source", "claim quote absent from candidate answer" and HTTP 524) and of packets that stay unknown after all rounds (2 to 11 per run). Unknown trials count as failures, so a worse gateway day lowers the lower bound |
+| LLM judge via API (Level D) | The model revision behind the route is not pinned, routing is not attested, no temperature or seed is sent, and the judge is one model with one judgment per packet. The gateway also appears to return identical completions for byte-identical requests (`docs/reference/BENCHMARKS_AND_METRICS.md` section 4), which is why attempts after the first prefix a disclosed line; a re-judge of an identical packet may therefore return a cached verdict, and is then not an independent judgment. Re-judging can change individual verdicts | Compare strict success per cell against the table in 1.2 and the CI width (about 7 to 10 percentage points per side for 150 trials). Report the number of invalid attempts (19 to 45 % of attempts in the recorded runs, mostly "quote absent from supplied source", "claim quote absent from candidate answer" and HTTP 524) and of packets that stay unknown after all rounds (2 to 11 per run). Unknown trials count as failures, so a worse gateway day lowers the lower bound |
 | Controller sampling at temperature 0.7 (Level C) | The seed is sent with every request, but llama.cpp reproduces a seeded sample only for a single request on an idle server (`seed_reproducible`, a 4-request canary, is true in every manifest). The GPU runs used 16 concurrent slots with a unified KV pool, so batch composition varies from run to run; different logits can follow, and a different token anywhere changes the trajectory. This is an expectation from how the runs are executed, not a measured replicate | Trial-level outcomes will differ. Cell-level scale from the artifacts: the seed-to-seed standard deviation of strict success within a cell (50 trials per seed) is 0 to 9 percentage points across the 18 variant cells of the six GPU runs (for example r2-4B labour L1: seeds range 46 to 62 %). The report states that differences under about 10 pp are within noise at 50 tasks. Treat a new run as consistent if each pooled cell lies within the reported bootstrap interval (or within about 10 pp), and the large contrasts keep their sign: r2 above v3 by 9 to 17 pp per cell, r2-4B above r2-2B by 25 to 40 pp, L1 not above OFF in v3, oracle above every system variant (not like-for-like: the oracle is scored on answerable tasks only) |
 | Build and hardware | Mac (Metal) and CUDA kernels differ numerically; the GPU reranker is torch fp16 and the Mac reranker a GGUF f16 conversion (max abs score difference 0.126, one top-1 flip in 100 questions, section 1.2). Accuracy is therefore taken from the GPU runs and latency from the Mac run, and the two `l1_rerank` rows are never pooled | A Mac accuracy run is not a replicate of the GPU runs |
 | First-stage retrieval ties | Records with identical text are ordered differently on the Mac than on server 82: 3 of 377 searches in the v3 replay (`tests/test_r2_switches.py` allows at most 3). The cause (BLAS, scikit-learn, sort stability) is not established; the GPU manifests do not record scikit-learn or rank-bm25 versions | The replay-identity tests may report up to 3 ties on another machine; more than 3 fails them |
@@ -630,8 +630,8 @@ Could not be determined from the artifacts: the CUDA toolkit version used for th
 Inconsistencies (none changes a result, but a reproducer will trip over them):
 
 1. `evaluation/runs/l1-replay-2026-10-24/NOTE.md` says configs that predate `verifier.l1_version` "now default to v2"; `src/config/app_config.py`, `config/reference.yaml` and `config/README.md` set the default to `v1`. The code is authoritative: only `model_prism_gguf*_r2.yaml` select v2.
-2. The v3 manifests' `server_operator_note` says `-np 8 -c 131072`; the measured server had 16 slots and `n_ctx` 262144. `docs/RUNBOOK_D2.md` sections A6 and A7 still describe the 8-slot defaults of the first attempt; section F describes what the r2 runs used. The profile's `max_workers: 8` is overridden by `--workers 16`.
+2. The v3 manifests' `server_operator_note` says `-np 8 -c 131072`; the measured server had 16 slots and `n_ctx` 262144. `docs/guides/RUNBOOK_D2.md` sections A6 and A7 still describe the 8-slot defaults of the first attempt; section F describes what the r2 runs used. The profile's `max_workers: 8` is overridden by `--workers 16`.
 3. `make prism-setup` follows the tip of branch `prism`, not the pinned commit (section 2.3).
 4. The report's v3 table files predate the current renderer (section 4.6).
-5. `docs/BENCHMARKS_AND_METRICS.md` is dated at `40323a6` and lists the r2-4B labour judge as not yet run; it is now judged. `docs/HANDOFF_2026-10-24.md` estimates about USD 0.7 per run for the judge; the gateway-reported cost is 0.63 to 1.10.
+5. `docs/reference/BENCHMARKS_AND_METRICS.md` is dated at `40323a6` and lists the r2-4B labour judge as not yet run; it is now judged. `docs/project/handoffs/HANDOFF_2026-10-24.md` estimates about USD 0.7 per run for the judge; the gateway-reported cost is 0.63 to 1.10.
 6. The judge's `contradicted` or `not_established` labels depend on the supplied gold; strict success is an LLM-judge estimate, not answer correctness, until the human audit exists (`AGENTS.md`).

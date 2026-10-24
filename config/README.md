@@ -19,7 +19,7 @@ a wrong value for a known key fails at load with the key named.
 | Controller LLM | `model.provider` | `ollama`, `mlx`, `llamacpp` (aliases `llama.cpp`, `openai`, `prism`, `prism_llamacpp`, `prism-llamacpp`, `prismml`), `gateway` |
 | First-stage retriever | `retrieval.mode` | `bm25_tfidf` (default), `hybrid_index` (needs `retrieval.index.path`) |
 | Fused second retriever | `retrieval.dense_model_type` | `tfidf` (default), `bm25` (BM25 alone), or an embedding model name served at `model.endpoint` |
-| Reranker | `retrieval.reranker.enabled` + `backend` | `cross_encoder`, `qwen3`, `qev_http`, `llamacpp_http`; `max_length`, `chunk_chars` (1500, MaxP over windows, null = off) and `chunk_overlap_chars` (200) apply to `cross_encoder` and `llamacpp_http` (docs/plans/reranker.md) |
+| Reranker | `retrieval.reranker.enabled` + `backend` | `cross_encoder`, `qwen3`, `qev_http`, `llamacpp_http`; `max_length`, `chunk_chars` (1500, MaxP over windows, null = off) and `chunk_overlap_chars` (200) apply to `cross_encoder` and `llamacpp_http` (docs/design/reranker.md) |
 | Verification | `verifier.mode` | `off`, `l1` (lexical grounding), `l1_l2` (adds native-model entailment, needs `verifier.l2_use_slm: true`) |
 | L1 implementation | `verifier.l1_version` | `v1` (default; original, reproduces the frozen D2 v3 runs), `v2` |
 | NLI step | `verifier.nli.enabled` + `backend` | `cross_encoder`, `llm`, `decision_model`, `qev_http`; `action: flag` or `repair` |

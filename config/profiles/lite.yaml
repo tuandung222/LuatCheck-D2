@@ -1,6 +1,6 @@
 # App profile: lite = the current default (config/config.yaml): Bonsai 2B via llama.cpp, BM25 + TF-IDF/RRF retrieval,
 # L1 verification, no reranker, no NLI, nothing loaded in this process. Select with LUATCHECK_CONFIG_PATH or --config.
-# Keep this file equal to config/config.yaml (tests/test_wiring.py pins it). See docs/plans/wiring.md.
+# Keep this file equal to config/config.yaml (tests/test_wiring.py pins it). See docs/design/wiring.md.
 # Local SLM CPU System Configuration
 # Default on the Mac: Ternary Bonsai 2 2B (ternary weights, GGUF PQ2_0) on the PrismML llama.cpp fork,
 # served by `make prism-server` (llama-server, OpenAI-compatible, loopback, port 8081). Measured on the

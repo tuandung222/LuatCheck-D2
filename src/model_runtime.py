@@ -335,7 +335,7 @@ class SystemOneRunner(LazyComponent):
 
     backend = "system_one"
     # Qwen3.5 gated-delta-net layers use a torch fallback kernel here; MPS support is
-    # established empirically (see docs/plans/model-components.md), not assumed.
+    # established empirically (see docs/design/model-components.md), not assumed.
     mps_supported = True
 
     def __init__(self, model: str, device: str = "auto", dtype: Optional[str] = None,

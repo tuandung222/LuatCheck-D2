@@ -154,7 +154,7 @@ class CrossEncoderNLI(LazyComponent, BaseNLIBackend):
       contradiction unless every window is dominated by it.
     * ``mean``: arithmetic mean of the window distributions.
 
-    Measured caveat (docs/plans/model-components.md): with mDeBERTa a window of
+    Measured caveat (docs/design/model-components.md): with mDeBERTa a window of
     unrelated text can produce a spurious high-confidence contradiction, so
     prefer passing the cited article/clause as the premise over a concatenation
     of many articles.
@@ -165,7 +165,7 @@ class CrossEncoderNLI(LazyComponent, BaseNLIBackend):
     """
 
     backend = "cross_encoder"
-    mps_supported = True   # verified on Apple M4 / torch 2.14; see docs/plans/model-components.md
+    mps_supported = True   # verified on Apple M4 / torch 2.14; see docs/design/model-components.md
 
     def __init__(self, model: str, device: str = "auto", dtype: Optional[str] = None,
                  local_files_only: bool = False, threshold: float = 0.5,

@@ -8,7 +8,7 @@
 | # | Item | Evidence | Status | Owner |
 |---|---|---|---|---|
 | 1.1 | Map the lecturer's D2 requirements and rubric to the project (traceability matrix, gaps ranked by rubric weight) | `docs/reviews/d2_requirements_gap_2026-10-23.md` | ✅ | |
-| 1.2 | D2 completion plan, tonight's execution plan, handoff note | `docs/plans/D2_COMPLETION_PLAN.md`, `D2_TONIGHT_EXECUTION_PLAN.md`, `docs/HANDOFF_2026-10-24.md` | ✅ | |
+| 1.2 | D2 completion plan, tonight's execution plan, handoff note | `docs/plans/D2_COMPLETION_PLAN.md`, `D2_TONIGHT_EXECUTION_PLAN.md`, `docs/project/handoffs/HANDOFF_2026-10-24.md` | ✅ | |
 | 1.3 | Decide the D2 design: Bonsai 2B controller, two benchmarks, variants OFF / L1 / L1+rerank, GPU accuracy + Mac latency | plans above | ✅ | |
 | 1.4 | Gap analysis vs a production legal assistant (positioning and limitations) | chat summary; report limitations | ✅ | |
 
@@ -29,18 +29,18 @@
 
 | # | Item | Evidence | Status | Owner |
 |---|---|---|---|---|
-| 3.1 | Refactor the core into a config-driven pipeline (components on/off from YAML, builder, reference config) | `src/pipeline/`, `config/reference.yaml`, `docs/architecture.md` | ✅ | |
+| 3.1 | Refactor the core into a config-driven pipeline (components on/off from YAML, builder, reference config) | `src/pipeline/`, `config/reference.yaml`, `docs/reference/architecture.md` | ✅ | |
 | 3.2 | Bounded agent loop split into action handlers; behaviour preserved (replay-identical) | `src/agent/loop.py` | ✅ | |
 | 3.3 | Domain profiles (HCMUT, labour) keeping domain specifics out of shared code | `config/domains/` | ✅ | |
 | 3.4 | Ingestion pipeline and multi-backend vector indexing | `src/ingestion/`, `src/indexing/` | ✅ | |
 | 3.5 | Bonsai 2B controller on llama.cpp (Mac) and CUDA (server 82); constrained JSON decoding | `config/benchmark/model_prism_gguf2b.yaml`, `Makefile` | ✅ | |
-| 3.6 | Reranker: AITeamVN Vietnamese reranker as GGUF (Mac) and torch fp16 (GPU), shared chunk policy, GGUF conversion fix | `src/retrieval/rerankers.py`, `scripts/reranker/`, `docs/plans/reranker.md` | ✅ | |
+| 3.6 | Reranker: AITeamVN Vietnamese reranker as GGUF (Mac) and torch fp16 (GPU), shared chunk policy, GGUF conversion fix | `src/retrieval/rerankers.py`, `scripts/reranker/`, `docs/design/reranker.md` | ✅ | |
 | 3.7 | Reranker parity measurement Mac vs GPU vs fp32 reference | `evaluation/runs/reranker-parity-2026-10-23/` | ✅ | |
 | 3.8 | Thread-safe shared reranker for parallel benchmark workers | commit `f8a14b4` | ✅ | |
 | 3.9 | L1 verifier fixes (line-broken units crash) and L1 v2 (fair quote matching, claim-local quantities, sentence support, actionable feedback) | `src/verifier/lexical_grounding*.py` | ✅ | |
 | 3.10 | Revision r2 switches F1–F8, F11 (question-anchored first search, top_k 5, search hints, clarify/refuse prompt contract, search-first gate, verifier-report feedback, thought length cap, free duplicate notices, refusal source) | `src/agent/`, `config/domains/*_r2.yaml` | ✅ | |
 | 3.11 | Bonsai 4B controller: download, pin, CUDA gate | `config/benchmark/model_prism_gguf4b*.yaml`, `expected_server.yaml` | ✅ | |
-| 3.12 | Design study: span-referenced answers (claims + evidence span ids) | `docs/plans/SPAN_CITATION_DESIGN.md` | ✅ (design; build in D3) | |
+| 3.12 | Design study: span-referenced answers (claims + evidence span ids) | `docs/design/SPAN_CITATION_DESIGN.md` | ✅ (design; build in D3) | |
 
 ## 4. Evaluation harness and metrics
 
@@ -48,13 +48,13 @@
 |---|---|---|---|---|
 | 4.1 | Metrics review vs research/production practice; fixes (citation precision, latency over all trials, abstention-aware strict success) | `docs/reviews/metrics_review_2026-10-23.md`, `evaluation/judge_rules.py` | ✅ | |
 | 4.2 | New metrics: retrieval R@k/MRR/nDCG, citation P/R/F1, behaviour confusion matrix, paired bootstrap CIs, closed-book strata | `evaluation/metrics.py`, `evaluation/stats.py` | ✅ | |
-| 4.3 | One-command batch runner with preflight (model/sha/port checks), resume, judge, tables | `evaluation/run_d2.py`, `scripts/run_d2_benchmarks.sh`, `docs/RUNBOOK_D2.md` | ✅ | |
+| 4.3 | One-command batch runner with preflight (model/sha/port checks), resume, judge, tables | `evaluation/run_d2.py`, `scripts/run_d2_benchmarks.sh`, `docs/guides/RUNBOOK_D2.md` | ✅ | |
 | 4.4 | Diagnostic baselines: closed-book and oracle | `evaluation/baselines.py` | ✅ | |
 | 4.5 | Experiment tracking: harness version, manifest provenance, run registry with freshness/pinning, table provenance, report-check | `evaluation/provenance.py`, `registry.py`, `check_report_provenance.py`, `evaluation/runs/REGISTRY.md` | ✅ | |
 | 4.6 | v3-vs-r2 comparison tables | `evaluation/compare_runs.py` | ✅ (tables pending r2 judge) | |
 | 4.7 | Offline L1 replay against recorded answers and judge labels | `evaluation/probes/l1_replay.py`, `evaluation/runs/l1-replay-2026-10-24/` | ✅ | |
 | 4.8 | Failure analysis of v3 (clarify overuse, query construction, repair behaviour, truncation) | `docs/reviews/v3_failure_analysis_2026-10-24.md` | ✅ | |
-| 4.9 | Human-audit kit for the judge (blind packets, guide, kappa scorer) | `docs/HUMAN_AUDIT_GUIDE.md`, `evaluation/score_benchmark_audit.py` | ✅ | |
+| 4.9 | Human-audit kit for the judge (blind packets, guide, kappa scorer) | `docs/guides/HUMAN_AUDIT_GUIDE.md`, `evaluation/score_benchmark_audit.py` | ✅ | |
 | 4.10 | Human audit labelling (30 items per benchmark) and κ | `evaluation/runs/d2-gpu-main-*-v3/analysis/human-audit/labels.csv` | ☐ (tonight) | |
 
 ## 5. Experiments
@@ -88,7 +88,7 @@
 | 7.3 | Editorial and AI-slop passes | report history | ✅ | |
 | 7.4 | v3 result tables with provenance; latency, reranker parity and trace | `deliverables/d2/report/tables_*_v3/`, `benchmark_latency_mac.tex` | ✅ | |
 | 7.5 | r2 results section, AI-use statement, benchmark-review statement, final professional pass | `deliverables/d2/report/main_d2.tex` | ⏳ (tonight) | |
-| 7.6 | Reproduction guide for every reported result | `docs/REPRODUCE_D2.md` | ☐ (tonight) | |
+| 7.6 | Reproduction guide for every reported result | `docs/guides/REPRODUCE_D2.md` | ☐ (tonight) | |
 | 7.7 | Member contribution evidence and "verified by the group" statements | report Section 8 | ☐ (group) | |
 | 7.8 | Final freeze: commit hash, report-check, lecturer repository access | — | ☐ | |
 | 7.9 | Slide outline | `deliverables/d2/demo/D2_SLIDES_OUTLINE.md` | ✅ | |

@@ -1,7 +1,7 @@
 # D2 supervisor handoff: what was done and why
 
 Written 2026-10-25 01:50 +07 by the supervising agent (Claude Opus) at the end of its session, for review by another agent.
-Supersedes `docs/HANDOFF_2026-10-24.md` where they differ; that file keeps the detailed history of 23–24 Oct.
+Supersedes `docs/project/handoffs/HANDOFF_2026-10-24.md` where they differ; that file keeps the detailed history of 23–24 Oct.
 
 - Repository: https://github.com/tuandung222/LuatCheck-D2 (public).
 - Branch `main`.
@@ -19,7 +19,7 @@ Supersedes `docs/HANDOFF_2026-10-24.md` where they differ; that file keeps the d
   - Server 82 is shared: only `dungvpt` processes, free GPUs only (2 and 3 were allowed), loopback ports we own, data on NFS.
   - The owner needs the Mac's RAM, so every model server started for a task is stopped afterwards.
   - Locked benchmark files and locked profile YAMLs are never edited.
-- **Out of scope here:** the team-owned items in `docs/TEAM_INPUTS_D2.md` (human audit labels and κ, contribution evidence, self-checks, presenters, plan owners, the submission email). The owner handles these with a different agent. Do not fill them in.
+- **Out of scope here:** the team-owned items in `docs/project/TEAM_INPUTS_D2.md` (human audit labels and κ, contribution evidence, self-checks, presenters, plan owners, the submission email). The owner handles these with a different agent. Do not fill them in.
 
 ## 2. Final state of the deliverables
 
@@ -30,7 +30,7 @@ Supersedes `docs/HANDOFF_2026-10-24.md` where they differ; that file keeps the d
 | Demo | `deliverables/d2/demo/` | `DEMO_SCRIPT.md`; GIFs; backup video `gifs/demo_backup_4b.mp4`; recorder `record_demo.py` with scenarios. |
 | Index | `deliverables/README.md` | Which PDFs are submitted and how to build them. |
 | D1 / D3 | `deliverables/d1/{report,slides}`, `deliverables/d3/report` | Moved only, contents unchanged; D3 is historical. |
-| Repo docs | `README.md` (GIFs + architecture), `docs/REPRODUCE_D2.md`, `docs/BENCHMARKS_AND_METRICS.md`, `docs/L1_VERIFIER.md`, `docs/D2_WORK_ITEMS.md`, `docs/HUMAN_AUDIT_GUIDE.md`, `docs/TEAM_INPUTS_D2.md` | Current. |
+| Repo docs | `README.md` (GIFs + architecture), `docs/guides/REPRODUCE_D2.md`, `docs/reference/BENCHMARKS_AND_METRICS.md`, `docs/reference/L1_VERIFIER.md`, `docs/project/D2_WORK_ITEMS.md`, `docs/guides/HUMAN_AUDIT_GUIDE.md`, `docs/project/TEAM_INPUTS_D2.md` | Current. |
 
 **Build commands:**
 - `make report_d2` builds the report and `make -B slides_d2` builds the slides. The Make target names kept their old spelling on purpose.
@@ -81,7 +81,7 @@ All CIs of the system effect and the model effect exclude 0.
 
 **Findings to keep honest:**
 - **Verifier and reranker do not raise strict success.** The variant with neither is highest (4B: 70.0 / 62.0).
-- **L1 reduces answers the judge marks as contradicted** (e.g. 2B labour 38 → 19) and raises precision for 2B. The mechanism and numbers are in `docs/L1_VERIFIER.md`.
+- **L1 reduces answers the judge marks as contradicted** (e.g. 2B labour 38 → 19) and raises precision for 2B. The mechanism and numbers are in `docs/reference/L1_VERIFIER.md`.
 - **The reranker only helped v3.** It raised Recall@5 on labour by 15.6 points. In r2, retrieval is saturated (Recall@5 ≈ 0.99).
 - **Baselines for 4B:** oracle 82.2 / 75.6; closed-book 2.0 / 24.0.
 
@@ -130,6 +130,24 @@ All CIs of the system effect and the model effect exclude 0.
   - Tests with the controller and reranker servers up: 427 passed, 2 skipped, 1 failed. The failure is `test_real_native_end_to_end`, which needs Ollama on :11434. Without servers, only connection errors appear.
   - All servers were stopped afterwards.
 
+### 3.8a Documentation layout (added 02:15 +07)
+- **New layout:** `docs/` is organised by document type. There is an index at `docs/README.md` with the conventions, and these folders:
+  - `guides/`: how-to documents.
+  - `reference/`: stable descriptions of the current system.
+  - `design/`: component design notes, moved out of `plans/`.
+  - `plans/`: plans and proposals.
+  - `reviews/`: dated records, unchanged.
+  - `project/`: work items, team inputs and `handoffs/`.
+  - `images/` and `materials/`: unchanged.
+- **Why `materials/` stays:** the hash-locked corpora in `data/corpus/` point into it, so moving it would change locked data.
+- **Moves and references:** files were moved with `git mv` and references rewritten by path mapping. Inside `src/`, `config/` and `evaluation/`, only comments and one preflight message string changed.
+- **Pin for that change:** those files are in the collection fingerprint, so the last `current` run (`d2-mac-latency-v3sys-v1`, not used in the report) was first pinned to its own commit `cdb6b24`. The registry verified the pin.
+- **Checks:**
+  - `make runs`: pinned 9, stale 6, historical 20, nothing else changed.
+  - `make report-check`: OK.
+  - Server-free tests: pass. The only 2 errors need the controller server on :8081.
+  - Broken relative links: only the 2 that were already broken before.
+
 ### 3.8 Report and slides style
 - **Audience:** the lecturer, so lecturer-facing wording ("initial system / current system", "no verifier / verifier / verifier + reranker"), with no internal labels (v3, r2, run ids, paths) and no source paths.
 - **Format:** few tables and visual figures (architecture TikZ, trace, UI screenshot, bar chart). Mac latency is given in prose.
@@ -145,7 +163,7 @@ All CIs of the system effect and the model effect exclude 0.
 - **Judge versus humans:** the team's human audit (60 packets) is still missing, so all correctness numbers are LLM estimates until κ is known. Packets are in `evaluation/runs/d2-gpu-r2-4b-{hcmut,labour}-v1/analysis/human-audit/`.
 - **Benchmarks are easy for retrieval** (Recall@5 ≈ 0.99 in r2). A harder benchmark is proposed in `docs/plans/BENCHMARK_V2_PROPOSAL.md` but not started.
 - **Not evaluated:** L2 NLI and dense embeddings exist in code. Ablations are planned for the final report.
-- **Stale planning figure:** `docs/HANDOFF_2026-10-24.md` line ~163 says "≈USD 0.7 per run". `REPRODUCE_D2.md` already flags it.
+- **Stale planning figure:** `docs/project/handoffs/HANDOFF_2026-10-24.md` line ~163 says "≈USD 0.7 per run". `REPRODUCE_D2.md` already flags it.
 - **Broken links:** two links in `deliverables/d2/report/D2_GAP_REVIEW.md` point to files that were already missing before the move.
 - **Ignored audit logs:** the demo audit logs `data/demo_*audit_log*.jsonl` are now gitignored.
 - **4B latency tail:** 4B can take 70–90 s on about 1 in 20 questions. The slides and demo script say so; keep 2B as a faster fallback window.

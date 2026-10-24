@@ -2,7 +2,7 @@
 
 A ruleset turns normalised text into a tree of `Node`s (hierarchical rulesets) or into a flat list of character
 spans (the paragraph/size ruleset). Rulesets are registered by name (`register_ruleset`) so a new domain can add
-its own without touching shared code; see docs/plans/ingestion.md.
+its own without touching shared code; see docs/design/ingestion.md.
 
 Built-in rulesets
   vi_legal           Vietnamese regulatory text: Phần / Chương / Mục / Điều N / khoản "1." / điểm "a)" / Phụ lục

@@ -1,7 +1,7 @@
 # Wiring of the model components into the application
 
 Status: implemented and tested (`tests/test_wiring.py`, real components only; see "Tests"). The stand-alone components are described in
-`docs/plans/model-components.md` (rerankers, NLI), `docs/plans/indexing.md` (hybrid index) and `docs/plans/ingestion.md`.
+`docs/design/model-components.md` (rerankers, NLI), `docs/design/indexing.md` (hybrid index) and `docs/design/ingestion.md`.
 Everything is off by default: `config/config.yaml` and the frozen `config/d2_native.yaml` behave exactly as before (pinned by digests of the search-tool output).
 
 ## Config keys (all optional; defaults = previous behaviour)

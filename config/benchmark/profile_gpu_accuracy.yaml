@@ -10,12 +10,12 @@ record_memory: false
 trial_timeout_seconds: 300   # hard watchdog per trial; the agent's own wall budget is 180 s and each request times out at 60 s
 warmup_trials: 1
 # Reranker runtime for variants that rerank (l1_rerank): torch fp16 cross-encoder on CUDA, weights loaded from the local
-# Hugging Face cache only (pre-download them: docs/RUNBOOK_D2.md). One copy per worker, all on the visible GPU.
+# Hugging Face cache only (pre-download them: docs/guides/RUNBOOK_D2.md). One copy per worker, all on the visible GPU.
 reranker:
   backend: cross_encoder
   model: "${RERANKER_MODEL_DIR:-AITeamVN/Vietnamese_Reranker}"   # RERANKER_MODEL_DIR = a local dir downloaded at the pinned revision (RUNBOOK)
   device: cuda
   dtype: float16
-  batch_size: 1                # bs16 was less faithful to the fp32 reference (min Spearman 0.886 vs 0.960), docs/plans/reranker.md
+  batch_size: 1                # bs16 was less faithful to the fp32 reference (min Spearman 0.886 vs 0.960), docs/design/reranker.md
   local_files_only: true
 description: N concurrent workers (one agent per worker), CUDA reranker. Accuracy and retrieval metrics only; latency not reportable.

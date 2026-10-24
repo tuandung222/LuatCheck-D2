@@ -23,6 +23,7 @@ pinned:
   - {run: d2-gpu-r2-4b-labour-v1, commit: cdb6b24, reason: "chosen D2 system runs (post-hoc revision r2, harness 1.2.0); frozen as reported"}
   - {run: d2-mac-latency-r2-4b-l1rr-v1, commit: 8cdd28d, reason: "Mac latency of the chosen system (verifier + reranker); frozen as reported"}
   - {run: d2-mac-latency-r2-2b-l1rr-v1, commit: 6e6e48a, reason: "Mac latency of the chosen system (verifier + reranker); frozen as reported"}
+  - {run: d2-mac-latency-v3sys-v1, commit: cdb6b24, reason: "Mac latency of the initial system (v3, Bonsai 2B); frozen so documentation-only commits that touch harness comments cannot stale it"}
 
 remote:
   # Earlier attempts of the GPU matrix on server 82 (crashed / re-started / re-launched); only the v3 runs were synced back. Kept for the record, never report evidence.

@@ -1,5 +1,5 @@
 """Domain-general document ingestion: PDF/DOCX/HTML/Markdown/text -> normalised text -> structure-aware chunks
--> validated corpus JSON + manifest. See docs/plans/ingestion.md."""
+-> validated corpus JSON + manifest. See docs/design/ingestion.md."""
 
 __version__ = "0.1.0"
 

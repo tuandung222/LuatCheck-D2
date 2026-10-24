@@ -9,7 +9,7 @@ HTTP embedding providers are exercised against the Ollama server already running
 has a chat model, which that server refuses to embed with, so the error path is tested against it; the success
 path is skipped (with the reason) unless an embedding-capable model is installed.
 
-Measured numbers are written to data/index/test_run_metrics.json for docs/plans/indexing.md.
+Measured numbers are written to data/index/test_run_metrics.json for docs/design/indexing.md.
 """
 from __future__ import annotations
 

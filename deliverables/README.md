@@ -30,4 +30,4 @@ Everything that is handed in for the course (CO5151) lives under this folder, on
 | D3 draft | `make report_d3` | `d3/report/main_d3.pdf` |
 | Report provenance check | `make report-check` (also lists the freshness of every run; rewrites `d2/report/RESULTS_PROVENANCE.md`) | exit code 0 = every result table comes from a current or pinned main run |
 
-The D2 demo is started with `make demo-web` (see `d2/demo/DEMO_SCRIPT.md`); all numbers in the report are reproduced step by step in [`../docs/REPRODUCE_D2.md`](../docs/REPRODUCE_D2.md).
+The D2 demo is started with `make demo-web` (see `d2/demo/DEMO_SCRIPT.md`); all numbers in the report are reproduced step by step in [`../docs/guides/REPRODUCE_D2.md`](../docs/guides/REPRODUCE_D2.md).

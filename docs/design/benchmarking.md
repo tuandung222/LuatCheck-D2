@@ -1,6 +1,6 @@
 # D2 benchmarking: matrix runner, judge, analysis, tables
 
-Updated 2026-10-23 22:35 +07. Step-by-step operation: `docs/RUNBOOK_D2.md`. Metric definitions and the review of the D2 scenario: `docs/reviews/metrics_review_2026-10-23.md`.
+Updated 2026-10-23 22:35 +07. Step-by-step operation: `docs/guides/RUNBOOK_D2.md`. Metric definitions and the review of the D2 scenario: `docs/reviews/metrics_review_2026-10-23.md`.
 Benchmark quality caveats (saturated retrieval, closed-book guessable items): `docs/reviews/benchmark_quality_2026-10-23.md`.
 
 One command runs the whole matrix (benchmark x variant x seed) on real native inference, judges it and renders the tables:
@@ -116,4 +116,4 @@ The frozen v3 runs (Bonsai 2B, commit 957579b) are the pre-planned result and ar
 `config/benchmark/model_prism_gguf{2b,4b}_r2.yaml`) was designed after those results were seen on the same tasks, so its runs (`d2-gpu-r2-{2b,4b}-{hcmut,labour}-v1`,
 matrix `config/benchmark/d2_matrix_r2.yaml`) are `kind: main` with `protocol: r2-posthoc`, and every table and RUN_NOTES prints "post-hoc revision evaluated on the same tasks".
 Comparison (`run_d2.py compare --arm ...`, `evaluation/compare_runs.py`): system effect = r2-2B - v3-2B, model effect = r2-4B - r2-2B, paired task-level bootstrap with seeds averaged.
-Clean confirmation of the revision belongs to benchmark v2 (D3). Launch commands: `docs/RUNBOOK_D2.md` section F.
+Clean confirmation of the revision belongs to benchmark v2 (D3). Launch commands: `docs/guides/RUNBOOK_D2.md` section F.

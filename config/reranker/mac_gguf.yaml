@@ -1,7 +1,7 @@
 # Reranker for the Mac (demo + latency): AITeamVN/Vietnamese_Reranker @ f536976 as GGUF on a loopback llama.cpp server.
 # Weights: scripts/reranker/build_gguf.sh   Server: scripts/reranker/serve_mac.sh f16   (127.0.0.1:8082; Q8_0 = smaller, less faithful)
 # Merge under the app/benchmark config (it is exactly the `retrieval.reranker` block of AppConfig / RerankerConfig).
-# Same input policy as config/reranker/gpu_cuda.yaml (see docs/plans/reranker.md): candidates longer than chunk_chars
+# Same input policy as config/reranker/gpu_cuda.yaml (see docs/design/reranker.md): candidates longer than chunk_chars
 # characters are scored window by window (max window score = document score) and every (query, window) pair is capped
 # at max_length tokens, longest_first.  A missing/stopped server is an execution error, never a silent skip.
 retrieval:
@@ -15,4 +15,4 @@ retrieval:
     max_length: 1024                   # token cap per (query, window) pair, enforced client-side (server /tokenize)
     timeout_seconds: 60
     # chunk_chars / chunk_overlap_chars (policy default 1500 / 200 characters) are class defaults of LlamaCppReranker and
-    # CrossEncoderReranker; they are not RerankerConfig keys yet (see docs/plans/reranker.md, "Wiring").
+    # CrossEncoderReranker; they are not RerankerConfig keys yet (see docs/design/reranker.md, "Wiring").

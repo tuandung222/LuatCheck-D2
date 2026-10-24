@@ -35,4 +35,4 @@ llama.cpp (GGUF) and MLX after the tool-output compaction; they support the runt
 
 ## Current D2 runs (24 October 2026)
 
-No main D2 run has been collected yet. Smoke runs (`bench-smoke-*`, `report_eligible: false`) only check the pipeline. The `bll2019-*` runs are a historical Qwen2.5-3B pilot and are not used in the D2 report. Main runs will be written to `evaluation/runs/d2-*` following docs/RUNBOOK_D2.md.
+No main D2 run has been collected yet. Smoke runs (`bench-smoke-*`, `report_eligible: false`) only check the pipeline. The `bll2019-*` runs are a historical Qwen2.5-3B pilot and are not used in the D2 report. Main runs will be written to `evaluation/runs/d2-*` following docs/guides/RUNBOOK_D2.md.

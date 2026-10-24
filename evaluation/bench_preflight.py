@@ -192,7 +192,7 @@ def reranker_check(checks, plan) -> None:
                 pass
         except requests.RequestException as exc:
             _add(checks, "reranker_server_health", False, f"reranker server not reachable at {base}: {type(exc).__name__}. "
-                 "Start it first (see docs/RUNBOOK_D2.md); this tool never starts a server.", data=runtime)
+                 "Start it first (see docs/guides/RUNBOOK_D2.md); this tool never starts a server.", data=runtime)
             return
     elif rr.is_local:
         check_local_weights(checks, rr, runtime, plan)

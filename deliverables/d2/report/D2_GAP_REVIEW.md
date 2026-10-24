@@ -1,4 +1,4 @@
-> **Historical (superseded 24 October 2026).** This note describes the Qwen2.5-3B / `bll2019_v1` pilot. Current D2 status: README.md and docs/RUNBOOK_D2.md; requirements gap: docs/reviews/d2_requirements_gap_2026-10-23.md.
+> **Historical (superseded 24 October 2026).** This note describes the Qwen2.5-3B / `bll2019_v1` pilot. Current D2 status: README.md and docs/guides/RUNBOOK_D2.md; requirements gap: docs/reviews/d2_requirements_gap_2026-10-23.md.
 
 # LuatCheck - Review gap giữa project, report D2 và yêu cầu môn học
 
