@@ -1,0 +1,75 @@
+\pdfobjcompresslevel=0\relax
+\pdfminorversion=5\relax
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage[a4paper,left=19mm,right=19mm,top=22mm,bottom=22mm]{geometry}
+\usepackage{float}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage[unicode,breaklinks,plainpages=false,pdfpagelabels]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=blue!50!black,
+    urlcolor=blue!50!black,
+    pdftitle={LuatCheck: Generated Result Tables Appendix (CO5151, Group 8)},
+    pdfauthor={CO5151 Group 8}
+}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{36pt}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{%
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+        \put(0,-8){\includegraphics[width=8mm]{images/hcmut.png}}
+    \end{picture}
+    &
+    \begin{tabular}{l}
+        \textbf{\ttfamily VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY}\\
+        \textbf{\ttfamily HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY}
+    \end{tabular}
+ \end{tabular}
+}
+\fancyhead[R]{}
+\fancyfoot{}
+\fancyfoot[L]{\scriptsize\ttfamily CO5151 · Advanced Agentic Artificial Intelligence · Generated Result Tables Appendix}
+\fancyfoot[R]{\scriptsize\ttfamily Page \thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\captionsetup{font=small,labelfont=bf,aboveskip=4pt,belowskip=2pt}
+\newcommand{\pending}[1]{\textcolor{red}{\textbf{[PENDING: #1]}}}
+\renewcommand{\resizebox}[3]{\adjustbox{max width=#1}{#3}}
+\makeatletter
+\newcommand{\inputrun}[2]{\begingroup\let\lc@origlabel\label\renewcommand\label[1]{\lc@origlabel{##1-#1}}%
+  \captionsetup{font=scriptsize,labelfont=bf,aboveskip=2pt,belowskip=0pt}%
+  \renewcommand\table[1][]{\@float{table}[!htb]}\input{#2}\endgroup}
+\makeatother
+
+\begin{document}
+\section*{Supplementary Appendix: Generated Benchmark Result Tables}
+\label{sec:eval}
+The tables below are generated automatically from the recorded runs in the repository (\url{https://github.com/tuandung222/LuatCheck-D2}); a script replaces internal run identifiers with plain labels while keeping every cell value unchanged. \textbf{A.} Controller scaling comparison (Bonsai 2B vs Bonsai 4B) across both benchmarks: strict success with paired differences, then behaviour match, Recall@5, answer rate and execution-error rate. \textbf{B.} Per-benchmark result tables of the two runs with the Bonsai 4B controller.\par\medskip
+\begingroup\makeatletter\renewcommand\table[1][]{\@float{table}[H]}\makeatother
+\IfFileExists{appendix_plain/comparison.tex}{\input{appendix_plain/comparison.tex}}{\pending{comparison tables missing}}
+\endgroup
+\IfFileExists{appendix_plain/hcmut_benchmark_results.tex}{\inputrun{hcmut}{appendix_plain/hcmut_benchmark_results.tex}}{\pending{HCMUT result tables missing}}
+\IfFileExists{appendix_plain/labour_benchmark_results.tex}{\inputrun{labour}{appendix_plain/labour_benchmark_results.tex}}{\pending{Labour result tables missing}}
+\IfFileExists{appendix_plain/hcmut_benchmark_diagnostics.tex}{\inputrun{hcmut}{appendix_plain/hcmut_benchmark_diagnostics.tex}}{\pending{HCMUT behaviour tables missing}}
+\IfFileExists{appendix_plain/labour_benchmark_diagnostics.tex}{\inputrun{labour}{appendix_plain/labour_benchmark_diagnostics.tex}}{\pending{Labour behaviour tables missing}}
+\end{document}

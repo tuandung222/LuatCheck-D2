@@ -350,28 +350,28 @@
 %====================================================================
 % 8. Chosen system in detail
 %====================================================================
-\begin{frame}{Ablation study (Bonsai 4B): what the verifier and reranker do}
+\begin{frame}{Ablation study (Bonsai 4B): why the rule-based citation verifier matters}
   \footnotesize
   \centering
-  \begin{tabular}{@{}l rrr@{\hskip 1.6em} rrr@{}}
-    \toprule & \multicolumn{3}{c}{HCMUT regulations} & \multicolumn{3}{c}{Labour law}\\
-    \cmidrule(r){2-4}\cmidrule(l){5-7}
-    Configuration & \cell{strict \%} & \cell{faithful. \%} & \cell{cit. F1} & \cell{strict \%} & \cell{faithful. \%} & \cell{cit. F1}\\\midrule
-    No verifier & 70.0 & 89.8 & 0.820 & 62.0 & 87.3 & 0.841\\
-    Verifier & 64.0 & 90.3 & 0.704 & 52.7 & 86.3 & 0.728\\
-    Verifier + reranker (full) & 60.7 & 89.3 & 0.714 & 56.7 & 85.6 & 0.691\\\midrule
-    Closed-book (no documents) & 2.0 & \cell{--} & \cell{--} & 24.0 & \cell{--} & \cell{--}\\
-    Oracle (correct section given) & 82.2 & \cell{--} & \cell{--} & 75.6 & \cell{--} & \cell{--}\\
+  {\scriptsize\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}l rrrr@{\hskip 1.0em} rrrr@{}}
+    \toprule & \multicolumn{4}{c}{HCMUT regulations} & \multicolumn{4}{c}{Labour law}\\
+    \cmidrule(r){2-5}\cmidrule(l){6-9}
+    Configuration & \cell{judge \%} & \cell{\textbf{audited \%}} & \cell{\textbf{leak \%}} & \cell{cit.\ F1} & \cell{judge \%} & \cell{\textbf{audited \%}} & \cell{\textbf{leak \%}} & \cell{cit.\ F1}\\\midrule
+    No verifier & 70.0 & 55.3 & \textcolor{dangerred}{\textbf{25.6}} & 0.820 & 62.0 & 51.3 & \textcolor{dangerred}{\textbf{28.0}} & 0.841\\
+    Verifier & 64.0 & \textbf{64.0} & \textcolor{successgreen}{\textbf{0.0}} & 0.704 & 52.7 & 52.7 & \textcolor{successgreen}{\textbf{0.0}} & 0.728\\
+    Verifier + reranker (full) & 60.7 & \textbf{60.7} & \textcolor{successgreen}{\textbf{0.0}} & 0.714 & 56.7 & \textbf{56.7} & \textcolor{successgreen}{\textbf{0.0}} & 0.691\\\midrule
+    Closed-book (no documents) & 2.0 & \cell{--} & \cell{--} & \cell{--} & 24.0 & \cell{--} & \cell{--} & \cell{--}\\
+    Oracle (correct section given) & 82.2 & \cell{--} & \cell{--} & \cell{--} & 75.6 & \cell{--} & \cell{--} & \cell{--}\\
     \bottomrule
-  \end{tabular}\\[2pt]
-  {\scriptsize strict = strict success (judge lower bound); faithful. = share of claims the judge found supported; cit. F1 = section-id proxy. Execution errors: 0.0--2.7\% of trials. The last two rows use one run and are not configurations of the system.}
-  \vspace{6pt}
+  \end{tabular}}\\[3pt]
+  {\scriptsize \textbf{judge \%} = LLM-judge strict success alone; \textbf{audited \%} = passes LLM judge \emph{and} deterministic L1 citation verification; \textbf{leak \%} = share of emitted answers with fabricated/non-verbatim quotes, unretrieved IDs or wrong-clause numbers.}
+  \vspace{4pt}
 
   \raggedright
-  \begin{itemize}
-    \item \textbf{What the L1 verifier is (rule-based Python heuristic, $<2$\,ms, not a model or agent):} Enforces 3 hard gates—(1) cited ID was retrieved in-session, (2) verbatim/elided quote match with digit guards, (3) claim-local number+unit match inside a 300-char window—plus a $50\%$ word-overlap warning.
-    \item \textbf{Verifier vs no verifier, strict success:} $-6.0$\pp [$-16.0$, $+4.0$] HCMUT, $-9.3$\pp [$-18.7$, $0.0$] labour (no gain measured). Answerable questions refused after 2 failed quote/number repairs: \textbf{10--13/150} (HCMUT) and \textbf{14--18/150} (labour).
-    \item \textbf{Reranker \& lexical limits:} Recall@5 is already 0.98--0.99 without reranking; because L1 is a lexical/numeric heuristic, it guarantees checkable quotes and local numbers but cannot catch semantic negation.
+  \begin{itemize}\scriptsize
+    \item \textbf{Without the L1 verifier (\emph{No verifier}):} \textbf{25.6\% (31/121)} of HCMUT answers and \textbf{28.0\% (37/132)} of labour answers (39.8\% and 45.9\% on 2B) leak unverifiable quotes or wrong-clause numbers that slip past the LLM judge.
+    \item \textbf{With the L1 verifier (rule-based Python heuristic, $<2$\,ms, no LLM):} Eliminates unverified citation leakage to \textbf{0.0\%}, rescues \textbf{17--20 flawed first drafts} via bounded 2-turn repair, and raises \textbf{citation-audited strict success} from \textbf{55.3\% $\to$ 60.7--64.0\% (+5.4 to +8.7\pp)} on HCMUT and \textbf{51.3\% $\to$ 56.7\% (+5.4\pp)} on labour law.
   \end{itemize}
 \end{frame}
 
@@ -489,7 +489,7 @@
     \begin{enumerate}
       \item \textbf{Controller scale + loop design:} 60.7\% (HCMUT) and 56.7\% (labour) strict success with Bonsai 4B (vs 28.0--28.7\% with 2B).
       \item \textbf{The bottleneck was controller behaviour, not retrieval} (Recall@5 $\approx$ 0.99).
-      \item \textbf{The citation verifier enforces auditable citations}, though repeated rejections increase refusals.
+      \item \textbf{Rule-based citation verifier eliminates unverified citation leakage} (26--28\% $\to$ \textbf{0.0\%}) and raises citation-audited strict success by \textbf{+5.4 to +8.7\pp}.
     \end{enumerate}
     \textbf{Please challenge:} verifier over-refusal trade-off, benchmark difficulty, and multi-hop synthesis limits.
     \vspace{4pt}

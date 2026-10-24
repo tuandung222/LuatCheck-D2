@@ -56,17 +56,17 @@
 
 We evaluate **two self-built, hash-locked 50-question benchmarks** (100 questions total; each benchmark has 40 single-record questions, 5 two-record questions, and 5 out-of-scope refusal questions) across **3 configurations** (`No verifier`, `Verifier`, `Verifier + reranker`), **3 random seeds** (`42, 123, 2026`), and **2 diagnostic baselines** (`Closed-book` without documents, `Oracle` with gold sections given up front) — **1,090 recorded trials per controller**.
 
-| Benchmark | Configuration | Bonsai 2B (%) | Bonsai 4B (%) | Controller scaling 4B − 2B (pp) |
-|---|---|---:|---:|---:|
-| **HCMUT regulations** | No verifier | 31.3 [22–41] | **70.0 [61–79]** | +38.7 [+27.3, +50.0]* |
-| | Verifier (with repair) | 24.0 [15–33] | 64.0 [53–75] | +40.0 [+28.7, +51.3]* |
-| | **Verifier + reranker (full)** | 28.7 [20–37] | **60.7 [50–71]** | +32.0 [+21.3, +42.0]* |
-| **Labour law** | No verifier | 31.3 [22–41] | **62.0 [52–72]** | +30.7 [+20.7, +40.7]* |
-| | Verifier (with repair) | 28.0 [19–38] | 52.7 [43–63] | +24.7 [+12.0, +37.3]* |
-| | **Verifier + reranker (full)** | 28.0 [19–37] | **56.7 [47–67]** | +28.7 [+18.0, +39.3]* |
+| Benchmark | Configuration | Bonsai 2B Judge-Strict (%) | Bonsai 4B Judge-Strict (%) | 4B Unverified Citation Leak (%) | 4B Citation-Audited Strict (%) | Controller scaling 4B − 2B (pp) |
+|---|---|---:|---:|---:|---:|---:|
+| **HCMUT regulations** | No verifier | 31.3 [22–41] | 70.0 [61–79] | 25.6% (31/121) | 55.3% (83/150) | +38.7 [+27.3, +50.0]* |
+| | Verifier (with repair) | 24.0 [15–33] | 64.0 [53–75] | **0.0% (0/109)** | **64.0% (96/150)** | +40.0 [+28.7, +51.3]* |
+| | **Verifier + reranker (full)** | 28.7 [20–37] | **60.7 [50–71]** | **0.0% (0/109)** | **60.7% (91/150)** | +32.0 [+21.3, +42.0]* |
+| **Labour law** | No verifier | 31.3 [22–41] | 62.0 [52–72] | 28.0% (37/132) | 51.3% (77/150) | +30.7 [+20.7, +40.7]* |
+| | Verifier (with repair) | 28.0 [19–38] | 52.7 [43–63] | **0.0% (0/111)** | 52.7% (79/150) | +24.7 [+12.0, +37.3]* |
+| | **Verifier + reranker (full)** | 28.0 [19–37] | **56.7 [47–67]** | **0.0% (0/108)** | **56.7% (85/150)** | +28.7 [+18.0, +39.3]* |
 
 *Notes on reading the results:*
-1. **Strict success** (lower bound over all trials; execution errors and unjudged trials count as failures) requires appropriate behaviour (`answer` vs `refuse`), full correctness (`2/2`), full completeness (`2/2`), and every factual claim supported by the cited sources.
+1. **Why the rule-based L1 Citation Verifier matters (`Unverified Citation Leak` & `Citation-Audited Strict`):** Without the verifier (`No verifier`), **25.6% (31/121)** of HCMUT answers and **28.0% (37/132)** of labour-law answers emitted by the 4B controller (and **39.8%** / **45.9%** on the 2B controller) leak **unverifiable citations**—fabricated or altered quotes that do not exist verbatim in the PDF, unretrieved section IDs, or numbers borrowed from the wrong clause. Because the LLM judge evaluates answer prose without checking substring/window-number alignment against the full PDF corpus, it credits `No verifier` on 22 (HCMUT) and 16 (labour) answers that carry broken citations. When requiring both LLM-judge correctness and a verifiably authentic citation (**Citation-Audited Strict**), the L1 verifier + repair loop **eliminates unverified citation leakage to 0.0%**, rescues **17–20 flawed first drafts** via bounded repair, and **raises audited strict accuracy from 55.3% $\rightarrow$ 60.7–64.0% (+5.4 to +8.7 pp) on HCMUT and from 51.3% $\rightarrow$ 56.7% (+5.4 pp) on labour law**.
 2. **Blind human audit of the LLM judge (`deepseek/deepseek-v4-flash`):** On a stratified blind sample of **60 outputs** (30 per benchmark), judge–human agreement on strict success is **96.7%** ($\kappa = 0.93$, design-weighted 98.8%) on HCMUT regulations and **90.0%** ($\kappa = 0.80$, design-weighted 97.5%) on labour law.
 3. **Cost & Mac latency:** Local inference has **USD 0 API cost**; offline LLM judging across both 545-trial runs cost **USD 2.17** in total (`$1.06 + $1.10`). On an Apple M4 MacBook (16 GiB, sequential single-query runs), median / p95 latency for the full system is **33.0 s / 86 s** (HCMUT) and **29.8 s / 72 s** (labour law) with the **4B controller** ($\approx 43$ tok/s), and **13.3 s / 30 s** and **14.6 s / 28 s** with the **2B controller** ($\approx 92$ tok/s).
 

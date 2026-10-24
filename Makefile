@@ -117,7 +117,9 @@ report_d2:
 	pdflatex -interaction=nonstopmode main_d2.tex && \
 	bibtex main_d2 && \
 	pdflatex -interaction=nonstopmode main_d2.tex && \
-	pdflatex -interaction=nonstopmode main_d2.tex
+	pdflatex -interaction=nonstopmode main_d2.tex && \
+	pdflatex -interaction=nonstopmode appendix_tables.tex && \
+	pdflatex -interaction=nonstopmode appendix_tables.tex
 
 report_d3:
 	cd deliverables/d3/report && \
@@ -217,6 +219,7 @@ runs:
 	$(PYTHON) evaluation/run_d2.py registry
 
 report-check: runs
+	$(PYTHON) evaluation/check_report_provenance.py --report deliverables/d2/report/appendix_tables.tex --no-write
 	$(PYTHON) evaluation/check_report_provenance.py --report deliverables/d2/report/main_d2.tex
 
 # On a clean, pushed checkout that will be copied to a host without .git (server 82): certify it for main runs.
