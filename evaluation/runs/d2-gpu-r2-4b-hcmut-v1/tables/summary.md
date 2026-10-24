@@ -70,5 +70,5 @@ LLM-judge estimates (success, behaviour, faithfulness) are not human labels. Ret
 
 ## Judge reliability
 
-Human audit labels: PENDING (agreement and kappa are not computed without real labels).
+Human audit: {"n": 30, "percent_agreement": 0.9666666666666667, "kappa": 0.9327354260089686, "kappa_scheme": "nominal", "chance_agreement": 0.5044444444444445, "kappa_note": null, "bootstrap": {"agreement_ci95": [0.9, 1.0], "kappa_ci95": [0.7617760617760617, 1.0], "kappa_defined_in_resamples": 2000, "draws": 2000}, "weighted_percent_agreement": 0.9882121807465619, "weighted_kappa": 0.9739495368237884}
 

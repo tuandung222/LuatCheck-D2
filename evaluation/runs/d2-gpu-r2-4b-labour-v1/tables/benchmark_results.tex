@@ -11,8 +11,8 @@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 148f9ef8ccebb093be3e85ea74d5de8159e4ef9b0c8d12dec1974ef4ada5ea36
-% generated_local: 2026-10-24T19:19:10+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-labour-v1 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-labour-v1 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -29,7 +29,7 @@ Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@
  & L1{+}rerank & 150 & 56.7\,{\scriptsize[47--67]}$^{\dagger4}$ & 76.7 & 85.6 & 0.993 & 0.959 & 0.726 & 0.678 & 0.691\\
 \bottomrule
 \end{tabular}}
-\caption{\textbf{Post-hoc revision evaluated on the same tasks} (protocol r2-posthoc; the revision was designed after the frozen v3 results on these tasks were seen, so this is not a pre-planned result). Benchmark results per variant (450 real native trials; seeds 42, 123, 2026; run d2-gpu-r2-4b-labour-v1). \emph{Succ.} is the strict-success rate (behaviour appropriate, correctness and completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\% interval; execution errors count as failures and $\dagger k$ marks $k$ judge-unknown trials counted as failures. Succ., Beh., Faith. are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking enabled, effort high; model revision not pinned), \textbf{not human labels}. The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}. Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; near ceiling on these benchmarks (all cells 0.99--0.99), so they cannot separate variants); Cit. P/R/F1 are macro cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.}
+\caption{\textbf{Post-hoc revision evaluated on the same tasks} (protocol r2-posthoc; the revision was designed after the frozen v3 results on these tasks were seen, so this is not a pre-planned result). Benchmark results per variant (450 real native trials; seeds 42, 123, 2026; run d2-gpu-r2-4b-labour-v1). \emph{Succ.} is the strict-success rate (behaviour appropriate, correctness and completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\% interval; execution errors count as failures and $\dagger k$ marks $k$ judge-unknown trials counted as failures. Succ., Beh., Faith. are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking enabled, effort high; model revision not pinned), \textbf{not human labels}. Judge--human agreement on strict success over 30 human-labelled items: 90\% agreement, $\kappa$ = 0.80 (1 reviewer(s)). Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; near ceiling on these benchmarks (all cells 0.99--0.99), so they cannot separate variants); Cit. P/R/F1 are macro cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.}
 \label{tab:benchmark-main}
 \par\vspace{2pt}{\tiny\textit{Source: run d2-gpu-r2-4b-labour-v1 @ cdb6b24, harness 1.2.0, main, post-hoc revision evaluated on the same tasks.}}
 \end{table}
@@ -45,8 +45,8 @@ Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 148f9ef8ccebb093be3e85ea74d5de8159e4ef9b0c8d12dec1974ef4ada5ea36
-% generated_local: 2026-10-24T19:19:10+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-labour-v1 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-labour-v1 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -79,8 +79,8 @@ Benchmark & Variant & Ans/Ref/Clar/Err & Err.\ (\%) & Trial p50/p95 (s) & Call p
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 148f9ef8ccebb093be3e85ea74d5de8159e4ef9b0c8d12dec1974ef4ada5ea36
-% generated_local: 2026-10-24T19:19:10+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-labour-v1 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-labour-v1 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -115,8 +115,8 @@ Comparison & Scope & Tasks & $\Delta$ Succ.\ (pp) & $\Delta$ Beh.\ match (pp) & 
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 148f9ef8ccebb093be3e85ea74d5de8159e4ef9b0c8d12dec1974ef4ada5ea36
-% generated_local: 2026-10-24T19:19:10+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-labour-v1 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-labour-v1 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 \begin{table}[t]

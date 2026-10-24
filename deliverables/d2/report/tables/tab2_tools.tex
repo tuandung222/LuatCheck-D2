@@ -1,0 +1,14 @@
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: n/a descriptive tool inventory, no measured values
+\begin{tabularx}{\textwidth}{@{}L{3.3cm}L{2.2cm}L{2.5cm}Y@{}}
+\toprule Interface & State & Permission level & Enforced boundary\\\midrule
+Search and read tools (for labour law) & Implemented, used & Read-only & Return local corpus text only.\\
+Reranker (inside search) & Implemented, used & Read-only model component & Scores candidates; a failure is an execution error, never a silent fallback.\\
+Answer-memory write & Implemented, off in all runs & Reversible write & Local database write only after the verification gate.\\
+Case-saving tool of the MCP server & Implemented, blocked & Reversible write & A model caller cannot self-attest verification; the call returns blocked.\\
+Summary-sending tool & Proposal only & Irreversible write & The model-facing tool only creates a proposal; it cannot approve or execute.\\
+Trusted-UI outbox & Implemented & Irreversible write (local queue) & Needs host approval and a token bound to the payload hash; a queue receipt is not a delivery.\\
+External sender, code execution & Not implemented & Irreversible write, code execution & No e-mail or webhook transport and no code-running tool exists.\\
+\bottomrule\end{tabularx}
+\caption{Tool inventory with permission levels as classified in code.}\label{tab:tools}
+\end{table}

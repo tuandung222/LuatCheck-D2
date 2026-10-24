@@ -1,0 +1,18 @@
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: n/a plan and status table, counts are question and trial numbers defined in Section 5, not measured results
+\begin{tabularx}{\textwidth}{@{}L{4.2cm}L{1.6cm}Y@{}}
+\toprule Proposal commitment & State & Change and reason\\\midrule
+Budgeted loop, schema output, citation check & Done & Runs end to end; extended with bounded repair and better quote matching.\\
+Qwen3 4B/8B controllers, 32B comparator & Dropped & Replaced by two small ternary models (4B and 2B, Section~\ref{sec:arch}): one 16\,GiB laptop runs the demo and the benchmark model.\\
+BM25 + Qdrant dense retrieval; 200 held-out question pairs & Changed & BM25 + TF-IDF with rank fusion and a neural reranker. Dense index implemented, not evaluated. The pair mapping could not be established; two own benchmarks replace it.\\
+$\ge$10 end-to-end tasks, 3 configurations $\times$ 3 seeds & Done & 100 questions, 3 configurations $\times$ 3 seeds, 1{,}090 trials per system.\\
+Reranker (optional) & Done & In the current system; ablated in Section~\ref{sec:eval}.\\
+Semantic (NLI) check, optional & In progress & Implemented, not used in any measurement yet.\\
+Guarded summary sending, UI, audit log & Done & Changed: the model can only propose; a trusted UI approves; web UI with cited sources and agent timeline.\\
+Verifier audit, 30 pairs & Done & Changed to a blind human audit of the LLM judge (30 items per benchmark, 60 total): 96.7\% agreement ($\kappa=0.93$) on HCMUT and 90.0\% ($\kappa=0.80$) on labour law.\\
+Threat model & Done & Updated in Section~\ref{sec:threat}.\\
+First injection results & Not started & Not required at this checkpoint; planned for week 47.\\
+HR walkthrough & Not started & Scheduled for week 45 (2--8 November; owners: Quyền, Phong).\\
+\bottomrule\end{tabularx}
+\caption{Proposal commitments due at this checkpoint and their state.}\label{tab:commit}
+\end{table}

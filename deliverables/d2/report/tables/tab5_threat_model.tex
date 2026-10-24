@@ -1,0 +1,15 @@
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: n/a threat model table, no measured values
+\begin{tabularx}{\textwidth}{@{}L{3.0cm}L{6.3cm}Y@{}}
+\toprule Entry point (asset) & Mitigation & Residual risk\\\midrule
+Question, pasted document (A1, A4) & Regex guardrails (shared and per-domain patterns) before any model call, Unicode and delimiter sanitising, untrusted-text tags, fixed action space without a write action & Paraphrases bypass patterns; Vietnamese and English only; false positives; no learned classifier; not attack-tested yet.\\
+Retrieved text (A1) & Observations are tagged as tool results; the citation verifier checks ids, provenance and quotes & Tagged, not filtered: an instruction inside a source document would reach the model.\\
+Ingested documents (A3) & Offline, manual ingestion; source URL, hash and pages per record; benchmark locks hash the corpora & No signature check; trust in the official site.\\
+Memory (A1, A2) & Off in all runs and in the demo; index version, similarity, re-verification, personal-data patterns & Poisoning by an earlier user; incomplete personal-data filter.\\
+Weights, configuration, binaries (A3) & Recorded hashes and commit, identity checks before each run, loopback-only endpoints & Third-party weights and the llama.cpp fork are not audited.\\
+Judge gateway (A2) & Offline only; benchmark data only; key kept in the environment; blind packets; output validation; human audit & Candidate text could steer the judge (untested); model version not fixed.\\
+Web interface, API, outbox, long inputs (A4, A5) & Loopback bind, session cookie and CSRF token, size limits; proposal-only tools with host approval; step, tool, repair, time limits & Single-user assumption; limits turn overload into errors, not into defences.\\
+Web pages & Not applicable: there is no browsing tool. & ---\\
+\bottomrule\end{tabularx}
+\caption{Threat model by entry point. Mitigations are implementation boundaries, not measured attack effectiveness. The full-system injection tests~\citep{greshake2023indirect,debenedetti2024agentdojo} belong to the final report (planned for week 47; no attack numbers in this report).}\label{tab:threat}
+\end{table}

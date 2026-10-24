@@ -11,8 +11,8 @@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 81659ccacae4bffcf84e0c31ff13c371e7f3317934941a77a89b1ad5a8210460
-% generated_local: 2026-10-24T19:18:06+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --output deliverables/d2/report/tables_hcmut_r2_4b/benchmark_results.tex
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -29,7 +29,7 @@ Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@
  & L1{+}rerank & 150 & 60.7\,{\scriptsize[50--71]}$^{\dagger10}$ & 77.1 & 89.3 & 0.978 & 0.937 & 0.733 & 0.704 & 0.714\\
 \bottomrule
 \end{tabular}}
-\caption{\textbf{Post-hoc revision evaluated on the same tasks} (protocol r2-posthoc; the revision was designed after the frozen v3 results on these tasks were seen, so this is not a pre-planned result). Benchmark results per variant (450 real native trials; seeds 42, 123, 2026; run d2-gpu-r2-4b-hcmut-v1). \emph{Succ.} is the strict-success rate (behaviour appropriate, correctness and completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\% interval; execution errors count as failures and $\dagger k$ marks $k$ judge-unknown trials counted as failures. Succ., Beh., Faith. are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking enabled, effort high; model revision not pinned), \textbf{not human labels}. The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}. Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; near ceiling on these benchmarks (all cells 0.98--0.99), so they cannot separate variants); Cit. P/R/F1 are macro cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.}
+\caption{\textbf{Post-hoc revision evaluated on the same tasks} (protocol r2-posthoc; the revision was designed after the frozen v3 results on these tasks were seen, so this is not a pre-planned result). Benchmark results per variant (450 real native trials; seeds 42, 123, 2026; run d2-gpu-r2-4b-hcmut-v1). \emph{Succ.} is the strict-success rate (behaviour appropriate, correctness and completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\% interval; execution errors count as failures and $\dagger k$ marks $k$ judge-unknown trials counted as failures. Succ., Beh., Faith. are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking enabled, effort high; model revision not pinned), \textbf{not human labels}. Judge--human agreement on strict success over 30 human-labelled items: 97\% agreement, $\kappa$ = 0.93 (1 reviewer(s)). Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; near ceiling on these benchmarks (all cells 0.98--0.99), so they cannot separate variants); Cit. P/R/F1 are macro cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.}
 \label{tab:benchmark-main}
 \par\vspace{2pt}{\tiny\textit{Source: run d2-gpu-r2-4b-hcmut-v1 @ cdb6b24, harness 1.2.0, main, post-hoc revision evaluated on the same tasks.}}
 \end{table}
@@ -45,8 +45,8 @@ Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 81659ccacae4bffcf84e0c31ff13c371e7f3317934941a77a89b1ad5a8210460
-% generated_local: 2026-10-24T19:18:06+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --output deliverables/d2/report/tables_hcmut_r2_4b/benchmark_results.tex
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -79,8 +79,8 @@ Benchmark & Variant & Ans/Ref/Clar/Err & Err.\ (\%) & Trial p50/p95 (s) & Call p
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 81659ccacae4bffcf84e0c31ff13c371e7f3317934941a77a89b1ad5a8210460
-% generated_local: 2026-10-24T19:18:06+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --output deliverables/d2/report/tables_hcmut_r2_4b/benchmark_results.tex
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -115,8 +115,8 @@ Comparison & Scope & Tasks & $\Delta$ Succ.\ (pp) & $\Delta$ Beh.\ match (pp) & 
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 81659ccacae4bffcf84e0c31ff13c371e7f3317934941a77a89b1ad5a8210460
-% generated_local: 2026-10-24T19:18:06+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --output deliverables/d2/report/tables_hcmut_r2_4b/benchmark_results.tex
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 \begin{table}[t]

@@ -1,0 +1,13 @@
+\begin{table}[!htbp]\tabstyle
+% PROVENANCE: run=d2-gpu-r2-4b-hcmut-v1,d2-gpu-r2-4b-labour-v1 (label required by the checker, invisible: post-hoc revision evaluated on the same tasks)
+\begin{tabular}{@{}lcccc@{}}
+\toprule & \multicolumn{2}{c}{HCMUT regulations} & \multicolumn{2}{c}{Labour law}\\\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Current system, 4B controller & All 50 questions & 45 answerable & All 50 questions & 45 answerable\\\midrule
+Closed-book (no documents) & 2.0 [0--6] & 0.0 [0--0] & 24.0 [12--36] & 24.4 [13--38]\\
+No verifier, no reranker & 70.0 [61--79] & 69.6 [60--79] & 62.0 [52--72] & 60.7 [50--71]\\
+Verifier (with repair) & 64.0 [53--75] & 61.5 [50--73] & 52.7 [43--63] & 51.1 [40--62]\\
+\textbf{Verifier + reranker (full system)} & \textbf{60.7 [50--71]} & 59.3 [49--70] & \textbf{56.7 [47--67]} & 54.1 [43--64]\\
+Oracle (gold records given up front) & -- & 82.2 [71--93] & -- & 75.6 [62--87]\\
+\bottomrule\end{tabular}
+\caption{Strict success (\%, LLM-judge lower bound, 95\% interval over questions) of the current system with the 4B controller. The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic. Configurations: three seeds; closed-book and oracle: one seed. The oracle runs only on the 45 answerable questions, so the right-hand columns of each benchmark put every row on the same 45 questions.}\label{tab:main}
+\end{table}

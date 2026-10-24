@@ -462,7 +462,7 @@ export default function App() {
               {apiError && <div className="inline-alert error-alert" role="alert"><CircleAlert size={17} /><span>{apiError}</span><button onClick={() => setApiError("")} aria-label="Đóng thông báo"><X size={15} /></button></div>}
               <div className="result-grid">
                 <div className="result-left">
-                  {running && <WorkingCard elapsedMs={elapsedMs} queued={activeRun.job_status === "queued"} message={connection === "disconnected" ? "Mất kết nối sự kiện; lượt chạy vẫn thuộc worker. Tải lại trang để đọc kết quả khi xong." : "Controller 2B, tra cứu và reranker đang chạy thật trên máy này. Các bước hiện dần ở bảng bên phải."} />}
+                  {running && <WorkingCard elapsedMs={elapsedMs} queued={activeRun.job_status === "queued"} message={connection === "disconnected" ? "Mất kết nối sự kiện; lượt chạy vẫn thuộc worker. Tải lại trang để đọc kết quả khi xong." : "Controller local, tra cứu và reranker đang chạy thật trên máy này. Các bước hiện dần ở bảng bên phải."} />}
                   {finished && <SectionErrorBoundary resetKey={activeRun.run_id} onReload={() => void loadCurrentRun(activeRun.run_id)} onRecover={() => void recoverRunInput(activeRun)}>
                     <OutcomeCard run={activeRun} onRetry={() => void recoverRunInput(activeRun)} onOpenOutbox={openOutbox} onOpenSource={(id) => { openSource(id); document.getElementById("sources-anchor")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} />
                   </SectionErrorBoundary>}

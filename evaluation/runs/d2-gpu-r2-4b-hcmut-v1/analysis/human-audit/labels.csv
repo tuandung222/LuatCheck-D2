@@ -1,31 +1,31 @@
 review_id,reviewer,judgeable,behaviour_appropriate,correctness,completeness,total_claims,unsupported_claims,notes
-00b949c39d5a7d85033ed3de,,,,,,,,
-030e2b2c1d6182bb551df770,,,,,,,,
-035e154f5ddc130a5bc154f1,,,,,,,,
-04ece1b3deaeb1d8c0e11a45,,,,,,,,
-0a78f54b028710fc92cdbeb9,,,,,,,,
-0c3916e26a82fa0079692950,,,,,,,,
-0c4d30f1aa8ff7bf75d813a3,,,,,,,,
-13a8548817d5e6a982c0271a,,,,,,,,
-2a40a33107a518969d8529fa,,,,,,,,
-3371363859f58872f2f4e62d,,,,,,,,
-3489e26617d62b8a5a21940c,,,,,,,,
-39df763fb49010ae86ed0a68,,,,,,,,
-3f881b4693ebbd535f258ccd,,,,,,,,
-47f53b93990ce0260db73950,,,,,,,,
-506c6b8e9e4a4c2dc2c90493,,,,,,,,
-537e7d2bac4fb3383307d6ae,,,,,,,,
-5559a668a12c8702d6108ad4,,,,,,,,
-5cb52ef7b10a81a84c92886b,,,,,,,,
-6a5ad9bdbd3c95fac56e8013,,,,,,,,
-79bcd892447af9ea4f6d3986,,,,,,,,
-7c3cd7112d5ac8a8e3a76896,,,,,,,,
-821fc32ae3103772074e3464,,,,,,,,
-9513768079674da1ab96b0a7,,,,,,,,
-9e9b7d4d70aa9d74f7b56dcc,,,,,,,,
-a15984cee3259ae602688e5e,,,,,,,,
-b9bd152220ee0fdde7e16496,,,,,,,,
-bb9cbf039a9f4a3b0c4ee57f,,,,,,,,
-c1fa2922dfad8748f0bf0c7d,,,,,,,,
-cd45bb179ebfed740173b335,,,,,,,,
-dbec0ff316c1c8acc93417f7,,,,,,,,
+00b949c39d5a7d85033ed3de,Võ Phạm Tuấn Dũng,1,1,2,1,1,0,"Trả lời đúng vế 1 về nhiệm vụ CVHT tư vấn tín chỉ tự chọn tự do (Điều 15 khoản 4 QĐ 2977/QĐ-ĐHBK) nhưng bỏ sót hoàn toàn vế 2 trong câu trả lời về tối thiểu 9 tín chỉ tự chọn tự do đối với khóa 2025 về trước (khoản 5 Điều 12 sửa đổi bởi QĐ 1862/QĐ-ĐHBK)."
+030e2b2c1d6182bb551df770,Võ Phạm Tuấn Dũng,1,1,2,2,1,0,"Trả lời chính xác và đầy đủ: điểm đạt đối với học phần thuộc khối kiến thức tốt nghiệp đại học là từ điểm C theo điểm a khoản 14.2 Điều 14 (sửa đổi bởi khoản 4 Điều 1 QĐ 1259/QĐ-ĐHBK)."
+035e154f5ddc130a5bc154f1,Võ Phạm Tuấn Dũng,1,0,0,0,0,0,"Từ chối không hợp lệ: câu hỏi có đủ căn cứ trả lời tại khoản 3 Điều 6 Nội quy học đường (QĐ 1924/QĐ-ĐHBK) và khoản 2 Điều 15 Quy tắc ứng xử (QĐ 3408/QĐ-ĐHBK), nhưng ứng viên chỉ đọc Điều 2 rồi từ chối."
+04ece1b3deaeb1d8c0e11a45,Võ Phạm Tuấn Dũng,1,1,2,2,0,0,"Từ chối đúng phạm vi: mặc dù nhãn hành động là answered nhưng nội dung văn bản nêu rõ các quy chế học vụ không có đơn giá học phí năm 2026-2027 và hướng dẫn liên hệ bộ phận đào tạo, không bịa đặt số liệu."
+0a78f54b028710fc92cdbeb9,Võ Phạm Tuấn Dũng,1,0,0,0,1,1,"Từ chối do lỗi vòng lặp xác thực trích dẫn (verify_final) dù nguồn HCMUT_HVDT1260_Dieu_1_S5_3 quy định rõ tối đa 28 tín chỉ (gồm tối đa 10 tín chỉ dự thính)."
+0c3916e26a82fa0079692950,Võ Phạm Tuấn Dũng,1,1,1,2,7,3,"Nêu đúng yêu cầu của năm thứ ba (Tiếng Nhật 1, 2, 3, 4 hoàn thành hết năm hai) theo mục 1.c Phụ lục 1 QĐ 2749/QĐ-ĐHBK, nhưng đọc lệch dòng bảng cho năm thứ nhất và năm thứ hai và tự suy diễn chi tiết 'cuối học kỳ 2'."
+0c4d30f1aa8ff7bf75d813a3,Võ Phạm Tuấn Dũng,1,1,2,2,1,0,"Trả lời chính xác và đầy đủ theo khoản 14.3 Điều 14 sửa đổi bởi QĐ 1260/QĐ-ĐHBK: được xem xét thu nhận lại để chuyển sang hình thức vừa làm vừa học hoặc đào tạo từ xa."
+13a8548817d5e6a982c0271a,Võ Phạm Tuấn Dũng,1,1,1,2,1,1,"Từ chối đúng phạm vi vì Nội quy học đường không quy định mức phạt tiền giao thông, nhưng tự đưa thêm khẳng định sai/không có căn cứ rằng mức phạt không đội mũ bảo hiểm thuộc Bộ luật Hình sự và Nghị định 49/2016/NĐ-CP."
+2a40a33107a518969d8529fa,Võ Phạm Tuấn Dũng,1,1,2,2,1,0,"Trả lời chính xác và đầy đủ theo Bước 1 Điều 7 QĐ 2800/QĐ-ĐHBK: nộp đơn đăng ký gia hạn trước thời điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc."
+3371363859f58872f2f4e62d,Võ Phạm Tuấn Dũng,1,1,2,2,0,0,"Từ chối đúng phạm vi: xác nhận chính xác các văn bản quy chế học vụ trong cơ sở dữ liệu không quy định ngưỡng điểm trung bình học kỳ và điểm rèn luyện để xét học bổng khuyến khích học tập."
+3489e26617d62b8a5a21940c,Võ Phạm Tuấn Dũng,1,0,0,0,0,0,"Câu trả lời bị cụt ngay sau dấu hai chấm ('là:'), không đưa ra được thông tin 6 tín chỉ và học kỳ 8 dù đã trích dẫn đúng điểm e Điều 11 sửa đổi bởi QĐ 1862/QĐ-ĐHBK."
+39df763fb49010ae86ed0a68,Võ Phạm Tuấn Dũng,1,1,2,2,1,0,"Trả lời chính xác và đầy đủ theo Bước 1 Điều 7 QĐ 2800/QĐ-ĐHBK: trước thời điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc."
+3f881b4693ebbd535f258ccd,Võ Phạm Tuấn Dũng,1,0,0,0,0,0,"Từ chối không hợp lệ: khoản 3.1 Điều 3 sửa đổi bởi QĐ 1260/QĐ-ĐHBK trong corpus quy định rõ thời gian đào tạo tối đa của chương trình PFIEV là 14 học kỳ chính."
+47f53b93990ce0260db73950,Võ Phạm Tuấn Dũng,1,1,2,2,2,0,"Trả lời chính xác và đầy đủ theo khoản 5.3 Điều 5 sửa đổi bởi QĐ 1260/QĐ-ĐHBK: tổng số tín chỉ tối đa là 28 tín chỉ, trong đó tối đa 10 tín chỉ dự thính."
+506c6b8e9e4a4c2dc2c90493,Võ Phạm Tuấn Dũng,1,0,0,0,1,0,"Đáng lẽ phải từ chối vì corpus không có quy định phúc khảo điểm; ứng viên lại trả lời nhầm sang quy định gia hạn học phí 05 ngày làm việc tại Điều 7 QĐ 2800/QĐ-ĐHBK."
+537e7d2bac4fb3383307d6ae,Võ Phạm Tuấn Dũng,1,0,0,0,3,3,"Đáng lẽ phải từ chối vì corpus không có quy định phúc khảo điểm; ứng viên lại gán ghép sai thời hạn nộp hồ sơ hỗ trợ/vinh danh cuộc thi tại Điều 6 QĐ 658/QĐ-ĐHBK thành thời hạn phúc khảo điểm."
+5559a668a12c8702d6108ad4,Võ Phạm Tuấn Dũng,1,1,2,2,2,0,"Trả lời chính xác và đầy đủ cả hai vế: thời gian tối đa 16 học kỳ chính (khoản 3.1 QĐ 1260/QĐ-ĐHBK) và kết quả học tập được giữ nguyên (khoản 25.5 QĐ 1259/QĐ-ĐHBK)."
+5cb52ef7b10a81a84c92886b,Võ Phạm Tuấn Dũng,1,1,0,0,3,0,"Trả lời lạc đề: câu hỏi hỏi tỷ lệ hiện kim khen thưởng nhóm SV so với cá nhân (bằng 02 lần theo điểm d khoản 3 Điều 11 QĐ 658/QĐ-ĐHBK), nhưng ứng viên chỉ nêu ngưỡng Kpl tại Điều 5."
+6a5ad9bdbd3c95fac56e8013,Võ Phạm Tuấn Dũng,1,1,2,2,0,0,"Từ chối đúng phạm vi: nêu rõ các văn bản quy chế học vụ trong cơ sở dữ liệu không có thông tin về đơn giá học phí năm học 2026-2027."
+79bcd892447af9ea4f6d3986,Võ Phạm Tuấn Dũng,1,1,2,2,0,0,"Từ chối đúng phạm vi: xác nhận văn bản đã tra cứu không quy định về thời hạn nộp đơn phúc khảo điểm học phần."
+7c3cd7112d5ac8a8e3a76896,Võ Phạm Tuấn Dũng,1,1,2,2,1,0,"Trả lời chính xác và đầy đủ theo khoản 3.2 Điều 3 sửa đổi bởi QĐ 2282/QĐ-ĐHBK: số phiên học bố trí dạy thay của một lớp không vượt quá 20% tổng số phiên học."
+821fc32ae3103772074e3464,Võ Phạm Tuấn Dũng,1,0,0,0,1,0,"Không trả lời được câu hỏi: chỉ dẫn Điều 2 Nội quy học đường rồi từ chối trả lời căn cứ xử lý, bỏ sót khoản 3 Điều 6 Nội quy học đường (QĐ 1924) và khoản 2 Điều 15 Quy tắc ứng xử (QĐ 3408)."
+9513768079674da1ab96b0a7,Võ Phạm Tuấn Dũng,1,1,2,2,1,0,"Trả lời chính xác và đầy đủ theo khoản 3 Điều 16 QĐ 3408/QĐ-ĐHBK: xem xét, xử lý theo quy định có hiệu lực tại thời điểm xảy ra hành vi."
+9e9b7d4d70aa9d74f7b56dcc,Võ Phạm Tuấn Dũng,1,1,2,2,1,0,"Trả lời chính xác và đầy đủ theo khoản 1 Điều 12 QĐ 3408/QĐ-ĐHBK: người học sử dụng địa chỉ thư điện tử do Nhà trường cấp."
+a15984cee3259ae602688e5e,Võ Phạm Tuấn Dũng,1,1,2,2,6,0,"Trả lời chính xác và đầy đủ theo Điều 7 và khoản 1 Điều 8 QĐ 2800/QĐ-ĐHBK: nộp đơn về Phòng Công tác sinh viên; Trưởng phòng là Phó Chủ tịch Hội đồng và Phó Trưởng phòng là Thư ký."
+b9bd152220ee0fdde7e16496,Võ Phạm Tuấn Dũng,1,0,0,0,1,1,"Vi phạm nghiêm trọng: đáng lẽ phải từ chối nhưng lại bịa đặt mã điều khoản không tồn tại (HCMUT_QCDT_Dieu_12) và tự chế ngưỡng điểm trung bình 7.0, điểm rèn luyện 8.0."
+bb9cbf039a9f4a3b0c4ee57f,Võ Phạm Tuấn Dũng,1,0,0,0,0,0,"Từ chối không hợp lệ: xuất ra lập luận nội bộ về việc cần gọi công cụ search thay vì trả lời căn cứ xử lý theo Điều 6 QĐ 1924/QĐ-ĐHBK và Điều 15 QĐ 3408/QĐ-ĐHBK."
+c1fa2922dfad8748f0bf0c7d,Võ Phạm Tuấn Dũng,1,1,2,2,6,0,"Trả lời chính xác và đầy đủ theo Điều 7 và khoản 1 Điều 8 QĐ 2800/QĐ-ĐHBK: nộp đơn về Phòng Công tác sinh viên; liệt kê đúng toàn bộ chức danh trong Hội đồng xét hồ sơ."
+cd45bb179ebfed740173b335,Võ Phạm Tuấn Dũng,1,1,2,2,1,0,"Trả lời chính xác điểm đạt bắt đầu từ điểm C và trích dẫn đúng nguyên văn HCMUT_HVCHUNG1259_Dieu_1_S9_1. Việc ghi chú '(điều 4, mục a)' cho mục 4 điểm a khoản 14.2 chỉ là cách gọi vị trí đầu mục, không làm sai bản chất quy định (Judge phạt correctness=1 là quá khắt khe và thiếu nhất quán so với mẫu 030e2b2c và 7c3cd711)."
+dbec0ff316c1c8acc93417f7,Võ Phạm Tuấn Dũng,1,1,2,2,3,0,"Trả lời chính xác và đầy đủ cả 3 ý: GPA tối thiểu 2.0 thang 4 (khoản 5.5 Điều 5 QĐ 1260/QĐ-ĐHBK), mức 2,35 đạt ngưỡng, và xếp loại học lực Trung bình từ 2,00 đến cận 2,50 (khoản 15.2 Điều 15 QĐ 1259/QĐ-ĐHBK)."

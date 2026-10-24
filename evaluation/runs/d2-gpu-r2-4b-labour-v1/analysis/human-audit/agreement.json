@@ -1,0 +1,296 @@
+{
+  "run_id": "d2-gpu-r2-4b-labour-v1",
+  "sample_size": 30,
+  "label_files": [
+    "evaluation/runs/d2-gpu-r2-4b-labour-v1/analysis/human-audit/labels.csv"
+  ],
+  "min_items": 10,
+  "judge_vs_human": {
+    "judgeable": {
+      "n": 30,
+      "percent_agreement": 1.0,
+      "kappa": null,
+      "kappa_scheme": "nominal",
+      "chance_agreement": 1.0,
+      "kappa_note": "undefined: chance disagreement is zero (a rater used a single label)",
+      "bootstrap": {
+        "agreement_ci95": [
+          1.0,
+          1.0
+        ],
+        "kappa_ci95": null,
+        "kappa_defined_in_resamples": 0,
+        "draws": 2000
+      },
+      "weighted_percent_agreement": 1.0,
+      "weighted_kappa": null
+    },
+    "items_both_judgeable": 30,
+    "behaviour_appropriate": {
+      "n": 30,
+      "percent_agreement": 0.9333333333333333,
+      "kappa": 0.8421052631578947,
+      "kappa_scheme": "nominal",
+      "chance_agreement": 0.5777777777777777,
+      "kappa_note": null,
+      "bootstrap": {
+        "agreement_ci95": [
+          0.8333333333333334,
+          1.0
+        ],
+        "kappa_ci95": [
+          0.5945945945945945,
+          1.0
+        ],
+        "kappa_defined_in_resamples": 2000,
+        "draws": 2000
+      },
+      "weighted_percent_agreement": 0.9785992217898832,
+      "weighted_kappa": 0.9436889046027896
+    },
+    "all_claims_supported": {
+      "n": 30,
+      "percent_agreement": 0.9333333333333333,
+      "kappa": 0.6341463414634146,
+      "kappa_scheme": "nominal",
+      "chance_agreement": 0.8177777777777777,
+      "kappa_note": null,
+      "bootstrap": {
+        "agreement_ci95": [
+          0.8333333333333334,
+          1.0
+        ],
+        "kappa_ci95": [
+          0.0,
+          1.0
+        ],
+        "kappa_defined_in_resamples": 1974,
+        "draws": 2000
+      },
+      "weighted_percent_agreement": 0.9863813229571985,
+      "weighted_kappa": 0.7520330806340455
+    },
+    "strict_success": {
+      "n": 30,
+      "percent_agreement": 0.9,
+      "kappa": 0.8,
+      "kappa_scheme": "nominal",
+      "chance_agreement": 0.5,
+      "kappa_note": null,
+      "bootstrap": {
+        "agreement_ci95": [
+          0.7666666666666667,
+          1.0
+        ],
+        "kappa_ci95": [
+          0.5374449339207048,
+          1.0
+        ],
+        "kappa_defined_in_resamples": 2000,
+        "draws": 2000
+      },
+      "weighted_percent_agreement": 0.9747081712062257,
+      "weighted_kappa": 0.9480783874928124
+    },
+    "correctness": {
+      "n": 30,
+      "percent_agreement": 0.9,
+      "kappa": 0.8207171314741035,
+      "kappa_scheme": "nominal",
+      "chance_agreement": 0.4422222222222222,
+      "kappa_note": null,
+      "bootstrap": {
+        "agreement_ci95": [
+          0.7666666666666667,
+          1.0
+        ],
+        "kappa_ci95": [
+          0.5982014573070608,
+          1.0
+        ],
+        "kappa_defined_in_resamples": 2000,
+        "draws": 2000
+      },
+      "weighted_percent_agreement": 0.9747081712062257,
+      "weighted_kappa": 0.9472191723473329,
+      "kappa_linear_weighted": 0.8267898383371824
+    },
+    "completeness": {
+      "n": 30,
+      "percent_agreement": 0.9333333333333333,
+      "kappa": 0.8770491803278688,
+      "kappa_scheme": "nominal",
+      "chance_agreement": 0.45777777777777773,
+      "kappa_note": null,
+      "bootstrap": {
+        "agreement_ci95": [
+          0.8333333333333334,
+          1.0
+        ],
+        "kappa_ci95": [
+          0.6752716238010356,
+          1.0
+        ],
+        "kappa_defined_in_resamples": 2000,
+        "draws": 2000
+      },
+      "weighted_percent_agreement": 0.9785992217898832,
+      "weighted_kappa": 0.9582924544307813,
+      "kappa_linear_weighted": 0.8611111111111112
+    },
+    "unsupported_claims_mean_abs_difference": 0.13333333333333333,
+    "judge_strict_success_rate_on_items": 0.5,
+    "human_strict_success_rate_on_items": 0.4666666666666667
+  },
+  "per_reviewer": {
+    "Võ Phạm Tuấn Dũng": {
+      "judgeable": {
+        "n": 30,
+        "percent_agreement": 1.0,
+        "kappa": null,
+        "kappa_scheme": "nominal",
+        "chance_agreement": 1.0,
+        "kappa_note": "undefined: chance disagreement is zero (a rater used a single label)",
+        "bootstrap": {
+          "agreement_ci95": [
+            1.0,
+            1.0
+          ],
+          "kappa_ci95": null,
+          "kappa_defined_in_resamples": 0,
+          "draws": 2000
+        },
+        "weighted_percent_agreement": 1.0,
+        "weighted_kappa": null
+      },
+      "items_both_judgeable": 30,
+      "behaviour_appropriate": {
+        "n": 30,
+        "percent_agreement": 0.9333333333333333,
+        "kappa": 0.8421052631578947,
+        "kappa_scheme": "nominal",
+        "chance_agreement": 0.5777777777777777,
+        "kappa_note": null,
+        "bootstrap": {
+          "agreement_ci95": [
+            0.8333333333333334,
+            1.0
+          ],
+          "kappa_ci95": [
+            0.5945945945945945,
+            1.0
+          ],
+          "kappa_defined_in_resamples": 2000,
+          "draws": 2000
+        },
+        "weighted_percent_agreement": 0.9785992217898832,
+        "weighted_kappa": 0.9436889046027896
+      },
+      "all_claims_supported": {
+        "n": 30,
+        "percent_agreement": 0.9333333333333333,
+        "kappa": 0.6341463414634146,
+        "kappa_scheme": "nominal",
+        "chance_agreement": 0.8177777777777777,
+        "kappa_note": null,
+        "bootstrap": {
+          "agreement_ci95": [
+            0.8333333333333334,
+            1.0
+          ],
+          "kappa_ci95": [
+            0.0,
+            1.0
+          ],
+          "kappa_defined_in_resamples": 1974,
+          "draws": 2000
+        },
+        "weighted_percent_agreement": 0.9863813229571985,
+        "weighted_kappa": 0.7520330806340455
+      },
+      "strict_success": {
+        "n": 30,
+        "percent_agreement": 0.9,
+        "kappa": 0.8,
+        "kappa_scheme": "nominal",
+        "chance_agreement": 0.5,
+        "kappa_note": null,
+        "bootstrap": {
+          "agreement_ci95": [
+            0.7666666666666667,
+            1.0
+          ],
+          "kappa_ci95": [
+            0.5374449339207048,
+            1.0
+          ],
+          "kappa_defined_in_resamples": 2000,
+          "draws": 2000
+        },
+        "weighted_percent_agreement": 0.9747081712062257,
+        "weighted_kappa": 0.9480783874928124
+      },
+      "correctness": {
+        "n": 30,
+        "percent_agreement": 0.9,
+        "kappa": 0.8207171314741035,
+        "kappa_scheme": "nominal",
+        "chance_agreement": 0.4422222222222222,
+        "kappa_note": null,
+        "bootstrap": {
+          "agreement_ci95": [
+            0.7666666666666667,
+            1.0
+          ],
+          "kappa_ci95": [
+            0.5982014573070608,
+            1.0
+          ],
+          "kappa_defined_in_resamples": 2000,
+          "draws": 2000
+        },
+        "weighted_percent_agreement": 0.9747081712062257,
+        "weighted_kappa": 0.9472191723473329,
+        "kappa_linear_weighted": 0.8267898383371824
+      },
+      "completeness": {
+        "n": 30,
+        "percent_agreement": 0.9333333333333333,
+        "kappa": 0.8770491803278688,
+        "kappa_scheme": "nominal",
+        "chance_agreement": 0.45777777777777773,
+        "kappa_note": null,
+        "bootstrap": {
+          "agreement_ci95": [
+            0.8333333333333334,
+            1.0
+          ],
+          "kappa_ci95": [
+            0.6752716238010356,
+            1.0
+          ],
+          "kappa_defined_in_resamples": 2000,
+          "draws": 2000
+        },
+        "weighted_percent_agreement": 0.9785992217898832,
+        "weighted_kappa": 0.9582924544307813,
+        "kappa_linear_weighted": 0.8611111111111112
+      },
+      "unsupported_claims_mean_abs_difference": 0.13333333333333333,
+      "judge_strict_success_rate_on_items": 0.5,
+      "human_strict_success_rate_on_items": 0.4666666666666667
+    }
+  },
+  "human_vs_human": null,
+  "note": "Agreement of the LLM judge with people on a stratified sample; not a population estimate unless the weighted figures are used.",
+  "problems": [],
+  "blank_rows": 0,
+  "label_rows_valid": 30,
+  "labelled_items": 30,
+  "coverage": 1.0,
+  "reviewers": {
+    "Võ Phạm Tuấn Dũng": 30
+  },
+  "status": "ok",
+  "weights_available": true
+}

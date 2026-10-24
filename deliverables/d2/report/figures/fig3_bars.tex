@@ -1,0 +1,52 @@
+\begin{figure}[!tbp]\centering
+% PROVENANCE: comparison=evaluation/comparisons/v3-2B_vs_r2-2B_vs_r2-4B (comparison.json: table.<benchmark>.<variant>.arms.<arm>.strict_success and strict_success_ci95, 3 variants x 2 benchmarks x 3 arms)
+\begin{tikzpicture}
+\pgfplotsset{barax/.style={ybar,bar width=6.5pt,width=8.0cm,height=5.0cm,ymin=0,ymax=100,ytick={0,20,40,60,80,100},
+  ymajorgrids,grid style={black!12},tick label style={font=\scriptsize},label style={font=\small},title style={font=\small\bfseries,yshift=-2pt},
+  symbolic x coords={off,l1,lrr},xtick=data,xticklabels={no verifier,verifier,verifier + reranker},xticklabel style={align=center,text width=1.55cm,font=\scriptsize},enlarge x limits=0.22,
+  error bars/y dir=both,error bars/y explicit,error bars/error bar style={black!80,line width=0.5pt}}}
+\begin{axis}[barax,title={HCMUT regulations},ylabel={Strict success (\%)},legend to name=barlegend,legend columns=3,legend style={font=\scriptsize,draw=none,column sep=8pt}]
+\addplot+[fill=cV,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 18.0 8.0 7.3
+l1 12.0 6.0 5.3
+lrr 14.0 7.3 6.0
+};
+\addplot+[fill=cR2,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 31.3 10.0 9.3
+l1 24.0 9.3 8.7
+lrr 28.7 8.7 8.7
+};
+\addplot+[fill=cR4,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 70.0 9.3 9.3
+l1 64.0 10.7 11.3
+lrr 60.7 10.0 10.7
+};
+\legend{{Initial system, 2B},{Current system, 2B},{Current system, 4B}}
+\end{axis}
+\begin{axis}[barax,title={Labour law},at={(9.0cm,0)},yticklabels={}]
+\addplot+[fill=cV,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 14.7 8.0 7.3
+l1 14.7 8.0 7.3
+lrr 18.7 8.0 7.3
+};
+\addplot+[fill=cR2,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 31.3 9.3 9.3
+l1 28.0 10.0 9.3
+lrr 28.0 9.3 9.3
+};
+\addplot+[fill=cR4,draw=black!55] table[x=v,y=y,y error plus=p,y error minus=m] {
+v y p m
+off 62.0 10.0 10.0
+l1 52.7 10.7 10.0
+lrr 56.7 10.0 10.0
+};
+\end{axis}
+\end{tikzpicture}\\[1pt]
+\pgfplotslegendfromname{barlegend}
+\caption{Strict success (LLM-judge lower bound; bars: mean over three seeds; whiskers: 95\% interval over the 50 questions) for the initial system with the 2B controller and the current system with the 2B and 4B controllers. The right-most group, verifier + reranker, is the full system; with the 4B controller it is the current system we propose. The current system was revised after we analysed the initial system's failures on these same questions.}\label{fig:bars}
+\end{figure}

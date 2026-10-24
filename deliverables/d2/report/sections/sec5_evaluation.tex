@@ -1,0 +1,41 @@
+\hdr{Benchmarks.} Each self-built benchmark has 50 Vietnamese questions over its corpus (100 now; final target adds 50--100 unseen harder questions and $\ge$30 attack cases, Section~\ref{sec:plan}): 40 single-record, 5 two-record and 5 out-of-scope questions to refuse. Each comes with gold records, a reference answer and verbatim quotes, locked by hash before collection.
+
+An AI model drafted the questions; two independent AI verifiers and an AI adjudicator cross-checked them; mechanical checks confirmed that every quote is verbatim. Then group member Võ Phạm Tuấn Dũng reviewed all 100 questions on 23 October and requested no change. They are AI-written questions over real documents, not real users' questions. A quality audit found no wrong gold answer and three limits:
+\begin{itemize}
+\item plain BM25 on the raw question already ranks a gold record first for 89\% (HCMUT regulations) and 78\% (labour law) of questions, so retrieval cannot separate the configurations;
+\item about one third of the answerable questions can be answered without the corpus (LLM estimate);
+\item 22 HCMUT questions pin a document by a decision number taken from a web listing.
+\end{itemize}
+
+\hdr{How success is decided.} \emph{Strict success} counts a trial only if the run completed, the behaviour was appropriate (answer when the corpus answers, refuse when it does not), the answer is judged correct and complete, and every factual claim is supported by the sources. Execution errors and failed judgments count as failures, so the rate is a lower bound over all planned trials. It is an LLM estimate, not a human label.
+
+Three measures need no judge: behaviour match, over-refusal and unsafe answers. Recall@5 (are the gold documents among the agent's results?) and citation F1 (are the cited documents the gold ones?) are measured on document ids. They say nothing about answer correctness. Intervals are 95\% bootstrap intervals over questions, with the three seeds averaged per question. With 50 questions, differences below about 10 percentage points are not detectable. Definitions are in the repository.
+
+\hdr{LLM judge and its check.} An LLM judge (DeepSeek V4 Flash, through an API gateway) rates each output blind to the configuration and verifier outcome (offline only; model revision not fixed~\citep{deepseek2026api}; LLM judges can be biased~\citep{zheng2023judge}). On a blind 60-item human audit (30 per benchmark, current 4B outputs), strict-success agreement is 96.7\% (29/30, $\kappa = 0.93$; weighted 98.8\%, $\kappa_w = 0.97$) on HCMUT and 90.0\% (27/30, $\kappa = 0.80$; weighted 97.5\%, $\kappa_w = 0.95$) on labour law; behaviour agreement is 100.0\% and 93.3\% ($\kappa=0.84$). All four disagreements are documented in the repository. Separating correctness from citation support follows~\citet{gao2023alce}.
+
+\hdr{Design.} The full system (verifier and reranker) is compared with two simpler configurations: \emph{no verifier} (neither verifier nor reranker) and \emph{verifier} (verifier with repair, no reranker). Each runs three seeds on 50 questions per benchmark.
+
+Two diagnostic baselines (one seed; they are not system variants) bracket the results: \emph{closed-book} (the question only, no tools or documents) and \emph{oracle} (the gold records given up front, answerable questions only). One controller thus has 900 system trials plus 190 baseline trials, 1{,}090 in all, every one recorded. The initial system and the current system with the 2B controller were run the same way. Accuracy was collected on a shared server GPU (one NVIDIA H100). Latency is measured separately on an Apple M4 laptop (16\,GiB), one query at a time.
+
+\input{figures/fig3_bars}
+
+\hdr{What the numbers say.}\par\noindent\textbf{(1) Model size and revision both matter, and the model matters more} (Figure~\ref{fig:bars}). For the full system, strict success is 60.7\% [50--71] on HCMUT regulations and 56.7\% [47--67] on labour law with the 4B controller. With the 2B controller it is 28.7\% and 28.0\%, and for the initial system 14.0\% and 18.7\%.
+
+Swapping the controller from 2B to 4B adds 32.0 points [21.3, 42.0] and 28.7 [18.0, 39.3]. The revision alone, initial to current system at 2B, adds 14.7 [6.0, 23.3] and 9.3 [0.7, 18.0]. These are paired differences with 95\% intervals; all twelve paired differences across the three configurations exclude zero. Full tables are in the appendix.
+
+\par\noindent\textbf{(2) The verifier and the reranker did not raise strict success.} In Table~\ref{tab:main}, the configuration without verifier is highest (70.0\% and 62.0\%). Adding the verifier changes strict success by $-6.0$ [$-16.0$, $+4.0$] and $-9.3$ [$-18.7$, $0.0$] points. Adding the reranker on top of the verifier changes it by $-3.3$ [$-13.3$, $+6.7$] and $+4.0$ [$-6.0$, $+14.0$].
+
+Table~\ref{tab:diag} shows why: both make the system refuse more, because an answer the verifier rejects twice ends as a refusal (10 to 18 of 150 trials per configuration, always on questions where an answer was expected). Unsafe answers on the 15 out-of-scope trials per row do not fall consistently, from a very small base. Recall@5 is already 0.98--0.99 without the reranker. The full system keeps both components for the guarantee of a checkable citation. The final report tests on a harder, unseen set of questions whether the cost in refusals is justified.
+
+\input{tables/tab3_main_results}
+\input{tables/tab4_diagnostics}
+
+\par\noindent\textbf{(3) Baselines.} Without documents the 4B model scores 2.0\% [0--6] on HCMUT regulations and 24.0\% [12--36] on labour law, so part of the labour-law score can come from the model's own knowledge. With the gold records in front of it, the oracle reaches 82.2\% [71--93] and 75.6\% [62--87] on the answerable questions. Even with perfect evidence the 4B controller misses strict success on about one question in five, against 69.6\% and 60.7\% for the agent without verifier on the same questions. 17 of 1,090 trials ended as execution errors (wall-time limit); they count as failures.
+
+\hdr{How to read the gain.} The initial system was frozen and run before any change. The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic; we will confirm them on a new set of questions for the final report. The gains show that the diagnosed problems were real and fixable, not how the system will perform on unseen questions.
+
+Other limits: success is an LLM-judge estimate (checked on a 60-item sample); the benchmarks are AI-written, easy for retrieval, and partly answerable without documents; three seeds add no questions, so intervals are over 50 questions.
+
+\hdr{Cost and latency.} The controller and reranker run locally, so there is no per-call API cost. For the full system the controller reads on average 12,070 (HCMUT regulations) and 11,477 (labour law) tokens and writes 763 and 865 tokens per trial, over 3.4 and 3.7 model calls. The judge cost, as reported by the gateway and not an invoice, was USD 1.06 and USD 1.10 for the two 545-trial runs. Collecting a run took 34 and 33 minutes of wall time on the shared H100 (GPU-active hours were not measured). On the laptop (Apple M4, one question at a time, 50 questions per benchmark), the full system answers in a median of 33.0\,s (HCMUT regulations) and 29.8\,s (labour law) per question with the 4B controller (95th percentile 86\,s and 72\,s), and in 13.3\,s and 14.6\,s with the 2B controller (95th percentile 30\,s and 28\,s); the 4B model generates about 43 tokens/s, the 2B about 92.
+
+\hdr{Reproducibility.} Repository: \url{https://github.com/tuandung222/LuatCheck-D2}; reported commit \texttt{d74144099016}. All numbers and tables are regenerated from recorded runs by one command (\texttt{make report-check}); instructions are in the repository.

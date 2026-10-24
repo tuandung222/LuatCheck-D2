@@ -11,8 +11,8 @@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 81659ccacae4bffcf84e0c31ff13c371e7f3317934941a77a89b1ad5a8210460
-% generated_local: 2026-10-24T19:18:06+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --output deliverables/d2/report/tables_hcmut_r2_4b/benchmark_results.tex
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 % protocol label (kept for evaluation/check_report_provenance.py): post-hoc revision evaluated on the same tasks
@@ -30,7 +30,7 @@ Benchmark & Configuration & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & R
  & verifier + reranker & 150 & 60.7\,{\scriptsize[50--71]}$^{\dagger10}$ & 77.1 & 89.3 & 0.978 & 0.937 & 0.733 & 0.704 & 0.714\\
 \bottomrule
 \end{tabular}}
-\caption{\textbf{Results of the current system with the 4B controller on the HCMUT regulations benchmark}, three configurations (450 trials; random seeds 42, 123, 2026). The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic (Section~\ref{sec:eval}). \emph{Succ.} is strict success (appropriate behaviour, correctness and completeness both full, every claim supported): a lower bound over all trials, with a 95\% bootstrap interval over questions; execution errors count as failures, and $\dagger k$ marks $k$ trials the judge could not rate, also counted as failures. Succ., Beh. (behaviour match) and Faith. (faithfulness) are estimates by the LLM judge of Section~\ref{sec:eval}, \textbf{not human labels}. The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}. Recall@5 and MRR measure whether the gold documents appear in the agent's search and read results (answerable questions; all cells are 0.98--0.99, so they cannot separate the configurations). Cit. P/R/F1 compare the cited document ids with the gold ids (nothing cited counts as 0); they are measured on document ids and say nothing about answer correctness. Red entries are not measured.}
+\caption{\textbf{Results of the current system with the 4B controller on the HCMUT regulations benchmark}, three configurations (450 trials; random seeds 42, 123, 2026). The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic (Section~\ref{sec:eval}). \emph{Succ.} is strict success (appropriate behaviour, correctness and completeness both full, every claim supported): a lower bound over all trials, with a 95\% bootstrap interval over questions; execution errors count as failures, and $\dagger k$ marks $k$ trials the judge could not rate, also counted as failures. Succ., Beh. (behaviour match) and Faith. (faithfulness) are estimates by the LLM judge of Section~\ref{sec:eval}, \textbf{not human labels}. Judge--human agreement on strict success over 30 human-labelled items: 97\% agreement, $\kappa$ = 0.93 (1 reviewer(s)). Recall@5 and MRR measure whether the gold documents appear in the agent's search and read results (answerable questions; all cells are 0.98--0.99, so they cannot separate the configurations). Cit. P/R/F1 compare the cited document ids with the gold ids (nothing cited counts as 0); they are measured on document ids and say nothing about answer correctness. Red entries are not measured.}
 \label{tab:benchmark-main}
 \end{table}
 
@@ -45,8 +45,8 @@ Benchmark & Configuration & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & R
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 81659ccacae4bffcf84e0c31ff13c371e7f3317934941a77a89b1ad5a8210460
-% generated_local: 2026-10-24T19:18:06+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --output deliverables/d2/report/tables_hcmut_r2_4b/benchmark_results.tex
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 % protocol label (kept for evaluation/check_report_provenance.py): post-hoc revision evaluated on the same tasks
@@ -79,8 +79,8 @@ Benchmark & Configuration & Ans/Ref/Clar/Err & Err.\ (\%) & Trial p50/p95 (s) & 
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 81659ccacae4bffcf84e0c31ff13c371e7f3317934941a77a89b1ad5a8210460
-% generated_local: 2026-10-24T19:18:06+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --output deliverables/d2/report/tables_hcmut_r2_4b/benchmark_results.tex
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 % protocol label (kept for evaluation/check_report_provenance.py): post-hoc revision evaluated on the same tasks
@@ -115,8 +115,8 @@ Comparison & Scope & Tasks & $\Delta$ Succ.\ (pp) & $\Delta$ Beh.\ match (pp) & 
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 81659ccacae4bffcf84e0c31ff13c371e7f3317934941a77a89b1ad5a8210460
-% generated_local: 2026-10-24T19:18:06+07:00
-% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
+% generated_local: 2026-10-25T03:50:38+07:00
+% generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-r2-4b-hcmut-v1 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --output deliverables/d2/report/tables_hcmut_r2_4b/benchmark_results.tex
 % protocol: r2-posthoc
 % === END PROVENANCE ===
 % protocol label (kept for evaluation/check_report_provenance.py): post-hoc revision evaluated on the same tasks

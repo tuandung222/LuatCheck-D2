@@ -174,8 +174,27 @@ def check_compare_blocks(text: str, name: str, problems: List[str], runs_dir: Pa
     return rows
 
 
+def expand_modular_inputs(tex: str, base: Path, seen: Optional[set] = None) -> str:
+    """Inline-expand modular section/table/figure \\input{...} files that do not carry renderer provenance blocks."""
+    if seen is None:
+        seen = set()
+    def _replace(match: re.Match) -> str:
+        name = match.group(1).strip()
+        if "#" in name:
+            return match.group(0)
+        direct = base / name
+        path = direct if direct.is_file() else base / (name if name.endswith(".tex") else name + ".tex")
+        if not path.is_file() or path in seen:
+            return match.group(0)
+        sub = path.read_text(encoding="utf-8")
+        if MARK_START in sub or CMP_START in sub:
+            return match.group(0)
+        return expand_modular_inputs(sub, base, seen | {path})
+    return re.sub(r"\\input\{([^}]+)\}", _replace, tex)
+
+
 def check(report: Path, runs_dir: Path = Path("evaluation/runs")) -> Dict[str, Any]:
-    tex = report.read_text(encoding="utf-8")
+    tex = expand_modular_inputs(report.read_text(encoding="utf-8"), report.parent)
     base = report.parent
     problems: List[str] = []
     notes: List[str] = []

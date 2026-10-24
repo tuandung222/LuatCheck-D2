@@ -8,18 +8,18 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 
 | # | Slide | Time | Cumulative | Speaker |
 |---|---|---|---|---|
-| 1 | Title and problem | 0:20 | 0:20 | [PENDING] |
-| 2 | What changed since the proposal | 0:45 | 1:05 | [PENDING] |
-| 3 | Architecture | 0:55 | 2:00 | [PENDING] |
-| 4 | Trace of one real question | 0:45 | 2:45 | [PENDING] |
-| 5 | Live demo | 2:30 | 5:15 | [PENDING] (a second member drives) |
-| 6 | Evaluation design and judge | 0:45 | 6:00 | [PENDING] |
-| 7 | First numbers (chart) | 0:55 | 6:55 | [PENDING] |
-| 8 | Current system in detail (verifier, reranker) | 0:35 | 7:30 | [PENDING] |
-| 9 | Cost, latency, parity | 0:40 | 8:10 | [PENDING] |
-| 10 | Threat model | 0:50 | 9:00 | [PENDING] |
-| 11 | Plan, risks, status | 0:35 | 9:35 | [PENDING] |
-| 12 | Team and takeaways | 0:25 | 10:00 | [PENDING] |
+| 1 | Title and problem | 0:20 | 0:20 | Lê Trí Quyền |
+| 2 | What changed since the proposal | 0:45 | 1:05 | Lê Trí Quyền |
+| 3 | Architecture | 0:55 | 2:00 | Võ Phạm Tuấn Dũng |
+| 4 | Trace of one real question | 0:45 | 2:45 | Võ Phạm Tuấn Dũng |
+| 5 | Live demo | 2:30 | 5:15 | Nguyễn Hoàng Phong (Võ Phạm Tuấn Dũng drives keyboard) |
+| 6 | Evaluation design and judge | 0:45 | 6:00 | Võ Phạm Tuấn Dũng |
+| 7 | First numbers (chart) | 0:55 | 6:55 | Võ Phạm Tuấn Dũng |
+| 8 | Current system in detail (verifier, reranker) | 0:35 | 7:30 | Võ Phạm Tuấn Dũng |
+| 9 | Cost, latency, parity | 0:40 | 8:10 | Lê Trí Quyền |
+| 10 | Threat model | 0:50 | 9:00 | Nguyễn Hoàng Phong |
+| 11 | Plan, risks, status | 0:35 | 9:35 | Lê Trí Quyền |
+| 12 | Team and takeaways | 0:25 | 10:00 | Lê Trí Quyền |
 
 ## Per-slide talking points
 
@@ -31,7 +31,7 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 **2. What changed since the proposal (0:45)**
 - Done: agent loop and citation check; two fixed 50-question benchmarks; reranker evaluated as a configuration.
 - Dropped: Qwen3 controllers (Bonsai 2B and 4B instead, so one set of weights runs on a 16 GiB Mac and a GPU); dense retrieval with Qdrant (BM25 + TF-IDF instead; a vector index is built but not evaluated).
-- Changed: the verifier audit became a human audit of the LLM judge (result is a red placeholder). HR walkthrough and attack tests have not started.
+- Changed & Done: the verifier audit became a 60-item blind human audit of the LLM judge (96.7% agreement, $\kappa=0.93$ on HCMUT; 90.0%, $\kappa=0.80$ on labour law). HR walkthrough and attack tests are scheduled for W45 and W47.
 - Say the evolution once, in plain words: the initial system reached 12 to 19% strict success; we analysed its failures and built the current system with a 4B controller. The revision was designed after analysing the initial system's failures on these same questions, so gains may be optimistic; we confirm them on new questions for the final report. No feedback on the proposal pitch was received.
 
 **3. Architecture (0:55)**
@@ -56,7 +56,7 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 **6. Evaluation design and judge (0:45)**
 - 2 benchmarks of 50 questions (45 answerable, 5 to refuse), 3 configurations, 3 runs with different seeds; two diagnostic baselines (closed-book and oracle) on one run each.
 - Strict success is a lower bound: valid judgment, appropriate behaviour, correctness and completeness 2/2, every claim supported; errors and unknowns count as failures; 95% intervals from a paired bootstrap over questions.
-- Judge: DeepSeek V4 Flash, blind to the configuration, offline. Reliability check against a human-labelled sample (about 30 answers per benchmark): agreement and kappa are a red placeholder.
+- Judge: DeepSeek V4 Flash, blind to the configuration, offline. Reliability check against a 60-item blind human-labelled sample (30 answers per benchmark): strict-success agreement is 96.7% ($\kappa=0.93$, weighted 98.8%) on HCMUT and 90.0% ($\kappa=0.80$, weighted 97.5%) on labour law.
 - Limits: questions are AI-drafted and AI-verified; retrieval is near-saturated; 15/45 HCMUT and 12/45 labour answerable questions are estimated to be guessable without the documents; with 50 questions, differences under about 10 points are not detectable.
 
 **7. First numbers (0:55)**
@@ -74,7 +74,7 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 - Controller tokens per trial for no verifier and full system (about 9,000 to 12,000 in, 700 to 900 out, 3.1 to 3.7 calls); local, no API cost; GPU-active hours not measured.
 - Judge cost: USD 1.06 plus 1.10 equals USD 2.17 as reported by the gateway, a lower bound (some attempts report no cost); 36% and 45% of judge attempts were invalid or timed out and retried.
 - Reranker parity: the GGUF f16 runtime on the Mac against the torch fp32 CPU reference, Spearman 0.9994, same top-1 in 99 of 100; H100 fp16, 0.9943, 100 of 100. Rank agreement only.
-- Mac latency of the current system is a red placeholder; GPU wall times are not reported.
+- Mac latency (Apple M4, one question at a time, median / p95): 4B controller 33 s / 86 s (HCMUT) and 30 s / 72 s (labour), about 43 tokens/s; 2B controller 13 s / 30 s and 15 s / 28 s, about 92 tokens/s. GPU wall times are not reported.
 
 **10. Threat model (0:50)**
 - Assets: faithful answers, user data, document collections and model weights, the tool boundary, availability. The attacker can send any text; cannot change code, documents, weights, audit log or approval state.
@@ -85,18 +85,18 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 **11. Plan, risks, status (0:35)**
 - W45 HR walkthrough and a new benchmark of unseen questions; W46 failure analysis; W47 attack tests; W48 reproduction and final report; W49 release and the 2 December presentation.
 - Riskiest assumptions: a 2 to 4B controller answers correctly within budget; gains hold on new questions; benchmarks separate the configurations. Fallback: keep the loop, benchmarks, configurations and pipeline; cut the vector index, semantic check and extra domains.
-- Owners and the self-assessment are placeholders for the team.
+- Owners: Quyền and Phong (W45), Dũng and Quyền (W46), Phong and Dũng (W47), all members (W48–W49). Self-assessment: on track, with one main risk (unconfirmed gain on unseen tasks, to be tested in W45–W46).
 
 **12. Team and takeaways (0:25)**
 - Takeaways: 12 to 19% became 57 to 61% for the full system (judge lower bound, may be optimistic); the weak link was the controller's behaviour, not retrieval; the citation verifier gives auditable citations without a measured correctness gain.
-- Ask the audience to challenge judge reliability, benchmark difficulty, and gains measured on the same questions. Repository link on the slide; commit hash is a placeholder.
+- Ask the audience to challenge judge reliability, benchmark difficulty, and gains measured on the same questions. Repository link and commit hash `d74144099016` are on the slide.
 
 ## Likely questions and answers
 
 1. **Why no dense (embedding) retrieval?** Retrieval was not the bottleneck: Recall@5 is 0.98 to 0.99 for the current system with or without the reranker, and plain BM25 on the raw question is near the ceiling in an offline check. A dense vector index is built but was not evaluated, and we dropped Qdrant. Caveat: about half the questions name their source document, which helps lexical search; the new benchmark will include a harder slice.
 2. **Why do you say the gains may be optimistic? Is the current system overfit?** We designed the revision after analysing the initial system's failures on these same 100 questions. Our plan limited changes to generic design fixes (for example, searching with the user's own question) and ruled out tuning thresholds on the benchmark labels, but we cannot prove there is no leakage. We therefore confirm on new questions for the final report.
-3. **How reliable is the judge?** Unknown until the human audit (agreement and kappa are a placeholder). What exists: answers are judged blind to the configuration, the judge's quotes are validated against the source and the answer, and 36% and 45% of attempts were rejected as invalid or timed out and retried; invalid or unjudged trials count as failures. Numbers are estimates, not human labels.
-4. **What is the latency on the Mac?** Not yet measured for the current system (measurements are in progress; red placeholder). GPU timings came from a shared server and are not reported as latency. Do not quote demo timings as a measurement.
+3. **How reliable is the judge?** On our 60-item blind human audit (30 items per benchmark), strict-success agreement is 96.7% ($\kappa=0.93$, design-weighted 98.8%) on HCMUT and 90.0% ($\kappa=0.80$, design-weighted 97.5%) on labour law (4 disagreements out of 60 items, documented in `AUDIT_NOTES.md`). Answers are judged blind to the configuration, the judge's quotes are validated against the source and the answer, and 36% and 45% of attempts were rejected as invalid or timed out and retried; invalid or unjudged trials count as failures.
+4. **What is the latency on the Mac?** On an Apple M4 (16 GiB, one question at a time, 50 questions per benchmark), the full system takes a median of 33.0 s (HCMUT, p95 86 s) and 29.8 s (labour, p95 72 s) with the 4B controller (about 43 tokens/s), and 13.3 s (p95 30 s) and 14.6 s (p95 28 s) with the 2B controller (about 92 tokens/s). GPU timings came from a shared server and are not reported as latency.
 5. **Why does the verifier lower strict success?** After a rejection the model tends to refuse instead of repairing: answerable questions refused after the repair budget ran out were 10 (verifier) and 13 (full system) of 150 HCMUT trials, 14 and 18 on labour. The strict-success differences are not significant (-6.0 [-16.0, +4.0] and -9.3 [-18.7, 0.0] points) but there is no gain, and citation F1 drops about 11 points. We keep the verifier for auditability, not for a measured accuracy gain.
 6. **Can the verifier pass a wrong answer?** Yes. It checks ids, quotes and numbers by word overlap. In an earlier demo with the initial system, a labour answer of "60 days" (reference: 10 working days) passed the check. The semantic check exists but is not used yet.
 7. **How good are the guardrails?** They are regex patterns for Vietnamese and English, run before the model. A paraphrase can bypass them, there are some false positives, and there are no red-team numbers yet. Defence in depth: the model has no write action and its tools are read-only.
@@ -112,10 +112,6 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 
 ## Red placeholders still open on the slides
 
-- Slides 2, 6 and backup C: human-audit agreement and kappa; HR walkthrough date.
-- Slide 5: no placeholder left; the backup video with the current system exists (optional re-recording on the presenting laptop).
-- Slide 9 and backup C: Mac latency of the current system.
-- Slide 11: owners per week; self-assessment.
-- Slide 12: who presents which slides, who drives the demo, ownership of each component; final commit hash.
+- None (all presenter roles, weekly plan owners, and the 60-item human audit agreement/$\kappa$ have been filled).
 
 The mapping from every number to its source file is in `SOURCES_INTERNAL.md` (for the team, not for the lecturer).

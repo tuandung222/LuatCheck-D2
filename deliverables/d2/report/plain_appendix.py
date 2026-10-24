@@ -27,7 +27,7 @@ CAPTIONS = {
         r"correctness and completeness both full, every claim supported): a lower bound over all trials, with a 95\% bootstrap interval "
         r"over questions; execution errors count as failures, and $\dagger k$ marks $k$ trials the judge could not rate, also counted as failures. "
         r"Succ., Beh. (behaviour match) and Faith. (faithfulness) are estimates by the LLM judge of Section~\ref{sec:eval}, "
-        r"\textbf{not human labels}. The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}. "
+        r"\textbf{not human labels}. {audit} "
         r"Recall@5 and MRR measure whether the gold documents appear in the agent's search and read results (answerable questions; "
         r"all cells are {cells}, so they cannot separate the configurations). Cit. P/R/F1 compare the cited document ids with the gold ids "
         r"(nothing cited counts as 0); they are measured on document ids and say nothing about answer correctness. Red entries are not measured."),
@@ -125,7 +125,9 @@ def convert(text: str, bench: str) -> str:
             cells = (re.search(r"all cells ([0-9.]+--[0-9.]+)", line) or [None, "0.98--0.99"])[1]
             trials = (re.search(r"(\d+) real native trials", line) or [None, "450"])[1]
             usd = (re.search(r"all variants: ([0-9.]+) USD", line) or [None, ""])[1]
-            caption = template.replace('{bench}', bench).replace('{cells}', cells).replace('{trials}', trials).replace('{usd}', usd)
+            audit_m = re.search(r"(Judge--human agreement on strict success.*?reviewer\(s\)\)\.)", line)
+            audit = audit_m.group(1) if audit_m else r"The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}."
+            caption = template.replace('{bench}', bench).replace('{cells}', cells).replace('{trials}', trials).replace('{usd}', usd).replace('{audit}', audit)
             out.append(r"\caption{" + caption + "}")
             i += 1
             continue

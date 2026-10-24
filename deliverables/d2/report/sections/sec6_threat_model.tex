@@ -1,0 +1,5 @@
+\hdr{Assets.} (A1) Faithfulness: answers and citations that users rely on must trace to source sections~\citep{magesh2025hallucination}. (A2) User data: questions, pasted documents, memory and the audit log. (A3) Integrity of corpora, domain profiles, prompts, model weights and the frozen benchmark. (A4) The tool boundary: no unreviewed write or egress. (A5) Availability of a bounded local machine.
+
+\hdr{Attacker.} The attacker can submit arbitrary questions and pasted documents through the interface or API (instruction override, delimiter spoofing, prompt or memory exfiltration, requests to evade a regulation), including text copied from a hostile third party. The attacker cannot change code, corpora, configuration, weights, the ledger or the approval state of the trusted UI, and cannot reach loopback servers or other users' sessions. Non-goals: a compromised host or supply chain, poisoned official sources, multi-tenant isolation, and the correctness of the regulations themselves.
+
+\input{tables/tab5_threat_model}
