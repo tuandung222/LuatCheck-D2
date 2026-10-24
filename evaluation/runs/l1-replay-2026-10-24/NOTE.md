@@ -112,7 +112,7 @@ cannot simulate (a rejected draft might have been repaired into a correct answer
   cost a repair round); coverage by common words is lenient (a sentence assembled from words of one long clause passes);
   a number in a sentence that mixes two clauses is judged by the words around that number, so very short context can
   accept or reject the wrong clause; multi-record answers are scored per window of any cited record.
-- Frozen v3 runs stay reproducible only with `verifier.l1_version: v1`; configs that predate the key now default to v2.
+- Frozen v3 runs stay reproducible: `verifier.l1_version` defaults to v1 (set by the supervisor after this note was first written), so configs that predate the key keep their meaning; revised configs set v2 explicitly.
 
 ## Files
 
