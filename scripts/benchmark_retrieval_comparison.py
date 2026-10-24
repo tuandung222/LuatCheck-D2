@@ -321,30 +321,64 @@ def evaluate_suite(
         if tmp_qvecs.exists():
             tmp_qvecs.unlink()
 
-    # 4. Optional comparison against existing indexes (e.g. AITeamVN/Vietnamese_Embedding 1024-d)
+    # 4. Optional comparison against existing indexes (e.g. EmbeddingGemma2 768-d or Vietnamese_Embedding 1024-d)
     if extra_indexes:
         for label, idx_path in extra_indexes.items():
             if idx_path.exists():
-                loaded_extra = load_index(idx_path, stores=["numpy"])
+                loaded_extra = load_index(idx_path, stores=["numpy", "qdrant"] if (idx_path / "vector" / "qdrant").exists() else ["numpy"])
                 try:
                     dim = loaded_extra.manifest["embedding"]["dimension"]
-                    s_extra = loaded_extra.searcher("numpy")
+                    t_e0 = time.perf_counter()
+                    q_vecs_ex = loaded_extra.provider.embed_queries(queries)
+                    emb_ex_ms = (time.perf_counter() - t_e0) * 1000.0 / len(queries)
+
+                    np_ex = loaded_extra.store("numpy")
                     t0 = time.perf_counter()
-                    r_vec = [[norm(r["doc_id"]) for r in s_extra.search(q, top_k=top_k, mode="vector")] for q in queries]
-                    ms_v = (time.perf_counter() - t0) * 1000.0 / len(queries)
-                    results["methods"][f"{label}_Vector_{dim}d"] = {
+                    vec_ex_full = [_vector_doc_ranking(np_ex, qv, depth) for qv in q_vecs_ex]
+                    np_ex_ms = (time.perf_counter() - t0) * 1000.0 / len(queries)
+                    r_vec = [[norm(d) for d in r[:top_k]] for r in vec_ex_full]
+                    results["methods"][f"{label}_Vector_NumPy_{dim}d"] = {
                         **compute_ir_metrics(r_vec, gold_sets),
-                        "latency_ms_per_query": round(ms_v, 2),
+                        "search_only_ms_per_query": round(np_ex_ms, 3),
+                        "latency_ms_per_query": round(emb_ex_ms + np_ex_ms, 2),
                         "dimension": dim,
                     }
+
                     t0 = time.perf_counter()
-                    r_hyb = [[norm(r["doc_id"]) for r in s_extra.search(q, top_k=top_k, mode="hybrid")] for q in queries]
-                    ms_h = (time.perf_counter() - t0) * 1000.0 / len(queries)
-                    results["methods"][f"{label}_Hybrid_RRF_{dim}d"] = {
+                    r_hyb = [
+                        [norm(d) for d in _rrf_fuse(kw_r, vec_r, rrf_k=rrf_k, top_k=top_k)]
+                        for kw_r, vec_r in zip(kw_full_rankings, vec_ex_full)
+                    ]
+                    rrf_ex_ms = (time.perf_counter() - t0) * 1000.0 / len(queries)
+                    results["methods"][f"{label}_Hybrid_RRF_{dim}d (FTS5+Vector)"] = {
                         **compute_ir_metrics(r_hyb, gold_sets),
-                        "latency_ms_per_query": round(ms_h, 2),
+                        "latency_ms_per_query": round(emb_ex_ms + ms_fts5 + np_ex_ms + rrf_ex_ms, 2),
                         "dimension": dim,
                     }
+
+                    tmp_q_ex = idx_path / "_eval_qvecs.npy"
+                    np.save(tmp_q_ex, q_vecs_ex)
+                    try:
+                        store_names = {e["name"] for e in loaded_extra.manifest["vector_stores"]}
+                        if "faiss" in store_names:
+                            r_ff, ff_ms = evaluate_faiss_subprocess(idx_path, "faiss", tmp_q_ex, depth=depth, top_k=top_k)
+                            results["methods"][f"{label}_Vector_FAISS_Flat_{dim}d"] = {
+                                **compute_ir_metrics([[norm(d) for d in r] for r in r_ff], gold_sets),
+                                "search_only_ms_per_query": round(ff_ms, 3),
+                                "latency_ms_per_query": round(emb_ex_ms + ff_ms, 2),
+                                "dimension": dim,
+                            }
+                        if "faiss_hnsw" in store_names:
+                            r_fh, fh_ms = evaluate_faiss_subprocess(idx_path, "faiss_hnsw", tmp_q_ex, depth=depth, top_k=top_k)
+                            results["methods"][f"{label}_Vector_FAISS_HNSW_{dim}d"] = {
+                                **compute_ir_metrics([[norm(d) for d in r] for r in r_fh], gold_sets),
+                                "search_only_ms_per_query": round(fh_ms, 3),
+                                "latency_ms_per_query": round(emb_ex_ms + fh_ms, 2),
+                                "dimension": dim,
+                            }
+                    finally:
+                        if tmp_q_ex.exists():
+                            tmp_q_ex.unlink()
                 finally:
                     loaded_extra.provider.close()
                     loaded_extra.close()
@@ -413,7 +447,10 @@ def main() -> None:
             gold_sets=g_bll,
             gemma_index_dir=Path("data/index/labor_code_2019_gemma2_128d"),
             shared_provider=shared_provider,
-            extra_indexes={"9_Vietnamese_Embedding_1024d": Path("data/index/labor_code_2019")},
+            extra_indexes={
+                "9_EmbeddingGemma2_768d": Path("data/index/labor_code_2019_gemma2_768d"),
+                "10_Vietnamese_Embedding_1024d": Path("data/index/labor_code_2019"),
+            },
         )
         all_results["benchmarks"]["bll2019_v1"] = res_bll
 
@@ -428,6 +465,7 @@ def main() -> None:
             gold_sets=g_lvn,
             gemma_index_dir=Path("data/index/labour_vi_v1_gemma2_128d"),
             shared_provider=shared_provider,
+            extra_indexes={"9_EmbeddingGemma2_768d": Path("data/index/labour_vi_v1_gemma2_768d")},
         )
         all_results["benchmarks"]["labour_vi_v1"] = res_lvn
 
@@ -442,19 +480,21 @@ def main() -> None:
             gold_sets=g_hcmut,
             gemma_index_dir=Path("data/index/hcmut_academic_v1_gemma2_128d"),
             shared_provider=shared_provider,
+            extra_indexes={"9_EmbeddingGemma2_768d": Path("data/index/hcmut_academic_v1_gemma2_768d")},
         )
         all_results["benchmarks"]["hcmut_v1"] = res_hcmut
 
-        # 4. GreenNode Zalo AI Legal Text Retrieval (818 test queries on 1,500 Hard-Negative Pool + 61,425 Full FTS5)
+        # 4. GreenNode Zalo AI Legal Text Retrieval (818 test queries on 1,000 Hard-Negative Pool + 61,425 Full FTS5)
         q_zalo, g_zalo = load_zalo_queries(Path("data/benchmarks/zalo_legal/test_queries.json"))
         zalo_res, shared_provider = evaluate_suite(
-            name="zalo_legal_hard1.5k (GreenNode Zalo AI Legal - 1,500 Hard-Negative Pool, 818 queries)",
+            name="zalo_legal_hard1k (GreenNode Zalo AI Legal - 1,000 Hard-Negative Pool, 818 queries)",
             corpus_path="data/benchmarks/zalo_legal/corpus_eval_hard2k.json",
             profile_name="",
             queries=q_zalo,
             gold_sets=g_zalo,
             gemma_index_dir=Path("data/index/zalo_legal_gemma2_128d"),
             shared_provider=shared_provider,
+            extra_indexes={"9_EmbeddingGemma2_768d": Path("data/index/zalo_legal_gemma2_768d")},
         )
 
         # Also evaluate SQLite FTS5 on the full 61,425-article Zalo corpus

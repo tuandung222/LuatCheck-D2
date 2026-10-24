@@ -43,8 +43,9 @@ data/db/*.sqlite3-*
 *.vrb
 data/demo_*audit_log*.jsonl
 
-# Local built 128-d vector indexes (published to Hugging Face Hub: tuandunghcmut/luatcheck-embeddinggemma2-128d-indexes)
+# Local built 128-d and 768-d vector indexes (published to Hugging Face Hub: tuandunghcmut/luatcheck-embeddinggemma2-128d-indexes)
 data/index/*_gemma2_128d/
+data/index/*_gemma2_768d/
 data/benchmarks/zalo_legal/corpus_*.json
 data/benchmarks/zalo_legal/test_queries.json
 data/benchmarks/zalo_legal/manifest.json

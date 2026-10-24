@@ -1,0 +1,42 @@
+# Index of the D2 HCMUT academic regulations corpus (143 sections) with google/embeddinggemma-2 (full 768-d).
+# Build:  PYTHONPATH=. .venv/bin/python -m src.indexing build --config config/indexing/hcmut_academic_v1_gemma2_768d.yaml --overwrite
+# Output: data/index/hcmut_academic_v1_gemma2_768d/
+name: hcmut_academic_v1_gemma2_768d
+corpora:
+  - path: data/corpus/hcmut_academic_v1.json
+    collection_id: hcmut_academic
+
+chunking:
+  max_tokens: 512
+  overlap_tokens: 64
+  contextual_title: true
+
+retrieval:
+  embedding:
+    provider: sentence_transformers
+    model: google/embeddinggemma-2
+    device: auto
+    batch_size: 16
+    max_seq_length: 2048
+    dtype: bfloat16
+    truncate_dim: 768
+    normalize: true
+    query_prefix: "task: search result | query: "
+    document_prefix: "title: none | text: "
+    config_kwargs:
+      vision_config: null
+      audio_config: null
+    max_rss_gb: 6.0
+  keyword_index:
+    backend: sqlite_fts5
+    tokenizer: "unicode61 remove_diacritics 0"
+    title_weight: 2.0
+    bigrams: true
+  vector_stores:
+    - {backend: numpy,  collection: chunks, metric: cosine}
+    - {backend: faiss,  collection: chunks, metric: cosine, index_type: flat}
+    - {backend: faiss,  name: faiss_hnsw, collection: chunks, metric: cosine, index_type: hnsw, hnsw_m: 32, ef_construction: 200, ef_search: 128}
+    - {backend: qdrant, collection: chunks, metric: cosine}
+  default_store: numpy
+  rrf_k: 60
+  candidates: 50

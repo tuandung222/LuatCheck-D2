@@ -9,7 +9,7 @@
       "Dieu_107"
     ],
     "read_law_resolved": true,
-    "alias_resolution_25_to_Dieu_25": false
+    "alias_resolution_Dieu_25": true
   },
   "benchmarks": {
     "bll2019_v1": {
@@ -24,7 +24,7 @@
           "MRR@10": 94.44,
           "NDCG@10": 93.34,
           "MAP@10": 89.26,
-          "latency_ms_per_query": 1.88,
+          "latency_ms_per_query": 1.86,
           "build_seconds": 0.07
         },
         "2_LuatCheck_BM25_only": {
@@ -35,7 +35,7 @@
           "MRR@10": 94.44,
           "NDCG@10": 93.34,
           "MAP@10": 89.26,
-          "latency_ms_per_query": 1.12
+          "latency_ms_per_query": 1.06
         },
         "3_SQLite_FTS5_Keyword": {
           "Recall@1": 77.78,
@@ -45,7 +45,7 @@
           "MRR@10": 94.44,
           "NDCG@10": 93.14,
           "MAP@10": 88.89,
-          "latency_ms_per_query": 3.59
+          "latency_ms_per_query": 3.66
         },
         "4_EmbeddingGemma2_128d_Vector_NumPy": {
           "Recall@1": 11.11,
@@ -55,8 +55,8 @@
           "MRR@10": 40.37,
           "NDCG@10": 43.65,
           "MAP@10": 32.04,
-          "search_only_ms_per_query": 0.068,
-          "latency_ms_per_query": 592.36,
+          "search_only_ms_per_query": 0.061,
+          "latency_ms_per_query": 581.53,
           "dimension": 128
         },
         "5_EmbeddingGemma2_128d_Hybrid_RRF (FTS5+Vector)": {
@@ -67,8 +67,8 @@
           "MRR@10": 61.48,
           "NDCG@10": 65.28,
           "MAP@10": 55.46,
-          "latency_ms_per_query": 595.97,
-          "single_query_unbatched_ms": 136.93,
+          "latency_ms_per_query": 585.22,
+          "single_query_unbatched_ms": 64.29,
           "dimension": 128
         },
         "6_EmbeddingGemma2_128d_Vector_Qdrant": {
@@ -79,8 +79,8 @@
           "MRR@10": 40.37,
           "NDCG@10": 43.65,
           "MAP@10": 32.04,
-          "search_only_ms_per_query": 0.606,
-          "latency_ms_per_query": 592.9,
+          "search_only_ms_per_query": 0.535,
+          "latency_ms_per_query": 582.01,
           "dimension": 128
         },
         "7_EmbeddingGemma2_128d_Vector_FAISS_Flat": {
@@ -91,8 +91,8 @@
           "MRR@10": 40.37,
           "NDCG@10": 43.65,
           "MAP@10": 32.04,
-          "search_only_ms_per_query": 0.474,
-          "latency_ms_per_query": 592.76,
+          "search_only_ms_per_query": 0.468,
+          "latency_ms_per_query": 581.94,
           "dimension": 128
         },
         "8_EmbeddingGemma2_128d_Vector_FAISS_HNSW": {
@@ -103,9 +103,56 @@
           "MRR@10": 40.37,
           "NDCG@10": 43.65,
           "MAP@10": 32.04,
-          "search_only_ms_per_query": 0.379,
-          "latency_ms_per_query": 592.67,
+          "search_only_ms_per_query": 0.38,
+          "latency_ms_per_query": 581.85,
           "dimension": 128
+        },
+        "9_EmbeddingGemma2_768d_Vector_NumPy_768d": {
+          "Recall@1": 44.44,
+          "Recall@5": 77.78,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 67.96,
+          "NDCG@10": 71.25,
+          "MAP@10": 59.55,
+          "search_only_ms_per_query": 0.098,
+          "latency_ms_per_query": 618.09,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Hybrid_RRF_768d (FTS5+Vector)": {
+          "Recall@1": 77.78,
+          "Recall@5": 88.89,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 92.59,
+          "NDCG@10": 90.55,
+          "MAP@10": 84.92,
+          "latency_ms_per_query": 621.78,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Vector_FAISS_Flat_768d": {
+          "Recall@1": 44.44,
+          "Recall@5": 77.78,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 67.96,
+          "NDCG@10": 71.25,
+          "MAP@10": 59.55,
+          "search_only_ms_per_query": 0.293,
+          "latency_ms_per_query": 618.29,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Vector_FAISS_HNSW_768d": {
+          "Recall@1": 44.44,
+          "Recall@5": 77.78,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 67.96,
+          "NDCG@10": 71.25,
+          "MAP@10": 59.55,
+          "search_only_ms_per_query": 0.324,
+          "latency_ms_per_query": 618.32,
+          "dimension": 768
         }
       },
       "index_summary": {
@@ -150,8 +197,8 @@
           "MRR@10": 95.19,
           "NDCG@10": 95.69,
           "MAP@10": 94.07,
-          "latency_ms_per_query": 3.38,
-          "build_seconds": 0.16
+          "latency_ms_per_query": 2.72,
+          "build_seconds": 0.18
         },
         "2_LuatCheck_BM25_only": {
           "Recall@1": 80.0,
@@ -161,7 +208,7 @@
           "MRR@10": 92.41,
           "NDCG@10": 93.33,
           "MAP@10": 90.72,
-          "latency_ms_per_query": 1.7
+          "latency_ms_per_query": 1.59
         },
         "3_SQLite_FTS5_Keyword": {
           "Recall@1": 84.44,
@@ -171,7 +218,7 @@
           "MRR@10": 94.81,
           "NDCG@10": 96.43,
           "MAP@10": 95.19,
-          "latency_ms_per_query": 5.41
+          "latency_ms_per_query": 4.83
         },
         "4_EmbeddingGemma2_128d_Vector_NumPy": {
           "Recall@1": 41.11,
@@ -181,8 +228,8 @@
           "MRR@10": 55.87,
           "NDCG@10": 62.66,
           "MAP@10": 54.63,
-          "search_only_ms_per_query": 0.066,
-          "latency_ms_per_query": 22.09,
+          "search_only_ms_per_query": 0.065,
+          "latency_ms_per_query": 20.27,
           "dimension": 128
         },
         "5_EmbeddingGemma2_128d_Hybrid_RRF (FTS5+Vector)": {
@@ -193,8 +240,8 @@
           "MRR@10": 80.44,
           "NDCG@10": 84.05,
           "MAP@10": 79.86,
-          "latency_ms_per_query": 27.52,
-          "single_query_unbatched_ms": 66.15,
+          "latency_ms_per_query": 25.12,
+          "single_query_unbatched_ms": 53.99,
           "dimension": 128
         },
         "6_EmbeddingGemma2_128d_Vector_Qdrant": {
@@ -205,8 +252,8 @@
           "MRR@10": 55.87,
           "NDCG@10": 62.66,
           "MAP@10": 54.63,
-          "search_only_ms_per_query": 0.49,
-          "latency_ms_per_query": 22.51,
+          "search_only_ms_per_query": 0.463,
+          "latency_ms_per_query": 20.67,
           "dimension": 128
         },
         "7_EmbeddingGemma2_128d_Vector_FAISS_Flat": {
@@ -217,8 +264,8 @@
           "MRR@10": 55.87,
           "NDCG@10": 62.66,
           "MAP@10": 54.63,
-          "search_only_ms_per_query": 0.127,
-          "latency_ms_per_query": 22.15,
+          "search_only_ms_per_query": 0.121,
+          "latency_ms_per_query": 20.33,
           "dimension": 128
         },
         "8_EmbeddingGemma2_128d_Vector_FAISS_HNSW": {
@@ -229,9 +276,56 @@
           "MRR@10": 55.87,
           "NDCG@10": 62.66,
           "MAP@10": 54.63,
-          "search_only_ms_per_query": 0.162,
-          "latency_ms_per_query": 22.18,
+          "search_only_ms_per_query": 0.153,
+          "latency_ms_per_query": 20.36,
           "dimension": 128
+        },
+        "9_EmbeddingGemma2_768d_Vector_NumPy_768d": {
+          "Recall@1": 54.44,
+          "Recall@5": 84.44,
+          "Recall@10": 90.0,
+          "Recall@20": 98.89,
+          "MRR@10": 71.21,
+          "NDCG@10": 74.51,
+          "MAP@10": 68.48,
+          "search_only_ms_per_query": 0.079,
+          "latency_ms_per_query": 133.49,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Hybrid_RRF_768d (FTS5+Vector)": {
+          "Recall@1": 75.56,
+          "Recall@5": 97.78,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 87.91,
+          "NDCG@10": 90.12,
+          "MAP@10": 86.14,
+          "latency_ms_per_query": 138.34,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Vector_FAISS_Flat_768d": {
+          "Recall@1": 54.44,
+          "Recall@5": 84.44,
+          "Recall@10": 90.0,
+          "Recall@20": 98.89,
+          "MRR@10": 71.21,
+          "NDCG@10": 74.51,
+          "MAP@10": 68.48,
+          "search_only_ms_per_query": 0.146,
+          "latency_ms_per_query": 133.55,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Vector_FAISS_HNSW_768d": {
+          "Recall@1": 54.44,
+          "Recall@5": 84.44,
+          "Recall@10": 90.0,
+          "Recall@20": 98.89,
+          "MRR@10": 71.21,
+          "NDCG@10": 74.51,
+          "MAP@10": 68.48,
+          "search_only_ms_per_query": 0.187,
+          "latency_ms_per_query": 133.59,
+          "dimension": 768
         }
       },
       "index_summary": {
@@ -276,7 +370,7 @@
           "MRR@10": 95.19,
           "NDCG@10": 95.51,
           "MAP@10": 93.33,
-          "latency_ms_per_query": 1.15,
+          "latency_ms_per_query": 1.17,
           "build_seconds": 0.06
         },
         "2_LuatCheck_BM25_only": {
@@ -287,7 +381,7 @@
           "MRR@10": 95.19,
           "NDCG@10": 95.16,
           "MAP@10": 93.15,
-          "latency_ms_per_query": 0.47
+          "latency_ms_per_query": 1.07
         },
         "3_SQLite_FTS5_Keyword": {
           "Recall@1": 90.0,
@@ -297,7 +391,7 @@
           "MRR@10": 97.78,
           "NDCG@10": 97.64,
           "MAP@10": 96.3,
-          "latency_ms_per_query": 1.52
+          "latency_ms_per_query": 1.57
         },
         "4_EmbeddingGemma2_128d_Vector_NumPy": {
           "Recall@1": 40.0,
@@ -307,8 +401,8 @@
           "MRR@10": 57.71,
           "NDCG@10": 64.63,
           "MAP@10": 56.15,
-          "search_only_ms_per_query": 0.066,
-          "latency_ms_per_query": 22.12,
+          "search_only_ms_per_query": 0.052,
+          "latency_ms_per_query": 20.27,
           "dimension": 128
         },
         "5_EmbeddingGemma2_128d_Hybrid_RRF (FTS5+Vector)": {
@@ -319,8 +413,8 @@
           "MRR@10": 80.44,
           "NDCG@10": 81.59,
           "MAP@10": 76.72,
-          "latency_ms_per_query": 23.67,
-          "single_query_unbatched_ms": 54.49,
+          "latency_ms_per_query": 21.86,
+          "single_query_unbatched_ms": 50.75,
           "dimension": 128
         },
         "6_EmbeddingGemma2_128d_Vector_Qdrant": {
@@ -331,8 +425,8 @@
           "MRR@10": 57.71,
           "NDCG@10": 64.63,
           "MAP@10": 56.15,
-          "search_only_ms_per_query": 0.456,
-          "latency_ms_per_query": 22.51,
+          "search_only_ms_per_query": 0.39,
+          "latency_ms_per_query": 20.61,
           "dimension": 128
         },
         "7_EmbeddingGemma2_128d_Vector_FAISS_Flat": {
@@ -343,8 +437,8 @@
           "MRR@10": 57.71,
           "NDCG@10": 64.63,
           "MAP@10": 56.15,
-          "search_only_ms_per_query": 0.119,
-          "latency_ms_per_query": 22.18,
+          "search_only_ms_per_query": 0.116,
+          "latency_ms_per_query": 20.34,
           "dimension": 128
         },
         "8_EmbeddingGemma2_128d_Vector_FAISS_HNSW": {
@@ -355,9 +449,56 @@
           "MRR@10": 57.71,
           "NDCG@10": 64.63,
           "MAP@10": 56.15,
-          "search_only_ms_per_query": 0.159,
-          "latency_ms_per_query": 22.22,
+          "search_only_ms_per_query": 0.148,
+          "latency_ms_per_query": 20.37,
           "dimension": 128
+        },
+        "9_EmbeddingGemma2_768d_Vector_NumPy_768d": {
+          "Recall@1": 61.11,
+          "Recall@5": 88.89,
+          "Recall@10": 94.44,
+          "Recall@20": 95.56,
+          "MRR@10": 77.08,
+          "NDCG@10": 79.74,
+          "MAP@10": 73.74,
+          "search_only_ms_per_query": 0.071,
+          "latency_ms_per_query": 137.29,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Hybrid_RRF_768d (FTS5+Vector)": {
+          "Recall@1": 77.78,
+          "Recall@5": 95.56,
+          "Recall@10": 96.67,
+          "Recall@20": 98.89,
+          "MRR@10": 89.63,
+          "NDCG@10": 90.29,
+          "MAP@10": 87.24,
+          "latency_ms_per_query": 138.88,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Vector_FAISS_Flat_768d": {
+          "Recall@1": 61.11,
+          "Recall@5": 88.89,
+          "Recall@10": 94.44,
+          "Recall@20": 95.56,
+          "MRR@10": 77.08,
+          "NDCG@10": 79.74,
+          "MAP@10": 73.74,
+          "search_only_ms_per_query": 0.129,
+          "latency_ms_per_query": 137.34,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Vector_FAISS_HNSW_768d": {
+          "Recall@1": 61.11,
+          "Recall@5": 88.89,
+          "Recall@10": 94.44,
+          "Recall@20": 95.56,
+          "MRR@10": 77.08,
+          "NDCG@10": 79.74,
+          "MAP@10": 73.74,
+          "search_only_ms_per_query": 0.151,
+          "latency_ms_per_query": 137.37,
+          "dimension": 768
         }
       },
       "index_summary": {
@@ -391,7 +532,7 @@
       }
     },
     "zalo_legal": {
-      "benchmark": "zalo_legal_hard1.5k (GreenNode Zalo AI Legal - 1,500 Hard-Negative Pool, 818 queries)",
+      "benchmark": "zalo_legal_hard1k (GreenNode Zalo AI Legal - 1,000 Hard-Negative Pool, 818 queries)",
       "queries_evaluated": 818,
       "methods": {
         "1_LuatCheck_BM25_TFIDF_RRF (current)": {
@@ -402,8 +543,8 @@
           "MRR@10": 75.43,
           "NDCG@10": 80.99,
           "MAP@10": 75.34,
-          "latency_ms_per_query": 5.61,
-          "build_seconds": 0.69
+          "latency_ms_per_query": 5.24,
+          "build_seconds": 0.62
         },
         "2_LuatCheck_BM25_only": {
           "Recall@1": 58.68,
@@ -413,7 +554,7 @@
           "MRR@10": 72.62,
           "NDCG@10": 78.5,
           "MAP@10": 72.53,
-          "latency_ms_per_query": 1.81
+          "latency_ms_per_query": 1.85
         },
         "3_SQLite_FTS5_Keyword": {
           "Recall@1": 68.83,
@@ -423,7 +564,7 @@
           "MRR@10": 80.2,
           "NDCG@10": 84.73,
           "MAP@10": 80.05,
-          "latency_ms_per_query": 3.72
+          "latency_ms_per_query": 3.58
         },
         "4_EmbeddingGemma2_128d_Vector_NumPy": {
           "Recall@1": 39.98,
@@ -433,7 +574,7 @@
           "MRR@10": 53.61,
           "NDCG@10": 60.01,
           "MAP@10": 53.35,
-          "search_only_ms_per_query": 0.068,
+          "search_only_ms_per_query": 0.065,
           "latency_ms_per_query": 8.52,
           "dimension": 128
         },
@@ -445,8 +586,8 @@
           "MRR@10": 73.34,
           "NDCG@10": 78.83,
           "MAP@10": 73.05,
-          "latency_ms_per_query": 12.25,
-          "single_query_unbatched_ms": 55.02,
+          "latency_ms_per_query": 12.12,
+          "single_query_unbatched_ms": 52.44,
           "dimension": 128
         },
         "6_EmbeddingGemma2_128d_Vector_Qdrant": {
@@ -457,8 +598,8 @@
           "MRR@10": 53.61,
           "NDCG@10": 60.01,
           "MAP@10": 53.35,
-          "search_only_ms_per_query": 0.546,
-          "latency_ms_per_query": 9.0,
+          "search_only_ms_per_query": 0.529,
+          "latency_ms_per_query": 8.99,
           "dimension": 128
         },
         "7_EmbeddingGemma2_128d_Vector_FAISS_Flat": {
@@ -469,7 +610,7 @@
           "MRR@10": 53.61,
           "NDCG@10": 60.01,
           "MAP@10": 53.35,
-          "search_only_ms_per_query": 0.097,
+          "search_only_ms_per_query": 0.09,
           "latency_ms_per_query": 8.55,
           "dimension": 128
         },
@@ -481,9 +622,56 @@
           "MRR@10": 53.62,
           "NDCG@10": 60.04,
           "MAP@10": 53.37,
-          "search_only_ms_per_query": 0.137,
-          "latency_ms_per_query": 8.59,
+          "search_only_ms_per_query": 0.138,
+          "latency_ms_per_query": 8.6,
           "dimension": 128
+        },
+        "9_EmbeddingGemma2_768d_Vector_NumPy_768d": {
+          "Recall@1": 52.93,
+          "Recall@5": 83.68,
+          "Recall@10": 90.28,
+          "Recall@20": 94.07,
+          "MRR@10": 66.13,
+          "NDCG@10": 71.88,
+          "MAP@10": 65.86,
+          "search_only_ms_per_query": 0.069,
+          "latency_ms_per_query": 18.18,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Hybrid_RRF_768d (FTS5+Vector)": {
+          "Recall@1": 66.99,
+          "Recall@5": 94.56,
+          "Recall@10": 98.53,
+          "Recall@20": 99.39,
+          "MRR@10": 78.92,
+          "NDCG@10": 83.68,
+          "MAP@10": 78.72,
+          "latency_ms_per_query": 21.77,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Vector_FAISS_Flat_768d": {
+          "Recall@1": 52.93,
+          "Recall@5": 83.68,
+          "Recall@10": 90.28,
+          "Recall@20": 94.07,
+          "MRR@10": 66.13,
+          "NDCG@10": 71.88,
+          "MAP@10": 65.86,
+          "search_only_ms_per_query": 0.155,
+          "latency_ms_per_query": 18.26,
+          "dimension": 768
+        },
+        "9_EmbeddingGemma2_768d_Vector_FAISS_HNSW_768d": {
+          "Recall@1": 52.93,
+          "Recall@5": 83.68,
+          "Recall@10": 90.28,
+          "Recall@20": 94.19,
+          "MRR@10": 66.13,
+          "NDCG@10": 71.88,
+          "MAP@10": 65.86,
+          "search_only_ms_per_query": 0.172,
+          "latency_ms_per_query": 18.28,
+          "dimension": 768
         },
         "0_SQLite_FTS5_Full_61425_Corpus (reference)": {
           "Recall@1": 56.11,
@@ -493,7 +681,7 @@
           "MRR@10": 68.07,
           "NDCG@10": 72.98,
           "MAP@10": 67.88,
-          "latency_ms_per_query": 152.93,
+          "latency_ms_per_query": 152.24,
           "corpus_size": 61425
         }
       },

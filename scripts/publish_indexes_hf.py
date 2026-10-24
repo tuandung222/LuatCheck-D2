@@ -19,6 +19,10 @@ INDEX_NAMES: List[str] = [
     "labour_vi_v1_gemma2_128d",
     "hcmut_academic_v1_gemma2_128d",
     "zalo_legal_gemma2_128d",
+    "labor_code_2019_gemma2_768d",
+    "labour_vi_v1_gemma2_768d",
+    "hcmut_academic_v1_gemma2_768d",
+    "zalo_legal_gemma2_768d",
 ]
 
 
