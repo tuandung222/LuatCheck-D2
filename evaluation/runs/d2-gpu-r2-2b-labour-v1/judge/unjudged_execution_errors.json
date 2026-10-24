@@ -1,0 +1,10 @@
+[
+  {
+    "review_id": "7cade46be93963035a454c7c",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "LVN-040",
+    "reason": "execution error: model_output_error"
+  }
+]

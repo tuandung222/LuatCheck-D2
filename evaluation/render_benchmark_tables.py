@@ -36,7 +36,7 @@ def protocol_banner(summary: Dict[str, Any]) -> str:
     label = summary.get("protocol_label") or protocol_label(summary.get("protocol"))
     if not label:
         return ""
-    return (r"	extbf{" + esc(label[0].upper() + label[1:]) + r"} (protocol " + esc(summary["protocol"]) + r"; the revision was designed after the frozen v3 "
+    return (r"\textbf{" + esc(label[0].upper() + label[1:]) + r"} (protocol " + esc(summary["protocol"]) + r"; the revision was designed after the frozen v3 "
             r"results on these tasks were seen, so this is not a pre-planned result). ")
 
 
@@ -347,7 +347,7 @@ def render_baselines(summary: Dict[str, Any], expect_benchmarks: List[str], expe
     caption = (banner + "\\textbf{Diagnostic baselines}, one seed (42), same Bonsai controller, sampler, domain prompt and constrained decoding, \\emph{no tools}, verification off; "
                "they are not system variants and are never pooled with them. \\emph{Closed-book}: question only, all tasks; \\emph{oracle}: the full gold records are given up front in the read-tool "
                "observation format, answerable tasks only (refuse tasks have no gold context and are excluded). Succ.\\ (all) is over every task the row ran; Succ.\\ (answerable) is restricted to answerable tasks "
-               "(the like-for-like column) with a task-level bootstrap interval; both are LLM-judge estimates, lower bounds, errors count as failures. Answer rate = answered / non-error trials "
+               "(the like-for-like column) with a task-level bootstrap interval; both are LLM-judge estimates, lower bounds, errors count as failures. Answer rate = answered / all recorded trials (execution errors count as not answered) "
                "on answerable tasks. Cit.\\ P/R: cited-id match to gold ids (meaningful for the oracle and the system rows; a closed-book model has no document ids). Reference rows repeat the system variants' "
                "answerable-only results (seed-averaged) for comparison; the oracle bounds what a 2B reader achieves with perfect retrieval, closed-book what parametric knowledge alone achieves.")
     return "\n".join([

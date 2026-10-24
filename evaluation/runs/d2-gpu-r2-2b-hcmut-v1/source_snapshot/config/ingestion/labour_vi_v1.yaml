@@ -1,0 +1,183 @@
+# Labour-law source corpus "labour_vi" v1: 10 official Vietnamese labour/employment documents.
+# Sources, provenance and caveats: docs/materials/labour-sources/README.md and manifest.json.
+#   .venv/bin/python -m src.ingestion build --config config/ingestion/labour_vi_v1.yaml
+# Output is a NEW corpus. data/corpus/labor_code_2019_official.json is frozen and is never written here.
+version: 1
+output:
+  corpus: data/corpus/labour_vi_v1.json
+  manifest: data/corpus/labour_vi_v1.manifest.json
+defaults:
+  collection_id: labour_vi
+  ruleset: vi_legal
+  ruleset_options:
+    contiguous_articles: warn        # gaps are reported as manifest warnings, not hidden or repaired
+  chunking:
+    granularity: article             # one record per Điều; clauses/points stay inside it
+    content_whitespace: collapse     # same single-space representation as the legacy labour corpus
+  ids:
+    templates:
+      document: "{doc_code}"
+      part: "{doc_code}_Phan_{num_ascii}"
+      chapter: "{doc_code}_Chuong_{num_ascii}"
+      muc: "{parent}_Muc_{num_ascii}"
+      appendix: "{doc_code}_PhuLuc_{num_ascii}"
+      article: "{doc_code}_Dieu_{num_ascii}"
+sources:
+  # 1. Bộ luật Lao động 2019: existing official Công báo PDF, used as-is (page-limit exception).
+  - path: docs/materials/benchmark-sources/bll2019-congbao.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf
+    doc_code: BLLD2019
+    source_name: Bộ luật Lao động 2019
+    title: Bộ luật Lao động 2019
+    document_number: 45/2019/QH14
+    issued_date: "2019-11-20"
+    ruleset_options:
+      contiguous_articles: error
+      end_markers: ['^CHỦ TỊCH QUỐC HỘI']   # same signature-block override as config/ingestion/labor_code_2019.yaml
+    metadata:
+      issuing_body: Quốc hội
+      effective_date: "2021-01-01"
+      gazette_issue: "Công báo số 993 + 994, ngày 26-12-2019"
+      verification: "Number, adoption date and effective date printed in the PDF. Retrieval time not recorded in docs/materials/benchmark-sources/corpus_manifest.json."
+
+  # 2. Luật Việc làm (repeals Luật 38/2013/QH13 as amended).
+  - path: docs/materials/labour-sources/LVL2025_74-2025-QH15.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/6/45562/57700-1-2025967-96874-2025-qh15.pdf
+    doc_code: LVL2025
+    source_name: Luật Việc làm 2025
+    title: Luật Việc làm
+    document_number: 74/2025/QH15
+    issued_date: "2025-06-16"
+    metadata:
+      issuing_body: Quốc hội
+      effective_date: "2026-01-01"
+      gazette_issue: "Công báo số 967 + 968, ngày 24-7-2025"
+      retrieved_at_utc: "2026-10-22T21:22:28Z"
+      verification: "Number, adoption date (16/6/2025) and effective date printed in the PDF. Gazette date from congbao.chinhphu.vn listing."
+
+  # 3. Minimum wage for workers under labour contracts (current regional/contract minimum wage, replaces NĐ 74/2024).
+  - path: docs/materials/labour-sources/ND293_2025_293-2025-ND-CP.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/11/46568/59713-1-20251591-1592293-2025-nd-cp.pdf
+    doc_code: ND293_2025
+    source_name: Nghị định 293/2025/NĐ-CP (mức lương tối thiểu)
+    title: Nghị định quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động
+    document_number: 293/2025/NĐ-CP
+    issued_date: "2025-11-10"
+    metadata:
+      issuing_body: Chính phủ
+      effective_date: "2026-01-01"
+      gazette_issue: "Công báo số 1591 + 1592, ngày 19-11-2025"
+      retrieved_at_utc: "2026-10-22T21:22:29Z"
+      verification: "Number, date (10/11/2025) and effective date (01/01/2026) printed in the PDF. Clause 5.2 states that NĐ 74/2024/NĐ-CP ceases to be effective."
+
+  # 4. Labour registration and labour-market information system (implements Luật Việc làm 2025).
+  - path: docs/materials/labour-sources/ND318_2025_318-2025-ND-CP.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/12/46804/60300-1-20251717-1718318-2025-nd-cp.pdf
+    doc_code: ND318_2025
+    source_name: Nghị định 318/2025/NĐ-CP (đăng ký lao động)
+    title: Nghị định quy định chi tiết một số điều của Luật Việc làm về đăng ký lao động và hệ thống thông tin thị trường lao động
+    document_number: 318/2025/NĐ-CP
+    issued_date: "2025-12-12"
+    metadata:
+      issuing_body: Chính phủ
+      effective_date: "2026-01-01"
+      gazette_issue: "Công báo số 1717 + 1718, ngày 25-12-2025"
+      retrieved_at_utc: "2026-10-22T21:22:30Z"
+      verification: "Number, date (12/12/2025) and effective date (01/01/2026) printed in the PDF."
+
+  # 5. Foreign workers in Vietnam (work permits; successor to NĐ 152/2020 as amended by NĐ 70/2023, with transition rules).
+  - path: docs/materials/labour-sources/ND219_2025_219-2025-ND-CP.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/8/45798/58141-1-20251073-1074219-2025-nd-cp.pdf
+    doc_code: ND219_2025
+    source_name: Nghị định 219/2025/NĐ-CP (người lao động nước ngoài)
+    title: Nghị định quy định về người lao động nước ngoài làm việc tại Việt Nam
+    document_number: 219/2025/NĐ-CP
+    issued_date: "2025-08-07"
+    metadata:
+      issuing_body: Chính phủ
+      effective_date: "2025-08-07"
+      gazette_issue: "Công báo số 1073 + 1074, ngày 20-8-2025"
+      retrieved_at_utc: "2026-10-22T21:24:23Z"
+      verification: "Number, date (07/8/2025) and effective date printed in the PDF. Article 34 keeps permits under NĐ 152/2020 (as amended by NĐ 70/2023) valid until expiry."
+
+  # 6. Trade unions (Luật Công đoàn 2024; repeals Luật 12/2012/QH13).
+  - path: docs/materials/labour-sources/LCD2024_50-2024-QH15.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2024/11/43589/53742-1-20241533-153450-2024-qh15.pdf
+    doc_code: LCD2024
+    source_name: Luật Công đoàn 2024
+    title: Luật Công đoàn
+    document_number: 50/2024/QH15
+    issued_date: "2024-11-27"
+    metadata:
+      issuing_body: Quốc hội
+      effective_date: "2025-07-01"
+      gazette_issue: "Công báo số 1533 + 1534, ngày 30-12-2024"
+      retrieved_at_utc: "2026-10-22T21:24:36Z"
+      verification: "Number, adoption date (27/11/2024) and effective date (01/7/2025) printed in the PDF (Article 37)."
+
+  # 7. Retirement age (Bộ luật Lao động Điều 169 implementing decree).
+  - path: docs/materials/labour-sources/ND135_2020_135-2020-ND-CP.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2020/11/32525/33432-1-20201117-1118135-2020-nd-cp.pdf
+    doc_code: ND135_2020
+    source_name: Nghị định 135/2020/NĐ-CP (tuổi nghỉ hưu)
+    title: Nghị định quy định về tuổi nghỉ hưu
+    document_number: 135/2020/NĐ-CP
+    issued_date: "2020-11-18"
+    metadata:
+      issuing_body: Chính phủ
+      effective_date: "2021-01-01"
+      gazette_issue: "Công báo số 1117 + 1118, ngày 03-12-2020"
+      retrieved_at_utc: "2026-10-22T21:25:11Z"
+      verification: "Number, date (18/11/2020) and effective date (01/01/2021) printed in the PDF. Amendment status not verified."
+
+  # 8. Late/evaded compulsory contributions, unemployment insurance, complaints on social insurance.
+  - path: docs/materials/labour-sources/ND274_2025_274-2025-ND-CP.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/10/46418/59403-1-20251515-1516274-2025-nd-cp.pdf
+    doc_code: ND274_2025
+    source_name: Nghị định 274/2025/NĐ-CP (chậm đóng, trốn đóng BHXH)
+    title: Nghị định quy định chi tiết một số điều của Luật Bảo hiểm xã hội về chậm đóng, trốn đóng bảo hiểm xã hội bắt buộc, bảo hiểm thất nghiệp; khiếu nại, tố cáo về bảo hiểm xã hội
+    document_number: 274/2025/NĐ-CP
+    issued_date: "2025-10-16"
+    metadata:
+      issuing_body: Chính phủ
+      effective_date: "2025-11-30"
+      gazette_issue: "Công báo số 1515 + 1516, ngày 29-10-2025"
+      retrieved_at_utc: "2026-10-22T21:25:27Z"
+      verification: "Number, date (16/10/2025) and effective date (30/11/2025) printed in the PDF."
+
+  # 9. Voluntary occupational accident insurance for workers without labour contracts.
+  # The PDF also attaches forms (MẪU) including a sample decision with its own Điều 1-3 (pages 23-35).
+  # Those sample articles get a separate series tag (MAU_) so that their ids do not collide with the decree's.
+  - path: docs/materials/labour-sources/ND143_2024_143-2024-ND-CP.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2024/11/43119/52597-1-20241249-1250143-2024-nd-cp.pdf
+    doc_code: ND143_2024
+    source_name: Nghị định 143/2024/NĐ-CP (BHTNLĐ tự nguyện)
+    title: Nghị định quy định về bảo hiểm tai nạn lao động theo hình thức tự nguyện đối với người lao động làm việc không theo hợp đồng lao động
+    document_number: 143/2024/NĐ-CP
+    issued_date: "2024-11-01"
+    ruleset_options:
+      contiguous_articles: warn
+      series_tags: ["", "MAU_"]
+    ids:
+      templates:
+        article: "{doc_code}_{series_tag}Dieu_{num_ascii}"
+    metadata:
+      issuing_body: Chính phủ
+      effective_date: "2025-01-01"
+      gazette_issue: "Công báo số 1249 + 1250, ngày 15-11-2024"
+      retrieved_at_utc: "2026-10-22T21:27:07Z"
+      verification: "Number, date (01/11/2024) and effective date (01/01/2025) printed in the PDF."
+
+  # 10. Early-retirement regional list (replaces TT 19/2021/TT-BLĐTBXH). Number and date NOT printed in the PDF.
+  - path: docs/materials/labour-sources/TT26_2025_26-2025-TT-BNV.pdf
+    url: https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/12/26-bnv.pdf
+    doc_code: TT26_2025
+    source_name: Thông tư 26/2025/TT-BNV (vùng KT-XH đặc biệt khó khăn, nghỉ hưu sớm)
+    title: Thông tư ban hành Danh mục vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn để làm căn cứ xác định các trường hợp có thể nghỉ hưu ở tuổi thấp hơn tuổi nghỉ hưu trong điều kiện lao động bình thường
+    document_number: null
+    metadata:
+      issuing_body: Bộ Nội vụ
+      effective_date: "2026-01-01"
+      date_issued_printed: null
+      retrieved_at_utc: "2026-10-22T21:25:49Z"
+      verification: "UNVERIFIED: the attached PDF prints 'Số: /2025/TT-BNV' and 'Hà Nội, ngày tháng năm 2025' with blanks; it may be an unsigned copy. Effective date 01/01/2026 is printed in Article 4. Date 29-12-2025 and signatory Nguyễn Mạnh Khương come from a search summary of vanban.chinhphu.vn (docid 216367), not from the signed copy. Check against the signed Công báo text before any use."

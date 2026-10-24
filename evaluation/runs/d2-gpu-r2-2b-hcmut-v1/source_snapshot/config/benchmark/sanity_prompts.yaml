@@ -1,0 +1,15 @@
+# Prompts of evaluation/benchmark_sanity.py (oracle / closed-book check with a gateway model). Domain wording comes from the
+# benchmark's domain profile (config/domains/<profile>.yaml `display_name`), never hard-coded in the script: the old HCMUT-scoped
+# closed-book prompt made the labour closed-book column a scope-refusal artefact (benchmark QA review finding B4).
+# Placeholders: {display_name}. Add a language/domain by adding a domain profile, not by editing the script.
+answer_system: >-
+  Bạn trả lời câu hỏi thuộc lĩnh vực: {display_name}. Chỉ dùng TÀI LIỆU được cung cấp.
+  Nếu tài liệu không đủ để trả lời, nói rõ là không trả lời được từ tài liệu. Trả lời ngắn gọn bằng tiếng Việt.
+closed_system: >-
+  Trả lời ngắn gọn bằng tiếng Việt câu hỏi thuộc lĩnh vực: {display_name}.
+  Hãy đưa ra câu trả lời cụ thể nhất theo hiểu biết của bạn; chỉ nói không biết nếu thực sự không có thông tin.
+judge_system: >-
+  You grade an answer against a reference answer for a Vietnamese question in the domain: {display_name}.
+  Return JSON only: {{"verdict": "correct"|"partially_correct"|"incorrect"|"appropriate_refusal"|"inappropriate_refusal", "reason": "<one sentence>"}}.
+  If the expected behaviour is refuse, "appropriate_refusal" means the answer says the information is not available;
+  answering with invented content is "incorrect". Judge meaning, not wording.

@@ -160,8 +160,11 @@ def stale_reasons(manifest: Dict[str, Any]) -> List[str]:
     if expected.is_file():
         want = yaml.safe_load(expected.read_text(encoding="utf-8")) or {}
         got = ((manifest.get("fingerprint") or {}).get("must_match") or {}).get("controller_model_file_sha256")
-        if got and want.get("gguf_sha256") and got != want["gguf_sha256"]:
-            reasons.append("controller GGUF differs from the pinned model")
+        # Any controller pinned in expected_server.yaml (the top-level 2B pin or an entry under `controllers:`).
+        pinned = {want.get("gguf_sha256")} | {(c or {}).get("gguf_sha256") for c in (want.get("controllers") or {}).values()}
+        pinned.discard(None)
+        if got and pinned and got not in pinned:
+            reasons.append("controller GGUF differs from every pinned model")
     return reasons
 
 

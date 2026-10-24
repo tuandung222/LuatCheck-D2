@@ -1,0 +1,19 @@
+# Run profile for REPORTABLE LATENCY on the Mac (Apple M4, 16 GB): strictly sequential, one request in flight, one agent
+# per benchmark x variant, warm-up trials excluded (they are written to warmup.jsonl and never scored or timed in metrics).
+name: mac-latency
+workers: 1
+sequential: true
+latency_reportable: true
+record_memory: true
+require_idle: true      # preflight refuses a busy machine (1-min load > 0.5 x CPUs): other work corrupts reportable latency; --allow-busy overrides and is recorded
+trial_timeout_seconds: 300
+warmup_trials: 2
+# Reranker runtime for variants that rerank (l1_rerank): the llama.cpp reranking server on loopback serving the GGUF f16 conversion of the
+# pinned AITeamVN/Vietnamese_Reranker revision (`make rerank-server-mac`, scripts/reranker/serve_mac.sh f16). The client verifies the alias against
+# /v1/models; preflight checks the GGUF sha256 against expected_server.yaml and SHA256SUMS. Input policy (chunk 1500 chars, MaxP, max_length 1024) is the
+# class default, identical to the GPU runtime (docs/plans/reranker.md); numerics differ by <= ~0.1 logit.
+reranker:
+  backend: llamacpp_http
+  base_url: http://127.0.0.1:8082
+  model: Vietnamese_Reranker-f16
+description: Sequential, one agent, one in-flight request. Per-trial and per-call latency and process memory are recorded and reportable for this device.

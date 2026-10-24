@@ -1,0 +1,1923 @@
+{
+  "schema": "luatcheck.benchmark.run.v1",
+  "run_id": "d2-gpu-r2-2b-hcmut-v1",
+  "created_at": "2026-10-24T09:38:52.766259+00:00",
+  "phase": "main",
+  "limit": null,
+  "allow_unfrozen": false,
+  "report_eligible": false,
+  "report_eligible_note": "Eligible only as input to the D2 report after the judge/analysis; smoke and unfrozen runs are never eligible.",
+  "benchmarks": [
+    {
+      "name": "hcmut_v1",
+      "tasks_path": "evaluation/benchmarks/hcmut_v1/tasks.json",
+      "tasks_sha256": "591513d0f8fc59fafee661d4b16c82213fc7ee1924236da72193cce49c3a5a46",
+      "corpus": "data/corpus/hcmut_academic_v1.json",
+      "corpus_sha256": "107bec43d5fe3549ee1dcab61fbcbddbe2e1d632a69bf0f0079884d9c840ec48",
+      "profile": "hcmut_academic",
+      "profile_sha256": "3b649876a0e9a397348a043add0c7380e769bc7e94c302d89f1cadbab6b36347",
+      "lock_sha256": "2c625cf7d1b2ecc2ecc1350469569cbfa5cbef56099a4b880fb95c3317b6433c",
+      "lock_status": "ok",
+      "review_status": "ai_verified_not_human_reviewed"
+    }
+  ],
+  "variants": {
+    "off": {
+      "description": "Verification off (L1 and repair disabled)",
+      "verification_mode": "off",
+      "overrides": {}
+    },
+    "l1": {
+      "description": "L1 lexical grounding verification on, with repair",
+      "verification_mode": "l1_on",
+      "overrides": {}
+    },
+    "l1_rerank": {
+      "description": "L1 on plus second-stage reranking of the first-stage candidates (runtime from the run profile)",
+      "verification_mode": "l1_on",
+      "overrides": {
+        "retrieval": {
+          "reranker": {
+            "enabled": true,
+            "top_k_in": 20,
+            "top_k_out": 5,
+            "max_length": 1024,
+            "chunk_chars": 1500,
+            "chunk_overlap_chars": 200
+          }
+        }
+      }
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "run_profile": {
+    "name": "gpu-accuracy",
+    "workers": "auto",
+    "max_workers": 8,
+    "sequential": false,
+    "latency_reportable": false,
+    "record_memory": false,
+    "trial_timeout_seconds": 300,
+    "warmup_trials": 1,
+    "reranker": {
+      "backend": "cross_encoder",
+      "model": "/home/dungvpt/workspace/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker",
+      "device": "cuda",
+      "dtype": "float16",
+      "batch_size": 1,
+      "local_files_only": true
+    },
+    "description": "N concurrent workers (one agent per worker), CUDA reranker. Accuracy and retrieval metrics only; latency not reportable.",
+    "_path": "config/benchmark/profile_gpu_accuracy.yaml",
+    "workers_effective": 16
+  },
+  "trial_timeout_seconds": 300.0,
+  "model_config": {
+    "path": "config/benchmark/model_prism_gguf2b_r2.yaml",
+    "sha256": "a679e771990dbe6cb8f47c5df70fc944952bdc1c3f601f217b031ee39c9d75ee"
+  },
+  "endpoint_override": "http://127.0.0.1:28081/v1",
+  "effective_configs": {
+    "hcmut_v1/off": {
+      "domain": {
+        "profile": "hcmut_academic",
+        "profile_variant": "r2"
+      },
+      "agent": {
+        "require_search_before_answer": true,
+        "free_duplicate_notices": true
+      },
+      "tools": {
+        "search_hints": true
+      },
+      "model": {
+        "provider": "llamacpp",
+        "endpoint": "http://127.0.0.1:28081/v1",
+        "name": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+        "temperature": 0.7,
+        "timeout_seconds": 60.0,
+        "seed": null,
+        "max_output_tokens": 1024,
+        "context_tokens": 8192,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "constrained_json": true,
+        "enable_thinking": false,
+        "api_key_env": null,
+        "reasoning_effort": null,
+        "thought_max_chars": 800
+      },
+      "budgets": {
+        "max_tool_calls": 5,
+        "max_repairs": 2,
+        "max_steps": 8,
+        "wall_seconds": 180.0
+      },
+      "retrieval": {
+        "bm25_top_k": 5,
+        "dense_top_k": 5,
+        "rrf_k": 60,
+        "final_top_k": 5,
+        "default_top_k": 5,
+        "first_search_anchor": "question_plus_query",
+        "corpus_path": "data/corpus/hcmut_academic_v1.json",
+        "dense_model_type": "tfidf",
+        "mode": "bm25_tfidf",
+        "index": {
+          "path": null,
+          "store": null,
+          "search_mode": "hybrid",
+          "verify_corpus": true
+        },
+        "reranker": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "top_k_in": 20,
+          "top_k_out": 5,
+          "device": "auto",
+          "max_length": 1024,
+          "dtype": null,
+          "base_url": null,
+          "allow_remote": false,
+          "local_files_only": false,
+          "batch_size": 1,
+          "timeout_seconds": 60.0,
+          "chunk_chars": 1500,
+          "chunk_overlap_chars": 200
+        }
+      },
+      "verifier": {
+        "mode": "off",
+        "similarity_threshold": 0.7,
+        "l1_version": "v2",
+        "l1_overlap_threshold": 0.25,
+        "l1_support_threshold": 0.5,
+        "l1_sentence_support": "warn",
+        "repair_feedback_style": "verifier_report",
+        "l2_entailment_threshold": 0.3,
+        "l2_use_slm": false,
+        "nli": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "threshold": 0.9,
+          "action": "flag"
+        }
+      },
+      "memory": {
+        "enabled": false,
+        "backend": "sqlite",
+        "reuse_answers": false,
+        "sqlite_path": "data/db/local_slm_memory.db",
+        "similarity_threshold": 0.85,
+        "index_version": "benchmark-d2-v1"
+      },
+      "security": {
+        "guardrails": {
+          "enabled": true
+        },
+        "audit_log_path": "data/audit_log.jsonl",
+        "outbox_path": "data/outbox/sent_summaries.jsonl",
+        "egress_requires_confirmation": true
+      },
+      "models": {
+        "idle_unload_seconds": 600.0,
+        "max_resident_gb": 4.0,
+        "min_free_gb": 1.0,
+        "default_estimate_gb": 2.5,
+        "wait_for_quiet_machine_gb": null
+      }
+    },
+    "hcmut_v1/l1": {
+      "domain": {
+        "profile": "hcmut_academic",
+        "profile_variant": "r2"
+      },
+      "agent": {
+        "require_search_before_answer": true,
+        "free_duplicate_notices": true
+      },
+      "tools": {
+        "search_hints": true
+      },
+      "model": {
+        "provider": "llamacpp",
+        "endpoint": "http://127.0.0.1:28081/v1",
+        "name": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+        "temperature": 0.7,
+        "timeout_seconds": 60.0,
+        "seed": null,
+        "max_output_tokens": 1024,
+        "context_tokens": 8192,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "constrained_json": true,
+        "enable_thinking": false,
+        "api_key_env": null,
+        "reasoning_effort": null,
+        "thought_max_chars": 800
+      },
+      "budgets": {
+        "max_tool_calls": 5,
+        "max_repairs": 2,
+        "max_steps": 8,
+        "wall_seconds": 180.0
+      },
+      "retrieval": {
+        "bm25_top_k": 5,
+        "dense_top_k": 5,
+        "rrf_k": 60,
+        "final_top_k": 5,
+        "default_top_k": 5,
+        "first_search_anchor": "question_plus_query",
+        "corpus_path": "data/corpus/hcmut_academic_v1.json",
+        "dense_model_type": "tfidf",
+        "mode": "bm25_tfidf",
+        "index": {
+          "path": null,
+          "store": null,
+          "search_mode": "hybrid",
+          "verify_corpus": true
+        },
+        "reranker": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "top_k_in": 20,
+          "top_k_out": 5,
+          "device": "auto",
+          "max_length": 1024,
+          "dtype": null,
+          "base_url": null,
+          "allow_remote": false,
+          "local_files_only": false,
+          "batch_size": 1,
+          "timeout_seconds": 60.0,
+          "chunk_chars": 1500,
+          "chunk_overlap_chars": 200
+        }
+      },
+      "verifier": {
+        "mode": "l1_on",
+        "similarity_threshold": 0.7,
+        "l1_version": "v2",
+        "l1_overlap_threshold": 0.25,
+        "l1_support_threshold": 0.5,
+        "l1_sentence_support": "warn",
+        "repair_feedback_style": "verifier_report",
+        "l2_entailment_threshold": 0.3,
+        "l2_use_slm": false,
+        "nli": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "threshold": 0.9,
+          "action": "flag"
+        }
+      },
+      "memory": {
+        "enabled": false,
+        "backend": "sqlite",
+        "reuse_answers": false,
+        "sqlite_path": "data/db/local_slm_memory.db",
+        "similarity_threshold": 0.85,
+        "index_version": "benchmark-d2-v1"
+      },
+      "security": {
+        "guardrails": {
+          "enabled": true
+        },
+        "audit_log_path": "data/audit_log.jsonl",
+        "outbox_path": "data/outbox/sent_summaries.jsonl",
+        "egress_requires_confirmation": true
+      },
+      "models": {
+        "idle_unload_seconds": 600.0,
+        "max_resident_gb": 4.0,
+        "min_free_gb": 1.0,
+        "default_estimate_gb": 2.5,
+        "wait_for_quiet_machine_gb": null
+      }
+    },
+    "hcmut_v1/l1_rerank": {
+      "domain": {
+        "profile": "hcmut_academic",
+        "profile_variant": "r2"
+      },
+      "agent": {
+        "require_search_before_answer": true,
+        "free_duplicate_notices": true
+      },
+      "tools": {
+        "search_hints": true
+      },
+      "model": {
+        "provider": "llamacpp",
+        "endpoint": "http://127.0.0.1:28081/v1",
+        "name": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+        "temperature": 0.7,
+        "timeout_seconds": 60.0,
+        "seed": null,
+        "max_output_tokens": 1024,
+        "context_tokens": 8192,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "constrained_json": true,
+        "enable_thinking": false,
+        "api_key_env": null,
+        "reasoning_effort": null,
+        "thought_max_chars": 800
+      },
+      "budgets": {
+        "max_tool_calls": 5,
+        "max_repairs": 2,
+        "max_steps": 8,
+        "wall_seconds": 180.0
+      },
+      "retrieval": {
+        "bm25_top_k": 5,
+        "dense_top_k": 5,
+        "rrf_k": 60,
+        "final_top_k": 5,
+        "default_top_k": 5,
+        "first_search_anchor": "question_plus_query",
+        "corpus_path": "data/corpus/hcmut_academic_v1.json",
+        "dense_model_type": "tfidf",
+        "mode": "bm25_tfidf",
+        "index": {
+          "path": null,
+          "store": null,
+          "search_mode": "hybrid",
+          "verify_corpus": true
+        },
+        "reranker": {
+          "enabled": true,
+          "backend": "cross_encoder",
+          "model": "/home/dungvpt/workspace/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker",
+          "top_k_in": 20,
+          "top_k_out": 5,
+          "device": "cuda",
+          "max_length": 1024,
+          "dtype": "float16",
+          "base_url": null,
+          "allow_remote": false,
+          "local_files_only": true,
+          "batch_size": 1,
+          "timeout_seconds": 60.0,
+          "chunk_chars": 1500,
+          "chunk_overlap_chars": 200
+        }
+      },
+      "verifier": {
+        "mode": "l1_on",
+        "similarity_threshold": 0.7,
+        "l1_version": "v2",
+        "l1_overlap_threshold": 0.25,
+        "l1_support_threshold": 0.5,
+        "l1_sentence_support": "warn",
+        "repair_feedback_style": "verifier_report",
+        "l2_entailment_threshold": 0.3,
+        "l2_use_slm": false,
+        "nli": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "threshold": 0.9,
+          "action": "flag"
+        }
+      },
+      "memory": {
+        "enabled": false,
+        "backend": "sqlite",
+        "reuse_answers": false,
+        "sqlite_path": "data/db/local_slm_memory.db",
+        "similarity_threshold": 0.85,
+        "index_version": "benchmark-d2-v1"
+      },
+      "security": {
+        "guardrails": {
+          "enabled": true
+        },
+        "audit_log_path": "data/audit_log.jsonl",
+        "outbox_path": "data/outbox/sent_summaries.jsonl",
+        "egress_requires_confirmation": true
+      },
+      "models": {
+        "idle_unload_seconds": 600.0,
+        "max_resident_gb": 4.0,
+        "min_free_gb": 1.0,
+        "default_estimate_gb": 2.5,
+        "wait_for_quiet_machine_gb": null
+      }
+    },
+    "hcmut_v1/closed_book": {
+      "domain": {
+        "profile": "hcmut_academic",
+        "profile_variant": "r2"
+      },
+      "agent": {
+        "require_search_before_answer": true,
+        "free_duplicate_notices": true
+      },
+      "tools": {
+        "search_hints": true
+      },
+      "model": {
+        "provider": "llamacpp",
+        "endpoint": "http://127.0.0.1:28081/v1",
+        "name": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+        "temperature": 0.7,
+        "timeout_seconds": 60.0,
+        "seed": null,
+        "max_output_tokens": 1024,
+        "context_tokens": 8192,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "constrained_json": true,
+        "enable_thinking": false,
+        "api_key_env": null,
+        "reasoning_effort": null,
+        "thought_max_chars": 800
+      },
+      "budgets": {
+        "max_tool_calls": 5,
+        "max_repairs": 2,
+        "max_steps": 8,
+        "wall_seconds": 180.0
+      },
+      "retrieval": {
+        "bm25_top_k": 5,
+        "dense_top_k": 5,
+        "rrf_k": 60,
+        "final_top_k": 5,
+        "default_top_k": 5,
+        "first_search_anchor": "question_plus_query",
+        "corpus_path": "data/corpus/hcmut_academic_v1.json",
+        "dense_model_type": "tfidf",
+        "mode": "bm25_tfidf",
+        "index": {
+          "path": null,
+          "store": null,
+          "search_mode": "hybrid",
+          "verify_corpus": true
+        },
+        "reranker": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "top_k_in": 20,
+          "top_k_out": 5,
+          "device": "auto",
+          "max_length": 1024,
+          "dtype": null,
+          "base_url": null,
+          "allow_remote": false,
+          "local_files_only": false,
+          "batch_size": 1,
+          "timeout_seconds": 60.0,
+          "chunk_chars": 1500,
+          "chunk_overlap_chars": 200
+        }
+      },
+      "verifier": {
+        "mode": "off",
+        "similarity_threshold": 0.7,
+        "l1_version": "v2",
+        "l1_overlap_threshold": 0.25,
+        "l1_support_threshold": 0.5,
+        "l1_sentence_support": "warn",
+        "repair_feedback_style": "verifier_report",
+        "l2_entailment_threshold": 0.3,
+        "l2_use_slm": false,
+        "nli": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "threshold": 0.9,
+          "action": "flag"
+        }
+      },
+      "memory": {
+        "enabled": false,
+        "backend": "sqlite",
+        "reuse_answers": false,
+        "sqlite_path": "data/db/local_slm_memory.db",
+        "similarity_threshold": 0.85,
+        "index_version": "benchmark-d2-v1"
+      },
+      "security": {
+        "guardrails": {
+          "enabled": true
+        },
+        "audit_log_path": "data/audit_log.jsonl",
+        "outbox_path": "data/outbox/sent_summaries.jsonl",
+        "egress_requires_confirmation": true
+      },
+      "models": {
+        "idle_unload_seconds": 600.0,
+        "max_resident_gb": 4.0,
+        "min_free_gb": 1.0,
+        "default_estimate_gb": 2.5,
+        "wait_for_quiet_machine_gb": null
+      }
+    },
+    "hcmut_v1/oracle": {
+      "domain": {
+        "profile": "hcmut_academic",
+        "profile_variant": "r2"
+      },
+      "agent": {
+        "require_search_before_answer": true,
+        "free_duplicate_notices": true
+      },
+      "tools": {
+        "search_hints": true
+      },
+      "model": {
+        "provider": "llamacpp",
+        "endpoint": "http://127.0.0.1:28081/v1",
+        "name": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+        "temperature": 0.7,
+        "timeout_seconds": 60.0,
+        "seed": null,
+        "max_output_tokens": 1024,
+        "context_tokens": 8192,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "constrained_json": true,
+        "enable_thinking": false,
+        "api_key_env": null,
+        "reasoning_effort": null,
+        "thought_max_chars": 800
+      },
+      "budgets": {
+        "max_tool_calls": 5,
+        "max_repairs": 2,
+        "max_steps": 8,
+        "wall_seconds": 180.0
+      },
+      "retrieval": {
+        "bm25_top_k": 5,
+        "dense_top_k": 5,
+        "rrf_k": 60,
+        "final_top_k": 5,
+        "default_top_k": 5,
+        "first_search_anchor": "question_plus_query",
+        "corpus_path": "data/corpus/hcmut_academic_v1.json",
+        "dense_model_type": "tfidf",
+        "mode": "bm25_tfidf",
+        "index": {
+          "path": null,
+          "store": null,
+          "search_mode": "hybrid",
+          "verify_corpus": true
+        },
+        "reranker": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "top_k_in": 20,
+          "top_k_out": 5,
+          "device": "auto",
+          "max_length": 1024,
+          "dtype": null,
+          "base_url": null,
+          "allow_remote": false,
+          "local_files_only": false,
+          "batch_size": 1,
+          "timeout_seconds": 60.0,
+          "chunk_chars": 1500,
+          "chunk_overlap_chars": 200
+        }
+      },
+      "verifier": {
+        "mode": "off",
+        "similarity_threshold": 0.7,
+        "l1_version": "v2",
+        "l1_overlap_threshold": 0.25,
+        "l1_support_threshold": 0.5,
+        "l1_sentence_support": "warn",
+        "repair_feedback_style": "verifier_report",
+        "l2_entailment_threshold": 0.3,
+        "l2_use_slm": false,
+        "nli": {
+          "enabled": false,
+          "backend": "cross_encoder",
+          "model": null,
+          "threshold": 0.9,
+          "action": "flag"
+        }
+      },
+      "memory": {
+        "enabled": false,
+        "backend": "sqlite",
+        "reuse_answers": false,
+        "sqlite_path": "data/db/local_slm_memory.db",
+        "similarity_threshold": 0.85,
+        "index_version": "benchmark-d2-v1"
+      },
+      "security": {
+        "guardrails": {
+          "enabled": true
+        },
+        "audit_log_path": "data/audit_log.jsonl",
+        "outbox_path": "data/outbox/sent_summaries.jsonl",
+        "egress_requires_confirmation": true
+      },
+      "models": {
+        "idle_unload_seconds": 600.0,
+        "max_resident_gb": 4.0,
+        "min_free_gb": 1.0,
+        "default_estimate_gb": 2.5,
+        "wait_for_quiet_machine_gb": null
+      }
+    }
+  },
+  "git": {
+    "commit": "cdb6b243aac536dcfdec6fe137dc8c08f4b988f1",
+    "dirty": true,
+    "tracked_changes": 0,
+    "untracked_files": 7,
+    "note": "The sources actually used are preserved byte-for-byte in source_snapshot/; the commit alone does not describe them when dirty.",
+    "dirty_in_collection_paths": [],
+    "describe": "cdb6b243aac5"
+  },
+  "hardware": {
+    "platform": "Linux-5.15.0-190-generic-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "python": "3.11.14",
+    "cpu_count": 128,
+    "cpu_brand": "AMD EPYC 9754 128-Core Processor",
+    "memory_bytes": 270223425536,
+    "nvidia_smi": "0, NVIDIA H100 PCIe, 81559 MiB, 71895 MiB, 575.57.08\n1, NVIDIA H100 PCIe, 81559 MiB, 4987 MiB, 575.57.08\n2, NVIDIA H100 PCIe, 81559 MiB, 6559 MiB, 575.57.08\n3, NVIDIA H100 PCIe, 81559 MiB, 12829 MiB, 575.57.08",
+    "cuda_visible_devices": "2",
+    "packages": {
+      "requests": "2.34.2",
+      "pydantic": "2.12.5",
+      "numpy": "2.4.6",
+      "yaml": "6.0.3",
+      "torch": "2.10.0+cu128",
+      "transformers": "5.14.1",
+      "sentence_transformers": "5.2.3"
+    }
+  },
+  "server": {
+    "endpoint": "http://127.0.0.1:28081/v1",
+    "model_alias": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+    "models_listing": [
+      {
+        "id": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+        "aliases": [
+          "prism-ml/Ternary-Bonsai-2-2B-gguf"
+        ],
+        "tags": [],
+        "object": "model",
+        "created": 1792834708,
+        "owned_by": "llamacpp",
+        "meta": {
+          "vocab_type": true,
+          "n_vocab": 248320,
+          "n_ctx": 262144,
+          "n_ctx_train": 262144,
+          "n_embd": 2048,
+          "n_params": 1881825088,
+          "size": 506313984,
+          "ftype": "PQ2_0 - 2.13 bpw (group 128)"
+        }
+      }
+    ],
+    "model_path": "/home/dungvpt/workspace/dungvpt/models/bonsai/Ternary-Bonsai-2-2B-PQ2_0.gguf",
+    "model_file_sha256": "d5f01a4ecaf49239653308ee732ad1a0c5f802c0ddb997549fc7b694c8b45928",
+    "model_file_sha256_note": null,
+    "build_info": "b10787-73bfe6cc4",
+    "model_ftype": "PQ2_0 - 2.13 bpw (group 128)",
+    "total_slots": 16,
+    "n_ctx": 262144,
+    "server_default_sampling": {
+      "seed": 4294967295,
+      "temperature": 0.699999988079071,
+      "dynatemp_range": 0.0,
+      "dynatemp_exponent": 1.0,
+      "top_k": 20,
+      "top_p": 0.800000011920929,
+      "min_p": 0.0,
+      "top_n_sigma": -1.0,
+      "xtc_probability": 0.0,
+      "xtc_threshold": 0.10000000149011612,
+      "typical_p": 1.0,
+      "repeat_last_n": 64,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0,
+      "dry_multiplier": 0.0,
+      "dry_base": 1.75,
+      "dry_allowed_length": 2,
+      "dry_penalty_last_n": 64,
+      "mirostat": 0,
+      "mirostat_tau": 5.0,
+      "mirostat_eta": 0.10000000149011612,
+      "adaptive_target": -1.0,
+      "adaptive_decay": 0.8999999761581421,
+      "max_tokens": -1,
+      "n_predict": -1,
+      "n_keep": 0,
+      "n_discard": 0,
+      "ignore_eos": false,
+      "stream": false,
+      "n_probs": 0,
+      "min_keep": 0,
+      "chat_format": "Content-only",
+      "reasoning_format": "none",
+      "reasoning_in_content": false,
+      "generation_prompt": "",
+      "samplers": [
+        "penalties",
+        "dry",
+        "top_n_sigma",
+        "top_k",
+        "typ_p",
+        "top_p",
+        "min_p",
+        "xtc",
+        "temperature"
+      ],
+      "speculative.types": "none",
+      "timings_per_token": false,
+      "post_sampling_probs": false,
+      "backend_sampling": false,
+      "lora": []
+    },
+    "chat_template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "local_server_pid": 355829,
+    "local_server_command": "/home/dungvpt/workspace/dungvpt/src/prism-llama.cpp/build/bin/llama-server -m /home/dungvpt/workspace/dungvpt/models/bonsai/Ternary-Bonsai-2-2B-PQ2_0.gguf -ngl 99 -fa on -np 16 -c 262144 --kv-unified --host 127.0.0.1 --port 28081 --alias prism-ml/Ternary-Bonsai-2-2B-gguf --jinja --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0 --presence-penalty 1.5 --repeat-penalty 1.0 --repeat-last-n 64",
+    "props_available": true
+  },
+  "preflight": {
+    "ok": true,
+    "generated_at": "2026-10-24T09:38:51.933561+00:00",
+    "failed": [],
+    "warnings": [],
+    "checks": [
+      {
+        "name": "git",
+        "ok": true,
+        "severity": "info",
+        "detail": "commit cdb6b243aac5, clean",
+        "data": {
+          "commit": "cdb6b243aac536dcfdec6fe137dc8c08f4b988f1",
+          "dirty": true,
+          "tracked_changes": 0,
+          "untracked_files": 7,
+          "note": "The sources actually used are preserved byte-for-byte in source_snapshot/; the commit alone does not describe them when dirty.",
+          "dirty_in_collection_paths": [],
+          "describe": "cdb6b243aac5"
+        }
+      },
+      {
+        "name": "lock:hcmut_v1",
+        "ok": true,
+        "severity": "info",
+        "detail": "lock ok",
+        "data": {
+          "problems": []
+        }
+      },
+      {
+        "name": "system_revision",
+        "ok": true,
+        "severity": "info",
+        "detail": "protocol r2-posthoc (post-hoc revision evaluated on the same tasks): 10 revision switches effective, all requested by config/benchmark/model_prism_gguf2b_r2.yaml",
+        "data": {
+          "protocol": "r2-posthoc",
+          "protocol_label": "post-hoc revision evaluated on the same tasks",
+          "switch_keys": [
+            "retrieval.first_search_anchor",
+            "retrieval.default_top_k",
+            "tools.search_hints",
+            "domain.profile_variant",
+            "agent.require_search_before_answer",
+            "verifier.repair_feedback_style",
+            "model.thought_max_chars",
+            "agent.free_duplicate_notices",
+            "verifier.l1_version",
+            "verifier.l1_sentence_support"
+          ],
+          "requested_in_model_config": {
+            "retrieval.first_search_anchor": "question_plus_query",
+            "retrieval.default_top_k": 5,
+            "tools.search_hints": true,
+            "domain.profile_variant": "r2",
+            "agent.require_search_before_answer": true,
+            "verifier.repair_feedback_style": "verifier_report",
+            "model.thought_max_chars": 800,
+            "agent.free_duplicate_notices": true,
+            "verifier.l1_version": "v2",
+            "verifier.l1_sentence_support": "warn"
+          },
+          "effective": {
+            "retrieval.first_search_anchor": "question_plus_query",
+            "retrieval.default_top_k": 5,
+            "tools.search_hints": true,
+            "domain.profile_variant": "r2",
+            "agent.require_search_before_answer": true,
+            "verifier.repair_feedback_style": "verifier_report",
+            "model.thought_max_chars": 800,
+            "agent.free_duplicate_notices": true,
+            "verifier.l1_version": "v2",
+            "verifier.l1_sentence_support": "warn"
+          },
+          "note": "Keys not named by the model config run with the frozen v3 default of the installed src/ (see config/reference.yaml)."
+        }
+      },
+      {
+        "name": "controller",
+        "ok": true,
+        "severity": "info",
+        "detail": "http://127.0.0.1:28081/v1 serves prism-ml/Ternary-Bonsai-2-2B-gguf (slots 16, n_ctx 262144)",
+        "data": {
+          "model_path": "/home/dungvpt/workspace/dungvpt/models/bonsai/Ternary-Bonsai-2-2B-PQ2_0.gguf",
+          "build_info": "b10787-73bfe6cc4",
+          "model_ftype": "PQ2_0 - 2.13 bpw (group 128)",
+          "total_slots": 16,
+          "n_ctx": 262144
+        }
+      },
+      {
+        "name": "controller_health",
+        "ok": true,
+        "severity": "info",
+        "detail": "/health HTTP 200",
+        "data": {}
+      },
+      {
+        "name": "controller_gguf_sha256",
+        "ok": true,
+        "severity": "info",
+        "detail": "GGUF sha256 d5f01a4ecaf49239.. == expected d5f01a4ecaf49239..",
+        "data": {}
+      },
+      {
+        "name": "controller_quantisation",
+        "ok": true,
+        "severity": "info",
+        "detail": "server ftype 'PQ2_0 - 2.13 bpw (group 128)', expected to contain 'PQ2_0'",
+        "data": {}
+      },
+      {
+        "name": "controller_llama_cpp_build",
+        "ok": true,
+        "severity": "info",
+        "detail": "server build 'b10787-73bfe6cc4', expected commit '73bfe6c'",
+        "data": {}
+      },
+      {
+        "name": "controller_alias",
+        "ok": true,
+        "severity": "info",
+        "detail": "alias 'prism-ml/Ternary-Bonsai-2-2B-gguf'",
+        "data": {}
+      },
+      {
+        "name": "controller_slots",
+        "ok": true,
+        "severity": "info",
+        "detail": "16 workers vs 16 slots (-np)",
+        "data": {}
+      },
+      {
+        "name": "controller_context",
+        "ok": true,
+        "severity": "info",
+        "detail": "server -c 262144, needs >= 131072 (8192 x 16 workers)",
+        "data": {}
+      },
+      {
+        "name": "seed_honoured",
+        "ok": true,
+        "severity": "info",
+        "detail": "different seeds produced different text",
+        "data": {
+          "prompt": "Viết một câu ngắn về mùa thu ở Hà Nội.",
+          "same_seed_identical": true,
+          "different_seed_differs": true
+        }
+      },
+      {
+        "name": "seed_reproducible",
+        "ok": true,
+        "severity": "info",
+        "detail": "same seed reproduced the same text",
+        "data": {}
+      },
+      {
+        "name": "reranker_weights",
+        "ok": true,
+        "severity": "info",
+        "detail": "model.safetensors sha256 1cecccab406ec6d3.. matches the pinned revision f53697624840",
+        "data": {
+          "backend": "cross_encoder",
+          "model": "/home/dungvpt/workspace/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker",
+          "device": "cuda",
+          "dtype": "float16",
+          "base_url": null,
+          "top_k_in": 20,
+          "top_k_out": 5,
+          "max_length": 1024,
+          "weights_dir": "/mnt/project/productivity/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker",
+          "hf_snapshot_revision": null,
+          "download_metadata_revision": "f536976248403314225d7fdfdbc87f0e9516a54e",
+          "weights_sha256": "1cecccab406ec6d3f13da8ccdc5e853a1372e51845322163655ab530d3730071",
+          "torch": "2.10.0+cu128",
+          "cuda_available": true,
+          "cuda_devices": [
+            "NVIDIA H100 PCIe"
+          ],
+          "n_candidates": 20,
+          "n_scored": 20,
+          "n_truncated": 0,
+          "wall_ms": 1374.470124952495,
+          "canary_wall_s_including_load": 14.09
+        }
+      },
+      {
+        "name": "reranker_canary",
+        "ok": true,
+        "severity": "info",
+        "detail": "real rerank search scored 20 candidates",
+        "data": {
+          "backend": "cross_encoder",
+          "model": "/home/dungvpt/workspace/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker",
+          "device": "cuda",
+          "dtype": "float16",
+          "base_url": null,
+          "top_k_in": 20,
+          "top_k_out": 5,
+          "max_length": 1024,
+          "weights_dir": "/mnt/project/productivity/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker",
+          "hf_snapshot_revision": null,
+          "download_metadata_revision": "f536976248403314225d7fdfdbc87f0e9516a54e",
+          "weights_sha256": "1cecccab406ec6d3f13da8ccdc5e853a1372e51845322163655ab530d3730071",
+          "torch": "2.10.0+cu128",
+          "cuda_available": true,
+          "cuda_devices": [
+            "NVIDIA H100 PCIe"
+          ],
+          "n_candidates": 20,
+          "n_scored": 20,
+          "n_truncated": 0,
+          "wall_ms": 1374.470124952495,
+          "canary_wall_s_including_load": 14.09
+        }
+      },
+      {
+        "name": "disk",
+        "ok": true,
+        "severity": "info",
+        "detail": "478.7 GB free at /mnt/project/productivity/dungvpt/LuatCheck-D2/evaluation/runs",
+        "data": {}
+      },
+      {
+        "name": "machine_idle",
+        "ok": true,
+        "severity": "info",
+        "detail": "1-min load average 1.71 on 128 CPUs",
+        "data": {
+          "cpu_count": 128,
+          "load_average_1_5_15": [
+            1.71,
+            2.35,
+            2.17
+          ],
+          "busiest_processes": [
+            "PID %CPU   RSS COMMAND",
+            " 356286  148 2325880 python",
+            " 356275  135 2327012 python",
+            " 358587 43.0 22356 nvidia-smi",
+            "   5838 14.9 155824 cadvisor",
+            "4163643 13.7 6947428 python3"
+          ],
+          "gpus": "0, NVIDIA H100 PCIe, 71895 MiB, 81559 MiB, 0 %\n1, NVIDIA H100 PCIe, 4987 MiB, 81559 MiB, 0 %\n2, NVIDIA H100 PCIe, 6559 MiB, 81559 MiB, 0 %\n3, NVIDIA H100 PCIe, 12829 MiB, 81559 MiB, 0 %",
+          "cuda_visible_devices": "2"
+        }
+      }
+    ],
+    "git": {
+      "commit": "cdb6b243aac536dcfdec6fe137dc8c08f4b988f1",
+      "dirty": true,
+      "tracked_changes": 0,
+      "untracked_files": 7,
+      "note": "The sources actually used are preserved byte-for-byte in source_snapshot/; the commit alone does not describe them when dirty.",
+      "dirty_in_collection_paths": [],
+      "describe": "cdb6b243aac5"
+    },
+    "server": {
+      "endpoint": "http://127.0.0.1:28081/v1",
+      "model_alias": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+      "models_listing": [
+        {
+          "id": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+          "aliases": [
+            "prism-ml/Ternary-Bonsai-2-2B-gguf"
+          ],
+          "tags": [],
+          "object": "model",
+          "created": 1792834708,
+          "owned_by": "llamacpp",
+          "meta": {
+            "vocab_type": true,
+            "n_vocab": 248320,
+            "n_ctx": 262144,
+            "n_ctx_train": 262144,
+            "n_embd": 2048,
+            "n_params": 1881825088,
+            "size": 506313984,
+            "ftype": "PQ2_0 - 2.13 bpw (group 128)"
+          }
+        }
+      ],
+      "model_path": "/home/dungvpt/workspace/dungvpt/models/bonsai/Ternary-Bonsai-2-2B-PQ2_0.gguf",
+      "model_file_sha256": "d5f01a4ecaf49239653308ee732ad1a0c5f802c0ddb997549fc7b694c8b45928",
+      "model_file_sha256_note": null,
+      "build_info": "b10787-73bfe6cc4",
+      "model_ftype": "PQ2_0 - 2.13 bpw (group 128)",
+      "total_slots": 16,
+      "n_ctx": 262144,
+      "server_default_sampling": {
+        "seed": 4294967295,
+        "temperature": 0.699999988079071,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 20,
+        "top_p": 0.800000011920929,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 1.5,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": -1,
+        "n_predict": -1,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": false,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "none",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "chat_template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "local_server_pid": 355829,
+      "local_server_command": "/home/dungvpt/workspace/dungvpt/src/prism-llama.cpp/build/bin/llama-server -m /home/dungvpt/workspace/dungvpt/models/bonsai/Ternary-Bonsai-2-2B-PQ2_0.gguf -ngl 99 -fa on -np 16 -c 262144 --kv-unified --host 127.0.0.1 --port 28081 --alias prism-ml/Ternary-Bonsai-2-2B-gguf --jinja --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0 --presence-penalty 1.5 --repeat-penalty 1.0 --repeat-last-n 64",
+      "props_available": true
+    },
+    "seed_canary": {
+      "prompt": "Viết một câu ngắn về mùa thu ở Hà Nội.",
+      "same_seed_identical": true,
+      "different_seed_differs": true,
+      "texts": {
+        "seed42_a": "Mùa thu ở Hà Nội là thời điểm khi những cánh đồng hoa tan, bầu trời trong lành và tiếng sáo chim vang lên đầy màu sắc.",
+        "seed42_b": "Mùa thu ở Hà Nội là thời điểm khi những cánh đồng hoa tan, bầu trời trong lành và tiếng sáo chim vang lên đầy màu sắc.",
+        "seed123": "Mùa thu ở Hà Nội là lúc trời mát mẻ, hoa sen nở rộ và phố phường trở nên rộn ràng với tiếng xe cồng kềnh.",
+        "seed42_c": "Mùa thu ở Hà Nội là thời điểm khi những cánh đồng hoa tan, bầu trời trong lành và tiếng sáo chim vang lên đầy màu sắc."
+      }
+    },
+    "run_profile": "gpu-accuracy",
+    "workers": 16
+  },
+  "kind": "main",
+  "harness_version": "1.2.0",
+  "run_state": "complete",
+  "protocol": "r2-posthoc",
+  "protocol_label": "post-hoc revision evaluated on the same tasks",
+  "system_revision": {
+    "protocol": "r2-posthoc",
+    "protocol_label": "post-hoc revision evaluated on the same tasks",
+    "switch_keys": [
+      "retrieval.first_search_anchor",
+      "retrieval.default_top_k",
+      "tools.search_hints",
+      "domain.profile_variant",
+      "agent.require_search_before_answer",
+      "verifier.repair_feedback_style",
+      "model.thought_max_chars",
+      "agent.free_duplicate_notices",
+      "verifier.l1_version",
+      "verifier.l1_sentence_support"
+    ],
+    "requested_in_model_config": {
+      "retrieval.first_search_anchor": "question_plus_query",
+      "retrieval.default_top_k": 5,
+      "tools.search_hints": true,
+      "domain.profile_variant": "r2",
+      "agent.require_search_before_answer": true,
+      "verifier.repair_feedback_style": "verifier_report",
+      "model.thought_max_chars": 800,
+      "agent.free_duplicate_notices": true,
+      "verifier.l1_version": "v2",
+      "verifier.l1_sentence_support": "warn"
+    },
+    "effective": {
+      "retrieval.first_search_anchor": "question_plus_query",
+      "retrieval.default_top_k": 5,
+      "tools.search_hints": true,
+      "domain.profile_variant": "r2",
+      "agent.require_search_before_answer": true,
+      "verifier.repair_feedback_style": "verifier_report",
+      "model.thought_max_chars": 800,
+      "agent.free_duplicate_notices": true,
+      "verifier.l1_version": "v2",
+      "verifier.l1_sentence_support": "warn"
+    },
+    "note": "Keys not named by the model config run with the frozen v3 default of the installed src/ (see config/reference.yaml)."
+  },
+  "provenance": {
+    "git": {
+      "source": "git",
+      "commit": "cdb6b243aac536dcfdec6fe137dc8c08f4b988f1",
+      "branch": "main",
+      "remote": "https://github.com/tuandung222/LuatCheck-D2.git",
+      "describe": "cdb6b243aac5",
+      "dirty": false,
+      "dirty_collection_paths": [],
+      "on_origin": true
+    },
+    "host": {
+      "hostname": "uney-ws82",
+      "os": "Linux-5.15.0-190-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "python": "3.11.14",
+      "python_executable": "/home/dungvpt/workspace/dungvpt/envs/luatcheck-d2/bin/python",
+      "gpus": [
+        "0, NVIDIA H100 PCIe, 575.57.08, 81559 MiB",
+        "1, NVIDIA H100 PCIe, 575.57.08, 81559 MiB",
+        "2, NVIDIA H100 PCIe, 575.57.08, 81559 MiB",
+        "3, NVIDIA H100 PCIe, 575.57.08, 81559 MiB"
+      ],
+      "cuda_visible_devices": "2",
+      "packages": {
+        "torch": "2.10.0+cu128",
+        "transformers": "5.14.1",
+        "sentence_transformers": "5.2.3",
+        "numpy": "2.4.6",
+        "pydantic": "2.12.5",
+        "requests": "2.34.2",
+        "yaml": "6.0.3",
+        "huggingface_hub": "1.26.0",
+        "torch_cuda": "12.8"
+      }
+    },
+    "invocation": {
+      "argv": [
+        "evaluation/run_d2.py",
+        "all",
+        "--profile",
+        "gpu-accuracy",
+        "--run-dir",
+        "evaluation/runs/d2-gpu-r2-2b-hcmut-v1",
+        "--execute",
+        "--endpoint",
+        "http://127.0.0.1:28081/v1",
+        "--model-config",
+        "config/benchmark/model_prism_gguf2b_r2.yaml",
+        "--matrix",
+        "config/benchmark/d2_matrix_r2.yaml",
+        "--skip-judge",
+        "--server-note",
+        "gpu 2, NVIDIA H100 PCIe, llama.cpp prism, -np 16 -c 262144",
+        "--benchmarks",
+        "hcmut_v1",
+        "--workers",
+        "16"
+      ],
+      "entry_script": "evaluation/run_d2.py",
+      "cwd": "/mnt/project/productivity/dungvpt/LuatCheck-D2",
+      "env": {
+        "RUN_ID": "d2-gpu-r2-2b-hcmut-v1",
+        "MODEL_ALIAS": "prism-ml/Ternary-Bonsai-2-2B-gguf",
+        "MODEL_CONFIG": "config/benchmark/model_prism_gguf2b_r2.yaml",
+        "MATRIX": "config/benchmark/d2_matrix_r2.yaml",
+        "CUDA_VISIBLE_DEVICES": "2",
+        "PRISM_PORT": "28081",
+        "PRISM_DIR": "/home/dungvpt/workspace/dungvpt/src/prism-llama.cpp",
+        "RERANKER_MODEL_DIR": "/home/dungvpt/workspace/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker",
+        "NP": "16",
+        "CTX_PER_SLOT": "16384",
+        "GGUF_PATH": "/home/dungvpt/workspace/dungvpt/models/bonsai/Ternary-Bonsai-2-2B-PQ2_0.gguf",
+        "SKIP_JUDGE": "1",
+        "EXTRA": "--benchmarks hcmut_v1 --workers 16"
+      }
+    },
+    "created_local": "2026-10-24T09:38:54.096851+00:00",
+    "config_sha256": {
+      "config/benchmark/model_prism_gguf2b_r2.yaml": "a679e771990dbe6cb8f47c5df70fc944952bdc1c3f601f217b031ee39c9d75ee",
+      "config/benchmark/variants.yaml": "3cc178e574d6230cc3c903fbb019437a68d5b68d8e8fc6cabd0e70542f388f74",
+      "config/benchmark/expected_server.yaml": "5b4bb53264d23fa39361506c3d4ac3addfd527e2621981531a21110975e32fd6",
+      "config/benchmark/profile_gpu_accuracy.yaml": "b17b7b498062132e7725f010564935a543afca6c149be18c2972d260a2dcc532",
+      "evaluation/judge_prompt.txt": "f5c42e1b8e636c866aeab9dbb0700dc2cbb29c3cb9bfc8c4de25649da656a8de",
+      "config/benchmark/judge_gateway.json": "3ac6a15d25acd1a9e26ef395a4625259f050e51796a8edd234239a10e9506aca"
+    },
+    "collection_sha256": "29ce4808bf1119b6496686cc39247b80c7234ed752640252259e51c8ec9ce9af"
+  },
+  "fingerprint": {
+    "must_match": {
+      "controller_model_file_sha256": "d5f01a4ecaf49239653308ee732ad1a0c5f802c0ddb997549fc7b694c8b45928",
+      "controller_ftype": "PQ2_0 - 2.13 bpw (group 128)",
+      "llama_cpp_build": "b10787-73bfe6cc4",
+      "chat_template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "request_sampling": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "constrained_json": true,
+        "enable_thinking": false,
+        "max_output_tokens": 1024,
+        "context_tokens": 8192
+      },
+      "server_default_sampling": {
+        "seed": 4294967295,
+        "temperature": 0.699999988079071,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 20,
+        "top_p": 0.800000011920929,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 1.5,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": -1,
+        "n_predict": -1,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": false,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "none",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "collection_sources_sha256": "29ce4808bf1119b6496686cc39247b80c7234ed752640252259e51c8ec9ce9af",
+      "model_config_sha256": "a679e771990dbe6cb8f47c5df70fc944952bdc1c3f601f217b031ee39c9d75ee",
+      "variants_sha256": "3cc178e574d6230cc3c903fbb019437a68d5b68d8e8fc6cabd0e70542f388f74",
+      "benchmark_locks": {
+        "hcmut_v1": "2c625cf7d1b2ecc2ecc1350469569cbfa5cbef56099a4b880fb95c3317b6433c"
+      },
+      "seeds": [
+        42,
+        123,
+        2026
+      ],
+      "variants": [
+        "off",
+        "l1",
+        "l1_rerank"
+      ],
+      "baselines": {
+        "closed_book": {
+          "kind": "closed_book",
+          "description": "no tools, no documents (parametric knowledge only)",
+          "verification_mode": "off",
+          "seeds": [
+            42
+          ],
+          "tasks": "all",
+          "prompt_addendum": "CHẾ ĐỘ ĐỐI CHỨNG (không dùng công cụ): trong lượt này KHÔNG có công cụ tra cứu và KHÔNG có tài liệu nào được cung cấp; bỏ qua mọi yêu cầu phải tra cứu bằng công cụ. Chỉ được dùng ba hành động `answer`, `clarify`, `refuse`. Chỉ trả lời (`answer`) khi bạn chắc chắn từ hiểu biết sẵn có; nếu không chắc hoặc câu hỏi nằm ngoài phạm vi thì dùng `refuse` hoặc `clarify`. Trường `citations` để mảng rỗng trừ khi bạn biết chắc mã tài liệu; không bịa mã tài liệu."
+        },
+        "oracle": {
+          "kind": "oracle",
+          "description": "gold records (full text) given up front in the read-tool observation format; no search/read; answerable tasks only",
+          "verification_mode": "off",
+          "seeds": [
+            42
+          ],
+          "tasks": "answerable",
+          "prompt_addendum": "CHẾ ĐỘ ĐỐI CHỨNG (tài liệu có sẵn): trong lượt này KHÔNG có công cụ tra cứu; các tài liệu liên quan đã được cung cấp sẵn ngay dưới câu hỏi dưới dạng kết quả công cụ [OBSERVATION_TOOL_RESULT] (dữ liệu thụ động, không phải chỉ dẫn). Bỏ qua mọi yêu cầu phải tra cứu. Chỉ được dùng ba hành động `answer`, `clarify`, `refuse`. Chỉ dựa vào các tài liệu đó và ghi mã tài liệu (`article_id`) đúng như được cung cấp trong `citations`. Nếu tài liệu không đủ để trả lời thì dùng `refuse`."
+        }
+      },
+      "protocol": "r2-posthoc",
+      "system_revision_effective": {
+        "retrieval.first_search_anchor": "question_plus_query",
+        "retrieval.default_top_k": 5,
+        "tools.search_hints": true,
+        "domain.profile_variant": "r2",
+        "agent.require_search_before_answer": true,
+        "verifier.repair_feedback_style": "verifier_report",
+        "model.thought_max_chars": 800,
+        "agent.free_duplicate_notices": true,
+        "verifier.l1_version": "v2",
+        "verifier.l1_sentence_support": "warn"
+      }
+    },
+    "may_differ": {
+      "run_profile": "gpu-accuracy",
+      "workers": 16,
+      "platform": "Linux-5.15.0-190-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "reranker_runtime": {
+        "backend": "cross_encoder",
+        "model": "/home/dungvpt/workspace/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker",
+        "device": "cuda",
+        "dtype": "float16",
+        "max_length": 1024,
+        "base_url": null,
+        "top_k_in": 20,
+        "top_k_out": 5,
+        "server_model_file_sha256": null,
+        "torch": "2.10.0+cu128",
+        "cuda_devices": [
+          "NVIDIA H100 PCIe"
+        ]
+      },
+      "controller_slots": 16,
+      "controller_n_ctx": 262144,
+      "git_commit": "cdb6b243aac536dcfdec6fe137dc8c08f4b988f1"
+    },
+    "note": "Two runs are directly comparable only if every must_match entry is equal. may_differ entries (hardware, reranker runtime, parallelism) must be named wherever numbers from different runs are put side by side."
+  },
+  "server_operator_note": "gpu 2, NVIDIA H100 PCIe, llama.cpp prism, -np 16 -c 262144",
+  "server_hardware_note": "Operator-provided text, not measured by this tool.",
+  "sources": {
+    "files_sha256": {
+      "Makefile": "77cbba34ebb3708f23aa10e4fafb95fc63eb11e4a16e786debefd45540632853",
+      "config/benchmark/d2_matrix.yaml": "55761204055396f2307c1756563973ce5d9f5a189533f3965ed80c145e3989ce",
+      "config/benchmark/d2_matrix_r2.yaml": "9c31d97819b73ba0f843b945d5ae229daf712ac73a22046b1d6c3c3aa60effa1",
+      "config/benchmark/expected_server.yaml": "5b4bb53264d23fa39361506c3d4ac3addfd527e2621981531a21110975e32fd6",
+      "config/benchmark/judge_gateway.json": "3ac6a15d25acd1a9e26ef395a4625259f050e51796a8edd234239a10e9506aca",
+      "config/benchmark/model_prism_gguf2b.yaml": "36af517a984e116fc68d763d6b79307c79f7ee58cefc16084b3a623a4740f8dc",
+      "config/benchmark/model_prism_gguf2b_r2.yaml": "a679e771990dbe6cb8f47c5df70fc944952bdc1c3f601f217b031ee39c9d75ee",
+      "config/benchmark/model_prism_gguf4b.yaml": "091194aace8eb9bf2ee349b56f51c6b034007158a8722bc794484197159053a3",
+      "config/benchmark/model_prism_gguf4b_r2.yaml": "9245bb21eaddbd5d4632eeff454fc4240799c7fcc9429af238bc6b29f5637237",
+      "config/benchmark/profile_gpu_accuracy.yaml": "b17b7b498062132e7725f010564935a543afca6c149be18c2972d260a2dcc532",
+      "config/benchmark/profile_mac_latency.yaml": "ff56d7c14f1ae310f20db70f6a7437c51ee151655c56327053d97f7bb2f56c62",
+      "config/benchmark/sanity_prompts.yaml": "a8902dda04d009bbcc918db2999046de8719d07503850ad9b1bbf5d107cdbe4f",
+      "config/benchmark/strata.yaml": "4add1395aba16bc062a11e3804a09811a6d553202bb7b96f89d1169c26764e3f",
+      "config/benchmark/variants.yaml": "3cc178e574d6230cc3c903fbb019437a68d5b68d8e8fc6cabd0e70542f388f74",
+      "config/benchmark/warmup.yaml": "139baf55080a118b6076c2e00cdc053351a8f4de0a4cbcf679c78fb1d1c17648",
+      "config/config.yaml": "7fb36763641bf6f9c684448daa30b5b2d861a95b403b50476f22e7fd20036256",
+      "config/d2_gateway_diagnostic.yaml": "c8c2caaee3134f1ee5d648715d6215adeb57b86a45fc22a0d0089cea001d08b3",
+      "config/d2_gguf2b_diagnostic.yaml": "e68458f0b04d2b329d52bf718a1d91ceeb2fa422b4dc2da07a973e6ad8f41ec9",
+      "config/d2_judge_gateway.json": "202c74ecaf9601ad37b827e84311a73a4c6a3b40edae475607a4841a55370302",
+      "config/d2_mlx2b_diagnostic.yaml": "eaf7afdbd47f57e39ed40660fc257939868d13492bf477f812cbc8fa63e41b95",
+      "config/d2_mlx4b_diagnostic.yaml": "dd0e97b7fbf3504b49f046b1f2f562ba075f4a7206c45d7664a61a9587032e84",
+      "config/d2_native.yaml": "b2762226b6432af8de8fa8e2801f9a90bc6a83434d41acc70a38e512426d5c5c",
+      "config/domains/hcmut_academic.yaml": "3b649876a0e9a397348a043add0c7380e769bc7e94c302d89f1cadbab6b36347",
+      "config/domains/hcmut_academic_r2.yaml": "cc09ac990b18810b632c510edaf8bc1eb74334dd48ef66f51f26b95ee72bb998",
+      "config/domains/labour_vi_2019.yaml": "229fe08210d9737a58d440b2eb99e570aad4b2c52fabafb53c71dc1c0d291755",
+      "config/domains/labour_vi_2019_r2.yaml": "02026560d8aa4ec67179da2d920c61b6d348d62ffb5045ec7983f426a0bfc57f",
+      "config/domains/labour_vi_multi.yaml": "e11d17f2def6b41996486aed7624c5a938a349d7d77fe07e812d0418cf00fcc3",
+      "config/domains/labour_vi_multi_r2.yaml": "719ef495c0f14ae68720f27c992ecd63be6f091dcbc7d67e024fa6059f5608e6",
+      "config/domains/messages/vi.yaml": "37c4be0244054d72ede255f7837bf26ea2876f8f8e1f7ce040af1974771cdc4d",
+      "config/indexing/labor_code_2019.yaml": "bccc8aae0a0249cec2e116d7b0e4a85224f1a92cc341888ffe4cda61402b26ce",
+      "config/indexing/labor_code_2019_ollama.yaml": "aac7aa0f7d6e147440e289c634f28ec1765157dfb743b807a329d42856280ea1",
+      "config/indexing/labor_code_2019_openai_compat.yaml": "7b9d54ba8e930c71c7f3de8b51dd9714e76ca8e6ec6b137169e9ba2fefa5287a",
+      "config/indexing/multi_domain_vi.yaml": "95277648112153c57132a8fbe9f8729834602d91bbce1e482fdedbcc8b4d86b7",
+      "config/ingestion/hcmut_academic.yaml": "90a3e596e66de7f5c2f9a294ecaf3f5ed764406c55529280ccdf87885024ca1a",
+      "config/ingestion/labor_code_2019.yaml": "40ee5fcfa0e7d45230055ba5e691c3df520c5cfc1773e4266670e4e01b2e71f3",
+      "config/ingestion/labour_vi_v1.yaml": "e46121b98bd12b2222df102520f6c2c8d148a35966a1c25e47f72e9a7615f86f",
+      "config/profiles/demo-hcmut.yaml": "c885c8a78b08166ddff82599a2d54347812579b854b0c814b45e99197e09fab3",
+      "config/profiles/demo-labour.yaml": "6bf31e303b09dd1208f5a2d3f95c3367f260cba2d55a7cd1feee8c468d778be5",
+      "config/profiles/lite.yaml": "5f23332f38c582482b3690b41b056a7d2168560516391f1909b28afdfade3c85",
+      "config/profiles/local-full.yaml": "86be778f2b55428b71ba1e1251c4b594036bb563ccd8bb67672401913ab46394",
+      "config/profiles/remote.yaml": "ee17b16f6fa66b3e42a0d949a6564bf26211ad2a0a80e39548c9ec51efc29ffa",
+      "config/reference.yaml": "0edb3655970befb3ea413c9325d4e94f9f42008ee513bb0f68ecd9623137c5f2",
+      "config/reranker/gpu_cuda.yaml": "08cce4784f61d833334db01232652232fd283d4615200794a18124e258d9ef31",
+      "config/reranker/mac_gguf.yaml": "9ea1b5996adcc4fae345943360921c78c8ab6e35cccb7d09e78ee5c908955a0d",
+      "data/corpus/hcmut_academic_v1.json": "107bec43d5fe3549ee1dcab61fbcbddbe2e1d632a69bf0f0079884d9c840ec48",
+      "evaluation/analyze_judge.py": "fcf0e7d72c794ea628b0d91a823df072fa0fcba807fb6a9cf4bc20242d819bd2",
+      "evaluation/analyze_native.py": "eb3efca0ab493f9b4f3fd7bfde504715d6ee98b6130057295c05826c1245b46e",
+      "evaluation/baselines.py": "9c3780d814048005df799d747ac68cb23611dae911bd11ac601c9d8aed018ff8",
+      "evaluation/bench_preflight.py": "d900634b6e49a84c368b448b273c1cdc642a728969d3afd07ccc1431a71bc6c7",
+      "evaluation/benchmark_sanity.py": "e5a19d7a7c02313ebb40a209dec2243834a995cb1ef2bcd84563ef62b6bad9ed",
+      "evaluation/benchmarks/hcmut_v1/ADJUDICATION.md": "022c16a6199a64d9359361db5dd81e40d9819320787c16be4c16682d61e7b2da",
+      "evaluation/benchmarks/hcmut_v1/README.md": "4fafb291f1acf818b997694d0e2f448e32c3271d667231ae0a733d6cb87bdd9f",
+      "evaluation/benchmarks/hcmut_v1/VERIFIER_BRIEF.md": "fa7b1958717d4eb72fd680448c5243f0f1c55dfd369040ab0c5a09c4fdff67c1",
+      "evaluation/benchmarks/hcmut_v1/WRITER_BRIEF.md": "7bc002958263bf3414a9f20624816ebc6834a6343478ca1dcfda0951c93d82ca",
+      "evaluation/benchmarks/hcmut_v1/benchmark.lock.json": "2c625cf7d1b2ecc2ecc1350469569cbfa5cbef56099a4b880fb95c3317b6433c",
+      "evaluation/benchmarks/hcmut_v1/benchmark.yaml": "753631d6f1a68984aa0caeacc190b621dd10afc46d29a3003e5ab8f0631ab13a",
+      "evaluation/benchmarks/hcmut_v1/draft_all.json": "f0cd895ba192da50b5c8155c0dd818cab1e95b6f2c333e28c50a71ec6f6819e6",
+      "evaluation/benchmarks/hcmut_v1/draft_part1.json": "f6764bb7893049e5ec191dab78c2aa61277e9642e8af059ece0c47ae538bfadb",
+      "evaluation/benchmarks/hcmut_v1/draft_part2.json": "e83b3a6c75580b59a264d08dadbe1e7c7702cfc37735e51e5ad30273c083d631",
+      "evaluation/benchmarks/hcmut_v1/recheck_C.json": "a5b5691b69b0467c87be5e1fa3d785774531018e1a8d641afaa5966ea6f1fa8a",
+      "evaluation/benchmarks/hcmut_v1/tasks.json": "591513d0f8fc59fafee661d4b16c82213fc7ee1924236da72193cce49c3a5a46",
+      "evaluation/benchmarks/hcmut_v1/verify_A.json": "51d5088013cad714a93d7a5150296de7e059732c015b1133c0f5275bfea0c4bd",
+      "evaluation/benchmarks/hcmut_v1/verify_B.json": "f73bfd6f359af433eabd8a69414c961181ec29e07880a578c4571b55e9dd0121",
+      "evaluation/check_report_provenance.py": "ca032368d0b08afa2849d60e20c70053058fe01878a0291734b7ae0ab53fdc07",
+      "evaluation/compare_runs.py": "7a02a7c362fc4d8071c3cddb0fa916b17bf24ce755480a35924193e4d2198275",
+      "evaluation/error_analyzer.py": "cf3942a2f2f1228663355b336df21006a49a1d8aa3349913cf9ff64952c86b21",
+      "evaluation/export_blind_review.py": "cd969019a4f82e09a8b5ceb52c8d086469cd58aecd73fd4d467959418e53e50b",
+      "evaluation/judge_benchmark.py": "5b7a55f05df22dd66f236c2ccf800bb39b3c2fa9594138c4cc056966e52daff7",
+      "evaluation/judge_gateway.py": "d9a3864c42ffd7ade96a2dc7aa772c44c426f3e41e342bd86d85f637874a7bd9",
+      "evaluation/judge_prompt.txt": "f5c42e1b8e636c866aeab9dbb0700dc2cbb29c3cb9bfc8c4de25649da656a8de",
+      "evaluation/judge_rules.py": "dbad9e8b52cac7039d3292fc344ea94fa9fa2e4867396b9f5dd9129c23d05130",
+      "evaluation/measure_tool_observations.py": "4e88d972ccff25d39c4488842f444c4d2fe826135aac80431b272006d8edd2dd",
+      "evaluation/metrics.py": "f2e9dd4e6a76d11881f4f08255c321fe625b7e1d7562f192a5ac2dcc7895629e",
+      "evaluation/provenance.py": "8d85b66508d751df70cdf10be4c1443dc995e30c4983eb634618379a04455b41",
+      "evaluation/recover_judge.py": "8473712602b155a3939048e3ad3743622e0f19560c48e17a6802eeb7754eb6d4",
+      "evaluation/registry.py": "7a9f8fddfa6be2ccffb51e530861354931f0c063a8797c319703dccc0d696522",
+      "evaluation/render_benchmark_tables.py": "eaa1866265de1db0527b1f643ae36aaef02b0ff6cd1e929310c1599d478fc336",
+      "evaluation/render_diagnostic_table.py": "59ddb255dfe760a187fc50b709b1ea6ee563cc7efc8dbc2e793f9e466d1bd981",
+      "evaluation/render_native_table.py": "d3008a3901865f7f83b84bd95b1c5481f50440a5792f32622356b21df7e075c8",
+      "evaluation/report_judge.py": "a25e9ee1749fc95f736f6f5790cffd53044a753fffce90d95c8930fbee871151",
+      "evaluation/run_benchmark.py": "6ff959d77a2fb622fcc9544fda03662a43ded395fa8d6a8f3fc0a1f8101e92e9",
+      "evaluation/run_d2.py": "154c2d95cb96a141a874a49c1a84308c8f2efb4dd4671fbc18e06d699b796e83",
+      "evaluation/run_eval.py": "5cb8486860b434f79d91d67042396bbd234da5d8532d83c63d22b9e3dac405b0",
+      "evaluation/score_benchmark_audit.py": "2799339e09e9adb3522eee3d54eb74e38697749d45dbc4b90833c4170ec9b0a8",
+      "evaluation/score_reviewed_runs.py": "24340db6ddc88707c66baaacb677d8d2231595c04428556e49decdfebfab0bcd",
+      "evaluation/stats.py": "507c7de3c71d181c809d7fdceac7d127c3ac6eca6d4a320a5443344387d11f7a",
+      "requirements.txt": "81da0b4fea6b1019407676601c4cfe4dfff3627e04ed013404d594e8b124411e",
+      "src/agent/citations.py": "520b6a17fa90bd007fadae541915f510fd34fb72ae8437952740c60a92b7656d",
+      "src/agent/llm_client.py": "2fdba3c67b03603ba394a59bf735fea375b89c138959a561d6f58b086db3ad20",
+      "src/agent/loop.py": "886a53b08437060efd3f36cea1fb91643353eb9f30c9e445aa653925b82b1071",
+      "src/agent/prompts.py": "3367bcbab142de425368de285d06d6090c3830c7f71a2c32bc39096ab0d4c92e",
+      "src/agent/query.py": "b43110011c20817b744709f0a03fdcf232b73d558e7236730ffc103700e5a548",
+      "src/agent/state.py": "f727e15df8840561bf79abe13445d66ed5ba6c43ed712745887a1132430fe63c",
+      "src/api/__init__.py": "d70761e8cd362ff5fb663ec12a7468a6a84c8b055a3cad3a745bc07042b28c6e",
+      "src/api/app.py": "f19e2278a7c101a6e7e698711c886a104626511f4b02e365a05992ecf105e6fe",
+      "src/api/runtime.py": "a83e6027078c598f999cc41fde8b21c0f7391a6bc1c2488df96a4c2ea94a1332",
+      "src/api/ui_hints.json": "2f99466c155e957934cf73fc52cb522d7010107a6abf3ec48857236f3d82ab76",
+      "src/config/__init__.py": "107f1a5f4c29c03f40e06492da0a1378f228b7ea5e68ee265bb826432bf30c02",
+      "src/config/app_config.py": "1ab0b158e15a0f644fad309996f6e2c27312146a851e7f317075d90c136b96dd",
+      "src/contracts/__init__.py": "6b10dba74420e8d20fee27b97db4e72eb6073ef3473e49dd0b1086fbeea47a59",
+      "src/contracts/universal_document.py": "70f4bbee5c986423bff98c411444dea107d433c6dda9775f2ecb0fec126f7aec",
+      "src/domains/__init__.py": "bfb26eccf14bfaeffc20e5a4f36540a4b2542d2f20cde05a04ce88ff442ca3ee",
+      "src/domains/profile.py": "ec20f7237bc30c646c0bff8206cc19a8ce790b48400b3cc7ef5d57801cfdf9d2",
+      "src/evaluation/benchmark_runner.py": "cde84c32cd08550d3363f7736d72c9bfafbe3f11e336a7ec6330a220dfe5d438",
+      "src/indexing/__init__.py": "22e52fe146525a689e9035add6e1e8a7f65c55e61aa49fe4fc89fbb16d8f2d63",
+      "src/indexing/__main__.py": "1b670e5ebf867d38a3deeefc7ec4bc8d4051ecf339ed1ce5400fc15c42eec529",
+      "src/indexing/builder.py": "42862495ad5bc948cdb520b7ba934abb0a8099caf56ba6ba3bf97e3dd476b123",
+      "src/indexing/chunking.py": "5a2f1b2975de97e8192fc1710b965ff26a5fc7f339bcbc0c67d3df73009e756c",
+      "src/indexing/config.py": "9ae5214a0565266c8033dabab446dd670a0db3bf6234099aff6719c37cbc1079",
+      "src/indexing/embeddings.py": "5ec49d656c28c42cc83cf4d57ac25718861eeb7a95c4c992818ac7eee92640ca",
+      "src/indexing/errors.py": "61875d97e54eb0417e8bfffb38cea3f309b098071f5ab756cc65c5c78c01cdbc",
+      "src/indexing/hybrid.py": "ac47f1a6a1ce4a635e6ae2c02cd64fe6355ae6fb3cc5d4f0e598df784c86a06f",
+      "src/indexing/keyword.py": "8cf52efd631b10cb2a525c1942133e151d6be500cc6b8edefcecf3acdeee02db",
+      "src/indexing/manifest.py": "7784fa8d756f8585a611661d7b36a3779f509ca9046a605e07d0bb4b7ed4192f",
+      "src/indexing/records.py": "1a36bb37f0be42da7a2ac89e109f45a52961bfea5102946ea4828e155089bf8c",
+      "src/indexing/resources.py": "b10831e5fbaa0c9f1b8233d4c4b554ffd5c066ae17ec7e8b8483b04ddf8a5f4e",
+      "src/indexing/types.py": "4775f4230b080db5d188ff368cf68246bb5c2292215a127c021a6a5e8ed41646",
+      "src/indexing/vector_stores/__init__.py": "91255b45197c312d6204368614c9089cbf94e1a5d4c5ec5efe21b423e966ed6f",
+      "src/indexing/vector_stores/base.py": "d7042281e5f5a5d880fcd23406039c2d1547c5e95d22e6b13630e15ae9df27e6",
+      "src/indexing/vector_stores/chroma_store.py": "0f86a350a01d1a989b0977240e053c6b9062247e5db4c0676236c50fc67efba1",
+      "src/indexing/vector_stores/faiss_store.py": "cb15825e4cc6ceaac378bab27d7aba983b2497c6eaa5d5e515584c72eca6b5f4",
+      "src/indexing/vector_stores/lancedb_store.py": "638ef8c6e602283dddbe729649869fa9635d5080f8d568e30b7454052677d0af",
+      "src/indexing/vector_stores/numpy_flat.py": "9ba9547094ac26c3369a26998eb997ddc8a82ebea2524eb491add240148fac1a",
+      "src/indexing/vector_stores/qdrant_store.py": "069005d7a6d21b97e8725bf86c347a504b5d989dafddd3db38f7558afbb4b184",
+      "src/indexing/vector_stores/sqlite_vec_store.py": "b371af080443d917382d53802547f4f05bf87dc8d9e27b72a9de9a0410a31c99",
+      "src/ingestion/__init__.py": "62acfe613d949a8bdabfbb165f4191a0c98e4f324b56941d756484fa0f408786",
+      "src/ingestion/__main__.py": "29f0542223a0e07fc76d5c744c2e73e25e7a190990f2bb08d5b53e9f6e73230a",
+      "src/ingestion/chunker.py": "52c6485816d09c54590f7c245293073abbf7bbee186fb7961827cfcdb013517a",
+      "src/ingestion/errors.py": "d2e7a98b40fd655a02ae0de4c1657804cbfdc3ef4183e1212ce0462c13ce70ee",
+      "src/ingestion/loaders.py": "1bebf25a81a0d9925cedb2bbc7c180503077b44188e79c268134f280366dc7c6",
+      "src/ingestion/normalize.py": "65c389b90f3e6a0385cd0c40e2f6bcbbd40c33c8d0596a255c3e2f0e70a68666",
+      "src/ingestion/pipeline.py": "3d30837fb7d3defdfa96190d01456014aa793b83d0c9070ceb4b2640dcc744bf",
+      "src/ingestion/rulesets.py": "340acf959d0b2a7aec0776fc59a0d16002de677fc05477418b184d4e7b311649",
+      "src/ingestion/schema.py": "50208147f364e2bbcda6ab4adfafdaf1c5427ce881f52bda08b41da4b480814b",
+      "src/ingestion/validate.py": "a266273d54b57d7442844a20113fe41916196dbe098411a8539a2ed4e49b7f56",
+      "src/interfaces/__init__.py": "6cd175d4d449690bfdda9a6262f3c64e54b151da57b65978b4511835a223bdd0",
+      "src/interfaces/base.py": "e247d3a0a8127cbb07702d0af457ae0f23446016dd23076e253a38cec4662dba",
+      "src/memory/answer_memory.py": "b4810ac06ffe79bafd5dd7592f9c52fffd4e3992ec1329f3cac247968afa1d9f",
+      "src/memory/ledger.py": "304afbabdad1eeeb281cae05a3da96493d846ea5a6e8057a614ee2975c42d68d",
+      "src/memory/sqlite_store.py": "35d82a9a7b4c330a19642140a9ab9d33fc41504da73d2c677dd3d9d93c73f0b7",
+      "src/model_manager.py": "75a84bd5bbcea54238d2f45e0d100eac808f0189537c7e8e652ec2f628123260",
+      "src/model_runtime.py": "5eba28f490dcdfaf894c8e70758d7c0efe9f514db144cd8b8997fc9321a28a30",
+      "src/pipeline/__init__.py": "296d9743ea4522b0bdba4723db43f2617f221df6d8f438f6c23222ff7c29b5d0",
+      "src/pipeline/__main__.py": "87c0d59eb636159d076b00df9bed258df42072853baaeb3d2f060a927dc4085d",
+      "src/pipeline/builder.py": "e6b218ad8fbd30e3068451120659bad6346f76f17e31a683e00a51c253b8dc4d",
+      "src/pipeline/describe.py": "859168e7ae888a41589f0fe13cd60b06bbd5f40a0e1af6b40a4e5ab4b2bc57ce",
+      "src/retrieval/bm25_engine.py": "0b501ce5eceabfb773392675ef189cbff8ca47e19c93c169f7861a5c82383717",
+      "src/retrieval/dense_engine.py": "0d167a34697912eee362e9db5afadadc7faea088f282c50bebb8071b1f172139",
+      "src/retrieval/hybrid_domain.py": "93c0d86fbcd08c560d8940f358dfe500df1ee67d5ad6e08250c2c81ee9fbb70e",
+      "src/retrieval/hybrid_rrf.py": "b57bc38712c410b6169bce695db36cc9a80dbb7e15cd68db180dc3c12d4e338d",
+      "src/retrieval/rerankers.py": "a23fb1e96f75430f10a82e306abcab89383cd232bd30d1da419855ec1bacb7cb",
+      "src/security/audit_logger.py": "8fecc3e4094183851e4c9820810b26264ecaef535e8b94c41774220ff2615198",
+      "src/security/guardrails.py": "ce9566b5805176bf6b3e650d8d577e954bcd364a68593c7f6edd53d1770d8d7c",
+      "src/services/__init__.py": "b3fa193109b7c1c67717cfb6bcc57068555c648d16e22b4892c8e58b6ed4688e",
+      "src/services/web_contract.py": "4a3ff73f2c10e0b7ea23931198376a5eb9b71d830c3962d7ae1990087f2fc68a",
+      "src/services/web_store.py": "dc592d694280734d90d81ec6e1cbf17ca577167b34e1e511e369d05d1b640ba5",
+      "src/tools/domain_tools.py": "9d25b757339b6a99df599fffc01461fa53dd18282be6376f2da3a7e406c21b16",
+      "src/tools/legal_tools.py": "69198751a4af8c3f8abf44ec2d16fc802a71733ff63bd228d7fd6ca530e1d322",
+      "src/tools/mcp_server.py": "8051981a28e123bffe4854c9ed98e02600ff4f21f8545d2d3b84b9a92beee2b9",
+      "src/tools/permissions.py": "e7e6c2891d1404f9c8fb77ecfea3bf9c1fc4add133be4e7b8597c4eabc0126d0",
+      "src/ui/app.py": "b19b76b7ec836ae0b13517d0ed2210d2fe074ffa87fd5f919e2da3b51e3b54d8",
+      "src/verifier/grounding_analyzer.py": "6cfaa8000cd4a0cf1903ee65e3ab039488010bf552669ad7716c71b162beb8fd",
+      "src/verifier/lexical_grounding.py": "97fa895743da4658065193febe14f330d77488312427e6bfd3b37e7b03ef3ee5",
+      "src/verifier/lexical_grounding_v2.py": "b02c7fef6d4eeb389a8bfb6aa726a64c4eac024854f13b49cdf155fa1bcdaea4",
+      "src/verifier/modes.py": "ca9aa1521f402b0e7a8b45809c12d5845b7a52cdf8773053e8b06136164dc962",
+      "src/verifier/nli_backends.py": "f8f4c68ce093f67f95d3e5d5382a65a7e23d119957f49582191a5751b1671ba1",
+      "src/verifier/pipeline.py": "cecf942a8d2d2cdf42b31a64c578b14cf8ab4d6331c005f1e79b00db8a056662",
+      "src/verifier/semantic_nli.py": "34be0608f2fb56bfce92dbb2b00d2d777f034c5476f1923352ee4a55eca1a054"
+    },
+    "collection_files": [
+      "config/benchmark/expected_server.yaml",
+      "config/benchmark/model_prism_gguf2b_r2.yaml",
+      "config/benchmark/profile_gpu_accuracy.yaml",
+      "config/benchmark/variants.yaml",
+      "config/benchmark/warmup.yaml",
+      "config/domains/hcmut_academic.yaml",
+      "config/domains/hcmut_academic_r2.yaml",
+      "config/domains/labour_vi_2019.yaml",
+      "config/domains/labour_vi_2019_r2.yaml",
+      "config/domains/labour_vi_multi.yaml",
+      "config/domains/labour_vi_multi_r2.yaml",
+      "config/domains/messages/vi.yaml",
+      "data/corpus/hcmut_academic_v1.json",
+      "evaluation/baselines.py",
+      "evaluation/bench_preflight.py",
+      "evaluation/benchmarks/hcmut_v1/ADJUDICATION.md",
+      "evaluation/benchmarks/hcmut_v1/README.md",
+      "evaluation/benchmarks/hcmut_v1/VERIFIER_BRIEF.md",
+      "evaluation/benchmarks/hcmut_v1/WRITER_BRIEF.md",
+      "evaluation/benchmarks/hcmut_v1/benchmark.lock.json",
+      "evaluation/benchmarks/hcmut_v1/benchmark.yaml",
+      "evaluation/benchmarks/hcmut_v1/draft_all.json",
+      "evaluation/benchmarks/hcmut_v1/draft_part1.json",
+      "evaluation/benchmarks/hcmut_v1/draft_part2.json",
+      "evaluation/benchmarks/hcmut_v1/recheck_C.json",
+      "evaluation/benchmarks/hcmut_v1/tasks.json",
+      "evaluation/benchmarks/hcmut_v1/verify_A.json",
+      "evaluation/benchmarks/hcmut_v1/verify_B.json",
+      "evaluation/metrics.py",
+      "evaluation/provenance.py",
+      "evaluation/run_benchmark.py",
+      "requirements.txt",
+      "src/agent/citations.py",
+      "src/agent/llm_client.py",
+      "src/agent/loop.py",
+      "src/agent/prompts.py",
+      "src/agent/query.py",
+      "src/agent/state.py",
+      "src/config/__init__.py",
+      "src/config/app_config.py",
+      "src/contracts/__init__.py",
+      "src/contracts/universal_document.py",
+      "src/domains/__init__.py",
+      "src/domains/profile.py",
+      "src/evaluation/benchmark_runner.py",
+      "src/indexing/__init__.py",
+      "src/indexing/__main__.py",
+      "src/indexing/builder.py",
+      "src/indexing/chunking.py",
+      "src/indexing/config.py",
+      "src/indexing/embeddings.py",
+      "src/indexing/errors.py",
+      "src/indexing/hybrid.py",
+      "src/indexing/keyword.py",
+      "src/indexing/manifest.py",
+      "src/indexing/records.py",
+      "src/indexing/resources.py",
+      "src/indexing/types.py",
+      "src/indexing/vector_stores/__init__.py",
+      "src/indexing/vector_stores/base.py",
+      "src/indexing/vector_stores/chroma_store.py",
+      "src/indexing/vector_stores/faiss_store.py",
+      "src/indexing/vector_stores/lancedb_store.py",
+      "src/indexing/vector_stores/numpy_flat.py",
+      "src/indexing/vector_stores/qdrant_store.py",
+      "src/indexing/vector_stores/sqlite_vec_store.py",
+      "src/ingestion/__init__.py",
+      "src/ingestion/__main__.py",
+      "src/ingestion/chunker.py",
+      "src/ingestion/errors.py",
+      "src/ingestion/loaders.py",
+      "src/ingestion/normalize.py",
+      "src/ingestion/pipeline.py",
+      "src/ingestion/rulesets.py",
+      "src/ingestion/schema.py",
+      "src/ingestion/validate.py",
+      "src/interfaces/__init__.py",
+      "src/interfaces/base.py",
+      "src/memory/answer_memory.py",
+      "src/memory/ledger.py",
+      "src/memory/sqlite_store.py",
+      "src/model_manager.py",
+      "src/model_runtime.py",
+      "src/pipeline/__init__.py",
+      "src/pipeline/__main__.py",
+      "src/pipeline/builder.py",
+      "src/pipeline/describe.py",
+      "src/retrieval/bm25_engine.py",
+      "src/retrieval/dense_engine.py",
+      "src/retrieval/hybrid_domain.py",
+      "src/retrieval/hybrid_rrf.py",
+      "src/retrieval/rerankers.py",
+      "src/security/audit_logger.py",
+      "src/security/guardrails.py",
+      "src/tools/domain_tools.py",
+      "src/tools/legal_tools.py",
+      "src/tools/mcp_server.py",
+      "src/tools/permissions.py",
+      "src/verifier/grounding_analyzer.py",
+      "src/verifier/lexical_grounding.py",
+      "src/verifier/lexical_grounding_v2.py",
+      "src/verifier/modes.py",
+      "src/verifier/nli_backends.py",
+      "src/verifier/pipeline.py",
+      "src/verifier/semantic_nli.py"
+    ],
+    "collection_sha256": "29ce4808bf1119b6496686cc39247b80c7234ed752640252259e51c8ec9ce9af"
+  },
+  "latency_reportable": false,
+  "scoring": "Retrieval/citation-ID metrics and lexical proxies only; semantic judging is a separate step (judge_benchmark.py).",
+  "status": "collected",
+  "resumes": [],
+  "API_charge_USD": null,
+  "API_charge_note": "Local endpoint; this is not a claim of zero compute cost.",
+  "planned_trials": 545,
+  "task_ids": {
+    "hcmut_v1": [
+      "HCMUT-001",
+      "HCMUT-002",
+      "HCMUT-003",
+      "HCMUT-004",
+      "HCMUT-005",
+      "HCMUT-006",
+      "HCMUT-007",
+      "HCMUT-008",
+      "HCMUT-009",
+      "HCMUT-010",
+      "HCMUT-011",
+      "HCMUT-012",
+      "HCMUT-013",
+      "HCMUT-014",
+      "HCMUT-015",
+      "HCMUT-016",
+      "HCMUT-017",
+      "HCMUT-018",
+      "HCMUT-019",
+      "HCMUT-020",
+      "HCMUT-021",
+      "HCMUT-022",
+      "HCMUT-023",
+      "HCMUT-024",
+      "HCMUT-025",
+      "HCMUT-026",
+      "HCMUT-027",
+      "HCMUT-028",
+      "HCMUT-029",
+      "HCMUT-030",
+      "HCMUT-031",
+      "HCMUT-032",
+      "HCMUT-033",
+      "HCMUT-034",
+      "HCMUT-035",
+      "HCMUT-036",
+      "HCMUT-037",
+      "HCMUT-038",
+      "HCMUT-039",
+      "HCMUT-040",
+      "HCMUT-041",
+      "HCMUT-042",
+      "HCMUT-043",
+      "HCMUT-044",
+      "HCMUT-045",
+      "HCMUT-046",
+      "HCMUT-047",
+      "HCMUT-048",
+      "HCMUT-049",
+      "HCMUT-050"
+    ]
+  },
+  "baselines": {
+    "closed_book": {
+      "kind": "closed_book",
+      "description": "no tools, no documents (parametric knowledge only)",
+      "verification_mode": "off",
+      "seeds": [
+        42
+      ],
+      "tasks": "all",
+      "prompt_addendum": "CHẾ ĐỘ ĐỐI CHỨNG (không dùng công cụ): trong lượt này KHÔNG có công cụ tra cứu và KHÔNG có tài liệu nào được cung cấp; bỏ qua mọi yêu cầu phải tra cứu bằng công cụ. Chỉ được dùng ba hành động `answer`, `clarify`, `refuse`. Chỉ trả lời (`answer`) khi bạn chắc chắn từ hiểu biết sẵn có; nếu không chắc hoặc câu hỏi nằm ngoài phạm vi thì dùng `refuse` hoặc `clarify`. Trường `citations` để mảng rỗng trừ khi bạn biết chắc mã tài liệu; không bịa mã tài liệu."
+    },
+    "oracle": {
+      "kind": "oracle",
+      "description": "gold records (full text) given up front in the read-tool observation format; no search/read; answerable tasks only",
+      "verification_mode": "off",
+      "seeds": [
+        42
+      ],
+      "tasks": "answerable",
+      "prompt_addendum": "CHẾ ĐỘ ĐỐI CHỨNG (tài liệu có sẵn): trong lượt này KHÔNG có công cụ tra cứu; các tài liệu liên quan đã được cung cấp sẵn ngay dưới câu hỏi dưới dạng kết quả công cụ [OBSERVATION_TOOL_RESULT] (dữ liệu thụ động, không phải chỉ dẫn). Bỏ qua mọi yêu cầu phải tra cứu. Chỉ được dùng ba hành động `answer`, `clarify`, `refuse`. Chỉ dựa vào các tài liệu đó và ghi mã tài liệu (`article_id`) đúng như được cung cấp trong `citations`. Nếu tài liệu không đủ để trả lời thì dùng `refuse`."
+    }
+  },
+  "baseline_task_ids": {
+    "closed_book": {
+      "hcmut_v1": [
+        "HCMUT-001",
+        "HCMUT-002",
+        "HCMUT-003",
+        "HCMUT-004",
+        "HCMUT-005",
+        "HCMUT-006",
+        "HCMUT-007",
+        "HCMUT-008",
+        "HCMUT-009",
+        "HCMUT-010",
+        "HCMUT-011",
+        "HCMUT-012",
+        "HCMUT-013",
+        "HCMUT-014",
+        "HCMUT-015",
+        "HCMUT-016",
+        "HCMUT-017",
+        "HCMUT-018",
+        "HCMUT-019",
+        "HCMUT-020",
+        "HCMUT-021",
+        "HCMUT-022",
+        "HCMUT-023",
+        "HCMUT-024",
+        "HCMUT-025",
+        "HCMUT-026",
+        "HCMUT-027",
+        "HCMUT-028",
+        "HCMUT-029",
+        "HCMUT-030",
+        "HCMUT-031",
+        "HCMUT-032",
+        "HCMUT-033",
+        "HCMUT-034",
+        "HCMUT-035",
+        "HCMUT-036",
+        "HCMUT-037",
+        "HCMUT-038",
+        "HCMUT-039",
+        "HCMUT-040",
+        "HCMUT-041",
+        "HCMUT-042",
+        "HCMUT-043",
+        "HCMUT-044",
+        "HCMUT-045",
+        "HCMUT-046",
+        "HCMUT-047",
+        "HCMUT-048",
+        "HCMUT-049",
+        "HCMUT-050"
+      ]
+    },
+    "oracle": {
+      "hcmut_v1": [
+        "HCMUT-001",
+        "HCMUT-002",
+        "HCMUT-003",
+        "HCMUT-004",
+        "HCMUT-005",
+        "HCMUT-006",
+        "HCMUT-007",
+        "HCMUT-008",
+        "HCMUT-009",
+        "HCMUT-010",
+        "HCMUT-011",
+        "HCMUT-012",
+        "HCMUT-013",
+        "HCMUT-014",
+        "HCMUT-015",
+        "HCMUT-016",
+        "HCMUT-017",
+        "HCMUT-018",
+        "HCMUT-019",
+        "HCMUT-020",
+        "HCMUT-021",
+        "HCMUT-022",
+        "HCMUT-023",
+        "HCMUT-026",
+        "HCMUT-027",
+        "HCMUT-028",
+        "HCMUT-029",
+        "HCMUT-030",
+        "HCMUT-031",
+        "HCMUT-032",
+        "HCMUT-033",
+        "HCMUT-034",
+        "HCMUT-035",
+        "HCMUT-036",
+        "HCMUT-037",
+        "HCMUT-038",
+        "HCMUT-039",
+        "HCMUT-040",
+        "HCMUT-041",
+        "HCMUT-042",
+        "HCMUT-043",
+        "HCMUT-044",
+        "HCMUT-045",
+        "HCMUT-046",
+        "HCMUT-047"
+      ]
+    }
+  },
+  "rows_recorded": 545,
+  "trials_recorded": 545,
+  "trials_missing": 0,
+  "execution_errors": 1,
+  "error_kinds": {
+    "model_output_error": 1
+  },
+  "wall_seconds_this_session": 1225.33,
+  "wall_seconds_total": 1225.33,
+  "finished_at": "2026-10-24T09:59:19.456747+00:00",
+  "sources_changed_during_session": [],
+  "machine_state_end": {
+    "cpu_count": 128,
+    "load_average_1_5_15": [
+      2.81,
+      3.28,
+      3.05
+    ],
+    "busiest_processes": [
+      "PID %CPU   RSS COMMAND",
+      " 355829 99.4 11102216 llama-server",
+      " 356099 98.7 12860128 llama-server",
+      "   5838 14.9 156448 cadvisor",
+      " 356275 14.4 3275940 python",
+      "4163643 13.6 6947428 python3"
+    ],
+    "gpus": "0, NVIDIA H100 PCIe, 71895 MiB, 81559 MiB, 0 %\n1, NVIDIA H100 PCIe, 4987 MiB, 81559 MiB, 0 %\n2, NVIDIA H100 PCIe, 7373 MiB, 81559 MiB, 0 %\n3, NVIDIA H100 PCIe, 13545 MiB, 81559 MiB, 21 %",
+    "cuda_visible_devices": "2"
+  },
+  "peak_memory_mb": {
+    "runner_rss_sampled": null,
+    "runner_ru_maxrss": 4324.59,
+    "llama_server_rss_sampled": null,
+    "note": "Sampled with `ps` every 0.5 s on this machine (mac-latency, local server only); null = not measured."
+  },
+  "finished_local": "2026-10-24T09:59:19.614813+00:00",
+  "runs_sha256": "fddccf7d2261c3d9237a228eb5f6cd3e72978244467b721c3551568c43fe3a92"
+}

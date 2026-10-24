@@ -1,0 +1,13 @@
+{
+  "run_id": "d2-gpu-r2-2b-hcmut-v1",
+  "packets": 544,
+  "execution_errors_not_judged": 1,
+  "runs_sha256_at_build": "fddccf7d2261c3d9237a228eb5f6cd3e72978244467b721c3551568c43fe3a92",
+  "files_sha256": {
+    "SEMANTIC_JUDGING.md": "6407a5548ce798e1eff5640118205fbd2b5b03b2821f1ba9907949e5a75e20e5",
+    "judge_packets.json": "3b840569fff86588e1f4cd32c2cf1fa8d61108a46f2d98c38ae22dab2a28f556",
+    "private_mapping.json": "ffca1b1fb5ac32de27ef6c7d1055c2824ceaca44a4dce235776563164a0fcfe8"
+  },
+  "labels_generated": false,
+  "instructions": "A reviewer gets only judge_packets.json and SEMANTIC_JUDGING.md; private_mapping.json stays private."
+}

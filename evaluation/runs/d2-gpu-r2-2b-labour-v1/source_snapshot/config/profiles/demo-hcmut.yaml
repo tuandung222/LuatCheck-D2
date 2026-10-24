@@ -1,0 +1,54 @@
+# D2 live demo, HCMUT academic regulations.
+# Mirrors the benchmark system variant L1+rerank exactly: config/benchmark/model_prism_gguf2b.yaml (model, sampler,
+# budgets, retrieval defaults) + the `l1_rerank` overrides in config/benchmark/variants.yaml + the Mac reranker from
+# config/benchmark/profile_mac_latency.yaml + the corpus/profile bound in evaluation/benchmarks/hcmut_v1/benchmark.yaml.
+# Servers: `make prism-server` (Bonsai, 127.0.0.1:8081) and `make rerank-server-mac` (reranker, 127.0.0.1:8082).
+# Inspect without loading models: .venv/bin/python -m src.pipeline config/profiles/demo-hcmut.yaml
+domain:
+  profile: hcmut_academic
+model:
+  provider: llamacpp
+  endpoint: http://127.0.0.1:8081/v1
+  name: prism-ml/Ternary-Bonsai-2-2B-gguf
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  min_p: 0.0
+  presence_penalty: 1.5
+  constrained_json: true
+  enable_thinking: false
+  timeout_seconds: 60
+  max_output_tokens: 1024
+  context_tokens: 8192
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+  max_steps: 8
+  wall_seconds: 180
+retrieval:
+  mode: bm25_tfidf
+  corpus_path: data/corpus/hcmut_academic_v1.json
+  dense_model_type: tfidf
+  final_top_k: 5
+  rrf_k: 60
+  reranker:
+    enabled: true
+    backend: llamacpp_http
+    base_url: http://127.0.0.1:8082
+    model: Vietnamese_Reranker-f16
+    top_k_in: 20
+    top_k_out: 5
+    max_length: 1024
+    chunk_chars: 1500
+    chunk_overlap_chars: 200
+verifier:
+  mode: l1
+  l1_overlap_threshold: 0.25
+  l2_use_slm: false
+memory:
+  enabled: false          # as in the benchmark: every question is answered from the corpus, no answer reuse
+  reuse_answers: false
+  index_version: demo-d2-v1
+security:
+  audit_log_path: data/demo_audit_log_hcmut.jsonl
+  egress_requires_confirmation: true

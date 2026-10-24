@@ -1,0 +1,5362 @@
+[
+  {
+    "review_id": "3f881b4693ebbd535f258ccd",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3e6254c2565d31829a9cfdba",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b0f180175326659adc333d10",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e4b90a79b6e57ff1775acb47",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "17978ad4c766f45eea8ea6a2",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fff7db0997af3d9b539af830",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a973359c8be20bf7d52a330a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "52e9158112f896e22b227ab7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "263c66070d10f9e3a617272f",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "55b882b89826c7daeb926767",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "005bb7ac9c82743d10521b4d",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0c685ada279c7c7a34393296",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d30110f9f2a1d7be5b246633",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c86b5a19da2316f4d0571c48",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4889a1a10ab318f63a9faec9",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1a0a61dd89b41775f60f329b",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f4c8e60473bc33b1404df698",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9726d2975f4fc36ecb443ca6",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ec297e4267c9d8d5ca4d53e0",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "aa3f6076517c9522016e0721",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "59c03cdd6661c49fc17c0174",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e51ef24d3d24ab192def4323",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ee75095ac1699f03e30877d9",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "342b7d07acd64039d508e939",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c7afaabd9c8d0eef9c81e9dd",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0f3177f45577e7bc26efdfb7",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6b0910176bfefaef1f9caaa8",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f57672cf0d87906b46a223a6",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "23945cf4acc34f1aeb44263e",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "eb84d9ba379d9fe1f04ecea5",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a40c4847765309664f316325",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "618ae4986f955f4cb281c0f3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "953aafcd744c856e1aa4970e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "eb5df9f46f5435125aed92ae",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1e29163fa61929e0f322e4b3",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e2cfed0cde6154202c5d5125",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9cfcf8be9fade8f0c6376f57",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5cde38d5d9a2df1da5399794",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3bd4dad266d0ce40bdd8929f",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8685b38e74555c4c0addeca4",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "df391b69a67225ca4685d89a",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4ead2a42197435795addebca",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0add90cfd34bc6267e77556c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "13c5910da6717cd22e72559a",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "57fc36145e298ceac4139bd0",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ddd907be6a223d1fcf11018e",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9b5194fca37e70cf17cf9723",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8067ca77e6487e0d0e2bced7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "df6639e56c6f9c1fbf9e3c05",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "cd45bb179ebfed740173b335",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "595e2e9c8a1cdc5f5e21bcd1",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4a9a7960ff23bd7dbb70e18c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "93d6e8b0177764c1cb59e55b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d7e106f45f35c0e270b1ad6c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2ddc6dc5849a70cfa2169d1c",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d932226f91b9224c35a20037",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ec84f21317a775706ec25146",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1db00ecb0a0444daf47723c2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "969babb0460b004d069abf5c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a445f08e23be10718aaae968",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "238cee86753ac7a7cf4060e2",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ee7f33245673f8aafb7d188e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "71dd08641c4fd3ca8517b173",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "dbfb26fe361f0f8ba283da67",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7c3cd7112d5ac8a8e3a76896",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3283b1a95616cab4b6c37b32",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7872a76b81d3b178b996016f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "efc8be61f1970f509b51ae47",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d333db7e3776e3bd87409313",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7eb78d791acb18222496f0f5",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ac4a0a1f1b7390fd94cdda19",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0f6daa9e2f550043b4212b57",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fb451b3f72210efe10a43062",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "47da12550ad1c9545c8093eb",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "88d6c32f2ed8237c0ade90d2",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bccd24edcc0f2f2ac4baf0ee",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "df2430b01366044932a3fae3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "13b08b56861b9a8c4e55e45a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1b403aaba0d7db37179019c6",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ab059553bc4eeabdd04b63af",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e78b2b8974ae431a282a5d0a",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6ab52c90123e1a003f775f90",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3bedebae8f1faf4d76315ed6",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0df144844b9a5164b6d6405a",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ae1fb68d787e1d7dc266be36",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f0c7de8bdbf20e9aadbec283",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "159f39f79f2944abdf5704c5",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f5f49fe6f510f8a02f2d6eb5",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "415074bef9d8161fcb44833c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "27c83e423a9cd11415fb0c85",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "419995bad79af738d15e5a2c",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f27d058b4247c80c9c06dd04",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "83757e58bb7b3e18858eeae4",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b9000a08f1259182187260f7",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bfc00a3130d73ecf66fd94fe",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d5aeb8e948906ab337763044",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0708ad30ea57cd51122dd494",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a54ead3a9395e39e9ce5b0c7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "02eefb6012f13c563eb332cc",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "84f8c61c38214a13252bd885",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "35efbcc3205c96fa89e8bdf1",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c498d66da297ff08d74ffd9b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "21b5971f30a035253f97e605",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "67afc36cac6b051edc7b0667",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "aec6b7a7a649354c1aca33f5",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "61aea2fa058269559583f2b3",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6787e90e27c4998fc88ab170",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "dbec0ff316c1c8acc93417f7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e4a56037d3563781529b8e90",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9c000b46698d965e0d4429d0",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8b3502f62524900b31ce342e",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c5cf57894ab47b6bc9e9c7e5",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e541ae68ae93e6d27d0ecb88",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bd217f78fd9bedd77abfc09a",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5559a668a12c8702d6108ad4",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "04ece1b3deaeb1d8c0e11a45",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c09a77ff03393e18cec0ffa9",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d176cdbafd4e62bc9f8e20cc",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a1ebb79d3fbcfefa36322078",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1a82f106c710938ab80afd18",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d63b21c801cbb754de071a11",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1ebadd6c022c3d3e7bf79998",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "537e7d2bac4fb3383307d6ae",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b91d5f0173c47ded9ba813cb",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0066cb6398e26790363fecb2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f7659ef05537d24f2b652c3c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7649919320f1ed51e87f22c2",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e3728a4f296b212e66815ee4",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7f9b8b1a43f8ba292aa0ee28",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4b3f6914de68292e6045357b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d2b587d070df5d6d75e0e0df",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f8201d9240fda60c38aa99c9",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a8e4f43ba8d631681aa8c777",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b6b1a5891015d12d5539823c",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f37a775b017ed5f44caf74d9",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "511e1eea25687de2dba4e4f5",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a34e3d832383d91b3f291fa6",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b657af0c318a320905b1317b",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e8629e08da06f3c384282843",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3f9db8ceae8139cd6e857516",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "dc97fceed47728a25dbd1335",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9f9db15ee56e25c9aef24fe2",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e1780de31a0c1aa6e813c8c1",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "663c6c49d105afcbf7802716",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a754e50e4afc6fbdc075fd46",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2a22dbc2a7692f9c0d0619a7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "511d176711a17ccf80879231",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "eddf13a636999e2c52bbc747",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6a9faf8adb8403d569fca25b",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "42172e7b4d74aae9af6a89fd",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fca8a17ff7799d51b369aaff",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8551c88525116724a8b62e63",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d7af8e478f71d172369a5c96",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c83eee9ae3b0216598f38341",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1875ed0652423fdceb39fd2c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1749c225fd4034838a219f11",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "40686015c95ca6a823b39c94",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4bddd61dfba0c2cb256f15b1",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9bec3d57e3d933ccf04b338c",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c18f40f34b99c06c2a7c641f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9403cff374c50b57663659d3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "25a42727f36915fb39f5da64",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3bc927ef0942ec22a04b37b6",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d5df9c04166622ea855267bb",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "09bdd51248fe362545048d9f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f17ab71397061673092b4e2f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bd6a6f18ec8b8fc2ee2be8fa",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "972ac33629826eb5213859ec",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bec70324138b49a3dff93bdb",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e0ee562f61276a313644515c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "dbc9ba5b5b75a42a40ca4da8",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5cfd787f4c3a7e3b171201aa",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7171b10284caad43d8fac513",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "87f08583fa381bbe859dedaf",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2ccfa1c2208a93e00237d972",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9423d8d293c3591303f685a4",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "edb607557576dfdca09da58e",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3e120e317433cb6f903ee91f",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "db22a5a785b3ae57f35eb838",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c8341c2678eece66ef5a47fb",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fd28c1f9b962555d1e974c75",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "aae0b23fe24503c19aeb559b",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "45d9a40e8246ca61c0727f23",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4f8b7b333cfe6e5cd67f8604",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "27f6c6298d84910ae2c09c0b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4285f3a26f1e928d80d0ef70",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "acb136bbd593fd452ff21971",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c852e71171eb1fc6a8aa4fa3",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ff19fb5065d573d32800925e",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8f4e385c704441ad332c9f58",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f93463428af44bc76cee564e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1943e27d1e6e7c35086b42bc",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "df2b367067be83ecb5ab6a67",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "21087af1be1116473b804146",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5cb52ef7b10a81a84c92886b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3c64a87e1d40520771e70602",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d4559961a1c3283616420b45",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "799bf785a16f9ea81a34f0dd",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "929470d4f270de6959808cd4",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "aeb8b5a1643f060b0e8dcb13",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a127aa7e6504d76dbe743405",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8482e3dda04620b87009948b",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5e074f8ce794735ba63bb271",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "786cb14f1f1b4063a5bf2d15",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "07bd7abe909c63306b81fde1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "553db2b124bdb0de47accb8e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d147ce6b5124a53c8d1c5522",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "07085c7ceaa5df453ed5cd08",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "17a93679085b85d4a4124a28",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9e9b7d4d70aa9d74f7b56dcc",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f6e0fc8ce9f22d4f78eec37c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c83fe0971b1dd3a0915165a7",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9e37f477f5e2f1cab9f0eeed",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "35199064460b4222950ecf4e",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2c32c085a1f2990516fdaeac",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d12c15236c32606c317b099c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4bce4bb8f0c9ba8a093dcbaf",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e7ffc154deaeb76c4a5d747e",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "27e44a7b6483f9fb5930f9cb",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a517837cee933bbca1d39c64",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c40c3aaee072c4554f25d5fc",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c743d69f6da79724e8f94102",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6c50d257c4ac18b9e76b8ea4",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bb9cbf039a9f4a3b0c4ee57f",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6a7b45d874ac3c6d5d03b4e6",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f844cb48a138ae35e2cc67e2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "68c3cf321aa7f9ee17f1edf7",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9fb0684ba0d29cbe8e1d1382",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3015f6c644a6395ee0f1302b",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3b3930d3642bcf2517a5e3f2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "225309d8c3815b673abe1d9c",
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b9bd152220ee0fdde7e16496",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3371363859f58872f2f4e62d",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "29c13eb07037013a2ac14611",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e4896b032a8828357f046f4c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "398240503abb8db45c671619",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6efb23adbdc554967ca29181",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "830fb8b4a9324c5bc6eb1605",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d686bbe1e0fb48165e6956e4",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a0a6f7a54c3d2a76d024c929",
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "647edc9b19682b87d8550df6",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "abc1f50b5cf0fb380e9b61e3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ca4b73928170bd104ae75bb6",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "060a3c2a8fa90b84aa31fe65",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "93a4c819997178fcf121623b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c29223a6c89c5d769c8a65a5",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e4e519e318ae71978adfd309",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "09e3a9bc67f6e56a6b7d9d7f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "47f53b93990ce0260db73950",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6930b8fcf840581345ada8b3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4e055764e48f07aeb4fba7e9",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0f40fede7ff88d56fd2c3e8c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "29d743bcd0b5bfd3a08169aa",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5edf5624ccbc7f39d4d2767f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b06899330ae73fb409afd2ab",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a753f825e5273b4b1669f139",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d1097dc3d2ac5b44110bd79e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "792b5ac28fbed895ee4d5cb9",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2436dc1e38ab5937a5b9fe3a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "08fa55d59496c8f58f853126",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e8c09e0c24c4dc73040b2ce4",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8f3e384ef0dff42e15dbddbb",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "96d57df1aab9079e99cbf31e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "99f594dd27c866850c99f285",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0c3916e26a82fa0079692950",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "29dd9240ccecbf983d53d777",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c6d20c1f2517733258ec903b",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c972a143bcefd5c4a5991e08",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fbf702ccd04a3154006b0edb",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2b8b40c1dd0a13bc5fb26a9f",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "495c1e460b1130f200d10527",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "030e2b2c1d6182bb551df770",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "579eddf391a7afc59e737a61",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0472daf2ca18036b4fc2dfdc",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ec0ca8c36bb11b7264966b57",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4cbef08a4a304b461d8a37e4",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1aaa47df1558afe952ff16d6",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ab2dd2d69cfe726d92c17483",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3b7db694980ec79925e65cf8",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "79dafee90b7a4401fbb3bc57",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "77215414d2d168063b5be649",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0b9cfc192241766bedf97624",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e5ee30a8e3a1519f9d625a40",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "61bb730fd8bf16363a7e0156",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "95a63b1ef517e86a3bb0c52b",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "85c4134ef4035cda8b10d06c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c31e3bde8c26c73368c53279",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0cbe029a34e1a6811557937a",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3419b772e0f88afb6392715c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "cffee0b81a691edac34fd21a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "11389c1e8164650700cda4b9",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e5ee942c863dd13fbc199c2e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "250fe1d2dcdac8625249b543",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6d560d811751471b3ab22620",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7e0123c3c7d15a0e297022b1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "39df763fb49010ae86ed0a68",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2a40a33107a518969d8529fa",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2fc74eae860cb122b01337d7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2d35f9c64bd1fb6303e0aa6a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "974a714c337951c06d5c6cd5",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1e9077da1310cf86dd3b3767",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "29e7172666d54ac66e08bb7a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a5edc58bb860537c48ce6eff",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a15984cee3259ae602688e5e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4cc456887d5aa8b5690386c1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c1fa2922dfad8748f0bf0c7d",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "cd97bc9f50701cba190cb4f8",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b4684bee7dc31ec28f47ffcc",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4fbe37fb8c47d609c20c0c86",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "45850378040b3ad6b976691f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "77784a321fb335b2dd8b7bf9",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "65aed65804544237ae419a26",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bb43ac6300aaf403748de05a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9948d1601ed0e03e2ff47504",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "56fc96350b7d92ff5a3b574b",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "82aff8d9acd441183262512e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "858767a039a632dc6d8de4f2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "79bcd892447af9ea4f6d3986",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "20efea29ae1367e09722a2c5",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f3dc7618bff27e6aae18b637",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "de408f9eeb50cf9247852b43",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f5e9e463be378482317ffb0f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "046015c2e9bd5baccb7d6d12",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1178b4b4598390fca5c3e611",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "09d688b000108e00e10419c4",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0e12ba305ebefb54231bbe11",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "550bb9689a1720f989a77c97",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ecbd407f7c59e16a94ac63a1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ac4b0eb26456f4c234737982",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2d48f0a7ca215e9d0b0a9915",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0888a34a4d866a95fa212088",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f981b95d6fe03feadc03c8d2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "10b811d3cf638622ee84d680",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0450c1f55ed5c2c7182a82d2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "77155d9458595a16b88e24e2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2f2e9592f288daa953069db6",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "01ccdaf51130a8668125a3b1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bb1b29f7c00bb9e63937e0dc",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "cc15b97569abb79413fb8ebe",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bca59bb59a28872bd5d923e7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1ece1c8ee57d1f9b45c96bcb",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "de486a40f13bcc7c7f22f522",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "360fd10d737541a76c32c908",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "57df8292523482bdf6330c73",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7bd8607e9f61ee906e2c9573",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7b0245671b14bafc0027cc26",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b45f4dc77cc07fbf997aed84",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c4a5f208eacc60ecd60db352",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "717d110e4ba3fd7c43374a73",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e5993ffb150963a7f781155e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8854154bc97e33041894164e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5fb6e0a59344b75a9e36a1dd",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "50eb57e467861ecd35547725",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "712f570a55797a9785490426",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "03b972753c0ec2533d93a65e",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3a1983e4b334f02ce05019c2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "844ab6d727071eff0ec7fa83",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f2d7fd6e5ae753c3ceae0f56",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8b456578a3478075d094bf3c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f9935c14e3ebeed318df89ce",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3211ec02b75a8a6f5f56eab0",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4c34d8ad666dc0eb19dca595",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b6aa245f49151045019c4d06",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fd3853d95604ec1c649ed1ba",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e59645e0bfdd6a5f1d009836",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b438f0e8bd430132110bf2d2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "057f2dca97c1a57db00a3e22",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "24a3ad9a9833b193fd3099f2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9ab863889357de69fae5cd06",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "12c76ff3fa9528573eb3e81c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fb708bf4d47ace38c473fe6a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "98937f54d47891486250f779",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "67eca7bb585b2553f990d422",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5dee38d1f930ea0edddee4fc",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a4e8b77f7bb153fa27daf5e0",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9513768079674da1ab96b0a7",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0ce9b4e7897d1530555a698b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "202813a8a3d1b3de8d882f30",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "34e39e7a79eb01fee2f691c7",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c735ceaf4e856f4369535a29",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d67a0042fde9ec5fac2d681b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "482e4e28792578927ca3e2e0",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1fa5aa1a0410b3d1908c5d4f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4cfb56192df7130e57be092b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "23eea145a987b41bd87b4422",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ff38d30e1c50b034526dd9f9",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ef95ef9c5459fdeef93caf3c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "27e1ea568158853dbc274815",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d73874b091b94fcd22983cbf",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "468ede6c413e09c9cb41d4df",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f2cfe9cf50cc420ce36d2e5f",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b7ca43fd6fce5deeb9edbc6e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2ebd9c38146d95af90ac6bee",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b095993d7593bda144d9c808",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "735285dd733b6327bc2b5d73",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0a78f54b028710fc92cdbeb9",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1d4913577acc4dcd6a386c7f",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-002",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e1dfc734ea920b0aca1b417a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c31052488f4a40c3202e4da1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "644bb3799c18a826de2cb84c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-003",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "66abf45546ac2831ec0a4839",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5015408186d7386079c56615",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0c4d30f1aa8ff7bf75d813a3",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-004",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0f9a5c43f63b50e9c65c57e3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f11a6244550b85561f75fa0b",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-005",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b55e3cb233d13827b65bb4d2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "87033e4643148fcc9703252a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "752c4ff020d8f8b9b01d07f3",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-006",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b6f0e7315147292d3849fe6d",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ef8721b86d315cf156b3bfc3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "455b8e68ded3d58f12fb73ee",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-007",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "40f1e3b827d4f0c010f3ad93",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1aaba79fa8b79c138d2f5546",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f8889b0a18af8069f91a21cf",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-008",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f7778072c45b707b00b0df21",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c52bab1f2e1075564a84efd8",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "5d563ff767f227a6b92d98ad",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-009",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8b68192571dcafa5f971c24a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e9654f21bb6b76c80ec73db1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "384841e155ff725d4ca3cd97",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-010",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "68b000c8fe682ceeb4564ffe",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d179549c465182f7bf2b3cd2",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "de45f63012c49a1a9e7c9cc7",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-011",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f3c4a8ab3ef9938693b2de5a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e2e9f1856c6bc5680dd1b34f",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e7a56bbcc028370684512731",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-012",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "99753bb4644ef7fd3df71e57",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fa77c729cfec8508e2ee4ac8",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "35bcae31d05af0949df475a4",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-013",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7c170f29779e4db63ec8e3b4",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "151ba515b709ec870e7795c6",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "420d26da50bd49ba69eb32af",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-014",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "64b14f3e85f3df05e52e3a39",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "65ec449ec83ab1aa3afd614a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "03fadddc32ac3e30f3b07bd8",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-015",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "61175ccdd2a1cae354f3f40e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f3d38b15a4886145ea652459",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "213dba90bca569515095528a",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-016",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "77145b5084f882c7269f8799",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d9ea1ae8dba257b3a99a7b14",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7b5e828967025f3fa58ba859",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-017",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b4f2f6c1dcb9bbacb71a1e1d",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "06451802792fb9652a79faa0",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3ecba180e1fcd24111c53355",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-018",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "584dcb47eaa98c63e870ccb4",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "038cf74c5a211457ecca9b30",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "72565e75f1ed8fde58ce1dac",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-019",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "12f9dd4626354661e02c6231",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0b6a71a586f4fcf45c8a66c3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "abeadace0edd7102001489c5",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-020",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "87ee1640b893e6df94e3e915",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3fe04d1068aee98c1e123038",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3904607c68b23db380b66f68",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bc029353d16e63bb2f7fa817",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "00f3e795c464651982dfb686",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7f1b571c9f30e917017b1e9d",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-022",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4f8e3e1f09c4e134598598b1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6b3cc4c087b26fb31697a7e9",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-023",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1c2204c83f0d02cf55d2ce60",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6a5ad9bdbd3c95fac56e8013",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "13bac0bde0c3ce5c3ebc0a94",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-024",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2b6d26831a813ece927266f7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "506c6b8e9e4a4c2dc2c90493",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "28a3ed061455fcee96c11de4",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-025",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "7e73aca6e44dab0e8c1d3939",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9a0a1a4505a15a93428f1f75",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3130478163ca58bf120b5a5d",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-026",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "82acb543ca5b3da9046781d5",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e0f7c9983f56e5af275d8bfb",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "04174b951d7f522dfd8ddfcb",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-027",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e8a4b25916a537fe2594bc56",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ffc213353c10a9ef1d33ff70",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2768bc045767e07aa1987d51",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-028",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4689c5e83bb02987d4f7f300",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ffd83bbdbb84cd368e37aee6",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6a8ee2c656d0f69ba209295a",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-029",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d927dfdab9fc0c31b66dfe6c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ecd0c839a2c3f7fc296d392c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c0e9cebe19d58b3b84b0b5c6",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-030",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "623feaae18d99d787cc5e93b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2c327f5e657fa92611941c4a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "358e4d7175347b39069d9ccc",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-031",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "20cca01682eb67d3f4879151",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9164c148b6f778e654256805",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "02e915553acc3988edcc26bc",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-032",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9324c5acf53ff0c5db48c754",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1cf1bcad46ee0d7436167e07",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9db56324298623a6d5bc9f67",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-033",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "3489e26617d62b8a5a21940c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-034",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b9afa67e788ffa752cf23e70",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c7e720f2d410ced7a884041e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-035",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "80d086aa34948c87bb56c5b5",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "92d7966b79ecd936aa0b47b0",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9656377179f059e93b6f83f3",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-036",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bbf65fd7f5b072b20ae4541a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c77a895c7b9a9c83db296f46",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2f36c8c762ffd8b58dab53cf",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-037",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f99afb45aaaa4fa8a4e82f11",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "36bdfcdd866658f1b28e1d94",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4bf3b376a920fea2d137671b",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-038",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "22c3ce1a69de6f8ce5d55fe0",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f86289a393418ec7147fe9d1",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8085f63a7dbe9d523c6fea4c",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-039",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "8c9c202a71032f2440dbeb05",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "c18bd138446361c8d7708824",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "914f594dcd69a88c5b25089b",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-040",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "a3c6a310e657ab8273dff8ed",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "15623b36e13e4b61e462e620",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "195ec4083e1065ea43aa6762",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-041",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "2d1d58fd8de26e28fdaae154",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "fd54866d0379cfb2a7dbf0c0",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "ed93446ce423c97fbf618701",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-042",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "bb13fe0aa1c4d5e4a68a818d",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6c0944f9e970dca6fe95d3df",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "824181fa72a6b991c0b105b0",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-043",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "d942a79e091939b967a6de6e",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "e4727483d3634bbe92b833e0",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "b3962808bec6a8fe8837554a",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-044",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f38a922730a4f1d75723c4e3",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "801d07b3904de57899258777",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "0c4db3887ffaedd2b75dfe9f",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-045",
+    "category": "single",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "821fc32ae3103772074e3464",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f896d90b6d575b4b9cdc2c01",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "035e154f5ddc130a5bc154f1",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-046",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "026addb6e104c1b0fcd010b7",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "00b949c39d5a7d85033ed3de",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "4843aa735be531dc7d0c0b11",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-047",
+    "category": "multi",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "09ac2b8e0bc5a29462217d2c",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "1dfde3674e2599937797aa64",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "f0e02175d5543304dbc6b640",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-048",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "76ae781adf5128b7a8a46d6a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "9437a779b74eb8cc2321a155",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "abb1dbbf8f245ea261f323b5",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-049",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "13a8548817d5e6a982c0271a",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "01ea3a56a8f9fbc3895ea089",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  },
+  {
+    "review_id": "6dbfc6c77ef646e76c9d7e60",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-050",
+    "category": "out_of_scope",
+    "attempt": 1,
+    "system_error": false
+  }
+]

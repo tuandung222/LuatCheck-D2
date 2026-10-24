@@ -1,0 +1,19 @@
+{
+  "base_url": "https://ai-gateway01.qualgo.ai/v1",
+  "credential_env": "LUATCHECK_JUDGE_API_KEY",
+  "model": "deepseek/deepseek-v4-flash",
+  "requested_family": "DeepSeek V4.1 Flash",
+  "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+  "revision_pinned": false,
+  "allowed_returned_models": ["deepseek/deepseek-v4-flash", "deepseek-v4-flash", "deepseek-flash", "deepseek-v4.1-flash", "deepseek-v4.1-flash-1017"],
+  "model_identity_note": "Same gateway model and thinking/effort settings as config/d2_judge_gateway.json. Gateway routing is not independently attested; returned model IDs are preserved in every attempt record.",
+  "thinking": {"type": "enabled"},
+  "reasoning_effort": "high",
+  "max_tokens": 24000,
+  "timeout_seconds": 300,
+  "max_attempts": 3,
+  "concurrency": 8,
+  "temperature": null,
+  "seed": null,
+  "billing_note": "Cost is the gateway-reported usage.cost / x-litellm-response-cost per attempt, retained failed attempts included; it is not an invoice and missing cost is unknown, not zero."
+}

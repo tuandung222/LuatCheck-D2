@@ -1,0 +1,2696 @@
+{
+  "evaluation_type": "LLM-judge estimates (not human labels); retrieval/citation/latency/token metrics are measured",
+  "run_id": "d2-gpu-r2-2b-hcmut-v1",
+  "phase": "main",
+  "run_status": "collected",
+  "run_profile": "gpu-accuracy",
+  "latency_reportable": false,
+  "report_eligible": true,
+  "protocol": "r2-posthoc",
+  "protocol_label": "post-hoc revision evaluated on the same tasks",
+  "system_revision_effective": {
+    "retrieval.first_search_anchor": "question_plus_query",
+    "retrieval.default_top_k": 5,
+    "tools.search_hints": true,
+    "domain.profile_variant": "r2",
+    "agent.require_search_before_answer": true,
+    "verifier.repair_feedback_style": "verifier_report",
+    "model.thought_max_chars": 800,
+    "agent.free_duplicate_notices": true,
+    "verifier.l1_version": "v2",
+    "verifier.l1_sentence_support": "warn"
+  },
+  "judge_model": {
+    "requested": "deepseek/deepseek-v4-flash",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 24000,
+    "revision_pinned": false,
+    "returned_model_ids": {
+      "deepseek/deepseek-v4-flash": 708,
+      "None": 78
+    }
+  },
+  "human_labels_received": false,
+  "human_judge_agreement": null,
+  "runs_sha256": "fddccf7d2261c3d9237a228eb5f6cd3e72978244467b721c3551568c43fe3a92",
+  "peak_memory_mb": {
+    "runner_rss_sampled": null,
+    "runner_ru_maxrss": 4324.59,
+    "llama_server_rss_sampled": null,
+    "note": "Sampled with `ps` every 0.5 s on this machine (mac-latency, local server only); null = not measured."
+  },
+  "cells": {
+    "hcmut_v1/closed_book": {
+      "benchmark": "hcmut_v1",
+      "variant": "closed_book",
+      "trials_planned": 50,
+      "trials_recorded": 50,
+      "trials_missing": 0,
+      "seeds": [
+        42
+      ],
+      "arm": "baseline",
+      "baseline_kind": "closed_book",
+      "tasks": 50,
+      "counts": {
+        "answered": 4,
+        "refused": 46,
+        "clarified": 0,
+        "execution_errors": 0,
+        "error_kinds": {},
+        "pre_model_policy_refusals": 0,
+        "retried_attempts_superseded": 0
+      },
+      "judging": {
+        "judged_valid": 50,
+        "judgeable": 42,
+        "unjudgeable": 8,
+        "judge_invalid_or_pending": 0,
+        "not_judged_execution_errors": 0
+      },
+      "strict_success": {
+        "successes": 6,
+        "trials": 50,
+        "unknown": 8,
+        "rate_lower_bound": 0.12,
+        "rate_upper_bound": 0.28,
+        "rate_known_only": 0.14285714285714285,
+        "known": 42,
+        "ci95_task_bootstrap_lower_bound": [
+          0.04,
+          0.22
+        ],
+        "seed_mean": 0.12,
+        "seed_sd": null,
+        "seed_min": 0.12,
+        "seed_max": 0.12,
+        "task_consistency_across_seeds": {
+          "tasks": 50,
+          "all_seeds_success": 6,
+          "all_seeds_fail": 44,
+          "mixed": 0
+        },
+        "note": "Errors count as failures; unknown (judge invalid/unjudgeable/missing) counts as failure in the lower bound."
+      },
+      "behaviour_appropriate": {
+        "count": 8,
+        "known": 42,
+        "rate": 0.19047619047619047
+      },
+      "claim_faithfulness": {
+        "claims": 12,
+        "supported": 0,
+        "rate_macro_over_trials": 0.0,
+        "ignored_absence_claims_in_abstention_outputs": 1,
+        "rule": "claims labelled not_established are not counted for abstention outputs (evaluation/judge_rules.py)",
+        "contradicted": 5,
+        "not_established": 7,
+        "rate": 0.0
+      },
+      "retrieval": {
+        "Recall@1": null,
+        "Recall@3": null,
+        "Recall@5": null,
+        "Hit@5": null,
+        "MRR": null,
+        "nDCG@5": null,
+        "trace_recall": null,
+        "read_recall": null,
+        "share_full_recall_at_5": null,
+        "answerable_trials": 45,
+        "note": "Not applicable to a baseline: it has no search; the oracle is GIVEN the gold records and closed_book gets none."
+      },
+      "citation_id": {
+        "answerable_trials": 45,
+        "trials_citing_any": 2,
+        "macro_precision": 0.0,
+        "macro_recall": 0.0,
+        "macro_f1": 0.0,
+        "precision_when_cited": 0.0,
+        "micro_precision": 0.0,
+        "micro_recall": 0.0,
+        "answered_trials": 4,
+        "cited_not_retrieved_rate": 1.0,
+        "answered_without_citation_rate": 0.5,
+        "expected_refuse_non_error_trials": 5,
+        "spurious_citation_rate_on_refuse": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "note": "Cited-id set vs gold ids (source-ID match, not answer correctness). macro_*: mean over answerable trials, nothing cited = 0; precision_when_cited excludes trials that cited nothing; micro_* pools ids."
+      },
+      "behaviour_confusion": {
+        "matrix_expected_by_actual": {
+          "answer": {
+            "answered": 4,
+            "refused": 41,
+            "clarified": 0,
+            "error": 0
+          },
+          "refuse": {
+            "answered": 0,
+            "refused": 5,
+            "clarified": 0,
+            "error": 0
+          }
+        },
+        "trials": 50,
+        "execution_errors": 0,
+        "execution_error_rate": 0.0,
+        "answer_coverage": 0.08,
+        "over_refusal_rate": 0.9111111111111111,
+        "unsafe_answer_rate": 0.0,
+        "refusal_recall": 1.0,
+        "abstention_recall": 1.0,
+        "refusal_precision": 0.10869565217391304,
+        "refusal_f1": 0.19607843137254902,
+        "strict_match_rate_all": 0.18,
+        "denominators": {
+          "answer_expected_non_error": 45,
+          "refuse_expected_non_error": 5,
+          "non_error": 50
+        },
+        "note": "Structural behaviour from terminal status vs the frozen expected behaviour; independent of the LLM judge. 'clarified' has no expected label in the benchmarks (answer|refuse), so it counts as abstention, never as a match."
+      },
+      "errors": {
+        "trials": 50,
+        "execution_errors": 0,
+        "error_rate": 0.0,
+        "error_rate_ci95_wilson": [
+          0.0,
+          0.07135003417431873
+        ],
+        "by_kind": {},
+        "timeouts": 0,
+        "timeout_rate": 0.0,
+        "note": "Errors count as failures in strict success; they are reported here so they cannot hide inside a quality number."
+      },
+      "refusal_sources": {
+        "by_source": {
+          "model": {
+            "refused": {
+              "total": 46,
+              "expected_answer": 41,
+              "expected_refuse": 5
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          }
+        },
+        "source_recorded_on_all": true,
+        "any_source_recorded": true,
+        "note": "Abstentions (refused, clarified) by the component that ended the trial; `unrecorded` = the system did not record a source (frozen v3). Counts, not rates; expected_answer = over-refusals, expected_refuse = appropriate abstentions."
+      },
+      "refusal_behaviour": {
+        "expected_refuse_trials": 5,
+        "refused": 5,
+        "answered_instead": 0
+      },
+      "latency": {
+        "reportable": false,
+        "trial_p50_s": null,
+        "trial_p95_s": null,
+        "trial_all_p50_s": null,
+        "trial_all_p95_s": null,
+        "model_call_p50_s": null,
+        "model_call_p95_s": null,
+        "non_model_p50_s": null,
+        "non_model_p95_s": null,
+        "rerank_call_p50_s": null,
+        "rerank_call_p95_s": null,
+        "decode_tokens_per_s_p50": null,
+        "prefill_tokens_per_s_p50": null,
+        "end_to_end_output_tokens_per_s_p50": null,
+        "cached_prompt_token_share": null,
+        "trials_measured": 50,
+        "trials_measured_incl_errors": 50,
+        "model_calls_measured": 50,
+        "non_model_ms_mean": null,
+        "note": "Recorded under concurrency; NOT reportable."
+      },
+      "tokens": {
+        "trials_with_complete_usage": 50,
+        "trials_incomplete": 0,
+        "input_per_trial": 1648.84,
+        "output_per_trial": 191.28,
+        "input_total": 82442,
+        "output_total": 9564,
+        "native_calls_per_trial": 1.0,
+        "tool_calls_per_trial": 0.0,
+        "repairs_total": 0
+      },
+      "lexical_proxy": {
+        "unsupported_sentence_rate_answered_only": 1.0,
+        "note": "Lexical proxy of the agent's L1 verifier. Not semantic correctness."
+      },
+      "judge_cost": {
+        "attempts": 56,
+        "gateway_reported_usd_body": 0.081892223,
+        "gateway_reported_usd_header": 0.081892223,
+        "attempts_without_reported_cost": 0,
+        "prompt_tokens": 222570,
+        "completion_tokens": 219866,
+        "note": "Gateway-reported cost over all retained attempts (not an invoice); missing cost is unknown, not zero."
+      },
+      "answerable_only": {
+        "trials": 45,
+        "tasks": 45,
+        "successes": 1,
+        "strict_success_lower": 0.022222222222222223,
+        "ci95_task_bootstrap_lower_bound": [
+          0.0,
+          0.06666666666666667
+        ],
+        "answer_rate": 0.08888888888888889
+      },
+      "answerable_by_gold_surfaced": null,
+      "per_seed": {
+        "42": {
+          "trials": 50,
+          "strict_success_lower": 0.12
+        }
+      },
+      "by_category": {
+        "multi": {
+          "trials": 5,
+          "strict_success_lower": 0.0,
+          "gold_ids_per_task": {
+            "2": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "out_of_scope": {
+          "trials": 5,
+          "strict_success_lower": 1.0,
+          "gold_ids_per_task": {
+            "0": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "single": {
+          "trials": 40,
+          "strict_success_lower": 0.025,
+          "gold_ids_per_task": {
+            "1": 40
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        }
+      },
+      "by_stratum": {
+        "closed_book_guessable": {
+          "trials": 15,
+          "tasks": 15,
+          "strict_success_lower": 0.06666666666666667
+        },
+        "closed_book_partial": {
+          "trials": 12,
+          "tasks": 12,
+          "strict_success_lower": 0.0
+        },
+        "closed_book_unsolved": {
+          "trials": 18,
+          "tasks": 18,
+          "strict_success_lower": 0.0
+        },
+        "refusal_task": {
+          "trials": 5,
+          "tasks": 5,
+          "strict_success_lower": 1.0
+        }
+      },
+      "by_stratum_group": {
+        "guessable": {
+          "trials": 15,
+          "tasks": 15,
+          "successes": 1,
+          "strict_success_lower": 0.06666666666666667,
+          "unknown": 3,
+          "ci95_task_bootstrap_lower_bound": [
+            0.0,
+            0.2
+          ]
+        },
+        "not_guessable": {
+          "trials": 30,
+          "tasks": 30,
+          "successes": 0,
+          "strict_success_lower": 0.0,
+          "unknown": 5,
+          "ci95_task_bootstrap_lower_bound": [
+            0.0,
+            0.0
+          ]
+        },
+        "refusal_task": {
+          "trials": 5,
+          "tasks": 5,
+          "successes": 5,
+          "strict_success_lower": 1.0,
+          "unknown": 0,
+          "ci95_task_bootstrap_lower_bound": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "stratum_note": "Closed-book strata are LLM estimates (config/benchmark/strata.yaml, label closed_book_probe_gemma-4-31b_llm_estimate); not human labels."
+    },
+    "hcmut_v1/l1": {
+      "benchmark": "hcmut_v1",
+      "variant": "l1",
+      "trials_planned": 150,
+      "trials_recorded": 150,
+      "trials_missing": 0,
+      "seeds": [
+        42,
+        123,
+        2026
+      ],
+      "arm": "system",
+      "baseline_kind": null,
+      "tasks": 50,
+      "counts": {
+        "answered": 62,
+        "refused": 75,
+        "clarified": 13,
+        "execution_errors": 0,
+        "error_kinds": {},
+        "pre_model_policy_refusals": 0,
+        "retried_attempts_superseded": 0
+      },
+      "judging": {
+        "judged_valid": 147,
+        "judgeable": 143,
+        "unjudgeable": 4,
+        "judge_invalid_or_pending": 3,
+        "not_judged_execution_errors": 0
+      },
+      "strict_success": {
+        "successes": 36,
+        "trials": 150,
+        "unknown": 7,
+        "rate_lower_bound": 0.24,
+        "rate_upper_bound": 0.2866666666666667,
+        "rate_known_only": 0.2517482517482518,
+        "known": 143,
+        "ci95_task_bootstrap_lower_bound": [
+          0.15333333333333332,
+          0.33333333333333337
+        ],
+        "seed_mean": 0.24,
+        "seed_sd": 0.0529150262212918,
+        "seed_min": 0.2,
+        "seed_max": 0.3,
+        "task_consistency_across_seeds": {
+          "tasks": 50,
+          "all_seeds_success": 4,
+          "all_seeds_fail": 30,
+          "mixed": 16
+        },
+        "note": "Errors count as failures; unknown (judge invalid/unjudgeable/missing) counts as failure in the lower bound."
+      },
+      "behaviour_appropriate": {
+        "count": 62,
+        "known": 143,
+        "rate": 0.43356643356643354
+      },
+      "claim_faithfulness": {
+        "claims": 153,
+        "supported": 109,
+        "rate_macro_over_trials": 0.6645569620253164,
+        "ignored_absence_claims_in_abstention_outputs": 5,
+        "rule": "claims labelled not_established are not counted for abstention outputs (evaluation/judge_rules.py)",
+        "contradicted": 35,
+        "not_established": 9,
+        "rate": 0.7124183006535948
+      },
+      "retrieval": {
+        "answerable_trials": 135,
+        "Recall@1": 0.7222222222222222,
+        "Recall@3": 0.8333333333333334,
+        "Recall@5": 0.8592592592592593,
+        "Hit@5": 0.8666666666666667,
+        "MRR": 0.8185177777777778,
+        "nDCG@5": 0.8186503703703705,
+        "trace_recall": 0.8592592592592593,
+        "read_recall": 0.6111111111111112,
+        "non_error_trials": 135,
+        "non_error_Recall@5": 0.8592592592592593,
+        "non_error_MRR": 0.8185177777777778,
+        "non_error_trace_recall": 0.8592592592592593,
+        "rerank_trials": 0,
+        "rerank_first_stage_gold_recall": null,
+        "rerank_returned_gold_recall": null,
+        "share_hit_at_1": 0.7777777777777778,
+        "share_full_recall_at_5": 0.8518518518518519,
+        "ceiling_note": "share_full_recall_at_5 close to 1 means retrieval is saturated: Recall@k and MRR then cannot separate variants (the benchmark QA review found gold records already in BM25's top 5 for 45/45 hcmut and 44/45 labour questions).",
+        "gold_ids_per_trial_distribution": {
+          "1": 120,
+          "2": 15
+        },
+        "mean_searches_per_trial": 0.9481481481481482,
+        "mean_reads_per_trial": 1.0148148148148148,
+        "note": "Gold-id retrieval over the agent's own search+read trace (distinct ids, first-appearance order; k counts documents across the whole trajectory). Computed after the trial from the recorded ledger; execution errors stay in as failures to retrieve. Not answer correctness."
+      },
+      "citation_id": {
+        "answerable_trials": 135,
+        "trials_citing_any": 59,
+        "macro_precision": 0.3814814814814815,
+        "macro_recall": 0.35555555555555557,
+        "macro_f1": 0.362962962962963,
+        "precision_when_cited": 0.8728813559322034,
+        "micro_precision": 0.8666666666666667,
+        "micro_recall": 0.3466666666666667,
+        "answered_trials": 62,
+        "cited_not_retrieved_rate": 0.0,
+        "answered_without_citation_rate": 0.0,
+        "expected_refuse_non_error_trials": 15,
+        "spurious_citation_rate_on_refuse": 0.2,
+        "precision": 0.3814814814814815,
+        "recall": 0.35555555555555557,
+        "f1": 0.362962962962963,
+        "note": "Cited-id set vs gold ids (source-ID match, not answer correctness). macro_*: mean over answerable trials, nothing cited = 0; precision_when_cited excludes trials that cited nothing; micro_* pools ids."
+      },
+      "behaviour_confusion": {
+        "matrix_expected_by_actual": {
+          "answer": {
+            "answered": 59,
+            "refused": 66,
+            "clarified": 10,
+            "error": 0
+          },
+          "refuse": {
+            "answered": 3,
+            "refused": 9,
+            "clarified": 3,
+            "error": 0
+          }
+        },
+        "trials": 150,
+        "execution_errors": 0,
+        "execution_error_rate": 0.0,
+        "answer_coverage": 0.41333333333333333,
+        "over_refusal_rate": 0.562962962962963,
+        "unsafe_answer_rate": 0.2,
+        "refusal_recall": 0.6,
+        "abstention_recall": 0.8,
+        "refusal_precision": 0.12,
+        "refusal_f1": 0.19999999999999998,
+        "strict_match_rate_all": 0.4533333333333333,
+        "denominators": {
+          "answer_expected_non_error": 135,
+          "refuse_expected_non_error": 15,
+          "non_error": 150
+        },
+        "note": "Structural behaviour from terminal status vs the frozen expected behaviour; independent of the LLM judge. 'clarified' has no expected label in the benchmarks (answer|refuse), so it counts as abstention, never as a match."
+      },
+      "errors": {
+        "trials": 150,
+        "execution_errors": 0,
+        "error_rate": 0.0,
+        "error_rate_ci95_wilson": [
+          0.0,
+          0.02497113914571871
+        ],
+        "by_kind": {},
+        "timeouts": 0,
+        "timeout_rate": 0.0,
+        "note": "Errors count as failures in strict success; they are reported here so they cannot hide inside a quality number."
+      },
+      "refusal_sources": {
+        "by_source": {
+          "budget": {
+            "refused": {
+              "total": 5,
+              "expected_answer": 5,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          },
+          "model": {
+            "refused": {
+              "total": 52,
+              "expected_answer": 43,
+              "expected_refuse": 9
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          },
+          "repair_exhausted": {
+            "refused": {
+              "total": 18,
+              "expected_answer": 18,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          },
+          "unrecorded": {
+            "refused": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 13,
+              "expected_answer": 10,
+              "expected_refuse": 3
+            }
+          }
+        },
+        "source_recorded_on_all": false,
+        "any_source_recorded": true,
+        "note": "Abstentions (refused, clarified) by the component that ended the trial; `unrecorded` = the system did not record a source (frozen v3). Counts, not rates; expected_answer = over-refusals, expected_refuse = appropriate abstentions."
+      },
+      "refusal_behaviour": {
+        "expected_refuse_trials": 15,
+        "refused": 9,
+        "answered_instead": 3
+      },
+      "latency": {
+        "reportable": false,
+        "trial_p50_s": null,
+        "trial_p95_s": null,
+        "trial_all_p50_s": null,
+        "trial_all_p95_s": null,
+        "model_call_p50_s": null,
+        "model_call_p95_s": null,
+        "non_model_p50_s": null,
+        "non_model_p95_s": null,
+        "rerank_call_p50_s": null,
+        "rerank_call_p95_s": null,
+        "decode_tokens_per_s_p50": null,
+        "prefill_tokens_per_s_p50": null,
+        "end_to_end_output_tokens_per_s_p50": null,
+        "cached_prompt_token_share": null,
+        "trials_measured": 150,
+        "trials_measured_incl_errors": 150,
+        "model_calls_measured": 532,
+        "non_model_ms_mean": null,
+        "note": "Recorded under concurrency; NOT reportable."
+      },
+      "tokens": {
+        "trials_with_complete_usage": 150,
+        "trials_incomplete": 0,
+        "input_per_trial": 13396.246666666666,
+        "output_per_trial": 710.2,
+        "input_total": 2009437,
+        "output_total": 106530,
+        "native_calls_per_trial": 3.546666666666667,
+        "tool_calls_per_trial": 1.94,
+        "repairs_total": 50
+      },
+      "lexical_proxy": {
+        "unsupported_sentence_rate_answered_only": 0.0,
+        "note": "Lexical proxy of the agent's L1 verifier. Not semantic correctness."
+      },
+      "judge_cost": {
+        "attempts": 214,
+        "gateway_reported_usd_body": 0.29552073219999986,
+        "gateway_reported_usd_header": 0.29552073219999986,
+        "attempts_without_reported_cost": 12,
+        "prompt_tokens": 841629,
+        "completion_tokens": 898100,
+        "note": "Gateway-reported cost over all retained attempts (not an invoice); missing cost is unknown, not zero."
+      },
+      "answerable_only": {
+        "trials": 135,
+        "tasks": 45,
+        "successes": 29,
+        "strict_success_lower": 0.21481481481481482,
+        "ci95_task_bootstrap_lower_bound": [
+          0.1259259259259259,
+          0.31111111111111106
+        ],
+        "answer_rate": 0.43703703703703706
+      },
+      "answerable_by_gold_surfaced": {
+        "all_gold_surfaced": {
+          "trials": 115,
+          "successes": 29,
+          "strict_success_lower": 0.25217391304347825
+        },
+        "some_gold_missed": {
+          "trials": 20,
+          "successes": 0,
+          "strict_success_lower": 0.0
+        }
+      },
+      "per_seed": {
+        "42": {
+          "trials": 50,
+          "strict_success_lower": 0.2
+        },
+        "123": {
+          "trials": 50,
+          "strict_success_lower": 0.3
+        },
+        "2026": {
+          "trials": 50,
+          "strict_success_lower": 0.22
+        }
+      },
+      "by_category": {
+        "multi": {
+          "trials": 15,
+          "strict_success_lower": 0.06666666666666667,
+          "gold_ids_per_task": {
+            "2": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "out_of_scope": {
+          "trials": 15,
+          "strict_success_lower": 0.4666666666666667,
+          "gold_ids_per_task": {
+            "0": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "single": {
+          "trials": 120,
+          "strict_success_lower": 0.23333333333333334,
+          "gold_ids_per_task": {
+            "1": 40
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        }
+      },
+      "by_stratum": {
+        "closed_book_guessable": {
+          "trials": 45,
+          "tasks": 15,
+          "strict_success_lower": 0.24444444444444444
+        },
+        "closed_book_partial": {
+          "trials": 36,
+          "tasks": 12,
+          "strict_success_lower": 0.25
+        },
+        "closed_book_unsolved": {
+          "trials": 54,
+          "tasks": 18,
+          "strict_success_lower": 0.16666666666666666
+        },
+        "refusal_task": {
+          "trials": 15,
+          "tasks": 5,
+          "strict_success_lower": 0.4666666666666667
+        }
+      },
+      "by_stratum_group": {
+        "guessable": {
+          "trials": 45,
+          "tasks": 15,
+          "successes": 11,
+          "strict_success_lower": 0.24444444444444444,
+          "unknown": 3,
+          "ci95_task_bootstrap_lower_bound": [
+            0.1111111111111111,
+            0.4
+          ]
+        },
+        "not_guessable": {
+          "trials": 90,
+          "tasks": 30,
+          "successes": 18,
+          "strict_success_lower": 0.2,
+          "unknown": 4,
+          "ci95_task_bootstrap_lower_bound": [
+            0.08888888888888888,
+            0.3333333333333333
+          ]
+        },
+        "refusal_task": {
+          "trials": 15,
+          "tasks": 5,
+          "successes": 7,
+          "strict_success_lower": 0.4666666666666667,
+          "unknown": 0,
+          "ci95_task_bootstrap_lower_bound": [
+            0.13333333333333333,
+            0.7999999999999999
+          ]
+        }
+      },
+      "stratum_note": "Closed-book strata are LLM estimates (config/benchmark/strata.yaml, label closed_book_probe_gemma-4-31b_llm_estimate); not human labels."
+    },
+    "hcmut_v1/l1_rerank": {
+      "benchmark": "hcmut_v1",
+      "variant": "l1_rerank",
+      "trials_planned": 150,
+      "trials_recorded": 150,
+      "trials_missing": 0,
+      "seeds": [
+        42,
+        123,
+        2026
+      ],
+      "arm": "system",
+      "baseline_kind": null,
+      "tasks": 50,
+      "counts": {
+        "answered": 63,
+        "refused": 77,
+        "clarified": 9,
+        "execution_errors": 1,
+        "error_kinds": {
+          "model_output_error": 1
+        },
+        "pre_model_policy_refusals": 0,
+        "retried_attempts_superseded": 0
+      },
+      "judging": {
+        "judged_valid": 147,
+        "judgeable": 138,
+        "unjudgeable": 9,
+        "judge_invalid_or_pending": 2,
+        "not_judged_execution_errors": 1
+      },
+      "strict_success": {
+        "successes": 43,
+        "trials": 150,
+        "unknown": 11,
+        "rate_lower_bound": 0.2866666666666667,
+        "rate_upper_bound": 0.36,
+        "rate_known_only": 0.30935251798561153,
+        "known": 139,
+        "ci95_task_bootstrap_lower_bound": [
+          0.2,
+          0.37333333333333335
+        ],
+        "seed_mean": 0.2866666666666667,
+        "seed_sd": 0.04163331998932266,
+        "seed_min": 0.24,
+        "seed_max": 0.32,
+        "task_consistency_across_seeds": {
+          "tasks": 50,
+          "all_seeds_success": 4,
+          "all_seeds_fail": 22,
+          "mixed": 24
+        },
+        "note": "Errors count as failures; unknown (judge invalid/unjudgeable/missing) counts as failure in the lower bound."
+      },
+      "behaviour_appropriate": {
+        "count": 65,
+        "known": 139,
+        "rate": 0.4676258992805755
+      },
+      "claim_faithfulness": {
+        "claims": 150,
+        "supported": 107,
+        "rate_macro_over_trials": 0.6846846846846847,
+        "ignored_absence_claims_in_abstention_outputs": 4,
+        "rule": "claims labelled not_established are not counted for abstention outputs (evaluation/judge_rules.py)",
+        "contradicted": 29,
+        "not_established": 14,
+        "rate": 0.7133333333333334
+      },
+      "retrieval": {
+        "answerable_trials": 135,
+        "Recall@1": 0.6814814814814815,
+        "Recall@3": 0.8444444444444444,
+        "Recall@5": 0.8444444444444444,
+        "Hit@5": 0.8592592592592593,
+        "MRR": 0.7888888888888889,
+        "nDCG@5": 0.7969066666666668,
+        "trace_recall": 0.8444444444444444,
+        "read_recall": 0.5777777777777777,
+        "non_error_trials": 134,
+        "non_error_Recall@5": 0.8432835820895522,
+        "non_error_MRR": 0.7873134328358209,
+        "non_error_trace_recall": 0.8432835820895522,
+        "rerank_trials": 116,
+        "rerank_first_stage_gold_recall": 1.0,
+        "rerank_returned_gold_recall": 0.9827586206896551,
+        "share_hit_at_1": 0.7185185185185186,
+        "share_full_recall_at_5": 0.8296296296296296,
+        "ceiling_note": "share_full_recall_at_5 close to 1 means retrieval is saturated: Recall@k and MRR then cannot separate variants (the benchmark QA review found gold records already in BM25's top 5 for 45/45 hcmut and 44/45 labour questions).",
+        "gold_ids_per_trial_distribution": {
+          "1": 120,
+          "2": 15
+        },
+        "mean_searches_per_trial": 0.9777777777777777,
+        "mean_reads_per_trial": 0.9703703703703703,
+        "note": "Gold-id retrieval over the agent's own search+read trace (distinct ids, first-appearance order; k counts documents across the whole trajectory). Computed after the trial from the recorded ledger; execution errors stay in as failures to retrieve. Not answer correctness."
+      },
+      "citation_id": {
+        "answerable_trials": 135,
+        "trials_citing_any": 60,
+        "macro_precision": 0.3814814814814815,
+        "macro_recall": 0.37037037037037035,
+        "macro_f1": 0.37283950617283945,
+        "precision_when_cited": 0.8583333333333333,
+        "micro_precision": 0.8524590163934426,
+        "micro_recall": 0.3466666666666667,
+        "answered_trials": 63,
+        "cited_not_retrieved_rate": 0.0,
+        "answered_without_citation_rate": 0.0,
+        "expected_refuse_non_error_trials": 15,
+        "spurious_citation_rate_on_refuse": 0.2,
+        "precision": 0.3814814814814815,
+        "recall": 0.37037037037037035,
+        "f1": 0.37283950617283945,
+        "note": "Cited-id set vs gold ids (source-ID match, not answer correctness). macro_*: mean over answerable trials, nothing cited = 0; precision_when_cited excludes trials that cited nothing; micro_* pools ids."
+      },
+      "behaviour_confusion": {
+        "matrix_expected_by_actual": {
+          "answer": {
+            "answered": 60,
+            "refused": 67,
+            "clarified": 7,
+            "error": 1
+          },
+          "refuse": {
+            "answered": 3,
+            "refused": 10,
+            "clarified": 2,
+            "error": 0
+          }
+        },
+        "trials": 150,
+        "execution_errors": 1,
+        "execution_error_rate": 0.006666666666666667,
+        "answer_coverage": 0.4228187919463087,
+        "over_refusal_rate": 0.5522388059701493,
+        "unsafe_answer_rate": 0.2,
+        "refusal_recall": 0.6666666666666666,
+        "abstention_recall": 0.8,
+        "refusal_precision": 0.12987012987012986,
+        "refusal_f1": 0.21739130434782608,
+        "strict_match_rate_all": 0.4666666666666667,
+        "denominators": {
+          "answer_expected_non_error": 134,
+          "refuse_expected_non_error": 15,
+          "non_error": 149
+        },
+        "note": "Structural behaviour from terminal status vs the frozen expected behaviour; independent of the LLM judge. 'clarified' has no expected label in the benchmarks (answer|refuse), so it counts as abstention, never as a match."
+      },
+      "errors": {
+        "trials": 150,
+        "execution_errors": 1,
+        "error_rate": 0.006666666666666667,
+        "error_rate_ci95_wilson": [
+          0.0011777710231334546,
+          0.036793752933975674
+        ],
+        "by_kind": {
+          "model_output_error": 1
+        },
+        "timeouts": 0,
+        "timeout_rate": 0.0,
+        "note": "Errors count as failures in strict success; they are reported here so they cannot hide inside a quality number."
+      },
+      "refusal_sources": {
+        "by_source": {
+          "budget": {
+            "refused": {
+              "total": 5,
+              "expected_answer": 5,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          },
+          "model": {
+            "refused": {
+              "total": 56,
+              "expected_answer": 46,
+              "expected_refuse": 10
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          },
+          "repair_exhausted": {
+            "refused": {
+              "total": 16,
+              "expected_answer": 16,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          },
+          "unrecorded": {
+            "refused": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 9,
+              "expected_answer": 7,
+              "expected_refuse": 2
+            }
+          }
+        },
+        "source_recorded_on_all": false,
+        "any_source_recorded": true,
+        "note": "Abstentions (refused, clarified) by the component that ended the trial; `unrecorded` = the system did not record a source (frozen v3). Counts, not rates; expected_answer = over-refusals, expected_refuse = appropriate abstentions."
+      },
+      "refusal_behaviour": {
+        "expected_refuse_trials": 15,
+        "refused": 10,
+        "answered_instead": 3
+      },
+      "latency": {
+        "reportable": false,
+        "trial_p50_s": null,
+        "trial_p95_s": null,
+        "trial_all_p50_s": null,
+        "trial_all_p95_s": null,
+        "model_call_p50_s": null,
+        "model_call_p95_s": null,
+        "non_model_p50_s": null,
+        "non_model_p95_s": null,
+        "rerank_call_p50_s": null,
+        "rerank_call_p95_s": null,
+        "decode_tokens_per_s_p50": null,
+        "prefill_tokens_per_s_p50": null,
+        "end_to_end_output_tokens_per_s_p50": null,
+        "cached_prompt_token_share": null,
+        "trials_measured": 149,
+        "trials_measured_incl_errors": 150,
+        "model_calls_measured": 543,
+        "non_model_ms_mean": null,
+        "note": "Recorded under concurrency; NOT reportable."
+      },
+      "tokens": {
+        "trials_with_complete_usage": 150,
+        "trials_incomplete": 0,
+        "input_per_trial": 13780.433333333332,
+        "output_per_trial": 708.36,
+        "input_total": 2067065,
+        "output_total": 106254,
+        "native_calls_per_trial": 3.6266666666666665,
+        "tool_calls_per_trial": 1.98,
+        "repairs_total": 49
+      },
+      "lexical_proxy": {
+        "unsupported_sentence_rate_answered_only": 0.0,
+        "note": "Lexical proxy of the agent's L1 verifier. Not semantic correctness."
+      },
+      "judge_cost": {
+        "attempts": 216,
+        "gateway_reported_usd_body": 0.2635693974999999,
+        "gateway_reported_usd_header": 0.2635693974999999,
+        "attempts_without_reported_cost": 32,
+        "prompt_tokens": 789881,
+        "completion_tokens": 791920,
+        "note": "Gateway-reported cost over all retained attempts (not an invoice); missing cost is unknown, not zero."
+      },
+      "answerable_only": {
+        "trials": 135,
+        "tasks": 45,
+        "successes": 35,
+        "strict_success_lower": 0.25925925925925924,
+        "ci95_task_bootstrap_lower_bound": [
+          0.17037037037037037,
+          0.34814814814814815
+        ],
+        "answer_rate": 0.4444444444444444
+      },
+      "answerable_by_gold_surfaced": {
+        "all_gold_surfaced": {
+          "trials": 112,
+          "successes": 35,
+          "strict_success_lower": 0.3125
+        },
+        "some_gold_missed": {
+          "trials": 23,
+          "successes": 0,
+          "strict_success_lower": 0.0
+        }
+      },
+      "per_seed": {
+        "42": {
+          "trials": 50,
+          "strict_success_lower": 0.32
+        },
+        "123": {
+          "trials": 50,
+          "strict_success_lower": 0.24
+        },
+        "2026": {
+          "trials": 50,
+          "strict_success_lower": 0.3
+        }
+      },
+      "by_category": {
+        "multi": {
+          "trials": 15,
+          "strict_success_lower": 0.0,
+          "gold_ids_per_task": {
+            "2": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "out_of_scope": {
+          "trials": 15,
+          "strict_success_lower": 0.5333333333333333,
+          "gold_ids_per_task": {
+            "0": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "single": {
+          "trials": 120,
+          "strict_success_lower": 0.2916666666666667,
+          "gold_ids_per_task": {
+            "1": 40
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        }
+      },
+      "by_stratum": {
+        "closed_book_guessable": {
+          "trials": 45,
+          "tasks": 15,
+          "strict_success_lower": 0.3111111111111111
+        },
+        "closed_book_partial": {
+          "trials": 36,
+          "tasks": 12,
+          "strict_success_lower": 0.19444444444444445
+        },
+        "closed_book_unsolved": {
+          "trials": 54,
+          "tasks": 18,
+          "strict_success_lower": 0.25925925925925924
+        },
+        "refusal_task": {
+          "trials": 15,
+          "tasks": 5,
+          "strict_success_lower": 0.5333333333333333
+        }
+      },
+      "by_stratum_group": {
+        "guessable": {
+          "trials": 45,
+          "tasks": 15,
+          "successes": 14,
+          "strict_success_lower": 0.3111111111111111,
+          "unknown": 2,
+          "ci95_task_bootstrap_lower_bound": [
+            0.13333333333333333,
+            0.48888888888888893
+          ]
+        },
+        "not_guessable": {
+          "trials": 90,
+          "tasks": 30,
+          "successes": 21,
+          "strict_success_lower": 0.23333333333333334,
+          "unknown": 8,
+          "ci95_task_bootstrap_lower_bound": [
+            0.13333333333333333,
+            0.34444444444444444
+          ]
+        },
+        "refusal_task": {
+          "trials": 15,
+          "tasks": 5,
+          "successes": 8,
+          "strict_success_lower": 0.5333333333333333,
+          "unknown": 1,
+          "ci95_task_bootstrap_lower_bound": [
+            0.39999999999999997,
+            0.6666666666666666
+          ]
+        }
+      },
+      "stratum_note": "Closed-book strata are LLM estimates (config/benchmark/strata.yaml, label closed_book_probe_gemma-4-31b_llm_estimate); not human labels."
+    },
+    "hcmut_v1/off": {
+      "benchmark": "hcmut_v1",
+      "variant": "off",
+      "trials_planned": 150,
+      "trials_recorded": 150,
+      "trials_missing": 0,
+      "seeds": [
+        42,
+        123,
+        2026
+      ],
+      "arm": "system",
+      "baseline_kind": null,
+      "tasks": 50,
+      "counts": {
+        "answered": 83,
+        "refused": 53,
+        "clarified": 14,
+        "execution_errors": 0,
+        "error_kinds": {},
+        "pre_model_policy_refusals": 0,
+        "retried_attempts_superseded": 0
+      },
+      "judging": {
+        "judged_valid": 149,
+        "judgeable": 137,
+        "unjudgeable": 12,
+        "judge_invalid_or_pending": 1,
+        "not_judged_execution_errors": 0
+      },
+      "strict_success": {
+        "successes": 47,
+        "trials": 150,
+        "unknown": 13,
+        "rate_lower_bound": 0.31333333333333335,
+        "rate_upper_bound": 0.4,
+        "rate_known_only": 0.34306569343065696,
+        "known": 137,
+        "ci95_task_bootstrap_lower_bound": [
+          0.22,
+          0.4133333333333333
+        ],
+        "seed_mean": 0.31333333333333335,
+        "seed_sd": 0.05773502691896256,
+        "seed_min": 0.28,
+        "seed_max": 0.38,
+        "task_consistency_across_seeds": {
+          "tasks": 50,
+          "all_seeds_success": 4,
+          "all_seeds_fail": 24,
+          "mixed": 22
+        },
+        "note": "Errors count as failures; unknown (judge invalid/unjudgeable/missing) counts as failure in the lower bound."
+      },
+      "behaviour_appropriate": {
+        "count": 80,
+        "known": 137,
+        "rate": 0.583941605839416
+      },
+      "claim_faithfulness": {
+        "claims": 177,
+        "supported": 119,
+        "rate_macro_over_trials": 0.6827450980392157,
+        "ignored_absence_claims_in_abstention_outputs": 6,
+        "rule": "claims labelled not_established are not counted for abstention outputs (evaluation/judge_rules.py)",
+        "contradicted": 39,
+        "not_established": 19,
+        "rate": 0.672316384180791
+      },
+      "retrieval": {
+        "answerable_trials": 135,
+        "Recall@1": 0.7333333333333333,
+        "Recall@3": 0.837037037037037,
+        "Recall@5": 0.8555555555555555,
+        "Hit@5": 0.8666666666666667,
+        "MRR": 0.8222214814814814,
+        "nDCG@5": 0.8203377777777778,
+        "trace_recall": 0.8555555555555555,
+        "read_recall": 0.5888888888888889,
+        "non_error_trials": 135,
+        "non_error_Recall@5": 0.8555555555555555,
+        "non_error_MRR": 0.8222214814814814,
+        "non_error_trace_recall": 0.8555555555555555,
+        "rerank_trials": 0,
+        "rerank_first_stage_gold_recall": null,
+        "rerank_returned_gold_recall": null,
+        "share_hit_at_1": 0.7851851851851852,
+        "share_full_recall_at_5": 0.8444444444444444,
+        "ceiling_note": "share_full_recall_at_5 close to 1 means retrieval is saturated: Recall@k and MRR then cannot separate variants (the benchmark QA review found gold records already in BM25's top 5 for 45/45 hcmut and 44/45 labour questions).",
+        "gold_ids_per_trial_distribution": {
+          "1": 120,
+          "2": 15
+        },
+        "mean_searches_per_trial": 0.9703703703703703,
+        "mean_reads_per_trial": 0.9555555555555556,
+        "note": "Gold-id retrieval over the agent's own search+read trace (distinct ids, first-appearance order; k counts documents across the whole trajectory). Computed after the trial from the recorded ledger; execution errors stay in as failures to retrieve. Not answer correctness."
+      },
+      "citation_id": {
+        "answerable_trials": 135,
+        "trials_citing_any": 76,
+        "macro_precision": 0.5222222222222223,
+        "macro_recall": 0.4962962962962963,
+        "macro_f1": 0.5037037037037037,
+        "precision_when_cited": 0.9276315789473685,
+        "micro_precision": 0.9230769230769231,
+        "micro_recall": 0.48,
+        "answered_trials": 83,
+        "cited_not_retrieved_rate": 0.0,
+        "answered_without_citation_rate": 0.060240963855421686,
+        "expected_refuse_non_error_trials": 15,
+        "spurious_citation_rate_on_refuse": 0.13333333333333333,
+        "precision": 0.5222222222222223,
+        "recall": 0.4962962962962963,
+        "f1": 0.5037037037037037,
+        "note": "Cited-id set vs gold ids (source-ID match, not answer correctness). macro_*: mean over answerable trials, nothing cited = 0; precision_when_cited excludes trials that cited nothing; micro_* pools ids."
+      },
+      "behaviour_confusion": {
+        "matrix_expected_by_actual": {
+          "answer": {
+            "answered": 79,
+            "refused": 45,
+            "clarified": 11,
+            "error": 0
+          },
+          "refuse": {
+            "answered": 4,
+            "refused": 8,
+            "clarified": 3,
+            "error": 0
+          }
+        },
+        "trials": 150,
+        "execution_errors": 0,
+        "execution_error_rate": 0.0,
+        "answer_coverage": 0.5533333333333333,
+        "over_refusal_rate": 0.4148148148148148,
+        "unsafe_answer_rate": 0.26666666666666666,
+        "refusal_recall": 0.5333333333333333,
+        "abstention_recall": 0.7333333333333333,
+        "refusal_precision": 0.1509433962264151,
+        "refusal_f1": 0.23529411764705882,
+        "strict_match_rate_all": 0.58,
+        "denominators": {
+          "answer_expected_non_error": 135,
+          "refuse_expected_non_error": 15,
+          "non_error": 150
+        },
+        "note": "Structural behaviour from terminal status vs the frozen expected behaviour; independent of the LLM judge. 'clarified' has no expected label in the benchmarks (answer|refuse), so it counts as abstention, never as a match."
+      },
+      "errors": {
+        "trials": 150,
+        "execution_errors": 0,
+        "error_rate": 0.0,
+        "error_rate_ci95_wilson": [
+          0.0,
+          0.02497113914571871
+        ],
+        "by_kind": {},
+        "timeouts": 0,
+        "timeout_rate": 0.0,
+        "note": "Errors count as failures in strict success; they are reported here so they cannot hide inside a quality number."
+      },
+      "refusal_sources": {
+        "by_source": {
+          "budget": {
+            "refused": {
+              "total": 5,
+              "expected_answer": 5,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          },
+          "model": {
+            "refused": {
+              "total": 48,
+              "expected_answer": 40,
+              "expected_refuse": 8
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          },
+          "unrecorded": {
+            "refused": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 14,
+              "expected_answer": 11,
+              "expected_refuse": 3
+            }
+          }
+        },
+        "source_recorded_on_all": false,
+        "any_source_recorded": true,
+        "note": "Abstentions (refused, clarified) by the component that ended the trial; `unrecorded` = the system did not record a source (frozen v3). Counts, not rates; expected_answer = over-refusals, expected_refuse = appropriate abstentions."
+      },
+      "refusal_behaviour": {
+        "expected_refuse_trials": 15,
+        "refused": 8,
+        "answered_instead": 4
+      },
+      "latency": {
+        "reportable": false,
+        "trial_p50_s": null,
+        "trial_p95_s": null,
+        "trial_all_p50_s": null,
+        "trial_all_p95_s": null,
+        "model_call_p50_s": null,
+        "model_call_p95_s": null,
+        "non_model_p50_s": null,
+        "non_model_p95_s": null,
+        "rerank_call_p50_s": null,
+        "rerank_call_p95_s": null,
+        "decode_tokens_per_s_p50": null,
+        "prefill_tokens_per_s_p50": null,
+        "end_to_end_output_tokens_per_s_p50": null,
+        "cached_prompt_token_share": null,
+        "trials_measured": 150,
+        "trials_measured_incl_errors": 150,
+        "model_calls_measured": 490,
+        "non_model_ms_mean": null,
+        "note": "Recorded under concurrency; NOT reportable."
+      },
+      "tokens": {
+        "trials_with_complete_usage": 150,
+        "trials_incomplete": 0,
+        "input_per_trial": 11297.553333333333,
+        "output_per_trial": 601.82,
+        "input_total": 1694633,
+        "output_total": 90273,
+        "native_calls_per_trial": 3.2666666666666666,
+        "tool_calls_per_trial": 1.92,
+        "repairs_total": 0
+      },
+      "lexical_proxy": {
+        "unsupported_sentence_rate_answered_only": 0.11325301204819276,
+        "note": "Lexical proxy of the agent's L1 verifier. Not semantic correctness."
+      },
+      "judge_cost": {
+        "attempts": 212,
+        "gateway_reported_usd_body": 0.2973451680000001,
+        "gateway_reported_usd_header": 0.2973451680000001,
+        "attempts_without_reported_cost": 18,
+        "prompt_tokens": 782457,
+        "completion_tokens": 894740,
+        "note": "Gateway-reported cost over all retained attempts (not an invoice); missing cost is unknown, not zero."
+      },
+      "answerable_only": {
+        "trials": 135,
+        "tasks": 45,
+        "successes": 39,
+        "strict_success_lower": 0.28888888888888886,
+        "ci95_task_bootstrap_lower_bound": [
+          0.1925925925925926,
+          0.3851851851851852
+        ],
+        "answer_rate": 0.5851851851851851
+      },
+      "answerable_by_gold_surfaced": {
+        "all_gold_surfaced": {
+          "trials": 114,
+          "successes": 39,
+          "strict_success_lower": 0.34210526315789475
+        },
+        "some_gold_missed": {
+          "trials": 21,
+          "successes": 0,
+          "strict_success_lower": 0.0
+        }
+      },
+      "per_seed": {
+        "42": {
+          "trials": 50,
+          "strict_success_lower": 0.38
+        },
+        "123": {
+          "trials": 50,
+          "strict_success_lower": 0.28
+        },
+        "2026": {
+          "trials": 50,
+          "strict_success_lower": 0.28
+        }
+      },
+      "by_category": {
+        "multi": {
+          "trials": 15,
+          "strict_success_lower": 0.13333333333333333,
+          "gold_ids_per_task": {
+            "2": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "out_of_scope": {
+          "trials": 15,
+          "strict_success_lower": 0.5333333333333333,
+          "gold_ids_per_task": {
+            "0": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "single": {
+          "trials": 120,
+          "strict_success_lower": 0.30833333333333335,
+          "gold_ids_per_task": {
+            "1": 40
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        }
+      },
+      "by_stratum": {
+        "closed_book_guessable": {
+          "trials": 45,
+          "tasks": 15,
+          "strict_success_lower": 0.3333333333333333
+        },
+        "closed_book_partial": {
+          "trials": 36,
+          "tasks": 12,
+          "strict_success_lower": 0.2777777777777778
+        },
+        "closed_book_unsolved": {
+          "trials": 54,
+          "tasks": 18,
+          "strict_success_lower": 0.25925925925925924
+        },
+        "refusal_task": {
+          "trials": 15,
+          "tasks": 5,
+          "strict_success_lower": 0.5333333333333333
+        }
+      },
+      "by_stratum_group": {
+        "guessable": {
+          "trials": 45,
+          "tasks": 15,
+          "successes": 15,
+          "strict_success_lower": 0.3333333333333333,
+          "unknown": 1,
+          "ci95_task_bootstrap_lower_bound": [
+            0.15555555555555553,
+            0.5333333333333333
+          ]
+        },
+        "not_guessable": {
+          "trials": 90,
+          "tasks": 30,
+          "successes": 24,
+          "strict_success_lower": 0.26666666666666666,
+          "unknown": 10,
+          "ci95_task_bootstrap_lower_bound": [
+            0.15555555555555553,
+            0.3888888888888888
+          ]
+        },
+        "refusal_task": {
+          "trials": 15,
+          "tasks": 5,
+          "successes": 8,
+          "strict_success_lower": 0.5333333333333333,
+          "unknown": 2,
+          "ci95_task_bootstrap_lower_bound": [
+            0.2,
+            0.8
+          ]
+        }
+      },
+      "stratum_note": "Closed-book strata are LLM estimates (config/benchmark/strata.yaml, label closed_book_probe_gemma-4-31b_llm_estimate); not human labels."
+    },
+    "hcmut_v1/oracle": {
+      "benchmark": "hcmut_v1",
+      "variant": "oracle",
+      "trials_planned": 45,
+      "trials_recorded": 45,
+      "trials_missing": 0,
+      "seeds": [
+        42
+      ],
+      "arm": "baseline",
+      "baseline_kind": "oracle",
+      "tasks": 45,
+      "counts": {
+        "answered": 41,
+        "refused": 4,
+        "clarified": 0,
+        "execution_errors": 0,
+        "error_kinds": {},
+        "pre_model_policy_refusals": 0,
+        "retried_attempts_superseded": 0
+      },
+      "judging": {
+        "judged_valid": 45,
+        "judgeable": 44,
+        "unjudgeable": 1,
+        "judge_invalid_or_pending": 0,
+        "not_judged_execution_errors": 0
+      },
+      "strict_success": {
+        "successes": 22,
+        "trials": 45,
+        "unknown": 1,
+        "rate_lower_bound": 0.4888888888888889,
+        "rate_upper_bound": 0.5111111111111111,
+        "rate_known_only": 0.5,
+        "known": 44,
+        "ci95_task_bootstrap_lower_bound": [
+          0.3333333333333333,
+          0.6222222222222222
+        ],
+        "seed_mean": 0.4888888888888889,
+        "seed_sd": null,
+        "seed_min": 0.4888888888888889,
+        "seed_max": 0.4888888888888889,
+        "task_consistency_across_seeds": {
+          "tasks": 45,
+          "all_seeds_success": 22,
+          "all_seeds_fail": 23,
+          "mixed": 0
+        },
+        "note": "Errors count as failures; unknown (judge invalid/unjudgeable/missing) counts as failure in the lower bound."
+      },
+      "behaviour_appropriate": {
+        "count": 40,
+        "known": 44,
+        "rate": 0.9090909090909091
+      },
+      "claim_faithfulness": {
+        "claims": 101,
+        "supported": 67,
+        "rate_macro_over_trials": 0.7202380952380952,
+        "ignored_absence_claims_in_abstention_outputs": 0,
+        "rule": "claims labelled not_established are not counted for abstention outputs (evaluation/judge_rules.py)",
+        "contradicted": 21,
+        "not_established": 13,
+        "rate": 0.6633663366336634
+      },
+      "retrieval": {
+        "Recall@1": null,
+        "Recall@3": null,
+        "Recall@5": null,
+        "Hit@5": null,
+        "MRR": null,
+        "nDCG@5": null,
+        "trace_recall": null,
+        "read_recall": null,
+        "share_full_recall_at_5": null,
+        "answerable_trials": 45,
+        "note": "Not applicable to a baseline: it has no search; the oracle is GIVEN the gold records and closed_book gets none."
+      },
+      "citation_id": {
+        "answerable_trials": 45,
+        "trials_citing_any": 41,
+        "macro_precision": 0.9111111111111111,
+        "macro_recall": 0.8777777777777778,
+        "macro_f1": 0.8888888888888888,
+        "precision_when_cited": 1.0,
+        "micro_precision": 1.0,
+        "micro_recall": 0.86,
+        "answered_trials": 41,
+        "cited_not_retrieved_rate": 0.0,
+        "answered_without_citation_rate": 0.0,
+        "expected_refuse_non_error_trials": 0,
+        "spurious_citation_rate_on_refuse": null,
+        "precision": 0.9111111111111111,
+        "recall": 0.8777777777777778,
+        "f1": 0.8888888888888888,
+        "note": "Cited-id set vs gold ids (source-ID match, not answer correctness). macro_*: mean over answerable trials, nothing cited = 0; precision_when_cited excludes trials that cited nothing; micro_* pools ids."
+      },
+      "behaviour_confusion": {
+        "matrix_expected_by_actual": {
+          "answer": {
+            "answered": 41,
+            "refused": 4,
+            "clarified": 0,
+            "error": 0
+          },
+          "refuse": {
+            "answered": 0,
+            "refused": 0,
+            "clarified": 0,
+            "error": 0
+          }
+        },
+        "trials": 45,
+        "execution_errors": 0,
+        "execution_error_rate": 0.0,
+        "answer_coverage": 0.9111111111111111,
+        "over_refusal_rate": 0.08888888888888889,
+        "unsafe_answer_rate": null,
+        "refusal_recall": null,
+        "abstention_recall": null,
+        "refusal_precision": 0.0,
+        "refusal_f1": null,
+        "strict_match_rate_all": 0.9111111111111111,
+        "denominators": {
+          "answer_expected_non_error": 45,
+          "refuse_expected_non_error": 0,
+          "non_error": 45
+        },
+        "note": "Structural behaviour from terminal status vs the frozen expected behaviour; independent of the LLM judge. 'clarified' has no expected label in the benchmarks (answer|refuse), so it counts as abstention, never as a match."
+      },
+      "errors": {
+        "trials": 45,
+        "execution_errors": 0,
+        "error_rate": 0.0,
+        "error_rate_ci95_wilson": [
+          0.0,
+          0.07865426194064076
+        ],
+        "by_kind": {},
+        "timeouts": 0,
+        "timeout_rate": 0.0,
+        "note": "Errors count as failures in strict success; they are reported here so they cannot hide inside a quality number."
+      },
+      "refusal_sources": {
+        "by_source": {
+          "model": {
+            "refused": {
+              "total": 4,
+              "expected_answer": 4,
+              "expected_refuse": 0
+            },
+            "clarified": {
+              "total": 0,
+              "expected_answer": 0,
+              "expected_refuse": 0
+            }
+          }
+        },
+        "source_recorded_on_all": true,
+        "any_source_recorded": true,
+        "note": "Abstentions (refused, clarified) by the component that ended the trial; `unrecorded` = the system did not record a source (frozen v3). Counts, not rates; expected_answer = over-refusals, expected_refuse = appropriate abstentions."
+      },
+      "refusal_behaviour": {
+        "expected_refuse_trials": 0,
+        "refused": 0,
+        "answered_instead": 0
+      },
+      "latency": {
+        "reportable": false,
+        "trial_p50_s": null,
+        "trial_p95_s": null,
+        "trial_all_p50_s": null,
+        "trial_all_p95_s": null,
+        "model_call_p50_s": null,
+        "model_call_p95_s": null,
+        "non_model_p50_s": null,
+        "non_model_p95_s": null,
+        "rerank_call_p50_s": null,
+        "rerank_call_p95_s": null,
+        "decode_tokens_per_s_p50": null,
+        "prefill_tokens_per_s_p50": null,
+        "end_to_end_output_tokens_per_s_p50": null,
+        "cached_prompt_token_share": null,
+        "trials_measured": 45,
+        "trials_measured_incl_errors": 45,
+        "model_calls_measured": 45,
+        "non_model_ms_mean": null,
+        "note": "Recorded under concurrency; NOT reportable."
+      },
+      "tokens": {
+        "trials_with_complete_usage": 45,
+        "trials_incomplete": 0,
+        "input_per_trial": 3215.6666666666665,
+        "output_per_trial": 378.3777777777778,
+        "input_total": 144705,
+        "output_total": 17027,
+        "native_calls_per_trial": 1.0,
+        "tool_calls_per_trial": 0.0,
+        "repairs_total": 0
+      },
+      "lexical_proxy": {
+        "unsupported_sentence_rate_answered_only": 0.04471463414634146,
+        "note": "Lexical proxy of the agent's L1 verifier. Not semantic correctness."
+      },
+      "judge_cost": {
+        "attempts": 88,
+        "gateway_reported_usd_body": 0.108029517,
+        "gateway_reported_usd_header": 0.108029517,
+        "attempts_without_reported_cost": 14,
+        "prompt_tokens": 312059,
+        "completion_tokens": 393419,
+        "note": "Gateway-reported cost over all retained attempts (not an invoice); missing cost is unknown, not zero."
+      },
+      "answerable_only": {
+        "trials": 45,
+        "tasks": 45,
+        "successes": 22,
+        "strict_success_lower": 0.4888888888888889,
+        "ci95_task_bootstrap_lower_bound": [
+          0.3333333333333333,
+          0.6222222222222222
+        ],
+        "answer_rate": 0.9111111111111111
+      },
+      "answerable_by_gold_surfaced": null,
+      "per_seed": {
+        "42": {
+          "trials": 45,
+          "strict_success_lower": 0.4888888888888889
+        }
+      },
+      "by_category": {
+        "multi": {
+          "trials": 5,
+          "strict_success_lower": 0.0,
+          "gold_ids_per_task": {
+            "2": 5
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        },
+        "single": {
+          "trials": 40,
+          "strict_success_lower": 0.55,
+          "gold_ids_per_task": {
+            "1": 40
+          },
+          "note": "category is task metadata; do not infer the number of gold ids from it (see gold_ids_per_task)"
+        }
+      },
+      "by_stratum": {
+        "closed_book_guessable": {
+          "trials": 15,
+          "tasks": 15,
+          "strict_success_lower": 0.6
+        },
+        "closed_book_partial": {
+          "trials": 12,
+          "tasks": 12,
+          "strict_success_lower": 0.4166666666666667
+        },
+        "closed_book_unsolved": {
+          "trials": 18,
+          "tasks": 18,
+          "strict_success_lower": 0.4444444444444444
+        }
+      },
+      "by_stratum_group": {
+        "guessable": {
+          "trials": 15,
+          "tasks": 15,
+          "successes": 9,
+          "strict_success_lower": 0.6,
+          "unknown": 1,
+          "ci95_task_bootstrap_lower_bound": [
+            0.3333333333333333,
+            0.8
+          ]
+        },
+        "not_guessable": {
+          "trials": 30,
+          "tasks": 30,
+          "successes": 13,
+          "strict_success_lower": 0.43333333333333335,
+          "unknown": 0,
+          "ci95_task_bootstrap_lower_bound": [
+            0.26666666666666666,
+            0.6
+          ]
+        }
+      },
+      "stratum_note": "Closed-book strata are LLM estimates (config/benchmark/strata.yaml, label closed_book_probe_gemma-4-31b_llm_estimate); not human labels."
+    }
+  },
+  "claims_note": "Micro-average over factual claims in valid judgeable outputs, refusals included.",
+  "judge_cost_total": {
+    "attempts": 786,
+    "valid_attempts": 538,
+    "gateway_reported_usd_body": 1.0463570377,
+    "gateway_reported_usd_header": 1.0463570377,
+    "attempts_without_reported_cost": 76,
+    "actual_invoiced_charge_usd": null,
+    "invalid_attempt_share": 0.3155216284987277,
+    "invalid_reasons": {
+      "ValueError: Supporting/contradicting quote is absent from supplied source": 85,
+      "ValueError: Judgment fields do not match required schema": 36,
+      "ValueError: Gateway returned HTTP 524": 76,
+      "JSONDecodeError: Expecting property name enclosed in double quotes: line 2 colum": 10,
+      "ValueError: Claim quote is absent from actual candidate answer": 35,
+      "ValueError: Optional source quotation is invalid": 1,
+      "TypeError: the JSON object must be str, bytes or bytearray, not NoneType": 1,
+      "ValueError: Gateway returned HTTP 429": 2,
+      "ValueError: Invalid review identity/judgeable": 1,
+      "JSONDecodeError: Expecting ',' delimiter: line 8 column 258 (char 425)": 1
+    },
+    "attempt_wall_s": {
+      "p50": 45.603,
+      "p95": 125.1875,
+      "n": 786
+    },
+    "usd_per_valid_packet": 0.001944901557063197,
+    "note": "Gateway-reported usage cost, retained failed attempts included; not an independently verified invoice."
+  },
+  "coverage": {
+    "planned": 545,
+    "recorded": 545,
+    "judged_or_error": 539,
+    "judge_attempted_but_invalid": 6,
+    "judge_never_attempted": 0
+  },
+  "report_eligible_note": "Complete main run; every trial judged, an execution error, or judge-attempted (unknowns listed in coverage and counted as failures). Still LLM-judge estimates; human audit labels pending.",
+  "unknown_trials": [
+    {
+      "benchmark": "hcmut_v1",
+      "variant": "l1",
+      "seed": 42,
+      "task_id": "HCMUT-007",
+      "review_id": "a7a41e39f54f81290fe28bf3"
+    },
+    {
+      "benchmark": "hcmut_v1",
+      "variant": "l1_rerank",
+      "seed": 42,
+      "task_id": "HCMUT-008",
+      "review_id": "42dc9e8d74615cb6aac202ac"
+    },
+    {
+      "benchmark": "hcmut_v1",
+      "variant": "off",
+      "seed": 123,
+      "task_id": "HCMUT-007",
+      "review_id": "0e96533ff46eb374bc326e66"
+    },
+    {
+      "benchmark": "hcmut_v1",
+      "variant": "l1_rerank",
+      "seed": 123,
+      "task_id": "HCMUT-007",
+      "review_id": "c1a518f6cd25671638476fe6"
+    },
+    {
+      "benchmark": "hcmut_v1",
+      "variant": "l1",
+      "seed": 2026,
+      "task_id": "HCMUT-007",
+      "review_id": "fa04999d4d5404da7eaf64c8"
+    },
+    {
+      "benchmark": "hcmut_v1",
+      "variant": "l1",
+      "seed": 2026,
+      "task_id": "HCMUT-013",
+      "review_id": "68b120f919bdc1aecdc90931"
+    }
+  ],
+  "paired_differences": {
+    "unit": "task (seeds averaged)",
+    "draws": 5000,
+    "bootstrap_seed": 20261023,
+    "multiple_comparisons": "none applied; treat p-values as descriptive",
+    "comparisons": {
+      "L1 vs OFF": {
+        "baseline": "off",
+        "treatment": "l1",
+        "label": "L1 vs OFF",
+        "by_benchmark": {
+          "hcmut_v1": {
+            "strict_success_lower": {
+              "n_units": 50,
+              "mean_a": 0.3133333333333333,
+              "mean_b": 0.23999999999999996,
+              "diff_b_minus_a": -0.07333333333333333,
+              "ci95": [
+                -0.1733333333333333,
+                0.02666666666666667
+              ],
+              "p_two_sided_bootstrap": 0.1544,
+              "share_resamples_b_gt_a": 0.0752,
+              "share_resamples_b_lt_a": 0.9228,
+              "units_b_better": 10,
+              "units_a_better": 17,
+              "units_tied": 23,
+              "draws": 5000
+            },
+            "behaviour_strict_match": {
+              "n_units": 50,
+              "mean_a": 0.58,
+              "mean_b": 0.45333333333333337,
+              "diff_b_minus_a": -0.12666666666666668,
+              "ci95": [
+                -0.22666666666666668,
+                -0.02666666666666667
+              ],
+              "p_two_sided_bootstrap": 0.0104,
+              "share_resamples_b_gt_a": 0.0052,
+              "share_resamples_b_lt_a": 0.9948,
+              "units_b_better": 10,
+              "units_a_better": 23,
+              "units_tied": 17,
+              "draws": 5000
+            },
+            "execution_error": {
+              "n_units": 50,
+              "mean_a": 0.0,
+              "mean_b": 0.0,
+              "diff_b_minus_a": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "p_two_sided_bootstrap": 1.0,
+              "share_resamples_b_gt_a": 0.0,
+              "share_resamples_b_lt_a": 0.0,
+              "units_b_better": 0,
+              "units_a_better": 0,
+              "units_tied": 50,
+              "draws": 5000
+            },
+            "recall_at_5": {
+              "n_units": 45,
+              "mean_a": 0.8555555555555555,
+              "mean_b": 0.8592592592592592,
+              "diff_b_minus_a": 0.0037037037037037004,
+              "ci95": [
+                -0.04814814814814815,
+                0.059259259259259255
+              ],
+              "p_two_sided_bootstrap": 0.9332,
+              "share_resamples_b_gt_a": 0.5334,
+              "share_resamples_b_lt_a": 0.457,
+              "units_b_better": 6,
+              "units_a_better": 6,
+              "units_tied": 33,
+              "draws": 5000
+            },
+            "citation_f1": {
+              "n_units": 45,
+              "mean_a": 0.5037037037037038,
+              "mean_b": 0.36296296296296293,
+              "diff_b_minus_a": -0.14074074074074072,
+              "ci95": [
+                -0.2419753086419753,
+                -0.03950617283950618
+              ],
+              "p_two_sided_bootstrap": 0.0044,
+              "share_resamples_b_gt_a": 0.0022,
+              "share_resamples_b_lt_a": 0.9978,
+              "units_b_better": 7,
+              "units_a_better": 19,
+              "units_tied": 19,
+              "draws": 5000
+            }
+          }
+        },
+        "pooled": {
+          "strict_success_lower": {
+            "n_units": 50,
+            "mean_a": 0.3133333333333333,
+            "mean_b": 0.23999999999999996,
+            "diff_b_minus_a": -0.07333333333333333,
+            "ci95": [
+              -0.1733333333333333,
+              0.02666666666666667
+            ],
+            "p_two_sided_bootstrap": 0.1544,
+            "share_resamples_b_gt_a": 0.0752,
+            "share_resamples_b_lt_a": 0.9228,
+            "units_b_better": 10,
+            "units_a_better": 17,
+            "units_tied": 23,
+            "draws": 5000
+          },
+          "behaviour_strict_match": {
+            "n_units": 50,
+            "mean_a": 0.58,
+            "mean_b": 0.45333333333333337,
+            "diff_b_minus_a": -0.12666666666666668,
+            "ci95": [
+              -0.22666666666666668,
+              -0.02666666666666667
+            ],
+            "p_two_sided_bootstrap": 0.0104,
+            "share_resamples_b_gt_a": 0.0052,
+            "share_resamples_b_lt_a": 0.9948,
+            "units_b_better": 10,
+            "units_a_better": 23,
+            "units_tied": 17,
+            "draws": 5000
+          },
+          "execution_error": {
+            "n_units": 50,
+            "mean_a": 0.0,
+            "mean_b": 0.0,
+            "diff_b_minus_a": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "p_two_sided_bootstrap": 1.0,
+            "share_resamples_b_gt_a": 0.0,
+            "share_resamples_b_lt_a": 0.0,
+            "units_b_better": 0,
+            "units_a_better": 0,
+            "units_tied": 50,
+            "draws": 5000
+          },
+          "recall_at_5": {
+            "n_units": 45,
+            "mean_a": 0.8555555555555555,
+            "mean_b": 0.8592592592592592,
+            "diff_b_minus_a": 0.0037037037037037004,
+            "ci95": [
+              -0.04814814814814815,
+              0.059259259259259255
+            ],
+            "p_two_sided_bootstrap": 0.9332,
+            "share_resamples_b_gt_a": 0.5334,
+            "share_resamples_b_lt_a": 0.457,
+            "units_b_better": 6,
+            "units_a_better": 6,
+            "units_tied": 33,
+            "draws": 5000
+          },
+          "citation_f1": {
+            "n_units": 45,
+            "mean_a": 0.5037037037037038,
+            "mean_b": 0.36296296296296293,
+            "diff_b_minus_a": -0.14074074074074072,
+            "ci95": [
+              -0.2419753086419753,
+              -0.03950617283950618
+            ],
+            "p_two_sided_bootstrap": 0.0044,
+            "share_resamples_b_gt_a": 0.0022,
+            "share_resamples_b_lt_a": 0.9978,
+            "units_b_better": 7,
+            "units_a_better": 19,
+            "units_tied": 19,
+            "draws": 5000
+          }
+        },
+        "pooled_strict_success_by_stratum_group": {
+          "guessable": {
+            "n_units": 15,
+            "mean_a": 0.3333333333333333,
+            "mean_b": 0.24444444444444444,
+            "diff_b_minus_a": -0.08888888888888889,
+            "ci95": [
+              -0.24444444444444446,
+              0.06666666666666667
+            ],
+            "p_two_sided_bootstrap": 0.2364,
+            "share_resamples_b_gt_a": 0.106,
+            "share_resamples_b_lt_a": 0.8818,
+            "units_b_better": 2,
+            "units_a_better": 6,
+            "units_tied": 7,
+            "draws": 5000
+          },
+          "not_guessable": {
+            "n_units": 30,
+            "mean_a": 0.26666666666666666,
+            "mean_b": 0.2,
+            "diff_b_minus_a": -0.06666666666666667,
+            "ci95": [
+              -0.21111111111111108,
+              0.06666666666666668
+            ],
+            "p_two_sided_bootstrap": 0.3704,
+            "share_resamples_b_gt_a": 0.183,
+            "share_resamples_b_lt_a": 0.8148,
+            "units_b_better": 6,
+            "units_a_better": 9,
+            "units_tied": 15,
+            "draws": 5000
+          },
+          "refusal_task": {
+            "n_units": 5,
+            "mean_a": 0.5333333333333333,
+            "mean_b": 0.4666666666666666,
+            "diff_b_minus_a": -0.06666666666666665,
+            "ci95": [
+              -0.4,
+              0.26666666666666666
+            ],
+            "p_two_sided_bootstrap": 0.8068,
+            "share_resamples_b_gt_a": 0.3498,
+            "share_resamples_b_lt_a": 0.5966,
+            "units_b_better": 2,
+            "units_a_better": 2,
+            "units_tied": 1,
+            "draws": 5000
+          }
+        }
+      },
+      "L1+rerank vs L1": {
+        "baseline": "l1",
+        "treatment": "l1_rerank",
+        "label": "L1+rerank vs L1",
+        "by_benchmark": {
+          "hcmut_v1": {
+            "strict_success_lower": {
+              "n_units": 50,
+              "mean_a": 0.23999999999999996,
+              "mean_b": 0.2866666666666666,
+              "diff_b_minus_a": 0.046666666666666676,
+              "ci95": [
+                -0.03333333333333334,
+                0.12
+              ],
+              "p_two_sided_bootstrap": 0.2816,
+              "share_resamples_b_gt_a": 0.8592,
+              "share_resamples_b_lt_a": 0.1362,
+              "units_b_better": 18,
+              "units_a_better": 8,
+              "units_tied": 24,
+              "draws": 5000
+            },
+            "behaviour_strict_match": {
+              "n_units": 50,
+              "mean_a": 0.45333333333333337,
+              "mean_b": 0.46666666666666673,
+              "diff_b_minus_a": 0.01333333333333334,
+              "ci95": [
+                -0.09333333333333334,
+                0.12
+              ],
+              "p_two_sided_bootstrap": 0.808,
+              "share_resamples_b_gt_a": 0.596,
+              "share_resamples_b_lt_a": 0.3992,
+              "units_b_better": 18,
+              "units_a_better": 16,
+              "units_tied": 16,
+              "draws": 5000
+            },
+            "execution_error": {
+              "n_units": 50,
+              "mean_a": 0.0,
+              "mean_b": 0.006666666666666666,
+              "diff_b_minus_a": 0.006666666666666666,
+              "ci95": [
+                0.0,
+                0.02
+              ],
+              "p_two_sided_bootstrap": 0.7148,
+              "share_resamples_b_gt_a": 0.6426,
+              "share_resamples_b_lt_a": 0.0,
+              "units_b_better": 1,
+              "units_a_better": 0,
+              "units_tied": 49,
+              "draws": 5000
+            },
+            "recall_at_5": {
+              "n_units": 45,
+              "mean_a": 0.8592592592592592,
+              "mean_b": 0.8444444444444444,
+              "diff_b_minus_a": -0.014814814814814812,
+              "ci95": [
+                -0.08166666666666589,
+                0.05185185185185186
+              ],
+              "p_two_sided_bootstrap": 0.732,
+              "share_resamples_b_gt_a": 0.355,
+              "share_resamples_b_lt_a": 0.634,
+              "units_b_better": 6,
+              "units_a_better": 7,
+              "units_tied": 32,
+              "draws": 5000
+            },
+            "citation_f1": {
+              "n_units": 45,
+              "mean_a": 0.36296296296296293,
+              "mean_b": 0.37283950617283945,
+              "diff_b_minus_a": 0.00987654320987655,
+              "ci95": [
+                -0.09382716049382714,
+                0.11117283950617193
+              ],
+              "p_two_sided_bootstrap": 0.8592,
+              "share_resamples_b_gt_a": 0.5704,
+              "share_resamples_b_lt_a": 0.428,
+              "units_b_better": 14,
+              "units_a_better": 14,
+              "units_tied": 17,
+              "draws": 5000
+            }
+          }
+        },
+        "pooled": {
+          "strict_success_lower": {
+            "n_units": 50,
+            "mean_a": 0.23999999999999996,
+            "mean_b": 0.2866666666666666,
+            "diff_b_minus_a": 0.046666666666666676,
+            "ci95": [
+              -0.03333333333333334,
+              0.12
+            ],
+            "p_two_sided_bootstrap": 0.2816,
+            "share_resamples_b_gt_a": 0.8592,
+            "share_resamples_b_lt_a": 0.1362,
+            "units_b_better": 18,
+            "units_a_better": 8,
+            "units_tied": 24,
+            "draws": 5000
+          },
+          "behaviour_strict_match": {
+            "n_units": 50,
+            "mean_a": 0.45333333333333337,
+            "mean_b": 0.46666666666666673,
+            "diff_b_minus_a": 0.01333333333333334,
+            "ci95": [
+              -0.09333333333333334,
+              0.12
+            ],
+            "p_two_sided_bootstrap": 0.808,
+            "share_resamples_b_gt_a": 0.596,
+            "share_resamples_b_lt_a": 0.3992,
+            "units_b_better": 18,
+            "units_a_better": 16,
+            "units_tied": 16,
+            "draws": 5000
+          },
+          "execution_error": {
+            "n_units": 50,
+            "mean_a": 0.0,
+            "mean_b": 0.006666666666666666,
+            "diff_b_minus_a": 0.006666666666666666,
+            "ci95": [
+              0.0,
+              0.02
+            ],
+            "p_two_sided_bootstrap": 0.7148,
+            "share_resamples_b_gt_a": 0.6426,
+            "share_resamples_b_lt_a": 0.0,
+            "units_b_better": 1,
+            "units_a_better": 0,
+            "units_tied": 49,
+            "draws": 5000
+          },
+          "recall_at_5": {
+            "n_units": 45,
+            "mean_a": 0.8592592592592592,
+            "mean_b": 0.8444444444444444,
+            "diff_b_minus_a": -0.014814814814814812,
+            "ci95": [
+              -0.08166666666666589,
+              0.05185185185185186
+            ],
+            "p_two_sided_bootstrap": 0.732,
+            "share_resamples_b_gt_a": 0.355,
+            "share_resamples_b_lt_a": 0.634,
+            "units_b_better": 6,
+            "units_a_better": 7,
+            "units_tied": 32,
+            "draws": 5000
+          },
+          "citation_f1": {
+            "n_units": 45,
+            "mean_a": 0.36296296296296293,
+            "mean_b": 0.37283950617283945,
+            "diff_b_minus_a": 0.00987654320987655,
+            "ci95": [
+              -0.09382716049382714,
+              0.11117283950617193
+            ],
+            "p_two_sided_bootstrap": 0.8592,
+            "share_resamples_b_gt_a": 0.5704,
+            "share_resamples_b_lt_a": 0.428,
+            "units_b_better": 14,
+            "units_a_better": 14,
+            "units_tied": 17,
+            "draws": 5000
+          }
+        },
+        "pooled_strict_success_by_stratum_group": {
+          "guessable": {
+            "n_units": 15,
+            "mean_a": 0.24444444444444444,
+            "mean_b": 0.31111111111111106,
+            "diff_b_minus_a": 0.06666666666666668,
+            "ci95": [
+              -0.04444444444444444,
+              0.17777777777777778
+            ],
+            "p_two_sided_bootstrap": 0.2108,
+            "share_resamples_b_gt_a": 0.8946,
+            "share_resamples_b_lt_a": 0.087,
+            "units_b_better": 5,
+            "units_a_better": 2,
+            "units_tied": 8,
+            "draws": 5000
+          },
+          "not_guessable": {
+            "n_units": 30,
+            "mean_a": 0.2,
+            "mean_b": 0.2333333333333333,
+            "diff_b_minus_a": 0.033333333333333326,
+            "ci95": [
+              -0.08888888888888888,
+              0.13333333333333333
+            ],
+            "p_two_sided_bootstrap": 0.5868,
+            "share_resamples_b_gt_a": 0.7066,
+            "share_resamples_b_lt_a": 0.2876,
+            "units_b_better": 11,
+            "units_a_better": 5,
+            "units_tied": 14,
+            "draws": 5000
+          },
+          "refusal_task": {
+            "n_units": 5,
+            "mean_a": 0.4666666666666666,
+            "mean_b": 0.5333333333333333,
+            "diff_b_minus_a": 0.06666666666666665,
+            "ci95": [
+              -0.13333333333333336,
+              0.26666666666666666
+            ],
+            "p_two_sided_bootstrap": 0.7672,
+            "share_resamples_b_gt_a": 0.6164,
+            "share_resamples_b_lt_a": 0.3742,
+            "units_b_better": 2,
+            "units_a_better": 1,
+            "units_tied": 2,
+            "draws": 5000
+          }
+        }
+      },
+      "L1+rerank vs OFF": {
+        "baseline": "off",
+        "treatment": "l1_rerank",
+        "label": "L1+rerank vs OFF",
+        "by_benchmark": {
+          "hcmut_v1": {
+            "strict_success_lower": {
+              "n_units": 50,
+              "mean_a": 0.3133333333333333,
+              "mean_b": 0.2866666666666666,
+              "diff_b_minus_a": -0.02666666666666666,
+              "ci95": [
+                -0.11999999999999998,
+                0.06
+              ],
+              "p_two_sided_bootstrap": 0.5564,
+              "share_resamples_b_gt_a": 0.2736,
+              "share_resamples_b_lt_a": 0.7218,
+              "units_b_better": 14,
+              "units_a_better": 17,
+              "units_tied": 19,
+              "draws": 5000
+            },
+            "behaviour_strict_match": {
+              "n_units": 50,
+              "mean_a": 0.58,
+              "mean_b": 0.46666666666666673,
+              "diff_b_minus_a": -0.11333333333333334,
+              "ci95": [
+                -0.22000000000000003,
+                -5.523359547510558e-18
+              ],
+              "p_two_sided_bootstrap": 0.0476,
+              "share_resamples_b_gt_a": 0.023,
+              "share_resamples_b_lt_a": 0.9762,
+              "units_b_better": 10,
+              "units_a_better": 22,
+              "units_tied": 18,
+              "draws": 5000
+            },
+            "execution_error": {
+              "n_units": 50,
+              "mean_a": 0.0,
+              "mean_b": 0.006666666666666666,
+              "diff_b_minus_a": 0.006666666666666666,
+              "ci95": [
+                0.0,
+                0.02
+              ],
+              "p_two_sided_bootstrap": 0.7148,
+              "share_resamples_b_gt_a": 0.6426,
+              "share_resamples_b_lt_a": 0.0,
+              "units_b_better": 1,
+              "units_a_better": 0,
+              "units_tied": 49,
+              "draws": 5000
+            },
+            "recall_at_5": {
+              "n_units": 45,
+              "mean_a": 0.8555555555555555,
+              "mean_b": 0.8444444444444444,
+              "diff_b_minus_a": -0.011111111111111112,
+              "ci95": [
+                -0.08157407407407369,
+                0.05925925925925927
+              ],
+              "p_two_sided_bootstrap": 0.7924,
+              "share_resamples_b_gt_a": 0.383,
+              "share_resamples_b_lt_a": 0.6038,
+              "units_b_better": 5,
+              "units_a_better": 7,
+              "units_tied": 33,
+              "draws": 5000
+            },
+            "citation_f1": {
+              "n_units": 45,
+              "mean_a": 0.5037037037037038,
+              "mean_b": 0.37283950617283945,
+              "diff_b_minus_a": -0.1308641975308642,
+              "ci95": [
+                -0.2345679012345679,
+                -0.029629629629629613
+              ],
+              "p_two_sided_bootstrap": 0.0136,
+              "share_resamples_b_gt_a": 0.0066,
+              "share_resamples_b_lt_a": 0.9932,
+              "units_b_better": 10,
+              "units_a_better": 20,
+              "units_tied": 15,
+              "draws": 5000
+            }
+          }
+        },
+        "pooled": {
+          "strict_success_lower": {
+            "n_units": 50,
+            "mean_a": 0.3133333333333333,
+            "mean_b": 0.2866666666666666,
+            "diff_b_minus_a": -0.02666666666666666,
+            "ci95": [
+              -0.11999999999999998,
+              0.06
+            ],
+            "p_two_sided_bootstrap": 0.5564,
+            "share_resamples_b_gt_a": 0.2736,
+            "share_resamples_b_lt_a": 0.7218,
+            "units_b_better": 14,
+            "units_a_better": 17,
+            "units_tied": 19,
+            "draws": 5000
+          },
+          "behaviour_strict_match": {
+            "n_units": 50,
+            "mean_a": 0.58,
+            "mean_b": 0.46666666666666673,
+            "diff_b_minus_a": -0.11333333333333334,
+            "ci95": [
+              -0.22000000000000003,
+              -5.523359547510558e-18
+            ],
+            "p_two_sided_bootstrap": 0.0476,
+            "share_resamples_b_gt_a": 0.023,
+            "share_resamples_b_lt_a": 0.9762,
+            "units_b_better": 10,
+            "units_a_better": 22,
+            "units_tied": 18,
+            "draws": 5000
+          },
+          "execution_error": {
+            "n_units": 50,
+            "mean_a": 0.0,
+            "mean_b": 0.006666666666666666,
+            "diff_b_minus_a": 0.006666666666666666,
+            "ci95": [
+              0.0,
+              0.02
+            ],
+            "p_two_sided_bootstrap": 0.7148,
+            "share_resamples_b_gt_a": 0.6426,
+            "share_resamples_b_lt_a": 0.0,
+            "units_b_better": 1,
+            "units_a_better": 0,
+            "units_tied": 49,
+            "draws": 5000
+          },
+          "recall_at_5": {
+            "n_units": 45,
+            "mean_a": 0.8555555555555555,
+            "mean_b": 0.8444444444444444,
+            "diff_b_minus_a": -0.011111111111111112,
+            "ci95": [
+              -0.08157407407407369,
+              0.05925925925925927
+            ],
+            "p_two_sided_bootstrap": 0.7924,
+            "share_resamples_b_gt_a": 0.383,
+            "share_resamples_b_lt_a": 0.6038,
+            "units_b_better": 5,
+            "units_a_better": 7,
+            "units_tied": 33,
+            "draws": 5000
+          },
+          "citation_f1": {
+            "n_units": 45,
+            "mean_a": 0.5037037037037038,
+            "mean_b": 0.37283950617283945,
+            "diff_b_minus_a": -0.1308641975308642,
+            "ci95": [
+              -0.2345679012345679,
+              -0.029629629629629613
+            ],
+            "p_two_sided_bootstrap": 0.0136,
+            "share_resamples_b_gt_a": 0.0066,
+            "share_resamples_b_lt_a": 0.9932,
+            "units_b_better": 10,
+            "units_a_better": 20,
+            "units_tied": 15,
+            "draws": 5000
+          }
+        },
+        "pooled_strict_success_by_stratum_group": {
+          "guessable": {
+            "n_units": 15,
+            "mean_a": 0.3333333333333333,
+            "mean_b": 0.31111111111111106,
+            "diff_b_minus_a": -0.02222222222222223,
+            "ci95": [
+              -0.17777777777777784,
+              0.15555555555555553
+            ],
+            "p_two_sided_bootstrap": 0.7948,
+            "share_resamples_b_gt_a": 0.3772,
+            "share_resamples_b_lt_a": 0.6026,
+            "units_b_better": 4,
+            "units_a_better": 5,
+            "units_tied": 6,
+            "draws": 5000
+          },
+          "not_guessable": {
+            "n_units": 30,
+            "mean_a": 0.26666666666666666,
+            "mean_b": 0.2333333333333333,
+            "diff_b_minus_a": -0.033333333333333326,
+            "ci95": [
+              -0.15555555555555553,
+              0.07777777777777778
+            ],
+            "p_two_sided_bootstrap": 0.5632,
+            "share_resamples_b_gt_a": 0.2726,
+            "share_resamples_b_lt_a": 0.7184,
+            "units_b_better": 8,
+            "units_a_better": 10,
+            "units_tied": 12,
+            "draws": 5000
+          },
+          "refusal_task": {
+            "n_units": 5,
+            "mean_a": 0.5333333333333333,
+            "mean_b": 0.5333333333333333,
+            "diff_b_minus_a": -1.1102230246251566e-17,
+            "ci95": [
+              -0.26666666666666666,
+              0.26666666666666666
+            ],
+            "p_two_sided_bootstrap": 0.9324,
+            "share_resamples_b_gt_a": 0.4176,
+            "share_resamples_b_lt_a": 0.5338,
+            "units_b_better": 2,
+            "units_a_better": 2,
+            "units_tied": 1,
+            "draws": 5000
+          }
+        }
+      }
+    }
+  },
+  "analysis_version": 3,
+  "stage_provenance": {
+    "stage": "analyze",
+    "harness_version": "1.2.0",
+    "run_harness_version": "1.2.0",
+    "generated_local": "2026-10-24T19:17:59.572280+07:00",
+    "consumed_run": {
+      "run_id": "d2-gpu-r2-2b-hcmut-v1",
+      "trials_sha256": "fddccf7d2261c3d9237a228eb5f6cd3e72978244467b721c3551568c43fe3a92"
+    },
+    "judge_manifest_sha256": "1af7fb82977c464c105e03cf5e5696db07098b199c912e1cd5c0e132c8e40b3a",
+    "invocation": {
+      "argv": [
+        "evaluation/run_d2.py",
+        "tables",
+        "--profile",
+        "gpu-accuracy",
+        "--run-dir",
+        "evaluation/runs/d2-gpu-r2-2b-hcmut-v1"
+      ],
+      "entry_script": "evaluation/run_d2.py",
+      "cwd": "/Users/admin/Desktop/Recents/LuatCheck-D2",
+      "env": {}
+    }
+  },
+  "baselines": {
+    "closed_book": {
+      "kind": "closed_book",
+      "seeds": [
+        42
+      ],
+      "tasks": "all",
+      "description": "no tools, no documents (parametric knowledge only)"
+    },
+    "oracle": {
+      "kind": "oracle",
+      "seeds": [
+        42
+      ],
+      "tasks": "answerable",
+      "description": "gold records (full text) given up front in the read-tool observation format; no search/read; answerable tasks only"
+    }
+  },
+  "metric_definitions": "docs/reviews/metrics_review_2026-10-23.md",
+  "bootstrap": {
+    "draws": 5000,
+    "seed": 20261023,
+    "unit": "task (seeds averaged)"
+  },
+  "human_audit_sample": {
+    "count": 30,
+    "review_ids": [
+      "0dd2003198ca4990ce103251",
+      "1ff6fc221453f723335acf5e",
+      "258d105a5a31c356c0981a28",
+      "3b1e42a2abe3b4fd6fcf3bbf",
+      "604cf68abaece0f0ba3359ba",
+      "6071cfe14ca32568e1a88032",
+      "68c39a890be30d3d510f605f",
+      "753138668014745f6d8b2308",
+      "764ec59555f1c259f1089a70",
+      "76812c6995d22977f26c1d8c",
+      "83da581b5d815c646a1adc51",
+      "8555fe767073d1d66ef25561",
+      "89ed21f4823e12dfc424b055",
+      "8b54b7493131d75f5624aded",
+      "8fc6b2f893a7935b12421563",
+      "95fa1647c138762dc9624a0c",
+      "9647788a186b2c076a54f3e3",
+      "a43bb0bcf718a0fb46eebd2c",
+      "bbe4790526ddd4759e3017f8",
+      "c03e5a3057a33528114cf79f",
+      "c1b7f1739e27c116c6368db5",
+      "cd39ed62858fdfea7cbf5043",
+      "cd8bfb9ca5a186441ce0700d",
+      "d02bd640e65675f21f20c482",
+      "d0641f50e55a0a7bde76cb13",
+      "d8503d70f4781a60fa717cb0",
+      "db140de327feff1caf122740",
+      "dc0d1aeb98c6275c810b94bb",
+      "f004ea21c6e42ad0ec40c696",
+      "fba352478d3262e68039bf29"
+    ]
+  }
+}

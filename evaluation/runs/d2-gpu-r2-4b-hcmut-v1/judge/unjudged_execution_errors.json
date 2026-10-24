@@ -1,0 +1,74 @@
+[
+  {
+    "review_id": "fae88f85025bf3e3b302008b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-047",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "76a94d4c85e75af5a733601f",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-047",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "5f0af9cdba7ce8ad7e1064ac",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 123,
+    "task_id": "HCMUT-035",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "2ca8522992ff2ec265f11b65",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "HCMUT-036",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "fddbc6f1748263d76ee00499",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-005",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "5426504bccadafa95f0f708b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-023",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "28ebdde4d811eb2bc331ff31",
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "HCMUT-034",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "e24dfe5119a3223ac89a366b",
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "HCMUT-034",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "ce8a6d2a1f188f4f7b465f13",
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 2026,
+    "task_id": "HCMUT-035",
+    "reason": "execution error: wall_timeout"
+  }
+]

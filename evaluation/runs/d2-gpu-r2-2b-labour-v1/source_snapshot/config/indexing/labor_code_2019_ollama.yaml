@@ -1,0 +1,16 @@
+# Same corpus embedded through a local Ollama server (/api/embed). The model must be an embedding model that
+# has been pulled into Ollama (e.g. `ollama pull bge-m3`); this config does not pull or start anything.
+# HTTP providers have no tokenizer, so chunking is by characters (chunking.max_chars). Over-long input is an error
+# (Ollama is called with truncate=false).
+name: labor_code_2019_ollama
+corpus: data/corpus/labor_code_2019_official.json
+chunking: {max_chars: 1500, overlap_chars: 200, contextual_title: true}
+retrieval:
+  embedding:
+    provider: ollama
+    model: bge-m3
+    endpoint: http://127.0.0.1:11434
+    batch_size: 8
+    timeout_seconds: 120
+  keyword_index: {backend: sqlite_fts5, tokenizer: "unicode61 remove_diacritics 0"}
+  vector_store: {backend: sqlite_vec, collection: chunks, metric: cosine}
