@@ -1,0 +1,570 @@
+% !TEX program = xelatex
+% LuatCheck D2 slides (CO5151, Group 8, HCMUT). Built on the HCMUT beamer template (Madrid + infolines, primaryblue).
+% Written for the lecturer: no internal labels. Missing evidence is a red [PENDING] marker.
+\documentclass[aspectratio=1610,11pt]{beamer}
+\usepackage{fontspec}
+\setsansfont{Arial}
+\setmainfont{Arial}
+\setmonofont{Menlo}[Scale=0.82]
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+\usetheme{Madrid}
+\useoutertheme{infolines}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{page number in head/foot}[framenumber]
+
+% Colour scheme of the template, plus accents for the chart and diagram.
+\definecolor{primaryblue}{RGB}{0,90,156}
+\definecolor{accentblue}{RGB}{100,143,255}
+\definecolor{textgray}{RGB}{66,66,66}
+\definecolor{lightgray}{RGB}{245,245,245}
+\definecolor{successgreen}{RGB}{46,125,50}
+\definecolor{warnorange}{RGB}{230,81,0}
+\definecolor{dangerred}{RGB}{183,28,28}
+\definecolor{v3grey}{RGB}{140,140,140}
+\definecolor{r2light}{RGB}{120,170,215}
+
+\setbeamercolor{palette primary}{bg=primaryblue,fg=white}
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{frametitle}{bg=white,fg=primaryblue}
+\setbeamercolor{block title}{fg=white,bg=primaryblue}
+\setbeamercolor{block body}{fg=black,bg=lightgray}
+\setbeamercolor{block title alerted}{fg=white,bg=dangerred}
+\setbeamercolor{block body alerted}{fg=black,bg=red!6}
+\setbeamercolor{itemize item}{fg=primaryblue}
+\setbeamercolor{itemize subitem}{fg=primaryblue}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{block title}{size=\small}
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{author}{size=\footnotesize}
+\setbeamerfont{institute}{size=\footnotesize}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamertemplate{itemize items}[circle]
+\setlength{\leftmargini}{1.0em}
+\setbeamersize{text margin left=0.8cm,text margin right=0.8cm}
+\addtobeamertemplate{frametitle}{}{\vspace{-0.15cm}}
+
+\hypersetup{colorlinks=true,urlcolor=primaryblue,linkcolor=primaryblue}
+
+% Red placeholders: missing results, inputs and decisions are always visible.
+\newcommand{\pend}[1]{\textcolor{red}{\textbf{[PENDING: #1]}}}
+\newcommand{\pendshort}{\textcolor{red}{\textbf{[PENDING]}}}
+\newcommand{\pp}{\,pp\xspace}
+\newcommand{\cell}[1]{\multicolumn{1}{c}{#1}}
+\renewcommand{\arraystretch}{1.15}
+
+\title[LuatCheck \,|\, github.com/tuandung222/LuatCheck-D2]{\textbf{LuatCheck}\\[2pt]\normalsize A local, source-grounded assistant over Vietnamese regulations}
+\author[Group 8]{Lê Trí Quyền (2470740) \,|\, Võ Phạm Tuấn Dũng (2570015) \,|\, Nguyễn Hoàng Phong (2570477)}
+\institute[HCMUT]{%
+  \vspace{-0.3cm}
+  \includegraphics[height=1.0cm]{assets/hcmut.png}\\[2pt]
+  {\normalsize\textbf{\color{primaryblue}CO5151 Advanced Agentic AI \,|\, D2 interim report}}\\[1pt]
+  Application Track, Group 8 \,|\, Instructor: TS. Lê Xuân Bách}
+\date[28 Oct 2026]{28 October 2026}
+
+\begin{document}
+
+%====================================================================
+% 1. Title and problem
+%====================================================================
+\begin{frame}[plain]
+  \titlepage
+  \vspace{-0.45cm}
+  \begin{block}{What it is}
+    \footnotesize A local assistant that answers only from the loaded regulations, cites the sections it used, checks those citations in code, and refuses (or asks) when the sources do not answer.
+    Two evaluated collections: HCMUT academic regulations and Vietnamese labour law (2019 Labour Code plus nine later laws, decrees and circulars). Not legal advice.
+  \end{block}
+\end{frame}
+
+%====================================================================
+% 2. What changed since the proposal
+%====================================================================
+\begin{frame}{What changed since the proposal}
+  \footnotesize\renewcommand{\arraystretch}{1.0}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.9cm}>{\bfseries}p{1.95cm}X@{}}
+    \toprule Proposal commitment & State & What changed and why\\\midrule
+    Agent loop, citation check & \textcolor{successgreen}{Done} & Runs end to end; budgets unchanged\\
+    Qwen3 controllers, 32B & \textcolor{dangerred}{Dropped} & Ternary Bonsai 2B and 4B: the same weights fit a 16\,GiB Mac and a GPU\\
+    BM25 + Qdrant dense retrieval & \textcolor{dangerred}{Dropped} & BM25 + TF-IDF; vector index built, \emph{not evaluated}\\
+    $\ge$10 tasks, 3 configurations & \textcolor{successgreen}{Done} & Two fixed 50-question benchmarks (HCMUT regulations, Labour law); 3 runs per configuration\\
+    Reranker (optional) & \textcolor{successgreen}{Done} & Vietnamese cross-encoder, evaluated as ``verifier + reranker''; runtime parity measured\\
+    Verifier audit (30 pairs) & \textcolor{warnorange}{Changed} & Human audit of the LLM judge, about 30 answers per benchmark: \pend{result}\\
+    HR walkthrough; attack tests & \textcolor{warnorange}{Not started} & Walkthrough \pend{new date}; attack tests planned for week W47\\
+    \bottomrule
+  \end{tabularx}
+  \vspace{2pt}
+
+  \begin{alertblock}{How the system evolved, in plain words}
+    \footnotesize The \textbf{initial system} (2B controller) reached 12--19\% strict success (full system: 14.0\% HCMUT, 18.7\% labour). We built the \textbf{current system} (4B controller) from its failures. \textbf{The revision was designed after analysing the initial system's failures on these same questions, so gains may be optimistic; we confirm them on new questions for the final report.}
+  \end{alertblock}
+\end{frame}
+
+%====================================================================
+% 3. Architecture
+%====================================================================
+\begin{frame}{Architecture that runs end to end}
+  \centering
+  \adjustbox{max width=\textwidth,max height=6.0cm}{%
+  \begin{tikzpicture}[x=1cm,y=1cm,font=\footnotesize,line cap=round,
+    box/.style={draw=primaryblue!80!black,fill=primaryblue!9,rounded corners=2pt,align=center,inner sep=3pt,minimum height=1.0cm,line width=0.7pt},
+    var/.style={box,draw=orange!70!black,fill=orange!22},
+    off/.style={box,dashed,draw=black!55,fill=white,text=black!70},
+    term/.style={box,draw=black!70,fill=black!10},
+    frm/.style={draw=black!40,fill=black!3,rounded corners=4pt,line width=0.6pt},
+    flow/.style={-{Stealth[length=5pt,width=4.5pt]},line width=0.9pt},
+    lab/.style={font=\scriptsize,inner sep=1.2pt,fill=white,fill opacity=0.9,text opacity=1}]
+  % loop frame
+  \node[frm,minimum width=9.35cm,minimum height=4.3cm,anchor=north west] (fr) at (4.8,6.3) {};
+  \node[anchor=north west,font=\scriptsize\bfseries,align=left] at (4.9,6.25) {Bounded agent loop: $\le$8 steps, 5 tool calls, 2 repairs, 180\,s};
+  % row 1
+  \node[box,text width=1.5cm] (q) at (0.95,4.95) {Question or pasted text};
+  \node[box,text width=1.9cm] (g) at (3.35,4.95) {\textbf{Input guardrails}\\regex, pre-model};
+  \node[box,text width=2.5cm] (c) at (6.4,4.95) {\textbf{Controller}\\Bonsai 4B or 2B\\one JSON action per step};
+  \node[box,text width=2.0cm] (t) at (9.65,4.95) {\textbf{Tools}\\search, read\\read-only};
+  \node[box,text width=2.0cm] (r) at (12.65,4.95) {\textbf{Retrieval}\\BM25 + TF-IDF\\rank fusion, top-20};
+  % row 2
+  \node[var,text width=2.5cm] (v) at (7.0,2.85) {\textbf{Citation verifier}\\ids, quotes, numbers};
+  \node[var,text width=2.0cm] (rr) at (12.65,2.85) {\textbf{Reranker}\\cross-encoder\\top-20 $\to$ top-5};
+  % outputs
+  \node[term,text width=2.0cm] (ref) at (2.85,0.8) {\textbf{Refused} or \textbf{clarified}};
+  \node[term,text width=2.4cm] (ans) at (7.0,0.8) {\textbf{Answer} with verified citations};
+  \node[term,text width=2.7cm] (err) at (10.5,0.8) {\textbf{Error}: backend or budget failure, never an answer};
+  \node[off,text width=1.9cm] (nr) at (13.25,0.8) {Not used yet: semantic check, vector index, memory};
+  % ledger
+  \node[box,fill=black!4,draw=black!55,minimum width=14.2cm,minimum height=0.55cm,anchor=south west] (led) at (0,-0.6) {\textbf{Case ledger and audit log}: queries, tool calls, ids, repairs, tokens};
+  % flow
+  \draw[flow] (q) -- (g);
+  \draw[flow] (g) -- (c);
+  \draw[flow] ([yshift=0.25cm]c.east) -- ([yshift=0.25cm]t.west);
+  \draw[flow] ([yshift=-0.25cm]t.west) -- ([yshift=-0.25cm]c.east);
+  \draw[flow] (t) -- (r);
+  \draw[flow] (r) -- (rr);
+  \draw[flow] (rr.west) -| node[lab,pos=0.2]{top-5} (t.south);
+  \draw[flow] ([xshift=-0.3cm]c.south) -- node[lab,right=1pt]{answer} ([xshift=-0.9cm]v.north);
+  \draw[flow] ([xshift=0.9cm]v.north) -- node[lab,right=1pt]{repair} ([xshift=0.9cm]c.south);
+  \draw[flow] (v.south) -- node[lab]{pass} (ans.north);
+  \draw[flow] (g.south) -- node[lab,pos=0.35]{unsafe} (ref.north);
+  \draw[flow] ([xshift=-1.0cm]c.south) |- node[lab,pos=0.12,rotate=90]{clarify, refuse} (ref.east);
+  \draw[flow] (fr.south -| err) -- node[lab]{any failure} (err.north);
+  \end{tikzpicture}}
+
+  \vspace{1pt}
+  {\scriptsize \textcolor{primaryblue}{\rule{5pt}{5pt}} used in every configuration \quad \textcolor{orange}{\rule{5pt}{5pt}} optional, switched on or off in the evaluation \quad dashed: implemented, not used yet}\\[2pt]
+  \footnotesize One agent, not several: permissions and budgets stay inspectable. A backend failure is an \textbf{error}, never an answer or a refusal.
+\end{frame}
+
+%====================================================================
+% 4. Real trace
+%====================================================================
+\begin{frame}{The loop on one real question (trace)}
+  \footnotesize
+  \textbf{Question (HCMUT regulations):} \emph{Sinh viên vi phạm Nội quy học đường sẽ được xử lý theo căn cứ nào, và mức xử lý phụ thuộc vào yếu tố nào?}
+  \vspace{5pt}
+
+  \centering
+  \begin{tikzpicture}[font=\footnotesize,
+    stp/.style={draw=primaryblue!80!black,fill=primaryblue!8,rounded corners=3pt,text width=4.15cm,inner sep=4pt,align=left,line width=0.7pt,anchor=north west,minimum height=3.25cm},
+    flow/.style={-{Stealth[length=5pt,width=4.5pt]},line width=1pt}]
+    \node[stp] (s1) at (0,0) {\textbf{1. search}\\[2pt]
+      query: \emph{vi phạm nội quy học đường xử lý mức xử lý phụ thuộc}\\[2pt]
+      20 candidates reranked, top 5 kept; Article 6 of the student code of conduct ranked first\\[3pt]
+      \textcolor{black!65}{1,509 tokens in, 117 out}};
+    \node[stp] (s2) at (4.65,0) {\textbf{2. read the document}\\[2pt]
+      Article 6, \emph{Nội quy học đường} (decision 1924/QĐ-ĐHBK)\\[2pt]
+      the full section text enters the model's context\\[3pt]
+      \textcolor{black!65}{2,905 tokens in, 171 out}};
+    \node[stp] (s3) at (9.3,0) {\textbf{3. answer}\\[2pt]
+      cites Article 6 with one exact quote\\[2pt]
+      \textbf{Citation verifier: accepted, 0 repairs} (two soft warnings on one sentence, no rejection)\\[3pt]
+      \textcolor{black!65}{3,398 tokens in, 310 out}};
+    \draw[flow] ([yshift=-1.6cm]s1.north east) -- ([yshift=-1.6cm]s2.north west);
+    \draw[flow] ([yshift=-1.6cm]s2.north east) -- ([yshift=-1.6cm]s3.north west);
+  \end{tikzpicture}
+
+  \vspace{5pt}
+  \begin{block}{Outcome}
+    \footnotesize Answered with 1 section cited: handling follows the student-affairs regulation and national law, depending on the severity of the violation. 3 model calls, 2 tool calls, 7,812 tokens in, 598 out. LLM judge (not a human): correctness 2/2, completeness 2/2.
+  \end{block}
+  {\scriptsize Current system, full system (verifier + reranker), Bonsai 4B. Picked because the judge rated it correct with no repair: not a typical question. No times shown: latency comes from the Mac measurements.}
+\end{frame}
+
+%====================================================================
+% 5. Live demo
+%====================================================================
+\begin{frame}{Live demo: the current system on the Mac}
+  \begin{columns}[T]
+    \column{0.40\textwidth}
+    \footnotesize
+    \textbf{System:} Bonsai 4B controller (2B also runs), BM25 + TF-IDF + reranker, citation verifier with repair, regex guardrails, \texttt{llama.cpp}, all on device.
+    \vspace{2pt}
+
+    \textbf{Four queries:}
+    \begin{enumerate}
+      \item HCMUT: answer with a citation
+      \item Labour law: same flow, second collection
+      \item Out of scope: refusal
+      \item Prompt injection: blocked before any model call
+    \end{enumerate}
+    \textbf{Point at:} timeline, retrieved sections, highlighted quote, verifier verdict, tokens.
+    \vspace{2pt}
+
+    \begin{alertblock}{Backup}
+      \scriptsize A backup video of real runs exists (used only if needed, and we say so). Draft clips: initial system (2B). Final video, current system: \pend{re-record}
+    \end{alertblock}
+
+    \column{0.58\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{assets/demo_answer_l1.png}\\[2pt]
+    {\scriptsize Frame of a real run (backup recording): cited section and step timeline, verifier passed}
+  \end{columns}
+\end{frame}
+
+%====================================================================
+% 6. Evaluation design and judge
+%====================================================================
+\begin{frame}{Evaluation design and how correctness is decided}
+  \centering
+  \begin{tikzpicture}[font=\footnotesize,
+    b/.style={draw=primaryblue!80!black,fill=primaryblue!8,rounded corners=3pt,align=center,inner sep=4pt,minimum height=1.1cm,line width=0.7pt},
+    flow/.style={-{Stealth[length=5pt,width=4.5pt]},line width=0.9pt}]
+    \node[b,text width=2.9cm] (a) at (0,0) {\textbf{2 benchmarks}\\50 questions each: 45 answerable, 5 to refuse};
+    \node[b,text width=2.9cm] (b) at (3.85,0) {\textbf{3 configurations}\\no verifier, verifier, verifier + reranker};
+    \node[b,text width=2.9cm] (c) at (7.5,0) {\textbf{3 runs}\\different random seeds};
+    \node[b,text width=3.3cm,fill=orange!15,draw=orange!70!black] (d) at (11.3,0) {\textbf{LLM judge}\\DeepSeek V4 Flash, blind to configuration, offline};
+    \draw[flow] (a) -- (b); \draw[flow] (b) -- (c); \draw[flow] (c) -- (d);
+  \end{tikzpicture}
+  \vspace{5pt}
+
+  \begin{columns}[T]
+    \column{0.53\textwidth}
+    \footnotesize
+    \textbf{Strict success} (lower bound over all trials): the run completes, the judgment is valid, the behaviour is appropriate, correctness and completeness are 2/2, and every claim is supported. Errors and unknown judgments count as failures. 95\% intervals: paired bootstrap over questions.
+    \vspace{4pt}
+
+    \textbf{Judge reliability} (human-labelled sample, about 30 answers per benchmark): agreement and $\kappa$ \pend{human audit}
+    \vspace{4pt}
+
+    Recall@5 and citation F1 compare section ids only: they are proxies, not answer correctness. The citation verifier is a word-overlap check.
+
+    \column{0.45\textwidth}
+    \begin{alertblock}{Honest limits}
+      \footnotesize
+      \begin{itemize}
+        \item Questions are AI-drafted and AI-verified; no human review yet
+        \item Retrieval is near-saturated; 15/45 HCMUT and 12/45 labour answerable questions are estimated to be guessable without the documents
+        \item With 50 questions, differences under about 10\pp are not detectable
+        \item Judge numbers are estimates, not human labels
+      \end{itemize}
+    \end{alertblock}
+  \end{columns}
+\end{frame}
+
+%====================================================================
+% 7. Results chart
+%====================================================================
+\begin{frame}{First numbers: strict success of the full system (verifier + reranker)}
+  \begin{columns}[T]
+    \column{0.57\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        ybar, bar width=20pt, width=1.04\linewidth, height=5.3cm,
+        ymin=0, ymax=88, ytick={0,20,40,60,80},
+        ylabel={Strict success (\%)}, ylabel style={font=\small},
+        symbolic x coords={HCMUT,Labour}, xtick=data, xticklabels={HCMUT regulations,Labour law}, enlarge x limits=0.42,
+        tick label style={font=\small}, xticklabel style={font=\small\bfseries},
+        legend style={at={(0.5,1.04)},anchor=south,legend columns=-1,font=\footnotesize,draw=none,/tikz/every even column/.append style={column sep=6pt}},
+        ymajorgrids, grid style={black!12},
+        nodes near coords={\pgfmathprintnumber[fixed,fixed zerofill,precision=1]{\pgfplotspointmeta}}, point meta=y,
+        every node near coord/.append style={anchor=south,font=\footnotesize\bfseries},
+        error bars/y dir=both, error bars/y explicit,
+        error bars/error bar style={black!80,line width=0.8pt}]
+        \addplot[fill=v3grey,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
+          table[row sep=\\,x=x,y=y,y error plus=up,y error minus=dn] {x y up dn sh\\ HCMUT 14.0 7.0 6.0 14.8\\ Labour 18.7 8.3 7.7 17.2\\};
+        \addplot[fill=r2light,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
+          table[row sep=\\,x=x,y=y,y error plus=up,y error minus=dn] {x y up dn sh\\ HCMUT 28.7 8.3 8.7 17.2\\ Labour 28.0 9.0 9.0 18.5\\};
+        \addplot[fill=primaryblue,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
+          table[row sep=\\,x=x,y=y,y error plus=up,y error minus=dn] {x y up dn sh\\ HCMUT 60.7 10.3 10.7 20.8\\ Labour 56.7 10.3 9.7 20.8\\};
+        \legend{Initial (2B), Current (2B), Current (4B)}
+      \end{axis}
+    \end{tikzpicture}\\[-1pt]
+    {\scriptsize Whiskers: 95\% interval (bounds rounded to 1\pp). 50 questions $\times$ 3 runs per bar.}
+
+    \column{0.41\textwidth}
+    \footnotesize
+    \textbf{Paired differences, pp} (95\% interval)
+    \vspace{3pt}
+
+    \begin{tabular}{@{}l@{\hskip 5pt}c@{\hskip 5pt}c@{}}
+      \toprule & HCMUT & Labour\\\midrule
+      \begin{tabular}[t]{@{}l@{}}system change\\{\scriptsize current 2B $-$ initial}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+14.7\\{\scriptsize [+6.0, +23.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+9.3\\{\scriptsize [+0.7, +18.0]}\end{tabular}\\
+      \begin{tabular}[t]{@{}l@{}}model change\\{\scriptsize 4B $-$ 2B}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+32.0\\{\scriptsize [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+28.7\\{\scriptsize [+18.0, +39.3]}\end{tabular}\\
+      \bottomrule
+    \end{tabular}
+    \vspace{5pt}
+
+    \begin{alertblock}{Read with care}
+      \scriptsize
+      Gains may be optimistic (see slide 2). Judge lower bounds, not human labels. Small benchmarks.
+    \end{alertblock}
+  \end{columns}
+\end{frame}
+
+%====================================================================
+% 8. Chosen system in detail
+%====================================================================
+\begin{frame}{Current system (Bonsai 4B): what the verifier and the reranker do}
+  \footnotesize
+  \centering
+  \begin{tabular}{@{}l rrr@{\hskip 1.6em} rrr@{}}
+    \toprule & \multicolumn{3}{c}{HCMUT regulations} & \multicolumn{3}{c}{Labour law}\\
+    \cmidrule(r){2-4}\cmidrule(l){5-7}
+    Configuration & \cell{strict \%} & \cell{faithful. \%} & \cell{cit. F1} & \cell{strict \%} & \cell{faithful. \%} & \cell{cit. F1}\\\midrule
+    No verifier & 70.0 & 89.8 & 0.820 & 62.0 & 87.3 & 0.841\\
+    Verifier & 64.0 & 90.3 & 0.704 & 52.7 & 86.3 & 0.728\\
+    Verifier + reranker (full) & 60.7 & 89.3 & 0.714 & 56.7 & 85.6 & 0.691\\\midrule
+    Closed-book (no documents) & 2.0 & \cell{--} & \cell{--} & 24.0 & \cell{--} & \cell{--}\\
+    Oracle (correct section given) & 82.2 & \cell{--} & \cell{--} & 75.6 & \cell{--} & \cell{--}\\
+    \bottomrule
+  \end{tabular}\\[2pt]
+  {\scriptsize strict = strict success (judge lower bound); faithful. = share of claims the judge found supported; cit. F1 = section-id proxy. Execution errors: 0.0--2.7\% of trials. The last two rows use one run and are not configurations of the system.}
+  \vspace{6pt}
+
+  \raggedright
+  \begin{itemize}
+    \item \textbf{Verifier vs no verifier, strict success:} $-6.0$\pp [$-16.0$, $+4.0$] HCMUT, $-9.3$\pp [$-18.7$, $0.0$] labour: \textbf{no gain measured}. Faithfulness unchanged; citation F1 lower by 11.6\pp and 11.2\pp (intervals exclude 0).
+    \item \textbf{Why:} after repeated rejections the model refuses. Answerable questions refused after the repair budget ran out: 10 (verifier) and 13 (full system) of 150 HCMUT trials; 14 and 18 on labour.
+    \item \textbf{Reranker:} Recall@5 is already 0.98--0.99 without it, so no effect is detectable here. The verifier is a word-overlap check and can pass a wrong answer.
+  \end{itemize}
+\end{frame}
+
+%====================================================================
+% 9. Cost, latency, parity
+%====================================================================
+\begin{frame}{Cost, latency and reranker runtime parity}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+    \footnotesize
+    \textbf{Controller tokens per trial} (local, no API cost)
+    \vspace{2pt}
+
+    \begin{tabular}{@{}llrrr@{}}
+      \toprule & Configuration & \cell{in} & \cell{out} & \cell{calls}\\\midrule
+      HCMUT & no verifier & 10,233 & 666 & 3.13\\
+      & full system & 12,070 & 763 & 3.37\\
+      Labour & no verifier & 9,070 & 686 & 3.11\\
+      & full system & 11,477 & 865 & 3.69\\
+      \bottomrule
+    \end{tabular}
+    \vspace{5pt}
+
+    \textbf{Judge cost} (reported by the API gateway, offline): USD 1.06 (HCMUT) + 1.10 (labour) = \textbf{USD 2.17}, about USD 0.002 per valid judgment. A lower bound: some attempts report no cost; 36\% and 45\% of judge attempts were invalid or timed out and were retried.
+    \vspace{5pt}
+
+    \begin{alertblock}{Mac latency, current system}
+      \footnotesize p50 / p95 seconds per question, tokens/s: \pend{Mac measurements in progress}
+    \end{alertblock}
+
+    \column{0.47\textwidth}
+    \footnotesize
+    \textbf{Reranker runtime parity} against a torch fp32 CPU reference: 100 questions, 20 candidates each; rank agreement, not answer correctness
+    \vspace{3pt}
+
+    \begin{tabular}{@{}lccc@{}}
+      \toprule Runtime & \cell{Spearman} & \cell{top-1} & \cell{max $\Delta$}\\\midrule
+      Mac: GGUF f16 & 0.9994 & 99/100 & 0.094\\
+      GPU: H100 fp16 & 0.9943 & 100/100 & 0.034\\
+      \bottomrule
+    \end{tabular}\\[2pt]
+    {\scriptsize Mean per-question Spearman (minimum 0.9955 and 0.9601). Accuracy numbers come from GPU runs, latency from the Mac; they are not pooled.}
+    \vspace{5pt}
+
+    GPU wall times are not reported (shared server); GPU-active hours are not measured.
+  \end{columns}
+\end{frame}
+
+%====================================================================
+% 10. Threat model
+%====================================================================
+\begin{frame}{Threat model}
+  \footnotesize
+  \textbf{Protect:} faithful answers and citations; user data; document collections, settings and model weights; the tool boundary (no unreviewed write or egress); availability.\\
+  \textbf{Attacker:} sends any question or pasted document; cannot change code, documents, weights, the audit log or approval state.\\[4pt]
+  \scriptsize
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+    \toprule Entry point & Mitigation (in code) & Residual risk\\\midrule
+    Question, pasted document & Regex guardrails before the model, input sanitising, untrusted-content tags; the model has no write action & Paraphrase bypass; Vietnamese and English patterns only; not attack-tested\\
+    Retrieved text & Tagged as tool output; citation verifier checks ids, provenance, quotes & Tagged, not filtered: an injected instruction inside a source would reach the model\\
+    Ingested documents, weights, settings & Offline ingestion; source URL, SHA-256 and pages per record; pinned hashes; local-only servers & No signatures; third-party weights and \texttt{llama.cpp} fork unaudited\\
+    Memory, outbox & Memory off in all runs; outbox needs host approval bound to the payload hash; no sender exists & Single-user assumption\\
+    Judge gateway (offline) & Benchmark data only; key from environment; blind packets; JSON and quote validation & Candidate text could steer the judge (untested)\\
+    \bottomrule
+  \end{tabularx}
+  \vspace{5pt}
+
+  \footnotesize \textcolor{dangerred}{\textbf{No attack results yet.}} Mitigations are boundaries, not measured effectiveness; attack tests are planned for week W47.
+\end{frame}
+
+%====================================================================
+% 11. Plan, risks, status
+%====================================================================
+\begin{frame}{Plan to the first final presentation, risks, status}
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+    \scriptsize
+    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.1cm}X@{}}
+      \toprule Week & Deliverable\\\midrule
+      W45, 2--8 Nov & HR walkthrough; new benchmark of unseen questions with a harder slice (unnamed documents, paraphrases)\\
+      W46, 9--15 Nov & Failure analysis; verifier false accepts and rejects\\
+      W47, 16--22 Nov & Attack tests per entry point, permission and fault checks\\
+      W48, 23--29 Nov & Reproduction from frozen artifacts; demo hardening; final report. Semantic check and vector index only after the core evidence\\
+      W49, 30 Nov--2 Dec & Tagged release; first final presentation on 2 Dec\\
+      \bottomrule
+    \end{tabularx}\\[3pt]
+    \footnotesize Owners per week: \pend{team to confirm}
+
+    \column{0.42\textwidth}
+    \footnotesize
+    \textbf{Riskiest assumptions}
+    \begin{itemize}
+      \item A 2--4B controller answers correctly within budget
+      \item Gains hold on new questions
+      \item Benchmarks separate the configurations
+    \end{itemize}
+    \textbf{Fallback:} keep the loop, benchmarks, configurations and pipeline; cut the vector index, semantic check and extra domains.
+    \vspace{3pt}
+
+    \textbf{Done:} loop, citation verifier, reranker, 2 collections, reproducible runs. \textbf{Measured:} strict success (judge estimate), cost. \textbf{Planned:} human audit, Mac latency, attack tests.
+    \vspace{3pt}
+
+    Self-assessment: \pend{on track / at risk / narrow scope, after audit and latency results}
+  \end{columns}
+\end{frame}
+
+%====================================================================
+% 12. Team and close
+%====================================================================
+\begin{frame}{Team, roles and what we ask you to challenge}
+  \begin{columns}[T]
+    \column{0.47\textwidth}
+    \footnotesize
+    \textbf{Three takeaways}
+    \begin{enumerate}
+      \item Initial system (2B): 12--19\% strict success. Current system (4B): 57--61\% for the full system (judge lower bound, may be optimistic).
+      \item The weak link was the controller's behaviour, not retrieval (Recall@5 about 0.99).
+      \item The citation verifier gives auditable citations; we measured no correctness gain from it.
+    \end{enumerate}
+    \textbf{Please challenge:} judge reliability, benchmark difficulty, gains measured on the same questions.
+    \vspace{4pt}
+
+    {\scriptsize Repository: \url{https://github.com/tuandung222/LuatCheck-D2}\\
+    Commit: \pend{final commit hash}}
+
+    \column{0.51\textwidth}
+    \footnotesize
+    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+      \toprule Member & Presents & Answers for\\\midrule
+      Lê Trí Quyền & \pendshort & \pendshort\\
+      Võ Phạm Tuấn Dũng & \pendshort & \pendshort\\
+      Nguyễn Hoàng Phong & \pendshort & \pendshort\\
+      \bottomrule
+    \end{tabularx}\\[4pt]
+    \scriptsize \pend{who presents which slides; who drives the demo keyboard; ownership of retrieval and reranker / loop, verifier and evaluation / tools, security and UI}
+  \end{columns}
+\end{frame}
+
+%====================================================================
+% Backup slides (not presented)
+%====================================================================
+\appendix
+\begin{frame}{Backup A: why the current system differs from the initial one}
+  \footnotesize
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+    \textbf{What we found in the initial system's failures}
+    \begin{itemize}
+      \item The model asked for clarification when the needed text was not in view: 57\% (HCMUT) and 43\% (labour) of such questions, against 17\% and 13\% when it was in view
+      \item The model's own first search query kept only about a third of the question's informative words, and the loop silently returned 3 results
+      \item After a repair message the model refused in 56\% (HCMUT) and 53\% (labour) of cases; the message itself ended with an instruction to refuse
+      \item Five runaway reasoning notes hit the output limit
+      \item Even with the correct section given (oracle), the 2B controller reached only 28.9\% and 44.4\%
+    \end{itemize}
+    \column{0.45\textwidth}
+    \textbf{What the current system does differently}
+    \begin{itemize}
+      \item The first search uses the user's own question plus the model's query; 5 results by default
+      \item A search is required before answering; clearer rules for when to ask or refuse
+      \item Verifier feedback is phrased as a tool report, with no instruction to refuse
+      \item The model's reasoning note is limited to 800 characters
+      \item Fairer quote matching, numbers checked within the claim they belong to, sentence-level support reported as a warning
+      \item A 4B controller added; the revised system is also run with 2B to separate system and model effects
+    \end{itemize}
+  \end{columns}
+  \vspace{4pt}
+  {\scriptsize All of this was decided after seeing the initial system's results (see slide 2). The plan was not to tune thresholds on the benchmark labels.}
+\end{frame}
+
+\begin{frame}{Backup B: strict success for every configuration (\%, 95\% interval)}
+  \footnotesize
+  \centering
+  \begin{tabular}{@{}llrrr@{}}
+    \toprule Benchmark & Configuration & \cell{Initial (2B)} & \cell{Current (2B)} & \cell{Current (4B)}\\\midrule
+    HCMUT regulations & no verifier & 18.0 [11--26] & 31.3 [22--41] & 70.0 [61--79]\\
+    & verifier & 12.0 [7--18] & 24.0 [15--33] & 64.0 [53--75]\\
+    & verifier + reranker & 14.0 [8--21] & 28.7 [20--37] & 60.7 [50--71]\\\midrule
+    Labour law & no verifier & 14.7 [7--23] & 31.3 [22--41] & 62.0 [52--72]\\
+    & verifier & 14.7 [7--23] & 28.0 [19--38] & 52.7 [43--63]\\
+    & verifier + reranker & 18.7 [11--27] & 28.0 [19--37] & 56.7 [47--67]\\
+    \bottomrule
+  \end{tabular}
+  \vspace{8pt}
+
+  \raggedright
+  50 questions $\times$ 3 runs per cell, same questions for every system. Intervals: paired bootstrap over questions (5,000 draws), no correction for multiple comparisons. Gains of the current system may be optimistic (see slide 2).
+\end{frame}
+
+\begin{frame}{Backup C: what the numbers do not show}
+  \footnotesize
+  \begin{itemize}
+    \item \textbf{Judge:} LLM estimates, no human labels yet (agreement and $\kappa$: \pend{human audit}). Judge attempts invalid or timed out: 36\% (HCMUT), 45\% (labour); invalid or unjudged trials count as failures.
+    \item \textbf{Benchmarks:} 50 questions each, AI-drafted and AI-verified; no expert review of documents or questions; about half the questions name their source document.
+    \item \textbf{Guardrails:} regex patterns in Vietnamese and English; no red-team numbers yet.
+    \item \textbf{Retrieval:} BM25 + TF-IDF with rank fusion; dense embedding retrieval is implemented but not evaluated.
+    \item \textbf{Scope:} two document collections; labour-law results are not evidence for other domains. Not tried by real users.
+    \item \textbf{Latency:} Mac numbers for the current system: \pend{Mac measurements in progress}; GPU wall times are not reported.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Backup D: failure states in the demo UI (real recordings)}
+  \footnotesize
+  \begin{columns}[T]
+    \column{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{assets/demo_guardrail.png}\\[2pt]
+    Guardrail block: 18 ms, 0 model calls
+    \column{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{assets/demo_l1_fail.png}\\[2pt]
+    Verifier rejected the draft twice: refusal, not an answer
+    \column{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{assets/demo_error.png}\\[2pt]
+    Reranker server down: execution error, never an answer
+  \end{columns}
+  \vspace{5pt}
+
+  {\scriptsize Recorded on 24 October with the earlier demo (initial system, 2B controller); the third on a separate instance whose reranker address was unreachable. The interface states are the same in the current system.}
+\end{frame}
+
+\end{document}

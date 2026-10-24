@@ -1,8 +1,8 @@
 % Figure 1 (architecture and control flow). Drawn at true size, 17.0 cm wide, no scaling.
 % Encoding (Okabe-Ito blue/orange; every class also differs in border style or tag text, so it reads in greyscale):
-%   blue fill   = part of the chosen system, always on
-%   orange fill = part of the chosen system with an on/off switch (ablated in Section 5)
-%   dashed      = implemented, not part of any D2 measurement
+%   blue fill   = part of the current system, always on
+%   orange fill = part of the current system with an on/off switch (ablated in Section 5)
+%   dashed      = implemented, not used in any measurement
 %   grey fill   = terminal state of a run
 \begin{tikzpicture}[x=1cm,y=1cm,font=\scriptsize,line cap=round,
   box/.style={draw=blue!55!black,fill=blue!8,rounded corners=2pt,align=center,inner sep=3pt,minimum height=1.0cm,line width=0.6pt},
@@ -24,17 +24,17 @@
 \node[box,text width=2.0cm] (g) at (1.1,6.5) {\textbf{Input guardrails}\\pattern checks, sanitising, untrusted tags};
 
 % loop body
-\node[box,text width=3.0cm] (c) at (5.4,6.5) {\textbf{Controller}\\Bonsai 4B (2B option), one JSON action per step};
+\node[box,text width=3.0cm] (c) at (5.4,6.5) {\textbf{Controller}\\4B model (2B option), one action per step};
 \node[box,text width=2.0cm] (t) at (10.0,6.5) {\textbf{Tool registry}\\search, read\\read-only};
 \node[box,text width=3.2cm] (r) at (15.1,8.1) {\textbf{First-stage retrieval}\\BM25 + TF-IDF, RRF\\top-20 candidates};
 \node[var,text width=3.2cm] (rr) at (15.1,5.5) {\textbf{Reranker} (switch)\\cross-encoder\\top-20 $\to$ top-5};
-\node[var,text width=3.0cm] (v) at (5.4,4.1) {\textbf{L1 verifier + repair} (switch)\\ids, quotes,\\overlap, quantities};
-\node[off,text width=3.2cm] (l2) at (15.1,4.1) {L2 / NLI step, dense retrieval\\implemented, not evaluated};
+\node[var,text width=3.0cm] (v) at (5.4,4.1) {\textbf{Citation verifier + repair} (switch)\\ids, quotes,\\term overlap, numbers};
+\node[off,text width=3.2cm] (l2) at (15.1,4.1) {Semantic (NLI) check, dense retrieval\\implemented, not used yet};
 
 % terminal states and side components (bottom row)
 \node[term,text width=2.0cm] (ref) at (1.1,1.7) {\textbf{Refused} or \textbf{clarified}};
 \node[term,text width=3.0cm] (ans) at (5.4,1.7) {\textbf{Answer} with verified citations};
-\node[off,text width=2.3cm] (mem) at (9.1,1.7) {Answer memory\\(off in D2)};
+\node[off,text width=2.3cm] (mem) at (9.1,1.7) {Answer memory\\(off in all runs)};
 \node[term,text width=2.6cm] (err) at (12.1,1.7) {\textbf{Error}: backend or budget failure, never an answer};
 \node[off,text width=2.5cm] (out) at (15.7,1.7) {Trusted UI outbox\\(host approves payload)};
 \node[box,fill=black!3,draw=black!60,minimum width=16.9cm,minimum height=0.7cm,anchor=south west] (led) at (0,-0.35) {\textbf{Case ledger and audit log}: queries, tool calls, ids, repairs, tokens, times};
