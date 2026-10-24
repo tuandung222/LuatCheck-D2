@@ -9,6 +9,16 @@
 CO5151 Advanced Agentic Artificial Intelligence, Group 8, Ho Chi Minh City University of Technology (HCMUT).
 Two document collections are implemented and evaluated: HCMUT academic regulations and Vietnamese labour-law texts.
 
+## Demo
+
+| Labour law: answer with a verified citation | The verifier rejects an unsupported draft and asks for a repair |
+|---|---|
+| <img src="docs/presentation/gifs/02_labour_answer_l1.gif" alt="Labour-law question answered with a verified citation, agent timeline on the right" width="400"> | <img src="docs/presentation/gifs/08_labour_l1_check_failed.gif" alt="The citation verifier rejects a draft answer; the agent repairs or refuses" width="400"> |
+
+Each answer shows the cited section (click to expand the source text with the quoted span highlighted) and the agent's
+timeline: search, reranking, reading, the citation check and any repair. The recordings were made with the 2B controller
+on 24 Oct 2026; the current system runs the same interface with the 4B controller.
+
 ## What it does
 
 - **Grounded answers with citations:** the agent searches and reads the corpus, then answers with the section ids it used; the UI opens each cited section with the quoted sentence highlighted.
@@ -63,11 +73,16 @@ make demo-web                   # terminal 3: UI on http://127.0.0.1:8000, HCMUT
 
 Lighter Bonsai 2B demo, side by side with the above: `make demo-model-server-2b` (port 8083), then `make demo-web-2b` (UI on port 8001); it uses the same reranker server. If a server is down a run ends as an execution error by design. Demo queries, timings and fallbacks: [docs/presentation/DEMO_SCRIPT.md](docs/presentation/DEMO_SCRIPT.md).
 
-| Refusal when the sources do not answer | Guardrail blocks an injection before the model |
+<details>
+<summary>Safety behaviour: refusal when the sources do not answer, and an injection blocked before the model</summary>
+
+| Out-of-scope question refused | Prompt-injection attempt blocked by the guardrail |
 |---|---|
 | <img src="docs/presentation/gifs/03_hcmut_refuse_out_of_scope.gif" alt="Out-of-scope question refused" width="400"> | <img src="docs/presentation/gifs/04_guardrail_injection.gif" alt="Prompt-injection attempt blocked by the guardrail" width="400"> |
 
-More recordings (clarification, labour corpus, verifier rejection, reranker down) are in `docs/presentation/gifs/`.
+</details>
+
+More recordings (clarification, verifier off, reranker down) are in `docs/presentation/gifs/`.
 
 From Python:
 
