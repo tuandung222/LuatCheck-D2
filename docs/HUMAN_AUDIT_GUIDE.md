@@ -4,7 +4,7 @@
 
 ## Mục đích
 
-Số liệu D2 được chấm bằng một LLM judge (DeepSeek Flash). Giảng viên yêu cầu kiểm tra xem judge đáng tin đến đâu,
+Số liệu D2 của hệ thống đã chốt (r2, Bonsai 4B) được chấm bằng một LLM judge (DeepSeek Flash). Giảng viên yêu cầu kiểm tra xem judge đáng tin đến đâu,
 bằng cách so nhãn của judge với nhãn do **người thật** gán trên một mẫu nhỏ. Kết quả là tỉ lệ đồng thuận và Cohen's
 kappa, đưa vào report.
 
@@ -18,13 +18,13 @@ việc ẩn này là cố ý.
 
 | Benchmark | Đọc câu hỏi và câu trả lời | Điền nhãn |
 |---|---|---|
-| HCMUT | `evaluation/runs/d2-gpu-main-hcmut-v3/analysis/human-audit/packets.md` | `.../human-audit/labels.csv` (cùng thư mục) |
-| Lao động | `evaluation/runs/d2-gpu-main-labour-v3/analysis/human-audit/packets.md` | `.../human-audit/labels.csv` (cùng thư mục) |
+| HCMUT | `evaluation/runs/d2-gpu-r2-4b-hcmut-v1/analysis/human-audit/packets.md` | `.../human-audit/labels.csv` (cùng thư mục) |
+| Lao động | `evaluation/runs/d2-gpu-r2-4b-labour-v1/analysis/human-audit/packets.md` | `.../human-audit/labels.csv` (cùng thư mục) |
 
 Mỗi câu trong `packets.md` gồm: câu hỏi, hành vi mong đợi (trả lời hay từ chối), đáp án tham chiếu kèm bằng chứng,
 câu trả lời của hệ thống, các trích dẫn, và nguyên văn các văn bản nguồn (bấm vào "Source" để mở).
 
-Quy tắc chấm đầy đủ nằm trong `evaluation/runs/d2-gpu-main-hcmut-v3/judge/SEMANTIC_JUDGING.md`. Các cột cần điền trong
+Quy tắc chấm đầy đủ nằm trong `evaluation/runs/d2-gpu-r2-4b-hcmut-v1/judge/SEMANTIC_JUDGING.md`. Các cột cần điền trong
 `labels.csv`:
 
 | Cột | Giá trị | Ý nghĩa |
@@ -51,11 +51,11 @@ người với người. Ghi rõ ai chấm câu nào trong cột `reviewer`. N�
 ## Sau khi điền xong
 
 ```bash
-make audit-score RUN=evaluation/runs/d2-gpu-main-hcmut-v3 LABELS=evaluation/runs/d2-gpu-main-hcmut-v3/analysis/human-audit/labels.csv
+make audit-score RUN=evaluation/runs/d2-gpu-r2-4b-hcmut-v1 LABELS=evaluation/runs/d2-gpu-r2-4b-hcmut-v1/analysis/human-audit/labels.csv
 ```
 
 ```bash
-make audit-score RUN=evaluation/runs/d2-gpu-main-labour-v3 LABELS=evaluation/runs/d2-gpu-main-labour-v3/analysis/human-audit/labels.csv
+make audit-score RUN=evaluation/runs/d2-gpu-r2-4b-labour-v1 LABELS=evaluation/runs/d2-gpu-r2-4b-labour-v1/analysis/human-audit/labels.csv
 ```
 
 Script từ chối tính số nếu có dưới 10 câu đã gán nhãn hoặc nhãn không hợp lệ. Nếu đủ, nó tính tỉ lệ đồng thuận và

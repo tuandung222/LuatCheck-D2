@@ -3,7 +3,7 @@ HEADLESS ?= false
 PYTHON ?= .venv/bin/python
 WEB_PORT ?= 8000
 
-.PHONY: prism-setup prism-server prism-server-gpu rerank-server-mac mlx-setup mlx-server test eval eval_d3 redteam demo web demo-web web-build report report_d2 report_d3 clean all
+.PHONY: prism-setup prism-server demo-model-server prism-server-gpu rerank-server-mac mlx-setup mlx-server test eval eval_d3 redteam demo web demo-web web-build report report_d2 report_d3 clean all
 
 all: test report_d2
 
@@ -26,6 +26,10 @@ prism-server:
 	  -m "$$(.venv-mlx/bin/python -c 'from huggingface_hub import hf_hub_download as d; print(d("$(GGUF_REPO)", "$(GGUF_FILE)"))')" \
 	  -ngl 99 -fa on -c $(PRISM_CTX) --host 127.0.0.1 --port $(PRISM_PORT) --alias $(GGUF_REPO) --jinja \
 	  --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0 --presence-penalty 1.5 --repeat-penalty 1.0 --repeat-last-n 64
+
+# Controller of the chosen D2 system (r2, Bonsai 4B) for the demo and the Mac latency run: same target, 4B GGUF.
+demo-model-server:
+	$(MAKE) prism-server GGUF_REPO=prism-ml/Ternary-Bonsai-2-4B-gguf GGUF_FILE=Ternary-Bonsai-2-4B-PQ2_0.gguf PRISM_CTX=65536
 
 # D2 GPU server (server 82): same PrismML llama.cpp commit and same GGUF as the Mac, built with CUDA (docs/RUNBOOK_D2.md).
 #   make prism-server-gpu GPU=2 GPU_PORT=28081 NP=8 GGUF_PATH=/path/to/Ternary-Bonsai-2-2B-PQ2_0.gguf

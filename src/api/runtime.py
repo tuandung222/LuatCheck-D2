@@ -71,7 +71,7 @@ def _build_runtime(index: int, path: Optional[str]) -> ProfileRuntime:
         if not os.path.isfile(config.retrieval.corpus_path):
             runtime.error = f"Corpus file is unavailable: {config.retrieval.corpus_path}"
             return runtime
-        profile = load_profile(config.domain.profile)
+        profile = load_profile(config.domain.profile, config.domain.profile_variant)   # r2 configs load <id>_r2
         manager = ModelManager.shared(config.models) if needs_model_manager(config) else None
         runtime.profile = profile
         runtime.registry = LegalToolRegistry(
