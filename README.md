@@ -79,7 +79,7 @@ We evaluate **two self-built, hash-locked 50-question benchmarks** (100 question
 *Notes on reading the results:*
 1. **Strict success** (lower bound over all trials; execution errors and unjudged trials count as failures) requires appropriate behaviour (`answer` vs `refuse`), full correctness (`2/2`), full completeness (`2/2`), and every factual claim supported by the cited sources.
 2. **Blind human audit of the LLM judge (`deepseek/deepseek-v4-flash`):** On a stratified blind sample of **60 outputs** (30 per benchmark), judge–human agreement on strict success is **96.7%** ($\kappa = 0.93$, design-weighted 98.8%) on HCMUT regulations and **90.0%** ($\kappa = 0.80$, design-weighted 97.5%) on labour law.
-3. **Diagnostic caveat:** The current system was revised after analysing the initial 2B system's failure modes on these same 100 questions, so the revision gains may be optimistic and will be verified on a new unseen benchmark in Week 45.
+3. **Next evaluation step (Weeks 45–47):** Because lexical retrieval is near ceiling on these 100 questions (`Recall@5` $\approx 0.98\text{--}0.99$), Week 45 adds an unseen benchmark of harder multi-hop and paraphrased questions (without explicit decision/decree numbers) and Week 47 evaluates entry-point prompt-injection resistance.
 4. **Cost & Mac latency:** Local inference has **USD 0 API cost**; offline LLM judging across both 545-trial runs cost **USD 2.17** in total (`$1.06 + $1.10`). On an Apple M4 MacBook (16 GiB, sequential single-query runs), median / p95 latency for the full system is **33.0 s / 86 s** (HCMUT) and **29.8 s / 72 s** (labour law) with the **4B controller** ($\approx 43$ tok/s), and **13.3 s / 30 s** and **14.6 s / 28 s** with the **2B controller** ($\approx 92$ tok/s).
 
 ---

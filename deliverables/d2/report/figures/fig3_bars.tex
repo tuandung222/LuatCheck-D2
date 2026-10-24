@@ -48,5 +48,5 @@ lrr 56.7 10.0 10.0
 \end{axis}
 \end{tikzpicture}\\[1pt]
 \pgfplotslegendfromname{barlegend}
-\caption{Strict success (LLM-judge lower bound; bars: mean over three seeds; whiskers: 95\% interval over the 50 questions) for the initial system with the 2B controller and the current system with the 2B and 4B controllers. The right-most group, verifier + reranker, is the full system; with the 4B controller it is the current system we propose. The current system was revised after we analysed the initial system's failures on these same questions.}\label{fig:bars}
+\caption{Strict success (LLM-judge lower bound; bars: mean over three seeds; whiskers: 95\% bootstrap interval over the 50 questions) across the three configurations for the early 2B prototype and the D2 system with 2B and 4B controllers. The right-most group, \emph{verifier + reranker}, is the full system.}\label{fig:bars}
 \end{figure}

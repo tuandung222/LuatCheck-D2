@@ -30,7 +30,7 @@ Benchmark & Configuration & Answer expected: A/R/C/Err & Refusal expected: A/R/C
  & verifier + reranker & 107/24/1/3 & 2/13/0/0 & 18.9 & 13.3 & 35.1 & 86.7 & 80.0\\
 \bottomrule
 \end{tabular}}
-\caption{\textbf{Behaviour against what the benchmark expects} on the HCMUT regulations benchmark (no judge). The rows ``answer expected'' and ``refusal expected'' give the numbers of answered / refused / clarified / error trials (A/R/C/Err). Over-refusal = refused or clarified although an answer exists; unsafe answer = answered although the question should be refused; refusal P/R treat \emph{refused} as the positive class (non-error trials); strict match counts errors as mismatches. The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic (Section~\ref{sec:eval}).}
+\caption{\textbf{Behaviour against what the benchmark expects} on the HCMUT regulations benchmark (no judge). The rows ``answer expected'' and ``refusal expected'' give the numbers of answered / refused / clarified / error trials (A/R/C/Err). Over-refusal = refused or clarified although an answer exists; unsafe answer = answered although the question should be refused; refusal P/R treat \emph{refused} as the positive class (non-error trials); strict match counts errors as mismatches.}
 \label{tab:benchmark-behaviour}
 \end{table}
 
@@ -64,6 +64,6 @@ Benchmark & Configuration & Closed-book guessable (\%) & Not guessable (\%) & Re
  & verifier + reranker & 71.1\,{\scriptsize[56--84]}\,{\scriptsize(n=15)} & 53.3\,{\scriptsize[40--68]}\,{\scriptsize(n=30)} & 73.3\,{\scriptsize[33--100]}\,{\scriptsize(n=5)}\\
 \bottomrule
 \end{tabular}}
-\caption{\textbf{Strict success split by whether the question can be guessed} on the HCMUT regulations benchmark (LLM-judge lower bound, errors count as failures). ``Closed-book guessable'': a strong model answered the question correctly \emph{without} the corpus (itself an LLM estimate), so these questions measure the model's own knowledge as much as grounding. ``Not guessable'': partially correct or unsolved without the corpus. Refusal questions have no such split. Intervals are bootstrap intervals over questions; n = questions in the group. The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic (Section~\ref{sec:eval}).}
+\caption{\textbf{Strict success split by whether the question can be guessed} on the HCMUT regulations benchmark (LLM-judge lower bound, errors count as failures). ``Closed-book guessable'': a strong model answered the question correctly \emph{without} the corpus (itself an LLM estimate), so these questions measure the model's own knowledge as much as grounding. ``Not guessable'': partially correct or unsolved without the corpus. Refusal questions have no such split. Intervals are bootstrap intervals over questions; n = questions in the group.}
 \label{tab:benchmark-strata}
 \end{table}

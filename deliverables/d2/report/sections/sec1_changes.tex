@@ -4,14 +4,9 @@ We claim only what was evaluated: ten HCMUT documents and ten labour-law documen
 
 Intended scenarios: a student looks up a rule and opens the cited section; an HR officer checks a labour-law answer against the cited article; a careless or hostile user pastes a document with injected instructions, and the system must keep its tool boundary and refuse or clarify.
 
-\hdr{Design history.} We froze and ran the initial system first (2B controller). It reached 12--19\% strict success. An error analysis of its recorded runs found four causes:
-\begin{itemize}
-\item the controller's own search queries retrieved worse than the question itself (an offline projection puts the recall of the first search, within the top three results, at 0.71 and 0.62, against 0.95 and 0.98 if the question were the query);
-\item it asked for clarification as an exit whenever evidence was missing (37\% and 30\% of answerable questions without the verifier), although no question expects one;
-\item after a verifier rejection it refused in 56\% and 53\% of cases instead of repairing the answer;
-\item most rejections were quote mismatches caused by shortened (elided) quotes.
-\end{itemize}
-The revision addresses each cause. The first search now uses the user's own question. The rules for clarifying and refusing are explicit. An answer needs a prior search. The model's reasoning text is capped. The citation verifier accepts shortened and line-wrapped quotes, checks numbers within the claim's own sentence, and shows the closest source passage in its feedback. The current system runs with a 4B controller (preferred) and a 2B controller (lighter option).
+\hdr{Engineering refinements during D2.} An early 2B prototype reached only 12--19\% strict success because (i) the model's short search queries dropped key terms from the user's question (first-search top-3 recall 0.71 and 0.62 vs 0.95 and 0.98 using the raw question), (ii) the controller exited via \texttt{clarify} whenever evidence was missing from a truncated snippet (37\% and 30\% of answerable tasks), (iii) a verifier rejection message phrased as a warning caused the model to refuse in 56\% and 53\% of cases instead of repairing, and (iv) the citation verifier rejected valid quotes containing ellipses (\texttt{...}) or PDF line wraps.
+
+In the D2 system, the first search automatically anchors on the user's original question plus the model's query (\texttt{top\_k=5}), \texttt{search} is required before \texttt{answer} with explicit clarify/refuse rules and reasoning capped at 800 characters, and the citation verifier returns a neutral tool report with the closest source passage while supporting elided quotes and sentence-local number checks. We evaluate both the 4B controller (default) and the 2B controller (lighter option).
 
 \hdr{Commitments and their state.} Table~\ref{tab:commit} compares the proposal's commitments due at this checkpoint with their state. We received no feedback on the proposal pitch (22 October), so no change is attributed to feedback.
 \input{tables/tab1_commitments}

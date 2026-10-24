@@ -2,10 +2,34 @@
 % LuatCheck D2 slides (CO5151, Group 8, HCMUT). Built on the HCMUT beamer template (Madrid + infolines, primaryblue).
 % Written for the lecturer: no internal labels. Missing evidence is a red [PENDING] marker.
 \documentclass[aspectratio=1610,11pt]{beamer}
-\usepackage{fontspec}
-\setsansfont{Arial}
-\setmainfont{Arial}
-\setmonofont{Menlo}[Scale=0.82]
+\usefonttheme{professionalfonts}
+\usepackage{unicode-math}
+\setsansfont{IBMPlexSans}[
+  Extension=.otf,
+  UprightFont=*-Regular,
+  BoldFont=*-SemiBold,
+  ItalicFont=*-Italic,
+  BoldItalicFont=*-SemiBoldItalic,
+  Scale=0.95,
+  Numbers={Lining,Monospaced}
+]
+\setmainfont{IBMPlexSans}[
+  Extension=.otf,
+  UprightFont=*-Regular,
+  BoldFont=*-SemiBold,
+  ItalicFont=*-Italic,
+  BoldItalicFont=*-SemiBoldItalic,
+  Scale=0.95,
+  Numbers={Lining,Monospaced}
+]
+\setmonofont{IBMPlexMono}[
+  Extension=.otf,
+  UprightFont=*-Regular,
+  BoldFont=*-SemiBold,
+  ItalicFont=*-Italic,
+  Scale=0.84
+]
+\setmathfont{IBMPlexMath-Regular.otf}[Scale=0.95]
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{tabularx}
@@ -44,10 +68,10 @@
 \setbeamercolor{itemize item}{fg=primaryblue}
 \setbeamercolor{itemize subitem}{fg=primaryblue}
 \setbeamerfont{normal text}{size=\small}
-\setbeamerfont{frametitle}{size=\large,series=\bfseries}
-\setbeamerfont{block title}{size=\small}
-\setbeamerfont{title}{size=\Large}
-\setbeamerfont{author}{size=\footnotesize}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{block title}{size=\small,series=\bfseries}
+\setbeamerfont{title}{size=\Large,series=\bfseries}
+\setbeamerfont{author}{size=\small}
 \setbeamerfont{institute}{size=\footnotesize}
 \setbeamerfont{date}{size=\footnotesize}
 \setbeamertemplate{itemize items}[circle]
@@ -105,9 +129,9 @@
   \end{tabularx}
   \vspace{2pt}
 
-  \begin{alertblock}{How the system evolved, in plain words}
-    \scriptsize The \textbf{initial system} (2B controller) reached 12--19\% strict success (full system: 14.0\% HCMUT, 18.7\% labour). After analysing its failure modes, we built the \textbf{current system} (4B controller). \textbf{Because the revision was designed after inspecting failures on these same questions, gains may be optimistic and will be verified on unseen questions in W45.}
-  \end{alertblock}
+  \begin{block}{Engineering progression at D2}
+    \scriptsize An early 2B prototype reached 14.0\% (HCMUT) and 18.7\% (labour) strict success. Fixing query anchoring, clarify/refuse rules and verifier feedback raised the 2B system to 28.0--28.7\%, and scaling the controller to \textbf{Bonsai 4B} raised full-system strict success to \textbf{60.7\% (HCMUT)} and \textbf{56.7\% (labour)}.
+  \end{block}
 \end{frame}
 
 %====================================================================
@@ -140,7 +164,7 @@
   \node[term,text width=2.0cm] (ref) at (2.85,0.8) {\textbf{Refused} or \textbf{clarified}};
   \node[term,text width=2.4cm] (ans) at (7.0,0.8) {\textbf{Answer} with verified citations};
   \node[term,text width=2.6cm] (err) at (10.35,0.8) {\textbf{Error}: backend or budget failure, never an answer};
-  \node[off,text width=2.2cm,font=\scriptsize] (nr) at (13.15,0.8) {\textbf{Not used yet:}\\semantic check, vector index, memory};
+  \node[off,text width=2.35cm,font=\scriptsize] (nr) at (13.15,0.8) {\textbf{Not used yet:}\\semantic check,\\vector index, memory};
   % ledger
   \node[box,fill=black!4,draw=black!55,minimum width=14.25cm,minimum height=0.55cm,anchor=south west] (led) at (0,-0.75) {\textbf{Case ledger and audit log}: queries, tool calls, ids, repairs, tokens};
   % flow
@@ -451,7 +475,7 @@
     \vspace{4pt}
 
     \begin{block}{Self-assessment}
-      \scriptsize \textbf{On track, with one main risk:} confirming that current-system gains hold on the unseen W45 benchmark.
+      \scriptsize \textbf{On track, with one main risk:} generalising to harder multi-clause questions on the unseen W45 benchmark.
     \end{block}
   \end{columns}
 \end{frame}
@@ -465,11 +489,11 @@
     \footnotesize
     \textbf{Three takeaways}
     \begin{enumerate}
-      \item Initial system (2B): 12--19\% strict success. Current system (4B): 57--61\% on the full configuration.
-      \item The bottleneck was controller behaviour, not retrieval (Recall@5 $\approx$ 0.99).
-      \item The citation verifier enforces auditable citations, though it did not raise strict accuracy.
+      \item \textbf{Controller scale + loop design:} 60.7\% (HCMUT) and 56.7\% (labour) strict success with Bonsai 4B (vs 28.0--28.7\% with 2B).
+      \item \textbf{The bottleneck was controller behaviour, not retrieval} (Recall@5 $\approx$ 0.99).
+      \item \textbf{The citation verifier enforces auditable citations}, though repeated rejections increase refusals.
     \end{enumerate}
-    \textbf{Please challenge:} judge reliability, benchmark difficulty, and gains on the diagnostic question set.
+    \textbf{Please challenge:} verifier over-refusal trade-off, benchmark difficulty, and multi-hop synthesis limits.
     \vspace{4pt}
 
     {\scriptsize Repository: \url{https://github.com/tuandung222/LuatCheck-D2}\\
@@ -516,7 +540,7 @@
     \end{itemize}
   \end{columns}
   \vspace{4pt}
-  {\scriptsize All of this was decided after seeing the initial system's results (see slide 2). The plan was not to tune thresholds on the benchmark labels.}
+  {\scriptsize Both controller sizes (2B and 4B) are evaluated on the same pipeline to separate loop-engineering effects from model-scale effects.}
 \end{frame}
 
 \begin{frame}{Backup B: strict success for every configuration (\%, 95\% interval)}
@@ -535,7 +559,7 @@
   \vspace{8pt}
 
   \raggedright
-  50 questions $\times$ 3 runs per cell, same questions for every system. Intervals: paired bootstrap over questions (5,000 draws), no correction for multiple comparisons. Gains of the current system may be optimistic (see slide 2).
+  50 questions $\times$ 3 runs per cell, same questions for every system. Intervals: paired bootstrap over questions (5,000 draws), no correction for multiple comparisons.
 \end{frame}
 
 \begin{frame}{Backup C: what the numbers do not show}

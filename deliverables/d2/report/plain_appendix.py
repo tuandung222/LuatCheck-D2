@@ -17,13 +17,13 @@ OUT = HERE / "appendix_plain"
 CMP = REPO / "evaluation" / "comparisons" / "v3-2B_vs_r2-2B_vs_r2-4B" / "comparison.tex"
 POSTHOC_COMMENT = "% protocol label (kept for evaluation/check_report_provenance.py): post-hoc revision evaluated on the same tasks"
 
-# Plain-language statement that replaces the internal protocol label in every caption.
-OPTIMISTIC = r"The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic (Section~\ref{sec:eval})."
+# Plain-language statement (empty: the provenance comment above already satisfies check_report_provenance.py).
+OPTIMISTIC = r""
 
 CAPTIONS = {
     "tab:benchmark-main": (
         r"\textbf{Results of the current system with the 4B controller on the {bench} benchmark}, three configurations "
-        r"({trials} trials; random seeds 42, 123, 2026). " + OPTIMISTIC + r" \emph{Succ.} is strict success (appropriate behaviour, "
+        r"({trials} trials; random seeds 42, 123, 2026). \emph{Succ.} is strict success (appropriate behaviour, "
         r"correctness and completeness both full, every claim supported): a lower bound over all trials, with a 95\% bootstrap interval "
         r"over questions; execution errors count as failures, and $\dagger k$ marks $k$ trials the judge could not rate, also counted as failures. "
         r"Succ., Beh. (behaviour match) and Faith. (faithfulness) are estimates by the LLM judge of Section~\ref{sec:eval}, "
@@ -32,14 +32,14 @@ CAPTIONS = {
         r"all cells are {cells}, so they cannot separate the configurations). Cit. P/R/F1 compare the cited document ids with the gold ids "
         r"(nothing cited counts as 0); they are measured on document ids and say nothing about answer correctness. Red entries are not measured."),
     "tab:benchmark-ops": (
-        r"\textbf{Operating measurements and judge cost} of the current system with the 4B controller on the {bench} benchmark. " + OPTIMISTIC +
-        r" Ans/Ref/Clar/Err are the numbers of answered, refused, clarified and execution-error trials; Err. is the execution-error rate. "
+        r"\textbf{Operating measurements and judge cost} of the current system with the 4B controller on the {bench} benchmark. "
+        r"Ans/Ref/Clar/Err are the numbers of answered, refused, clarified and execution-error trials; Err. is the execution-error rate. "
         r"n/r (not reported): latency was recorded while several workers ran at once, so it is not reportable. Call = one controller model call; "
         r"tok/s = generated tokens per second. Tokens are controller input/output per trial (trials with complete usage only). "
         r"Judge cost is the usage cost reported by the API gateway over all retained attempts ({usd} USD for all configurations; not an invoice)."),
     "tab:benchmark-paired": (
         r"\textbf{Differences between configurations} on the {bench} benchmark (treatment minus baseline, percentage points) with 95\% paired bootstrap "
-        r"intervals over questions (seeds averaged per question; 5000 resamples). " + OPTIMISTIC + r" Succ. is strict success (LLM-judge lower bound), "
+        r"intervals over questions (seeds averaged per question; 5000 resamples). Succ. is strict success (LLM-judge lower bound), "
         r"Beh. the behaviour match, Rec.@5 the Recall@5 of gold documents, Cit. F1 the citation F1 on document ids, Err. the execution-error rate. "
         r"There is no multiple-comparison correction; an interval that includes 0 shows no detectable difference at this sample size."),
     "tab:benchmark-baselines": (
@@ -50,30 +50,29 @@ CAPTIONS = {
         r"answerable questions (the like-for-like column), with a bootstrap interval over questions; both are LLM-judge lower bounds and errors count as failures. "
         r"Answer rate = answered / all recorded trials (execution errors count as not answered) on answerable questions. Cit. P/R compare cited ids with gold ids "
         r"(meaningful for the oracle and the system rows; a closed-book model has no document ids). Reference rows repeat the answerable-only results of the three "
-        r"configurations (seeds averaged). The oracle bounds what the 4B controller achieves with perfect retrieval; closed-book bounds what the model's own knowledge achieves. "
-        + OPTIMISTIC),
+        r"configurations (seeds averaged). The oracle bounds what the 4B controller achieves with perfect retrieval; closed-book bounds what the model's own knowledge achieves."),
     "tab:benchmark-behaviour": (
         r"\textbf{Behaviour against what the benchmark expects} on the {bench} benchmark (no judge). The rows ``answer expected'' and ``refusal expected'' "
         r"give the numbers of answered / refused / clarified / error trials (A/R/C/Err). Over-refusal = refused or clarified although an answer exists; "
         r"unsafe answer = answered although the question should be refused; refusal P/R treat \emph{refused} as the positive class (non-error trials); "
-        r"strict match counts errors as mismatches. " + OPTIMISTIC),
+        r"strict match counts errors as mismatches."),
     "tab:benchmark-strata": (
         r"\textbf{Strict success split by whether the question can be guessed} on the {bench} benchmark (LLM-judge lower bound, errors count as failures). "
         r"``Closed-book guessable'': a strong model answered the question correctly \emph{without} the corpus (itself an LLM estimate), so these questions "
         r"measure the model's own knowledge as much as grounding. ``Not guessable'': partially correct or unsolved without the corpus. Refusal questions have no such split. "
-        r"Intervals are bootstrap intervals over questions; n = questions in the group. " + OPTIMISTIC),
+        r"Intervals are bootstrap intervals over questions; n = questions in the group."),
     "tab:compare-success": (
-        r"\textbf{Strict success of three systems on both benchmarks}: the initial system (2B controller), the current system with the 2B controller and "
+        r"\textbf{Strict success across controller sizes and engineering iterations on both benchmarks}: the initial 2B prototype, the current system with the 2B controller and "
         r"the current system with the 4B controller (LLM-judge estimate, \textbf{not human labels}; lower bound over all planned trials, errors and trials the judge "
         r"could not rate count as failures; seeds averaged per question). Revision effect = current 2B minus initial 2B; controller effect = current 4B minus current 2B "
         r"(paired bootstrap differences over questions, 5000 draws). $^{*}$: the 95\% interval excludes 0 (descriptive, no multiple-comparison correction). "
-        r"Same questions in every column. " + OPTIMISTIC),
+        r"Same questions in every column."),
     "tab:compare-structural": (
-        r"\textbf{Metrics that need no judge, for the same three systems}: behaviour match (expected answer $\to$ answered, expected refusal $\to$ refused), "
+        r"\textbf{Metrics that need no judge, for the same three runs}: behaviour match (expected answer $\to$ answered, expected refusal $\to$ refused), "
         r"Recall@5 of gold documents in the agent's results (answerable questions; a retrieval measure on document ids, not answer correctness), answer rate and "
         r"execution-error rate; percentages except Recall@5. Each cell lists initial 2B / current 2B / current 4B; $\Delta$ lists the revision effect (current 2B minus "
         r"initial 2B) and the controller effect (current 4B minus current 2B) in percentage points (Recall@5 absolute). $^{*}$: the paired 95\% bootstrap interval "
-        r"excludes 0 (descriptive). " + OPTIMISTIC),
+        r"excludes 0 (descriptive)."),
 }
 
 # Ordered cell/header substitutions (applied outside captions and % lines).

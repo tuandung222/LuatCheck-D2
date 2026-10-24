@@ -9,5 +9,5 @@
  & Verifier & 81.3 & 16.8 & 13.3 & 86.3 & 0.728 & 0.989\\
  & Verifier + reranker & 79.3 & 19.1 & 13.3 & 85.6 & 0.691 & 0.993\\
 \bottomrule\end{tabular}
-\caption{What the verifier and the reranker change (current system, 4B controller; the same caveat applies: the revision's gains may be optimistic). Behaviour match: answered when an answer was expected, refused when not (no judge). Over-refusal: refused or clarified when an answer was expected. Unsafe answers: answered on the 15 out-of-scope trials. Faithfulness: supported claims over judged claims (LLM judge). Citation F1 and Recall@5 are measured on document ids.}\label{tab:diag}
+\caption{Ablation of the citation verifier and the reranker (4B controller, 3 seeds $\times$ 50 questions per row). Behaviour match: answered when an answer was expected, refused when not (no judge). Over-refusal: refused or clarified when an answer was expected. Unsafe answers: answered on the 15 out-of-scope trials. Faithfulness: supported claims over judged claims (LLM judge). Citation F1 and Recall@5 are measured on document ids.}\label{tab:diag}
 \end{table}

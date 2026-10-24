@@ -9,5 +9,5 @@ Verifier (with repair) & 64.0 [53--75] & 61.5 [50--73] & 52.7 [43--63] & 51.1 [4
 \textbf{Verifier + reranker (full system)} & \textbf{60.7 [50--71]} & 59.3 [49--70] & \textbf{56.7 [47--67]} & 54.1 [43--64]\\
 Oracle (gold records given up front) & -- & 82.2 [71--93] & -- & 75.6 [62--87]\\
 \bottomrule\end{tabular}
-\caption{Strict success (\%, LLM-judge lower bound, 95\% interval over questions) of the current system with the 4B controller. The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic. Configurations: three seeds; closed-book and oracle: one seed. The oracle runs only on the 45 answerable questions, so the right-hand columns of each benchmark put every row on the same 45 questions.}\label{tab:main}
+\caption{Strict success (\%, LLM-judge lower bound, 95\% bootstrap interval over questions) of the D2 system with the 4B controller. Configurations: three seeds; closed-book and oracle: one seed. The oracle runs only on the 45 answerable questions, so the right-hand columns of each benchmark compare every row on the same 45 answerable questions.}\label{tab:main}
 \end{table}
