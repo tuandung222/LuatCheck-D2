@@ -1,0 +1,13 @@
+{
+  "run_id": "d2-gpu-main-labour-v3",
+  "packets": 542,
+  "execution_errors_not_judged": 3,
+  "runs_sha256_at_build": "aa8788bb626ce83c2d003c6e75f73d6166d001f1130d6b3a370ec27a62867f16",
+  "files_sha256": {
+    "SEMANTIC_JUDGING.md": "6407a5548ce798e1eff5640118205fbd2b5b03b2821f1ba9907949e5a75e20e5",
+    "judge_packets.json": "24bf93bfbae71ce819f0fedac8dfc09e18ac37f9aa6f8e18c106da586fea8ad5",
+    "private_mapping.json": "3805a373ced67d2b8de780ae4d4883f5adeaab077351c9eef3876330cd4ef646"
+  },
+  "labels_generated": false,
+  "instructions": "A reviewer gets only judge_packets.json and SEMANTIC_JUDGING.md; private_mapping.json stays private."
+}

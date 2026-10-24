@@ -1,0 +1,111 @@
+{
+  "updated_at": "2026-10-23T18:22:23.996405+00:00",
+  "config": {
+    "base_url": "https://ai-gateway01.qualgo.ai/v1",
+    "credential_env": "LUATCHECK_JUDGE_API_KEY",
+    "model": "deepseek/deepseek-v4-flash",
+    "requested_family": "DeepSeek V4.1 Flash",
+    "documented_upstream_revision": "DeepSeek-V4.1-Flash-1017",
+    "revision_pinned": false,
+    "allowed_returned_models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek-v4-flash",
+      "deepseek-flash",
+      "deepseek-v4.1-flash",
+      "deepseek-v4.1-flash-1017"
+    ],
+    "model_identity_note": "Same gateway model and thinking/effort settings as config/d2_judge_gateway.json. Gateway routing is not independently attested; returned model IDs are preserved in every attempt record.",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 24000,
+    "timeout_seconds": 300,
+    "max_attempts": 3,
+    "concurrency": 8,
+    "temperature": null,
+    "seed": null,
+    "billing_note": "Cost is the gateway-reported usage.cost / x-litellm-response-cost per attempt, retained failed attempts included; it is not an invoice and missing cost is unknown, not zero."
+  },
+  "summary": {
+    "packets": 20,
+    "valid": 20,
+    "invalid": 0,
+    "judged_this_session": {
+      "valid": 2
+    }
+  },
+  "human_labels": false,
+  "actual_invoiced_charge_usd": null,
+  "judgments_sha256": "8305f565897b407d918607a0fdf345ddeb9133f5f707279df1f47750dc11e5ed",
+  "stage_provenance": {
+    "stage": "judge",
+    "harness_version": "1.1.0",
+    "updated_local": "2026-10-24T01:22:24.001003+07:00",
+    "judge_prompt_sha256": "615f4b3b97b1af8fcec124c0d1d8bb481c808641c84d05744bedc9eb46ebb4d4",
+    "judge_config_sha256": "3ac6a15d25acd1a9e26ef395a4625259f050e51796a8edd234239a10e9506aca",
+    "consumed_run": {
+      "run_id": "mac-check-2task-20261024",
+      "trials_sha256": "b755fbe24119f7d37f1739d784a9b8a94cde2b64184c9c968b5b9ede6cf928be"
+    },
+    "invocation": {
+      "argv": [
+        "evaluation/run_d2.py",
+        "all",
+        "--profile",
+        "mac-latency",
+        "--run-dir",
+        "evaluation/runs/mac-check-2task-20261024",
+        "--execute",
+        "--endpoint",
+        "http://127.0.0.1:8081/v1",
+        "--limit",
+        "2",
+        "--seeds",
+        "42",
+        "--allow-unfrozen",
+        "--allow-busy"
+      ],
+      "entry_script": "evaluation/run_d2.py",
+      "cwd": "/Users/admin/Desktop/Recents/LuatCheck-D2",
+      "env": {
+        "RUN_ID": "mac-check-2task-20261024",
+        "KIND": "mac",
+        "EXTRA": "--limit 2 --seeds 42 --allow-unfrozen --allow-busy"
+      }
+    }
+  },
+  "attempts_sha256": {
+    "21d41beff855b4fc8905e311-a1.json": "75daa67607d0a6b704903aad3f775d06f3d8fbb4948cc6eef1b73bf39e6bef30",
+    "320ac1bac81c94a5639bd648-a1.json": "226e52d0a1e5e7c23f8947a1942f1d68e0204f838b287194ee44141524b16cb5",
+    "4d7fd00baf8dd477f7d14d65-a1.json": "38b57e1ee9f46dbe88a2b674e7a916e141e2609062956910a98b493de7599474",
+    "6205248c54fa5b6859ecc177-a1.json": "b4b564f0da3b6596a5049b2b66729c19c13f51a1599d4aa8a913bc5062690d97",
+    "655ca2f8a468cb318a6d1a82-a1.json": "edfb56d6f5943ad62ea3b4825a074a1793fb4f61ff570b492cf0d5863c02fadd",
+    "655ca2f8a468cb318a6d1a82-a2.json": "586c773b64a9b0335e8e17f330f135d1fe71ad1b21ce845d62666ba211640ff4",
+    "655ca2f8a468cb318a6d1a82-a3.json": "470d56ce041eded42d819758205545eed02f1ac0dedf18f933bfd014f1d90d16",
+    "6ec6b7d25564e692e072af3f-a1.json": "0f68eac5af955b542a352a11f76560c57fb3f08d742a1ee79a692d9fa63fa35a",
+    "752023dc12eb1bd7b62a585f-a1.json": "6cbf20ab0b059bba17fb1999c49dd3a3d217c845536ed4a8920f08a9cd95416a",
+    "752023dc12eb1bd7b62a585f-a2.json": "4cef2713118e9fdf2a0b4c9b17724178e7000d732d1d0467b8f8ea19642eadd0",
+    "752023dc12eb1bd7b62a585f-a3.json": "85037364ed102b640907c7860c13cf13a2ed118f0371e608ebf6760d826346bd",
+    "752023dc12eb1bd7b62a585f-a4.json": "16b99e6dcdcd8166c15ec58524a93e791fdbdf91052c9a82b77f0ca5e1aa7924",
+    "754131792a2f85545c6ea4cd-a1.json": "480e377a2f6311e39f401bf8914d119704e560e78ce5d5759a59e29a4cf5aaa5",
+    "83825e8c2886c85d3f13f54f-a1.json": "35754969a0df1e5536eca61c919de08c87f0ac07584ac809d0ae2d311630c404",
+    "9fa16fe76805fafe222f0109-a1.json": "4c2438a04853dfa2530d963ac008bc6f4b7b7bc23d7f92b0731fd260fe9528a1",
+    "9fd6235c3861df04dac6361e-a1.json": "42d5f0f54c4496a53aef514ccfb1d398a6d4dcba6cd3dfdd279b37c97a095b5b",
+    "a8a0b2ca83681d64f1f840f8-a1.json": "5bcd345f7a2ef7da1ff5bf9bd55fdb7165f923c33870023ac45c53e04ee580d8",
+    "be6b28c9e2ade552baacbb9e-a1.json": "fe606a131c4707c9b46c160902599760c18a2e98bdbccd58743c41ad4d59b062",
+    "be6b28c9e2ade552baacbb9e-a2.json": "007b1f7cca536b402b513952a21c853b253e2ddcaf0f4e812960d0886ddc0970",
+    "c54fbcb9441711c0c1274f72-a1.json": "2699c91fb13ba2bfec51aa9509b94363e9c95ac8cae1891869cb9b1f65f5558a",
+    "d2d7a085abf6a4d03edf1b1d-a1.json": "29e89500b61aaf6f826acea92ac519e378a2a2e34f5d9d02e206409d43ccccff",
+    "db33caf069fe363452d74ce9-a1.json": "e30e9fe80e666015d534b44f9365f8dbd1699f5534a6c0876a940e3012d3b3f4",
+    "e259f4ea80f27ae711e73fd7-a1.json": "bc5f364a3bfc66053f41852746f6496978b0cb294c63569143ebe2820ac7dfa7",
+    "e90d48d091116395f9887f2b-a1.json": "800a02a288c4def60da079cecb46a23e76fd357a6814f1bfa7faebac3c9fc1fc",
+    "f256fd759bd9de0255c2b8a1-a1.json": "7a5ed8f6a57d916816bca0ec4efbc35953920e49a613c89ade1925c9c45f3dd8",
+    "fb6ce2f2cfe8e05069cff8cd-a1.json": "b1f208b6c1c7b2ca92dafad64d66b8147deeb2469d4e7d635d4aef23dfb39461",
+    "fb6ce2f2cfe8e05069cff8cd-a2.json": "31561ca2432652a0eecbeabf8e69f9c5ca42fcb3b0151587ef7a597c92a7b4ea",
+    "fb6ce2f2cfe8e05069cff8cd-a3.json": "0e9a636ae201165bf2e632532cd3a8746d36568a0210e5398dea1f4b231fc412",
+    "fb6ce2f2cfe8e05069cff8cd-a4.json": "c026508bf43a459657c1b5f2e3b5531488af7d9e4f344a862194ba4ba7b7683e",
+    "fb6ce2f2cfe8e05069cff8cd-a5.json": "dffc5a0db17745f6ad068916a39c646d829527214f35b764d9a4b88510dc2659"
+  },
+  "note": "LLM-judge estimates, not human labels. Attempts are retained; only invalid/unparseable judgments were retried."
+}

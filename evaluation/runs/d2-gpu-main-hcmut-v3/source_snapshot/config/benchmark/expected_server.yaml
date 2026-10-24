@@ -1,0 +1,23 @@
+# Identity of the controller server every D2 run must have (checked by preflight; a mismatch refuses the run).
+# Same model file + same llama.cpp commit on every machine is what makes the Mac and GPU runs the same system.
+alias: prism-ml/Ternary-Bonsai-2-2B-gguf
+gguf_repo: prism-ml/Ternary-Bonsai-2-2B-gguf
+gguf_file: Ternary-Bonsai-2-2B-PQ2_0.gguf
+gguf_sha256: d5f01a4ecaf49239653308ee732ad1a0c5f802c0ddb997549fc7b694c8b45928
+quantisation: PQ2_0
+llama_cpp_repo: https://github.com/PrismML-Eng/llama.cpp
+llama_cpp_branch: prism
+llama_cpp_commit: 73bfe6c   # prefix of the commit shown in /props build_info (b1-73bfe6c)
+
+# Reranker weights of the torch (cross_encoder) runtime: the pinned revision of AITeamVN/Vietnamese_Reranker (the HF blob name of
+# model.safetensors is its sha256). The llama.cpp GGUF reranker of the Mac profile is a conversion of THIS revision
+# (scripts/reranker/build_gguf.sh); its own GGUF sha256 is recorded by preflight, not pinned here.
+reranker_repo: AITeamVN/Vietnamese_Reranker
+reranker_revision: f536976248403314225d7fdfdbc87f0e9516a54e
+reranker_weights_sha256: 1cecccab406ec6d3f13da8ccdc5e853a1372e51845322163655ab530d3730071
+# Mac reranker server (llama.cpp, scripts/reranker/serve_mac.sh): the GGUF files built by scripts/reranker/build_gguf.sh from the pinned revision above
+# (patched pair template). The D2 Mac profile serves f16; the others are listed so a deliberate switch is recorded, anything else is refused.
+reranker_gguf_sha256:
+  Vietnamese_Reranker-f16.gguf: 939b3f301ec6ccb524fdb6dc940ed1be33664a13038d93e3b841570005a41793
+  Vietnamese_Reranker-Q8_0.gguf: 0e1ad7372fea37e1af20eb6aa1f72319e83c3e4fde97cf59be2acdd47b0db0ec
+  Vietnamese_Reranker-f32.gguf: 57c6ade7d376124ccb5ca85629cebbe5835c1d355a4fda0b047dbefd9134aa34

@@ -1,0 +1,19 @@
+# Reranker for the accuracy runs on server 82 (H100): the SAME weights (AITeamVN/Vietnamese_Reranker @ f536976) as the
+# Mac GGUF, run as an in-process torch cross-encoder in fp16 on CUDA (no server).  Why: the simplest faithful runtime on
+# a GPU box (no conversion step; fp16 vs fp32 measured in docs/plans/reranker.md).
+# Pre-download the pinned revision once: scripts/reranker/serve_gpu.sh prepare   then   export RERANKER_MODEL_DIR=<dir>
+# Pick a free GPU first (gpu_status); this block only says `cuda` (CUDA_VISIBLE_DEVICES selects the card).
+# Input policy identical to config/reranker/mac_gguf.yaml (chunk_chars 1500 / overlap 200, max_length 1024 tokens).
+retrieval:
+  reranker:
+    enabled: true
+    backend: cross_encoder
+    model: AITeamVN/Vietnamese_Reranker   # or the local dir from RERANKER_MODEL_DIR
+    device: cuda
+    dtype: float16
+    local_files_only: true               # never touch the network at run time
+    top_k_in: 20
+    top_k_out: 5
+    max_length: 1024
+    batch_size: 1                        # candidates are scored one pair at a time (no padding effects)
+    # chunk_chars / chunk_overlap_chars: class defaults of CrossEncoderReranker (1500 / 200), see mac_gguf.yaml.

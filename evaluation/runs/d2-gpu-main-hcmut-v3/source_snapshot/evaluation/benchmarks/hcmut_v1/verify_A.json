@@ -1,0 +1,873 @@
+[
+  {
+    "task_id": "HCMUT-001",
+    "verdict": "accept",
+    "issues": [
+      "Table reading verified: columns are Kế hoạch | Chuẩn | Tối đa; PFIEV row = 10 10 14, so 'tối đa 14' is correct. 'tối đa' appears nowhere else in the corpus for course duration (other hits are credit caps, class size, etc.); no conflicting figure for PFIEV in HVDT1260_PhuLuc_4."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thời gian đào tạo",
+      "học kỳ chính",
+      "14 học kỳ",
+      "tối đa"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-002",
+    "verdict": "accept",
+    "issues": [
+      "28 total credits including audit classes is stated verbatim in 5.3; 25 (no audit) and 10 (audit cap) are consistent. Only HVDT1260_Dieu_1_S5_3 contains these figures (grep '28 tín', 'dự thính')."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "dự thính",
+      "28 tín",
+      "tín chỉ tối đa"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-003",
+    "verdict": "accept",
+    "issues": [
+      "5% re-study trigger is verbatim in 10.1(c); no other record defines hạng tốt nghiệp or re-study volume (grep 'hạng tốt nghiệp', 'học lại', 'giảm đi một mức'). 1259 Phụ lục 3 'xếp loại tốt nghiệp' concerns awards, not the downgrade rule."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "hạng tốt nghiệp",
+      "học lại",
+      "giảm đi một mức",
+      "xuất sắc"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-004",
+    "verdict": "accept",
+    "issues": [
+      "Gold matches the last paragraph of 14.3 (excludes discipline-level buộc thôi học; chính quy; VLVH or đào tạo từ xa). Only one record states this (grep 'thu nhận lại' also hits PhuLuc_4 exchange-return, unrelated)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thu nhận lại",
+      "buộc thôi học",
+      "vừa làm vừa học"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-005",
+    "verdict": "fix",
+    "issues": [
+      "Expected answer says 'Anh văn 1, 2, 3, 4 theo bảng quy đổi (mục 3.1)' but the single quote ends at 'Anh văn 1', so '2, 3, 4' and the 3.1 conversion table are not supported by evidence; the TOEIC-format test at the end of HK1 is also not in the quote.",
+      "HVDT1260_PhuLuc_1 contains the same wording (superseded by 2749's replacement appendix, verified by diff: only OCR spacing, TOEFL iBT 2026 columns and a TOEFL Home Edition note differ); the question is explicitly anchored on 2749, so gold HVDT2749_PhuLuc_1 is right, but a system citing the 1260 appendix would give the same answer.",
+      "Semantics of 'một lần duy nhất' = the exemption is granted once; answer wording is acceptable."
+    ],
+    "fix": {
+      "expected_answer": "Được dùng để xét miễn các học phần Anh văn 1, 2, 3, 4 tương ứng theo thang điểm quy đổi tại tiểu mục 3.1 mục 3 của Phụ lục; việc xét miễn này chỉ thực hiện một lần duy nhất.",
+      "reference_evidence": [
+        {
+          "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+          "exact_quote": "Vào cuối học kỳ 1 năm nhất, Nhà trường tổ chức thêm một kỳ kiểm tra trình độ tiếng Anh",
+          "pdf_pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+          "exact_quote": "Kết quả kiểm tra này được sử dụng để xét miễn một lần duy nhất các học phần Anh văn 1,",
+          "pdf_pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+          "exact_quote": "2, 3, 4 tương ứng theo thang điểm quy đổi tại bảng quy đổi tại tiểu mục 3.1 mục 3 của Phụ",
+          "pdf_pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    "searched_terms": [
+      "toeic",
+      "kết quả thi",
+      "xét miễn"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-006",
+    "verdict": "accept",
+    "issues": [
+      "Row 'JLPT N2 Tiếng Nhật 1, 2, 3, 4' sits under 'b) Đối với Khóa 2024 về sau' (3.3); the 2023-and-earlier table gives N2 -> Tiếng Nhật 1, 2, 3, so the answer is correct for khóa 2024 onward. The quote string is unique but does not itself show khóa/12-month context (same record). 'trong vòng 12 tháng' means cert held within 12 months; wording 'còn trong thời hạn 12 tháng' is acceptable.",
+      "HVDT1260_PhuLuc_1 contains the same wording (superseded by 2749's replacement appendix, verified by diff: only OCR spacing, TOEFL iBT 2026 columns and a TOEFL Home Edition note differ); the question is explicitly anchored on 2749, so gold HVDT2749_PhuLuc_1 is right, but a system citing the 1260 appendix would give the same answer."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "jlpt",
+      "tiếng nhật",
+      "12 tháng"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "HCMUT-007",
+    "verdict": "accept",
+    "issues": [
+      "Sentence verified: 'Khi xét điều kiện đăng ký học phần Khóa luận tốt nghiệp, cho phép áp dụng chuẩn ngoại ngữ tốt nghiệp tiếng Anh chỉ đối với kỹ năng Nghe – Đọc'. HVDT1260_Dieu_1_S5_5 requires 'Chuẩn ngoại ngữ tốt nghiệp' for Khóa luận without the Nghe–Đọc restriction; the appendix is the more specific/later rule and the question is anchored on 2749, so no conflict for this item.",
+      "HVDT1260_PhuLuc_1 contains the same wording (superseded by 2749's replacement appendix, verified by diff: only OCR spacing, TOEFL iBT 2026 columns and a TOEFL Home Edition note differ); the question is explicitly anchored on 2749, so gold HVDT2749_PhuLuc_1 is right, but a system citing the 1260 appendix would give the same answer.",
+      "Quote is a fragment without the 'Khóa luận' context, but the phrase is unique."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "nghe – đọc",
+      "khóa luận",
+      "chuẩn ngoại ngữ tốt nghiệp"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "HCMUT-008",
+    "verdict": "accept",
+    "issues": [
+      "Table reading: Chuẩn từng năm | Đạt tương đương | Ghi chú; row 'Năm thứ ba | Tiếng Nhật 1, 2, 3, 4 | Hết năm hai' under c) Japan-oriented programme from khóa 2026. Consistent with the English table (Năm thứ hai | Anh văn 1 | Hết năm nhất), so 'achieve by end of year 2 to proceed to year 3' is right.",
+      "HVDT1260_PhuLuc_1 contains the same wording (superseded by 2749's replacement appendix, verified by diff: only OCR spacing, TOEFL iBT 2026 columns and a TOEFL Home Edition note differ); the question is explicitly anchored on 2749, so gold HVDT2749_PhuLuc_1 is right, but a system citing the 1260 appendix would give the same answer."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "năm thứ ba",
+      "tiếng nhật",
+      "hết năm hai"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "HCMUT-009",
+    "verdict": "accept",
+    "issues": [
+      "Answer verified; '0.01' = two decimal places is a correct restatement. Effective dates are in the amendment text itself. No other rounding rule (only 1259 19.4 mentions 'làm tròn điểm' for graduation councils, no figure)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "làm tròn"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-010",
+    "verdict": "accept",
+    "issues": [
+      "Correct: 'Các học phần sau đại học và các học phần thuộc khối kiến thức tốt nghiệp đại học, điểm đạt là từ điểm C.' Quote is a short fragment (consider adding the preceding line for context); record id S9_1 is misleading (clause 14.2 text lives in that record) but is the correct container. The doctoral-thesis threshold B is a different bullet and is not asked."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "điểm đạt",
+      "đạt có phân mức"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-011",
+    "verdict": "accept",
+    "issues": [
+      "Verified: hoãn thi/điểm I replacement exam within 'thời hạn tối đa một năm'. No other record gives a different period; 05 working days is the registration deadline (different quantity)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "điểm i",
+      "hoãn thi",
+      "tối đa một năm"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-012",
+    "verdict": "accept",
+    "issues": [
+      "Verified in 4.3: thực hành, thực tập, thí nghiệm = 20. Table 1 / '<15' special-case is excluded by the question wording. GVCN2977 Điều 6 'sĩ số lớp' concerns homeroom class size, not course sections, so no conflict."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "sĩ số",
+      "thực hành, thực tập, thí nghiệm"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-013",
+    "verdict": "accept",
+    "issues": [
+      "Verified: dạy thay <= 20% total sessions and <= 03 assigned sessions. The later sentence 'không được phép nghỉ dạy, dạy bù quá 20% số tiết' is a different limit (nghỉ dạy/dạy bù), no conflict. Question wording is close to the source sentence but acceptable."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "dạy thay",
+      "20%",
+      "03 phiên"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-014",
+    "verdict": "fix",
+    "issues": [
+      "Expected answer adds '(đăng ký trước 16g00 của ngày làm việc đó)', which is not supported by the quote and paraphrases the source ('trước 16g00 của ngày làm việc cách trước ngày dạy bù tối thiểu 01 ngày') inexactly. Core answer (min 01, max 07 days before the make-up day) is correct."
+    ],
+    "fix": {
+      "expected_answer": "Tối thiểu 01 ngày và tối đa 07 ngày trước ngày dạy bù."
+    },
+    "searched_terms": [
+      "dạy bù",
+      "16g00",
+      "07 ngày"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-015",
+    "verdict": "accept",
+    "issues": [
+      "Verified: 'từ 3.4/5 trở xuống đối với cùng môn học và có cỡ mẫu đạt'; clause says 'xem xét việc hoãn phân công', matching 'được xem xét hoãn'. Applies to international-programme lecturers (Phụ lục 1 scope)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "3.4/5",
+      "khảo sát học phần",
+      "hoãn phân công"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-016",
+    "verdict": "fix",
+    "issues": [
+      "Question 'cần đáp ứng điều kiện gì' is ambiguous: Phụ lục 2 mục 2 lists further requirements (năng lực chuyên môn/NCKH, kinh nghiệm giảng dạy, ngoại ngữ bậc 5/6 for courses taught in a foreign language), so the expected answer covering only the degree route is incomplete for the question as worded. Narrow the question to the degree condition."
+    ],
+    "fix": {
+      "question": "Theo Phụ lục 2 sửa đổi bởi Quyết định 2282/QĐ-ĐHBK, giảng viên chương trình PFIEV hoặc Tài năng đủ chuẩn bằng trình độ thạc sĩ (không có bằng tiến sĩ) thì bằng thạc sĩ phải được cấp ở đâu và thuộc ngành nào?",
+      "expected_answer": "Phải tốt nghiệp thạc sĩ tại trường đại học nước ngoài, đúng ngành hoặc thuộc ngành gần (bên cạnh phương án có trình độ tiến sĩ trở lên).",
+      "ground_truth_article_ids": [
+        "HCMUT_GIANGDAY2282_PhuLuc_2"
+      ],
+      "reference_evidence": [
+        {
+          "article_id": "HCMUT_GIANGDAY2282_PhuLuc_2",
+          "exact_quote": "Có trình độ Tiến sĩ trở lên hoặc có trình độ Thạc sĩ tốt nghiệp tại các trường Đại học",
+          "pdf_pages": [
+            9
+          ]
+        },
+        {
+          "article_id": "HCMUT_GIANGDAY2282_PhuLuc_2",
+          "exact_quote": "nước ngoài đúng ngành hoặc thuộc ngành gần;",
+          "pdf_pages": [
+            9
+          ]
+        }
+      ]
+    },
+    "searched_terms": [
+      "thạc sĩ",
+      "PFIEV",
+      "tiến sĩ"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-017",
+    "verdict": "accept",
+    "issues": [
+      "Verified: 'phải có giấy nhập viện hoặc giấy xuất viện của bệnh viện hoặc đơn vị có chức năng' applies to người học hoặc gia đình bị ốm đau/tai nạn đột xuất. Phụ lục 1 only says 'minh chứng'; no conflicting document list."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "nhập viện",
+      "ốm đau",
+      "minh chứng"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-018",
+    "verdict": "accept",
+    "issues": [
+      "Verified in Điều 7 Bước 1: at least 05 working days before end of tuition period."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "gia hạn",
+      "05 ngày làm việc"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-019",
+    "verdict": "accept",
+    "issues": [
+      "Verified in Điều 5 khoản 1 (scope sits in the 'Quyền lợi' article but is clear). Answer 'chỉ học kỳ chính; không áp dụng học kỳ dự thính và học kỳ hè' is correct."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "học kỳ chính",
+      "dự thính",
+      "học kỳ hè"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-020",
+    "verdict": "accept",
+    "issues": [
+      "Verified in Điều 8 khoản 1: Phó Hiệu trưởng is Chủ tịch Hội đồng."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "chủ tịch hội đồng",
+      "hội đồng xét hồ sơ"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-021",
+    "verdict": "reject",
+    "issues": [
+      "Artificial 'multi': two unrelated yes/no and number questions joined by 'Và'. The first half ('có phải tạm dừng học tập không') rests only on the purpose clause HOCPHI2800 Điều 3 ('không phải tạm dừng học tập'), which is not an operative rule (the notes themselves doubt it); Điều 6 says failing to pay after the extension leads to 'xử lý học vụ', so a flat 'Không' is misleading.",
+      "'Tạm dừng' is never defined in the corpus (the base 2933 is missing); in HVDT1260 14.3 it is a separate item from 'nghỉ học tạm thời' and in PhuLuc_4 it refers to pausing study to go abroad, so linking 2800's 'tạm dừng học tập' to 1260's 'tạm dừng quá 02 học kỳ chính' is an unsupported inference.",
+      "No reasoning chain connects the two cited records; each half could be asked alone. Cannot be repaired without changing intent. Suggested replacement: a single-document question on HOCPHI2800 Điều 5.2 (không được gia hạn trong 02 học kỳ chính liên tiếp nếu chưa nộp đủ học phí học kỳ đã gia hạn) or a genuine multi question linking Điều 7 Bước 1 (05 ngày làm việc) with Điều 7 Bước 6/Điều 6.2 (xử lý học vụ if unpaid)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "tạm dừng",
+      "nghỉ học tạm thời",
+      "buộc thôi học",
+      "xử lý học vụ"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-022",
+    "verdict": "fix",
+    "issues": [
+      "Expected answer 'Đủ điều kiện' is overclaimed: 5.5 also requires % credits accumulated, 80% training programme and graduation language standard (for Khóa luận) etc.; GPA >= 2.0 is only one necessary condition. The question should ask about the GPA threshold, not overall eligibility.",
+      "Rank band check is correct: 2.35 falls in 'Từ 2,00 đến cận 2,50: Trung bình' (1259 15.2). The two sub-questions are loosely linked (same GPA input) but acceptable as multi."
+    ],
+    "fix": {
+      "question": "Sinh viên có điểm trung bình tích lũy 2,35 (thang 4) thì có đạt ngưỡng GPA tối thiểu để được đăng ký các học phần tốt nghiệp theo Quyết định 1260/QĐ-ĐHBK (áp dụng từ học kỳ 1 năm học 2025-2026) không, và mức điểm đó thuộc loại học lực nào theo Quyết định 1259/QĐ-ĐHBK?",
+      "expected_answer": "Có đạt ngưỡng GPA (yêu cầu từ 2.0 trở lên theo thang điểm 4; đây chỉ là một trong các điều kiện để đăng ký học phần tốt nghiệp); học lực thuộc loại Trung bình (từ 2,00 đến cận 2,50).",
+      "ground_truth_article_ids": [
+        "HCMUT_HVDT1260_Dieu_1_S5_5",
+        "HCMUT_HVCHUNG1259_Dieu_1_S15_2"
+      ]
+    },
+    "searched_terms": [
+      "GPA",
+      "điểm trung bình tích lũy",
+      "xếp loại học lực"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-023",
+    "verdict": "fix",
+    "issues": [
+      "Quote 1 ('tập của người học được giữ nguyên') starts mid-sentence and does not support the conditions asserted in the expected answer (ngành đang học có hình thức VLVH và còn đủ thời gian đào tạo tối đa). Replace with the full clause fragments.",
+      "Table reading verified: 1260 3.1 row 'Vừa làm vừa học, đào tạo từ xa 10 10 16' -> Tối đa 16 (the row covers both VLVH and đào tạo từ xa). Multi-record combination is genuine (transfer rule in 1259 + duration in 1260)."
+    ],
+    "fix": {
+      "reference_evidence": [
+        {
+          "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S25_5",
+          "exact_quote": "Người học theo hình thức đào tạo chính quy có thể xin chuyển sang hình thức vừa",
+          "pdf_pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S25_5",
+          "exact_quote": "làm vừa học, đào tạo từ xa, nếu ngành đang học có hình thức đào tạo này và còn đủ thời",
+          "pdf_pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S25_5",
+          "exact_quote": "gian đào tạo tối đa theo quy định của hình thức vừa làm vừa học, đào tạo từ xa. Kết quả học",
+          "pdf_pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S25_5",
+          "exact_quote": "tập của người học được giữ nguyên.",
+          "pdf_pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "exact_quote": "Vừa làm vừa học, đào tạo từ xa 10 10 16",
+          "pdf_pages": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    "searched_terms": [
+      "thời gian đào tạo",
+      "chuyển hình thức",
+      "vừa làm vừa học"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-024",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed. Searched 'đơn giá' (3 hits, all in HVCHUNG1259_Dieu_1_S23_1: explains the formula and says the School announces the price), 'học phí' (59 hits/19 records, no amount), 'mức học phí', 'đồng/tín chỉ', regex number+đồng/VNĐ/triệu/USD (only VINHDANH658 prize thresholds). Corpus explains the method but gives no amount, so refusal is appropriate. Realistic student question."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "đơn giá",
+      "học phí",
+      "mức học phí",
+      "đồng/tín chỉ",
+      "regex số+đồng/vnđ/triệu/usd"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-025",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed. Searched 'phúc khảo' (0), 'phúc tra' (0), 'chấm lại' (0), 'xem lại bài' (0), 'công bố điểm' (0), 'kiểm tra lại' (0), 'sai sót' (0), 'đính chính' (0), 'khiếu nại' (5 hits, VINHDANH658 award complaints only), 'xem xét lại' (1, VINHDANH658). No score-review procedure exists; nearest text is 1259 16.2 (hoãn thi, 05 working days) which does not answer. Good unambiguous refusal item."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "phúc khảo",
+      "phúc tra",
+      "chấm lại",
+      "xem lại bài",
+      "công bố điểm",
+      "kiểm tra lại",
+      "sai sót",
+      "khiếu nại",
+      "điểm thi"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-026",
+    "verdict": "accept",
+    "issues": [
+      "Verified. Expected answer could add the exception '(trường hợp đặc biệt do Hiệu trưởng quyết định)' for completeness, but 'tối đa 02 lớp' is the rule stated and a grader would accept it. Note: the cited line is not actually split (the exception wording is on the same/next line)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "chủ nhiệm tối đa",
+      "02 lớp"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-027",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 5 khoản 4a: 'bị kỷ luật từ hình thức cảnh cáo trở lên'; Hiệu trưởng decides on P.CTSV proposal at Khoa request. Same phrase pattern appears in HVDT1260 10.1 for graduation grade but for students, no conflict."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "miễn nhiệm",
+      "cảnh cáo trở lên",
+      "kỷ luật từ"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-028",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 12 khoản 8. Question is close to a verbatim copy of the source clause and 'ghi nhận điều gì' is slightly vague (answer: 'kết quả' of the contact), but the single answer is unambiguous. Khoản 6 is related but not conflicting."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "cảnh báo học vụ",
+      "ghi nhận lại",
+      "gia đình"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "HCMUT-029",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 8 khoản 4 (Phòng Đào tạo sends decisions on đình chỉ học tập, buộc thôi học, nghỉ học tạm thời to Khoa)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "biến động người học",
+      "đình chỉ học tập",
+      "gửi quyết định"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-030",
+    "verdict": "accept",
+    "issues": [
+      "Verified Nội quy Điều 3 khoản 1; UNGXU3408 Điều 9.6 states the same rule (consistent). Easy item but valid."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thẻ sinh viên",
+      "khuôn viên"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-031",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 5 khoản 3. Only record mentioning 'xe máy'/'xe đạp' (grep); no exception text in corpus."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "xe máy",
+      "xe đạp"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-032",
+    "verdict": "fix",
+    "issues": [
+      "Ambiguous: 'loại sản phẩm nào khác cũng bị cấm hút' also admits 'các chất ma túy, các chất kích thích' (Điều 5 khoản 8: sử dụng... dưới mọi hình thức) and UNGXU3408 Điều 4 similarly bans drugs/stimulants; the question as worded does not target the parenthetical '(bao gồm thuốc lá điện tử)'. Reword so the intended single answer is determined by the 'hút thuốc lá' sub-clause."
+    ],
+    "fix": {
+      "question": "Theo Nội quy học đường, quy định cấm hút thuốc lá trong khuôn viên Trường nêu rõ bao gồm cả loại thuốc lá nào ngoài thuốc lá thông thường?",
+      "expected_answer": "Bao gồm cả thuốc lá điện tử."
+    },
+    "searched_terms": [
+      "thuốc lá",
+      "điện tử",
+      "chất kích thích",
+      "hút"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-033",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 6 khoản 3. Answer names the Quy chế Công tác sinh viên (not in corpus) only as a citation; acceptable. Fairly easy."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "quy chế công tác sinh viên",
+      "tùy theo mức độ vi phạm"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-034",
+    "verdict": "accept",
+    "issues": [
+      "Table reading verified: block 'e) Tốt nghiệp trình độ đại học từ khóa 2026': '2. Đồ án/ Khóa luận tốt nghiệp 6 Học kỳ 8' (columns Số tín chỉ | Ghi chú); the 'khóa 2025 về trước' row has 4 tín chỉ. Phụ lục XI total 'E. Học phần tốt nghiệp 17' = 11 + 6, consistent. Minor: question says 'khóa 2026' where text says 'từ khóa 2026' (onward)."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "học kỳ 8",
+      "đồ án/ khóa luận tốt nghiệp",
+      "khóa 2026"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-035",
+    "verdict": "accept",
+    "issues": [
+      "Verified: point b khoản 2 Điều 2 states practice share >= 20%. Quote starts at 'hành chiếm' (mid-word split from 'thực') but is a valid substring."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "20%",
+      "phần thực hành"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-036",
+    "verdict": "accept",
+    "issues": [
+      "Verified: ABET table total 128–132 and 'Toán tối thiểu 11'; FIBAA table total also 128–132 but its Toán is 9, so the question's ABET anchor disambiguates. Phụ lục XI repeats the same figures (consistent). Evidence quote 'Tổng tín chỉ 128–132' alone is non-unique, which is fine because the question names ABET."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "abet",
+      "128–132",
+      "toán tối thiểu"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-037",
+    "verdict": "accept",
+    "issues": [
+      "Verified: 'tối thiểu 07 thành viên và tối đa 15 thành viên (không bao gồm thư ký hành chính)'; the exclusion could be added to the answer but is not required by the question."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "hội đồng ngành",
+      "07 thành viên"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-038",
+    "verdict": "fix",
+    "issues": [
+      "Question has no document context ('Một đội thi' alone is under-specified for a corpus with many regulations) and nearly copies the source sentence. Add the regulation context; answer unchanged."
+    ],
+    "fix": {
+      "question": "Theo Quy chế hỗ trợ và vinh danh sinh viên, giảng viên hướng dẫn tham gia và đạt giải cao trong các cuộc thi học thuật, KHCN và ĐMST của Trường, mỗi đội thi được hỗ trợ hoặc vinh danh tối đa bao nhiêu lần ở cùng một mức?",
+      "expected_answer": "Tối đa 01 lần ở mỗi mức."
+    },
+    "searched_terms": [
+      "đội thi",
+      "vinh danh",
+      "01 lần"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-039",
+    "verdict": "accept",
+    "issues": [
+      "Verified: Kpl from 9 (cá nhân), 18 (nhóm SV), 27 (đồng đội) for lecturers whose students/teams won prizes of loại III or higher. Answer 18 correct for nhóm SV."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "kpl",
+      "loại III",
+      "hệ số khen thưởng"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-040",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 11 khoản 3d: nhóm SV (từ 02 SV) = 02 lần hiện kim cá nhân; team competitions (khoản 3e) = 03 lần, a different case that the question does not invoke."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "hiện kim",
+      "nhóm sv",
+      "02 lần"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-041",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 6 khoản 1a (support track): from competition announcement until 10 working days before registration deadline. Honour track has no day count."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "10 ngày làm việc",
+      "hồ sơ đề xuất hỗ trợ"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-042",
+    "verdict": "accept",
+    "issues": [
+      "Verified UNGXU3408 Điều 9 khoản 4: 'đến trước giờ khai mạc ít nhất 5 phút'. Question omits the document name but is answerable; grep 'khai mạc' returns this single record."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "khai mạc",
+      "5 phút"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-043",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 12 khoản 1. Easy but valid."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "thư điện tử",
+      "do Nhà trường cấp"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-044",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 13 khoản 4; grep 'xâm nhập' hits only this record. Chương IV scope includes người học."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "xâm nhập",
+      "giả mạo",
+      "tài khoản"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-045",
+    "verdict": "accept",
+    "issues": [
+      "Verified Điều 16 khoản 3. No date needed."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "trước thời điểm",
+      "có hiệu lực",
+      "hành vi vi phạm"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-046",
+    "verdict": "accept",
+    "issues": [
+      "Genuine two-document multi (NOIQUY1924 Điều 6.3 and UNGXU3408 Điều 15.2); both answers verified. Quote 2 fragment omits 'tùy theo tính chất, mức độ vi phạm' (mentioned in the answer) which is in the previous line of Điều 15.2; optional to add. Quote 1 omits 'tùy theo mức độ vi phạm' (previous line) likewise."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "xử lý",
+      "quy định nội bộ",
+      "quy chế công tác sinh viên"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "task_id": "HCMUT-047",
+    "verdict": "fix",
+    "issues": [
+      "Mislabelled multi: the answer (9 tín chỉ) comes only from CTDT1862 Điều 1 mục 7b; GVCN2977 Điều 15 khoản 4 adds no number and does not support the answer, so the question could be answered without it. Also '9 tín chỉ tự chọn tự do' is a design requirement of the training programme ('Chương trình đào tạo ... cần có'), not a rule stated for each student; the question word 'phải có' should be attributed to the programme.",
+      "Make both records contribute: ask about the CVHT duty (GVCN2977 Điều 15.4) and the programme requirement (CTDT1862, khóa 2025 về trước). Note the sentence also gives 'học kỳ thực tập doanh nghiệp' for khóa 2026 onward."
+    ],
+    "fix": {
+      "question": "Theo Quy định về công tác GVCN và CVHT, cố vấn học tập có nhiệm vụ gì liên quan đến tín chỉ tự chọn tự do, và theo Quyết định 1862/QĐ-ĐHBK sửa đổi, chương trình đào tạo đại học khóa 2025 về trước cần có tối thiểu bao nhiêu tín chỉ tự chọn tự do?",
+      "expected_answer": "CVHT tư vấn cho người học về các tín chỉ tự chọn tự do; chương trình đào tạo đại học khóa 2025 về trước cần có tối thiểu 9 tín chỉ tự chọn tự do.",
+      "reference_evidence": [
+        {
+          "article_id": "HCMUT_GVCN2977_Dieu_15",
+          "exact_quote": "Tư vấn cho người học về các tín chỉ tự chọn tự do.",
+          "pdf_pages": [
+            7
+          ]
+        },
+        {
+          "article_id": "HCMUT_CTDT1862_Dieu_1",
+          "exact_quote": "có tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước)",
+          "pdf_pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        }
+      ]
+    },
+    "searched_terms": [
+      "tự chọn tự do",
+      "tự chọn",
+      "cố vấn học tập"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-048",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed. Searched 'khuyến khích học tập' (0), 'học bổng' (1: GVCN2977 Điều 9 khoản 3, generic list), 'điểm rèn luyện' (5, only graduation-award criteria and GVCN duties, no scholarship threshold), 'ngưỡng' (2, tuition), 'điểm trung bình học kỳ' (3, definitions/rounding only). The VINHDANH658 cash rewards are for competitions, not scholarships. Refusal is appropriate."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "khuyến khích học tập",
+      "học bổng",
+      "điểm rèn luyện",
+      "điểm trung bình học kỳ",
+      "ngưỡng"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-049",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed. Searched 'ký túc' (0), 'kí túc' (0), 'nội trú' (0), 'ktx' (0), 'chỗ ở' (0), 'phòng ở' (0); 'lưu trú' (1) is a per-diem allowance in VINHDANH658 Điều 11. Item is totally off-domain (easy refusal) but realistic for a freshman."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "ký túc",
+      "kí túc",
+      "nội trú",
+      "ktx",
+      "chỗ ở",
+      "phòng ở",
+      "lưu trú"
+    ],
+    "confidence": "high"
+  },
+  {
+    "task_id": "HCMUT-050",
+    "verdict": "accept",
+    "issues": [
+      "Out-of-scope confirmed for the fine: searched 'phạt' (0), 'xử phạt' (0), 'mũ bảo hiểm' (0), 'nón bảo hiểm' (0), 'đội mũ' (0), 'an toàn giao thông' (0), 'luật giao' (0); 'giao thông' (2, faculty names only). Premise conflict: NOIQUY1924 Điều 5.3 bans riding xe máy on campus altogether; the expected answer states this and refuses the fine amount, which is a good adversarial item."
+    ],
+    "fix": null,
+    "searched_terms": [
+      "phạt",
+      "xử phạt",
+      "mũ bảo hiểm",
+      "nón bảo hiểm",
+      "giao thông",
+      "xe máy"
+    ],
+    "confidence": "medium"
+  }
+]

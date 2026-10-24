@@ -1,0 +1,924 @@
+[
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "a8a0b2ca83681d64f1f840f8",
+    "state": "judged",
+    "judgment": {
+      "review_id": "a8a0b2ca83681d64f1f840f8",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 1,
+      "completeness": 1,
+      "rationale": "Câu trả lời của thí sinh đưa ra thông tin đúng về thời gian đào tạo chuẩn của chương trình PFIEV là 10 học kỳ chính, được hỗ trợ bởi nguồn HCMUT_HVDT1260_Dieu_1_S3_1. Tuy nhiên, câu hỏi yêu cầu số học kỳ chính tối đa, nhưng thí sinh không cung cấp con số này (14). Do đó câu trả lời chỉ đúng một phần và thiếu thông tin cần thiết. Hành vi trả lời là phù hợp vì thí sinh đã trả lời thay vì từ chối.",
+      "claims": [
+        {
+          "answer_quote": "chương trình PFIEV (Chương trình Đào tạo kỹ sư chất lượng cao tại Việt Nam) có thời gian đào tạo chuẩn là 10 học kỳ chính",
+          "support": "supported",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao\ntại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "Nguồn chỉ rõ thời gian đào tạo chuẩn (số thứ hai) cho chương trình PFIEV là 10 học kỳ chính, hỗ trợ khẳng định của thí sinh."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "754131792a2f85545c6ea4cd",
+    "state": "judged",
+    "judgment": {
+      "review_id": "754131792a2f85545c6ea4cd",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi có thể trả lời được từ nguồn được cung cấp (Quyết định 1260/QĐ-ĐHBK, mục 3.1: chương trình PFIEV có thời gian tối đa 14 học kỳ chính). Ứng viên đã không trả lời mà yêu cầu làm rõ, hành vi này là không phù hợp với expected behavior 'answer'. Do đó, correctness và completeness đều là 0 và behaviour_appropriate là false.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "clarified",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "83825e8c2886c85d3f13f54f",
+    "state": "judged",
+    "judgment": {
+      "review_id": "83825e8c2886c85d3f13f54f",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate refused to answer despite the question being clearly within the knowledge base and answerable from the supplied source (HCMUT_HVDT1260_Dieu_1_S3_1). The source explicitly states 'Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14', where the third column is 'Tối đa' (maximum), so the maximum number of regular semesters is 14. The candidate's claim that the source does not contain a 'tối đa' record for PFIEV is contradicted by the source. Therefore the refusal is unjustified, behaviour is inappropriate, and the answer provides no correct information. Correctness and completeness are 0.",
+      "claims": [
+        {
+          "answer_quote": " HCMUT_HVDT1260_Dieu_1_S3_1 chỉ ghi thời gian chuẩn, không có file ghi 'tối đa' cho PFIEV",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "The source table includes a column 'Tối đa' and shows '14' for PFIEV, directly contradicting the candidate's assertion that there is no record of 'tối đa' for PFIEV."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "6205248c54fa5b6859ecc177",
+    "state": "judged",
+    "judgment": {
+      "review_id": "6205248c54fa5b6859ecc177",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "The candidate correctly answers both parts of the question: the application must be submitted to Phòng Công tác sinh viên (Điều 7), and the roles of that office in the review committee are Trưởng Phòng as Phó Chủ tịch and Phó Trưởng phòng as thư ký (Điều 8). All factual claims are supported by the supplied source articles. The response is complete and appropriate, with no errors or omissions.",
+      "claims": [
+        {
+          "answer_quote": "Bước 1 là nộp đơn đăng ký gia hạn về **Phòng Công tác sinh viên**",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_7",
+          "source_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên",
+          "explanation": "The source explicitly states that the application is submitted to Phòng Công tác sinh viên, matching the candidate's claim."
+        },
+        {
+          "answer_quote": "gồm 5 thành viên",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "bao gồm 5 thành viên",
+          "explanation": "The source states the committee consists of 5 members."
+        },
+        {
+          "answer_quote": "Phó Hiệu trưởng (Chủ tịch)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Phó Hiệu trưởng là Chủ tịch Hội đồng",
+          "explanation": "The source confirms that the Vice Rector is Chairman."
+        },
+        {
+          "answer_quote": "Trưởng Phòng Công tác sinh viên (Phó Chủ tịch)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng",
+          "explanation": "The source confirms that the Head of the Student Affairs Office is Vice Chairman."
+        },
+        {
+          "answer_quote": "Trưởng Phòng Kế hoạch – Tài chính (Ủy viên)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Trưởng Phòng Kế hoạch – Tài chính là ủy viên",
+          "explanation": "The source confirms that the Head of Planning and Finance Office is a member."
+        },
+        {
+          "answer_quote": "Trưởng Phòng Đào tạo (Ủy viên)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Trưởng Phòng Đào tạo là ủy viên",
+          "explanation": "The source confirms that the Head of Training Office is a member."
+        },
+        {
+          "answer_quote": "Phó Trưởng phòng Công tác sinh viên ( thư ký)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Phó Trưởng phòng Công tác sinh viên là thư ký",
+          "explanation": "The source confirms that the Deputy Head of the Student Affairs Office is Secretary."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": true,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "e259f4ea80f27ae711e73fd7",
+    "state": "judged",
+    "judgment": {
+      "review_id": "e259f4ea80f27ae711e73fd7",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 1,
+      "completeness": 1,
+      "rationale": "Candidate correctly identifies the office (Phòng Công tác sinh viên) as per Điều 7, but fails to answer the second part regarding the positions held by that office in the Hội đồng xét hồ sơ (i.e., Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng, Phó Trưởng phòng Công tác sinh viên là thư ký as per Điều 8). The candidate includes extra factual claims from Điều 6 which are not requested but are supported. Therefore, correctness is partial and completeness is incomplete.",
+      "claims": [
+        {
+          "answer_quote": "Người học phải nộp đủ học phí đúng thời hạn",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_6",
+          "source_quote": "Sau khi kết thúc thời gian gia hạn nộp học phí, người học phải nộp đủ học phí cả 02 học kỳ đúng thời hạn",
+          "explanation": "Điều 6.1 quy định nghĩa vụ nộp đủ học phí đúng hạn sau thời gian gia hạn."
+        },
+        {
+          "answer_quote": "Sau khi kết thúc, người học không hoàn thành nghĩa vụ sẽ bị xử lý theo quy định trường",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_6",
+          "source_quote": "Sau khi kết thúc thời gian nộp học phí của học kỳ kế tiếp, người học không hoàn thành nghĩa vụ nộp học phí sau thời gian gia hạn sẽ bị xử lý học vụ theo quy định của trường",
+          "explanation": "Điều 6.2 quy định xử lý đối với người học không hoàn thành nghĩa vụ sau gia hạn."
+        },
+        {
+          "answer_quote": "người học nộp đơn đăng ký gia hạn về Phòng Công tác sinh viên",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_7",
+          "source_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công tác sinh viên",
+          "explanation": "Điều 7 Bước 1 quy định nơi nộp đơn là Phòng Công tác sinh viên."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "d2d7a085abf6a4d03edf1b1d",
+    "state": "judged",
+    "judgment": {
+      "review_id": "d2d7a085abf6a4d03edf1b1d",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi có thể trả lời từ các nguồn được cung cấp (Điều 7 và Điều 8 của Quyết định 2800). Thí sinh phải trả lời, nhưng thay vào đó đã đưa ra câu hỏi làm rõ, không cung cấp bất kỳ thông tin thực tế nào liên quan đến câu hỏi. Hành vi này không phù hợp với hành vi dự kiến (answer). Do không trả lời, tính đúng đắn (correctness) và tính đầy đủ (completeness) đều là 0.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "clarified",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "LVN-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_guessable",
+    "stratum_group": "guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "752023dc12eb1bd7b62a585f",
+    "state": "judged",
+    "judgment": {
+      "review_id": "752023dc12eb1bd7b62a585f",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The candidate fails to answer the question about the number of annual leave days (16) for a worker in particularly heavy/hazardous work. Instead, it confuses annual leave with retirement, misattributes Điều 113 to a decree, and makes unsupported claims about Điều 4. The supplied source Điều 113 BLLD 2019 clearly provides the correct answer. The candidate's answer is factually erroneous and incomplete.",
+      "claims": [
+        {
+          "answer_quote": "**Về quyền nghỉ hằng năm (Nghỉ hưu):**",
+          "support": "contradicted",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "Điều 113. Nghỉ hằng năm",
+          "explanation": "The source refers to 'nghỉ hằng năm' not 'nghỉ hưu'. Equating the two is incorrect."
+        },
+        {
+          "answer_quote": "- **Bộ luật Lao động 2019, Điều 4:** Quy định về việc nghỉ hưu. Người lao động có thể nghỉ hưu ở tuổi cao hơn tuổi nghỉ hưu quy định.",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Supplied sources do not include Điều 4 BLLD 2019; the claim cannot be verified."
+        },
+        {
+          "answer_quote": "**Điều 113 của Bộ luật Lao động 2019 (tên: Nghị định 135/2020/NĐ-CP):**",
+          "support": "contradicted",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "Điều 113. Nghỉ hằng năm",
+          "explanation": "The supplied article shows Điều 113 is part of Bộ luật Lao động 2019, not Nghị định 135/2020/NĐ-CP."
+        },
+        {
+          "answer_quote": "Điều 113 quy định cho trường hợp 'Nghỉ hằng năm'",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "Điều 113. Nghỉ hằng năm",
+          "explanation": "The source confirms Điều 113 is about nghỉ hằng năm."
+        },
+        {
+          "answer_quote": "được nghỉ hưu hàng năm",
+          "support": "contradicted",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "được nghỉ hằng năm",
+          "explanation": "The source states 'nghỉ hằng năm', not 'nghỉ hưu hàng năm'."
+        },
+        {
+          "answer_quote": "hưởng nguyên lương theo hợp đồng lao động",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "hưởng nguyên lương theo hợp đồng lao động",
+          "explanation": "The source states that the worker receives full pay according to the labor contract."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "LVN-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_guessable",
+    "stratum_group": "guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "21d41beff855b4fc8905e311",
+    "state": "judged",
+    "judgment": {
+      "review_id": "21d41beff855b4fc8905e311",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 0,
+      "rationale": "Câu trả lời chỉ nêu lại phần mở đầu của khoản 1 Điều 113 Bộ luật Lao động 2019 về điều kiện nghỉ hằng năm hưởng nguyên lương khi làm đủ 12 tháng. Phát biểu này là đúng và được điều luật hỗ trợ. Tuy nhiên, câu hỏi yêu cầu xác định số ngày nghỉ hằng năm đối với người làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm; câu trả lời hoàn toàn không đưa ra con số 16 ngày làm việc theo điểm c khoản 1 Điều 113. Vì vậy, thông tin trọng yếu của câu trả lời bị thiếu, dù không có nhận định sai.",
+      "claims": [
+        {
+          "answer_quote": "Người lao động làm việc đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm và hưởng nguyên lương theo hợp đồng lao động",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "Người lao động làm việc đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm, hưởng nguyên lương theo hợp đồng lao động như sau",
+          "explanation": "Điều 113 BLLĐ 2019 xác nhận quyền nghỉ hằng năm hưởng nguyên lương khi làm đủ 12 tháng cho một người sử dụng lao động; nhận định của ứng viên phù hợp với quy định này."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "LVN-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_guessable",
+    "stratum_group": "guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "9fd6235c3861df04dac6361e",
+    "state": "judged",
+    "judgment": {
+      "review_id": "9fd6235c3861df04dac6361e",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate refused to answer, claiming no basis found in documents, but the supplied source article BLLD2019_Dieu_113 clearly provides the answer: 16 working days for extremely heavy, toxic, dangerous work under the conditions stated. Expected behavior was 'answer', so the refusal is unjustified. The candidate provided no factual claims.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "LVN-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "fb6ce2f2cfe8e05069cff8cd",
+    "state": "judged",
+    "judgment": {
+      "review_id": "fb6ce2f2cfe8e05069cff8cd",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 1,
+      "completeness": 1,
+      "rationale": "Câu trả lời cung cấp đúng mức lương tối thiểu tháng Vùng I (5.310.000 đồng) và nêu đúng việc Nghị định 293/2025 quy định cụ thể theo vùng. Tuy nhiên, câu trả lời thiếu mức lương tối thiểu giờ của Vùng I (25.500 đồng/giờ), đồng thời chưa trả lời rõ ràng yêu cầu về căn cứ xác lập theo vùng và ấn định theo tháng, giờ. Ngoài ra, phát biểu cho rằng Bộ luật Lao động 2019 'quy định tổng quát về mức sống tối thiểu của người lao động' không được Điều 91 hỗ trợ chính xác, vì Điều 91 quy định về mức lương tối thiểu, chỉ sử dụng 'mức sống tối thiểu' làm mục tiêu bảo đảm.",
+      "claims": [
+        {
+          "answer_quote": "Bộ luật Lao động 2019**: Quy định tổng quát về mức sống tối thiểu của người lao động.",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Điều 91 BLLĐ 2019 quy định về mức lương tối thiểu, không phải quy định tổng quát về mức sống tối thiểu của người lao động; mức sống tối thiểu chỉ là mục tiêu bảo đảm khi xây dựng chế độ tiền lương tối thiểu."
+        },
+        {
+          "answer_quote": "Nghị định 293/2025 (NĐ-CP)**: Quy định cụ thể cho từng vùng.",
+          "support": "supported",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Quy định mức lương tối thiểu tháng và mức lương tối thiểu giờ đối với người lao động làm việc cho người sử dụng lao động theo vùng như sau:",
+          "explanation": "Nghị định 293/2025 tại Điều 3 quy định mức lương tối thiểu tháng và giờ theo từng vùng I, II, III, IV."
+        },
+        {
+          "answer_quote": "Đối với **Vùng I**, mức lương tối thiểu tháng là **5.310.000 đồng**.",
+          "support": "supported",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "Điều 3 Nghị định 293/2025 xác định mức lương tối thiểu tháng Vùng I là 5.310.000 đồng/tháng."
+        },
+        {
+          "answer_quote": "Đồng thời, mức lương tối thiểu giờ cũng được quy định theo cùng các đơn vị.",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Câu trả lời không nêu rõ mức lương tối thiểu giờ của Vùng I là 25.500 đồng/giờ và cụm từ 'theo cùng các đơn vị' không được nguồn hỗ trợ một cách rõ ràng."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "LVN-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "4d7fd00baf8dd477f7d14d65",
+    "state": "judged",
+    "judgment": {
+      "review_id": "4d7fd00baf8dd477f7d14d65",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi có thể trả lời được dựa trên các tài liệu đã cung cấp: BLLD2019_Dieu_91 quy định 'Mức lương tối thiểu được xác lập theo vùng, ấn định theo tháng, giờ' và ND293_2025_Dieu_3 quy định cụ thể mức lương tối thiểu tháng cho Vùng I là 5.310.000 đồng và mức lương tối thiểu giờ là 25.500 đồng. Ứng viên từ chối trả lời với lý do 'không có tài liệu tra cứu chứng minh trực tiếp', nhưng tài liệu nguồn đã có đầy đủ thông tin. Vì vậy, hành vi từ chối là không chính đáng, câu trả lời không cung cấp thông tin yêu cầu nên đúng/sai và đầy đủ đều là 0.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 42,
+    "task_id": "LVN-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "system",
+    "recorded": true,
+    "review_id": "db33caf069fe363452d74ce9",
+    "state": "judged",
+    "judgment": {
+      "review_id": "db33caf069fe363452d74ce9",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "The candidate refused to answer a question that is clearly answerable from the supplied sources (Điều 91 BLLD 2019 and Điều 3 Nghị định 293/2025). The scope explicitly states the question is within the knowledge base. Therefore, the refusal is unjustified. No factual claims were provided.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "baseline",
+    "recorded": true,
+    "review_id": "6ec6b7d25564e692e072af3f",
+    "state": "judged",
+    "judgment": {
+      "review_id": "6ec6b7d25564e692e072af3f",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate refused to answer, claiming no information in database. However, the supplied source article HCMUT_HVDT1260_Dieu_1_S3_1 clearly contains the relevant provision: 'Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14', which answers the question (tối đa 14 học kỳ chính). The refusal is therefore unjustified. No factual claims about the question were made; the claim about absent information is not a factual claim per rubric. Behaviour is inappropriate, and the answer provides none of the required information.",
+      "claims": []
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "baseline",
+    "recorded": true,
+    "review_id": "c54fbcb9441711c0c1274f72",
+    "state": "judged",
+    "judgment": {
+      "review_id": "c54fbcb9441711c0c1274f72",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": false,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Candidate claimed that there is no specific regulation in the database about the office and positions for fee extension. However, Điều 7 clearly states that the application is submitted to Phòng Công tác sinh viên, and Điều 8 specifies the membership of the Hội đồng, including Trưởng Phòng Công tác sinh viên as Phó Chủ tịch and Phó Trưởng phòng Công tác sinh viên as thư ký. Therefore, the candidate's refusal is unjustified, the answer is incorrect, and no relevant information was provided.",
+      "claims": [
+        {
+          "answer_quote": "Trong cơ sở dữ liệu đã nạp, không có quy định cụ thể xác định phòng đăng ký và danh sách các chức danh trong Hội đồng xét hồ sơ xin gia hạn.",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng",
+          "explanation": "Điều 8 quy định rõ các chức danh trong Hội đồng xét hồ sơ, trong đó Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng, và Phó Trưởng phòng Công tác sinh viên là thư ký. Điều 7 cũng quy định nộp đơn về Phòng Công tác sinh viên. Do đó, khẳng định không có quy định là sai."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "refused",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "LVN-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_guessable",
+    "stratum_group": "guessable",
+    "arm": "baseline",
+    "recorded": true,
+    "review_id": "655ca2f8a468cb318a6d1a82",
+    "state": "judged",
+    "judgment": {
+      "review_id": "655ca2f8a468cb318a6d1a82",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 0,
+      "completeness": 0,
+      "rationale": "Câu hỏi yêu cầu số ngày nghỉ hằng năm của người lao động làm nghề đặc biệt nặng nhọc, độc hại, nguy hiểm khi làm đủ 12 tháng. Câu trả lời của thí sinh không đề cập đến nghỉ hằng năm, thay vào đó nói về 'nghỉ hưu' và các điều kiện 6 tháng/1 năm, hoàn toàn không liên quan. Nguồn được cung cấp (Điều 113 BLLĐ 2019) quy định rõ: 16 ngày làm việc cho loại lao động này khi làm đủ 12 tháng. Thí sinh đưa ra các khẳng định thực tế về chế độ hưu trí và viện dẫn một điều luật không có trong nguồn (Art. 74). Các khẳng định này không được hỗ trợ hoặc mâu thuẫn với nguồn duy nhất được cung cấp. Vì vậy, câu trả lời sai hoàn toàn về nội dung, không cung cấp thông tin yêu cầu, nên điểm chính xác và đầy đủ đều là 0. Hành vi là trả lời (phù hợp với expected_behavior), nhưng câu trả lời không chính xác.",
+      "claims": [
+        {
+          "answer_quote": "quy định cho người lao động làm nghề đặc biệt, nặng, độc hại, nguy hiểm phải được nghỉ hưu theo thời hạn.",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Nguồn cung cấp (Điều 113) nói về nghỉ hằng năm, không hề quy định về nghỉ hưu. Khẳng định này không được chứng minh bởi nguồn."
+        },
+        {
+          "answer_quote": "Người lao động làm nghề đặc biệt, nặng, độc hại, nguy hiểm có quyền nghỉ hưu sau 6 tháng làm việc hoặc 1 năm làm việc (tùy quy định cụ thể từng loại nghề).",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Không có quy định nào trong Điều 113 về nghỉ hưu sau 6 tháng hoặc 1 năm; nội dung này không tồn tại trong nguồn."
+        },
+        {
+          "answer_quote": "Theo Art. 74 L Lao động 2019, người lao động được hưởng nguyên lương theo quy định của Bộ Lao động và Thương mại quốc gia.",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "Nguồn được cung cấp không bao gồm Điều 74; nội dung về 'Bộ Lao động và Thương mại quốc gia' cũng không có trong Điều 113. Khẳng định này không được hỗ trợ."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "closed_book",
+    "seed": 42,
+    "task_id": "LVN-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "baseline",
+    "recorded": true,
+    "review_id": "be6b28c9e2ade552baacbb9e",
+    "state": "judged",
+    "judgment": {
+      "review_id": "be6b28c9e2ade552baacbb9e",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 0,
+      "completeness": 2,
+      "rationale": "The candidate answered but provided incorrect information. For the first part, the units given (tiền bạc, thời gian làm việc, số lượng giờ làm việc) contradict the Labor Code's wording 'xác lập theo vùng, ấn định theo tháng, giờ'. The assertion about the Ministry of Labour and Social Protection is not supported. The decree number claim and wage figures are also contradicted or unsupported by the supplied sources. The answer covers both parts of the question, so completeness is 2, but correctness is 0.",
+      "claims": [
+        {
+          "answer_quote": "được xác lập và ấn định theo các đơn vị như: tiền bạc, thời gian làm việc, hoặc số lượng giờ làm việc",
+          "support": "contradicted",
+          "source_article_id": "BLLD2019_Dieu_91",
+          "source_quote": "Mức lương tối thiểu được xác lập theo vùng, ấn định theo tháng, giờ",
+          "explanation": "The source specifies establishment by region and fixation by month and hour, which directly contradicts the candidate's description of units such as money, working time, or number of hours."
+        },
+        {
+          "answer_quote": "(tính theo quy định của Bộ Lao động và Bảo vệ lao động)",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "No supplied source states that the minimum wage is determined by the Ministry of Labour and Social Protection; the Labor Code assigns the details to the Government."
+        },
+        {
+          "answer_quote": "Nghị định 293/2025 (Nghị định 126/QĐ-TRĐ)",
+          "support": "not_established",
+          "source_article_id": null,
+          "source_quote": null,
+          "explanation": "The supplied source (ND293_2025_Dieu_3) identifies the decree as Nghị định 293/2025/NĐ-CP, with no mention of '126/QĐ-TRĐ'."
+        },
+        {
+          "answer_quote": "mức lương tối thiểu tháng và giờ cho Vùng I là 4,8 triệu đồng/tháng và 750 đồng/giờ",
+          "support": "contradicted",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "The source provides the correct figures as 5,310,000 đồng/tháng and 25,500 đồng/giờ, contradicting the candidate's statement."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "baseline",
+    "recorded": true,
+    "review_id": "e90d48d091116395f9887f2b",
+    "state": "judged",
+    "judgment": {
+      "review_id": "e90d48d091116395f9887f2b",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 0,
+      "completeness": 1,
+      "rationale": "The candidate answer incorrectly states that the maximum number of main semesters for the PFIEV program is 10, while the source article (HCMUT_HVDT1260_Dieu_1_S3_1) clearly specifies that the maximum is 14 (columns 'Kế hoạch 10, Chuẩn 10, Tối đa 14'). The answer is therefore wrong on the central factual claim, leading to correctness=0. The answer does supply a number but it is incorrect, so completeness is partial (1) because the correct required information (14) is missing.",
+      "claims": [
+        {
+          "answer_quote": "chương trình PFIEV được tối đa 10 học kỳ chính",
+          "support": "contradicted",
+          "source_article_id": "HCMUT_HVDT1260_Dieu_1_S3_1",
+          "source_quote": "Chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV) 10 10 14",
+          "explanation": "The source states the maximum (Tối đa) is 14, not 10, so the candidate's claim is directly contradicted."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": false,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "hcmut_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "HCMUT-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "baseline",
+    "recorded": true,
+    "review_id": "320ac1bac81c94a5639bd648",
+    "state": "judged",
+    "judgment": {
+      "review_id": "320ac1bac81c94a5639bd648",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh cung cấp đúng phòng nộp đơn (Phòng Công tác sinh viên) và các chức danh của phòng đó trong Hội đồng (Trưởng phòng là Phó Chủ tịch, Phó Trưởng phòng là Thư ký), đồng thời liệt kê thêm các thành viên khác nhưng không sai. Tất cả các khẳng định đều được hỗ trợ bởi các điều khoản được cung cấp (Điều 7 và Điều 8). Hành vi trả lời là phù hợp vì câu hỏi có thể trả lời được từ nguồn.",
+      "claims": [
+        {
+          "answer_quote": "Người học phải nộp đơn đăng ký về **Phòng Công tác sinh viên**.",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_7",
+          "source_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công tác sinh viên",
+          "explanation": "Điều 7 quy định rõ bước 1: nộp đơn về Phòng Công tác sinh viên, khẳng định này hoàn toàn phù hợp."
+        },
+        {
+          "answer_quote": "Phó Hiệu trưởng (Chủ tịch)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Phó Hiệu trưởng là Chủ tịch Hội đồng",
+          "explanation": "Điều 8 khoản 1 nêu Phó Hiệu trưởng là Chủ tịch Hội đồng."
+        },
+        {
+          "answer_quote": "Trưởng Phòng Công tác sinh viên (Phó Chủ tịch)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng",
+          "explanation": "Điều 8 quy định Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng."
+        },
+        {
+          "answer_quote": "Trưởng Phòng Kế hoạch - Tài chính (Ủy viên)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Trưởng Phòng Kế hoạch – Tài chính là ủy viên",
+          "explanation": "Điều 8 liệt kê Trưởng Phòng Kế hoạch – Tài chính là ủy viên."
+        },
+        {
+          "answer_quote": "Trưởng Phòng Đào tạo (Ủy viên)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Trưởng Phòng Đào tạo là ủy viên",
+          "explanation": "Điều 8 liệt kê Trưởng Phòng Đào tạo là ủy viên."
+        },
+        {
+          "answer_quote": "Phó Trưởng phòng Công tác sinh viên (Thư ký)",
+          "support": "supported",
+          "source_article_id": "HCMUT_HOCPHI2800_Dieu_8",
+          "source_quote": "Phó Trưởng phòng Công tác sinh viên là thư ký",
+          "explanation": "Điều 8 quy định Phó Trưởng phòng Công tác sinh viên là thư ký."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": true,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "LVN-001",
+    "category": "single",
+    "expected_behavior": "answer",
+    "gold_ids": 1,
+    "stratum": "closed_book_guessable",
+    "stratum_group": "guessable",
+    "arm": "baseline",
+    "recorded": true,
+    "review_id": "9fa16fe76805fafe222f0109",
+    "state": "judged",
+    "judgment": {
+      "review_id": "9fa16fe76805fafe222f0109",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Câu trả lời của thí sinh trả lời đúng câu hỏi: người lao động làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm và làm đủ 12 tháng được nghỉ hằng năm 16 ngày làm việc, hưởng nguyên lương theo Điều 113 Bộ luật Lao động 2019. Tất cả các khẳng định thực tế trong câu trả lời đều được hỗ trợ bởi nguồn được cung cấp (BLLD2019_Dieu_113). Thông tin bổ sung về các trường hợp khác và người lao động không đủ 12 tháng là chính xác và không mâu thuẫn với câu hỏi. Hành vi trả lời phù hợp với expected_behavior. Không có vấn đề về tham chiếu hoặc nguồn.",
+      "claims": [
+        {
+          "answer_quote": "12 ngày làm việc đối với người làm công việc trong điều kiện bình thường.",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "12 ngày làm việc đối với người làm công việc trong điều kiện bình thường;",
+          "explanation": "Khoản 1(a) Điều 113 BLLĐ 2019 quy định người lao động làm việc trong điều kiện bình thường được nghỉ 12 ngày."
+        },
+        {
+          "answer_quote": "14 ngày làm việc đối với người lao động chưa thành niên, lao động là người khuyết tật, người làm nghề, công việc nặng nhọc, độc hại, nguy hiểm;",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "14 ngày làm việc đối với người lao động chưa thành niên, lao động là người khuyết tật, người làm nghề, công việc nặng nhọc, độc hại, nguy hiểm;",
+          "explanation": "Khoản 1(b) Điều 113 BLLĐ 2019 quy định các đối tượng này được nghỉ 14 ngày."
+        },
+        {
+          "answer_quote": "16 ngày làm việc đối với người làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm.",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "16 ngày làm việc đối với người làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm.",
+          "explanation": "Khoản 1(c) Điều 113 BLLĐ 2019 quy định đối tượng đặc biệt nặng nhọc, độc hại, nguy hiểm được nghỉ 16 ngày, đúng với yêu cầu của câu hỏi."
+        },
+        {
+          "answer_quote": "Người lao động không đủ 12 tháng sẽ tính theo tỷ lệ tương ứng với số tháng làm việc.",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_113",
+          "source_quote": "Người lao động làm việc chưa đủ 12 tháng cho một người sử dụng lao động thì số ngày nghỉ hằng năm theo tỷ lệ tương ứng với số tháng làm việc.",
+          "explanation": "Khoản 2 Điều 113 BLLĐ 2019 quy định trường hợp làm chưa đủ 12 tháng thì tính theo tỷ lệ."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": true,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  },
+  {
+    "benchmark": "labour_vi_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "LVN-021",
+    "category": "multi",
+    "expected_behavior": "answer",
+    "gold_ids": 2,
+    "stratum": "closed_book_unsolved",
+    "stratum_group": "not_guessable",
+    "arm": "baseline",
+    "recorded": true,
+    "review_id": "f256fd759bd9de0255c2b8a1",
+    "state": "judged",
+    "judgment": {
+      "review_id": "f256fd759bd9de0255c2b8a1",
+      "judgeable": true,
+      "reference_issue": null,
+      "behaviour_appropriate": true,
+      "correctness": 2,
+      "completeness": 2,
+      "rationale": "Candidate trả lời đúng nội dung câu hỏi: nêu đúng đơn vị xác lập và ấn định mức lương tối thiểu (vùng, tháng, giờ) phù hợp với Điều 91 BLLĐ 2019, và cung cấp đúng mức lương tối thiểu tháng và giờ của Vùng I theo Nghị định 293/2025 (5.310.000 đồng/tháng và 25.500 đồng/giờ). Các khẳng định đều được hỗ trợ bởi nguồn đã cung cấp. Hành vi trả lời phù hợp với expected behavior. Không có vấn đề về tham chiếu.",
+      "claims": [
+        {
+          "answer_quote": "Theo Bộ luật Lao động 2019, mức lương tối thiểu được xác lập theo vùng, tháng và giờ.",
+          "support": "supported",
+          "source_article_id": "BLLD2019_Dieu_91",
+          "source_quote": "Mức lương tối thiểu được xác lập theo vùng, ấn định theo tháng, giờ.",
+          "explanation": "Nguồn quy định mức lương tối thiểu được xác lập theo vùng và ấn định theo tháng, giờ. Câu trả lời của candidate xác lập theo vùng, tháng và giờ vẫn phản ánh đúng các đơn vị, mặc dù không tách rõ 'xác lập' và 'ấn định' nhưng không sai về nội dung."
+        },
+        {
+          "answer_quote": "Theo Nghị định 293/2025/NĐ-CP (Điều 3), mức lương tối thiểu cho Vùng I là: 5.310.000 đồng/tháng và 25.500 đồng/giờ.",
+          "support": "supported",
+          "source_article_id": "ND293_2025_Dieu_3",
+          "source_quote": "Vùng I 5.310.000 25.500",
+          "explanation": "Nguồn quy định rõ mức lương tối thiểu tháng và giờ cho Vùng I là 5.310.000 đồng/tháng và 25.500 đồng/giờ, khớp với câu trả lời của candidate."
+        }
+      ]
+    },
+    "judgeable": true,
+    "success": true,
+    "retried_attempts": 0,
+    "terminal_status": "answered",
+    "error_kind": null
+  }
+]

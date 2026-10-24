@@ -1,0 +1,33 @@
+# Controller, tool and verifier messages for profiles with `language: vi`.
+#
+# A domain profile (config/domains/<id>.yaml) may override any of these under its own `messages:` block; the keys it
+# does not set are taken from the pack that matches its `language` (config/domains/messages/<language>.yaml).
+# The wording below is the wording the system used before the messages were moved out of the shared code, so frozen
+# runs keep producing the same model-visible text. Placeholders are str.format fields; the loader checks them.
+#
+# Model-visible: tool_budget_search, tool_budget_read, search_not_found, document_not_found.
+# Ledger / audit only: the rest.
+
+tool_budget_search: "[LỖI_NGÂN_SÁCH] Đã sử dụng tối đa {max_tool_calls} lượt gọi công cụ. Bạn KHÔNG ĐƯỢC gọi thêm công cụ nữa. Hãy chuyển sang hành động 'answer' nếu đã đủ tài liệu, hoặc 'refuse' nếu chưa đủ căn cứ."
+tool_budget_read: "[LỖI_NGÂN_SÁCH] Đã sử dụng tối đa {max_tool_calls} lượt gọi công cụ. Bạn KHÔNG ĐƯỢC gọi thêm công cụ nữa. Hãy chuyển sang hành động 'answer' hoặc 'refuse'."
+steps_exhausted: "Hệ thống đã sử dụng hết giới hạn tối đa {max_steps} bước suy luận mà chưa có kết luận."
+tool_budget_exhausted: "Hệ thống đã sử dụng hết ngân sách {max_tool_calls} lượt gọi công cụ."
+component_error_summary: "Lỗi thành phần mô hình: {kind}"
+read_status: "Trạng thái: {status}"
+
+search_not_found: "Không tìm thấy tài liệu phù hợp cho truy vấn '{query}'"
+document_not_found: "Mã tài liệu '{doc_id}' không tồn tại trong cơ sở dữ liệu."
+
+# L1 lexical grounding feedback
+l1_empty_answer_claim: "Câu trả lời rỗng hoặc không có nội dung."
+l1_empty_answer_feedback: "Câu trả lời rỗng không cung cấp nội dung tư vấn có căn cứ."
+l1_missing_citation_feedback: "Bạn đưa ra câu trả lời khẳng định nhưng không cung cấp bất kỳ trích dẫn nguồn (citation) nào làm căn cứ!"
+l1_unknown_citation: "Mã tài liệu trích dẫn '{doc_id}' không tồn tại trong cơ sở tri thức."
+l1_quote_mismatch: "Trích nguyên văn của '{doc_id}' không nằm trong văn bản nguồn. Đọc lại nguồn hoặc bỏ trường exact_quote nếu chỉ diễn giải."
+l1_unsupported_claims: "Phát hiện {count} câu khẳng định chưa tìm thấy căn cứ đối ứng trong tài liệu trích dẫn:\n{claims}"
+
+# Optional NLI step (verifier.nli) and L2 entailment feedback
+nli_repair_feedback: "CẢNH BÁO NLI: {count} cặp (câu trả lời, điều luật dẫn) có xác suất mâu thuẫn >= {threshold}:\n{pairs}"
+nli_pair_line: "- \"{sentence}\" mâu thuẫn với {premise_id} (P={probability:.2f})"
+l2_repair_feedback: "CẢNH BÁO XÁC THỰC NGỮ NGHĨA (Semantic Entailment): Phát hiện {count} câu khẳng định chưa đạt căn cứ kéo theo ngữ nghĩa (entailment score < {threshold}):\n{claims}"
+cache_l2_rejection: "L2 SEMANTIC VERIFIER REJECTED (Cache): Phát hiện {count} câu khẳng định chưa đạt căn cứ kéo theo ngữ nghĩa:\n{claims}"

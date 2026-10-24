@@ -1,0 +1,13 @@
+# Un-scored warm-up questions for run profiles with `warmup_trials > 0` (mac-latency). They are NOT benchmark tasks (a unit
+# test checks they never equal a task question) and they are run before the first recorded trial of every new agent, so that
+# index construction, reranker weight loading and the server's compute caches are not charged to the first measured trial.
+# Warm-up rows are kept in <run>/warmup.jsonl (flag warmup=true, seed 0) and are excluded from every metric.
+questions:
+  hcmut_v1:
+    - "Sinh viên cần làm thủ tục gì để được bảo lưu kết quả học tập khi nghỉ học tạm thời?"
+    - "Thời gian tối đa để sinh viên hoàn thành chương trình đào tạo đại học chính quy là bao lâu?"
+    - "Sinh viên bị buộc thôi học trong những trường hợp nào?"
+  labour_vi_v1:
+    - "Thời giờ làm việc bình thường tối đa trong một ngày là bao nhiêu giờ?"
+    - "Người lao động có quyền đơn phương chấm dứt hợp đồng lao động không và phải báo trước bao lâu?"
+    - "Người sử dụng lao động có được yêu cầu người lao động làm thêm giờ không?"

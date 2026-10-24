@@ -1,0 +1,663 @@
+[
+  {
+    "task_id": "LVN-026",
+    "category": "single",
+    "question": "Theo Luật Công đoàn 2024, kinh phí công đoàn do doanh nghiệp đóng bằng bao nhiêu phần trăm quỹ tiền lương làm căn cứ đóng bảo hiểm xã hội bắt buộc?",
+    "ground_truth_article_ids": [
+      "LCD2024_Dieu_29"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "2% quỹ tiền lương làm căn cứ đóng bảo hiểm xã hội bắt buộc cho người lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "LCD2024_Dieu_29",
+        "exact_quote": "Kinh phí công đoàn do cơ quan, tổ chức, đơn vị, doanh nghiệp, hợp tác xã, liên hiệp hợp tác xã đóng bằng 2% quỹ tiền lương làm căn cứ đóng bảo hiểm xã hội bắt buộc cho người lao động",
+        "pdf_pages": [
+          20
+        ]
+      }
+    ],
+    "doc_code": "LCD2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Only the contribution rate in khoản 1 điểm b. Exemptions/deferrals are in Điều 30 and not asked."
+  },
+  {
+    "task_id": "LVN-027",
+    "category": "single",
+    "question": "Doanh nghiệp gặp khó khăn phải tạm dừng sản xuất, kinh doanh và không có khả năng đóng kinh phí công đoàn thì có thể được tạm dừng đóng tối đa bao lâu? Khi hết thời hạn tạm dừng thì phải đóng bù như thế nào?",
+    "ground_truth_article_ids": [
+      "LCD2024_Dieu_30"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Có thể được xem xét tạm dừng đóng trong thời gian không quá 12 tháng. Khi hết thời hạn, doanh nghiệp tiếp tục đóng và đóng bù bằng số tiền phải đóng của những tháng tạm dừng; thời hạn đóng bù chậm nhất là ngày cuối cùng của tháng tiếp theo tháng kết thúc việc tạm dừng.",
+    "reference_evidence": [
+      {
+        "article_id": "LCD2024_Dieu_30",
+        "exact_quote": "Trường hợp doanh nghiệp, hợp tác xã, liên hiệp hợp tác xã gặp khó khăn phải tạm dừng sản xuất, kinh doanh dẫn đến việc không có khả năng đóng kinh phí công đoàn thì được xem xét tạm dừng đóng kinh phí công đoàn trong thời gian không quá 12 tháng",
+        "pdf_pages": [
+          20,
+          21
+        ]
+      },
+      {
+        "article_id": "LCD2024_Dieu_30",
+        "exact_quote": "Thời hạn đóng bù chậm nhất là ngày cuối cùng của tháng tiếp theo tháng kết thúc việc tạm dừng đóng",
+        "pdf_pages": [
+          20,
+          21
+        ]
+      },
+      {
+        "article_id": "LCD2024_Dieu_30",
+        "exact_quote": "Số tiền đóng bù bằng số tiền phải đóng của những tháng tạm dừng đóng",
+        "pdf_pages": [
+          20,
+          21
+        ]
+      }
+    ],
+    "doc_code": "LCD2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Text says 'được xem xét' (may be considered), so the question says 'có thể được'. Two sub-answers, both from khoản 3."
+  },
+  {
+    "task_id": "LVN-028",
+    "category": "single",
+    "question": "Luật Công đoàn 2024 có hiệu lực thi hành từ ngày nào, và Luật Công đoàn 2012 hết hiệu lực vào thời điểm nào?",
+    "ground_truth_article_ids": [
+      "LCD2024_Dieu_37"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Luật có hiệu lực từ ngày 01/7/2025. Luật Công đoàn số 12/2012/QH13 hết hiệu lực từ ngày Luật Công đoàn 2024 có hiệu lực.",
+    "reference_evidence": [
+      {
+        "article_id": "LCD2024_Dieu_37",
+        "exact_quote": "Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025",
+        "pdf_pages": [
+          25
+        ]
+      },
+      {
+        "article_id": "LCD2024_Dieu_37",
+        "exact_quote": "Luật Công đoàn số 12/2012/QH13 hết hiệu lực từ ngày Luật này có hiệu lực thi hành",
+        "pdf_pages": [
+          25
+        ]
+      }
+    ],
+    "doc_code": "LCD2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Effective date and repeal are both printed in Điều 37. Adoption date (27-11-2024) is not asked."
+  },
+  {
+    "task_id": "LVN-029",
+    "category": "single",
+    "question": "Người lao động là công dân nước ngoài làm việc tại Việt Nam có được gia nhập và hoạt động công đoàn không? Nếu có, hợp đồng lao động phải có thời hạn bao lâu và họ được gia nhập ở cấp nào?",
+    "ground_truth_article_ids": [
+      "LCD2024_Dieu_5"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Có, nếu làm việc tại Việt Nam theo hợp đồng lao động có thời hạn từ đủ 12 tháng trở lên; khi đó được gia nhập và hoạt động công đoàn tại công đoàn cơ sở.",
+    "reference_evidence": [
+      {
+        "article_id": "LCD2024_Dieu_5",
+        "exact_quote": "Người lao động là công dân nước ngoài làm việc tại Việt Nam theo hợp đồng lao động có thời hạn từ đủ 12 tháng trở lên được gia nhập và hoạt động công đoàn tại công đoàn cơ sở",
+        "pdf_pages": [
+          3
+        ]
+      }
+    ],
+    "doc_code": "LCD2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Covers khoản 2 only; Vietnamese workers (khoản 1) are not asked. Mentions 'công đoàn cơ sở' as stated."
+  },
+  {
+    "task_id": "LVN-030",
+    "category": "single",
+    "question": "Theo Nghị định 135/2020/NĐ-CP, tuổi nghỉ hưu của lao động nam làm việc trong điều kiện lao động bình thường từ năm 2028 trở đi là bao nhiêu?",
+    "ground_truth_article_ids": [
+      "ND135_2020_Dieu_4"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Đủ 62 tuổi (từ năm 2028 trở đi).",
+    "reference_evidence": [
+      {
+        "article_id": "ND135_2020_Dieu_4",
+        "exact_quote": "cho đến khi đủ 62 tuổi vào năm 2028",
+        "pdf_pages": [
+          2,
+          3
+        ]
+      }
+    ],
+    "doc_code": "ND135_2020",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Quote is from the sentence before the table. The table row 'Từ năm 2028 trở đi 62 tuổi' is consistent. Male and female columns are not mixed."
+  },
+  {
+    "task_id": "LVN-031",
+    "category": "single",
+    "question": "Người lao động bị suy giảm khả năng lao động từ 61% trở lên có được nghỉ hưu ở tuổi thấp hơn theo Nghị định 135/2020 không? Nếu có, tuổi nghỉ hưu thấp hơn đó tối đa là bao nhiêu so với tuổi nghỉ hưu bình thường?",
+    "ground_truth_article_ids": [
+      "ND135_2020_Dieu_5"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Có. Người lao động bị suy giảm khả năng lao động từ 61% trở lên thuộc trường hợp được nghỉ hưu ở tuổi thấp hơn, nhưng không quá 05 tuổi so với tuổi nghỉ hưu quy định tại Điều 4 tại thời điểm nghỉ hưu, trừ trường hợp pháp luật có quy định khác.",
+    "reference_evidence": [
+      {
+        "article_id": "ND135_2020_Dieu_5",
+        "exact_quote": "c) Người lao động bị suy giảm khả năng lao động từ 61% trở lên.",
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "article_id": "ND135_2020_Dieu_5",
+        "exact_quote": "nhưng không quá 05 tuổi so với tuổi nghỉ hưu quy định tại Điều 4 của Nghị định này tại thời điểm nghỉ hưu",
+        "pdf_pages": [
+          3,
+          4
+        ]
+      }
+    ],
+    "doc_code": "ND135_2020",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Single point c of khoản 1. The 'trừ trường hợp pháp luật có quy định khác' carve-out is included in the answer. Other early-retirement grounds are not asked."
+  },
+  {
+    "task_id": "LVN-032",
+    "category": "single",
+    "question": "Người lao động đủ tuổi nghỉ hưu vào giữa tháng thì thời điểm nghỉ hưu được xác định thế nào theo Nghị định 135/2020/NĐ-CP? Nếu họ tiếp tục làm việc sau khi đủ tuổi thì sao?",
+    "ground_truth_article_ids": [
+      "ND135_2020_Dieu_3"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Thời điểm nghỉ hưu là kết thúc ngày cuối cùng của tháng đủ tuổi nghỉ hưu. Nếu người lao động tiếp tục làm việc sau khi đủ tuổi nghỉ hưu, thời điểm nghỉ hưu là thời điểm chấm dứt hợp đồng lao động.",
+    "reference_evidence": [
+      {
+        "article_id": "ND135_2020_Dieu_3",
+        "exact_quote": "Thời điểm nghỉ hưu là kết thúc ngày cuối cùng của tháng đủ tuổi nghỉ hưu theo quy định",
+        "pdf_pages": [
+          1,
+          2
+        ]
+      },
+      {
+        "article_id": "ND135_2020_Dieu_3",
+        "exact_quote": "thời điểm nghỉ hưu là thời điểm chấm dứt hợp đồng lao động",
+        "pdf_pages": [
+          1,
+          2
+        ]
+      }
+    ],
+    "doc_code": "ND135_2020",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 only. Khoản 2 (start of pension payment) is not asked. 'Đủ tuổi vào giữa tháng' is a paraphrase of 'tháng đủ tuổi'."
+  },
+  {
+    "task_id": "LVN-033",
+    "category": "single",
+    "question": "Lao động nam sinh tháng 12/1960, làm việc trong điều kiện lao động bình thường, theo quy định chuyển tiếp của Nghị định 135/2020 thì thời điểm nghỉ hưu và thời điểm hưởng lương hưu là khi nào?",
+    "ground_truth_article_ids": [
+      "ND135_2020_Dieu_7"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Thời điểm nghỉ hưu là kết thúc ngày 31/12/2020; thời điểm hưởng lương hưu là bắt đầu ngày 01/01/2021.",
+    "reference_evidence": [
+      {
+        "article_id": "ND135_2020_Dieu_7",
+        "exact_quote": "Đối với lao động nam sinh tháng 12 năm 1960 và lao động nữ sinh tháng 12 năm 1965 làm việc trong điều kiện lao động bình thường thì thời điểm nghỉ hưu là kết thúc ngày 31 tháng 12 năm 2020, thời điểm hưởng lương hưu là bắt đầu ngày 01 tháng 01 năm 2021",
+        "pdf_pages": [
+          5,
+          6
+        ]
+      }
+    ],
+    "doc_code": "ND135_2020",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Transitional rule in khoản 2. The female clause (sinh tháng 12/1965) is not asked."
+  },
+  {
+    "task_id": "LVN-034",
+    "category": "single",
+    "question": "Khi phát hiện người sử dụng lao động chậm đóng hoặc trốn đóng bảo hiểm xã hội bắt buộc, bảo hiểm thất nghiệp ngoài các trường hợp thuộc khoản 1 Điều 3 Nghị định 274/2025, cơ quan bảo hiểm xã hội phải đôn đốc bằng văn bản trong thời hạn bao lâu?",
+    "ground_truth_article_ids": [
+      "ND274_2025_Dieu_3"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Trong thời hạn 05 ngày làm việc, cơ quan bảo hiểm xã hội có trách nhiệm đôn đốc bằng văn bản.",
+    "reference_evidence": [
+      {
+        "article_id": "ND274_2025_Dieu_3",
+        "exact_quote": "thì trong thời hạn 05 ngày làm việc, cơ quan bảo hiểm xã hội có trách nhiệm đôn đốc bằng văn bản",
+        "pdf_pages": [
+          2,
+          3
+        ]
+      }
+    ],
+    "doc_code": "ND274_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 2. The text does not say 'kể từ khi phát hiện' in those words; the answer only gives the period. Khoản 1 (monthly 10-day letter) is excluded from the question."
+  },
+  {
+    "task_id": "LVN-035",
+    "category": "single",
+    "question": "Trước ngày nào của tháng đầu quý tiếp theo, cơ quan bảo hiểm xã hội cấp tỉnh phải gửi thông tin về người sử dụng lao động chậm đóng, trốn đóng (tính đến hết quý) đến cơ quan quản lý nhà nước về bảo hiểm xã hội và cơ quan thanh tra?",
+    "ground_truth_article_ids": [
+      "ND274_2025_Dieu_3"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Trước ngày 15 của tháng đầu quý tiếp theo.",
+    "reference_evidence": [
+      {
+        "article_id": "ND274_2025_Dieu_3",
+        "exact_quote": "Trước ngày 15 của tháng đầu quý tiếp theo, cơ quan bảo hiểm xã hội cấp tỉnh gửi thông tin về người sử dụng lao động chậm đóng, trốn đóng tính đến hết ngày cuối quý",
+        "pdf_pages": [
+          2,
+          3
+        ]
+      }
+    ],
+    "doc_code": "ND274_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 3 point a. Same article as LVN-034 but a different sub-rule (reporting deadline, not the reminder)."
+  },
+  {
+    "task_id": "LVN-036",
+    "category": "single",
+    "question": "Đơn vị không đóng bảo hiểm xã hội trong thời gian bão lũ ảnh hưởng trực tiếp và nghiêm trọng đến sản xuất, kinh doanh có bị coi là trốn đóng không, nếu thiên tai đó được cơ quan có thẩm quyền công bố?",
+    "ground_truth_article_ids": [
+      "ND274_2025_Dieu_4"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Không bị coi là trốn đóng, khi lý do là thiên tai (ví dụ bão, lũ, ngập lụt) ảnh hưởng trực tiếp và nghiêm trọng đến hoạt động sản xuất, kinh doanh và có công bố của cơ quan có thẩm quyền về phòng, tránh thiên tai.",
+    "reference_evidence": [
+      {
+        "article_id": "ND274_2025_Dieu_4",
+        "exact_quote": "theo công bố của cơ quan có thẩm quyền về phòng, tránh thiên tai",
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "article_id": "ND274_2025_Dieu_4",
+        "exact_quote": "Bão, lũ, ngập lụt, động đất, hỏa hoạn lớn, hạn hán kéo dài và các loại thiên tai khác ảnh hưởng trực tiếp và nghiêm trọng đến hoạt động sản xuất, kinh doanh",
+        "pdf_pages": [
+          3,
+          4
+        ]
+      }
+    ],
+    "doc_code": "ND274_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Điều 4 applies to the cases listed in khoản 1 Điều 39 of the Luật BHXH, as the text says; this question does not assess whether the unpaid amount is still owed (Điều 5)."
+  },
+  {
+    "task_id": "LVN-037",
+    "category": "single",
+    "question": "Doanh nghiệp đã được cơ quan có thẩm quyền đôn đốc trong thời hạn 45 ngày kể từ hạn đóng chậm nhất. Trong trường hợp trốn đóng theo điểm đ, e khoản 1 Điều 39 Luật Bảo hiểm xã hội, số ngày trốn đóng được tính từ khi nào?",
+    "ground_truth_article_ids": [
+      "ND274_2025_Dieu_6"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Số ngày trốn đóng được tính bắt đầu từ sau 60 ngày kể từ sau thời hạn đóng bảo hiểm xã hội chậm nhất quy định tại khoản 4 Điều 34 Luật Bảo hiểm xã hội (hoặc sau thời hạn đóng bảo hiểm thất nghiệp chậm nhất theo pháp luật về bảo hiểm thất nghiệp).",
+    "reference_evidence": [
+      {
+        "article_id": "ND274_2025_Dieu_6",
+        "exact_quote": "đã được cơ quan có thẩm quyền đôn đốc theo quy định trong thời hạn 45 ngày kể từ sau thời hạn đóng bảo hiểm xã hội chậm nhất quy định tại khoản 4 Điều 34 Luật Bảo hiểm xã hội",
+        "pdf_pages": [
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "article_id": "ND274_2025_Dieu_6",
+        "exact_quote": "Số ngày trốn đóng bảo hiểm xã hội bắt buộc, bảo hiểm thất nghiệp được xác định bắt đầu từ sau 60 ngày kể từ sau thời hạn đóng bảo hiểm xã hội chậm nhất quy định tại khoản 4 Điều 34 Luật Bảo hiểm xã hội",
+        "pdf_pages": [
+          5,
+          6,
+          7
+        ]
+      }
+    ],
+    "doc_code": "ND274_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 2 point c. Harder rule. The other reminder branch (day 15 after the reminder letter, for the 'sau 45 ngày' case) is not asked. Verifier should check the nested wording."
+  },
+  {
+    "task_id": "LVN-038",
+    "category": "single",
+    "question": "Người tham gia bảo hiểm tai nạn lao động tự nguyện chọn đóng theo phương thức 12 tháng một lần thì mức đóng bằng bao nhiêu phần trăm tháng lương tối thiểu vùng IV?",
+    "ground_truth_article_ids": [
+      "ND143_2024_Dieu_11"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "12% tháng lương tối thiểu vùng IV.",
+    "reference_evidence": [
+      {
+        "article_id": "ND143_2024_Dieu_11",
+        "exact_quote": "b) Mức đóng 12 tháng bằng 12% tháng lương tối thiểu vùng IV",
+        "pdf_pages": [
+          7,
+          8
+        ]
+      }
+    ],
+    "doc_code": "ND143_2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 3 point b. The 06-month rate (6%) is not asked."
+  },
+  {
+    "task_id": "LVN-039",
+    "category": "single",
+    "question": "Người lao động làm việc không theo hợp đồng lao động, không thuộc hộ nghèo hay hộ cận nghèo, khi tham gia bảo hiểm tai nạn lao động tự nguyện thì Nhà nước hỗ trợ tiền đóng bằng bao nhiêu phần trăm?",
+    "ground_truth_article_ids": [
+      "ND143_2024_Dieu_12"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "10% trên mức đóng bảo hiểm tai nạn lao động (đối với người lao động khác, không thuộc hộ nghèo hoặc hộ cận nghèo).",
+    "reference_evidence": [
+      {
+        "article_id": "ND143_2024_Dieu_12",
+        "exact_quote": "c) Bằng 10% đối với người lao động khác.",
+        "pdf_pages": [
+          8,
+          9
+        ]
+      },
+      {
+        "article_id": "ND143_2024_Dieu_12",
+        "exact_quote": "theo tỷ lệ phần trăm (%) trên mức đóng bảo hiểm tai nạn lao động",
+        "pdf_pages": [
+          8,
+          9
+        ]
+      }
+    ],
+    "doc_code": "ND143_2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 point c. The 30% and 25% rates for poor and near-poor households are not asked."
+  },
+  {
+    "task_id": "LVN-040",
+    "category": "single",
+    "question": "Người tham gia bảo hiểm tai nạn lao động tự nguyện bị suy giảm 30% khả năng lao động do tai nạn lao động. Phần trợ cấp một lần tính theo tỷ lệ suy giảm (điểm a khoản 1 Điều 7) bằng bao nhiêu lần tháng lương tối thiểu vùng IV?",
+    "ground_truth_article_ids": [
+      "ND143_2024_Dieu_7"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "10,5 lần tháng lương tối thiểu vùng IV (3 lần cho mức suy giảm 5% đầu tiên, cộng 0,3 lần cho mỗi 1% suy giảm thêm: 3 + 25 × 0,3 = 10,5). Khoản trợ cấp theo số năm đóng quỹ (điểm b) được tính riêng và không nằm trong đáp số này.",
+    "reference_evidence": [
+      {
+        "article_id": "ND143_2024_Dieu_7",
+        "exact_quote": "Suy giảm 5% khả năng lao động thì được hưởng ba lần mức lương tối thiểu tháng tính theo vùng IV",
+        "pdf_pages": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "article_id": "ND143_2024_Dieu_7",
+        "exact_quote": "sau đó cứ suy giảm thêm 1% thì được hưởng thêm 0,3 lần tháng lương tối thiểu vùng IV",
+        "pdf_pages": [
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    "doc_code": "ND143_2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Derived by arithmetic from point a (3 + 25 steps x 0.3 = 10.5). Expected answer is a computed value from the quoted text, so a verifier should check the arithmetic. Point b (years of contribution) is excluded."
+  },
+  {
+    "task_id": "LVN-041",
+    "category": "single",
+    "question": "Người tham gia bảo hiểm tai nạn lao động tự nguyện không đóng đúng thời điểm theo quy định thì được coi là ở trạng thái nào? Nếu muốn đóng tiếp thì phải làm thủ tục gì?",
+    "ground_truth_article_ids": [
+      "ND143_2024_Dieu_13"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Được coi là tạm dừng đóng. Nếu tiếp tục đóng, người lao động phải đăng ký lại phương thức đóng theo Điều 17 của Nghị định 143/2024/NĐ-CP.",
+    "reference_evidence": [
+      {
+        "article_id": "ND143_2024_Dieu_13",
+        "exact_quote": "Khi quá thời điểm đóng bảo hiểm tai nạn lao động tự nguyện theo quy định tại điểm b khoản 4 Điều 11 của Nghị định này mà người lao động tham gia bảo hiểm tai nạn lao động tự nguyện không đóng bảo hiểm thì được coi là tạm dừng đóng bảo hiểm tai nạn lao động tự nguyện",
+        "pdf_pages": [
+          9
+        ]
+      },
+      {
+        "article_id": "ND143_2024_Dieu_13",
+        "exact_quote": "phải đăng ký lại phương thức đóng theo quy định tại Điều 17 của Nghị định này",
+        "pdf_pages": [
+          9
+        ]
+      }
+    ],
+    "doc_code": "ND143_2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 and khoản 2 of Điều 13. Fine-grained rules on the 10-day window (Điều 11 khoản 4 point b) are not asked."
+  },
+  {
+    "task_id": "LVN-042",
+    "category": "single",
+    "question": "Theo Thông tư về danh mục vùng kinh tế - xã hội đặc biệt khó khăn để xác định trường hợp nghỉ hưu sớm, thời gian làm việc từ ngày 01/7/2025 đến trước ngày 01/01/2026 ở vùng này được xác định theo thời điểm nào?",
+    "ground_truth_article_ids": [
+      "TT26_2025_Dieu_4"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Được xác định theo thời gian làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn tại tháng 6 năm 2025.",
+    "reference_evidence": [
+      {
+        "article_id": "TT26_2025_Dieu_4",
+        "exact_quote": "được xác định theo thời gian làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn tại tháng 6 năm 2025",
+        "pdf_pages": [
+          2
+        ]
+      }
+    ],
+    "doc_code": "TT26_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "TT26 provenance is unverified (number and date not printed; see WRITER_BRIEF/README caveat 2). Question concerns only the text of Điều 4 khoản 2 point b. It does not ask which localities are listed."
+  },
+  {
+    "task_id": "LVN-043",
+    "category": "single",
+    "question": "Nếu trong quá trình thực hiện có thay đổi tên gọi hoặc điều kiện kinh tế - xã hội của các vùng trong danh mục, các Bộ, ngành và Ủy ban nhân dân tỉnh, thành phố phải phản ánh về cơ quan nào?",
+    "ground_truth_article_ids": [
+      "TT26_2025_Dieu_5"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Bộ Nội vụ.",
+    "reference_evidence": [
+      {
+        "article_id": "TT26_2025_Dieu_5",
+        "exact_quote": "đề nghị các Bộ, ngành và Ủy ban nhân dân các tỉnh, thành phố trực thuộc Trung ương phản ánh về Bộ Nội vụ để kịp thời nghiên cứu, giải quyết",
+        "pdf_pages": [
+          2,
+          3
+        ]
+      }
+    ],
+    "doc_code": "TT26_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 3 of Điều 5. Asks about the reporting channel only, not the list itself."
+  },
+  {
+    "task_id": "LVN-044",
+    "category": "single",
+    "question": "Thông tư về danh mục vùng này được ban hành để làm căn cứ xác định các trường hợp nghỉ hưu sớm theo khoản nào của Bộ luật Lao động 2019 và điều nào của Nghị định 135/2020/NĐ-CP?",
+    "ground_truth_article_ids": [
+      "TT26_2025_Dieu_2"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Khoản 3 Điều 169 Bộ luật Lao động số 45/2019/QH14 và Điều 5 Nghị định số 135/2020/NĐ-CP.",
+    "reference_evidence": [
+      {
+        "article_id": "TT26_2025_Dieu_2",
+        "exact_quote": "theo quy định tại khoản 3 Điều 169 Bộ luật Lao động số 45/2019/QH14 và Điều 5 Nghị định số 135/2020/NĐ-CP",
+        "pdf_pages": [
+          1
+        ]
+      }
+    ],
+    "doc_code": "TT26_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Scope article (Điều 2). The cited BLLD2019 and NĐ135 provisions are outside this 'single' and are only named in the TT26 text, not quoted here."
+  },
+  {
+    "task_id": "LVN-045",
+    "category": "single",
+    "question": "Ai có trách nhiệm chỉ đạo Sở Nội vụ và các cơ quan liên quan kiểm tra, đôn đốc việc thực hiện Thông tư về danh mục vùng kinh tế - xã hội đặc biệt khó khăn?",
+    "ground_truth_article_ids": [
+      "TT26_2025_Dieu_5"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Ủy ban nhân dân các tỉnh, thành phố trực thuộc Trung ương.",
+    "reference_evidence": [
+      {
+        "article_id": "TT26_2025_Dieu_5",
+        "exact_quote": "Ủy ban nhân dân các tỉnh, thành phố trực thuộc Trung ương có trách nhiệm chỉ đạo Sở Nội vụ và các cơ quan có liên quan kiểm tra, đôn đốc việc thực hiện Thông tư này",
+        "pdf_pages": [
+          2,
+          3
+        ]
+      }
+    ],
+    "doc_code": "TT26_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Khoản 1 of Điều 5. Same article as LVN-043 but a different responsibility."
+  },
+  {
+    "task_id": "LVN-046",
+    "category": "multi",
+    "question": "Thời gian làm việc trước ngày 01/01/2021 ở nơi có phụ cấp khu vực hệ số 0,7 trở lên có được tính vào 15 năm làm việc ở vùng khó khăn để nghỉ hưu sớm theo Nghị định 135/2020 không? Thông tư về danh mục vùng xác định thời gian đó như thế nào?",
+    "ground_truth_article_ids": [
+      "ND135_2020_Dieu_5",
+      "TT26_2025_Dieu_4"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Có. Theo Điều 5 khoản 1 điểm b Nghị định 135/2020, 15 năm làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn bao gồm cả thời gian làm việc ở nơi có phụ cấp khu vực hệ số 0,7 trở lên trước ngày 01/01/2021. Thông tư (Điều 4 khoản 2 điểm a) quy định thời gian làm việc trước ngày 01/01/2021 ở nơi có phụ cấp khu vực hệ số 0,7 trở lên hoặc từ 25% trở lên được xác định là thời gian làm việc ở vùng này.",
+    "reference_evidence": [
+      {
+        "article_id": "ND135_2020_Dieu_5",
+        "exact_quote": "Người lao động có từ đủ 15 năm trở lên làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn, bao gồm cả thời gian làm việc ở nơi có phụ cấp khu vực hệ số 0,7 trở lên trước ngày 01 tháng 01 năm 2021",
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "article_id": "TT26_2025_Dieu_4",
+        "exact_quote": "Thời gian người lao động làm việc trước ngày 01 tháng 01 năm 2021 ở nơi có phụ cấp khu vực hệ số 0,7 trở lên hoặc nơi có phụ cấp khu vực từ mức 25% trở lên được xác định là thời gian làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn",
+        "pdf_pages": [
+          2
+        ]
+      }
+    ],
+    "doc_code": "TT26_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "MULTI (two documents): TT26_2025 Điều 4 khoản 2 point a plus ND135_2020 Điều 5 khoản 1 point b. doc_code is the TT26 document, the other is ND135_2020. TT26 provenance is unverified (no number or date). The question avoids the locality list and the TT26 number/date."
+  },
+  {
+    "task_id": "LVN-047",
+    "category": "multi",
+    "question": "Luật Công đoàn 2024 liệt kê việc chậm đóng kinh phí công đoàn thuộc nhóm hành vi nào? Và theo Nghị định 274/2025, khi chậm đóng bảo hiểm xã hội bắt buộc thì người sử dụng lao động phải nộp thêm bao nhiêu phần trăm mỗi ngày trên số tiền chậm đóng?",
+    "ground_truth_article_ids": [
+      "LCD2024_Dieu_10",
+      "ND274_2025_Dieu_7"
+    ],
+    "expected_behavior": "answer",
+    "expected_answer": "Theo Luật Công đoàn 2024 Điều 10 khoản 5, việc không đóng, chậm đóng hoặc đóng không đúng mức kinh phí công đoàn là hành vi bị nghiêm cấm. Theo Nghị định 274/2025 Điều 7 khoản 2, người sử dụng lao động phải nộp bằng 0,03%/ngày đối với số tiền chậm đóng, trốn đóng.",
+    "reference_evidence": [
+      {
+        "article_id": "LCD2024_Dieu_10",
+        "exact_quote": "Không đóng kinh phí công đoàn; chậm đóng kinh phí công đoàn; đóng kinh phí công đoàn không đúng mức quy định",
+        "pdf_pages": [
+          6,
+          7
+        ]
+      },
+      {
+        "article_id": "ND274_2025_Dieu_7",
+        "exact_quote": "tính số tiền người sử dụng lao động phải nộp bằng 0,03%/ngày đối với số tiền chậm đóng, trốn đóng",
+        "pdf_pages": [
+          7
+        ]
+      }
+    ],
+    "doc_code": "LCD2024",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "MULTI (two documents): LCD2024 Điều 10 khoản 5 plus ND274_2025 Điều 7 khoản 2. Both are employer payment obligations, but the two rules are about different contributions (kinh phí công đoàn vs BHXH/BHTN). The verifier should decide whether the combined question reads naturally."
+  },
+  {
+    "task_id": "LVN-048",
+    "category": "out_of_scope",
+    "question": "Người đóng đủ 20 năm bảo hiểm xã hội khi nghỉ hưu thì được hưởng lương hưu bằng bao nhiêu phần trăm mức bình quân tiền lương đóng bảo hiểm?",
+    "ground_truth_article_ids": [],
+    "expected_behavior": "refuse",
+    "expected_answer": "Corpus không trả lời: tỷ lệ hưởng lương hưu theo số năm đóng nằm trong Luật Bảo hiểm xã hội, không có trong corpus. Điều 7 khoản 3 của Nghị định 135/2020 chỉ viện dẫn 'tỷ lệ hưởng lương hưu' mà không nêu tỷ lệ.",
+    "reference_evidence": [],
+    "doc_code": "ND135_2020",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Out of scope. Searched all 458 records for: 'tỷ lệ hưởng' (only ND135 Điều 7 khoản 3, no percentage), 'lương hưu' (BLLD2019 and LVL2025 mention it without rates), '20 năm' (BLLD2019 Điều 219 only, no rate), '45%', '75%' (only an unrelated BLLD Điều 84 'trên 75%' on collective agreements), 'bình quân' (BLLD 46 and 47 for severance; LVL2025 Điều 39 for unemployment benefit at 60%). No pension rate for contribution years."
+  },
+  {
+    "task_id": "LVN-049",
+    "category": "out_of_scope",
+    "question": "Lao động nữ nghỉ thai sản thì được trợ cấp thai sản từ bảo hiểm xã hội bằng bao nhiêu phần trăm tiền lương?",
+    "ground_truth_article_ids": [],
+    "expected_behavior": "refuse",
+    "expected_answer": "Corpus không trả lời: Bộ luật Lao động Điều 139 chỉ nói lao động nữ được hưởng chế độ thai sản theo pháp luật về bảo hiểm xã hội; mức trợ cấp thai sản không có trong corpus.",
+    "reference_evidence": [],
+    "doc_code": "ND274_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Out of scope. Searched all 458 records for: 'thai sản' (13 hits: BLLD2019 Điều 3, 37, 53, 67, 122, 137, 139, 140 and others), 'trợ cấp thai sản' (BLLD2019 Điều 139 only, no amount), 'chế độ thai sản' (BLLD2019 Điều 139), '% tiền lương' (no maternity-benefit percentage). The rate belongs to the Social Insurance Law, which is not in the corpus. ND274 is about contributions and complaints, not benefit rates."
+  },
+  {
+    "task_id": "LVN-050",
+    "category": "out_of_scope",
+    "question": "Doanh nghiệp trốn đóng bảo hiểm xã hội sẽ bị phạt hành chính bao nhiêu tiền (tính bằng đồng) cho mỗi lần vi phạm?",
+    "ground_truth_article_ids": [],
+    "expected_behavior": "refuse",
+    "expected_answer": "Corpus không trả lời: không có mức tiền phạt hành chính bằng đồng đối với trốn đóng bảo hiểm xã hội. Nghị định 274/2025 chỉ quy định khoản tiền phải nộp 0,03%/ngày và thời điểm tính trốn đóng; mức xử phạt hành chính không được nêu trong corpus.",
+    "reference_evidence": [],
+    "doc_code": "ND274_2025",
+    "author": "Claude Haiku (AI), draft — not human-reviewed",
+    "gold_status": "draft_ai_unverified",
+    "notes": "Out of scope. Searched all 458 records for: 'xử phạt' (BLLD2019 Điều 217, LVL2025 Điều 41, LCD2024 Điều 36), 'vi phạm hành chính' (same three), 'mức phạt' (0 hits), 'phạt hành chính' (0), 'tiền phạt' (0), 'phạt tiền' (BLLD2019 Điều 127, a discipline measure, not a fine amount), 'triệu đồng' (0), 'thuế suất' (0). No fine amount for BHXH evasion appears. ND274 Điều 7 gives a 0,03%/day payment, which is not an administrative fine."
+  }
+]

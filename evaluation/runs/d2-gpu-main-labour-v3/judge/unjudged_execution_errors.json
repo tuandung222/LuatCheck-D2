@@ -1,0 +1,26 @@
+[
+  {
+    "review_id": "2c04837d0d21f7edaa4a23bd",
+    "benchmark": "labour_vi_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "LVN-004",
+    "reason": "execution error: model_output_error"
+  },
+  {
+    "review_id": "52b256869c70791cb903c4df",
+    "benchmark": "labour_vi_v1",
+    "variant": "oracle",
+    "seed": 42,
+    "task_id": "LVN-042",
+    "reason": "execution error: model_output_error"
+  },
+  {
+    "review_id": "b00176ac2b78c5d039087449",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "LVN-027",
+    "reason": "execution error: model_output_error"
+  }
+]

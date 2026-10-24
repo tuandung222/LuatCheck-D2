@@ -1,0 +1,8 @@
+# Benchmark definition read by evaluation/run_benchmark.py. `tasks` is relative to this directory;
+# `corpus` is relative to the repository root; `profile` is a domain-profile id (config/domains/<id>.yaml) or a YAML path.
+name: hcmut_v1
+title: HCMUT academic-affairs regulations (50 tasks)
+tasks: tasks.json
+corpus: data/corpus/hcmut_academic_v1.json
+profile: hcmut_academic
+review_status: ai_verified_not_human_reviewed   # see README.md / ADJUDICATION.md

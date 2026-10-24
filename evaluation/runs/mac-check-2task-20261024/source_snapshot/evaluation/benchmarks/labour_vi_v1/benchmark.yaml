@@ -1,0 +1,9 @@
+# Benchmark definition read by evaluation/run_benchmark.py. `tasks` is relative to this directory;
+# `corpus` is relative to the repository root; `profile` is a domain-profile id (config/domains/<id>.yaml) or a YAML path.
+# Being built separately: the runner refuses this benchmark until tasks.json, the corpus and the profile exist and pass `freeze`.
+name: labour_vi_v1
+title: Vietnamese labour-law documents (50 tasks over 10 documents)
+tasks: tasks.json
+corpus: data/corpus/labour_vi_v1.json
+profile: labour_vi_multi
+review_status: pending

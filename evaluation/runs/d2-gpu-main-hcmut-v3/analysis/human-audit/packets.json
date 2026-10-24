@@ -1,0 +1,930 @@
+[
+  {
+    "review_id": "1a15126b11c2e867b027649b",
+    "question": "Theo khoản 5.5 Điều 5 được sửa đổi bởi Quyết định 1260/QĐ-ĐHBK (áp dụng từ học kỳ 1 năm học 2025-2026), điểm trung bình tích lũy tối thiểu (thang 4) để sinh viên được đăng ký các học phần tốt nghiệp là bao nhiêu? Một sinh viên có điểm trung bình tích lũy 2,35 có đạt ngưỡng điểm này không, và học lực được xếp loại gì theo khoản 15.2 do Quyết định 1259/QĐ-ĐHBK sửa đổi?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Ngưỡng tối thiểu là điểm trung bình tích lũy (GPA) từ 2.0 trở lên theo thang điểm 4 (áp dụng từ học kỳ 1 năm học 2025-2026). GPA 2,35 đạt ngưỡng GPA này (việc đăng ký học phần tốt nghiệp còn các điều kiện khác trong khoản 5.5, không được hỏi ở đây), và học lực xếp loại Trung bình (từ 2,00 đến cận 2,50).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S5_5",
+        "exact_quote": "Sinh viên phải có điểm trung bình tích lũy (GPA) từ 2.0 trở lên (theo thang điểm 4)"
+      },
+      {
+        "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S15_2",
+        "exact_quote": "Từ 2,00 đến cận 2,50: Trung bình"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo nội dung văn bản [HCMUT_HVDT1260_Dieu_1_S5_5]:\n- Điểm trung bình tích lũy 2.35 nằm trong khoảng 'Trung bình' theo Điều 15.2.\n- Để đăng ký tốt nghiệp, GPA cần >= 2.0 (Điều 5.5).\n\nDựa trên quy định 15.2: Điểm trung bình 2.35 thuộc nhóm 'Trung bình'.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S5_5",
+        "exact_quote": "\"Sinh viên phải tích luỹ đủ ít nhất 65% (chương trình song ngành là 52%) số tín chỉ của chương trình đào tạo để đăng ký học phần Thực tập ngoài trường...\""
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S15_2",
+        "title": "“15.2 Xếp loại học lực",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định chung về học vụ và đào tạo theo Quyết định số 2931/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh — số 1259/QĐ-ĐHBK",
+        "content": "“15.2 Xếp loại học lực\nNgười học được xếp loại học lực theo điểm trung bình học kỳ, điểm trung bình\nnăm học hoặc điểm trung bình tích lũy như sau:\nTừ 3,60 đến 4,00: Xuất sắc;\nTừ 3,20 đến cận 3,60: Giỏi;\nTừ 2,50 đến cận 3,20: Khá;\nTừ 2,00 đến cận 2,50: Trung bình;\nTừ 1,00 đến cận 2,00: Yếu;\nDưới 1,00: Kém.”\n6. Sửa đổi, bổ sung khoản 16.2 Điều 16 như sau:"
+      },
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S5_5",
+        "title": "“5.5 Đăng ký các học phần tốt nghiệp",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh — số 1260/QĐ-ĐHBK",
+        "content": "“5.5 Đăng ký các học phần tốt nghiệp\nCác học phần tốt nghiệp (Thực tập ngoài trường, Đồ án chuyên ngành, Khóa luận\ntốt nghiệp) được thiết kế vào cuối chương trình đào tạo. Sinh viên phải hoàn thành điều\nkiện về chuẩn ngoại ngữ và số tín chỉ tích luỹ ngành trước khi được phép đăng ký các học\nphần này.\nRiêng học phần Thực tập ngoài trường/Thực tập kỹ sư chỉ mở trong học kỳ Hè, đăng\nký theo lịch học vụ học kỳ hè, dự kiến bắt đầu đăng ký từ giữa học kỳ 2. Sinh viên có nhu\ncầu đăng ký các học phần thực tập trong học kỳ chính phải đăng ký với Khoa quản lý để\nđược đồng ý tổ chức học phần thực tập trong học kỳ chính.\nHọc phần đang học được xem là tạm đạt và tạm tính vào số tín chỉ tích lũy khi xét\nđăng ký học phần cho sinh viên.\nSinh viên phải tích luỹ đủ ít nhất 65% (chương trình song ngành là 52%) số tín chỉ\ncủa chương trình đào tạo để đăng ký học phần Thực tập ngoài trường.\nSinh viên phải tích luỹ đủ ít nhất 70% (chương trình song ngành là 76%) số tín chỉ\ncủa chương trình đào tạo để đăng ký học phần Đồ án chuyên ngành.\nSinh viên phải tích luỹ số đủ ít nhất 82.5% (chương trình song ngành là 86%) số tín\nchỉ của chương trình đào tạo, hoàn thành tối thiểu 80% chương trình rèn luyện sinh viên\ntheo quy định của trường và đạt Chuẩn ngoại ngữ tốt nghiệp để đăng ký học phần Khoá\nluận tốt nghiệp.\nSinh viên phải có điểm trung bình tích lũy (GPA) từ 2.0 trở lên (theo thang điểm 4)\nđể được đăng ký các học phần tốt nghiệp (áp dụng từ học kỳ 1 năm học 2025-2026).”\n3. Sửa đổi, bổ sung khoản 7.1 Điều 7 như sau:"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "1ccadfbdc769b22d43b25605",
+    "question": "Sinh viên vi phạm Nội quy học đường sẽ được xử lý theo căn cứ nào, và mức xử lý phụ thuộc vào yếu tố nào?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Theo Quy chế Công tác sinh viên của Trường và quy định của pháp luật; tùy theo mức độ vi phạm.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_6",
+        "exact_quote": "sẽ bị xử lý theo Quy chế Công tác sinh viên Trường và quy định của pháp luật"
+      },
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_6",
+        "exact_quote": "tùy theo mức độ vi phạm"
+      }
+    ],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Không tìm thấy nội dung quy định chi tiết về mức xử lý vi phạm trong tài liệu đã tra cứu.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_6",
+        "title": "Điều 6. Tổ chức thực hiện",
+        "source_name": "Về việc ban hành Nội quy học đường Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 1924/QĐ-ĐHBK",
+        "content": "Điều 6. Tổ chức thực hiện\n1. Lãnh đạo các đơn vị, Ban cán sự lớp có trách nhiệm triển khai Nội quy học đường\nnày; Trưởng các đơn vị chịu trách nhiệm trước Hiệu trưởng về việc thực hiện Nội\nquy học đường của sinh viên thuộc đơn vị quản lý.\n2. Phòng Công tác sinh viên, Phòng Thanh tra - Pháp chế, Tổ Bảo vệ có trách nhiệm\nkiểm tra giám sát việc thực hiện Nội quy của các đơn vị và cá nhân liên quan.\n3. Trong trường hợp sinh viên vi phạm Nội quy, tùy theo mức độ vi phạm, sinh viên\nsẽ bị xử lý theo Quy chế Công tác sinh viên Trường và quy định của pháp luật.\n4. Định kỳ hằng năm hoặc khi có đề xuất của các đơn vị, Phòng Công tác sinh viên\nkiến nghị Hiệu trưởng xem xét, sửa đổi, cập nhật, bổ sung Nội quy cho phù hợp\nvới tình hình thực tế và các quy định hiện hành.\nHIỆU TRƯỞNG\nMai Thanh Phong"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "1e8b0b3139d2c1866d0847ed",
+    "question": "Theo Nội quy học đường, quy định cấm hút thuốc lá trong khuôn viên Trường nêu rõ bao gồm cả loại thuốc lá nào ngoài thuốc lá thông thường?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Bao gồm cả thuốc lá điện tử.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_5",
+        "exact_quote": "hút thuốc lá trong khuôn viên Trường (bao gồm thuốc lá\nđiện tử)"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Dựa trên các thông tin tra cứu, quy định của Trường Đại học Bách khoa - ĐHQG-HCM (thực hiện trong Nội quy học đường) chỉ cấm 'hút thuốc lá' chung, không phân biệt cụ thể loại thuốc lá khác. Các văn bản đã cung cấp chi tiết là: 'kể cả thuốc lá điện tử'.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_UNGXU3408_Dieu_4",
+        "exact_quote": "không hút thuốc lá trong khuôn viên Trường (kể cả thuốc lá điện tử)"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_5",
+        "title": "Điều 5. Những hành vi sinh viên KHÔNG được phép thực hiện",
+        "source_name": "Về việc ban hành Nội quy học đường Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 1924/QĐ-ĐHBK",
+        "content": "Điều 5. Những hành vi sinh viên KHÔNG được phép thực hiện\n1. Gian lận trong học tập, kiểm tra, thi cử.\n2. Cho người khác mượn thẻ sinh viên hoặc mượn thẻ sinh viên của người khác để\nsử dụng, sử dụng thẻ sinh viên sai mục đích.\n3. Đi xe máy, xe đạp trong khuôn viên Trường.\n4. Dẫm, nằm, ngồi lên cỏ ở các khu vực có biển cấm trong khuôn viên Trường; hái\nhoa, bẻ cành cây trong khuôn viên Trường; chơi thể thao tại những địa điểm ngoài\nkhu vực sân thể dục thể thao theo quy định của Trường.\n5. Tổ chức hoặc tham gia cờ bạc dưới mọi hình thức trong khuôn viên Trường.\n6. Mang theo hoặc sử dụng các chất cháy, chất gây nổ; các loại vũ khí, hung khí vào\nTrường.\n7. Mang đồ ăn vào lớp học, gi ảng đường và hội trường. Mang theo động vật, thú\nnuôi vào Trường.\n8. Sử dụng, mua bán, tàng trữ các chất ma túy, các chất kích thích dưới mọi hình\nthức; uống rượu, bia và hút thuốc lá trong khuôn viên Trường (bao gồm thuốc lá\nđiện tử); say rượu bia khi đến Trường.\n9. Tự ý viết, dán quảng cáo, thông báo trong khuôn viên Trường; viết, vẽ, sơn bậy,\nbôi xóa, làm bẩn, làm mất vệ sinh và làm hư hỏng các trang thiết bị học tập, máy\nmóc, dụng cụ thực hành thí nghiệm, cơ sở vật chất … của Trường.\n10. Tự ý sử dụng tài sản của Nhà trường; tự ý di chuyển các trang thiết bị, tài sản ra\nkhỏi vị trí đã sắp xếp, lắp đặt trong phòng và trong khuôn viên Trường. Đứng lên\nbàn ghế, leo trèo hoặc ngồi trên lan can, khung cửa sổ và trên bàn học, bàn giáo\nviên.\n11. Lưu hành, tuyên truyền các ấn phẩm, tài liệu, thông tin phản động, phim ảnh\nkhông lành mạnh và các tài liệu cấm khác theo quy định của Nhà nước.\n12. Gây bè phái, gây mất đoàn kết nội bộ trong tập thể lớp và trong Trường. Gây gổ,\nđánh nhau hoặc kích động đánh nhau, tổ chức băng nhóm, tụ tập gây mất an ninh,\ntrật tự dưới mọi hình thức.\n13. Không lợi dụng mạng xã hội nhằm mục đích xâm phạm đời tư, công việc và học\ntập của cá nhân, cơ quan, tổ chức, đoàn thể; có ý thức bảo vệ, xây dựng hình ảnh,\nthương hiệu của Nhà trường trên không gian mạng.\n14. Không sử dụng từ ngữ gây thù hận, kích động bạo lực, phân biệt vùng miền, giới\ntính, tôn giáo, dân tộc.\n15. Tổ chức, tham gia, truyền bá các hoạt động mê tín dị đoan, các hoạt động tôn\ngiáo và các hành vi vi phạm đạo đức khác trong và ngoài khuôn viên Trường.\n16. Tổ chức, tham gia các hoạt động chính trị trái pháp luật trong và ngoài khuôn\nviên Trường.\n17. Tham gia các hoạt động tập thể mang danh nghĩa Nhà trường khi chưa được Nhà\ntrường cho phép.\n18. Có hành vi xúc phạm nhân phẩm, danh dự, xâm phạm tới thân thể, sức khỏe và\ntài sản của cán bộ, giảng viên, người lao động và sinh viên khác của Nhà trường.\n19. Tổ chức hoặc tham gia các hoạt động vi phạm pháp luật khác."
+      },
+      {
+        "article_id": "HCMUT_UNGXU3408_Dieu_4",
+        "title": "Điều 4. Quy tắc chung",
+        "source_name": "Về việc ban hành Quy định Quy tắc ứng xử tại Trường Đại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh. — số 3408/QĐ-ĐHBK",
+        "content": "Điều 4. Quy tắc chung\n1. Có trách nhiệm xây dựng và bảo vệ hình ảnh, thương hiệu của Trường Đại học Bách\nkhoa – ĐHQG-HCM.\n2. Trang phục lịch sự, gọn gàng phù hợp với văn hóa học đường, khuyến khích VC –\nNLĐ sử dụng trang phục thương hiệu của Trường. VC – NLĐ mặc lễ phục trang\ntrọng, lịch sự theo quy định của sự kiện.\n3. Chấp hành nghiêm chủ trương, đường lối của Đảng, chính sách pháp luật của Nhà\nnước và quy định của Nhà trường; kiên quyết đấu tranh, ngăn chặn những hành vi\nvi phạm pháp luật, vi phạm quy định của Nhà trường.\n4. Có tác phong làm việc nghiêm túc, chuyên nghiệp; chấp hành nghiêm quy định về\nthời gian làm việc của Nhà trường, sử dụng hiệu quả thời gian làm việc; sử dụng\nngôn ngữ chuẩn mực, rõ ràng; sẵn sàng lắng nghe, chia sẻ và giú p đỡ người học,\nđồng nghiệp.\n5. Tôn trọng danh dự, uy tín của cơ quan, tổ chức, cá nhân có quan hệ công tác; chân\nthành, thiện chí, sẵn sàng hỗ trợ lẫn nhau để hoàn thành nhiệm vụ.\n6. Thực hiện đúng nhiệm vụ, quyền hạn được giao; giữ gìn đoàn kết nội bộ; phát h uy\ntrách nhiệm nêu gương và xây dựng môi trường làm việc, học tập chuyên nghiệp,\nthân thiện.\n7. Tích cực xây dựng không gian làm việc xanh, sạch, đẹp và môi trường công sở văn\nminh, thân thiện; không lưu trữ và phát tán các hình ảnh, nội dung văn hóa phẩm\nđồi trụy, tài liệu chống phá Đảng, Nhà nước, Nhà trường.\n8. Không sử dụng, mua bán, tàng trữ trái phép các chất ma túy, các chất kích thích\ndưới mọi hình thức; không hút thuốc lá trong khuôn viên Trường (kể cả thuốc lá\nđiện tử)."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "3ebabe19265ceff0a86ee6f2",
+    "question": "Theo Phụ lục 1 được thay thế bởi Quyết định 2749/QĐ-ĐHBK, kết quả kiểm tra tiếng Anh theo định dạng TOEIC vào cuối học kỳ 1 năm nhất được dùng để làm gì, và có được dùng nhiều lần không?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Được dùng để xét miễn các học phần Anh văn 1, 2, 3, 4 tương ứng theo thang điểm quy đổi tại tiểu mục 3.1 mục 3 của Phụ lục; việc xét miễn này chỉ thực hiện một lần duy nhất (không dùng lại nhiều lần).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+        "exact_quote": "Vào cuối học kỳ 1 năm nhất, Nhà trường tổ chức thêm một kỳ kiểm tra trình độ tiếng Anh\nđầu vào theo định dạng TOEIC"
+      },
+      {
+        "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+        "exact_quote": "Kết quả kiểm tra này được sử dụng để xét miễn một lần duy nhất các học phần Anh văn 1,\n2, 3, 4 tương ứng theo thang điểm quy đổi tại bảng quy đổi tại tiểu mục 3.1 mục 3 của Phụ"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Chào bạn, dựa trên cơ sở dữ liệu và văn bản quy định đã tra cứu (Quy định Quy tắc ứng xử tại Trường Đại học Bách khoa – Thành phố Hồ Chí Minh - Số 3408/QĐ-ĐHBK), **không có thông tin nào** xác nhận TOEIC (Thái độ tiếng Anh) là một mục tiêu cụ thể hoặc quy định trong văn bản này.\n\nQuy định 3408/QĐ-ĐHBK liên quan đến các nội dung: Quy tắc ứng xử, Hiệu lực thi hành và Khen thưởng/Kỷ luật. Các quyết định trước đây của Nhà trường (nếu có) về nội dung quy tắc ứng xử có hiệu lực nhưng không đề cập đến TOEIC.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_UNGXU3408_QD_Dieu_1",
+        "exact_quote": "Điều 1. Ban hành kèm theo Quyết định này \"Quy định Quy tắc ứng xử tại Trường"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+        "title": "PHỤ LỤC 1. QUY ĐỊNH VỀ CHUẨN NGOẠI NGỮ",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 và Quyết định số 1260/QĐ-ĐHBK ngày 16 tháng 03 năm 2026 của Hiệu trưởng trường Đại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh — số 2749/QĐ-ĐHBK",
+        "content": "PHỤ LỤC 1. QUY ĐỊNH VỀ CHUẨN NGOẠI NGỮ\n(Ban hành kèm theo Quyết định số: /QĐ-ĐHBK, ngày tháng năm 2026\ncủa Hiệu trưởng trường Đại học Bách khoa – ĐHQG-HCM)\nA. DÀNH CHO CHƯƠNG TRÌNH GIẢNG DẠY BẰNG TIẾNG VIỆT\nCác quy định chuẩn ngoại ngữ sau đây dành cho các sinh viên chương trình đào tạo giảng\ndạy bằng tiếng Việt. Các sinh viên tiêu chuẩn chương trình giảng dạy bằng tiếng Việt là lưu\nhọc sinh Lào, Campuchia được miễn các chuẩn ngoại ngữ từng năm và chuẩn ngoại ngữ\ntốt nghiệp, nhưng không được miễn các học phần tiếng Anh trong chương trình đào tạo.\n1. Chuẩn ngoại ngữ từng năm học\nSinh viên phải đạt chuẩn ngoại ngữ từng năm theo quy định để đăng ký môn học cho năm\ntiếp theo. Chuẩn ngoại ngữ từng năm được quy định cụ thể như sau:\na) Chuẩn ngoại ngữ tiếng Anh từng năm dành cho sinh viên chương trình tiêu chuẩn, vừa\nlàm vừa học, Bằng 2\n- Từ Khóa 2023 về trước\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất Anh văn cơ bản 2 Học phần ngoài chương trình đào tạo\nNăm thứ hai Anh văn 1 Hết năm nhất\nNăm thứ ba Anh văn 1, 2, 3 Hết năm hai\nNăm thứ tư Anh văn 1, 2, 3, 4 Hết năm ba\n- Từ Khóa 2024 về sau (áp dụng từ học kỳ 1 năm học 2026-2027)\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất Anh văn cơ bản 2 Học phần ngoài chương trình đào tạo\nNăm thứ hai Anh văn 1 Hết năm nhất\nNăm thứ ba, tư Anh văn 1, 2, 3, 4 Hết năm hai\nLưu ý: Điều kiện tiên quyết của các học phần Anh văn 1, 2, 3 và 4 tương ứng là Anh văn\ncơ bản 2, Anh văn 1, 2 và 3.\nChuẩn ngoại ngữ tiếng Anh từng năm không áp dụng đối với sinh viên chương trình định\nhướng Nhật Bản, chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV).\nb) Chuẩn ngoại ngữ tiếng Pháp từng năm dành cho sinh viên Chương trình đào tạo kỹ sư\nchất lượng cao tại Việt Nam (PFIEV) từ khóa 2024 về sau, áp dụng từ học kỳ 1 năm học\n2026-2027.\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất\nNăm thứ hai Pháp văn 1 Hết năm nhất\nNăm thứ ba Pháp văn 1, 2, 3, 4 Hết năm hai\nNăm thứ tư Pháp văn 1, 2, 3, 4, 5, 6 Hết năm ba\nc) Chuẩn ngoại ngữ tiếng Nhật từng năm dành cho sinh viên Chương trình định hướng\nNhật Bản từ khóa 2026 về sau:\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất\nNăm thứ hai Tiếng Nhật 1, 2 Hết năm nhất\nNăm thứ ba Tiếng Nhật 1, 2, 3, 4 Hết năm hai\nNăm thứ tư Tiếng Nhật 1, 2, 3, 4, 5, 6 Hết năm ba\n2. Chuẩn ngoại ngữ tốt nghiệp\nChuẩn ngoại ngữ tốt nghiệp được quy định theo chứng chỉ ngoại ngữ quốc tế như sau:\nChương trình,\nhình thức đào tạo\nChuẩn ngoại ngữ tốt nghiệp\nTiếng Anh (tương đương\nTOEIC) Khác\nNghe-Đọc Nói-Viết\nChương trình tiêu chuẩn 500 (khoá 2018 v ề\ntrước)\n550 (khoá 2019)\n600 (từ khoá 2020)\n200\nChương trình Định hướng Nhật\nBản Không áp dụng JLPT N3 (tiếng Nhật)\nChương trình tài năng 600 (khoá 2018 v ề\ntrước)\n650 (khoá 2019)\n700 (từ khoá 2020)\n245\nChương trình đào tạo kỹ sư chất\nlượng cao t ại Vi ệt Nam\n(PFIEV)\n600 (khoá 2018 v ề\ntrước)\n650 (khoá 2019)\n700 (từ khoá 2020)\n245\nDELF B1\nTCF B1\n(tiếng Pháp)\nVừa làm vừa học,\nĐào tạo từ xa\n400 (khoá 2017 v ề\ntrước)\n450 (khoá 2018)\n500 (khoá 2019)\n600 (từ khoá 2020)\n200\n(từ khoá\n2021)\nChính quy Bằng thứ hai Học chương trình đào tạo chính quy của khóa nào thì áp\ndụng chuẩn của khóa đó.\nCác chứng chỉ tiếng Anh bao gồm đầy đủ các kỹ năng Nghe – Đọc – Nói – Viết để xét\nchuẩn tốt nghi ệp g ồm: IELTS, TOEFL iBT (không s ử dụng ch ứng ch ỉ TOEFL iBT\nHome Edition), PET, FCE, CAE, PTE Academic, Linguaskill, APTIS ESOL. Khi đ ạt\nmức điểm tương đương TOEIC theo bảng quy đ ổi tại mục 3.1 của Phụ lục này, sinh\nviên được xét đạt chuẩn ngoại ngữ tốt nghiệp cho tất cả các kỹ năng.\nTạm thời cho phép sinh viên s ử dụng kết quả các kỳ kiểm tra k ỹ năng Nói – Viết do\nTrung tâm Ngoại ngữ Trường Đại học Bách khoa tổ chức để xét tốt nghiệp.\nKhi xét điều kiện đăng ký học phần Khóa luận tốt nghiệp, cho phép áp dụng chuẩn ngoại\nngữ tốt nghiệp tiếng Anh ch ỉ đối với kỹ năng Nghe – Đọc, Chương trình Định hướng\nNhật Bản là JLPT N3 (tiếng Nhật).\n3. Quy đổi các bằng cấp và chứng chỉ ngoại ngữ\n3.1. Các chứng chỉ tiếng Anh quốc tế được quy đổi tương đương như sau:\nCác chứng chỉ tiếng Anh Quốc tế Các học phần Anh văn\nTOEIC\nListening\n&\nReading\nTOEFL\niBT\nTOEFL\niBT 2026\n(Overall\nScore)\nIELTS PET FCE CAE PTE Academic Lingua -skill APTIS ESOL VSTEP VEPT Cơ bản 1 2 3 4\n400 40 2.5 - - - - - - - - Đạt - - - -\n450 49 3 - - - - - 140 - 4.0 43 Đạt Đạt - - -\n500 54 3 4.0 Grade C - - - 143 - 4.5 51 Đạt Đạt Đạt - -\n550 59 3.5 4.5 Grade B - - - 146 - 5.0 59 Đạt Đạt Đạt Đạt -\n600 64 3.5 5.0 Grade B - - 41 149 B1 5.5 67 Đạt Đạt Đạt Đạt Đạt\n650 70 3.5 5.0 Grade A - - 43 152 - X X Đạt Đạt Đạt Đạt Đạt\n700 79 4 5.5 Grade A - - 45 155 B1 X X Đạt Đạt Đạt Đạt Đạt\n785 85 4 5.5 X\nGrade\nC,\nGrade\nB,\nGrade\nA\nLevel\nB2\nGrade\nC,\nGrade\nB,\nGrade\nA\n48 160 B2 X X Đạt Đạt Đạt Đạt Đạt\nLưu ý: Không sử dụng chứng chỉ ngoại ngữ TOEFL iBT Home Edition\nThời hạn công nhận chứng chỉ: trong thời hạn 2 năm tính từ ngày cấp cho đến ngày đăng\nký xét đạt chuẩn.\nBằng tốt nghiệp bậc đại học trở lên ngành/chuyên ngành tiếng Anh được xét miễn các học\nphần Anh văn 1, 2, 3, 4.\n3.2. Các chứng chỉ tiếng Pháp được quy đổi tương đương như sau:\nCác chứng chỉ tiếng Pháp Các học phần tiếng Pháp\nTú tài\nPháp\nTốt nghiệp phổ thông\nchương trình Song ngữ và\ntăng cường tiếng Pháp\nDELF TCF 1 2 3 4 5 6 7*\nX X A1 100-199 Đạt\nX X A2 200-299 Đạt Đạt\nB1,\nB2\n300-399 Đạt Đạt Đạt Đạt Đạt Đạt Đạt\n*Pháp văn 7: áp dụng cho sinh viên Khoá 2018 về trước.\n3.3. Các chứng chỉ tiếng Nhật được quy đổi tương đương như sau:\nSinh viên đã có chứng chỉ tiếng Nhật JLPT trong vòng 12 tháng, được xem xét miễn một\nsố học phần tiếng Nhật như sau:\na) Đối với Khóa 2023 về trước:\nChứng chỉ Được xét miễn Ghi chú\nJLPT N1 Tiếng Nhật 1, 2, 3, 4, 5, 6\nJLPT N2 Tiếng Nhật 1, 2, 3\nJLPT N3 Tiếng Nhật 1, 2\nb) Đối với Khóa 2024 về sau:\nChứng chỉ Được xét miễn Ghi chú\nJLPT N1 Tiếng Nhật 1, 2, 3, 4, 5, 6\nJLPT N2 Tiếng Nhật 1, 2, 3, 4\nJLPT N3 Tiếng Nhật 1, 2, 3\n4. Nguyên tắc xét miễn các học phần tiếng Anh và các chuẩn ngoại ngữ\n4.1. Ngay khi nhập học\nSau khi nhập học, Nhà trường tổ chức một kỳ thi xếp trình độ tiếng Anh dành cho sinh viên\nchương trình giảng dạy bằng tiếng Việt vừa trúng tuyển. Căn cứ vào kết quả kỳ thi, sinh\nviên được phân lớp hoặc đăng ký các học phần Anh văn 1, 2, 3, 4 tương ứng. Kết quả thi\nxếp trình độ tiếng Anh chỉ được sử dụng để xét tạm đạt điều kiện tiên quyết khi đăng ký\ncác học phần Anh văn trong học kỳ 1 và học kỳ 2 của năm nhất; không có giá trị xét miễn\nbất kỳ học phần Anh văn nào trong chương trình đào tạo.\nVào cuối học kỳ 1 năm nhất, Nhà trường tổ chức thêm một kỳ kiểm tra trình độ tiếng Anh\nđầu vào theo định dạng TOEIC dành cho sinh viên chương trình giảng dạy bằng tiếng Việt.\nKết quả kiểm tra này được sử dụng để xét miễn một lần duy nhất các học phần Anh văn 1,\n2, 3, 4 tương ứng theo thang điểm quy đổi tại bảng quy đổi tại tiểu mục 3.1 mục 3 của Phụ\nlục này. Đối với các học phần không được miễn, sinh viên phải đăng ký học theo quy định.\nSinh viên vừa trúng tuyển, đã có bằng tốt nghiệp từ bậc đại học ngành/chuyên ngành tiếng\nAnh, trong học kỳ đầu tiên tính từ lúc trúng tuyển, được đăng ký xét miễn các học phần\nAnh văn 1, 2, 3 và 4.\n4.2. Trong quá trình học\nTrong quá trình học, sinh viên có thể sử dụng chứng chỉ tiếng Anh quốc tế còn thời hạn phù\nhợp để được xét miễn các học phần Anh văn 1, 2, 3, 4 (theo quy định tại mục 3.1 của Phụ\nlục này) và đồng thời được xét đạt chuẩn ngoại ngữ tốt nghiệp (theo quy định tại mục 2 của\nPhụ lục này).\nB. DÀNH CHO CHƯƠNG TRÌNH GIẢNG DẠY BẰNG TIẾNG ANH\nQuy định chuẩn ngoại ngữ này bao gồm chuẩn ngoại ngữ tiếng Anh dành cho các sinh viên\nchương trình Dạy và học bằng tiếng Anh, Tiên tiến.\nChuẩn ngoại ngữ tiếng Anh của cả chương trình, là điều kiện trúng tuyển vào trường và là\nchuẩn ngoại ngữ tốt nghiệp. Cụ thể như sau:\nIELTS\nAcademic\nPTE\nAcademic\nTOEFL iBT\nTOEFL iBT 2026\n(Overall Score)\nTOEIC (*)\nNghe-Đọc Nói-Viết\n6,0 52 79 4 730 280\n(*) Áp dụng từ khoá 2021 về sau.\nLưu ý: Không sử dụng chứng chỉ ngoại ngữ TOEFL iBT Home Edition.\nSinh viên phải có chứng chỉ ngoại ngữ quốc tế phù hợp và còn trong thời hạn hợp lệ để\nđược xét đạt chuẩn. Hạn của chứng chỉ tính đến thời điểm xét."
+      },
+      {
+        "article_id": "HCMUT_UNGXU3408_QD_Dieu_1",
+        "title": "Điều 1. Ban hành kèm theo Quyết định này “Quy định Quy tắc ứng xử tại Trường",
+        "source_name": "Về việc ban hành Quy định Quy tắc ứng xử tại Trường Đại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh. — số 3408/QĐ-ĐHBK",
+        "content": "Điều 1. Ban hành kèm theo Quyết định này “Quy định Quy tắc ứng xử tại Trường\nĐại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh”."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "5107af110e10d9fa201742c0",
+    "question": "Theo Quy định gia hạn học phí của Trường Đại học Bách khoa, người học phải nộp đơn đăng ký gia hạn trước thời điểm kết thúc thời gian nộp học phí ít nhất bao nhiêu ngày làm việc?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Ít nhất 05 ngày làm việc.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc."
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Quy định gia hạn học phí, người học phải nộp đơn đăng ký gia hạn trước thời điểm kết thúc học phí ít nhất 05 ngày làm việc.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Thời gian đăng ký gia hạn phải trước thời điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "title": "Điều 7. Quy trình gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 7. Quy trình gia hạn thời gian nộp học phí\nNgười học và các đơn vị liên quan thực hiện quy trình gồm các bước sau:\nBước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên, kèm các minh chứng cần thiết. Thời gian đăng ký gia hạn phải trước thời\nđiểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc. (Phụ lục 1)\nBước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình\nBan Giám hiệu phê duyệt.\nBước 3: Phòng Công tác sinh viên thông báo kết quả cho người học , thực hiện gia\nhạn thời gian nộp học phí, đồng thời thông báo kết quả cho Phòng Kế hoạch - Tài chính để\ntheo dõi công nợ của người học.\nBước 4: Người học thực hiện nộp học phí sau khi hết thời gian gia hạn.\nBước 5: Phòng Kế hoạch - Tài chính gửi kết quả theo dõi công nợ của người học\nđược xét gia hạn về Phòng Công tác sinh viên sau khi kết thúc thời gian nộp học phí ở học\nkỳ kế tiếp.\nBước 6: Phòng Công tác sinh viên ra quyết định liên quan đến nợ học phí, xử lý học\nvụ (đối với người học không hoàn thành nộp học phí)."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "530b165068a670f7d575355a",
+    "question": "Người học muốn xin gia hạn thời gian nộp học phí thì nộp đơn đăng ký về phòng nào, và phòng đó giữ những chức danh nào trong Hội đồng xét hồ sơ xin gia hạn?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Nộp về Phòng Công tác sinh viên (Điều 7, Bước 1). Trong Hội đồng xét hồ sơ (Điều 8 khoản 1), Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng và Phó Trưởng phòng Công tác sinh viên là thư ký.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên"
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng"
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Phó Trưởng phòng Công tác sinh viên là thư ký"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 7 của Quy định gia hạn thời gian nộp học phí, người học phải nộp đơn về Phòng Công tác sinh viên. Về việc giữ các chức danh trong Hội đồng xét hồ sơ, theo Điều 8:\n- Phó Hiệu trưởng là Chủ tịch Hội đồng.\n- Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng.\n- Trưởng Phòng Kế hoạch - Tài chính là ủy viên.\n- Trưởng Phòng Đào tạo là ủy viên.\n- Phó Trưởng phòng Công tác sinh viên là thư ký.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Bước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình Ban Giám hiệu phê duyệt."
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Hội đồng xét hồ sơ xin gia hạn học phí, bao gồm 5 thành viên: Phó Hiệu trưởng là Chủ tịch Hội đồng; Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng;"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "title": "Điều 7. Quy trình gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 7. Quy trình gia hạn thời gian nộp học phí\nNgười học và các đơn vị liên quan thực hiện quy trình gồm các bước sau:\nBước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên, kèm các minh chứng cần thiết. Thời gian đăng ký gia hạn phải trước thời\nđiểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc. (Phụ lục 1)\nBước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình\nBan Giám hiệu phê duyệt.\nBước 3: Phòng Công tác sinh viên thông báo kết quả cho người học , thực hiện gia\nhạn thời gian nộp học phí, đồng thời thông báo kết quả cho Phòng Kế hoạch - Tài chính để\ntheo dõi công nợ của người học.\nBước 4: Người học thực hiện nộp học phí sau khi hết thời gian gia hạn.\nBước 5: Phòng Kế hoạch - Tài chính gửi kết quả theo dõi công nợ của người học\nđược xét gia hạn về Phòng Công tác sinh viên sau khi kết thúc thời gian nộp học phí ở học\nkỳ kế tiếp.\nBước 6: Phòng Công tác sinh viên ra quyết định liên quan đến nợ học phí, xử lý học\nvụ (đối với người học không hoàn thành nộp học phí)."
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "title": "Điều 8. Quy trình xét hồ sơ",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 8. Quy trình xét hồ sơ\n1. Trường ban hành quyết định thành lập Hội đồng xét hồ sơ xin gia hạn thời gian\nnộp học phí, bao gồm 5 thành viên: Phó Hiệu trưởng là Chủ tịch Hội đồng; Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng; Trưởng Phòng Kế hoạch – Tài chính là ủy\nviên; Trưởng Phòng Đào tạo là ủy viên; Phó Trưởng phòng Công tác sinh viên là thư ký.\n2. Hội đồng thực hiện xét hồ sơ dựa trên các tiêu chuẩn xét gia hạn thời gian nộp\nhọc phí quy định tại Điều 4.\nChương V\nTỔ CHỨC THỰC HIỆN"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "5586c9fbf0771ea0e2a91860",
+    "question": "Theo Phụ lục 1 được thay thế bởi Quyết định 2749/QĐ-ĐHBK, kết quả kiểm tra tiếng Anh theo định dạng TOEIC vào cuối học kỳ 1 năm nhất được dùng để làm gì, và có được dùng nhiều lần không?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Được dùng để xét miễn các học phần Anh văn 1, 2, 3, 4 tương ứng theo thang điểm quy đổi tại tiểu mục 3.1 mục 3 của Phụ lục; việc xét miễn này chỉ thực hiện một lần duy nhất (không dùng lại nhiều lần).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+        "exact_quote": "Vào cuối học kỳ 1 năm nhất, Nhà trường tổ chức thêm một kỳ kiểm tra trình độ tiếng Anh\nđầu vào theo định dạng TOEIC"
+      },
+      {
+        "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+        "exact_quote": "Kết quả kiểm tra này được sử dụng để xét miễn một lần duy nhất các học phần Anh văn 1,\n2, 3, 4 tương ứng theo thang điểm quy đổi tại bảng quy đổi tại tiểu mục 3.1 mục 3 của Phụ"
+      }
+    ],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "Theo Quyết định 2749/QĐ-ĐHBK, có quy định cụ thể nào về việc sử dụng kết quả kiểm tra tiếng Anh TOEIC cho mục đích gì trong chương trình học?",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HVDT2749_PhuLuc_1",
+        "title": "PHỤ LỤC 1. QUY ĐỊNH VỀ CHUẨN NGOẠI NGỮ",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 và Quyết định số 1260/QĐ-ĐHBK ngày 16 tháng 03 năm 2026 của Hiệu trưởng trường Đại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh — số 2749/QĐ-ĐHBK",
+        "content": "PHỤ LỤC 1. QUY ĐỊNH VỀ CHUẨN NGOẠI NGỮ\n(Ban hành kèm theo Quyết định số: /QĐ-ĐHBK, ngày tháng năm 2026\ncủa Hiệu trưởng trường Đại học Bách khoa – ĐHQG-HCM)\nA. DÀNH CHO CHƯƠNG TRÌNH GIẢNG DẠY BẰNG TIẾNG VIỆT\nCác quy định chuẩn ngoại ngữ sau đây dành cho các sinh viên chương trình đào tạo giảng\ndạy bằng tiếng Việt. Các sinh viên tiêu chuẩn chương trình giảng dạy bằng tiếng Việt là lưu\nhọc sinh Lào, Campuchia được miễn các chuẩn ngoại ngữ từng năm và chuẩn ngoại ngữ\ntốt nghiệp, nhưng không được miễn các học phần tiếng Anh trong chương trình đào tạo.\n1. Chuẩn ngoại ngữ từng năm học\nSinh viên phải đạt chuẩn ngoại ngữ từng năm theo quy định để đăng ký môn học cho năm\ntiếp theo. Chuẩn ngoại ngữ từng năm được quy định cụ thể như sau:\na) Chuẩn ngoại ngữ tiếng Anh từng năm dành cho sinh viên chương trình tiêu chuẩn, vừa\nlàm vừa học, Bằng 2\n- Từ Khóa 2023 về trước\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất Anh văn cơ bản 2 Học phần ngoài chương trình đào tạo\nNăm thứ hai Anh văn 1 Hết năm nhất\nNăm thứ ba Anh văn 1, 2, 3 Hết năm hai\nNăm thứ tư Anh văn 1, 2, 3, 4 Hết năm ba\n- Từ Khóa 2024 về sau (áp dụng từ học kỳ 1 năm học 2026-2027)\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất Anh văn cơ bản 2 Học phần ngoài chương trình đào tạo\nNăm thứ hai Anh văn 1 Hết năm nhất\nNăm thứ ba, tư Anh văn 1, 2, 3, 4 Hết năm hai\nLưu ý: Điều kiện tiên quyết của các học phần Anh văn 1, 2, 3 và 4 tương ứng là Anh văn\ncơ bản 2, Anh văn 1, 2 và 3.\nChuẩn ngoại ngữ tiếng Anh từng năm không áp dụng đối với sinh viên chương trình định\nhướng Nhật Bản, chương trình đào tạo kỹ sư chất lượng cao tại Việt Nam (PFIEV).\nb) Chuẩn ngoại ngữ tiếng Pháp từng năm dành cho sinh viên Chương trình đào tạo kỹ sư\nchất lượng cao tại Việt Nam (PFIEV) từ khóa 2024 về sau, áp dụng từ học kỳ 1 năm học\n2026-2027.\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất\nNăm thứ hai Pháp văn 1 Hết năm nhất\nNăm thứ ba Pháp văn 1, 2, 3, 4 Hết năm hai\nNăm thứ tư Pháp văn 1, 2, 3, 4, 5, 6 Hết năm ba\nc) Chuẩn ngoại ngữ tiếng Nhật từng năm dành cho sinh viên Chương trình định hướng\nNhật Bản từ khóa 2026 về sau:\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất\nNăm thứ hai Tiếng Nhật 1, 2 Hết năm nhất\nNăm thứ ba Tiếng Nhật 1, 2, 3, 4 Hết năm hai\nNăm thứ tư Tiếng Nhật 1, 2, 3, 4, 5, 6 Hết năm ba\n2. Chuẩn ngoại ngữ tốt nghiệp\nChuẩn ngoại ngữ tốt nghiệp được quy định theo chứng chỉ ngoại ngữ quốc tế như sau:\nChương trình,\nhình thức đào tạo\nChuẩn ngoại ngữ tốt nghiệp\nTiếng Anh (tương đương\nTOEIC) Khác\nNghe-Đọc Nói-Viết\nChương trình tiêu chuẩn 500 (khoá 2018 v ề\ntrước)\n550 (khoá 2019)\n600 (từ khoá 2020)\n200\nChương trình Định hướng Nhật\nBản Không áp dụng JLPT N3 (tiếng Nhật)\nChương trình tài năng 600 (khoá 2018 v ề\ntrước)\n650 (khoá 2019)\n700 (từ khoá 2020)\n245\nChương trình đào tạo kỹ sư chất\nlượng cao t ại Vi ệt Nam\n(PFIEV)\n600 (khoá 2018 v ề\ntrước)\n650 (khoá 2019)\n700 (từ khoá 2020)\n245\nDELF B1\nTCF B1\n(tiếng Pháp)\nVừa làm vừa học,\nĐào tạo từ xa\n400 (khoá 2017 v ề\ntrước)\n450 (khoá 2018)\n500 (khoá 2019)\n600 (từ khoá 2020)\n200\n(từ khoá\n2021)\nChính quy Bằng thứ hai Học chương trình đào tạo chính quy của khóa nào thì áp\ndụng chuẩn của khóa đó.\nCác chứng chỉ tiếng Anh bao gồm đầy đủ các kỹ năng Nghe – Đọc – Nói – Viết để xét\nchuẩn tốt nghi ệp g ồm: IELTS, TOEFL iBT (không s ử dụng ch ứng ch ỉ TOEFL iBT\nHome Edition), PET, FCE, CAE, PTE Academic, Linguaskill, APTIS ESOL. Khi đ ạt\nmức điểm tương đương TOEIC theo bảng quy đ ổi tại mục 3.1 của Phụ lục này, sinh\nviên được xét đạt chuẩn ngoại ngữ tốt nghiệp cho tất cả các kỹ năng.\nTạm thời cho phép sinh viên s ử dụng kết quả các kỳ kiểm tra k ỹ năng Nói – Viết do\nTrung tâm Ngoại ngữ Trường Đại học Bách khoa tổ chức để xét tốt nghiệp.\nKhi xét điều kiện đăng ký học phần Khóa luận tốt nghiệp, cho phép áp dụng chuẩn ngoại\nngữ tốt nghiệp tiếng Anh ch ỉ đối với kỹ năng Nghe – Đọc, Chương trình Định hướng\nNhật Bản là JLPT N3 (tiếng Nhật).\n3. Quy đổi các bằng cấp và chứng chỉ ngoại ngữ\n3.1. Các chứng chỉ tiếng Anh quốc tế được quy đổi tương đương như sau:\nCác chứng chỉ tiếng Anh Quốc tế Các học phần Anh văn\nTOEIC\nListening\n&\nReading\nTOEFL\niBT\nTOEFL\niBT 2026\n(Overall\nScore)\nIELTS PET FCE CAE PTE Academic Lingua -skill APTIS ESOL VSTEP VEPT Cơ bản 1 2 3 4\n400 40 2.5 - - - - - - - - Đạt - - - -\n450 49 3 - - - - - 140 - 4.0 43 Đạt Đạt - - -\n500 54 3 4.0 Grade C - - - 143 - 4.5 51 Đạt Đạt Đạt - -\n550 59 3.5 4.5 Grade B - - - 146 - 5.0 59 Đạt Đạt Đạt Đạt -\n600 64 3.5 5.0 Grade B - - 41 149 B1 5.5 67 Đạt Đạt Đạt Đạt Đạt\n650 70 3.5 5.0 Grade A - - 43 152 - X X Đạt Đạt Đạt Đạt Đạt\n700 79 4 5.5 Grade A - - 45 155 B1 X X Đạt Đạt Đạt Đạt Đạt\n785 85 4 5.5 X\nGrade\nC,\nGrade\nB,\nGrade\nA\nLevel\nB2\nGrade\nC,\nGrade\nB,\nGrade\nA\n48 160 B2 X X Đạt Đạt Đạt Đạt Đạt\nLưu ý: Không sử dụng chứng chỉ ngoại ngữ TOEFL iBT Home Edition\nThời hạn công nhận chứng chỉ: trong thời hạn 2 năm tính từ ngày cấp cho đến ngày đăng\nký xét đạt chuẩn.\nBằng tốt nghiệp bậc đại học trở lên ngành/chuyên ngành tiếng Anh được xét miễn các học\nphần Anh văn 1, 2, 3, 4.\n3.2. Các chứng chỉ tiếng Pháp được quy đổi tương đương như sau:\nCác chứng chỉ tiếng Pháp Các học phần tiếng Pháp\nTú tài\nPháp\nTốt nghiệp phổ thông\nchương trình Song ngữ và\ntăng cường tiếng Pháp\nDELF TCF 1 2 3 4 5 6 7*\nX X A1 100-199 Đạt\nX X A2 200-299 Đạt Đạt\nB1,\nB2\n300-399 Đạt Đạt Đạt Đạt Đạt Đạt Đạt\n*Pháp văn 7: áp dụng cho sinh viên Khoá 2018 về trước.\n3.3. Các chứng chỉ tiếng Nhật được quy đổi tương đương như sau:\nSinh viên đã có chứng chỉ tiếng Nhật JLPT trong vòng 12 tháng, được xem xét miễn một\nsố học phần tiếng Nhật như sau:\na) Đối với Khóa 2023 về trước:\nChứng chỉ Được xét miễn Ghi chú\nJLPT N1 Tiếng Nhật 1, 2, 3, 4, 5, 6\nJLPT N2 Tiếng Nhật 1, 2, 3\nJLPT N3 Tiếng Nhật 1, 2\nb) Đối với Khóa 2024 về sau:\nChứng chỉ Được xét miễn Ghi chú\nJLPT N1 Tiếng Nhật 1, 2, 3, 4, 5, 6\nJLPT N2 Tiếng Nhật 1, 2, 3, 4\nJLPT N3 Tiếng Nhật 1, 2, 3\n4. Nguyên tắc xét miễn các học phần tiếng Anh và các chuẩn ngoại ngữ\n4.1. Ngay khi nhập học\nSau khi nhập học, Nhà trường tổ chức một kỳ thi xếp trình độ tiếng Anh dành cho sinh viên\nchương trình giảng dạy bằng tiếng Việt vừa trúng tuyển. Căn cứ vào kết quả kỳ thi, sinh\nviên được phân lớp hoặc đăng ký các học phần Anh văn 1, 2, 3, 4 tương ứng. Kết quả thi\nxếp trình độ tiếng Anh chỉ được sử dụng để xét tạm đạt điều kiện tiên quyết khi đăng ký\ncác học phần Anh văn trong học kỳ 1 và học kỳ 2 của năm nhất; không có giá trị xét miễn\nbất kỳ học phần Anh văn nào trong chương trình đào tạo.\nVào cuối học kỳ 1 năm nhất, Nhà trường tổ chức thêm một kỳ kiểm tra trình độ tiếng Anh\nđầu vào theo định dạng TOEIC dành cho sinh viên chương trình giảng dạy bằng tiếng Việt.\nKết quả kiểm tra này được sử dụng để xét miễn một lần duy nhất các học phần Anh văn 1,\n2, 3, 4 tương ứng theo thang điểm quy đổi tại bảng quy đổi tại tiểu mục 3.1 mục 3 của Phụ\nlục này. Đối với các học phần không được miễn, sinh viên phải đăng ký học theo quy định.\nSinh viên vừa trúng tuyển, đã có bằng tốt nghiệp từ bậc đại học ngành/chuyên ngành tiếng\nAnh, trong học kỳ đầu tiên tính từ lúc trúng tuyển, được đăng ký xét miễn các học phần\nAnh văn 1, 2, 3 và 4.\n4.2. Trong quá trình học\nTrong quá trình học, sinh viên có thể sử dụng chứng chỉ tiếng Anh quốc tế còn thời hạn phù\nhợp để được xét miễn các học phần Anh văn 1, 2, 3, 4 (theo quy định tại mục 3.1 của Phụ\nlục này) và đồng thời được xét đạt chuẩn ngoại ngữ tốt nghiệp (theo quy định tại mục 2 của\nPhụ lục này).\nB. DÀNH CHO CHƯƠNG TRÌNH GIẢNG DẠY BẰNG TIẾNG ANH\nQuy định chuẩn ngoại ngữ này bao gồm chuẩn ngoại ngữ tiếng Anh dành cho các sinh viên\nchương trình Dạy và học bằng tiếng Anh, Tiên tiến.\nChuẩn ngoại ngữ tiếng Anh của cả chương trình, là điều kiện trúng tuyển vào trường và là\nchuẩn ngoại ngữ tốt nghiệp. Cụ thể như sau:\nIELTS\nAcademic\nPTE\nAcademic\nTOEFL iBT\nTOEFL iBT 2026\n(Overall Score)\nTOEIC (*)\nNghe-Đọc Nói-Viết\n6,0 52 79 4 730 280\n(*) Áp dụng từ khoá 2021 về sau.\nLưu ý: Không sử dụng chứng chỉ ngoại ngữ TOEFL iBT Home Edition.\nSinh viên phải có chứng chỉ ngoại ngữ quốc tế phù hợp và còn trong thời hạn hợp lệ để\nđược xét đạt chuẩn. Hạn của chứng chỉ tính đến thời điểm xét."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "5d30469e8d0c14bf4e353095",
+    "question": "Việc gia hạn thời gian nộp học phí theo quy định của Trường Đại học Bách khoa áp dụng cho những loại học kỳ nào?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Chỉ học kỳ chính; không áp dụng cho học kỳ dự thính và học kỳ hè.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_5",
+        "exact_quote": "không áp dụng cho học kỳ dự thính, học kỳ hè"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo quy định của Trường Đại học Bách khoa - ĐHQG-HCM, việc gia hạn thời gian nộp học phí được áp dụng cho các kỳ học theo lịch trình cố định (thường là semester-based) của trường, không có sự thay đổi tùy theo nhu cầu cá nhân. Người học sẽ phải tuân thủ thời hạn quy định trong từng khóa học.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_QCDT_01_Dieu_01",
+        "exact_quote": "Thời hạn nộp học phí được xác định theo quy định của Ban Giám đốc và các văn bản nội bộ."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_5",
+        "title": "Điều 5. Quyền lợi của người học khi được gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 5. Quyền lợi của người học khi được gia hạn thời gian nộp học phí\n1. Người học được xét đơn xin gia hạn thời gian nộp học phí trong các học kỳ chính\n(không áp dụng cho học kỳ dự thính, học kỳ hè).\n2. Người học không được gia hạn thời gian nộp học phí trong 02 học kỳ chính liên\ntiếp nếu chưa hoàn thành nộp học phí của học kỳ được xét gia hạn trong thời gian quy định.\n3. Người học được tiếp tục hoàn thành chương trình đào tạo trong học kỳ được xét\ngia hạn thời gian nộp học phí sau khi Trường ban hành quyết định gia hạn thời gian nộp\nhọc phí."
+      }
+    ],
+    "unknown_citation_ids": [
+      "HCMUT_QCDT_01_Dieu_01"
+    ]
+  },
+  {
+    "review_id": "632ff2b2da56d54a87514910",
+    "question": "Sinh viên bắt buộc phải đeo thẻ sinh viên trong phạm vi nào?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Khi ở trong khuôn viên Trường.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_3",
+        "exact_quote": "sinh viên phải đeo thẻ sinh viên khi ở trong khuôn viên Trường"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo các văn bản quy chế đã tra cứu, người học phải đeo thẻ sinh viên khi ở trong khuôn viên trường. Điều 9 của Quy tắc chung và Điều 3 của Nội quy học đường đều khẳng định: 'Đeo thẻ sinh viên: sinh viên phải đeo thẻ sinh viên khi ở trong khuôn viên Trường.'",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_UNGXU3408_Dieu_9",
+        "exact_quote": "Điều 9. Quy tắc chung [...] Người học đeo thẻ sinh viên/ học viên khi ở trong khuôn viên Trường."
+      },
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_5",
+        "exact_quote": "Điều 5. Những hành vi sinh viên KHÔNG được phép thực hiện [...] 2. Cho người khác mượn thẻ sinh viên hoặc mượn thẻ sinh viên của người khác để sử dụng, sử dụng thẻ sinh viên sai mục đích."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_3",
+        "title": "Điều 3. Quy định về tác phong, ý thức, cách thức giao tiếp và thái độ ứng xử của",
+        "source_name": "Về việc ban hành Nội quy học đường Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 1924/QĐ-ĐHBK",
+        "content": "Điều 3. Quy định về tác phong, ý thức, cách thức giao tiếp và thái độ ứng xử của\nsinh viên\n1. Đeo thẻ sinh viên: sinh viên phải đeo thẻ sinh viên khi ở trong khuôn viên Trường.\n2. Trang phục: Trang phục lịch sự, gọn gàng phù hợp với văn hóa học đường khi\nvào khuôn viên trường. Khi tham gia các ngày lễ (khai giảng, tốt nghiệp, …), hội\nnghị, hội thảo … sinh vi ên phải mặc lễ phục trang trọng, lịch sự theo quy định\ncủa sự kiện.\n3. Đầu tóc gọn gàng, nghiêm túc, phù hợp với môi trường giáo dục; không xăm hình\ngây phản cảm, không phù hợp với thuần phong, mỹ tục và văn hóa dân tộc.\n4. Lễ phép, tôn trọng cán bộ viên chức và người lao động của Nhà trường; lịch sự,\nhoà nhã và thân thiện với mọi người.\n5. Sinh viên phải đi học đúng giờ quy định, có thái độ nghiêm túc trong học tập và\nthi cử; tuân thủ, chấp hành đầy đủ nội quy, quy định về an toàn và hướng dẫn của\ngiảng viên trong các giờ học thực hành, thí nghiệm.\n6. Thực hiện nếp sống văn minh, xếp hàng ngay ngắn, trật tự khi đi thang máy, liên\nhệ công việc và sử dụng các dịch vụ của Nhà trường."
+      },
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_5",
+        "title": "Điều 5. Những hành vi sinh viên KHÔNG được phép thực hiện",
+        "source_name": "Về việc ban hành Nội quy học đường Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 1924/QĐ-ĐHBK",
+        "content": "Điều 5. Những hành vi sinh viên KHÔNG được phép thực hiện\n1. Gian lận trong học tập, kiểm tra, thi cử.\n2. Cho người khác mượn thẻ sinh viên hoặc mượn thẻ sinh viên của người khác để\nsử dụng, sử dụng thẻ sinh viên sai mục đích.\n3. Đi xe máy, xe đạp trong khuôn viên Trường.\n4. Dẫm, nằm, ngồi lên cỏ ở các khu vực có biển cấm trong khuôn viên Trường; hái\nhoa, bẻ cành cây trong khuôn viên Trường; chơi thể thao tại những địa điểm ngoài\nkhu vực sân thể dục thể thao theo quy định của Trường.\n5. Tổ chức hoặc tham gia cờ bạc dưới mọi hình thức trong khuôn viên Trường.\n6. Mang theo hoặc sử dụng các chất cháy, chất gây nổ; các loại vũ khí, hung khí vào\nTrường.\n7. Mang đồ ăn vào lớp học, gi ảng đường và hội trường. Mang theo động vật, thú\nnuôi vào Trường.\n8. Sử dụng, mua bán, tàng trữ các chất ma túy, các chất kích thích dưới mọi hình\nthức; uống rượu, bia và hút thuốc lá trong khuôn viên Trường (bao gồm thuốc lá\nđiện tử); say rượu bia khi đến Trường.\n9. Tự ý viết, dán quảng cáo, thông báo trong khuôn viên Trường; viết, vẽ, sơn bậy,\nbôi xóa, làm bẩn, làm mất vệ sinh và làm hư hỏng các trang thiết bị học tập, máy\nmóc, dụng cụ thực hành thí nghiệm, cơ sở vật chất … của Trường.\n10. Tự ý sử dụng tài sản của Nhà trường; tự ý di chuyển các trang thiết bị, tài sản ra\nkhỏi vị trí đã sắp xếp, lắp đặt trong phòng và trong khuôn viên Trường. Đứng lên\nbàn ghế, leo trèo hoặc ngồi trên lan can, khung cửa sổ và trên bàn học, bàn giáo\nviên.\n11. Lưu hành, tuyên truyền các ấn phẩm, tài liệu, thông tin phản động, phim ảnh\nkhông lành mạnh và các tài liệu cấm khác theo quy định của Nhà nước.\n12. Gây bè phái, gây mất đoàn kết nội bộ trong tập thể lớp và trong Trường. Gây gổ,\nđánh nhau hoặc kích động đánh nhau, tổ chức băng nhóm, tụ tập gây mất an ninh,\ntrật tự dưới mọi hình thức.\n13. Không lợi dụng mạng xã hội nhằm mục đích xâm phạm đời tư, công việc và học\ntập của cá nhân, cơ quan, tổ chức, đoàn thể; có ý thức bảo vệ, xây dựng hình ảnh,\nthương hiệu của Nhà trường trên không gian mạng.\n14. Không sử dụng từ ngữ gây thù hận, kích động bạo lực, phân biệt vùng miền, giới\ntính, tôn giáo, dân tộc.\n15. Tổ chức, tham gia, truyền bá các hoạt động mê tín dị đoan, các hoạt động tôn\ngiáo và các hành vi vi phạm đạo đức khác trong và ngoài khuôn viên Trường.\n16. Tổ chức, tham gia các hoạt động chính trị trái pháp luật trong và ngoài khuôn\nviên Trường.\n17. Tham gia các hoạt động tập thể mang danh nghĩa Nhà trường khi chưa được Nhà\ntrường cho phép.\n18. Có hành vi xúc phạm nhân phẩm, danh dự, xâm phạm tới thân thể, sức khỏe và\ntài sản của cán bộ, giảng viên, người lao động và sinh viên khác của Nhà trường.\n19. Tổ chức hoặc tham gia các hoạt động vi phạm pháp luật khác."
+      },
+      {
+        "article_id": "HCMUT_UNGXU3408_Dieu_9",
+        "title": "Điều 9. Quy tắc chung",
+        "source_name": "Về việc ban hành Quy định Quy tắc ứng xử tại Trường Đại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh. — số 3408/QĐ-ĐHBK",
+        "content": "Điều 9. Quy tắc chung\n1. Chấp hành nhiệm vụ của người học tại các quy chế , quy định của Bộ Giáo dục và\nĐào tạo, Nội quy học đường Trường Đại học Bách khoa – ĐHQG-HCM.\n2. Tích cực rèn luyện phẩm chất đạo đức, có lối sống lành mạnh, giản dị, khiêm tốn;\ntrung thực, nghiêm túc trong học tập, nghiên cứu khoa học và rèn luyện, không gian\nlận trong học tập và thi cử với mọi hình thức, tránh những việc gây ảnh hưởng xấu\nhình ảnh, uy tín của Nhà trường.\n3. Tự giác, chủ động trong quá trình học tập, nghiên cứu khoa học, tích cực tham gia\ncác hoạt động giáo dục, đào tạo và các chương trình do Nhà trường tổ chức để nâng\ncao kiến thức chuyên môn; các hoạt động xã hội, các hoạt động phục vụ cộng đồng\nđể rèn luyện các kỹ năng mềm, khả năng thích ứng với môi trường làm việc, rèn\nluyện kỹ năng sống, học tập và hội nhập quốc tế.\n4. Khi tham gia các hoạt động, sự kiện, hội nghị,… người học phải đến trước giờ khai\nmạc ít nhất 5 phút. Nếu không thể tham gia hoạt động, sự kiện hoặc đến muộn,\nngười học phải báo cáo sớm với Ban Tổ chức hay người phụ trách (trưởng nhóm,\nlớp trưởng, v.v.).\n5. Người học đến trường phải mặc trang phục giản dị, kín đáo, gọn gàng, lịch sự, phù\nhợp với môi trường học đường.\n6. Người học đeo thẻ sinh viên/ học viên khi ở trong khuôn viên Trường. Tuyệt đối\nkhông cho người khác mượn hoặc mượn thẻ sinh viên/ học viên của người khác để\nsử dụng; không được cầm cố thẻ sinh viên/ học viên.\n7. Việc ghi âm, ghi hình, chụp ảnh trong quá trình học tập, làm việc phải tuân thủ quy\nđịnh của Nhà trường, bảo đảm tôn trọng quyền riêng tư và không làm ảnh hưởng\nđến hoạt động giảng dạy, học tập; không phát tán, sử d ụng trái phép các nội dung\nđã ghi nhận.\n8. Có trách nhiệm phản ánh, tố giác các hành vi vi phạm quy định, vi phạm đạo đức\ntrong Nhà trường thông qua các kênh tiếp nhận thông tin theo quy định."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "6ba3c86cf40e8bfd70d1f77f",
+    "question": "Theo luật giao thông đường bộ, sinh viên đi xe máy vào khuôn viên trường mà không đội mũ bảo hiểm thì bị phạt bao nhiêu tiền?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus chỉ cấm đi xe máy trong khuôn viên Trường (Nội quy học đường) và không nêu mức phạt tiền theo pháp luật giao thông đường bộ.",
+    "reference_evidence": [],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Lý do: Câu hỏi liên quan đến luật giao thông đường bộ nhưng nội dung không nằm trong cơ sở dữ liệu quy chế học vụ và văn bản đã tra cứu. Không có quy định cụ thể về khoản phạt vi phạm này cho sinh viên tại trường.",
+    "candidate_citations": [],
+    "source_articles": [],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "750a9c12ce29787f3845bd4d",
+    "question": "Hiện kim khen thưởng cho một nhóm SV từ hai người trở lên được tính so với khen thưởng dành cho cá nhân như thế nào?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Bằng 2 lần khen thưởng dành cho cá nhân.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_VINHDANH658_Dieu_11",
+        "exact_quote": "Đối với nhóm SV (từ 02 SV trở lên) thì hiện kim khen thưởng cho nhóm SV có"
+      },
+      {
+        "article_id": "HCMUT_VINHDANH658_Dieu_11",
+        "exact_quote": "giá trị bằng 02 lần so với hiện kim khen thưởng dành cho cá nhân"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Hiện kim khen thưởng cho một nhóm SV từ hai người trở lên được tính là 02 lần so với hiện kim khen thưởng dành cho cá nhân. Điều này quy định trong clause 4c của Điều 11, quy định rằng đối với các nhóm SV (từ 02 SV trở lên), giá trị khen thưởng cho nhóm SV có giá trị bằng 02 lần so với hiện kim khen thưởng dành cho cá nhân.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_VINHDANH658_Dieu_11",
+        "exact_quote": "4c. Đối với nhóm SV (từ 02 SV trở lên) thì hiện kim khen thưởng cho nhóm SV có giá trị bằng 02 lần so với hiện kim khen thưởng dành cho cá nhân."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_VINHDANH658_Dieu_11",
+        "title": "Điều 11. Định mức hỗ trợ và vinh danh",
+        "source_name": "Về việc ban hành Quy chế hỗ trợ và vinh danh sinh viên, nhóm sinh viên, giảng viên hướng dẫn, tham gia và đạt giải thưởng cao trong các cuộc thi học thuật, khoa học công nghệ và đổi mới sáng tạo. — số 658/QĐ-ĐHBK",
+        "content": "Điều 11. Định mức hỗ trợ và vinh danh\n1. Định mức hỗ trợ\na. Mức hỗ trợ được căn cứ theo qui định hiện hành về hỗ trợ phụ cấp, công tác phí,\nphụ cấp lưu trú theo quy định của nhà trường.\nb. Mức hỗ trợ này không bao gồm chi phí thực hiện đề tài; hoặc không áp dụng cho\ncác đề tài đã được duyệt kinh phí thực hiện đề tài trong đó bao gồm chi phí tham gia, chi\nphí di chuyển và chi phí triển khai đề tài.\nc. Đối với đề tài/ sản phẩm dự thi có từ 02 GV hướng d ẫn: chỉ xem xét hỗ trợ 01\nGV đại diện tham gia.\nd. Đối với đề tài/ sản phẩm dự thi có từ 03 SV thực hiện trở lên: chỉ xem xét hỗ trợ\ntối đa 02 SV đại diện tham gia.\n2. Đối với GV đạt chuẩn vinh danh\na. Được nhận Giấy khen Hiệu trưởng.\nb. Thành tích được quy đổi giờ Nghiên cứu khoa học và chuyển giao công nghệ căn\ncứ trên nguyên tắc: chỉ quy đổi một lần và lấy kết quả cao nhất để quy đổi.\n3. Định mức khen thưởng vinh danh cho SV, nhóm SV\na. Tất cả SV được nhận giấy khen Hiệu trưởng và khen thưởng hiện kim.\nb. Hiện kim (HK) được căn cứ vào phân loại mức độ cuộc thi / giải thưởng (Kpl)\nquy định tại Điều 5 của Quy chế này và hệ số khen thưởng (Khs) do Hiệu trưởng quyết\nđịnh mỗi năm: HK = Kpl x Khs.\nc. Bảng định mức hệ số khen thưởng (dành cho cá nhân):\nTT Phân loại mức độ cuộc thi, giải thưởng\nHệ số khen thưởng (Kpl)\nGiải nhất\n/ TOP3\nGiải nhì /\nTOP5\nGiải ba /\nTOP10\nGiải KK /\nTOP20\n1 Loại I 30 23 19 15\n2 Loại II 22 15 11 7\n3 Loại III 16 9 5 1\n4 Loại IV 6 3 1 0\nLưu ý: Đối với các giải thưởng không có cơ cấu Nhất – Nhì – Ba – KK thì sẽ dùng\ncơ cấu TOP 3 – TOP 5 – TOP 10 – TOP 20 để ghi nhận thành tích.\nd. Đối với nhóm SV (từ 02 SV trở lên) thì hiện kim khen thưởng cho nhóm SV có\ngiá trị bằng 02 lần so với hiện kim khen thưởng dành cho cá nhân.\ne. Đối với các cuộc thi có giải thưởng đồng đội thì hiện kim khen thưởng cho tập\nthể đạt giải có giá trị bằng 03 lần so với hiện kim khen thưởng dành cho cá nhân.\nf. Đối với các đơn vị t ổ chức khen thưởng riêng cho các SV, nhóm SV (ngoài lễ\nvinh danh của trường tổ chức), hiện kim khen thưởng quy định như sau:\n+ Nếu kinh phí khen thưởng từ nguồn kinh phí của trường thì phải đề xuất và\nđược Hiệu trưởng phê duyệt: HKriêng = k x HK (với hệ số k do đơn vị đề xuất).\n+ Nếu kinh phí khen thưởng từ nguồn vận động tài trợ t hì đơn vị toàn quyền\nquyết định.\n4. Đối với các trường hợp đặc biệt : sẽ do Hội đồng cố vấn xem xét và đề xuất\nHiệu trưởng quyết định mức khen thưởng."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "757c67132b8641fbfae43cf5",
+    "question": "Khi có quyết định xử lý biến động người học như đình chỉ học tập hoặc buộc thôi học, Phòng Đào tạo phải gửi quyết định đi đâu?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Gửi đến Khoa.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_8",
+        "exact_quote": "Gửi quyết định mỗi khi có xử lý biến động người học"
+      },
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_8",
+        "exact_quote": "nghỉ học tạm thời đến Khoa"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Phòng Đào tạo phải gửi quyết định đi Khoa. Điều 8 của văn bản quy định yêu cầu: \"Gửi quyết định mỗi khi có xử lý biến động người học như đình chỉ học tập, buộc thôi học\".",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_8",
+        "exact_quote": "Điều 8. Nhiệm vụ của Phòng Đào tạo\n4. Gửi quyết định mỗi khi có xử lý biến động người học như đình chỉ học tập, buộc thôi học, nghỉ học tạm thời đến Khoa."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_8",
+        "title": "Điều 8. Nhiệm vụ của Phòng Đào tạo",
+        "source_name": "Về việc ban hành Quy định về công tác Giáo viên chủ nhiệm và Cố vấn học tập Trường Đại học Bách khoa – ĐHQG-HCM. — số 2977/QĐ-ĐHBK",
+        "content": "Điều 8. Nhiệm vụ của Phòng Đào tạo\n1. Tham mưu xây dựng các quy định, quy trình hoạt động của GVCN & CVHT.\n2. Cung cấp tài khoản cho GVCN & CVHT, Ban Chủ nhiệm Khoa để truy cập vào\nhệ thống theo dõi kết quả học tập của người học.\n3. Giải đáp, cung cấp thông tin liên quan đến chương trình đào tạo , đăng ký học tập\nvà kết quả học tập của người học theo đề nghị cụ thể của Ban Chủ nhiệm Khoa.\n4. Gửi quyết định mỗi khi có xử lý biến động người học như đình chỉ học tập, buộc\nthôi học, nghỉ học tạm thời đến Khoa.\n5. Phối hợp với P. TC-NS và P. CTSV tính định mức giảm giờ cho các nhiệm vụ theo\nQuy định chế độ làm việc của VC&NLĐ."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "7a5d1a62df20b571cc8e712f",
+    "question": "Đơn giá học phí mỗi tín chỉ năm học 2026–2027 cho sinh viên đại học chính quy là bao nhiêu?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus không có đơn giá học phí. Điều 23.1 (Quyết định 1259) chỉ nói Trường thông báo đơn giá, cách tính và thời điểm thu học phí theo từng năm hoặc theo học kỳ; thông báo đó không nằm trong corpus.",
+    "reference_evidence": [],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Không tìm thấy thông tin chi tiết về đơn giá học phí trong các văn bản tra cứu. Các snippet chỉ cung cấp quy định về chuẩn kỹ năng, đánh giá học tập và ngoại ngữ.",
+    "candidate_citations": [],
+    "source_articles": [],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "9010c0eb30c8dc5d06c1cfda",
+    "question": "Sinh viên muốn phúc khảo điểm một học phần thì phải nộp đơn trong thời hạn bao nhiêu ngày kể từ ngày công bố điểm?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus không quy định thủ tục hay thời hạn phúc khảo điểm học phần. Các điều khoản về đánh giá, hoãn thi và xét kết quả trong corpus không trả lời câu hỏi này; cần tra quy định riêng của nhà trường.",
+    "reference_evidence": [],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Điều 7 của Quy định gia hạn thời gian nộp học phí, người học phải nộp đơn trước thời điểm kết thúc ít nhất 05 ngày làm việc. Thời gian đăng ký gia hạn là khoảng 05 ngày làm việc.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Thời gian đăng ký gia hạn phải trước thời điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "title": "Điều 7. Quy trình gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 7. Quy trình gia hạn thời gian nộp học phí\nNgười học và các đơn vị liên quan thực hiện quy trình gồm các bước sau:\nBước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên, kèm các minh chứng cần thiết. Thời gian đăng ký gia hạn phải trước thời\nđiểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc. (Phụ lục 1)\nBước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình\nBan Giám hiệu phê duyệt.\nBước 3: Phòng Công tác sinh viên thông báo kết quả cho người học , thực hiện gia\nhạn thời gian nộp học phí, đồng thời thông báo kết quả cho Phòng Kế hoạch - Tài chính để\ntheo dõi công nợ của người học.\nBước 4: Người học thực hiện nộp học phí sau khi hết thời gian gia hạn.\nBước 5: Phòng Kế hoạch - Tài chính gửi kết quả theo dõi công nợ của người học\nđược xét gia hạn về Phòng Công tác sinh viên sau khi kết thúc thời gian nộp học phí ở học\nkỳ kế tiếp.\nBước 6: Phòng Công tác sinh viên ra quyết định liên quan đến nợ học phí, xử lý học\nvụ (đối với người học không hoàn thành nộp học phí)."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "91fc03c4341c48a78621c095",
+    "question": "Đơn giá học phí mỗi tín chỉ năm học 2026–2027 cho sinh viên đại học chính quy là bao nhiêu?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus không có đơn giá học phí. Điều 23.1 (Quyết định 1259) chỉ nói Trường thông báo đơn giá, cách tính và thời điểm thu học phí theo từng năm hoặc theo học kỳ; thông báo đó không nằm trong corpus.",
+    "reference_evidence": [],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Dựa trên nội dung các văn bản tra cứu, trường Đại học Bách khoa - ĐHQG-HCM quy định về chuẩn kỹ năng ứng dụng Công nghệ thông tin, đánh giá kết quả học tập và chuẩn ngoại ngữ. Tuy nhiên, thông tin cụ thể về đơn giá học phí (tiền gửi) theo từng tín chỉ mỗi năm học 2026–2027 chưa được ghi rõ trong các văn bản đã truy vấn.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HVDT1260_PhuLuc_3",
+        "exact_quote": "Đơn giá học phí mỗi tín chỉ năm học..."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HVDT1260_PhuLuc_3",
+        "title": "PHỤ LỤC 3. QUY ĐỊNH VỀ CÁC CHUẨN KHÁC",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh — số 1260/QĐ-ĐHBK",
+        "content": "PHỤ LỤC 3. QUY ĐỊNH VỀ CÁC CHUẨN KHÁC\ncủa Hiệu trưởng trường Đại học Bách khoa – ĐHQG-HCM)\nA. QUY ĐỊNH VỀ CHUẨN KỸ NĂNG CÔNG NGHỆ THÔNG TIN\n1. Chuẩn kỹ năng ứng dụng Công nghệ thông tin và các điều kiện ràng buộc\nTừ khóa tuyển sinh năm 2021, sinh viên phải đạt chuẩn kỹ năng ứng dụng Công nghệ thông\ntin cơ bản. Sinh viên phải hoàn tất chuẩn này sau năm thứ nhất để được xếp trình độ năm\nthứ hai.\nĐối với chứng chỉ MOS, sinh viên cần đạt yêu cầu 01 bài thi Excel trong bộ chứng chỉ\nMOS. Quy định này bắt buộc đối với sinh viên chương trình Dạy và học bằng tiếng Anh,\nchương trình Tiên tiến (áp dụng từ khóa 2023) và sinh viên chương trình Định hướng Nhật\nBản (áp dụng từ khóa 2024) để được đăng ký học phần Khóa luận tốt nghiệp/Đồ án tốt\nnghiệp.\n2. Cách thức đạt chuẩn\nNhà trường tổ chức các kỳ kiểm tra kỹ năng ứng dụng Công nghệ thông tin nội bộ, không\ncấp chứng chỉ, miễn phí một lần cho toàn bộ các sinh viên chính quy trong năm thứ nhất.\nSinh viên có thể nộp các chứng chỉ Ứng dụng Công nghệ thông tin cơ bản hợp lệ hoặc\nchứng chỉ quốc tế IC3 để hoàn tất chuẩn này.\nTrường phối hợp với các đơn vị có trách nhiệm tổ chức các kỳ thi lấy chứng chỉ MOS cho\nsinh viên. Mỗi sinh viên chính quy được miễn phí một lần thi. Sinh viên có thể nộp các\nchứng chỉ MOS tương ứng để hoàn tất chuẩn này.\nSinh viên đã hoàn tất chuẩn nội bộ, trong đối đa 05 năm, được bảo lưu kết quả khi trúng\ntuyển đầu vào của nhà trường hoặc chuyển sang hình thức vừa làm vừa học, đào tạo từ xa.\nB. QUY ĐỊNH VỀ CHUẨN CÁC MÔN ĐẠI CƯƠNG\nChuẩn các môn đại cương từng năm áp dụng từ học kỳ 1 năm học 2026-2027 cho sinh viên\ntừ khóa 2024. Sinh viên phải đạt điều kiện về chuẩn các môn học đại cương theo từng năm\nđể được đăng ký học phần cho năm tiếp theo, cụ thể như sau:\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ hai\nHoàn thành các môn Giới thiệu ngành/Nhập môn\nvề kỹ thuật/Nhập môn điện toán/Nhập môn kiến\ntrúc để đủ điều kiện đăng ký các môn học năm 2.\nHết năm nhất\nNăm thứ tư\nSinh viên trình độ năm 4 (hết năm 3): Hoàn thành\ncác môn trong khối kiến thức Toán và Khoa học tự\nnhiên, Kiến thức quản lý/Khởi nghiệp hoặc Kiến\nHết năm ba\nthức kỹ thuật ngoài ngành đối với các ngành quản\nlý.\nC. QUY ĐỊNH VỀ CHUẨN NGÀY CÔNG TÁC XÃ HỘI\nChuẩn ngày công tác xã hội từng năm áp dụng từ học kỳ 1 năm học 2026-2027 cho sinh\nviên chính quy Bằng thứ nhất của các khóa đào tạo. Sinh viên phải đạt điều kiện về chuẩn\nngày công tác xã hội theo từng năm để được đăng ký học phần cho năm tiếp theo, cụ thể\nnhư sau:\nChuẩn từng năm Đạt ngày CTXH (tối thiểu) Ghi chú\nNăm nhất 00 ngày\nNăm hai 04 ngày Hết năm nhất\nNăm ba 08 ngày Hết năm hai\nNăm tư / Đồ án tốt nghiệp 12 ngày Hết năm ba\nTốt nghiệp 15 ngày\nD. QUY ĐỊNH CHUẨN KỸ NĂNG, ĐỀ ÁN KỸ NĂNG VÀ THỂ CHẤT\nChuẩn kỹ năng, Đề án Kỹ năng và thể chất cho sinh viên từ khóa 2025 về sau cho chương\ntrình Dạy và Học bằng tiếng Anh/Tiên tiến/Định hướng Nhật Bản/Chuyển tiếp quốc tế.\nSinh viên phải hoàn thành chuẩn kỹ năng theo từng năm để được đăng ký học phần cho\nnăm tiếp theo, cụ thể như sau:\nChuẩn từng năm Đạt tương đương Ghi chú\nNăm thứ nhất\nNăm thứ hai Hoàn thành 2 chuyên đề Hết năm nhất\nNăm thứ ba Hoàn thành 3 chuyên đề Hết năm hai\nNăm thứ tư Hoàn thành 4 chuyên đề Hết năm ba\nSinh viên các chương trình Dạy và Học bằng tiếng Anh/Tiên tiến/Định hướng Nhật\nBản từ khóa 2025 về sau phải tích lũy tối thiểu 04/08 chuyên đề kỹ năng để được đăng\nký Thực tập ngoài trường và tốt nghiệp."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "990c1b5ec407af462ea48550",
+    "question": "Sinh viên muốn phúc khảo điểm một học phần thì phải nộp đơn trong thời hạn bao nhiêu ngày kể từ ngày công bố điểm?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus không quy định thủ tục hay thời hạn phúc khảo điểm học phần. Các điều khoản về đánh giá, hoãn thi và xét kết quả trong corpus không trả lời câu hỏi này; cần tra quy định riêng của nhà trường.",
+    "reference_evidence": [],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Trong quy định học vụ Trường Đại học Bách khoa - ĐHQG-HCM, sinh viên phải nộp đơn phúc khảo điểm theo thời hạn xác định trong từng chương trình đào tạo cụ thể. Đối với các khóa tuyển sinh hoặc khóa đào tạo chuyên ngành, thời gian nộp đơn thường là từ ngày công bố điểm đến ngày kết thúc kỳ thi hoặc vòng xét duyệt, cụ thể là **10 ngày** (hoặc nhiều năm tùy loại khóa) tùy theo quy định của từng khoa học.",
+    "candidate_citations": [],
+    "source_articles": [],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "99497d2aab78f517d0c90a6d",
+    "question": "Theo khoản 5.5 Điều 5 được sửa đổi bởi Quyết định 1260/QĐ-ĐHBK (áp dụng từ học kỳ 1 năm học 2025-2026), điểm trung bình tích lũy tối thiểu (thang 4) để sinh viên được đăng ký các học phần tốt nghiệp là bao nhiêu? Một sinh viên có điểm trung bình tích lũy 2,35 có đạt ngưỡng điểm này không, và học lực được xếp loại gì theo khoản 15.2 do Quyết định 1259/QĐ-ĐHBK sửa đổi?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Ngưỡng tối thiểu là điểm trung bình tích lũy (GPA) từ 2.0 trở lên theo thang điểm 4 (áp dụng từ học kỳ 1 năm học 2025-2026). GPA 2,35 đạt ngưỡng GPA này (việc đăng ký học phần tốt nghiệp còn các điều kiện khác trong khoản 5.5, không được hỏi ở đây), và học lực xếp loại Trung bình (từ 2,00 đến cận 2,50).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S5_5",
+        "exact_quote": "Sinh viên phải có điểm trung bình tích lũy (GPA) từ 2.0 trở lên (theo thang điểm 4)"
+      },
+      {
+        "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S15_2",
+        "exact_quote": "Từ 2,00 đến cận 2,50: Trung bình"
+      }
+    ],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "Trong văn bản trả về, có thông tin chi tiết về con số điểm trung bình tích lũy để đăng ký học phần tốt nghiệp (Điều 5) hay quy định xếp loại học lực theo Điều 15.2 không? Nếu không, tôi cần biết thêm các thông tin liên quan để xác định đáp án chính xác.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HVCHUNG1259_Dieu_1_S15_2",
+        "title": "“15.2 Xếp loại học lực",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định chung về học vụ và đào tạo theo Quyết định số 2931/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh — số 1259/QĐ-ĐHBK",
+        "content": "“15.2 Xếp loại học lực\nNgười học được xếp loại học lực theo điểm trung bình học kỳ, điểm trung bình\nnăm học hoặc điểm trung bình tích lũy như sau:\nTừ 3,60 đến 4,00: Xuất sắc;\nTừ 3,20 đến cận 3,60: Giỏi;\nTừ 2,50 đến cận 3,20: Khá;\nTừ 2,00 đến cận 2,50: Trung bình;\nTừ 1,00 đến cận 2,00: Yếu;\nDưới 1,00: Kém.”\n6. Sửa đổi, bổ sung khoản 16.2 Điều 16 như sau:"
+      },
+      {
+        "article_id": "HCMUT_HVDT1260_Dieu_1_S5_5",
+        "title": "“5.5 Đăng ký các học phần tốt nghiệp",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định học vụ và đào tạo bậc Đại học theo Quyết định số 2933/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa - Đại học Quốc gia Thành phố Hồ Chí Minh — số 1260/QĐ-ĐHBK",
+        "content": "“5.5 Đăng ký các học phần tốt nghiệp\nCác học phần tốt nghiệp (Thực tập ngoài trường, Đồ án chuyên ngành, Khóa luận\ntốt nghiệp) được thiết kế vào cuối chương trình đào tạo. Sinh viên phải hoàn thành điều\nkiện về chuẩn ngoại ngữ và số tín chỉ tích luỹ ngành trước khi được phép đăng ký các học\nphần này.\nRiêng học phần Thực tập ngoài trường/Thực tập kỹ sư chỉ mở trong học kỳ Hè, đăng\nký theo lịch học vụ học kỳ hè, dự kiến bắt đầu đăng ký từ giữa học kỳ 2. Sinh viên có nhu\ncầu đăng ký các học phần thực tập trong học kỳ chính phải đăng ký với Khoa quản lý để\nđược đồng ý tổ chức học phần thực tập trong học kỳ chính.\nHọc phần đang học được xem là tạm đạt và tạm tính vào số tín chỉ tích lũy khi xét\nđăng ký học phần cho sinh viên.\nSinh viên phải tích luỹ đủ ít nhất 65% (chương trình song ngành là 52%) số tín chỉ\ncủa chương trình đào tạo để đăng ký học phần Thực tập ngoài trường.\nSinh viên phải tích luỹ đủ ít nhất 70% (chương trình song ngành là 76%) số tín chỉ\ncủa chương trình đào tạo để đăng ký học phần Đồ án chuyên ngành.\nSinh viên phải tích luỹ số đủ ít nhất 82.5% (chương trình song ngành là 86%) số tín\nchỉ của chương trình đào tạo, hoàn thành tối thiểu 80% chương trình rèn luyện sinh viên\ntheo quy định của trường và đạt Chuẩn ngoại ngữ tốt nghiệp để đăng ký học phần Khoá\nluận tốt nghiệp.\nSinh viên phải có điểm trung bình tích lũy (GPA) từ 2.0 trở lên (theo thang điểm 4)\nđể được đăng ký các học phần tốt nghiệp (áp dụng từ học kỳ 1 năm học 2025-2026).”\n3. Sửa đổi, bổ sung khoản 7.1 Điều 7 như sau:"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "a293a4cb99980e759e28d1e1",
+    "question": "Việc gia hạn thời gian nộp học phí theo quy định của Trường Đại học Bách khoa áp dụng cho những loại học kỳ nào?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Chỉ học kỳ chính; không áp dụng cho học kỳ dự thính và học kỳ hè.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_5",
+        "exact_quote": "không áp dụng cho học kỳ dự thính, học kỳ hè"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo các văn bản quy định (HCMUT_HOCPHI2800_Dieu_1, HCMUT_HOCPHI2800_Dieu_5), việc gia hạn học phí có thể áp dụng cho các học kỳ: 1. Học kỳ chính (không áp dụng cho học kỳ dự thính hoặc hè). 2. Sau khi kết thúc thời gian gia hạn nộp học phí của học kỳ kế tiếp, người học không hoàn thành nghĩa vụ sẽ bị xử lý.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_6",
+        "exact_quote": "Sau khi kết thúc thời gian gia hạn nộp học phí, người học phải nộp đủ học phí cả"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_5",
+        "title": "Điều 5. Quyền lợi của người học khi được gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 5. Quyền lợi của người học khi được gia hạn thời gian nộp học phí\n1. Người học được xét đơn xin gia hạn thời gian nộp học phí trong các học kỳ chính\n(không áp dụng cho học kỳ dự thính, học kỳ hè).\n2. Người học không được gia hạn thời gian nộp học phí trong 02 học kỳ chính liên\ntiếp nếu chưa hoàn thành nộp học phí của học kỳ được xét gia hạn trong thời gian quy định.\n3. Người học được tiếp tục hoàn thành chương trình đào tạo trong học kỳ được xét\ngia hạn thời gian nộp học phí sau khi Trường ban hành quyết định gia hạn thời gian nộp\nhọc phí."
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_6",
+        "title": "Điều 6. Nghĩa vụ của người học khi được gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 6. Nghĩa vụ của người học khi được gia hạn thời gian nộp học phí\n1. Sau khi kết thúc thời gian gia hạn nộp học phí, người học phải nộp đủ học phí cả\n02 học kỳ đúng thời hạn theo thông báo nộp học phí ở học kỳ kế tiếp để đảm bảo quyền\nlợi học tập và các quyền lợi khác của người học.\n2. Sau khi kết thúc thời gian nộp học phí của học kỳ kế tiếp, người học không hoàn\nthành nghĩa vụ nộp học phí sau thời gian gia hạn sẽ bị xử lý học vụ theo quy định của\ntrường.\nChương IV\nQUY TRÌNH XÉT GIA HẠN THỜI GIAN NỘP HỌC PHÍ"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "ae51faddbb3555e5fc6e92e1",
+    "question": "Theo luật giao thông đường bộ, sinh viên đi xe máy vào khuôn viên trường mà không đội mũ bảo hiểm thì bị phạt bao nhiêu tiền?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus chỉ cấm đi xe máy trong khuôn viên Trường (Nội quy học đường) và không nêu mức phạt tiền theo pháp luật giao thông đường bộ.",
+    "reference_evidence": [],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Không có thông tin cụ thể trong văn bản quy chế đã tra cứu về khoản phạt tiền khi sinh viên đi xe máy không đeo mũ bảo hiểm. Đây thuộc phạm vi luật giao thông đường bộ chứ không nằm trong nội dung nội quy học trường của Trường Đại học Bách khoa - ĐHQG-HCM.",
+    "candidate_citations": [],
+    "source_articles": [],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "b34f10e2d5c0bf1d480c325c",
+    "question": "Một đội thi được hỗ trợ hoặc vinh danh tối đa bao nhiêu lần ở cùng một mức?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "01 lần.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_VINHDANH658_Dieu_5",
+        "exact_quote": "Mỗi đội thi chỉ được hỗ trợ/vinh danh 01 lần ở mỗi mức"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Dựa trên quy định trong văn bản quy chế (Điều 5), mỗi đội thi chỉ được hỗ trợ hoặc vinh danh **01 lần** ở mỗi mức.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_VINHDANH658_Dieu_5",
+        "exact_quote": "Mỗi đội thi chỉ được hỗ trợ/vinh danh 01 lần ở mỗi mức"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_VINHDANH658_Dieu_5",
+        "title": "Điều 5. Tiêu chí xét hỗ trợ và vinh danh",
+        "source_name": "Về việc ban hành Quy chế hỗ trợ và vinh danh sinh viên, nhóm sinh viên, giảng viên hướng dẫn, tham gia và đạt giải thưởng cao trong các cuộc thi học thuật, khoa học công nghệ và đổi mới sáng tạo. — số 658/QĐ-ĐHBK",
+        "content": "Điều 5. Tiêu chí xét hỗ trợ và vinh danh\nCác đối tượng tại Điều 1 tham gia hoặc đạt giải thưởng cao tại các cuộc thi, giải\nthưởng đáp ứng các tiêu chí được quy định tại Điều 5 sẽ được phân loại mức độ, Tổ cố\nvấn sẽ xem xét và đề xuất mức hỗ trợ, Hội đồng cố vấn sẽ xem xét và đề xuất mức vinh\ndanh.\nMỗi đội thi chỉ được hỗ trợ/vinh danh 01 lần ở mỗi mức và không vinh danh mức\nthấp hơn nếu đã được vinh danh mức cao trước đó.\nGiảng viên hướng dẫn SV, nhóm SV đạt giải thưởng trong các cuộc thi được xếp\nloại III trở lên và có hệ số khen thưởng (Kpl) từ 9 trở lên (đối với cá nhân) , từ 18 trở lên\n(đối với nhóm SV), từ 27 trở lên (đối với giải đồng đội) sẽ được Hội đồng cố vấn xem xét\nvà đề xuất mức vinh danh.\nCác mức độ phân loại cuộc thi, giải thưởng cụ thể như sau:\n1. Loại I\nThoả mãn ít nhất 02 tiêu chí sau:\na. Được tổ chức/ đồng tổ chức/ chỉ đạo/ bảo trợ bởi các t ập đoàn đa quốc gia, các\ntrường đại học ngoài nước có trong bảng xếp hạng Quacquarelli Symonds\nWorld University Rankings (QS Rankings) / Times Higher Education Worl d University\nRankings (THE Rankings) hoặc các tổ chức/ tập đoàn quốc tế uy tín.\nb. Có sự tham gia của các đội thi đến từ các quốc gia phát triển theo danh sách của\nQuỹ Tiền tệ quốc tế (IMF).\nc. Giải thưởng cho giải cao nhất có giá trị tối thiểu 5.000 USD.\n2. Loại II\nThoả mãn ít nhất 02 tiêu chí sau:\na. Được tổ chức/ đồng tổ chức/ chỉ đạo/ bảo trợ bởi các Bộ/ Ngành, các cơ quan\nthuộc các tổ chức Chính phủ/ Phi chính phủ hoặc các tập đoàn có thương hiệu quốc gia /\nquốc tế.\nb. Có sự tham gia của ít nhất 03 trường thành viên trong khối Đại học quốc gia Hà\nNội/ Đại học quốc gia Thành phố Hồ Chí Minh hoặc trong nhóm 07 trường Đại học Kỹ\nthuật.\nc. Có sự tham gia của các đội thi đến từ các doanh nghiệp.\nd. Giải thưởng cho giải cao nhất có giá trị tối thiểu 30.000.000 đồng.\n3. Loại III\nThoả mãn ít nhất 02 tiêu chí sau:\na. Được tổ chức/ đồng tổ chức/ chỉ đạo/ bảo trợ bởi các Sở/ Ban/ Ngành của các\nTỉnh/ Thành phố trực thuộc Trung ương.\nb. Có sự tham gia của ít nhất 02 tr ường thành viên trong khối Đại học quốc gia Hà\nNội/ Đại học quốc gia Thành phố Hồ Chí Minh hoặc trong nhóm 07 trường Đại học Kỹ\nthuật.\nc. Giải thưởng cho giải cao nhất có giá trị tối thiểu 20.000.000 đồng.\n4. Loại IV\nThoả mãn 02 tiêu chí sau:\na. Cuộc thi do một trường Đại học tổ chức.\nb. Có sự tham gia của các đội thi đến từ ít nhất 03 trường Đại học/ Cao Đẳng/\nTrung học phổ thông."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "b53a9f0a19aaa998ce5f1271",
+    "question": "Theo luật giao thông đường bộ, sinh viên đi xe máy vào khuôn viên trường mà không đội mũ bảo hiểm thì bị phạt bao nhiêu tiền?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus chỉ cấm đi xe máy trong khuôn viên Trường (Nội quy học đường) và không nêu mức phạt tiền theo pháp luật giao thông đường bộ.",
+    "reference_evidence": [],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Không tìm thấy quy định trong văn bản đã tra cứu về mức phạt sinh viên đi xe máy vào campus.",
+    "candidate_citations": [],
+    "source_articles": [],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "c8b3365b91699033c0bcb6d7",
+    "question": "Người học muốn xin gia hạn thời gian nộp học phí thì nộp đơn đăng ký về phòng nào, và phòng đó giữ những chức danh nào trong Hội đồng xét hồ sơ xin gia hạn?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Nộp về Phòng Công tác sinh viên (Điều 7, Bước 1). Trong Hội đồng xét hồ sơ (Điều 8 khoản 1), Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng và Phó Trưởng phòng Công tác sinh viên là thư ký.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Bước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên"
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng"
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Phó Trưởng phòng Công tác sinh viên là thư ký"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Để xin gia hạn thời gian nộp học phí, người học phải nộp đơn đăng ký về phòng Công tác sinh viên. Về các chức danh trong Hội đồng xét hồ sơ, theo Điều 8 của Quy định gia hạn học phí (số 2800/QĐ-ĐHBK), thành viên hội đồng gồm: Chủ tịch Hội đồng là Phó Hiệu trưởng; Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng; Trưởng Phòng Kế hoạch – Tài chính là ủy viên; Trưởng Phòng Đào tạo là ủy viên; Phó Trưởng phòng Công tác sinh viên là thư ký. Các chức danh này được quy định trong Điều 8 của quy định.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "exact_quote": "Phó Hiệu trưởng là Chủ tịch Hội đồng; Trưởng Phòng Công tác sinh viên là Phó Chủ tịch Hội đồng"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "title": "Điều 7. Quy trình gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 7. Quy trình gia hạn thời gian nộp học phí\nNgười học và các đơn vị liên quan thực hiện quy trình gồm các bước sau:\nBước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên, kèm các minh chứng cần thiết. Thời gian đăng ký gia hạn phải trước thời\nđiểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc. (Phụ lục 1)\nBước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình\nBan Giám hiệu phê duyệt.\nBước 3: Phòng Công tác sinh viên thông báo kết quả cho người học , thực hiện gia\nhạn thời gian nộp học phí, đồng thời thông báo kết quả cho Phòng Kế hoạch - Tài chính để\ntheo dõi công nợ của người học.\nBước 4: Người học thực hiện nộp học phí sau khi hết thời gian gia hạn.\nBước 5: Phòng Kế hoạch - Tài chính gửi kết quả theo dõi công nợ của người học\nđược xét gia hạn về Phòng Công tác sinh viên sau khi kết thúc thời gian nộp học phí ở học\nkỳ kế tiếp.\nBước 6: Phòng Công tác sinh viên ra quyết định liên quan đến nợ học phí, xử lý học\nvụ (đối với người học không hoàn thành nộp học phí)."
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_8",
+        "title": "Điều 8. Quy trình xét hồ sơ",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 8. Quy trình xét hồ sơ\n1. Trường ban hành quyết định thành lập Hội đồng xét hồ sơ xin gia hạn thời gian\nnộp học phí, bao gồm 5 thành viên: Phó Hiệu trưởng là Chủ tịch Hội đồng; Trưởng Phòng\nCông tác sinh viên là Phó Chủ tịch Hội đồng; Trưởng Phòng Kế hoạch – Tài chính là ủy\nviên; Trưởng Phòng Đào tạo là ủy viên; Phó Trưởng phòng Công tác sinh viên là thư ký.\n2. Hội đồng thực hiện xét hồ sơ dựa trên các tiêu chuẩn xét gia hạn thời gian nộp\nhọc phí quy định tại Điều 4.\nChương V\nTỔ CHỨC THỰC HIỆN"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "d7d9aaad7ec62afa58df5213",
+    "question": "Theo Quy định gia hạn học phí của Trường Đại học Bách khoa, người học phải nộp đơn đăng ký gia hạn trước thời điểm kết thúc thời gian nộp học phí ít nhất bao nhiêu ngày làm việc?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Ít nhất 05 ngày làm việc.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc."
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Quy định gia hạn học phí Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM (Số 2800/QĐ-ĐHBK), người học phải nộp đơn đăng ký gia hạn trước thời điểm kết thúc thời gian nộp học phí ít nhất **05 ngày** làm việc.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Thời gian đăng ký gia hạn phải trước thời điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "title": "Điều 7. Quy trình gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 7. Quy trình gia hạn thời gian nộp học phí\nNgười học và các đơn vị liên quan thực hiện quy trình gồm các bước sau:\nBước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên, kèm các minh chứng cần thiết. Thời gian đăng ký gia hạn phải trước thời\nđiểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc. (Phụ lục 1)\nBước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình\nBan Giám hiệu phê duyệt.\nBước 3: Phòng Công tác sinh viên thông báo kết quả cho người học , thực hiện gia\nhạn thời gian nộp học phí, đồng thời thông báo kết quả cho Phòng Kế hoạch - Tài chính để\ntheo dõi công nợ của người học.\nBước 4: Người học thực hiện nộp học phí sau khi hết thời gian gia hạn.\nBước 5: Phòng Kế hoạch - Tài chính gửi kết quả theo dõi công nợ của người học\nđược xét gia hạn về Phòng Công tác sinh viên sau khi kết thúc thời gian nộp học phí ở học\nkỳ kế tiếp.\nBước 6: Phòng Công tác sinh viên ra quyết định liên quan đến nợ học phí, xử lý học\nvụ (đối với người học không hoàn thành nộp học phí)."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "dd4f2cb123df5116d86593f3",
+    "question": "Sinh viên muốn phúc khảo điểm một học phần thì phải nộp đơn trong thời hạn bao nhiêu ngày kể từ ngày công bố điểm?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "refuse",
+    "reference_answer": "Corpus không quy định thủ tục hay thời hạn phúc khảo điểm học phần. Các điều khoản về đánh giá, hoãn thi và xét kết quả trong corpus không trả lời câu hỏi này; cần tra quy định riêng của nhà trường.",
+    "reference_evidence": [],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Dựa trên các tài liệu tra cứu, quy định nộp đơn gia hạn học phí (thay vì phúc khảo điểm) cho sinh viên là phải hoàn thành trong thời gian nhất thiết. Tuy nhiên, thông tin cụ thể về 'thời hạn' cho việc phúc khảo điểm (điểm) chưa được nêu rõ trong các văn bản chính thức. Từ Article 7, quy trình gia hạn cần thực hiện trước khi điểm expires. Nếu hiểu 'nộp đơn' là thủ tục chuẩn xác, thời gian làm việc tối thiểu là 5 ngày. Tuy nhiên, 'phúc khảo' thường diễn ra sau khi kết thúc kỳ học hoặc theo quy định riêng.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "exact_quote": "Thời gian đăng ký gia hạn phải trước thời điểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_7",
+        "title": "Điều 7. Quy trình gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 7. Quy trình gia hạn thời gian nộp học phí\nNgười học và các đơn vị liên quan thực hiện quy trình gồm các bước sau:\nBước 1: Người học nộp đơn đăng ký gia hạn thời gian nộp học phí về Phòng Công\ntác sinh viên, kèm các minh chứng cần thiết. Thời gian đăng ký gia hạn phải trước thời\nđiểm kết thúc thời gian nộp học phí ít nhất 05 ngày làm việc. (Phụ lục 1)\nBước 2: Phòng Công tác sinh viên tổng hợp, tổ chức hội đồng xét duyệt và trình\nBan Giám hiệu phê duyệt.\nBước 3: Phòng Công tác sinh viên thông báo kết quả cho người học , thực hiện gia\nhạn thời gian nộp học phí, đồng thời thông báo kết quả cho Phòng Kế hoạch - Tài chính để\ntheo dõi công nợ của người học.\nBước 4: Người học thực hiện nộp học phí sau khi hết thời gian gia hạn.\nBước 5: Phòng Kế hoạch - Tài chính gửi kết quả theo dõi công nợ của người học\nđược xét gia hạn về Phòng Công tác sinh viên sau khi kết thúc thời gian nộp học phí ở học\nkỳ kế tiếp.\nBước 6: Phòng Công tác sinh viên ra quyết định liên quan đến nợ học phí, xử lý học\nvụ (đối với người học không hoàn thành nộp học phí)."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "e4fa2df5a8e80119df3f9c68",
+    "question": "Việc gia hạn thời gian nộp học phí theo quy định của Trường Đại học Bách khoa áp dụng cho những loại học kỳ nào?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Chỉ học kỳ chính; không áp dụng cho học kỳ dự thính và học kỳ hè.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_5",
+        "exact_quote": "không áp dụng cho học kỳ dự thính, học kỳ hè"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo các điều khoản trong văn bản quy định học vụ của Trường Đại học Bách khoa:\n\n1. **Phạm vi điều chỉnh**: Các điều kiện được xét gia hạn thời gian nộp học phí bao gồm việc xác định cụ thể những học kỳ (học kỳ chính, học kỳ dự thính, học kỳ hè) mà trường có quyền áp dụng quy định gia hạn.\n2. **Nghĩa vụ khi gia hạn**: Người học phải nộp đủ học phí trong thời hạn quy định của từng học kỳ sau khi được gia hạn, nhằm đảm bảo quyền lợi học tập và các quyền lợi khác.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_1",
+        "exact_quote": "Văn bản này quy định về việc gia hạn thời gian nộp học phí đối với người học, bao gồm: điều kiện được xét gia hạn thời gian nộp học phí; nhiệm vụ và quyền của người học khi được gia hạn thời gian nộp học phí; quy trình và thủ tục gia hạn thời gian nộp học phí; tổ chức thực hiện."
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_1",
+        "title": "Điều 1. Phạm vi điều chỉnh",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 1. Phạm vi điều chỉnh\nVăn bản này quy định về việc gia hạn thời gian nộp học phí đối với người học, bao\ngồm: điều kiện được xét gia hạn thời gian nộp học phí; nhiệm vụ và quyền của người học\nkhi được gia hạn thời gian nộp học phí; quy trình và thủ tục gia hạn thời gian nộp học phí;\ntổ chức thực hiện."
+      },
+      {
+        "article_id": "HCMUT_HOCPHI2800_Dieu_5",
+        "title": "Điều 5. Quyền lợi của người học khi được gia hạn thời gian nộp học phí",
+        "source_name": "Quy định gia hạn thời gian nộp học phí đối với người học tại Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 2800/QĐ-ĐHBK",
+        "content": "Điều 5. Quyền lợi của người học khi được gia hạn thời gian nộp học phí\n1. Người học được xét đơn xin gia hạn thời gian nộp học phí trong các học kỳ chính\n(không áp dụng cho học kỳ dự thính, học kỳ hè).\n2. Người học không được gia hạn thời gian nộp học phí trong 02 học kỳ chính liên\ntiếp nếu chưa hoàn thành nộp học phí của học kỳ được xét gia hạn trong thời gian quy định.\n3. Người học được tiếp tục hoàn thành chương trình đào tạo trong học kỳ được xét\ngia hạn thời gian nộp học phí sau khi Trường ban hành quyết định gia hạn thời gian nộp\nhọc phí."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "e5dea64294bbad7e32d7dcf0",
+    "question": "Theo Quyết định 2282/QĐ-ĐHBK sửa đổi khoản 3.2 Điều 3 của Quy định giảng dạy, số phiên học bố trí dạy thay của một lớp không được vượt quá bao nhiêu phần trăm tổng số phiên học?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "20% tổng số phiên học của lớp (và không quá 03 phiên học đã được phân công của giảng viên cho một lớp).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_GIANGDAY2282_Dieu_1",
+        "exact_quote": "Số phiên học bố trí dạy thay của một lớp không được vượt quá 20% tổng số"
+      },
+      {
+        "article_id": "HCMUT_GIANGDAY2282_Dieu_1",
+        "exact_quote": "không quá 03 phiên học đã được phân công giảng dạy của giảng viên cho một"
+      }
+    ],
+    "candidate_behavior": "clarified",
+    "candidate_answer": "Cần biết rõ quy định sửa đổi Điều 3.2 của Quy định giảng dạy (Quyết định 2282/QĐ-ĐHBK) có bao nhiêu phần trăm tổng số phiên học không?",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_GIANGDAY2282_Dieu_1",
+        "title": "Điều 1. Sửa đổi, bổ sung một số điều của Quy định giảng dạy ban hành kèm theo",
+        "source_name": "Sửa đổi, bổ sung một số điều của Quy định giảng dạy theo Quyết định số 2929/QĐ-ĐHBK ký ngày 10 tháng 9 năm 2021 của Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh — số 2282/QĐ-ĐHBK",
+        "content": "Điều 1. Sửa đổi, bổ sung một số điều của Quy định giảng dạy ban hành kèm theo\nQuyết định số 2929/QĐ-ĐHBK ngày 10 tháng 09 năm 2021 của Hiệu trưởng trường Đại\nhọc Bách khoa, Đại học Quốc Gia Tp.HCM, như sau:\n1. Sửa đổi, bổ sung Điều 2 như sau:\n“Điều 2. Các khái niệm\nCác khái niệm có dùng trong quy định này mà không được định nghĩa rõ ràng trong\nquy định sẽ căn cứ trên các quy định khác hiện hành (các văn bản, quy định, quy chế, thông\ntư, nghị định, luật, hướng dẫn của nhà trường, của Đại học Quốc gia thành phố Hồ Chí\nMinh, của các Bộ ngành và Chính phủ).\nMột số khái niệm dùng riêng trong quy định này:\n- Khoa: chỉ chung cho các Khoa và Trung tâm Ngoại ngữ.\n- Giảng viên: chỉ chung cho tất cả người giảng dạy là giảng viên hay người hỗ trợ giảng\ndạy, người hướng dẫn đồ án, bài tập lớn, thí nghiệm, …”\n2. Sửa đổi, bổ sung khoản 3.2 Điều 3 như sau:\n“3.2 Nghỉ dạy, dạy bù và dạy thay\nMột số phiên học có thể có giảng viên khác dạy thay cho giảng viên được phân công\nban đầu. Người dạy thay phải có trình độ và năng lực phù hợp với yêu cầu của phần nội\ndung dạy thay và phải được sự đồng ý của Khoa phân công giảng dạy. Các trường hợp dạy\nthay nhưng không được sự đồng ý của Khoa phân công giảng dạy được tính như là nghỉ\ndạy có báo. Số phiên học bố trí dạy thay của một lớp không được vượt quá 20% tổng số\nphiên học và không quá 03 phiên học đã được phân công giảng dạy của giảng viên cho một\nlớp.\nTrong trường hợp bất khả kháng, giảng viên có thể nghỉ dạy và phải báo nghỉ dạy\ncho nhà trường, và cho tất cả người học bị ảnh hưởng. Thời hạn báo cho người học trễ nhất\nlà trước giờ lên lớp của phiên học. Thời hạn báo cho nhà trường trễ nhất là trước 21g00 của\ncùng ngày nghỉ. Khuyến khích báo trước cho nhà trường và người học trước 16g00 của\nngày làm việc trước ngày nghỉ 02 ngày.\nGiảng viên không được nghỉ dạy ở phiên đầu tiên của lớp học theo thời khóa biểu.\nGiảng viên không được đăng ký nghỉ dạy tiếp theo đối với cùng một nhóm lớp nếu phiên\nhọc đã nghỉ trước đó nhóm lớp này chưa được dạy bù.\nGiảng viên phải đảm bảo giảng dạy đủ giờ theo quy định của học phần. Khi không\ngiảng dạy đủ giờ, giảng viên cần phải dạy bù trong các tuần học theo biểu đồ học tập và\ntrước khi thi cuối kỳ của học phần. Một lần dạy bù, chỉ được dạy bù cho một phiên học của\nlớp và không quá 04 tiết một ngày hoặc không quá số tiết của phiên học đã được phân công\ntrên thời khoá biểu. Ngoài ra, tổng số tiết học của một lớp và số giờ dạy bù của lớp trong\nmột tuần không được quá 15 tiết.\nKhi đăng ký dạy bù, giảng viên phải đăng ký trước 16g00 của ngày làm việc cách\ntrước ngày dạy bù tối thiểu 01 ngày và trước tối đa 07 ngày. Giảng viên có trách nhiệm\nthông báo cho toàn bộ người học bị ảnh hưởng bởi việc dạy bù. Khi dạy bù, cho phép tối\nđa 10% số người học bị trùng giờ. Giảng viên phải đảm bảo quyền lợi học tập của người\nhọc khi tổ chức dạy bù, có trách nhiệm hỗ trợ người học bị trùng giờ không tham gia lớp\nhọc bù được.\nGiảng viên không được phép nghỉ dạy, dạy bù quá 20% số tiết và không quá 03\nphiên học đã được phân công giảng dạy của một lớp.\nViệc báo nghỉ dạy, dạy bù, dạy thay được thực hiện qua hệ thống Hỗ trợ giảng dạy\ntrên cổng thông tin và dịch vụ trực tuyến nhà trường (myBK - mybk.hcmut.edu.vn). Trong\ntrường hợp đặc biệt, cần liên hệ Phòng Thanh tra Pháp chế để được hỗ trợ.”"
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "edbb567440fefb44b1a57437",
+    "question": "Theo Nội quy học đường, quy định cấm hút thuốc lá trong khuôn viên Trường nêu rõ bao gồm cả loại thuốc lá nào ngoài thuốc lá thông thường?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "Bao gồm cả thuốc lá điện tử.",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_5",
+        "exact_quote": "hút thuốc lá trong khuôn viên Trường (bao gồm thuốc lá\nđiện tử)"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo nội quy học đường Trường Đại học Bách khoa - ĐHQG-HCM, quy định cấm hút thuốc lá bao gồm cả các loại thuốc lá điện tử. Điều 8 của Quy tắc ứng xử tại Trường (số 3408/QĐ-ĐHBK) và Điều 5 (sử dụng, mua bán, tàng trữ...) đều ghi rõ: 'Hút thuốc lá trong khuôn viên Trường (bao gồm thuốc lá điện tử)'.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_UNGXU3408_Dieu_4",
+        "exact_quote": "Hút thuốc lá trong khuôn viên Trường (kể cả thuốc lá điện tử)"
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_NOIQUY1924_Dieu_5",
+        "title": "Điều 5. Những hành vi sinh viên KHÔNG được phép thực hiện",
+        "source_name": "Về việc ban hành Nội quy học đường Trường Đại học Bách khoa – Đại học Quốc gia TP. HCM. — số 1924/QĐ-ĐHBK",
+        "content": "Điều 5. Những hành vi sinh viên KHÔNG được phép thực hiện\n1. Gian lận trong học tập, kiểm tra, thi cử.\n2. Cho người khác mượn thẻ sinh viên hoặc mượn thẻ sinh viên của người khác để\nsử dụng, sử dụng thẻ sinh viên sai mục đích.\n3. Đi xe máy, xe đạp trong khuôn viên Trường.\n4. Dẫm, nằm, ngồi lên cỏ ở các khu vực có biển cấm trong khuôn viên Trường; hái\nhoa, bẻ cành cây trong khuôn viên Trường; chơi thể thao tại những địa điểm ngoài\nkhu vực sân thể dục thể thao theo quy định của Trường.\n5. Tổ chức hoặc tham gia cờ bạc dưới mọi hình thức trong khuôn viên Trường.\n6. Mang theo hoặc sử dụng các chất cháy, chất gây nổ; các loại vũ khí, hung khí vào\nTrường.\n7. Mang đồ ăn vào lớp học, gi ảng đường và hội trường. Mang theo động vật, thú\nnuôi vào Trường.\n8. Sử dụng, mua bán, tàng trữ các chất ma túy, các chất kích thích dưới mọi hình\nthức; uống rượu, bia và hút thuốc lá trong khuôn viên Trường (bao gồm thuốc lá\nđiện tử); say rượu bia khi đến Trường.\n9. Tự ý viết, dán quảng cáo, thông báo trong khuôn viên Trường; viết, vẽ, sơn bậy,\nbôi xóa, làm bẩn, làm mất vệ sinh và làm hư hỏng các trang thiết bị học tập, máy\nmóc, dụng cụ thực hành thí nghiệm, cơ sở vật chất … của Trường.\n10. Tự ý sử dụng tài sản của Nhà trường; tự ý di chuyển các trang thiết bị, tài sản ra\nkhỏi vị trí đã sắp xếp, lắp đặt trong phòng và trong khuôn viên Trường. Đứng lên\nbàn ghế, leo trèo hoặc ngồi trên lan can, khung cửa sổ và trên bàn học, bàn giáo\nviên.\n11. Lưu hành, tuyên truyền các ấn phẩm, tài liệu, thông tin phản động, phim ảnh\nkhông lành mạnh và các tài liệu cấm khác theo quy định của Nhà nước.\n12. Gây bè phái, gây mất đoàn kết nội bộ trong tập thể lớp và trong Trường. Gây gổ,\nđánh nhau hoặc kích động đánh nhau, tổ chức băng nhóm, tụ tập gây mất an ninh,\ntrật tự dưới mọi hình thức.\n13. Không lợi dụng mạng xã hội nhằm mục đích xâm phạm đời tư, công việc và học\ntập của cá nhân, cơ quan, tổ chức, đoàn thể; có ý thức bảo vệ, xây dựng hình ảnh,\nthương hiệu của Nhà trường trên không gian mạng.\n14. Không sử dụng từ ngữ gây thù hận, kích động bạo lực, phân biệt vùng miền, giới\ntính, tôn giáo, dân tộc.\n15. Tổ chức, tham gia, truyền bá các hoạt động mê tín dị đoan, các hoạt động tôn\ngiáo và các hành vi vi phạm đạo đức khác trong và ngoài khuôn viên Trường.\n16. Tổ chức, tham gia các hoạt động chính trị trái pháp luật trong và ngoài khuôn\nviên Trường.\n17. Tham gia các hoạt động tập thể mang danh nghĩa Nhà trường khi chưa được Nhà\ntrường cho phép.\n18. Có hành vi xúc phạm nhân phẩm, danh dự, xâm phạm tới thân thể, sức khỏe và\ntài sản của cán bộ, giảng viên, người lao động và sinh viên khác của Nhà trường.\n19. Tổ chức hoặc tham gia các hoạt động vi phạm pháp luật khác."
+      },
+      {
+        "article_id": "HCMUT_UNGXU3408_Dieu_4",
+        "title": "Điều 4. Quy tắc chung",
+        "source_name": "Về việc ban hành Quy định Quy tắc ứng xử tại Trường Đại học Bách khoa – Đại học Quốc gia Thành phố Hồ Chí Minh. — số 3408/QĐ-ĐHBK",
+        "content": "Điều 4. Quy tắc chung\n1. Có trách nhiệm xây dựng và bảo vệ hình ảnh, thương hiệu của Trường Đại học Bách\nkhoa – ĐHQG-HCM.\n2. Trang phục lịch sự, gọn gàng phù hợp với văn hóa học đường, khuyến khích VC –\nNLĐ sử dụng trang phục thương hiệu của Trường. VC – NLĐ mặc lễ phục trang\ntrọng, lịch sự theo quy định của sự kiện.\n3. Chấp hành nghiêm chủ trương, đường lối của Đảng, chính sách pháp luật của Nhà\nnước và quy định của Nhà trường; kiên quyết đấu tranh, ngăn chặn những hành vi\nvi phạm pháp luật, vi phạm quy định của Nhà trường.\n4. Có tác phong làm việc nghiêm túc, chuyên nghiệp; chấp hành nghiêm quy định về\nthời gian làm việc của Nhà trường, sử dụng hiệu quả thời gian làm việc; sử dụng\nngôn ngữ chuẩn mực, rõ ràng; sẵn sàng lắng nghe, chia sẻ và giú p đỡ người học,\nđồng nghiệp.\n5. Tôn trọng danh dự, uy tín của cơ quan, tổ chức, cá nhân có quan hệ công tác; chân\nthành, thiện chí, sẵn sàng hỗ trợ lẫn nhau để hoàn thành nhiệm vụ.\n6. Thực hiện đúng nhiệm vụ, quyền hạn được giao; giữ gìn đoàn kết nội bộ; phát h uy\ntrách nhiệm nêu gương và xây dựng môi trường làm việc, học tập chuyên nghiệp,\nthân thiện.\n7. Tích cực xây dựng không gian làm việc xanh, sạch, đẹp và môi trường công sở văn\nminh, thân thiện; không lưu trữ và phát tán các hình ảnh, nội dung văn hóa phẩm\nđồi trụy, tài liệu chống phá Đảng, Nhà nước, Nhà trường.\n8. Không sử dụng, mua bán, tàng trữ trái phép các chất ma túy, các chất kích thích\ndưới mọi hình thức; không hút thuốc lá trong khuôn viên Trường (kể cả thuốc lá\nđiện tử)."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "edd937b91f307a3c263e8af7",
+    "question": "Theo Quy định về công tác GVCN và CVHT, cố vấn học tập có nhiệm vụ gì liên quan đến tín chỉ tự chọn tự do, và theo Quyết định 1862/QĐ-ĐHBK sửa đổi, chương trình đào tạo trình độ đại học khóa 2025 về trước cần có tối thiểu bao nhiêu tín chỉ tự chọn tự do?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "CVHT tư vấn cho người học về các tín chỉ tự chọn tự do (Điều 15 khoản 4 Quy định GVCN và CVHT); chương trình đào tạo trình độ đại học khóa 2025 về trước cần có tối thiểu 9 tín chỉ tự chọn tự do (khoản 5 Điều 12 được sửa đổi).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_15",
+        "exact_quote": "Tư vấn cho người học về các tín chỉ tự chọn tự do."
+      },
+      {
+        "article_id": "HCMUT_CTDT1862_Dieu_1",
+        "exact_quote": "có tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước)"
+      }
+    ],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Không thể xác thực căn cứ sau 2 lần thử sửa chữa. Chi tiết vi phạm: Trích nguyên văn của 'HCMUT_CTDT1862_Dieu_1' không nằm trong văn bản nguồn. Đọc lại nguồn hoặc bỏ trường exact_quote nếu chỉ diễn giải.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_CTDT1862_Dieu_1",
+        "title": "Điều 1. Sửa đổi, bổ sung một số điều của Quy định cấu trúc và quy trình xây dựng,",
+        "source_name": "Quyết định sửa đổi, bổ sung một số điều của Quy định về cấu trúc và quy trình xây dựng, thẩm định, điều chỉnh chương trình đào tạo; quy trình mở ngành đào tạo trình độ đại học, thạc sĩ, tiến sĩ ban hành kèm theo Quyết định số 3538/QĐ-ĐHBK ngày 11 tháng 9 năm 2025 của Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh — số 1862/QĐ-ĐHBK",
+        "content": "Điều 1. Sửa đổi, bổ sung một số điều của Quy định cấu trúc và quy trình xây dựng,\nthẩm định, điều chỉnh chương trình đào tạo; quy trình mở ngành đào tạo trình độ đại học,\nthạc sĩ, tiến sĩ ban hành kèm theo Quyết định số 3538/QĐ-ĐHBK ngày 11 tháng 9 năm 2025\ncủa Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh\n1. Sửa đổi, bổ sung Điều 2 như sau:\na) Sửa đổi, bổ sung điểm b khoản 2 Điều 2:\n“b) Học phần được tổ chức dưới dạng lý thuyết bao gồm giảng dạy lý thuyết và thực\nhành (thảo luận, thực hành tại lớp, thí nghiệm, bài tập lớn, kiến tập), trong đó phần thực\nhành chiếm tối thiểu 20% khối lượng tín chỉ học phần; hoặc dưới dạng thực hành (thí\nnghiệm, thực hành, thực tập, thực tập ngoài trường/doanh nghiệp); hoặc dưới dạng đồ án\n(đồ án, đồ án chuyên ngành, đồ án/khóa luận tốt nghiệp, chuyên đề/đề án/luận văn thạc sĩ,\ntiểu luận/chuyên đề/luận án tiến sĩ.”.\nb) Sửa đổi, bổ sung điểm e khoản 3 Điều 2:\n“e) Cấp độ năm là các học phần ở chương trình chuyên sâu đặc thù, bao gồm cả giai\nđoạn chuyên sâu kỹ sư của chương trình đào tạo Kỹ sư Chất lượng cao tại Việt Nam (viết\ntắt là PFIEV) (người học từ năm thứ năm), trình độ thạc sĩ và tiến sĩ, ngoại trừ các học\nphần nêu trong điểm f và g trong khoản này;”.\n2. Bổ sung khoản 5 Điều 3 như sau:\n“5. Chương trình tích hợp: Đại học – Thạc sĩ, Thạc sĩ – Tiến sĩ là các chương trình\nđào tạo liên tục giữa hai trình độ học tập , nhằm rút ngắn thời gian học hoặc kết hợp khung\nkiến thức, tín chỉ của hai trình độ liên tiếp. Người học được cấp bằng tương ứng với trình\nđộ đã hoàn thành.”.\n3. Thay thế Điều 6 như sau:\n“Điều 6. Cấu trúc của chương trình đào tạo đại học\n1. Các ngành kỹ thuật và kiến trúc theo khung của tiêu chuẩn kiểm định ABET và\ncủa một số tổ chức kiểm định quốc tế:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 30\n1. Toán tối thiểu 11\n2. Khoa học tự nhiên tối thiểu 5\nGiáo dục chung 30\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 8\nCơ sở ngành/ Ngành/ Chuyên ngành 68–72\n1. Cơ sở ngành 18–34\n2. Ngành/ Chuyên ngành\n34–54\n3. Tốt nghiệp trình độ đại học\nTổng tín chỉ 128–132\n2. Các ngành quản lý theo khung của tiêu chuẩn kiểm định FIBAA:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 12\n1. Toán quản lý 9\n2. Khoa học tự nhiên 3\nGiáo dục chung 30\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 8\nCơ sở ngành/ Ngành/ Chuyên ngành 86–90\n1. Cơ sở ngành 18–34\n2. Ngành/ Chuyên ngành\n52–72\n3. Tốt nghiệp trình độ đại học\nTổng tín chỉ 128–132\n”.\n4. Thay thế Điều 7 như sau:\n“ Điều 7. Cấu trúc của chương trình đào tạo PFIEV\n1. Xét theo giai đoạn:\nGiai đoạn Số tín chỉ\nTổng tín chỉ 158–163\n1.\nGiai đoạn 1\n(bao gồm 8 tín chỉ tiếng Anh và 8 tín chỉ tiếng Pháp)\n66\n2.\nGiai đoạn 2\n(bao gồm 4 tín chỉ tiếng Pháp)\n92–97\n2. Xét theo khối kiến thức:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 36\n1. Toán 21\n2. Khoa học tự nhiên 15\nGiáo dục chung 42\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 20\nCơ sở ngành/ Ngành/ Chuyên ngành 80–85\n1. Cơ sở ngành 16–32\n2. Ngành/ Chuyên ngành\n48–69\n3. Tốt nghiệp chương trình PFIEV\nTổng tín chỉ 158–163\n”.\n5. Thay thế Điều 9 như sau:\n“ Điều 9. Cấu trúc của chương trình đào tạo thạc sĩ\nKhối kiến thức Thạc sĩ ứng dụng Thạc sĩ nghiên cứu Thạc sĩ nghiên cứu chuyên sâu\nĐa ngành, tổng quát\n1. Triết học 3 3 3\n2. Tự chọn đa ngành, tổng quát 6 - -\n3. Phương pháp nghiên cứu khoa học - 3 3\nCơ sở ngành/ Ngành\n1. Cơ sở ngành 12 12 -\n2. Ngành/ Chuyên ngành 24 12 -\nTốt nghiệp trình độ thạc sĩ\n1. Thực tập 6 - -\n2. Chuyên đề nghiên cứu trước luận văn - 15\n3. Đề án tốt nghiệp/ Luận văn thạc sĩ 9\n15\n+ Báo cáo\nkhoa học\n54\n1×9\n3×15\n+ Báo cáo\nkhoa học\nTổng số tín chỉ 60 60 60\n”.\n6. Thay thế Điều 11 như sau:\n“ Điều 11. Quy định thêm về khối kiến thức\nQuy định tại Điều này áp dụng đối với các khối kiến thức quy định từ Điều 6\nđến Điều 10.\nKhối kiến thức Số tín chỉ Ghi chú\na) Giáo dục chung khác\n1. Nhập môn 3 Kỹ thuật/ Điện toán/ Kiến trúc/ Quản lý\n2.\nKiến thức quản lý/ Khởi nghiệp\nHoặc\nKiến thức kỹ thuật ngoài ngành đối\nvới các ngành quản lý\n3\n3.\nKiến thức về con người và môi\ntrường/ Kỹ năng nghề nghiệp\nchuyên nghiệp\n3\nCác kiến thức về tác động của\nngành với con người, xã hội và\nmôi trường\nb) Ngoại ngữ\n1. Tiếng Anh 8\n2. Tiếng Pháp 12 Chương trình PFIEV\nc) Chuyên sâu đặc thù\nCó thể dùng xét công nhận đạt các khối kiến thức chuyên ngành bắt buộc, khối kiến\nthức chuyên ngành tự chọn và khối kiến thức thực tập trong chương trình thạc sĩ.\n1. Học kỳ doanh nghiệp 15\nd) Tốt nghiệp trình độ đại học từ khóa 2025 về trước\n1. Thực tập ngoài trường 2 Học kỳ 6, có thể vận hành trong hè của năm 3\n2. Đồ án chuyên ngành 2 Học kỳ 7\n3. Đồ án/ Khóa luận tốt nghiệp 4 Học kỳ 8\ne) Tốt nghiệp trình độ đại học từ khóa 2026\n1. Học kỳ thực tập doanh nghiệp 11 Học kỳ 7\n2. Đồ án/ Khóa luận tốt nghiệp 6 Học kỳ 8\nf) Tốt nghiệp chương trình PFIEV\n1. Thực tập công nhân 2 Học kỳ 4, có thể vận hành trong hè của năm 2\n2. Thực tập ngoài trường 2 Học kỳ 6, có thể vận hành trong hè của năm 3\n3. Học kỳ thực tập doanh nghiệp 13 Học kỳ 8 (có thể vận hành trong hè của năm 4) và học kỳ 9\n4. Đồ án tốt nghiệp kỹ sư 9 Học kỳ 10\ng) Tốt nghiệp trình độ thạc sĩ ứng dụng\n1. Thực tập ngoài trường 6 Học kỳ 3\n2. Đề án tốt nghiệp 9 Học kỳ 4\nh) Tốt nghiệp trình độ thạc sĩ nghiên cứu\n1. Chuyên đề nghiên cứu trước luận văn 15 Học kỳ 3\n2. Luận văn thạc sĩ 15 Học kỳ 4\ni) Tốt nghiệp trình độ thạc sĩ nghiên cứu chuyên sâu\n1.\nLuận văn thạc sĩ nghiên cứu\nchuyên sâu\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 1\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 2\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 3\n54\n9\n15\n15\n15\nHọc kỳ 1\nHọc kỳ 2\nHọc kỳ 3\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 4 Học kỳ 4\nj) Tốt nghiệp trình độ tiến sĩ – Phương thức 1\n1.\nLuận án tiến sĩ\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận án tiến sĩ – chuẩn bị\nLuận án tiến sĩ – phần 1\nLuận án tiến sĩ – phần 2\nLuận án tiến sĩ – phần 3\nLuận án tiến sĩ – phần 4\nLuận án tiến sĩ – phần 5\n87\n12\n15\n15\n15\n15\n15\nHọc kỳ 1\nHọc kỳ 2\nHọc kỳ 3\nHọc kỳ 4\nHọc kỳ 5\nHọc kỳ 6\nk) Tốt nghiệp trình độ tiến sĩ – Phương thức 2\n1.\nLuận án tiến sĩ\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận án tiến sĩ – phần 1\nLuận án tiến sĩ – phần 2\nLuận án tiến sĩ – phần 3\nLuận án tiến sĩ – phần 4\nLuận án tiến sĩ – phần 5\n75\n15\n15\n15\n15\n15\nHọc kỳ 2\nHọc kỳ 3\nHọc kỳ 4\nHọc kỳ 5\nHọc kỳ 6\nGhi chú:\n(†): Các phần học thành phần dùng để bố trí đăng ký học phần trên thời khóa biểu, tính học\nphí và tính khối lượng giảng dạy, không in vào Phụ lục bằng tốt nghiệp.”.\n7. Sửa đổi, bổ sung Điều 12 như sau:\na) Sửa đổi, bổ sung khoản 4 Điều 12:\n“4. Các tín chỉ tự chọn trong chương trình đào tạo trình độ đại học phải có tối thiểu\n9 tín chỉ (3 học phần tự chọn ngành/chuyên ngành), được phân bố vào tất cả các học kỳ,\ntối thiểu bắt đầu từ học kỳ 6.”.\nb) Sửa đổi, bổ sung khoản 5 Điều 12:\n“5. Chương trình đào tạo trình độ đại học cần có tối thiểu 7 tín chỉ các học phần\nthực hành (bao gồm thí nghiệm và đồ án, không bao gồm khối kiến thức tốt nghiệp) là các\nhọc phần bắt buộc, có tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước) và học\nkỳ thực tập doanh nghiệp (đối với khóa 2026 về sau); Đối với chương trình PFIEV , cần\nthiết kế thêm tối thiểu 6 tín chỉ ở học phần bắt buộc dưới dạng đồ án định hướng công\nnghiệp.”.\n8. Sửa đổi, bổ sung Điều 16 như sau:\na) Sửa đổi, bổ sung khoản 1 Điều 16:\n“1. Hội đồng ngành là tổ chức chuyên môn tập hợp các giảng viên, chuyên gia trong\nngành có học hàm học vị cao, uy tín, có nhiều kinh nghiệm giảng dạy và quản lý giảng dạy\nvới chức năng tổ chức xây dựng, rà soát và cập nhật chương trình đào tạo của ngành theo\nchuẩn mực chất lượng của văn bằng được cấp. Hội đồng ngành được thành lập cho từng\nngành đào tạo , bao gồm tất cả các trình độ đào tạo . Trong trường hợp có các ngành gần\ncùng trình độ đào tạo; hoặc các ngành gần nhưng có sự khác nhau về tên giữa các trình độ\nđào tạo thì chỉ thành lập một hội đồng ngành chung và đặt tên ghép hoặc tên chung mang\ntính bao hàm. Hội đồng ngành có tối thiểu 07 thành viên và tối đa 15 thành viên (không\nbao gồm thư ký hành ch ính), có số thành viên là số lẻ , trong đó phải có sự tham gia của\ncác Chủ trì ngành đại diện cho các trình độ đào tạo có liên quan. Hội đồng ngành do Trưởng\nkhoa quản lý ngành đề cử, Hiệu trưởng quyết định thành lập và chịu sự quản lý trực tiếp\ncủa khoa quản lý ngành. Đối với các ngành liên ngành, Hội đồng ngành liên ngành do\nTrưởng các khoa quản lý các ngành liên quan đề cử, Hiệu trưởng quyết định thành lập và\nchịu sự quản lý trực tiếp của các khoa quản lý ngành.”.\nb) Sửa đổi, bổ sung khoản 4 Điều 16:\n“4. Nhiệm vụ của Chủ nhiệm Hội đồng ngành:\na) Chủ trì chuẩn bị hồ sơ, tài liệu, văn bản cần thiết và tổ chức các cuộc họp của\nHội đồng ngành; báo cáo Hội đồng khoa học và đào tạo của khoa về công tác xây dựng, rà\nsoát và cập nhật chương trình đào tạo của ngành, chuyên ngành;\nb) Trao đổi với Trưởng khoa (hoặc Trưởng các khoa liên quan đối với ngành liên\nngành, sau đây gọi tắt là Trưởng khoa) hoặc giảng viên phụ trách học phần (nếu có) trong\nviệc phân bổ nội dung học phần trong chương trình đào tạo, tổ chức thảo luận, thống nhất\ntrong Hội đồng ngành để trình cấp có thẩm quyền phê duyệt;\nc) Tham mưu cho Trưởng khoa trong việc phân công giảng viên giảng dạy các học\nphần trong chương trình đào tạo, tham mưu việc xét duyệt đề tài và phân công khối lượng\nhướng dẫn khóa luận tốt nghiệp hay luận văn thạc sĩ theo quy định;\nd) Báo cáo định kỳ Hội đồng khoa học và đào tạo của khoa về tình hình tổ chức,\nvận hành chương trình đào tạo của ngành, chuyên ngành;\ne) Tổng hợp báo cáo của các Chủ trì ngành theo từng trình độ đào tạo và báo cáo\nTrưởng khoa để xem xét, chỉ đạo;\nf) Tham mưu cho Trưởng khoa trong việc mời giảng viên thỉnh giảng.”.\n9. Bổ sung Điều 16a sau Điều 16 như sau:\n“ Điều 16a. Chủ trì ngành\na) Chủ trì xây dựng và tổ chức triển khai chương trình đào tạo của ngành, chuyên\nngành;\nb) Rà soát định kỳ chương trình đào tạo; báo cáo Hội đồng ngành để xem xét quyết\nđịnh việc điều chỉnh hoặc xây dựng mới chương trình đào tạo;\nc) Tham mưu cho Hội đồng ngành trong việc phân công giảng viên giảng dạy các học\nphần thuộc chương trình đào tạo, tham mưu việc xét duyệt đề tài và phân công khối lượng\nhướng dẫn khóa luận tốt nghiệp hoặc luận văn thạc sĩ theo quy định;\nd) Tham mưu cho Trưởng khoa trong việc phân công giảng viên làm Trưởng nhóm\nmôn học để chịu trách nhiệm chủ trì việc thống nhất nội dung giảng dạy của môn học theo\ntừng học kỳ, tổ chức ra đề thi và thực hiện thẩm định đề thi theo quy định;\ne) Đề xuất danh sách thành viên các hội đồng chấm đồ án, khóa luận , luận văn,\nluận án… để Hội đồng ngành tham mưu Trưởng khoa xem xét, quyết định;\nf) Báo cáo định kỳ Hội đồng ngành về tình hình triển khai và vận hành chương trình\nđào tạo của ngành, chuyên ngành; đề xuất các giải pháp điều chỉnh, cải tiến khi cần thiết.”.\n10. Thay thế Phụ lục III như sau:\n“ PHỤ LỤC III\nPHÂN BỐ CÁC HỌC PHẦN TRÌNH ĐỘ THẠC SĨ:\nHọc\nkỳ\nHọc phần\nThạc sĩ ứng dụng Thạc sĩ nghiên cứu\nThạc sĩ nghiên cứu\nchuyên sâu\n1.\nTriết học (3 TC) Triết học (3 TC) Triết học (3 TC)\nCơ sở ngành (12 TC) Cơ sở ngành (12 TC)\nPhương pháp nghiên cứu\nkhoa học (3 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 1\n+ Báo cáo khoa học\n(9 TC)\n2.\nTự chọn đa ngành, tổng\nquát (3 TC)\nPhương pháp nghiên cứu\nkhoa học (3 TC) Luận văn thạc sĩ nghiên cứu chuyên sâu – phần 2\n+ Báo cáo khoa học\n(15 TC) Ngành/ Chuyên ngành\nbắt buộc (12 TC)\nNgành/ Chuyên ngành\n(12 TC)\n3.\nNgành/ Chuyên ngành tự\nchọn (9 TC)\nChuyên đề nghiên cứu\ntrước luận văn (15 TC)\nThực tập (6 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 3\n+ Báo cáo khoa học\n(15 TC)\n4.\nNgành/ Chuyên ngành tự\nchọn (3 TC) Luận văn thạc sĩ nghiên\ncứu + Báo cáo khoa học\n(15 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 4\n+ Báo cáo khoa học\n(15 TC)\nTự chọn đa ngành, tổng\nquát (3 TC)\nĐề án tốt nghiệp (9 TC)\n”.\n11. Sửa đổi mục 2.2 Thạc sĩ nghiên cứu của Phụ lục V – Cấu trúc chi tiết chương\ntrình đào tạo các trình độ như sau:\n“ 2.2 Thạc sĩ nghiên cứu\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO THẠC SĨ NGHIÊN CỨU\nKhối kiến thức Số môn Số tín chỉ\nA. Đa ngành, tổng quát (General Multidisciplinary Courses) 6\nTriết học (Philosophy) 3\nPhương pháp nghiên cứu khoa học (Scientific Research Methodology) 3\nAnh văn 1 (English 1) 0\nAnh văn 2 (English 2) 0\nB. Cơ sở ngành (Foundation Courses) 12\nB.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nB.2 Tự chọn cơ sở ngành (Elective Foundation Courses)\n…\nC. Ngành/ Chuyên ngành (Major/ Speciality Courses) 12\nC.1 Ngành/ Chuyên ngành bắt buộc (Compulsory Major/ Speciality Courses)\n…\nC.2 Ngành/ Chuyên ngành tự chọn (Elective Major/ Speciality Courses)\n…\nD. Học phần tốt nghiệp (Graduation Module) 30\nChuyên đề nghiên cứu trước luận văn\n(Pre – Thesis Research Project)\n15\nLuận văn thạc sĩ (Master’s Thesis) 15\nE. Điều kiện tốt nghiệp (Other Graduation Requirements)\nENG_B2\nTổng tín chỉ 60\n”.\n12. Bổ sung vào bước 6, khoản 1.1, mục 1 (Xây dựng chương trình đào tạo mới)\ncủa Phụ lục VI: Quy trình xây dựng, thẩm định, cập nhật và ban hành chương trình đào tạo\ntrình độ đại học, thạc sĩ, tiến sĩ như sau:\n“Bước 6: Tổ chức hội thảo lấy ý kiến của giảng viên, đội ngũ quản lý trong và ngoài\ntrường, các nhà khoa học, đại diện đơn vị sử dụng lao động liên quan và người đã tốt nghiệp\n(nếu có) về CTĐT. Yêu cầu có Biên bản họp của Hội đồng ngành và Hội đồng Khoa học\nvà đào tạo của khoa về việc thông qua nội dung chương trình đào tạo là căn cứ để hoàn\nthiện hồ sơ và trình phê duyệt chương trình đào tạo.”.\n13. Bổ sung Phụ lục XI như sau:\n“ PHỤ LỤC XI:\nCấu trúc chi tiết chương trình đào tạo các trình độ từ khóa 2026\n1. Trình độ đại học\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO ĐẠI HỌC\nCÁC NGÀNH KỸ THUẬT VÀ KIẾN TRÚC\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and Basic\nSciences) 30\nA.1 Toán (Mathematics) Tối thiểu 11\n…\nA.2. Khoa học tự nhiên (Basic Sciences) Tối thiểu 5\n…\nB. Giáo dục chung (General Education) 30\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Quản lý / Khởi nghiệp (Management/ Entrepreneurship Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 8\nAnh văn 1 (English 1)\nAnh văn 2 (English 2)\nAnh văn 3 (English 3)\nAnh văn 4 (English 4)\nB.6\nKiến thức và kỹ năng bổ trợ (Supplementary\nKnowledge and Skills) Dành cho các môn kỹ\nnăng mềm, tiếng Nhật, văn hoá Nhật ...\nB.6.1 Kỹ năng bổ trợ (Supplementary Skills) : áp dụng từ khóa 2025 chương trình tiêu chuẩn 1 0\n…\nB.6.2\nKỹ năng bổ trợ (Supplementary Skills) : áp\ndụng từ khóa 2025 cho các chương trình: Dạy\nvà học bằng tiếng Anh; Tiên tiến; Định hướng\nNhật bản; Chuyển tiếp quốc tế; Liên kết cử\nnhân kỹ thuật quốc tế\n4 0\n…\nB.6.3\nTiếng Nhật (Japaneses) áp dụng cho các\nchương trình: Định hướng Nhật Bản và\nChuyển tiếp quốc tế Nhật Bản\n8 0\n…\nB.6.4 Văn hóa Nhật (Japanese Culture) áp dụng cho Chương trình Định hướng Nhật Bản 1 0\n…\nC. Cơ sở ngành (Foundation Courses) 18–34\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành ( Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality Courses) 17–37\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses)\nD2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc c huyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 17\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National Defense\nand Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GC\n…\nTổng tín chỉ 128–132\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO ĐẠI HỌC\nCÁC NGÀNH QUẢN LÝ\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and Basic\nSciences) 12\nA.1 Toán (Mathematics) 9\n…\nA.2. Khoa học tự nhiên (Basic Sciences) 3\n…\nB. Giáo dục chung (General Education) 30\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Kỹ thuật ngoài ngành ( Non – management Technical Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 8\nAnh văn 1 (English 1)\nAnh văn 2 (English 2)\nAnh văn 3 (English 3)\nAnh văn 4 (English 4)\nB.6 Kiến thức và kỹ năng bổ trợ (Supplementary Knowledge and Skills) 0\nB.6.1 Kỹ năng bổ trợ (Supplementary Skills) : áp dụng từ khóa 2025 chương trình tiêu chuẩn 1 0\n…\nB.6.2\nKỹ năng bổ trợ (Supplementary Skills) : áp\ndụng từ khóa 2025 cho các chương trình: Dạy\nvà học bằng tiếng Anh; Chuyển tiếp quốc tế\n4 0\n…\nC. Cơ sở ngành (Foundation Courses) 18–34\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành ( Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality Courses) 35–55\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses)\nD.2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc c huyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 17\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National Defense\nand Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục Thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GC\n…\nTổng tín chỉ 128–132\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO PFIEV\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and\nBasic Sciences) 36\nA.1 Toán (Mathematics) 21\n…\nA.2. Khoa học tự nhiên (Basic Sciences) 15\n…\nB. Giáo dục chung (General Education) 42\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Quản lý/ Khởi nghiệp (Management/ Entrepreneurship Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 20\nB5.1 Anh văn (English) 8\nB5.2 Pháp văn (French) 12\nB.6 Kiến thức và kỹ năng bổ trợ (Supplementary Knowledge and Skills) áp dụng từ khóa 2025 1 0\n…\nC. Cơ sở ngành (Foundation Courses) 16–32\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành (Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality\nCourses) 22–43\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses )\nD.2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc chuyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 26\n…\n…\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National\nDefense and Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục Thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GT_700\nFRA_GC\nTổng tín chỉ 158–163\n”."
+      },
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_15",
+        "title": "Điều 15. Vai trò và nhiệm vụ",
+        "source_name": "Về việc ban hành Quy định về công tác Giáo viên chủ nhiệm và Cố vấn học tập Trường Đại học Bách khoa – ĐHQG-HCM. — số 2977/QĐ-ĐHBK",
+        "content": "Điều 15. Vai trò và nhiệm vụ\n1. Giải thích cho người học về chương trình đào tạo, kế hoạch giảng dạy của ngành.\n2. Cố vấn cho người học khi học có nhu cầu học vượt, học chậm tiến độ.\n3. Tư vấn cho người học định hướng về ngành, ngành chính - phụ, ngành thứ hai, các\nvấn đề có thể xảy ra khi chuyển khóa, chuyển ngành.\n4. Tư vấn cho người học về các tín chỉ tự chọn tự do.\n5. Tư vấn cho người học về các học phần tương đương, thay thế, các học phần của\nchương trình liên thông Đại học - Thạc sĩ, Cử nhân - Kỹ sư.\n6. Tư vấn cho người học về các nội dung khác liên quan đến chương trình đào tạo."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "f205bbbc5cd4bfa17653ae41",
+    "question": "Theo Quy định về công tác GVCN và CVHT, cố vấn học tập có nhiệm vụ gì liên quan đến tín chỉ tự chọn tự do, và theo Quyết định 1862/QĐ-ĐHBK sửa đổi, chương trình đào tạo trình độ đại học khóa 2025 về trước cần có tối thiểu bao nhiêu tín chỉ tự chọn tự do?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "CVHT tư vấn cho người học về các tín chỉ tự chọn tự do (Điều 15 khoản 4 Quy định GVCN và CVHT); chương trình đào tạo trình độ đại học khóa 2025 về trước cần có tối thiểu 9 tín chỉ tự chọn tự do (khoản 5 Điều 12 được sửa đổi).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_15",
+        "exact_quote": "Tư vấn cho người học về các tín chỉ tự chọn tự do."
+      },
+      {
+        "article_id": "HCMUT_CTDT1862_Dieu_1",
+        "exact_quote": "có tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước)"
+      }
+    ],
+    "candidate_behavior": "refused",
+    "candidate_answer": "Không có tài liệu trong cơ sở dữ liệu đã nạp (HCMUT_QCDT_*) liên quan đến Quy định GVCN và CVHT, Quyết định 1862/QĐ-ĐHBK hoặc yêu cầu tín chỉ tự chọn tự do cho khóa 2025. Các thông tin này nằm ngoài phạm vi quy định học vụ theo dữ liệu đã nạp.",
+    "candidate_citations": [],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_CTDT1862_Dieu_1",
+        "title": "Điều 1. Sửa đổi, bổ sung một số điều của Quy định cấu trúc và quy trình xây dựng,",
+        "source_name": "Quyết định sửa đổi, bổ sung một số điều của Quy định về cấu trúc và quy trình xây dựng, thẩm định, điều chỉnh chương trình đào tạo; quy trình mở ngành đào tạo trình độ đại học, thạc sĩ, tiến sĩ ban hành kèm theo Quyết định số 3538/QĐ-ĐHBK ngày 11 tháng 9 năm 2025 của Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh — số 1862/QĐ-ĐHBK",
+        "content": "Điều 1. Sửa đổi, bổ sung một số điều của Quy định cấu trúc và quy trình xây dựng,\nthẩm định, điều chỉnh chương trình đào tạo; quy trình mở ngành đào tạo trình độ đại học,\nthạc sĩ, tiến sĩ ban hành kèm theo Quyết định số 3538/QĐ-ĐHBK ngày 11 tháng 9 năm 2025\ncủa Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh\n1. Sửa đổi, bổ sung Điều 2 như sau:\na) Sửa đổi, bổ sung điểm b khoản 2 Điều 2:\n“b) Học phần được tổ chức dưới dạng lý thuyết bao gồm giảng dạy lý thuyết và thực\nhành (thảo luận, thực hành tại lớp, thí nghiệm, bài tập lớn, kiến tập), trong đó phần thực\nhành chiếm tối thiểu 20% khối lượng tín chỉ học phần; hoặc dưới dạng thực hành (thí\nnghiệm, thực hành, thực tập, thực tập ngoài trường/doanh nghiệp); hoặc dưới dạng đồ án\n(đồ án, đồ án chuyên ngành, đồ án/khóa luận tốt nghiệp, chuyên đề/đề án/luận văn thạc sĩ,\ntiểu luận/chuyên đề/luận án tiến sĩ.”.\nb) Sửa đổi, bổ sung điểm e khoản 3 Điều 2:\n“e) Cấp độ năm là các học phần ở chương trình chuyên sâu đặc thù, bao gồm cả giai\nđoạn chuyên sâu kỹ sư của chương trình đào tạo Kỹ sư Chất lượng cao tại Việt Nam (viết\ntắt là PFIEV) (người học từ năm thứ năm), trình độ thạc sĩ và tiến sĩ, ngoại trừ các học\nphần nêu trong điểm f và g trong khoản này;”.\n2. Bổ sung khoản 5 Điều 3 như sau:\n“5. Chương trình tích hợp: Đại học – Thạc sĩ, Thạc sĩ – Tiến sĩ là các chương trình\nđào tạo liên tục giữa hai trình độ học tập , nhằm rút ngắn thời gian học hoặc kết hợp khung\nkiến thức, tín chỉ của hai trình độ liên tiếp. Người học được cấp bằng tương ứng với trình\nđộ đã hoàn thành.”.\n3. Thay thế Điều 6 như sau:\n“Điều 6. Cấu trúc của chương trình đào tạo đại học\n1. Các ngành kỹ thuật và kiến trúc theo khung của tiêu chuẩn kiểm định ABET và\ncủa một số tổ chức kiểm định quốc tế:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 30\n1. Toán tối thiểu 11\n2. Khoa học tự nhiên tối thiểu 5\nGiáo dục chung 30\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 8\nCơ sở ngành/ Ngành/ Chuyên ngành 68–72\n1. Cơ sở ngành 18–34\n2. Ngành/ Chuyên ngành\n34–54\n3. Tốt nghiệp trình độ đại học\nTổng tín chỉ 128–132\n2. Các ngành quản lý theo khung của tiêu chuẩn kiểm định FIBAA:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 12\n1. Toán quản lý 9\n2. Khoa học tự nhiên 3\nGiáo dục chung 30\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 8\nCơ sở ngành/ Ngành/ Chuyên ngành 86–90\n1. Cơ sở ngành 18–34\n2. Ngành/ Chuyên ngành\n52–72\n3. Tốt nghiệp trình độ đại học\nTổng tín chỉ 128–132\n”.\n4. Thay thế Điều 7 như sau:\n“ Điều 7. Cấu trúc của chương trình đào tạo PFIEV\n1. Xét theo giai đoạn:\nGiai đoạn Số tín chỉ\nTổng tín chỉ 158–163\n1.\nGiai đoạn 1\n(bao gồm 8 tín chỉ tiếng Anh và 8 tín chỉ tiếng Pháp)\n66\n2.\nGiai đoạn 2\n(bao gồm 4 tín chỉ tiếng Pháp)\n92–97\n2. Xét theo khối kiến thức:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 36\n1. Toán 21\n2. Khoa học tự nhiên 15\nGiáo dục chung 42\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 20\nCơ sở ngành/ Ngành/ Chuyên ngành 80–85\n1. Cơ sở ngành 16–32\n2. Ngành/ Chuyên ngành\n48–69\n3. Tốt nghiệp chương trình PFIEV\nTổng tín chỉ 158–163\n”.\n5. Thay thế Điều 9 như sau:\n“ Điều 9. Cấu trúc của chương trình đào tạo thạc sĩ\nKhối kiến thức Thạc sĩ ứng dụng Thạc sĩ nghiên cứu Thạc sĩ nghiên cứu chuyên sâu\nĐa ngành, tổng quát\n1. Triết học 3 3 3\n2. Tự chọn đa ngành, tổng quát 6 - -\n3. Phương pháp nghiên cứu khoa học - 3 3\nCơ sở ngành/ Ngành\n1. Cơ sở ngành 12 12 -\n2. Ngành/ Chuyên ngành 24 12 -\nTốt nghiệp trình độ thạc sĩ\n1. Thực tập 6 - -\n2. Chuyên đề nghiên cứu trước luận văn - 15\n3. Đề án tốt nghiệp/ Luận văn thạc sĩ 9\n15\n+ Báo cáo\nkhoa học\n54\n1×9\n3×15\n+ Báo cáo\nkhoa học\nTổng số tín chỉ 60 60 60\n”.\n6. Thay thế Điều 11 như sau:\n“ Điều 11. Quy định thêm về khối kiến thức\nQuy định tại Điều này áp dụng đối với các khối kiến thức quy định từ Điều 6\nđến Điều 10.\nKhối kiến thức Số tín chỉ Ghi chú\na) Giáo dục chung khác\n1. Nhập môn 3 Kỹ thuật/ Điện toán/ Kiến trúc/ Quản lý\n2.\nKiến thức quản lý/ Khởi nghiệp\nHoặc\nKiến thức kỹ thuật ngoài ngành đối\nvới các ngành quản lý\n3\n3.\nKiến thức về con người và môi\ntrường/ Kỹ năng nghề nghiệp\nchuyên nghiệp\n3\nCác kiến thức về tác động của\nngành với con người, xã hội và\nmôi trường\nb) Ngoại ngữ\n1. Tiếng Anh 8\n2. Tiếng Pháp 12 Chương trình PFIEV\nc) Chuyên sâu đặc thù\nCó thể dùng xét công nhận đạt các khối kiến thức chuyên ngành bắt buộc, khối kiến\nthức chuyên ngành tự chọn và khối kiến thức thực tập trong chương trình thạc sĩ.\n1. Học kỳ doanh nghiệp 15\nd) Tốt nghiệp trình độ đại học từ khóa 2025 về trước\n1. Thực tập ngoài trường 2 Học kỳ 6, có thể vận hành trong hè của năm 3\n2. Đồ án chuyên ngành 2 Học kỳ 7\n3. Đồ án/ Khóa luận tốt nghiệp 4 Học kỳ 8\ne) Tốt nghiệp trình độ đại học từ khóa 2026\n1. Học kỳ thực tập doanh nghiệp 11 Học kỳ 7\n2. Đồ án/ Khóa luận tốt nghiệp 6 Học kỳ 8\nf) Tốt nghiệp chương trình PFIEV\n1. Thực tập công nhân 2 Học kỳ 4, có thể vận hành trong hè của năm 2\n2. Thực tập ngoài trường 2 Học kỳ 6, có thể vận hành trong hè của năm 3\n3. Học kỳ thực tập doanh nghiệp 13 Học kỳ 8 (có thể vận hành trong hè của năm 4) và học kỳ 9\n4. Đồ án tốt nghiệp kỹ sư 9 Học kỳ 10\ng) Tốt nghiệp trình độ thạc sĩ ứng dụng\n1. Thực tập ngoài trường 6 Học kỳ 3\n2. Đề án tốt nghiệp 9 Học kỳ 4\nh) Tốt nghiệp trình độ thạc sĩ nghiên cứu\n1. Chuyên đề nghiên cứu trước luận văn 15 Học kỳ 3\n2. Luận văn thạc sĩ 15 Học kỳ 4\ni) Tốt nghiệp trình độ thạc sĩ nghiên cứu chuyên sâu\n1.\nLuận văn thạc sĩ nghiên cứu\nchuyên sâu\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 1\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 2\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 3\n54\n9\n15\n15\n15\nHọc kỳ 1\nHọc kỳ 2\nHọc kỳ 3\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 4 Học kỳ 4\nj) Tốt nghiệp trình độ tiến sĩ – Phương thức 1\n1.\nLuận án tiến sĩ\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận án tiến sĩ – chuẩn bị\nLuận án tiến sĩ – phần 1\nLuận án tiến sĩ – phần 2\nLuận án tiến sĩ – phần 3\nLuận án tiến sĩ – phần 4\nLuận án tiến sĩ – phần 5\n87\n12\n15\n15\n15\n15\n15\nHọc kỳ 1\nHọc kỳ 2\nHọc kỳ 3\nHọc kỳ 4\nHọc kỳ 5\nHọc kỳ 6\nk) Tốt nghiệp trình độ tiến sĩ – Phương thức 2\n1.\nLuận án tiến sĩ\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận án tiến sĩ – phần 1\nLuận án tiến sĩ – phần 2\nLuận án tiến sĩ – phần 3\nLuận án tiến sĩ – phần 4\nLuận án tiến sĩ – phần 5\n75\n15\n15\n15\n15\n15\nHọc kỳ 2\nHọc kỳ 3\nHọc kỳ 4\nHọc kỳ 5\nHọc kỳ 6\nGhi chú:\n(†): Các phần học thành phần dùng để bố trí đăng ký học phần trên thời khóa biểu, tính học\nphí và tính khối lượng giảng dạy, không in vào Phụ lục bằng tốt nghiệp.”.\n7. Sửa đổi, bổ sung Điều 12 như sau:\na) Sửa đổi, bổ sung khoản 4 Điều 12:\n“4. Các tín chỉ tự chọn trong chương trình đào tạo trình độ đại học phải có tối thiểu\n9 tín chỉ (3 học phần tự chọn ngành/chuyên ngành), được phân bố vào tất cả các học kỳ,\ntối thiểu bắt đầu từ học kỳ 6.”.\nb) Sửa đổi, bổ sung khoản 5 Điều 12:\n“5. Chương trình đào tạo trình độ đại học cần có tối thiểu 7 tín chỉ các học phần\nthực hành (bao gồm thí nghiệm và đồ án, không bao gồm khối kiến thức tốt nghiệp) là các\nhọc phần bắt buộc, có tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước) và học\nkỳ thực tập doanh nghiệp (đối với khóa 2026 về sau); Đối với chương trình PFIEV , cần\nthiết kế thêm tối thiểu 6 tín chỉ ở học phần bắt buộc dưới dạng đồ án định hướng công\nnghiệp.”.\n8. Sửa đổi, bổ sung Điều 16 như sau:\na) Sửa đổi, bổ sung khoản 1 Điều 16:\n“1. Hội đồng ngành là tổ chức chuyên môn tập hợp các giảng viên, chuyên gia trong\nngành có học hàm học vị cao, uy tín, có nhiều kinh nghiệm giảng dạy và quản lý giảng dạy\nvới chức năng tổ chức xây dựng, rà soát và cập nhật chương trình đào tạo của ngành theo\nchuẩn mực chất lượng của văn bằng được cấp. Hội đồng ngành được thành lập cho từng\nngành đào tạo , bao gồm tất cả các trình độ đào tạo . Trong trường hợp có các ngành gần\ncùng trình độ đào tạo; hoặc các ngành gần nhưng có sự khác nhau về tên giữa các trình độ\nđào tạo thì chỉ thành lập một hội đồng ngành chung và đặt tên ghép hoặc tên chung mang\ntính bao hàm. Hội đồng ngành có tối thiểu 07 thành viên và tối đa 15 thành viên (không\nbao gồm thư ký hành ch ính), có số thành viên là số lẻ , trong đó phải có sự tham gia của\ncác Chủ trì ngành đại diện cho các trình độ đào tạo có liên quan. Hội đồng ngành do Trưởng\nkhoa quản lý ngành đề cử, Hiệu trưởng quyết định thành lập và chịu sự quản lý trực tiếp\ncủa khoa quản lý ngành. Đối với các ngành liên ngành, Hội đồng ngành liên ngành do\nTrưởng các khoa quản lý các ngành liên quan đề cử, Hiệu trưởng quyết định thành lập và\nchịu sự quản lý trực tiếp của các khoa quản lý ngành.”.\nb) Sửa đổi, bổ sung khoản 4 Điều 16:\n“4. Nhiệm vụ của Chủ nhiệm Hội đồng ngành:\na) Chủ trì chuẩn bị hồ sơ, tài liệu, văn bản cần thiết và tổ chức các cuộc họp của\nHội đồng ngành; báo cáo Hội đồng khoa học và đào tạo của khoa về công tác xây dựng, rà\nsoát và cập nhật chương trình đào tạo của ngành, chuyên ngành;\nb) Trao đổi với Trưởng khoa (hoặc Trưởng các khoa liên quan đối với ngành liên\nngành, sau đây gọi tắt là Trưởng khoa) hoặc giảng viên phụ trách học phần (nếu có) trong\nviệc phân bổ nội dung học phần trong chương trình đào tạo, tổ chức thảo luận, thống nhất\ntrong Hội đồng ngành để trình cấp có thẩm quyền phê duyệt;\nc) Tham mưu cho Trưởng khoa trong việc phân công giảng viên giảng dạy các học\nphần trong chương trình đào tạo, tham mưu việc xét duyệt đề tài và phân công khối lượng\nhướng dẫn khóa luận tốt nghiệp hay luận văn thạc sĩ theo quy định;\nd) Báo cáo định kỳ Hội đồng khoa học và đào tạo của khoa về tình hình tổ chức,\nvận hành chương trình đào tạo của ngành, chuyên ngành;\ne) Tổng hợp báo cáo của các Chủ trì ngành theo từng trình độ đào tạo và báo cáo\nTrưởng khoa để xem xét, chỉ đạo;\nf) Tham mưu cho Trưởng khoa trong việc mời giảng viên thỉnh giảng.”.\n9. Bổ sung Điều 16a sau Điều 16 như sau:\n“ Điều 16a. Chủ trì ngành\na) Chủ trì xây dựng và tổ chức triển khai chương trình đào tạo của ngành, chuyên\nngành;\nb) Rà soát định kỳ chương trình đào tạo; báo cáo Hội đồng ngành để xem xét quyết\nđịnh việc điều chỉnh hoặc xây dựng mới chương trình đào tạo;\nc) Tham mưu cho Hội đồng ngành trong việc phân công giảng viên giảng dạy các học\nphần thuộc chương trình đào tạo, tham mưu việc xét duyệt đề tài và phân công khối lượng\nhướng dẫn khóa luận tốt nghiệp hoặc luận văn thạc sĩ theo quy định;\nd) Tham mưu cho Trưởng khoa trong việc phân công giảng viên làm Trưởng nhóm\nmôn học để chịu trách nhiệm chủ trì việc thống nhất nội dung giảng dạy của môn học theo\ntừng học kỳ, tổ chức ra đề thi và thực hiện thẩm định đề thi theo quy định;\ne) Đề xuất danh sách thành viên các hội đồng chấm đồ án, khóa luận , luận văn,\nluận án… để Hội đồng ngành tham mưu Trưởng khoa xem xét, quyết định;\nf) Báo cáo định kỳ Hội đồng ngành về tình hình triển khai và vận hành chương trình\nđào tạo của ngành, chuyên ngành; đề xuất các giải pháp điều chỉnh, cải tiến khi cần thiết.”.\n10. Thay thế Phụ lục III như sau:\n“ PHỤ LỤC III\nPHÂN BỐ CÁC HỌC PHẦN TRÌNH ĐỘ THẠC SĨ:\nHọc\nkỳ\nHọc phần\nThạc sĩ ứng dụng Thạc sĩ nghiên cứu\nThạc sĩ nghiên cứu\nchuyên sâu\n1.\nTriết học (3 TC) Triết học (3 TC) Triết học (3 TC)\nCơ sở ngành (12 TC) Cơ sở ngành (12 TC)\nPhương pháp nghiên cứu\nkhoa học (3 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 1\n+ Báo cáo khoa học\n(9 TC)\n2.\nTự chọn đa ngành, tổng\nquát (3 TC)\nPhương pháp nghiên cứu\nkhoa học (3 TC) Luận văn thạc sĩ nghiên cứu chuyên sâu – phần 2\n+ Báo cáo khoa học\n(15 TC) Ngành/ Chuyên ngành\nbắt buộc (12 TC)\nNgành/ Chuyên ngành\n(12 TC)\n3.\nNgành/ Chuyên ngành tự\nchọn (9 TC)\nChuyên đề nghiên cứu\ntrước luận văn (15 TC)\nThực tập (6 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 3\n+ Báo cáo khoa học\n(15 TC)\n4.\nNgành/ Chuyên ngành tự\nchọn (3 TC) Luận văn thạc sĩ nghiên\ncứu + Báo cáo khoa học\n(15 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 4\n+ Báo cáo khoa học\n(15 TC)\nTự chọn đa ngành, tổng\nquát (3 TC)\nĐề án tốt nghiệp (9 TC)\n”.\n11. Sửa đổi mục 2.2 Thạc sĩ nghiên cứu của Phụ lục V – Cấu trúc chi tiết chương\ntrình đào tạo các trình độ như sau:\n“ 2.2 Thạc sĩ nghiên cứu\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO THẠC SĨ NGHIÊN CỨU\nKhối kiến thức Số môn Số tín chỉ\nA. Đa ngành, tổng quát (General Multidisciplinary Courses) 6\nTriết học (Philosophy) 3\nPhương pháp nghiên cứu khoa học (Scientific Research Methodology) 3\nAnh văn 1 (English 1) 0\nAnh văn 2 (English 2) 0\nB. Cơ sở ngành (Foundation Courses) 12\nB.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nB.2 Tự chọn cơ sở ngành (Elective Foundation Courses)\n…\nC. Ngành/ Chuyên ngành (Major/ Speciality Courses) 12\nC.1 Ngành/ Chuyên ngành bắt buộc (Compulsory Major/ Speciality Courses)\n…\nC.2 Ngành/ Chuyên ngành tự chọn (Elective Major/ Speciality Courses)\n…\nD. Học phần tốt nghiệp (Graduation Module) 30\nChuyên đề nghiên cứu trước luận văn\n(Pre – Thesis Research Project)\n15\nLuận văn thạc sĩ (Master’s Thesis) 15\nE. Điều kiện tốt nghiệp (Other Graduation Requirements)\nENG_B2\nTổng tín chỉ 60\n”.\n12. Bổ sung vào bước 6, khoản 1.1, mục 1 (Xây dựng chương trình đào tạo mới)\ncủa Phụ lục VI: Quy trình xây dựng, thẩm định, cập nhật và ban hành chương trình đào tạo\ntrình độ đại học, thạc sĩ, tiến sĩ như sau:\n“Bước 6: Tổ chức hội thảo lấy ý kiến của giảng viên, đội ngũ quản lý trong và ngoài\ntrường, các nhà khoa học, đại diện đơn vị sử dụng lao động liên quan và người đã tốt nghiệp\n(nếu có) về CTĐT. Yêu cầu có Biên bản họp của Hội đồng ngành và Hội đồng Khoa học\nvà đào tạo của khoa về việc thông qua nội dung chương trình đào tạo là căn cứ để hoàn\nthiện hồ sơ và trình phê duyệt chương trình đào tạo.”.\n13. Bổ sung Phụ lục XI như sau:\n“ PHỤ LỤC XI:\nCấu trúc chi tiết chương trình đào tạo các trình độ từ khóa 2026\n1. Trình độ đại học\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO ĐẠI HỌC\nCÁC NGÀNH KỸ THUẬT VÀ KIẾN TRÚC\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and Basic\nSciences) 30\nA.1 Toán (Mathematics) Tối thiểu 11\n…\nA.2. Khoa học tự nhiên (Basic Sciences) Tối thiểu 5\n…\nB. Giáo dục chung (General Education) 30\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Quản lý / Khởi nghiệp (Management/ Entrepreneurship Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 8\nAnh văn 1 (English 1)\nAnh văn 2 (English 2)\nAnh văn 3 (English 3)\nAnh văn 4 (English 4)\nB.6\nKiến thức và kỹ năng bổ trợ (Supplementary\nKnowledge and Skills) Dành cho các môn kỹ\nnăng mềm, tiếng Nhật, văn hoá Nhật ...\nB.6.1 Kỹ năng bổ trợ (Supplementary Skills) : áp dụng từ khóa 2025 chương trình tiêu chuẩn 1 0\n…\nB.6.2\nKỹ năng bổ trợ (Supplementary Skills) : áp\ndụng từ khóa 2025 cho các chương trình: Dạy\nvà học bằng tiếng Anh; Tiên tiến; Định hướng\nNhật bản; Chuyển tiếp quốc tế; Liên kết cử\nnhân kỹ thuật quốc tế\n4 0\n…\nB.6.3\nTiếng Nhật (Japaneses) áp dụng cho các\nchương trình: Định hướng Nhật Bản và\nChuyển tiếp quốc tế Nhật Bản\n8 0\n…\nB.6.4 Văn hóa Nhật (Japanese Culture) áp dụng cho Chương trình Định hướng Nhật Bản 1 0\n…\nC. Cơ sở ngành (Foundation Courses) 18–34\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành ( Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality Courses) 17–37\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses)\nD2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc c huyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 17\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National Defense\nand Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GC\n…\nTổng tín chỉ 128–132\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO ĐẠI HỌC\nCÁC NGÀNH QUẢN LÝ\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and Basic\nSciences) 12\nA.1 Toán (Mathematics) 9\n…\nA.2. Khoa học tự nhiên (Basic Sciences) 3\n…\nB. Giáo dục chung (General Education) 30\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Kỹ thuật ngoài ngành ( Non – management Technical Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 8\nAnh văn 1 (English 1)\nAnh văn 2 (English 2)\nAnh văn 3 (English 3)\nAnh văn 4 (English 4)\nB.6 Kiến thức và kỹ năng bổ trợ (Supplementary Knowledge and Skills) 0\nB.6.1 Kỹ năng bổ trợ (Supplementary Skills) : áp dụng từ khóa 2025 chương trình tiêu chuẩn 1 0\n…\nB.6.2\nKỹ năng bổ trợ (Supplementary Skills) : áp\ndụng từ khóa 2025 cho các chương trình: Dạy\nvà học bằng tiếng Anh; Chuyển tiếp quốc tế\n4 0\n…\nC. Cơ sở ngành (Foundation Courses) 18–34\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành ( Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality Courses) 35–55\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses)\nD.2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc c huyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 17\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National Defense\nand Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục Thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GC\n…\nTổng tín chỉ 128–132\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO PFIEV\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and\nBasic Sciences) 36\nA.1 Toán (Mathematics) 21\n…\nA.2. Khoa học tự nhiên (Basic Sciences) 15\n…\nB. Giáo dục chung (General Education) 42\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Quản lý/ Khởi nghiệp (Management/ Entrepreneurship Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 20\nB5.1 Anh văn (English) 8\nB5.2 Pháp văn (French) 12\nB.6 Kiến thức và kỹ năng bổ trợ (Supplementary Knowledge and Skills) áp dụng từ khóa 2025 1 0\n…\nC. Cơ sở ngành (Foundation Courses) 16–32\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành (Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality\nCourses) 22–43\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses )\nD.2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc chuyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 26\n…\n…\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National\nDefense and Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục Thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GT_700\nFRA_GC\nTổng tín chỉ 158–163\n”."
+      },
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_15",
+        "title": "Điều 15. Vai trò và nhiệm vụ",
+        "source_name": "Về việc ban hành Quy định về công tác Giáo viên chủ nhiệm và Cố vấn học tập Trường Đại học Bách khoa – ĐHQG-HCM. — số 2977/QĐ-ĐHBK",
+        "content": "Điều 15. Vai trò và nhiệm vụ\n1. Giải thích cho người học về chương trình đào tạo, kế hoạch giảng dạy của ngành.\n2. Cố vấn cho người học khi học có nhu cầu học vượt, học chậm tiến độ.\n3. Tư vấn cho người học định hướng về ngành, ngành chính - phụ, ngành thứ hai, các\nvấn đề có thể xảy ra khi chuyển khóa, chuyển ngành.\n4. Tư vấn cho người học về các tín chỉ tự chọn tự do.\n5. Tư vấn cho người học về các học phần tương đương, thay thế, các học phần của\nchương trình liên thông Đại học - Thạc sĩ, Cử nhân - Kỹ sư.\n6. Tư vấn cho người học về các nội dung khác liên quan đến chương trình đào tạo."
+      }
+    ],
+    "unknown_citation_ids": []
+  },
+  {
+    "review_id": "fe3d26aa28221f816af26634",
+    "question": "Theo Quy định về công tác GVCN và CVHT, cố vấn học tập có nhiệm vụ gì liên quan đến tín chỉ tự chọn tự do, và theo Quyết định 1862/QĐ-ĐHBK sửa đổi, chương trình đào tạo trình độ đại học khóa 2025 về trước cần có tối thiểu bao nhiêu tín chỉ tự chọn tự do?",
+    "scope": "Knowledge base: Quy chế và quy định học vụ - Trường Đại học Bách khoa, ĐHQG-HCM. Câu hỏi nằm ngoài phạm vi các văn bản quy chế, quy định học vụ của Trường Đại học Bách khoa - ĐHQG-HCM trong cơ sở dữ liệu đã nạp; không suy đoán, nêu rõ giới hạn và gợi ý người dùng liên hệ đơn vị phụ trách đào tạo của trường để được xác nhận chính thức.",
+    "expected_behavior": "answer",
+    "reference_answer": "CVHT tư vấn cho người học về các tín chỉ tự chọn tự do (Điều 15 khoản 4 Quy định GVCN và CVHT); chương trình đào tạo trình độ đại học khóa 2025 về trước cần có tối thiểu 9 tín chỉ tự chọn tự do (khoản 5 Điều 12 được sửa đổi).",
+    "reference_evidence": [
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_15",
+        "exact_quote": "Tư vấn cho người học về các tín chỉ tự chọn tự do."
+      },
+      {
+        "article_id": "HCMUT_CTDT1862_Dieu_1",
+        "exact_quote": "có tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước)"
+      }
+    ],
+    "candidate_behavior": "answered",
+    "candidate_answer": "Theo Quyết định 1862/QĐ-ĐHBK (Điều 12), chương trình đào tạo trình độ đại học khóa 2025 cần có tối thiểu 9 tín chỉ tự chọn tự do. Ngoài ra, điều này được quy định trong các khoản 4 và 5 của Điều 12.",
+    "candidate_citations": [
+      {
+        "article_id": "HCMUT_CTDT1862_Dieu_1",
+        "exact_quote": "tối thiểu 9 tín chỉ tự chọn tự free (đối với khóa 2025 ...)"
+      },
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_15",
+        "exact_quote": null
+      }
+    ],
+    "source_articles": [
+      {
+        "article_id": "HCMUT_CTDT1862_Dieu_1",
+        "title": "Điều 1. Sửa đổi, bổ sung một số điều của Quy định cấu trúc và quy trình xây dựng,",
+        "source_name": "Quyết định sửa đổi, bổ sung một số điều của Quy định về cấu trúc và quy trình xây dựng, thẩm định, điều chỉnh chương trình đào tạo; quy trình mở ngành đào tạo trình độ đại học, thạc sĩ, tiến sĩ ban hành kèm theo Quyết định số 3538/QĐ-ĐHBK ngày 11 tháng 9 năm 2025 của Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh — số 1862/QĐ-ĐHBK",
+        "content": "Điều 1. Sửa đổi, bổ sung một số điều của Quy định cấu trúc và quy trình xây dựng,\nthẩm định, điều chỉnh chương trình đào tạo; quy trình mở ngành đào tạo trình độ đại học,\nthạc sĩ, tiến sĩ ban hành kèm theo Quyết định số 3538/QĐ-ĐHBK ngày 11 tháng 9 năm 2025\ncủa Hiệu trưởng trường Đại học Bách khoa, Đại học Quốc gia Thành phố Hồ Chí Minh\n1. Sửa đổi, bổ sung Điều 2 như sau:\na) Sửa đổi, bổ sung điểm b khoản 2 Điều 2:\n“b) Học phần được tổ chức dưới dạng lý thuyết bao gồm giảng dạy lý thuyết và thực\nhành (thảo luận, thực hành tại lớp, thí nghiệm, bài tập lớn, kiến tập), trong đó phần thực\nhành chiếm tối thiểu 20% khối lượng tín chỉ học phần; hoặc dưới dạng thực hành (thí\nnghiệm, thực hành, thực tập, thực tập ngoài trường/doanh nghiệp); hoặc dưới dạng đồ án\n(đồ án, đồ án chuyên ngành, đồ án/khóa luận tốt nghiệp, chuyên đề/đề án/luận văn thạc sĩ,\ntiểu luận/chuyên đề/luận án tiến sĩ.”.\nb) Sửa đổi, bổ sung điểm e khoản 3 Điều 2:\n“e) Cấp độ năm là các học phần ở chương trình chuyên sâu đặc thù, bao gồm cả giai\nđoạn chuyên sâu kỹ sư của chương trình đào tạo Kỹ sư Chất lượng cao tại Việt Nam (viết\ntắt là PFIEV) (người học từ năm thứ năm), trình độ thạc sĩ và tiến sĩ, ngoại trừ các học\nphần nêu trong điểm f và g trong khoản này;”.\n2. Bổ sung khoản 5 Điều 3 như sau:\n“5. Chương trình tích hợp: Đại học – Thạc sĩ, Thạc sĩ – Tiến sĩ là các chương trình\nđào tạo liên tục giữa hai trình độ học tập , nhằm rút ngắn thời gian học hoặc kết hợp khung\nkiến thức, tín chỉ của hai trình độ liên tiếp. Người học được cấp bằng tương ứng với trình\nđộ đã hoàn thành.”.\n3. Thay thế Điều 6 như sau:\n“Điều 6. Cấu trúc của chương trình đào tạo đại học\n1. Các ngành kỹ thuật và kiến trúc theo khung của tiêu chuẩn kiểm định ABET và\ncủa một số tổ chức kiểm định quốc tế:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 30\n1. Toán tối thiểu 11\n2. Khoa học tự nhiên tối thiểu 5\nGiáo dục chung 30\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 8\nCơ sở ngành/ Ngành/ Chuyên ngành 68–72\n1. Cơ sở ngành 18–34\n2. Ngành/ Chuyên ngành\n34–54\n3. Tốt nghiệp trình độ đại học\nTổng tín chỉ 128–132\n2. Các ngành quản lý theo khung của tiêu chuẩn kiểm định FIBAA:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 12\n1. Toán quản lý 9\n2. Khoa học tự nhiên 3\nGiáo dục chung 30\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 8\nCơ sở ngành/ Ngành/ Chuyên ngành 86–90\n1. Cơ sở ngành 18–34\n2. Ngành/ Chuyên ngành\n52–72\n3. Tốt nghiệp trình độ đại học\nTổng tín chỉ 128–132\n”.\n4. Thay thế Điều 7 như sau:\n“ Điều 7. Cấu trúc của chương trình đào tạo PFIEV\n1. Xét theo giai đoạn:\nGiai đoạn Số tín chỉ\nTổng tín chỉ 158–163\n1.\nGiai đoạn 1\n(bao gồm 8 tín chỉ tiếng Anh và 8 tín chỉ tiếng Pháp)\n66\n2.\nGiai đoạn 2\n(bao gồm 4 tín chỉ tiếng Pháp)\n92–97\n2. Xét theo khối kiến thức:\nKhối kiến thức Số tín chỉ\nToán và Khoa học tự nhiên 36\n1. Toán 21\n2. Khoa học tự nhiên 15\nGiáo dục chung 42\n1. Kinh tế – Chính trị – Xã hội – Luật 13\n2. Giáo dục chung khác 9\n3. Ngoại ngữ 20\nCơ sở ngành/ Ngành/ Chuyên ngành 80–85\n1. Cơ sở ngành 16–32\n2. Ngành/ Chuyên ngành\n48–69\n3. Tốt nghiệp chương trình PFIEV\nTổng tín chỉ 158–163\n”.\n5. Thay thế Điều 9 như sau:\n“ Điều 9. Cấu trúc của chương trình đào tạo thạc sĩ\nKhối kiến thức Thạc sĩ ứng dụng Thạc sĩ nghiên cứu Thạc sĩ nghiên cứu chuyên sâu\nĐa ngành, tổng quát\n1. Triết học 3 3 3\n2. Tự chọn đa ngành, tổng quát 6 - -\n3. Phương pháp nghiên cứu khoa học - 3 3\nCơ sở ngành/ Ngành\n1. Cơ sở ngành 12 12 -\n2. Ngành/ Chuyên ngành 24 12 -\nTốt nghiệp trình độ thạc sĩ\n1. Thực tập 6 - -\n2. Chuyên đề nghiên cứu trước luận văn - 15\n3. Đề án tốt nghiệp/ Luận văn thạc sĩ 9\n15\n+ Báo cáo\nkhoa học\n54\n1×9\n3×15\n+ Báo cáo\nkhoa học\nTổng số tín chỉ 60 60 60\n”.\n6. Thay thế Điều 11 như sau:\n“ Điều 11. Quy định thêm về khối kiến thức\nQuy định tại Điều này áp dụng đối với các khối kiến thức quy định từ Điều 6\nđến Điều 10.\nKhối kiến thức Số tín chỉ Ghi chú\na) Giáo dục chung khác\n1. Nhập môn 3 Kỹ thuật/ Điện toán/ Kiến trúc/ Quản lý\n2.\nKiến thức quản lý/ Khởi nghiệp\nHoặc\nKiến thức kỹ thuật ngoài ngành đối\nvới các ngành quản lý\n3\n3.\nKiến thức về con người và môi\ntrường/ Kỹ năng nghề nghiệp\nchuyên nghiệp\n3\nCác kiến thức về tác động của\nngành với con người, xã hội và\nmôi trường\nb) Ngoại ngữ\n1. Tiếng Anh 8\n2. Tiếng Pháp 12 Chương trình PFIEV\nc) Chuyên sâu đặc thù\nCó thể dùng xét công nhận đạt các khối kiến thức chuyên ngành bắt buộc, khối kiến\nthức chuyên ngành tự chọn và khối kiến thức thực tập trong chương trình thạc sĩ.\n1. Học kỳ doanh nghiệp 15\nd) Tốt nghiệp trình độ đại học từ khóa 2025 về trước\n1. Thực tập ngoài trường 2 Học kỳ 6, có thể vận hành trong hè của năm 3\n2. Đồ án chuyên ngành 2 Học kỳ 7\n3. Đồ án/ Khóa luận tốt nghiệp 4 Học kỳ 8\ne) Tốt nghiệp trình độ đại học từ khóa 2026\n1. Học kỳ thực tập doanh nghiệp 11 Học kỳ 7\n2. Đồ án/ Khóa luận tốt nghiệp 6 Học kỳ 8\nf) Tốt nghiệp chương trình PFIEV\n1. Thực tập công nhân 2 Học kỳ 4, có thể vận hành trong hè của năm 2\n2. Thực tập ngoài trường 2 Học kỳ 6, có thể vận hành trong hè của năm 3\n3. Học kỳ thực tập doanh nghiệp 13 Học kỳ 8 (có thể vận hành trong hè của năm 4) và học kỳ 9\n4. Đồ án tốt nghiệp kỹ sư 9 Học kỳ 10\ng) Tốt nghiệp trình độ thạc sĩ ứng dụng\n1. Thực tập ngoài trường 6 Học kỳ 3\n2. Đề án tốt nghiệp 9 Học kỳ 4\nh) Tốt nghiệp trình độ thạc sĩ nghiên cứu\n1. Chuyên đề nghiên cứu trước luận văn 15 Học kỳ 3\n2. Luận văn thạc sĩ 15 Học kỳ 4\ni) Tốt nghiệp trình độ thạc sĩ nghiên cứu chuyên sâu\n1.\nLuận văn thạc sĩ nghiên cứu\nchuyên sâu\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 1\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 2\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 3\n54\n9\n15\n15\n15\nHọc kỳ 1\nHọc kỳ 2\nHọc kỳ 3\nLuận văn thạc sĩ nghiên cứu chuyên\nsâu – phần 4 Học kỳ 4\nj) Tốt nghiệp trình độ tiến sĩ – Phương thức 1\n1.\nLuận án tiến sĩ\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận án tiến sĩ – chuẩn bị\nLuận án tiến sĩ – phần 1\nLuận án tiến sĩ – phần 2\nLuận án tiến sĩ – phần 3\nLuận án tiến sĩ – phần 4\nLuận án tiến sĩ – phần 5\n87\n12\n15\n15\n15\n15\n15\nHọc kỳ 1\nHọc kỳ 2\nHọc kỳ 3\nHọc kỳ 4\nHọc kỳ 5\nHọc kỳ 6\nk) Tốt nghiệp trình độ tiến sĩ – Phương thức 2\n1.\nLuận án tiến sĩ\nTrong đó, bố trí các phần học qua\ntừng học kỳ như sau (†):\nLuận án tiến sĩ – phần 1\nLuận án tiến sĩ – phần 2\nLuận án tiến sĩ – phần 3\nLuận án tiến sĩ – phần 4\nLuận án tiến sĩ – phần 5\n75\n15\n15\n15\n15\n15\nHọc kỳ 2\nHọc kỳ 3\nHọc kỳ 4\nHọc kỳ 5\nHọc kỳ 6\nGhi chú:\n(†): Các phần học thành phần dùng để bố trí đăng ký học phần trên thời khóa biểu, tính học\nphí và tính khối lượng giảng dạy, không in vào Phụ lục bằng tốt nghiệp.”.\n7. Sửa đổi, bổ sung Điều 12 như sau:\na) Sửa đổi, bổ sung khoản 4 Điều 12:\n“4. Các tín chỉ tự chọn trong chương trình đào tạo trình độ đại học phải có tối thiểu\n9 tín chỉ (3 học phần tự chọn ngành/chuyên ngành), được phân bố vào tất cả các học kỳ,\ntối thiểu bắt đầu từ học kỳ 6.”.\nb) Sửa đổi, bổ sung khoản 5 Điều 12:\n“5. Chương trình đào tạo trình độ đại học cần có tối thiểu 7 tín chỉ các học phần\nthực hành (bao gồm thí nghiệm và đồ án, không bao gồm khối kiến thức tốt nghiệp) là các\nhọc phần bắt buộc, có tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước) và học\nkỳ thực tập doanh nghiệp (đối với khóa 2026 về sau); Đối với chương trình PFIEV , cần\nthiết kế thêm tối thiểu 6 tín chỉ ở học phần bắt buộc dưới dạng đồ án định hướng công\nnghiệp.”.\n8. Sửa đổi, bổ sung Điều 16 như sau:\na) Sửa đổi, bổ sung khoản 1 Điều 16:\n“1. Hội đồng ngành là tổ chức chuyên môn tập hợp các giảng viên, chuyên gia trong\nngành có học hàm học vị cao, uy tín, có nhiều kinh nghiệm giảng dạy và quản lý giảng dạy\nvới chức năng tổ chức xây dựng, rà soát và cập nhật chương trình đào tạo của ngành theo\nchuẩn mực chất lượng của văn bằng được cấp. Hội đồng ngành được thành lập cho từng\nngành đào tạo , bao gồm tất cả các trình độ đào tạo . Trong trường hợp có các ngành gần\ncùng trình độ đào tạo; hoặc các ngành gần nhưng có sự khác nhau về tên giữa các trình độ\nđào tạo thì chỉ thành lập một hội đồng ngành chung và đặt tên ghép hoặc tên chung mang\ntính bao hàm. Hội đồng ngành có tối thiểu 07 thành viên và tối đa 15 thành viên (không\nbao gồm thư ký hành ch ính), có số thành viên là số lẻ , trong đó phải có sự tham gia của\ncác Chủ trì ngành đại diện cho các trình độ đào tạo có liên quan. Hội đồng ngành do Trưởng\nkhoa quản lý ngành đề cử, Hiệu trưởng quyết định thành lập và chịu sự quản lý trực tiếp\ncủa khoa quản lý ngành. Đối với các ngành liên ngành, Hội đồng ngành liên ngành do\nTrưởng các khoa quản lý các ngành liên quan đề cử, Hiệu trưởng quyết định thành lập và\nchịu sự quản lý trực tiếp của các khoa quản lý ngành.”.\nb) Sửa đổi, bổ sung khoản 4 Điều 16:\n“4. Nhiệm vụ của Chủ nhiệm Hội đồng ngành:\na) Chủ trì chuẩn bị hồ sơ, tài liệu, văn bản cần thiết và tổ chức các cuộc họp của\nHội đồng ngành; báo cáo Hội đồng khoa học và đào tạo của khoa về công tác xây dựng, rà\nsoát và cập nhật chương trình đào tạo của ngành, chuyên ngành;\nb) Trao đổi với Trưởng khoa (hoặc Trưởng các khoa liên quan đối với ngành liên\nngành, sau đây gọi tắt là Trưởng khoa) hoặc giảng viên phụ trách học phần (nếu có) trong\nviệc phân bổ nội dung học phần trong chương trình đào tạo, tổ chức thảo luận, thống nhất\ntrong Hội đồng ngành để trình cấp có thẩm quyền phê duyệt;\nc) Tham mưu cho Trưởng khoa trong việc phân công giảng viên giảng dạy các học\nphần trong chương trình đào tạo, tham mưu việc xét duyệt đề tài và phân công khối lượng\nhướng dẫn khóa luận tốt nghiệp hay luận văn thạc sĩ theo quy định;\nd) Báo cáo định kỳ Hội đồng khoa học và đào tạo của khoa về tình hình tổ chức,\nvận hành chương trình đào tạo của ngành, chuyên ngành;\ne) Tổng hợp báo cáo của các Chủ trì ngành theo từng trình độ đào tạo và báo cáo\nTrưởng khoa để xem xét, chỉ đạo;\nf) Tham mưu cho Trưởng khoa trong việc mời giảng viên thỉnh giảng.”.\n9. Bổ sung Điều 16a sau Điều 16 như sau:\n“ Điều 16a. Chủ trì ngành\na) Chủ trì xây dựng và tổ chức triển khai chương trình đào tạo của ngành, chuyên\nngành;\nb) Rà soát định kỳ chương trình đào tạo; báo cáo Hội đồng ngành để xem xét quyết\nđịnh việc điều chỉnh hoặc xây dựng mới chương trình đào tạo;\nc) Tham mưu cho Hội đồng ngành trong việc phân công giảng viên giảng dạy các học\nphần thuộc chương trình đào tạo, tham mưu việc xét duyệt đề tài và phân công khối lượng\nhướng dẫn khóa luận tốt nghiệp hoặc luận văn thạc sĩ theo quy định;\nd) Tham mưu cho Trưởng khoa trong việc phân công giảng viên làm Trưởng nhóm\nmôn học để chịu trách nhiệm chủ trì việc thống nhất nội dung giảng dạy của môn học theo\ntừng học kỳ, tổ chức ra đề thi và thực hiện thẩm định đề thi theo quy định;\ne) Đề xuất danh sách thành viên các hội đồng chấm đồ án, khóa luận , luận văn,\nluận án… để Hội đồng ngành tham mưu Trưởng khoa xem xét, quyết định;\nf) Báo cáo định kỳ Hội đồng ngành về tình hình triển khai và vận hành chương trình\nđào tạo của ngành, chuyên ngành; đề xuất các giải pháp điều chỉnh, cải tiến khi cần thiết.”.\n10. Thay thế Phụ lục III như sau:\n“ PHỤ LỤC III\nPHÂN BỐ CÁC HỌC PHẦN TRÌNH ĐỘ THẠC SĨ:\nHọc\nkỳ\nHọc phần\nThạc sĩ ứng dụng Thạc sĩ nghiên cứu\nThạc sĩ nghiên cứu\nchuyên sâu\n1.\nTriết học (3 TC) Triết học (3 TC) Triết học (3 TC)\nCơ sở ngành (12 TC) Cơ sở ngành (12 TC)\nPhương pháp nghiên cứu\nkhoa học (3 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 1\n+ Báo cáo khoa học\n(9 TC)\n2.\nTự chọn đa ngành, tổng\nquát (3 TC)\nPhương pháp nghiên cứu\nkhoa học (3 TC) Luận văn thạc sĩ nghiên cứu chuyên sâu – phần 2\n+ Báo cáo khoa học\n(15 TC) Ngành/ Chuyên ngành\nbắt buộc (12 TC)\nNgành/ Chuyên ngành\n(12 TC)\n3.\nNgành/ Chuyên ngành tự\nchọn (9 TC)\nChuyên đề nghiên cứu\ntrước luận văn (15 TC)\nThực tập (6 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 3\n+ Báo cáo khoa học\n(15 TC)\n4.\nNgành/ Chuyên ngành tự\nchọn (3 TC) Luận văn thạc sĩ nghiên\ncứu + Báo cáo khoa học\n(15 TC)\nLuận văn thạc sĩ nghiên\ncứu chuyên sâu – phần 4\n+ Báo cáo khoa học\n(15 TC)\nTự chọn đa ngành, tổng\nquát (3 TC)\nĐề án tốt nghiệp (9 TC)\n”.\n11. Sửa đổi mục 2.2 Thạc sĩ nghiên cứu của Phụ lục V – Cấu trúc chi tiết chương\ntrình đào tạo các trình độ như sau:\n“ 2.2 Thạc sĩ nghiên cứu\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO THẠC SĨ NGHIÊN CỨU\nKhối kiến thức Số môn Số tín chỉ\nA. Đa ngành, tổng quát (General Multidisciplinary Courses) 6\nTriết học (Philosophy) 3\nPhương pháp nghiên cứu khoa học (Scientific Research Methodology) 3\nAnh văn 1 (English 1) 0\nAnh văn 2 (English 2) 0\nB. Cơ sở ngành (Foundation Courses) 12\nB.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nB.2 Tự chọn cơ sở ngành (Elective Foundation Courses)\n…\nC. Ngành/ Chuyên ngành (Major/ Speciality Courses) 12\nC.1 Ngành/ Chuyên ngành bắt buộc (Compulsory Major/ Speciality Courses)\n…\nC.2 Ngành/ Chuyên ngành tự chọn (Elective Major/ Speciality Courses)\n…\nD. Học phần tốt nghiệp (Graduation Module) 30\nChuyên đề nghiên cứu trước luận văn\n(Pre – Thesis Research Project)\n15\nLuận văn thạc sĩ (Master’s Thesis) 15\nE. Điều kiện tốt nghiệp (Other Graduation Requirements)\nENG_B2\nTổng tín chỉ 60\n”.\n12. Bổ sung vào bước 6, khoản 1.1, mục 1 (Xây dựng chương trình đào tạo mới)\ncủa Phụ lục VI: Quy trình xây dựng, thẩm định, cập nhật và ban hành chương trình đào tạo\ntrình độ đại học, thạc sĩ, tiến sĩ như sau:\n“Bước 6: Tổ chức hội thảo lấy ý kiến của giảng viên, đội ngũ quản lý trong và ngoài\ntrường, các nhà khoa học, đại diện đơn vị sử dụng lao động liên quan và người đã tốt nghiệp\n(nếu có) về CTĐT. Yêu cầu có Biên bản họp của Hội đồng ngành và Hội đồng Khoa học\nvà đào tạo của khoa về việc thông qua nội dung chương trình đào tạo là căn cứ để hoàn\nthiện hồ sơ và trình phê duyệt chương trình đào tạo.”.\n13. Bổ sung Phụ lục XI như sau:\n“ PHỤ LỤC XI:\nCấu trúc chi tiết chương trình đào tạo các trình độ từ khóa 2026\n1. Trình độ đại học\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO ĐẠI HỌC\nCÁC NGÀNH KỸ THUẬT VÀ KIẾN TRÚC\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and Basic\nSciences) 30\nA.1 Toán (Mathematics) Tối thiểu 11\n…\nA.2. Khoa học tự nhiên (Basic Sciences) Tối thiểu 5\n…\nB. Giáo dục chung (General Education) 30\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Quản lý / Khởi nghiệp (Management/ Entrepreneurship Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 8\nAnh văn 1 (English 1)\nAnh văn 2 (English 2)\nAnh văn 3 (English 3)\nAnh văn 4 (English 4)\nB.6\nKiến thức và kỹ năng bổ trợ (Supplementary\nKnowledge and Skills) Dành cho các môn kỹ\nnăng mềm, tiếng Nhật, văn hoá Nhật ...\nB.6.1 Kỹ năng bổ trợ (Supplementary Skills) : áp dụng từ khóa 2025 chương trình tiêu chuẩn 1 0\n…\nB.6.2\nKỹ năng bổ trợ (Supplementary Skills) : áp\ndụng từ khóa 2025 cho các chương trình: Dạy\nvà học bằng tiếng Anh; Tiên tiến; Định hướng\nNhật bản; Chuyển tiếp quốc tế; Liên kết cử\nnhân kỹ thuật quốc tế\n4 0\n…\nB.6.3\nTiếng Nhật (Japaneses) áp dụng cho các\nchương trình: Định hướng Nhật Bản và\nChuyển tiếp quốc tế Nhật Bản\n8 0\n…\nB.6.4 Văn hóa Nhật (Japanese Culture) áp dụng cho Chương trình Định hướng Nhật Bản 1 0\n…\nC. Cơ sở ngành (Foundation Courses) 18–34\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành ( Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality Courses) 17–37\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses)\nD2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc c huyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 17\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National Defense\nand Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GC\n…\nTổng tín chỉ 128–132\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO ĐẠI HỌC\nCÁC NGÀNH QUẢN LÝ\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and Basic\nSciences) 12\nA.1 Toán (Mathematics) 9\n…\nA.2. Khoa học tự nhiên (Basic Sciences) 3\n…\nB. Giáo dục chung (General Education) 30\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Kỹ thuật ngoài ngành ( Non – management Technical Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 8\nAnh văn 1 (English 1)\nAnh văn 2 (English 2)\nAnh văn 3 (English 3)\nAnh văn 4 (English 4)\nB.6 Kiến thức và kỹ năng bổ trợ (Supplementary Knowledge and Skills) 0\nB.6.1 Kỹ năng bổ trợ (Supplementary Skills) : áp dụng từ khóa 2025 chương trình tiêu chuẩn 1 0\n…\nB.6.2\nKỹ năng bổ trợ (Supplementary Skills) : áp\ndụng từ khóa 2025 cho các chương trình: Dạy\nvà học bằng tiếng Anh; Chuyển tiếp quốc tế\n4 0\n…\nC. Cơ sở ngành (Foundation Courses) 18–34\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành ( Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality Courses) 35–55\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses)\nD.2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc c huyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 17\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National Defense\nand Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục Thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GC\n…\nTổng tín chỉ 128–132\nCẤU TRÚC CHI TIẾT CHƯƠNG TRÌNH ĐÀO TẠO PFIEV\nKhối kiến thức Số môn Số tín chỉ\nA. Toán & Khoa học tự nhiên (Mathematics and\nBasic Sciences) 36\nA.1 Toán (Mathematics) 21\n…\nA.2. Khoa học tự nhiên (Basic Sciences) 15\n…\nB. Giáo dục chung (General Education) 42\nB.1 Kinh tế – Chính trị – Xã hội – Luật (Socials and Economics) 13\n…\nB.2 Nhập môn (Introduction) 3\n…\nB.3 Quản lý/ Khởi nghiệp (Management/ Entrepreneurship Courses) 3\n…\nB.4\nKiến thức về con người và môi trường\n(Knowledge of Humans and the\nEnvironment)\nHoặc\nKỹ năng nghề nghiệp chuyên nghiệp\n(Professional Career Skills)\n3\n…\nB.5 Ngoại ngữ (Foreign Languages) 20\nB5.1 Anh văn (English) 8\nB5.2 Pháp văn (French) 12\nB.6 Kiến thức và kỹ năng bổ trợ (Supplementary Knowledge and Skills) áp dụng từ khóa 2025 1 0\n…\nC. Cơ sở ngành (Foundation Courses) 16–32\nC.1 Bắt buộc cơ sở ngành (Compulsory Foundation Courses)\n…\nC.2 Tự chọn cơ sở ngành (Elective Foundation Courses)\n…\nD. Ngành/ Chuyên ngành (Major/ Speciality\nCourses) 22–43\nD.1 Ngành (Major Courses)\nD.1.1 Bắt buộc ngành (Compulsory Major Courses)\n…\nD.1.2 Tự chọn ngành (Elective Major Courses)\n…\nD.2 Chuyên ngành (Speciality Courses )\nD.2.1 Chuyên ngành …(Speciality Courses …)\nD.2.1.1 Bắt buộc chuyên ngành …(Compulsory Speciality Courses…)\n…\nD.2.1.2 Tự chọn Chuyên ngành …(Elective Speciality Courses …)\n…\nE. Học phần tốt nghiệp (Graduation Module) 26\n…\n…\n…\n…\nF. Giáo dục Quốc phòng – An ninh (National\nDefense and Security Education) 1 0\n…\nG. Giáo dục Thể chất (Physical Education) 0\nG.1 Giáo dục Thể chất 1 (Physical Education 1) 1\nG.2 Giáo dục Thể chất 2 (Physical Education 2) 1\nH. Điều kiện tốt nghiệp (Other Graduation Requirements)\nSA4001\nENG_GT_700\nFRA_GC\nTổng tín chỉ 158–163\n”."
+      },
+      {
+        "article_id": "HCMUT_GVCN2977_Dieu_15",
+        "title": "Điều 15. Vai trò và nhiệm vụ",
+        "source_name": "Về việc ban hành Quy định về công tác Giáo viên chủ nhiệm và Cố vấn học tập Trường Đại học Bách khoa – ĐHQG-HCM. — số 2977/QĐ-ĐHBK",
+        "content": "Điều 15. Vai trò và nhiệm vụ\n1. Giải thích cho người học về chương trình đào tạo, kế hoạch giảng dạy của ngành.\n2. Cố vấn cho người học khi học có nhu cầu học vượt, học chậm tiến độ.\n3. Tư vấn cho người học định hướng về ngành, ngành chính - phụ, ngành thứ hai, các\nvấn đề có thể xảy ra khi chuyển khóa, chuyển ngành.\n4. Tư vấn cho người học về các tín chỉ tự chọn tự do.\n5. Tư vấn cho người học về các học phần tương đương, thay thế, các học phần của\nchương trình liên thông Đại học - Thạc sĩ, Cử nhân - Kỹ sư.\n6. Tư vấn cho người học về các nội dung khác liên quan đến chương trình đào tạo."
+      }
+    ],
+    "unknown_citation_ids": []
+  }
+]

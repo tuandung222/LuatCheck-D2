@@ -1,0 +1,28 @@
+# Frozen draft collection protocol. No experiment starts without --execute.
+model:
+  provider: ollama
+  endpoint: http://127.0.0.1:11434
+  name: qwen2.5:3b
+  temperature: 0.1
+  timeout_seconds: 60
+  max_output_tokens: 768
+  context_tokens: 8192
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+  max_steps: 8
+  wall_seconds: 180
+retrieval:
+  corpus_path: data/corpus/labor_code_2019_official.json
+  dense_model_type: tfidf
+  final_top_k: 5
+  rrf_k: 60
+verifier:
+  mode: l1
+  l2_use_slm: false
+memory:
+  enabled: false
+  similarity_threshold: 0.85
+  index_version: bll2019-official-220-v1
+security:
+  egress_requires_confirmation: true
