@@ -51,15 +51,19 @@ class EmbeddingProvider(ABC):
         document_prefix: str = "",
         query_prefix: str = "",
         max_tokens: Optional[int] = None,
+        truncate_dim: Optional[int] = None,
     ):
         if batch_size < 1:
             raise ConfigError("embedding batch_size must be >= 1")
+        if truncate_dim is not None and int(truncate_dim) < 1:
+            raise ConfigError("embedding truncate_dim must be >= 1")
         self.model = model
         self.normalize = bool(normalize)
         self.batch_size = int(batch_size)
         self.document_prefix = document_prefix
         self.query_prefix = query_prefix
         self.max_tokens = max_tokens          # None = unknown (HTTP providers); chunk by characters then
+        self.truncate_dim: Optional[int] = int(truncate_dim) if truncate_dim is not None else None
         self._dimension: Optional[int] = None
         self.stats: Dict[str, Any] = {"texts": 0, "seconds": 0.0, "calls": 0}
 
@@ -123,6 +127,12 @@ class EmbeddingProvider(ABC):
             raise EmbeddingError(f"{self.kind}/{self.model}: expected ({n}, dim) embeddings, got shape {mat.shape}")
         if not np.isfinite(mat).all():
             raise EmbeddingError(f"{self.kind}/{self.model}: embeddings contain NaN/Inf")
+        if self.truncate_dim is not None:
+            if mat.shape[1] < self.truncate_dim:
+                raise EmbeddingError(
+                    f"{self.kind}/{self.model}: cannot truncate {mat.shape[1]}-d embeddings to truncate_dim={self.truncate_dim}"
+                )
+            mat = mat[:, :self.truncate_dim]
         norms = np.linalg.norm(mat, axis=1)
         if (norms < 1e-12).any():
             raise EmbeddingError(f"{self.kind}/{self.model}: a zero-norm embedding was returned (refusing to use it)")
@@ -136,7 +146,7 @@ class EmbeddingProvider(ABC):
 
     # -- description -----------------------------------------------------------------------------
     def info(self) -> Dict[str, Any]:
-        return {
+        d = {
             "provider": self.kind,
             "model": self.model,
             "dimension": self._dimension,
@@ -146,16 +156,22 @@ class EmbeddingProvider(ABC):
             "document_prefix": self.document_prefix,
             "query_prefix": self.query_prefix,
         }
+        if self.truncate_dim is not None:
+            d["truncate_dim"] = self.truncate_dim
+        return d
 
     def identity(self) -> Dict[str, Any]:
         """The fields that must match between an index build and later queries."""
-        return {
+        d = {
             "provider": self.kind,
             "model": self.model,
             "normalized": self.normalize,
             "document_prefix": self.document_prefix,
             "query_prefix": self.query_prefix,
         }
+        if self.truncate_dim is not None:
+            d["truncate_dim"] = self.truncate_dim
+        return d
 
     @property
     def throughput(self) -> Optional[float]:
@@ -190,8 +206,16 @@ class SentenceTransformerProvider(EmbeddingProvider):
         local_files_only: bool = False,
         wait_for_quiet_machine_gb: Optional[float] = None,
         trust_remote_code: bool = False,
+        truncate_dim: Optional[int] = None,
+        config_kwargs: Optional[Dict[str, Any]] = None,
     ):
-        super().__init__(model, normalize, batch_size, document_prefix, query_prefix, max_tokens=None)
+        super().__init__(
+            model, normalize, batch_size, document_prefix, query_prefix, max_tokens=None, truncate_dim=truncate_dim
+        )
+        if "embeddinggemma" in str(model).lower() and dtype == "float16":
+            raise ConfigError(
+                f"model {model!r} overflows float16 dynamic range (producing NaN); use dtype 'bfloat16' or 'float32'"
+            )
         self.requested_device = device
         self.requested_max_seq_length = max_seq_length
         self.dtype = dtype
@@ -199,6 +223,7 @@ class SentenceTransformerProvider(EmbeddingProvider):
         self.local_files_only = local_files_only
         self.wait_gb = wait_for_quiet_machine_gb
         self.trust_remote_code = trust_remote_code
+        self.config_kwargs: Optional[Dict[str, Any]] = dict(config_kwargs) if config_kwargs is not None else None
         self._st: Any = None
         self._tok: Any = None
         self.device: Optional[str] = None
@@ -235,32 +260,46 @@ class SentenceTransformerProvider(EmbeddingProvider):
         if self.dtype not in dtype_map:
             raise ConfigError(f"embedding dtype must be one of {sorted(dtype_map)}, got {self.dtype!r}")
         t0 = time.perf_counter()
+        st_kwargs: Dict[str, Any] = {
+            "device": device,
+            "model_kwargs": {"dtype": dtype_map[self.dtype]},
+            "local_files_only": self.local_files_only,
+            "trust_remote_code": self.trust_remote_code,
+        }
+        if self.truncate_dim is not None:
+            st_kwargs["truncate_dim"] = self.truncate_dim
+        if self.config_kwargs is not None:
+            st_kwargs["config_kwargs"] = self.config_kwargs
         try:
-            st = SentenceTransformer(
-                self.model,
-                device=device,
-                model_kwargs={"dtype": dtype_map[self.dtype]},
-                local_files_only=self.local_files_only,
-                trust_remote_code=self.trust_remote_code,
-            )
+            st = SentenceTransformer(self.model, **st_kwargs)
         except Exception as exc:  # network, missing model, bad config: all surface as an embedding error
             raise EmbeddingError(f"cannot load embedding model {self.model!r} on {device}: {exc}") from exc
-        native_max = int(st.max_seq_length)
+        cfg_obj = getattr(getattr(st[0], "auto_model", None) or getattr(st[0], "model", None), "config", None)
+        positions = getattr(cfg_obj, "max_position_embeddings", None)
+        if positions is None and hasattr(cfg_obj, "get_text_config"):
+            positions = getattr(cfg_obj.get_text_config(), "max_position_embeddings", None)
+        raw_max = st.max_seq_length
+        native_max = int(raw_max) if (raw_max is not None and int(raw_max) <= 1_000_000) else int(positions or 8192)
         if self.requested_max_seq_length:
-            positions = getattr(getattr(st[0].auto_model, "config", None), "max_position_embeddings", None)
             if positions is not None and self.requested_max_seq_length > int(positions) - 2:
                 raise ConfigError(
                     f"max_seq_length {self.requested_max_seq_length} exceeds the model's {positions} position embeddings"
                 )
             st.max_seq_length = int(self.requested_max_seq_length)
+        elif raw_max is None or int(raw_max) > 1_000_000:
+            st.max_seq_length = native_max
         self.native_max_seq_length = native_max
         self._st = st
-        self._tok = st.tokenizer
+        tok = st.tokenizer
+        self._tok = getattr(tok, "tokenizer", tok)
         self.max_tokens = int(st.max_seq_length)
         self.device = device
         self.load_seconds = time.perf_counter() - t0
         dim_fn = getattr(st, "get_embedding_dimension", None) or st.get_sentence_embedding_dimension
-        self._dimension = int(dim_fn())
+        raw_dim = int(dim_fn())
+        if self.truncate_dim is not None and self.truncate_dim > raw_dim:
+            raise ConfigError(f"truncate_dim {self.truncate_dim} exceeds model's native dimension {raw_dim}")
+        self._dimension = int(self.truncate_dim) if self.truncate_dim is not None else raw_dim
         self.model_revision = self._resolve_revision()
         self.memory_after_load_mb = self._check_memory("after model load")
         self.memory_peak_seen_mb = max(self.memory_peak_seen_mb, self.memory_after_load_mb)

@@ -3,23 +3,8 @@
 **A local, source-grounded assistant over Vietnamese regulations that answers only from a loaded document collection, cites the sections it used, verifies every citation against the source text in code, and refuses or asks for clarification when the sources do not answer.**
 
 <p align="center">
-  <img src="deliverables/d2/demo/gifs/11_hcmut_answer_4b.gif" alt="LuatCheck (4B controller) answering an HCMUT regulation question with a verified citation" width="820">
+  <img src="docs/images/demo/11_hcmut_answer_4b.gif" alt="LuatCheck (4B controller) answering an HCMUT regulation question with a verified citation" width="820">
 </p>
-
-**Course:** CO5151 — Advanced Agentic Artificial Intelligence (Application Track, Group 8) · Ho Chi Minh City University of Technology (HCMUT) · Instructor: TS. Lê Xuân Bách.
-
----
-
-## D2 Interim Submission — Quick Links
-
-| Deliverable / Artifact | Link | Description |
-|---|---|---|
-| **D2 Interim Report (PDF)** | [`deliverables/d2/report/main_d2.pdf`](deliverables/d2/report/main_d2.pdf) | 10-page main report + References + generated result appendix (`main_d2.tex`, modular `sections/`, `tables/`, `figures/`) |
-| **D2 Presentation Slides (PDF)** | [`deliverables/d2/slides/main.pdf`](deliverables/d2/slides/main.pdf) | 12-slide presentation deck + 4 backup slides (`SPEAKER_NOTES.md`) |
-| **L1 Citation Verifier Specification** | [`docs/reference/CITATION_VERIFIER_L1.md`](docs/reference/CITATION_VERIFIER_L1.md) | Rule-based Python heuristic specification (3 hard gates + 1 soft check + 2-turn repair; not a model or agent) |
-| **Live Demo Script & Backup Video** | [`deliverables/d2/demo/DEMO_SCRIPT.md`](deliverables/d2/demo/DEMO_SCRIPT.md) | Live demo walkthrough + unedited 4B backup video [`demo_backup_4b.mp4`](deliverables/d2/demo/gifs/demo_backup_4b.mp4) |
-| **Results Provenance & Run Registry** | [`deliverables/d2/report/RESULTS_PROVENANCE.md`](deliverables/d2/report/RESULTS_PROVENANCE.md) | Maps every report table to its recorded run, commit hash, and SHA-256 fingerprint ([`REGISTRY.md`](evaluation/runs/REGISTRY.md)) |
-| **60-Item Blind Human Audit of Judge** | [HCMUT Audit](evaluation/runs/d2-gpu-r2-4b-hcmut-v1/analysis/human-audit/AUDIT_NOTES.md) · [Labour Audit](evaluation/runs/d2-gpu-r2-4b-labour-v1/analysis/human-audit/AUDIT_NOTES.md) | Item-by-item verification (`labels.csv`, `agreement.md`, `AUDIT_NOTES.md`) |
 
 ---
 
@@ -27,17 +12,15 @@
 
 | Labour law: verified answer with citation | Citation verifier rejects draft $\rightarrow$ repaired & verified |
 |---|---|
-| <img src="deliverables/d2/demo/gifs/12_labour_answer_4b.gif" alt="Labour-law question answered with a verified citation" width="410"> | <img src="deliverables/d2/demo/gifs/13_verifier_repair_4b.gif" alt="Citation verifier rejects first draft quote, controller repairs and passes" width="410"> |
+| <img src="docs/images/demo/12_labour_answer_4b.gif" alt="Labour-law question answered with a verified citation" width="410"> | <img src="docs/images/demo/13_verifier_repair_4b.gif" alt="Citation verifier rejects first draft quote, controller repairs and passes" width="410"> |
 
 <details>
-<summary><strong>Safety & boundary recordings: out-of-scope refusal, prompt-injection guardrail block, and backend error handling</strong></summary>
+<summary><strong>Safety & boundary recordings: out-of-scope refusal and prompt-injection guardrail block</strong></summary>
 <br>
 
 | Out-of-scope question refused | Prompt-injection attempt blocked before model call (3 ms) |
 |---|---|
-| <img src="deliverables/d2/demo/gifs/14_hcmut_refuse_4b.gif" alt="Out-of-scope question refused" width="410"> | <img src="deliverables/d2/demo/gifs/15_guardrail_4b.gif" alt="Prompt-injection attempt blocked by regex guardrail" width="410"> |
-
-Additional recordings (including the faster 2B controller configuration, clarification turns, verifier-off mode, and fail-closed execution error when the reranker server is down) are in [`deliverables/d2/demo/gifs/`](deliverables/d2/demo/gifs/).
+| <img src="docs/images/demo/14_hcmut_refuse_4b.gif" alt="Out-of-scope question refused" width="410"> | <img src="docs/images/demo/15_guardrail_4b.gif" alt="Prompt-injection attempt blocked by regex guardrail" width="410"> |
 
 </details>
 
@@ -69,9 +52,9 @@ Additional recordings (including the faster 2B controller configuration, clarifi
 
 ---
 
-## Evaluation & First Results (D2 Checkpoint)
+## Evaluation & Benchmark Results
 
-We evaluate **two self-built, hash-locked 50-question benchmarks** (100 questions total; each benchmark has 40 single-record questions, 5 two-record questions, and 5 out-of-scope refusal questions) across **3 configurations** (`No verifier`, `Verifier`, `Verifier + reranker`), **3 random seeds** (`42, 123, 2026`), and **2 diagnostic baselines** (`Closed-book` without documents, `Oracle` with gold sections given up front) — **1,090 recorded trials per system**.
+We evaluate **two self-built, hash-locked 50-question benchmarks** (100 questions total; each benchmark has 40 single-record questions, 5 two-record questions, and 5 out-of-scope refusal questions) across **3 configurations** (`No verifier`, `Verifier`, `Verifier + reranker`), **3 random seeds** (`42, 123, 2026`), and **2 diagnostic baselines** (`Closed-book` without documents, `Oracle` with gold sections given up front) — **1,090 recorded trials per controller**.
 
 | Benchmark | Configuration | Bonsai 2B (%) | Bonsai 4B (%) | Controller scaling 4B − 2B (pp) |
 |---|---|---:|---:|---:|
@@ -85,8 +68,7 @@ We evaluate **two self-built, hash-locked 50-question benchmarks** (100 question
 *Notes on reading the results:*
 1. **Strict success** (lower bound over all trials; execution errors and unjudged trials count as failures) requires appropriate behaviour (`answer` vs `refuse`), full correctness (`2/2`), full completeness (`2/2`), and every factual claim supported by the cited sources.
 2. **Blind human audit of the LLM judge (`deepseek/deepseek-v4-flash`):** On a stratified blind sample of **60 outputs** (30 per benchmark), judge–human agreement on strict success is **96.7%** ($\kappa = 0.93$, design-weighted 98.8%) on HCMUT regulations and **90.0%** ($\kappa = 0.80$, design-weighted 97.5%) on labour law.
-3. **Next evaluation step (Weeks 45–47):** Because lexical retrieval is near ceiling on these 100 questions (`Recall@5` $\approx 0.98\text{--}0.99$), Week 45 adds an unseen benchmark of harder multi-hop and paraphrased questions (without explicit decision/decree numbers) and Week 47 evaluates entry-point prompt-injection resistance.
-4. **Cost & Mac latency:** Local inference has **USD 0 API cost**; offline LLM judging across both 545-trial runs cost **USD 2.17** in total (`$1.06 + $1.10`). On an Apple M4 MacBook (16 GiB, sequential single-query runs), median / p95 latency for the full system is **33.0 s / 86 s** (HCMUT) and **29.8 s / 72 s** (labour law) with the **4B controller** ($\approx 43$ tok/s), and **13.3 s / 30 s** and **14.6 s / 28 s** with the **2B controller** ($\approx 92$ tok/s).
+3. **Cost & Mac latency:** Local inference has **USD 0 API cost**; offline LLM judging across both 545-trial runs cost **USD 2.17** in total (`$1.06 + $1.10`). On an Apple M4 MacBook (16 GiB, sequential single-query runs), median / p95 latency for the full system is **33.0 s / 86 s** (HCMUT) and **29.8 s / 72 s** (labour law) with the **4B controller** ($\approx 43$ tok/s), and **13.3 s / 30 s** and **14.6 s / 28 s** with the **2B controller** ($\approx 92$ tok/s).
 
 ---
 
@@ -113,17 +95,11 @@ print(ledger.terminal_status, ledger.final_output)  # answered | clarified | ref
 
 ---
 
-## Reproducing the Report Tables & PDFs
+## Technical Documentation & Evaluation Artifacts
 
-All numbers and tables in the D2 report are regenerated and verified against the recorded run artifacts with **one command**:
-
-```sh
-make report-check               # verifies run registry freshness, 33 report/appendix tables, and writes RESULTS_PROVENANCE.md
-make report_d2                  # builds deliverables/d2/report/main_d2.pdf
-make -B slides_d2               # builds deliverables/d2/slides/main.pdf
-```
-
-Full reproduction instructions: [`docs/guides/REPRODUCE_D2.md`](docs/guides/REPRODUCE_D2.md) · Runbook: [`docs/guides/RUNBOOK_D2.md`](docs/guides/RUNBOOK_D2.md) · Metric definitions: [`docs/reference/BENCHMARKS_AND_METRICS.md`](docs/reference/BENCHMARKS_AND_METRICS.md).
+- **L1 Citation Verifier Specification:** [`docs/reference/CITATION_VERIFIER_L1.md`](docs/reference/CITATION_VERIFIER_L1.md)
+- **Benchmarks & Metric Definitions:** [`docs/reference/BENCHMARKS_AND_METRICS.md`](docs/reference/BENCHMARKS_AND_METRICS.md)
+- **Recorded Evaluation Run Registry:** [`evaluation/runs/REGISTRY.md`](evaluation/runs/REGISTRY.md)
 
 ---
 
@@ -132,11 +108,10 @@ Full reproduction instructions: [`docs/guides/REPRODUCE_D2.md`](docs/guides/REPR
 | Path | Description |
 |---|---|
 | `src/ingestion/`, `src/indexing/`, `src/retrieval/` | PDF ingestion/normalisation, BM25 + TF-IDF + vector indexing with RRF fusion, cross-encoder reranker |
-| `src/agent/`, `src/verifier/`, `src/pipeline/` | Bounded ReAct control loop, L1 citation verifier & repair, config-driven pipeline builder |
+| `src/agent/`, `src/verifier/`, `src/pipeline/` | Bounded ReAct control loop, rule-based L1 citation verifier & repair, config-driven pipeline builder |
 | `src/tools/`, `src/security/`, `src/memory/` | Read-only tool registry & permissions, regex guardrails & PII filter, SQLite memory & audit ledger |
 | `src/api/`, `frontend/`, `src/ui/` | FastAPI backend, React/Vite Web UI (`frontend/`), Streamlit UI & trusted outbox |
 | `config/` | Runtime profiles (`config/profiles/`), domain configurations (`config/domains/`), benchmark configs |
 | `data/corpus/` | Normalized corpora with SHA-256 and page provenance (`hcmut_academic_v1.json`, `labour_vi_v1.json`) |
 | `evaluation/` | Frozen 100-task benchmarks (`benchmarks/`), recorded runs (`runs/`), paired comparisons (`comparisons/`), human audit scorer |
-| `deliverables/` | Course submissions: `d1/` (Proposal), `d2/report/` (modular LaTeX report), `d2/slides/` (Beamer slides), `d2/demo/` (GIFs & MP4s) |
 | `tests/` | Automated test suite using real components and no mocks (`.venv/bin/pytest tests/ -q`) |
