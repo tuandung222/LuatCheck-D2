@@ -120,7 +120,12 @@ def check_run(run_id: Optional[str], block: Dict[str, str], problems: List[str],
     info.update(freshness=row["freshness"], kind=row["kind"], eligible=row["report_eligible"])
     if row["kind"] != "main":
         problems.append(f"{where}: run {run_id} is kind {row['kind']!r}, only `main` runs may feed the report")
-    if not row["report_eligible"]:
+    # A latency table needs timing, not judgments: a complete main run of a latency-reportable profile may feed it unjudged.
+    latency_only = ("latency" in where.lower() and row.get("state") == "complete"
+                    and bool((manifest.get("run_profile") or {}).get("latency_reportable")))
+    if latency_only and not row["report_eligible"]:
+        info["latency_only"] = True
+    elif not row["report_eligible"]:
         problems.append(f"{where}: run {run_id} is not report_eligible (incomplete, unjudged, or source drift during the run)")
     if not str(row["freshness"]).startswith(ACCEPTED_FRESHNESS):
         problems.append(f"{where}: run {run_id} is not current: {row['freshness']}")
