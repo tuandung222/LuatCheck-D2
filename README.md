@@ -54,6 +54,8 @@
 
 ## Evaluation & Benchmark Results
 
+> **Evaluation Scope:** The current evaluation suite primarily validates that the end-to-end agentic pipeline and automated measurement harness run reliably and produce reproducible, auditable measurements across configurations. Further system improvements and broader empirical experiments—including harder unseen multi-hop/paraphrased benchmarks where lexical retrieval is not near ceiling, reducing verifier repair-budget over-refusals, dense embedding retrieval, and red-team prompt-injection evaluations—are part of ongoing development.
+
 We evaluate **two self-built, hash-locked 50-question benchmarks** (100 questions total; each benchmark has 40 single-record questions, 5 two-record questions, and 5 out-of-scope refusal questions) across **3 configurations** (`No verifier`, `Verifier`, `Verifier + reranker`), **3 random seeds** (`42, 123, 2026`), and **2 diagnostic baselines** (`Closed-book` without documents, `Oracle` with gold sections given up front) — **1,090 recorded trials per controller**.
 
 | Benchmark | Configuration | Bonsai 2B Judge-Strict (%) | Bonsai 4B Judge-Strict (%) | 4B Unverified Citation Leak (%) | 4B Citation-Audited Strict (%) | Controller scaling 4B − 2B (pp) |
