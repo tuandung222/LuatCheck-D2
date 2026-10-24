@@ -3,7 +3,7 @@
 **A small, local assistant that answers only from a document collection, cites the sections it used, checks those citations in code, and refuses or asks a question when the sources do not answer.**
 
 <p align="center">
-  <img src="docs/presentation/gifs/01_hcmut_answer_l1.gif" alt="LuatCheck answering a HCMUT regulation question with a verified citation" width="800">
+  <img src="docs/presentation/gifs/21_hcmut_answer_2b.gif" alt="LuatCheck answering a HCMUT regulation question with a verified citation" width="800">
 </p>
 
 CO5151 Advanced Agentic Artificial Intelligence, Group 8, Ho Chi Minh City University of Technology (HCMUT).
@@ -11,13 +11,16 @@ Two document collections are implemented and evaluated: HCMUT academic regulatio
 
 ## Demo
 
-| Labour law: answer with a verified citation | The verifier rejects an unsupported draft and asks for a repair |
+| Labour law: answer with a verified citation | The verifier rejects drafts and asks for repairs |
 |---|---|
-| <img src="docs/presentation/gifs/02_labour_answer_l1.gif" alt="Labour-law question answered with a verified citation, agent timeline on the right" width="400"> | <img src="docs/presentation/gifs/08_labour_l1_check_failed.gif" alt="The citation verifier rejects a draft answer; the agent repairs or refuses" width="400"> |
+| <img src="docs/presentation/gifs/22_labour_answer_2b.gif" alt="Labour-law question answered with a verified citation, agent timeline on the right" width="400"> | <img src="docs/presentation/gifs/23_verifier_repair_2b.gif" alt="The citation verifier rejects a draft answer twice; the run ends as a refusal" width="400"> |
 
+The recordings above (including the HCMUT one at the top) use the current system with the 2B controller (faster), 25 Oct 2026; the 4B controller gives more accurate answers but takes about 30 s per question.
 Each answer shows the cited section (click to expand the source text with the quoted span highlighted) and the agent's
-timeline: search, reranking, reading, the citation check and any repair. The recordings were made with the 2B controller
-on 24 Oct 2026; the current system runs the same interface with the 4B controller.
+timeline: search, reranking, reading, the citation check and any repair. The right-hand clip is a real failure case: the verifier
+rejected the draft's quote, two repairs did not fix it, and the run ended as a refusal rather than an unsupported answer.
+Recordings with the 4B controller (the live-demo configuration) are in `docs/presentation/gifs/`: `11_hcmut_answer_4b.gif`, `12_labour_answer_4b.gif`,
+`13_verifier_repair_4b.gif` (repair, then a verified answer) and the backup video `demo_backup_4b.mp4`.
 
 ## What it does
 
@@ -79,6 +82,8 @@ Lighter Bonsai 2B demo, side by side with the above: `make demo-model-server-2b`
 | Out-of-scope question refused | Prompt-injection attempt blocked by the guardrail |
 |---|---|
 | <img src="docs/presentation/gifs/03_hcmut_refuse_out_of_scope.gif" alt="Out-of-scope question refused" width="400"> | <img src="docs/presentation/gifs/04_guardrail_injection.gif" alt="Prompt-injection attempt blocked by the guardrail" width="400"> |
+
+These two were recorded on 24 Oct 2026 with the 2B controller of the initial system; the same two scenarios recorded with the 4B controller on 25 Oct are `14_hcmut_refuse_4b.gif` and `15_guardrail_4b.gif` in `docs/presentation/gifs/`.
 
 </details>
 

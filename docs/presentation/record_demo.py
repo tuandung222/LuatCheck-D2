@@ -72,6 +72,9 @@ def record(play: Any, default_base: str, scenario: Dict[str, Any], work: Path, w
     if action == "open_citation" and page.locator(".answer-cites button").count():
         page.locator(".answer-cites button").first.click()
         page.wait_for_timeout(3500)
+    elif action == "show_repairs" and page.locator(".step-line", has_text="Sửa chữa").count():
+        page.locator(".step-line", has_text="Sửa chữa").first.scroll_into_view_if_needed()  # repair steps are below the fold
+        page.wait_for_timeout(4500)
     elif action == "open_retrieved" and page.locator(".retrieved-toggle").count():
         page.locator(".retrieved-toggle").click()
         page.wait_for_timeout(800)
@@ -79,6 +82,7 @@ def record(play: Any, default_base: str, scenario: Dict[str, Any], work: Path, w
         page.wait_for_timeout(3500)
     else:
         page.wait_for_timeout(2500)
+    repair_steps = page.locator(".step-line", has_text="Sửa chữa").count()
     state = page.locator(".state-badge").first.inner_text()
     outcome_title = page.locator(".outcome > header b").first.inner_text()
     total = page.locator(".timeline-total b").inner_text()
@@ -86,7 +90,8 @@ def record(play: Any, default_base: str, scenario: Dict[str, Any], work: Path, w
     context.close()
     browser.close()
     return {"video": str(video), "trim_start": trim_start, "run_seconds": round(run_seconds, 1), "state": state,
-            "outcome": outcome_title, "ui_total": total, "console_errors": console_errors}
+            "outcome": outcome_title, "ui_total": total, "repair_steps": repair_steps,
+            "console_errors": console_errors}
 
 
 def main() -> int:
@@ -100,11 +105,12 @@ def main() -> int:
     ap.add_argument("--gif-width", type=int, default=1000)
     ap.add_argument("--fps", type=int, default=8)
     ap.add_argument("--no-concat", action="store_true")
+    ap.add_argument("--scenarios", default=str(SCENARIOS_FILE), help="scenario JSON file (default: demo_scenarios.json)")
     args = ap.parse_args()
 
     from playwright.sync_api import sync_playwright
 
-    scenarios = json.loads(SCENARIOS_FILE.read_text(encoding="utf-8"))
+    scenarios = json.loads(Path(args.scenarios).read_text(encoding="utf-8"))
     if args.only:
         scenarios = [s for s in scenarios if any(s["id"].startswith(p) for p in args.only)]
     work, out = Path(args.work), Path(args.out)
@@ -119,9 +125,12 @@ def main() -> int:
             for attempt in range(1, int(scenario.get("max_attempts", 1)) + 1):
                 result = record(play, args.base, scenario, work, args.width, args.height)
                 result["attempt"] = attempt
-                if not scenario.get("expect_state") or result["state"] == scenario["expect_state"]:
+                state_ok = not scenario.get("expect_state") or result["state"] == scenario["expect_state"]
+                repair_ok = not scenario.get("require_repair") or result["repair_steps"] > 0
+                if state_ok and repair_ok:
                     break
-                print(f"  attempt {attempt}: state {result['state']!r}, wanted {scenario['expect_state']!r}; retrying", flush=True)
+                print(f"  attempt {attempt}: state {result['state']!r}, repair steps {result['repair_steps']}; wanted state "
+                      f"{scenario.get('expect_state')!r}, repair {bool(scenario.get('require_repair'))}; retrying", flush=True)
             mp4 = work / f"{scenario['id']}.mp4"
             gif = out / f"{scenario['id']}.gif"
             convert(Path(result["video"]), gif, mp4, result["trim_start"], args.gif_width, args.fps)

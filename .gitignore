@@ -41,3 +41,4 @@ data/db/*.sqlite3-*
 *.snm
 *.toc
 *.vrb
+data/demo_*audit_log*.jsonl

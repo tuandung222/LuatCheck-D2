@@ -220,13 +220,13 @@
     \vspace{2pt}
 
     \begin{alertblock}{Backup}
-      \scriptsize A backup video of real runs exists (used only if needed, and we say so). Draft clips: initial system (2B). Final video, current system: \pend{re-record}
+      \scriptsize A backup video of real runs (current system, 4B, recorded 25 October) exists; used only if needed, and we say so.
     \end{alertblock}
 
     \column{0.58\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/demo_answer_l1.png}\\[2pt]
-    {\scriptsize Frame of a real run (backup recording): cited section and step timeline, verifier passed}
+    \includegraphics[width=\linewidth]{assets/demo_answer_l1_4b.png}\\[2pt]
+    {\scriptsize Frame of a real run (current system, 4B controller, recorded 25 October): cited section and step timeline, verifier passed}
   \end{columns}
 \end{frame}
 
@@ -551,12 +551,12 @@
   \begin{columns}[T]
     \column{0.32\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/demo_guardrail.png}\\[2pt]
-    Guardrail block: 18 ms, 0 model calls
+    \includegraphics[width=\linewidth]{assets/demo_guardrail_4b.png}\\[2pt]
+    Guardrail block: 3 ms in the timeline, 0 model calls
     \column{0.32\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{assets/demo_l1_fail.png}\\[2pt]
-    Verifier rejected the draft twice: refusal, not an answer
+    \includegraphics[width=\linewidth]{assets/demo_l1_repair_4b.png}\\[2pt]
+    Verifier rejected the first draft (quote not verbatim); after one repair the answer passes
     \column{0.32\textwidth}
     \centering
     \includegraphics[width=\linewidth]{assets/demo_error.png}\\[2pt]
@@ -564,7 +564,7 @@
   \end{columns}
   \vspace{5pt}
 
-  {\scriptsize Recorded on 24 October with the earlier demo (initial system, 2B controller); the third on a separate instance whose reranker address was unreachable. The interface states are the same in the current system.}
+  {\scriptsize First two: current system, 4B controller, recorded 25 October. The repair clip is the one run of 6 tries on benchmark questions with frequent repairs that ended in an answer (5 of the 6 showed a repair; the other 4 of those ended in an L1-failure refusal). Third: recorded 24 October with the 2B controller on a separate instance whose reranker address was unreachable; the interface states are the same in the current system.}
 \end{frame}
 
 \end{document}

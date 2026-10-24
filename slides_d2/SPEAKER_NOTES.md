@@ -51,7 +51,7 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 - Query 1 (HCMUT) answer: follow the timeline, open the cited section, compare the highlighted quote. Query 2 (labour) same flow on the second collection. Query 3 refusal; mention that a red "execution error" state exists for backend failures. Query 4 injection: guardrail block, no model call.
 - Close with one sentence: the demo illustrates; the tables are the evidence; the verifier is a word-overlap check and can pass a wrong answer.
 - If something fails: show it as it is (read the cited section, point at the failed check). Backup video: say aloud that it is a recording and explain the trace. If short on time, skip the optional clarification query, then query 2.
-- Open item: the existing backup clips were recorded with the initial system (2B); the final video with the current system is a red placeholder.
+- Backup video with the current system (4B controller): `docs/presentation/gifs/demo_backup_4b.mp4` (recorded 25 October on the Mac, 2 min 37 s: Q1, Q2, a verifier repair, refusal, guardrail). The older clips (initial system, 2B) are secondary backup. Optional: re-record on the presenting laptop.
 
 **6. Evaluation design and judge (0:45)**
 - 2 benchmarks of 50 questions (45 answerable, 5 to refuse), 3 configurations, 3 runs with different seeds; two diagnostic baselines (closed-book and oracle) on one run each.
@@ -107,13 +107,13 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 12. **Is the system better than the simplest configuration?** Not on strict success: with no verifier the current system scores highest (70.0 and 62.0). The honest finding is that the verifier and the reranker did not improve correctness on these benchmarks.
 13. **Why one agent instead of several?** Permissions, budgets and traces stay inspectable, and the failures we found are in the single controller's behaviour. More agents would add surface without evidence that they help.
 14. **Does it work for other domains?** Two collections are evaluated (HCMUT regulations and labour law). Domain specifics (prompt, tool names, id rules, guardrail patterns) sit in configuration. We make no claim beyond these two; a new domain needs its own documents, questions and evaluation.
-15. **What if the live demo fails?** We show the failure state (error, refusal) and read the evidence on screen. The backup video of real runs is used only if needed, and we say so. The draft clips come from the initial system; the final video with the current system is pending.
+15. **What if the live demo fails?** We show the failure state (error, refusal) and read the evidence on screen. The backup video of real runs is used only if needed, and we say so. The video was recorded with the current system (4B controller) from real runs, nothing edited; older clips come from the initial system (2B).
 16. **What does the reranker parity check show?** The Mac runtime (GGUF f16) against a torch fp32 CPU reference: mean Spearman 0.9994, same top-1 in 99 of 100 questions; H100 fp16: 0.9943, 100 of 100. It shows the runtimes rank alike, not that answers are correct.
 
 ## Red placeholders still open on the slides
 
 - Slides 2, 6 and backup C: human-audit agreement and kappa; HR walkthrough date.
-- Slide 5: final backup video with the current system on the presenting laptop.
+- Slide 5: no placeholder left; the backup video with the current system exists (optional re-recording on the presenting laptop).
 - Slide 9 and backup C: Mac latency of the current system.
 - Slide 11: owners per week; self-assessment.
 - Slide 12: who presents which slides, who drives the demo, ownership of each component; final commit hash.
