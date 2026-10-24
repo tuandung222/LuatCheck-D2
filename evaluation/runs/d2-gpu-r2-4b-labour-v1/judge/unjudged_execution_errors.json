@@ -1,0 +1,66 @@
+[
+  {
+    "review_id": "f1c6697fe853b19253d23cba",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "LVN-047",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "8ea59802f813d4473fac3c4f",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "LVN-002",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "eb1e602275de78eefa73d8c1",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 123,
+    "task_id": "LVN-040",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "2f1ed17abce8b40dbaab104e",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 123,
+    "task_id": "LVN-044",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "69454ac18b75a634b162cc68",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "LVN-002",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "25c897e93e2e1eee710fe052",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "LVN-011",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "b8bb690e9e398880cb2e8bdd",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 2026,
+    "task_id": "LVN-040",
+    "reason": "execution error: wall_timeout"
+  },
+  {
+    "review_id": "7f1a3ec6dc6829859c93131b",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1_rerank",
+    "seed": 2026,
+    "task_id": "LVN-040",
+    "reason": "execution error: wall_timeout"
+  }
+]
