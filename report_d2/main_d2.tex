@@ -139,7 +139,7 @@
 {\Huge\bfseries D2 Interim Report}\\[12pt]
 {\Large LuatCheck: A Local, Source-Grounded Assistant\\ over Vietnamese Regulations}\\[12pt]
 Application Track -- Group 8\\[15pt]
-\pending{Draft of 24 October 2026. Human audit of the judge, member contribution evidence and the commit hash are still pending.}\\[15pt]
+\pending{Draft of 24 October 2026. Human audit of the judge and member contribution evidence are still pending.}\\[15pt]
 \begin{tabular}{ll}
 Instructor & TS. Lê Xuân Bách\\
 Members & Lê Trí Quyền (2470740)\\
@@ -147,7 +147,7 @@ Members & Lê Trí Quyền (2470740)\\
 & Nguyễn Hoàng Phong (2570477)
 \end{tabular}\\[18pt]
 \textbf{Repository:} \url{https://github.com/tuandung222/LuatCheck-D2}\\[8pt]
-\textbf{Reported revision:} \pending{insert the full final commit hash after freezing the source}\\[8pt]
+\textbf{Reported revision:} \texttt{1cd9226031f2768dd231d0c3a8569ad224202ca8}\\[8pt]
 \textbf{Access:} \pending{confirm that the instructor can read the repository}\\[8pt]
 \textbf{Status:} On track, with two risks: the gain of the revised system is not yet confirmed on unseen tasks, and the judge is not yet checked against human labels (Section~\ref{sec:plan}).
 \vfill HO CHI MINH CITY, OCTOBER 2026
@@ -158,7 +158,7 @@ Members & Lê Trí Quyền (2470740)\\
 \fbox{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{\small
 \textbf{Summary.} LuatCheck answers a question only from a document collection, cites the sections it used, checks each citation against the source text in code, and refuses or asks for clarification when the sources do not answer. The current system is one bounded agent. Its controller is a 4-billion-parameter model that runs on a laptop (a lighter 2B option exists). It uses read-only search and read tools, keyword retrieval with a neural reranker, a citation verifier with bounded repair, and input guardrails.\par\smallskip
 \textbf{Evaluated:} two benchmarks of 50 Vietnamese questions each (HCMUT regulations, labour law), three configurations (no verifier, verifier, verifier and reranker), three random seeds, plus two diagnostic baselines; 1{,}090 recorded trials per system. Strict success means appropriate behaviour, a correct and complete answer, and every claim supported by the sources. An LLM judges it, so the figures are lower bounds; the check against human labels is pending.\par\smallskip
-\textbf{Result:} the current system reaches 60.7\% (HCMUT regulations) and 56.7\% (labour law) strict success; the initial system, which used the 2B controller, reached 14.0\% and 18.7\%. The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic; we will confirm them on a new set of questions for the final report. In the ablation, neither the verifier nor the reranker raised strict success on these benchmarks. \textbf{Not yet available, in red:} human audit of the judge, member contribution evidence, commit hash, Mac latency of the current system.}}
+\textbf{Result:} the current system reaches 60.7\% (HCMUT regulations) and 56.7\% (labour law) strict success; the initial system, which used the 2B controller, reached 14.0\% and 18.7\%. The revision was designed after we analysed the initial system's failures on these same questions, so its gains may be optimistic; we will confirm them on a new set of questions for the final report. In the ablation, neither the verifier nor the reranker raised strict success on these benchmarks. \textbf{Not yet available, in red:} human audit of the judge and member contribution evidence.}}
 \end{center}
 
 \section{Changes from the Proposal}\label{sec:changes}
@@ -374,7 +374,7 @@ Other limits: success is an unaudited LLM estimate; the benchmarks are AI-writte
 
 \hdr{Cost and latency.} The controller and reranker run locally, so there is no per-call API cost. For the full system the controller reads on average 12,070 (HCMUT regulations) and 11,477 (labour law) tokens and writes 763 and 865 tokens per trial, over 3.4 and 3.7 model calls. The judge cost, as reported by the gateway and not an invoice, was USD 1.06 and USD 1.10 for the two 545-trial runs. Collecting a run took 34 and 33 minutes of wall time on the shared H100 (GPU-active hours were not measured). On the laptop (Apple M4, one question at a time, 50 questions per benchmark), the full system answers in a median of 33.0\,s (HCMUT regulations) and 29.8\,s (labour law) per question with the 4B controller (95th percentile 86\,s and 72\,s), and in 13.3\,s and 14.6\,s with the 2B controller (95th percentile 30\,s and 28\,s); the 4B model generates about 43 tokens/s, the 2B about 92.
 
-\hdr{Reproducibility.} Repository: \url{https://github.com/tuandung222/LuatCheck-D2}; reported commit \pending{final commit hash}. All numbers can be regenerated from recorded runs; step-by-step instructions are in the repository.
+\hdr{Reproducibility.} Repository: \url{https://github.com/tuandung222/LuatCheck-D2}; reported commit \texttt{1cd9226031f2}. All numbers can be regenerated from recorded runs; step-by-step instructions are in the repository.
 
 \section{Threat Model}\label{sec:threat}
 \hdr{Assets.} (A1) Faithfulness: answers and citations that users rely on must trace to source sections~\citep{magesh2025hallucination}. (A2) User data: questions, pasted documents, memory and the audit log. (A3) Integrity of corpora, domain profiles, prompts, model weights and the frozen benchmark. (A4) The tool boundary: no unreviewed write or egress. (A5) Availability of a bounded local machine.

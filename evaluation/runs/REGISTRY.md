@@ -1,6 +1,6 @@
 # Run registry
 
-Generated 2026-10-24T21:07:48.650509+07:00 by `python evaluation/run_d2.py registry` against HEAD `6e6e48a612aa` (clean collection paths), harness `1.2.0`. Do not edit by hand: marks live in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
+Generated 2026-10-24T21:31:44.583448+07:00 by `python evaluation/run_d2.py registry` against HEAD `1cd9226031f2` (clean collection paths), harness `1.2.0`. Do not edit by hand: marks live in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
 
 Freshness: **current** = same collection sources / harness / locks / models as HEAD; **stale** = differs, re-run before quoting; **pinned@commit** = a deliberately frozen result whose recorded fingerprint equals that commit's sources (reportable, but never in one table with current runs); **historical** / **superseded_by** = kept for the record, never in current report tables; **remote/not synced** = lives only on server 82; **incomplete**; **n/a**. Only `report_eligible = yes` AND `current` (or `pinned`) runs may feed the report (`make report-check` enforces this).
 
