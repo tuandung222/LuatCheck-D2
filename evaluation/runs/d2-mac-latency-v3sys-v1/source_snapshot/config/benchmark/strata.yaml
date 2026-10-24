@@ -1,0 +1,25 @@
+# Task strata for stratified reporting (analysis only; never given to the agent). LLM estimates, NOT human labels.
+#
+# closed_book_guessable: answerable tasks that a strong model (google/gemma-4-31b-it, no documents, no tools) answered correctly
+# per the DeepSeek-Flash judge in a closed-book probe; closed_book_partial: judged partially correct; every other answerable task
+# is `closed_book_unsolved`; refusal tasks form the stratum `refusal_task`. Source of the lists (benchmark QA review
+# docs/reviews/benchmark_quality_2026-10-23.md, finding B2/B4): hcmut_v1 from evaluation/runs/hcmut-sanity-final-v1/results.json
+# (HCMUT-scoped prompt, valid for this domain); labour_vi_v1 from evaluation/benchmarks/qa/closed_book_neutral_labour_2026-10-23.json
+# (neutral labour-law prompt; the earlier labour-sanity-final-v1 closed-book column is INVALID because it used the HCMUT prompt).
+# Each list is checked against its source file's sha256 by tests/test_benchmark_runner.py. Task files stay frozen; this file is analysis config.
+version: 1
+label: closed_book_probe_gemma-4-31b_llm_estimate
+sources:
+  hcmut_v1: {path: evaluation/runs/hcmut-sanity-final-v1/results.json, sha256: 466a822250e1c15213a76f223df08afb8696b603f03b52ff5d5a821cee00022c, layout: sanity_rows}
+  labour_vi_v1: {path: evaluation/benchmarks/qa/closed_book_neutral_labour_2026-10-23.json, sha256: 5449365eaf5690776f842aebeb90ae3cad638acb446fa1807d329ac2ea406ba2, layout: neutral_rows}
+strata:
+  hcmut_v1:
+    closed_book_guessable: [HCMUT-003, HCMUT-006, HCMUT-007, HCMUT-013, HCMUT-018, HCMUT-022, HCMUT-026, HCMUT-027, HCMUT-030, HCMUT-032, HCMUT-033, HCMUT-035, HCMUT-043, HCMUT-044, HCMUT-045]
+    closed_book_partial: [HCMUT-004, HCMUT-005, HCMUT-009, HCMUT-015, HCMUT-017, HCMUT-019, HCMUT-020, HCMUT-023, HCMUT-028, HCMUT-029, HCMUT-031, HCMUT-046]
+  labour_vi_v1:
+    closed_book_guessable: [LVN-001, LVN-006, LVN-007, LVN-008, LVN-011, LVN-016, LVN-026, LVN-027, LVN-030, LVN-031, LVN-043, LVN-046]
+    closed_book_partial: [LVN-002, LVN-003, LVN-004, LVN-015, LVN-018, LVN-019, LVN-023, LVN-029, LVN-032, LVN-041]
+# Reported strata (headline pair first). `closed_book_unsolved` and `refusal_task` are derived from the task file.
+report_pairs:
+  guessable: [closed_book_guessable]
+  not_guessable: [closed_book_partial, closed_book_unsolved]

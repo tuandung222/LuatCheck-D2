@@ -1,0 +1,11 @@
+{
+  "updated_at": "2026-10-24T10:40:07.583725+00:00",
+  "completed_this_session": 300,
+  "to_run_this_session": 300,
+  "execution_errors_this_session": 2,
+  "elapsed_s": 3353.1,
+  "eta_s": 0.0,
+  "trials_per_minute": 5.37,
+  "workers": 1,
+  "last": "labour_vi_v1/off/s42/LVN-050"
+}

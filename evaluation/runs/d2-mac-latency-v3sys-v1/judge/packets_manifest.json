@@ -1,0 +1,13 @@
+{
+  "run_id": "d2-mac-latency-v3sys-v1",
+  "packets": 298,
+  "execution_errors_not_judged": 2,
+  "runs_sha256_at_build": "1eda09d0b032f0b664f5b1a148acd52bb2d964a3a18e99e7a2de55f135adaf52",
+  "files_sha256": {
+    "SEMANTIC_JUDGING.md": "6407a5548ce798e1eff5640118205fbd2b5b03b2821f1ba9907949e5a75e20e5",
+    "judge_packets.json": "c195431a84573ce7a2a3f19c769575151cd9e7ff78461488d20ab95f83d9144b",
+    "private_mapping.json": "51a068f40ae02d212060d3ecc093c2ef2ce617a2a724e26485302514618f9027"
+  },
+  "labels_generated": false,
+  "instructions": "A reviewer gets only judge_packets.json and SEMANTIC_JUDGING.md; private_mapping.json stays private."
+}

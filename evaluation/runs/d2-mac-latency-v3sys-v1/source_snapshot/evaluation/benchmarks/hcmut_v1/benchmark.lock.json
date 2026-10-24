@@ -1,0 +1,48 @@
+{
+  "schema": "luatcheck.benchmark.lock.v1",
+  "benchmark": "hcmut_v1",
+  "frozen_at": "2026-10-22T21:59:37.070251+00:00",
+  "review_status": "ai_verified_not_human_reviewed",
+  "tasks": {
+    "path": "evaluation/benchmarks/hcmut_v1/tasks.json",
+    "sha256": "591513d0f8fc59fafee661d4b16c82213fc7ee1924236da72193cce49c3a5a46",
+    "count": 50,
+    "categories": {
+      "single": 40,
+      "multi": 5,
+      "out_of_scope": 5
+    },
+    "expected_behaviors": {
+      "answer": 45,
+      "refuse": 5
+    }
+  },
+  "corpus": {
+    "path": "data/corpus/hcmut_academic_v1.json",
+    "sha256": "107bec43d5fe3549ee1dcab61fbcbddbe2e1d632a69bf0f0079884d9c840ec48",
+    "records": 143
+  },
+  "profile": {
+    "ref": "hcmut_academic",
+    "path": "config/domains/hcmut_academic.yaml",
+    "sha256": "3b649876a0e9a397348a043add0c7380e769bc7e94c302d89f1cadbab6b36347"
+  },
+  "benchmark_yaml": {
+    "path": "evaluation/benchmarks/hcmut_v1/benchmark.yaml",
+    "sha256": "753631d6f1a68984aa0caeacc190b621dd10afc46d29a3003e5ab8f0631ab13a"
+  },
+  "verification_files": {
+    "evaluation/benchmarks/hcmut_v1/ADJUDICATION.md": "022c16a6199a64d9359361db5dd81e40d9819320787c16be4c16682d61e7b2da",
+    "evaluation/benchmarks/hcmut_v1/README.md": "4fafb291f1acf818b997694d0e2f448e32c3271d667231ae0a733d6cb87bdd9f",
+    "evaluation/benchmarks/hcmut_v1/VERIFIER_BRIEF.md": "fa7b1958717d4eb72fd680448c5243f0f1c55dfd369040ab0c5a09c4fdff67c1",
+    "evaluation/benchmarks/hcmut_v1/WRITER_BRIEF.md": "7bc002958263bf3414a9f20624816ebc6834a6343478ca1dcfda0951c93d82ca",
+    "evaluation/benchmarks/hcmut_v1/draft_all.json": "f0cd895ba192da50b5c8155c0dd818cab1e95b6f2c333e28c50a71ec6f6819e6",
+    "evaluation/benchmarks/hcmut_v1/draft_part1.json": "f6764bb7893049e5ec191dab78c2aa61277e9642e8af059ece0c47ae538bfadb",
+    "evaluation/benchmarks/hcmut_v1/draft_part2.json": "e83b3a6c75580b59a264d08dadbe1e7c7702cfc37735e51e5ad30273c083d631",
+    "evaluation/benchmarks/hcmut_v1/recheck_C.json": "a5b5691b69b0467c87be5e1fa3d785774531018e1a8d641afaa5966ea6f1fa8a",
+    "evaluation/benchmarks/hcmut_v1/verify_A.json": "51d5088013cad714a93d7a5150296de7e059732c015b1133c0f5275bfea0c4bd",
+    "evaluation/benchmarks/hcmut_v1/verify_B.json": "f73bfd6f359af433eabd8a69414c961181ec29e07880a578c4571b55e9dd0121"
+  },
+  "mechanical_checks": "passed: unique ids, required fields, quotes verbatim in records, gold ids exist, evidence ids equal gold ids",
+  "note": "Mechanical checks only; they do not certify gold answers. See review_status and the benchmark README."
+}

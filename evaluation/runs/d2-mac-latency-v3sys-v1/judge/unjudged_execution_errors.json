@@ -1,0 +1,18 @@
+[
+  {
+    "review_id": "c85dde2c183624b93f1cf4f7",
+    "benchmark": "labour_vi_v1",
+    "variant": "l1",
+    "seed": 42,
+    "task_id": "LVN-016",
+    "reason": "execution error: model_output_error"
+  },
+  {
+    "review_id": "30e582a59a234d3caf19a223",
+    "benchmark": "labour_vi_v1",
+    "variant": "off",
+    "seed": 42,
+    "task_id": "LVN-016",
+    "reason": "execution error: model_output_error"
+  }
+]

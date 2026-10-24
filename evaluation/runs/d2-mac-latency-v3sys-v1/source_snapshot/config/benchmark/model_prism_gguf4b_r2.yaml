@@ -1,0 +1,72 @@
+# POST-HOC REVISION "r2" of the controller model block (Ternary Bonsai 2 4B). NOT part of the frozen v3 protocol.
+# Same sampler, budgets and verifier-mode logic as model_prism_gguf4b.yaml (only the switches differ); the ten keys marked [r2] below switch on the revised system
+# (docs/reviews/v3_failure_analysis_2026-10-24.md, fix ids F1-F9 and the L1 v2 work in docs/plans/D2_REVISION_L1_BONSAI4B.md).
+# They were chosen after looking at the v3 results of hcmut_v1 / labour_vi_v1, so every run that uses this file is tagged
+# `protocol: r2-posthoc` (run_d2.py --matrix config/benchmark/d2_matrix_r2.yaml) and is reported as "post-hoc revision evaluated on the same tasks".
+# Each key defaults to the v3 behaviour in src/, so the v3 configs (model_prism_gguf4b.yaml) still reproduce v3. The runner refuses this file
+# if the installed src/ does not know one of the keys (evaluation/run_benchmark.py assert_model_config_honoured) and records the
+# effective values in manifest.json `system_revision` and in the fingerprint (a resume cannot mix systems).
+#
+#  [r2] retrieval.first_search_anchor: question_plus_query  F1  first search retrieves with the user's question + the model's query (v3: the model's query alone, 31% of the question's IDF mass)
+#  [r2] retrieval.default_top_k: 5                          F2  default hits per search = final_top_k (v3 silently used 3)
+#  [r2] tools.search_hints: true                            F3  observations say how many hits are truncated, to `read` before concluding, and the remaining tool budget
+#  [r2] domain.profile_variant: r2                          F4  clarify/refuse contract of the system prompt (refuse when the text lacks the answer; clarify only for user facts); the benchmark still owns domain.profile
+#  [r2] agent.require_search_before_answer: true            F5  a first-step answer/clarify/refuse without any search is bounced with a notice
+#  [r2] verifier.repair_feedback_style: verifier_report     F6  verifier feedback is framed as a tool report, not a user complaint, and no longer ends with "choose refuse"
+#  [r2] model.thought_max_chars: 800                        F7  `thought` bounded in the action grammar (v3: 5 truncated runaway thoughts)
+#  [r2] agent.free_duplicate_notices: true                  F8  duplicate-query / already-read notices are not charged to the tool budget
+#  [r2] verifier.l1_version: v2                             L1  fair quote matching, claim-local quantities, sentence-level support, actionable feedback (still a lexical proxy)
+#  [r2] verifier.l1_sentence_support: warn                  L1  sentence-level support is reported in the feedback but does not reject on its own
+#
+# Only the model, budgets and the fixed retrieval/verifier defaults live here. The runner sets, per benchmark and variant
+# (config/benchmark/variants.yaml): domain.profile, retrieval.corpus_path, verifier.mode, retrieval.reranker, and per-worker
+# memory/audit paths. Verified-answer reuse is off; memory is disabled so trials are independent.
+
+model:
+  provider: llamacpp
+  endpoint: http://127.0.0.1:8081/v1
+  name: prism-ml/Ternary-Bonsai-2-4B-gguf
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  min_p: 0.0
+  presence_penalty: 1.5
+  constrained_json: true
+  enable_thinking: false
+  timeout_seconds: 60
+  max_output_tokens: 1024
+  # llama-server splits -c across its parallel slots: -c must be >= context_tokens x slots in use.
+  context_tokens: 8192
+  thought_max_chars: 800        # [r2] F7
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+  max_steps: 8
+  wall_seconds: 180
+retrieval:
+  dense_model_type: tfidf   # explicit BM25 + TF-IDF/RRF, not neural embeddings
+  final_top_k: 5
+  rrf_k: 60
+  first_search_anchor: question_plus_query   # [r2] F1
+  default_top_k: 5                           # [r2] F2
+verifier:
+  mode: l1
+  l1_overlap_threshold: 0.25     # v1 only; v2 uses l1_support_threshold (default 0.50, set on the bll2019 development set)
+  l1_version: v2                 # [r2] L1
+  l1_sentence_support: warn      # [r2] L1
+  repair_feedback_style: verifier_report   # [r2] F6
+  l2_use_slm: false
+memory:
+  enabled: false
+  reuse_answers: false
+  similarity_threshold: 0.85
+  index_version: benchmark-d2-v1
+security:
+  egress_requires_confirmation: true
+tools:
+  search_hints: true             # [r2] F3
+domain:
+  profile_variant: r2            # [r2] F4 (domain.profile itself is set per benchmark by the runner)
+agent:
+  require_search_before_answer: true   # [r2] F5
+  free_duplicate_notices: true         # [r2] F8
