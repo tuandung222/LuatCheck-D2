@@ -402,3 +402,125 @@ def test_baselines_are_separate_cells_never_pooled_and_reported_in_their_own_tab
     assert "oracle" not in main_table and "closed" not in main_table   # system tables carry no baseline row
     assert run_d2.recompute_headlines(work)["all_match"]
     assert sum(c["trials_recorded"] for c in summary["cells"].values() if c["arm"] == "system") == 8   # baselines do not inflate the system trial count
+
+
+# ----------------------------------------------------------------------------- refusal sources, protocol label, same-task system comparison
+
+V3 = {"hcmut_v1": "d2-gpu-main-hcmut-v3", "labour_vi_v1": "d2-gpu-main-labour-v3"}
+V3_ARM = ",".join(V3.values())
+
+
+def test_refusal_source_breakdown_groups_by_the_recorded_source_and_never_guesses(rows):
+    plain = m.refusal_source_breakdown(rows)
+    abstained = [r for r in rows if r["terminal_status"] in ("refused", "clarified")]
+    assert abstained and set(plain["by_source"]) == {"unrecorded"} and plain["any_source_recorded"] is False and plain["source_recorded_on_all"] is False
+    total = sum(s["total"] for by in plain["by_source"].values() for s in by.values())
+    assert total == len(abstained)                                              # errors and answers are not abstentions
+    assert plain["by_source"]["unrecorded"]["refused"]["total"] == sum(r["terminal_status"] == "refused" for r in rows)
+    # grouping: the same real rows with a `refusal_source` field (the value is only a label for the grouping test, not a measurement)
+    labelled = [{**r, "refusal_source": ("model" if i % 2 else "controller_repair_exhausted")} if r["terminal_status"] in ("refused", "clarified") else r
+                for i, r in enumerate(rows)]
+    grouped = m.refusal_source_breakdown(labelled)
+    assert set(grouped["by_source"]) <= {"model", "controller_repair_exhausted"} and grouped["any_source_recorded"] and grouped["source_recorded_on_all"]
+    assert sum(s["total"] for by in grouped["by_source"].values() for s in by.values()) == len(abstained)
+    for by in grouped["by_source"].values():
+        for slot in by.values():
+            assert slot["expected_answer"] + slot["expected_refuse"] == slot["total"]
+
+
+def test_analysis_summary_carries_the_refusal_sources_and_the_protocol(analysed):
+    _, summary = analysed
+    assert summary["protocol"] is None and summary["protocol_label"] is None and summary["system_revision_effective"] is None
+    for cell in summary["cells"].values():
+        assert set(cell["refusal_sources"]["by_source"]) <= {"unrecorded"}
+
+
+def test_tables_of_a_post_hoc_protocol_print_the_label_and_frozen_runs_do_not(analysed):
+    from evaluation import render_benchmark_tables as render
+    _, summary = analysed
+    expect = (["hcmut_v1", "labour_vi_v1"], ["off", "l1", "l1_rerank"])
+    frozen = render.render(summary, *expect)
+    assert "post-hoc" not in frozen["results"].lower() and "post-hoc" not in frozen["markdown"].lower()
+    revised = {**summary, "protocol": "r2-posthoc", "protocol_label": "post-hoc revision evaluated on the same tasks"}
+    texts = render.render(revised, *expect)
+    for name in ("results", "diagnostics", "markdown"):
+        assert "post-hoc revision evaluated on the same tasks" in texts[name].lower(), name
+    assert texts["results"].lower().count("post-hoc revision evaluated on the same tasks") >= 3      # main, ops, paired (+ baselines) captions
+    prov = render.provenance_for(RUN, {**revised, "runs_sha256": "x"}, "test")
+    tagged = render.tag_tables(texts["results"], {**prov, "protocol": "r2-posthoc", "protocol_label": "post-hoc revision evaluated on the same tasks"})
+    assert "% protocol: r2-posthoc" in tagged and "Post-hoc revision evaluated on the same tasks" in tagged.split("Source: run", 1)[1]
+
+
+def test_comparing_the_v3_runs_with_themselves_gives_zero_differences_and_the_runs_own_numbers(tmp_path):
+    from evaluation import compare_runs as cmp
+    arms = [cmp.parse_arm(f"{label}={V3_ARM}") for label in ("v3-2B", "v3-2B-again", "v3-2B-third")]
+    data = cmp.build(arms, cmp.default_contrasts([a[0] for a in arms]), ["off", "l1", "l1_rerank"])
+    assert data["benchmarks"] == ["hcmut_v1", "labour_vi_v1"] and [c["label"] for c in data["contrasts"]] == ["system effect", "model effect"]
+    for bm, run in V3.items():
+        summary = json.loads((REPO / "evaluation" / "runs" / run / "analysis" / "summary.json").read_text())
+        for variant in ("off", "l1", "l1_rerank"):
+            cell = data["table"][bm][variant]
+            own = summary["cells"][f"{bm}/{variant}"]
+            for label in ("v3-2B", "v3-2B-again", "v3-2B-third"):          # the comparison reproduces the analysis of the run itself
+                arm = cell["arms"][label]
+                assert arm["strict_success"] == pytest.approx(own["strict_success"]["rate_lower_bound"])
+                assert arm["recall_at_5"] == pytest.approx(own["retrieval"]["Recall@5"])
+                assert arm["behaviour_match"] == pytest.approx(own["behaviour_confusion"]["strict_match_rate_all"])
+                assert arm["error_rate"] == pytest.approx(own["behaviour_confusion"]["execution_error_rate"])
+                assert arm["answer_rate"] == pytest.approx(own["counts"]["answered"] / own["trials_recorded"])
+                assert arm["tasks"] == 50
+            for contrast in cell["contrasts"].values():
+                for metric, result in contrast.items():
+                    assert result["diff_b_minus_a"] == 0 and result["ci95"] == [0.0, 0.0] and result["units_tied"] == result["n_units"], (bm, variant, metric)
+    out = tmp_path / "cmp"
+    command = "python evaluation/run_d2.py compare (test)"
+    paths = cmp.write_outputs(data, out, command)
+    tex, md = paths["latex"].read_text(), paths["markdown"].read_text()
+    assert tex.count("\\begin{table}") == 2 and tex.count(cmp.COMPARE_MARK) == 2 and tex.count("% arm: ") == 2 * 3 * 2
+    assert "pinned@957579b" in tex and "system effect" in md and "model effect" in md and "post-hoc" not in tex.lower()       # nobody here is a revised arm
+    assert json.loads(paths["json"].read_text())["generator"] == command
+
+
+def test_comparison_refuses_arms_that_did_not_run_the_same_tasks_or_unknown_contrasts():
+    from evaluation import compare_runs as cmp
+    with pytest.raises(cmp.CompareError, match="share no benchmark"):
+        cmp.build([cmp.parse_arm("a=d2-gpu-main-hcmut-v3"), cmp.parse_arm("b=d2-gpu-main-labour-v3")], [("x", "a", "b")], ["off"])
+    arms = [cmp.parse_arm(f"{label}={V3_ARM}") for label in ("a", "b")]
+    with pytest.raises(cmp.CompareError, match="unknown arm"):
+        cmp.build(arms, [("x", "a", "nope")], ["off"])
+    with pytest.raises(cmp.CompareError, match="unique"):
+        cmp.build([cmp.parse_arm(f"a={V3_ARM}"), cmp.parse_arm(f"a={V3_ARM}")], [("x", "a", "a")], ["off"])
+    with pytest.raises(cmp.CompareError, match="appears in two runs"):
+        cmp.build([cmp.parse_arm("a=d2-gpu-main-hcmut-v3,d2-gpu-main-hcmut-v3"), cmp.parse_arm(f"b={V3_ARM}")], [("x", "a", "b")], ["off"])
+    with pytest.raises(cmp.CompareError, match="is missing"):
+        cmp.build([cmp.parse_arm("a=no-such-run"), cmp.parse_arm(f"b={V3_ARM}")], [("x", "a", "b")], ["off"])
+    assert cmp.parse_contrast("model effect=r2-4B minus r2-2B") == ("model effect", "r2-2B", "r2-4B")
+    assert cmp.default_contrasts(["v3-2B", "r2-2B"]) == [("r2-2B - v3-2B", "v3-2B", "r2-2B")]
+
+
+def test_run_d2_compare_command_writes_the_tables_and_keeps_the_fingerprint_mode(tmp_path, capsys):
+    code = run_d2.main(["compare", "--arm", f"v3-2B={V3_ARM}", "--arm", f"v3-2B-again={V3_ARM}", "--contrast", "system effect=v3-2B-again minus v3-2B",
+                        "--out-dir", str(tmp_path / "out")])
+    assert code == 0 and (tmp_path / "out" / "comparison.tex").is_file() and "system effect" in capsys.readouterr().out
+    assert run_d2.main(["compare", str(REPO / "evaluation/runs/d2-gpu-main-hcmut-v3"), str(REPO / "evaluation/runs/d2-gpu-main-hcmut-v3")]) == 0       # unchanged: fingerprint of a run with itself
+    assert run_d2.main(["compare"]) == 1
+
+
+def test_captions_state_the_recall_range_instead_of_a_fixed_ceiling_claim_and_one_benchmark_has_no_pooled_row():
+    from evaluation import render_benchmark_tables as render
+    summary = json.loads((REPO / "evaluation" / "runs" / V3["hcmut_v1"] / "analysis" / "summary.json").read_text())
+    texts = render.render(summary, ["hcmut_v1"], ["off", "l1", "l1_rerank"])
+    recalls = [summary["cells"][f"hcmut_v1/{v}"]["retrieval"]["Recall@5"] for v in ("off", "l1", "l1_rerank")]
+    assert min(recalls) < 0.95 and "near ceiling" not in texts["results"] and "not saturated" in texts["results"]
+    assert f"{min(recalls):.2f}--{max(recalls):.2f}" in texts["results"]
+    paired = texts["results"].split("tab:benchmark-paired")[0].rsplit("\\begin{table}", 1)[1]
+    assert "pooled" not in paired and "pooled" not in texts["markdown"]               # one benchmark: the pooled row would repeat the benchmark row
+    both = {**summary, "cells": {**summary["cells"], **{k.replace("hcmut_v1", "labour_vi_v1"): v for k, v in summary["cells"].items()}}}
+    for entry in both["paired_differences"]["comparisons"].values():
+        entry["by_benchmark"]["labour_vi_v1"] = entry["by_benchmark"]["hcmut_v1"]
+    two = render.render(both, ["hcmut_v1", "labour_vi_v1"], ["off", "l1", "l1_rerank"])
+    assert "pooled" in two["results"] and "pooled" in two["markdown"]
+    saturated = json.loads(json.dumps(summary))
+    for v in ("off", "l1", "l1_rerank"):
+        saturated["cells"][f"hcmut_v1/{v}"]["retrieval"]["Recall@5"] = 0.97
+    assert "near ceiling on these benchmarks" in render.render(saturated, ["hcmut_v1"], ["off", "l1", "l1_rerank"])["results"]

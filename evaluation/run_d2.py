@@ -5,6 +5,8 @@
   python evaluation/run_d2.py preflight --profile gpu-accuracy          # every dependency exercised once, nothing written
   python evaluation/run_d2.py collect|judge|tables|notes|status --run-dir <dir>   # each stage alone
   python evaluation/run_d2.py compare <run-a> <run-b>                   # may these two runs be compared? (fingerprints)
+  python evaluation/run_d2.py compare --arm "v3-2B=<run>,<run>" --arm "r2-2B=..." --arm "r2-4B=..."   # same-task system comparison (evaluation/compare_runs.py)
+  python evaluation/run_d2.py all --matrix config/benchmark/d2_matrix_r2.yaml --model-config config/benchmark/model_prism_gguf4b_r2.yaml ...   # post-hoc revision r2
 
 What is run comes from config only: config/benchmark/d2_matrix.yaml (benchmarks, variants, seeds), variants.yaml, profile_*.yaml
 (parallelism, timeouts, reranker runtime), model_prism_gguf2b.yaml (controller), judge_gateway.json (judge). Flags override the
@@ -40,8 +42,12 @@ EXIT_JUDGE_UNAVAILABLE = 6
 EXIT_COST_GUARD = 7
 
 
-def load_matrix() -> Dict[str, Any]:
-    return yaml.safe_load(MATRIX_CONFIG.read_text(encoding="utf-8")) or {}
+def load_matrix(path: Optional[str] = None) -> Dict[str, Any]:
+    """The collection matrix: --matrix / $D2_MATRIX / config/benchmark/d2_matrix.yaml. `protocol:` in it tags the run (e.g. r2-posthoc)."""
+    chosen = Path(path or os.environ.get("D2_MATRIX") or MATRIX_CONFIG)
+    if not chosen.is_file():
+        raise FileNotFoundError(f"matrix config {chosen} not found")
+    return yaml.safe_load(chosen.read_text(encoding="utf-8")) or {}
 
 
 def log(run_dir: Optional[Path], message: str) -> None:
@@ -57,7 +63,8 @@ def selection(args, matrix: Dict[str, Any]) -> Dict[str, Any]:
             "variants": args.variants or ",".join(matrix["variants"]),
             "seeds": args.seeds or matrix["seeds"],
             "baselines": (args.baselines if args.baselines is not None else ",".join(matrix.get("baselines") or [])) or "none",
-            "model_config": args.model_config or matrix["model_config"]}
+            "model_config": args.model_config or matrix["model_config"],
+            "protocol": getattr(args, "protocol", None) or matrix.get("protocol")}
 
 
 def runner_args(args, matrix: Dict[str, Any], *, command: str) -> List[str]:
@@ -67,6 +74,8 @@ def runner_args(args, matrix: Dict[str, Any], *, command: str) -> List[str]:
         out += ["--benchmark", bm]
     out += ["--variants", sel["variants"], "--baselines", sel["baselines"], "--seeds", *map(str, sel["seeds"]), "--run-profile", args.profile,
             "--model-config", sel["model_config"]]
+    if sel["protocol"]:
+        out += ["--protocol", sel["protocol"]]
     if args.endpoint:
         out += ["--endpoint", args.endpoint]
     if args.workers:
@@ -240,6 +249,11 @@ def write_notes(run_dir: Path) -> Path:
              "Facts below are copied from artifacts; nothing is estimated. The operator section at the end is for human remarks.", "",
              "## Run", "",
              f"- profile: `{manifest['run_profile']['name']}` (workers {manifest['run_profile'].get('workers_effective')}, latency reportable: {manifest['latency_reportable']}), phase `{manifest['phase']}`",
+             *([f"- protocol: `{manifest['protocol']}` - **{manifest.get('protocol_label') or rb.protocol_label(manifest['protocol'])}** (the system was revised after the frozen v3 "
+                f"results on these tasks were seen; this is not a pre-planned result). Revision switches (requested -> effective): "
+                f"{json.dumps((manifest.get('system_revision') or {}).get('requested_in_model_config'), ensure_ascii=False)} -> "
+                f"{json.dumps((manifest.get('system_revision') or {}).get('effective'), ensure_ascii=False, default=str)}"] if manifest.get("protocol") else []),
+             f"- controller model config: `{(manifest.get('model_config') or {}).get('path')}`",
              f"- matrix: benchmarks {[b['name'] for b in manifest['benchmarks']]}, variants {list(manifest['variants'])}, diagnostic baselines {list((manifest.get('baselines') or {}))}, seeds {manifest['seeds']}, limit {manifest.get('limit')}",
              f"- collection: status `{manifest['status']}`, planned {manifest.get('planned_trials')}, recorded {manifest.get('trials_recorded')}, "
              f"execution errors {manifest.get('execution_errors')} {manifest.get('error_kinds')}, resumes {len(manifest.get('resumes', []))}, "
@@ -376,7 +390,7 @@ def cmd_registry(args, matrix) -> int:
     rows = registry.write_registry()
     counts = {}
     for r in rows:
-        key = r["freshness"].split(":")[0].split(" (")[0]
+        key = r["freshness"].split(":")[0].split(" (")[0].split("@")[0]
         counts[key] = counts.get(key, 0) + 1
     print(f"wrote evaluation/runs/REGISTRY.md and registry.jsonl: {len(rows)} runs {counts}")
     return 0
@@ -400,6 +414,16 @@ def cmd_stamp(args, matrix) -> int:
 
 
 def cmd_compare(args, matrix) -> int:
+    if args.arm:
+        from evaluation import compare_runs
+        argv = [x for arm in args.arm for x in ("--arm", arm)] + [x for c in (args.contrast or []) for x in ("--contrast", c)] + ["--variants", args.variants]
+        if args.benchmarks:
+            argv += ["--benchmarks", *args.benchmarks]
+        if args.out_dir:
+            argv += ["--out-dir", args.out_dir]
+        return compare_runs.main(argv)
+    if not (args.run_a and args.run_b):
+        raise rb.BenchmarkError("compare needs two run directories (fingerprint check) or --arm LABEL=RUN[,RUN] ... (same-task comparison tables)")
     a, b = (json.loads((Path(p) / "manifest.json").read_text(encoding="utf-8")) for p in (args.run_a, args.run_b))
     result = rb.compare_fingerprints(a.get("fingerprint") or {}, b.get("fingerprint") or {})
     print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
@@ -418,6 +442,8 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument("--seeds", type=int, nargs="+")
         p.add_argument("--baselines", help="comma list of diagnostic baselines (closed_book,oracle), or 'none'; default from the matrix")
         p.add_argument("--model-config")
+        p.add_argument("--matrix", help="collection matrix YAML (default config/benchmark/d2_matrix.yaml, or $D2_MATRIX); d2_matrix_r2.yaml = post-hoc revision")
+        p.add_argument("--protocol", choices=sorted(rb.PROTOCOL_LABELS), help="override the matrix `protocol:` tag")
         p.add_argument("--limit", type=int, help="smoke: N tasks per benchmark")
         p.add_argument("--allow-unfrozen", action="store_true", help="smoke only (needs --limit)")
         p.add_argument("--endpoint")
@@ -436,8 +462,13 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument("--judge-concurrency", type=int)
         p.add_argument("--execute", action="store_true", help="explicit permission to run inference and to call the paid judge")
     cmp = sub.add_parser("compare")
-    cmp.add_argument("run_a")
-    cmp.add_argument("run_b")
+    cmp.add_argument("run_a", nargs="?")
+    cmp.add_argument("run_b", nargs="?")
+    cmp.add_argument("--arm", action="append", help="LABEL=RUN[,RUN...] (repeat); the first arm is the reference. Produces comparison.md/.tex/.json")
+    cmp.add_argument("--contrast", action="append", help="'LABEL=ARM_B minus ARM_A'; default system effect / model effect for three arms")
+    cmp.add_argument("--variants", default="off,l1,l1_rerank")
+    cmp.add_argument("--benchmarks", nargs="+")
+    cmp.add_argument("--out-dir", help="default evaluation/comparisons/<arm labels>")
     return parser
 
 
@@ -448,8 +479,8 @@ COMMANDS = {"registry": cmd_registry, "stamp": cmd_stamp, "all": cmd_all, "prefl
 def main(argv: Optional[List[str]] = None) -> int:
     os.chdir(REPO_ROOT)
     args = build_parser().parse_args(argv)
-    matrix = load_matrix()
     try:
+        matrix = load_matrix(getattr(args, "matrix", None))
         return COMMANDS[args.command](args, matrix)
     except (rb.BenchmarkError, ValueError, FileNotFoundError) as exc:
         print(f"{type(exc).__name__}: {exc}", file=sys.stderr)

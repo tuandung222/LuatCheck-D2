@@ -26,8 +26,26 @@ l1_unknown_citation: "Mã tài liệu trích dẫn '{doc_id}' không tồn tại
 l1_quote_mismatch: "Trích nguyên văn của '{doc_id}' không nằm trong văn bản nguồn. Đọc lại nguồn hoặc bỏ trường exact_quote nếu chỉ diễn giải."
 l1_unsupported_claims: "Phát hiện {count} câu khẳng định chưa tìm thấy căn cứ đối ứng trong tài liệu trích dẫn:\n{claims}"
 
+# L1 v2 (verifier.l1_version: v2). Model-visible repair feedback; each names the failing check and shows the closest
+# source span verbatim so the model can copy it or correct the number.
+l1v2_quote_mismatch: "Trích dẫn exact_quote của '{doc_id}' không khớp nguyên văn nguồn. Nguồn ghi: «{span}». Hãy chép đúng nguyên văn (có thể dùng ... để bỏ đoạn giữa) hoặc bỏ exact_quote."
+l1v2_quote_other_record: "Đoạn exact_quote của '{doc_id}' không có trong '{doc_id}' mà nằm trong '{other_id}'. Hãy đổi article_id thành '{other_id}' hoặc trích đúng nguồn."
+l1v2_claim: "Câu «{claim}» chưa có căn cứ trong tài liệu dẫn. Đoạn nguồn gần nhất ('{doc_id}'): «{span}». Chỉ viết điều nguồn nêu, hoặc bỏ câu này."
+l1v2_quantity: "Số liệu '{quantity}' trong câu «{claim}» không có trong đoạn nguồn tương ứng. Nguồn ghi ('{doc_id}'): «{span}». Hãy sửa số liệu theo nguồn."
+
 # Optional NLI step (verifier.nli) and L2 entailment feedback
 nli_repair_feedback: "CẢNH BÁO NLI: {count} cặp (câu trả lời, điều luật dẫn) có xác suất mâu thuẫn >= {threshold}:\n{pairs}"
 nli_pair_line: "- \"{sentence}\" mâu thuẫn với {premise_id} (P={probability:.2f})"
 l2_repair_feedback: "CẢNH BÁO XÁC THỰC NGỮ NGHĨA (Semantic Entailment): Phát hiện {count} câu khẳng định chưa đạt căn cứ kéo theo ngữ nghĩa (entailment score < {threshold}):\n{claims}"
 cache_l2_rejection: "L2 SEMANTIC VERIFIER REJECTED (Cache): Phát hiện {count} câu khẳng định chưa đạt căn cứ kéo theo ngữ nghĩa:\n{claims}"
+
+# r2 switches (all off by default, so frozen runs never read these). Model-visible.
+# tools.search_hints (F3): appended to every search observation as `hint`, next to `tool_calls_remaining`.
+search_hint_truncated: "Có {truncated}/{count} kết quả chỉ là đoạn trích (snippet_truncated=true), chưa phải toàn văn. Hãy dùng {read_tool} đọc đầy đủ mục liên quan nhất trước khi kết luận, trả lời hoặc hỏi lại."
+search_hint_complete: "Cả {count} kết quả đã hiển thị đầy đủ (không bị cắt ngắn)."
+# retrieval.first_search_anchor (F1): shown as `search_note` so the model sees its own query was kept.
+first_search_anchor_note: "Lần tra cứu đầu tiên dùng câu hỏi của người dùng kết hợp với truy vấn của bạn («{model_query}»)."
+# agent.require_search_before_answer (F5): observation for an answer / clarify before the first search.
+search_first_required: "[YÊU_CẦU_TRA_CỨU] Bạn chưa tra cứu cơ sở tri thức nên chưa thể trả lời hoặc hỏi lại. Hãy gọi `{search_tool}` trước. (Nếu yêu cầu không an toàn hoặc nằm ngoài phạm vi, bạn vẫn có thể chọn `refuse`.)"
+# verifier.repair_feedback_style: verifier_report (F6): the whole message, labelled as an automatic report.
+repair_report: "[VERIFIER_REPORT] Báo cáo tự động của công cụ xác thực căn cứ (không phải lời của người dùng). Bản nháp câu trả lời của bạn chưa đạt kiểm tra:\n{repair_feedback}\nBạn có thể sửa bản nháp: trích đúng nguồn, đọc lại mục nguồn bằng `{read_tool}`, hoặc sửa đúng chỗ được nêu ở trên, rồi gửi lại bằng `answer`. Chỉ chọn `refuse` nếu các nguồn đã tra cứu thực sự không có câu trả lời."

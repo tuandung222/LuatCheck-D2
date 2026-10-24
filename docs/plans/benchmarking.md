@@ -109,3 +109,11 @@ Every rendered table carries a provenance comment block and a visible source lin
 
 900 system + 190 baseline trials per machine profile. Judge about $2.8-2.9 gateway-reported ($0.0026-0.0027 per valid packet incl. failed attempts), about 2.2 h at 8 concurrent / 1.1 h at 16 (about 30% of attempts fail validation and are retried, 1.45 attempts per valid packet).
 Mac collection about 2.4 h on an idle machine, up to 4 h on a shared one. GPU collection: unmeasured, order of 15-40 minutes. Local model cost is not an API charge; energy and device hours are not measured.
+
+## Post-hoc revision r2 and system comparison (2026-10-24, harness 1.2.0)
+
+The frozen v3 runs (Bonsai 2B, commit 957579b) are the pre-planned result and are `pinned@957579b` in the registry. The revision r2 (ten opt-in switches in
+`config/benchmark/model_prism_gguf{2b,4b}_r2.yaml`) was designed after those results were seen on the same tasks, so its runs (`d2-gpu-r2-{2b,4b}-{hcmut,labour}-v1`,
+matrix `config/benchmark/d2_matrix_r2.yaml`) are `kind: main` with `protocol: r2-posthoc`, and every table and RUN_NOTES prints "post-hoc revision evaluated on the same tasks".
+Comparison (`run_d2.py compare --arm ...`, `evaluation/compare_runs.py`): system effect = r2-2B - v3-2B, model effect = r2-4B - r2-2B, paired task-level bootstrap with seeds averaged.
+Clean confirmation of the revision belongs to benchmark v2 (D3). Launch commands: `docs/RUNBOOK_D2.md` section F.

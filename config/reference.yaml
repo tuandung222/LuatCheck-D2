@@ -14,11 +14,24 @@
 #   controller LLM   model.provider
 #   retriever        retrieval.mode, retrieval.dense_model_type
 #   reranker         retrieval.reranker.enabled / backend
-#   verifier L1/L2   verifier.mode (+ verifier.l2_use_slm)
+#   verifier L1/L2   verifier.mode (+ verifier.l1_version, verifier.l2_use_slm)
 #   verifier NLI     verifier.nli.enabled / backend
 #   memory           memory.enabled / reuse_answers / backend
 #   guardrails       security.guardrails.enabled
-#   domain           domain.profile
+#   domain           domain.profile (+ domain.profile_variant)
+#
+# R2 revision switches (post-hoc revision of the frozen D2 v3 protocol, docs/reviews/v3_failure_analysis_2026-10-24.md).
+# Every one defaults to the v3 behaviour, so any existing config behaves exactly as before. Default -> value used by the r2 runs:
+#   retrieval.first_search_anchor    none -> question_plus_query   F1
+#   retrieval.default_top_k          3 -> 5                        F2
+#   tools.search_hints               false -> true                 F3
+#   domain.profile_variant           "" -> r2                      F4 (+ F6 prompt side, F9 query guidance)
+#   agent.require_search_before_answer  false -> true              F5
+#   verifier.repair_feedback_style   v1 -> verifier_report         F6
+#   model.thought_max_chars          null -> 800                   F7
+#   agent.free_duplicate_notices     false -> true                 F8
+#   verifier.l1_sentence_support     block -> warn                 "L1 lite" (L1 v2 only)
+# F11 (ledger field `refusal_source`) has no switch: it is always recorded.
 
 # ---------------------------------------------------------------------------------------------------------------
 # Domain: prompts, model-facing tool names, document-ID convention, domain guardrail patterns, L1 quantity units,
@@ -26,6 +39,23 @@
 # pack config/domains/messages/<language>.yaml), never in the shared code.
 domain:
   profile: labour_vi_2019        # a profile id (file name in config/domains/) or a path to a profile YAML
+  profile_variant: ""            # "" : load `profile` as written (v3).  r2 : load the revised profile `<profile>_r2`
+                                 #   (config/domains/<profile>_r2.yaml; needs a profile id, not a path). r2 prompts: refuse also when the retrieved
+                                 #   text lacks the answer, clarify only for missing facts about the user's situation, query-writing guidance,
+                                 #   neutral repair prompt. The benchmark lock must hash the r2 file when this is set (F4, F6, F9)
+
+# ---------------------------------------------------------------------------------------------------------------
+# Controller policy of one run.
+agent:
+  require_search_before_answer: false   # true (r2): an answer or clarify before the first search becomes an observation "search first" (a step, no
+                                        #   tool call); refuse stays allowed. Not applied to clients that cannot search (closed-book / oracle baselines) (F5)
+  free_duplicate_notices: false         # true (r2): duplicate_query / already_read notices do not consume a tool call (they still use a step) (F8)
+
+# ---------------------------------------------------------------------------------------------------------------
+# What the model reads in tool observations.
+tools:
+  search_hints: false            # true (r2): each search observation also carries `tool_calls_remaining` and a `hint` that states how many
+                                 #   hits are truncated and advises reading before concluding (wording: language pack, search_hint_*) (F3)
 
 # ---------------------------------------------------------------------------------------------------------------
 # Controller model. The loop calls it once per step and validates every response against the action schema;
@@ -49,6 +79,9 @@ model:
   enable_thinking: null          # chat-template thinking switch (llamacpp); null = not sent
   api_key_env: null              # gateway only: NAME of the environment variable holding the credential
   reasoning_effort: null         # gateway only
+  thought_max_chars: null        # null: the `thought` string is unbounded (v3).  int >= 20 (r2: 800): maxLength on `thought` in the action JSON schema.
+                                 #   The PrismML llama-server honours it in json_schema grammars (checked on server 82, 2026-10-24): a longer thought is cut at
+                                 #   exactly that length and the JSON stays valid. Without constrained decoding, a longer thought is a model_output_error (F7)
 
 # ---------------------------------------------------------------------------------------------------------------
 # Execution budgets of one run.
@@ -69,6 +102,10 @@ retrieval:
                                  # others: the embedding model of that name, served at model.endpoint; raises if unavailable
   rrf_k: 60                      # Reciprocal Rank Fusion constant (>= 1)
   final_top_k: 5                 # upper bound of the `top_k` the model may request per search (>= 1)
+  default_top_k: 3               # top_k used when the model omits it, capped by final_top_k. 3 = v3; r2: 5 (F2)
+  first_search_anchor: none      # none: the first search uses the model's query (v3).
+                                 # question_plus_query (r2): the first search of a run uses the user's question followed by the words of the model's
+                                 #   query that the question lacks; the observation names the model's query (`search_note`), the ledger records both (F1)
   bm25_top_k: 5                  # accepted for compatibility, not read by any component
   dense_top_k: 5                 # accepted for compatibility, not read by any component
   index:                         # only for mode: hybrid_index
@@ -103,7 +140,20 @@ verifier:
                                  # l1_l2: l1, then native-model entailment (needs l2_use_slm: true)
                                  # aliases: lexical_grounding, lexical, grounding, l1_only, l1_on = l1;
                                  #          semantic_entailment, semantic, full, l1_l2_on = l1_l2
-  l1_overlap_threshold: 0.25     # minimum fraction of an answer sentence's tokens found in the cited text (0 - 1)
+  l1_version: v1                 # v1: original L1 (whole-record bag of words, document-level quantities, plain quote match);
+                                 #     reproduces the frozen D2 v3 runs. Configs written before this key existed ran v1: set v1 to repeat them.
+                                 # v2: quote match with elisions/wrapper characters, claim-local quantities, sentence-level
+                                 #     support, repair feedback that shows the closest source span (still lexical proxies)
+  l1_sentence_support: block     # l1_version v2 only (v1 ignores it).  block: an answer sentence below l1_support_threshold rejects the answer.
+                                 # warn ("L1 lite"): recorded as `warnings` in the verification result, an `l1_warning` ledger event and
+                                 #   final_output.verification_warnings, the answer is not rejected; quote and quantity failures still block
+  repair_feedback_style: v1      # v1: the profile's repair_prompt as a user message (v3).
+                                 # verifier_report (r2): a [VERIFIER_REPORT] observation (language pack, repair_report) that offers fixing the flagged
+                                 #   item or reading the source, and refuse only if the sources lack the answer (F6)
+  l1_overlap_threshold: 0.25     # l1_version v1 only: minimum fraction of an answer sentence's tokens found in the cited text (0 - 1)
+  l1_support_threshold: 0.50     # l1_version v2 only: minimum fraction of an answer sentence's content tokens found in its
+                                 #     best single source window (0 - 1); 0 switches the sentence check off (quote and quantity checks stay).
+                                 #     Chosen on the bll2019 development set (evaluation/runs/l1-replay-2026-10-24/NOTE.md)
   l2_use_slm: false              # true: L2 uses the controller endpoint as entailment judge; false: L2 raises if the mode asks for it
   l2_entailment_threshold: 0.30  # minimum judge confidence for ENTAILMENT (0 - 1)
   similarity_threshold: 0.70     # accepted for compatibility, not read by any component

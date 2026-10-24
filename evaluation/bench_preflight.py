@@ -46,6 +46,22 @@ def expected_server() -> Dict[str, Any]:
     return (yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
 
 
+CONTROLLER_KEYS = ("alias", "gguf_repo", "gguf_revision", "gguf_file", "gguf_sha256", "quantisation")
+
+
+def expected_controller(model_name: str) -> Dict[str, Any]:
+    """Pinned identity of the controller a run's model config names: the top-level entry (the original 2B pin) or an entry
+    of `controllers:` keyed by alias. Shared pins (llama.cpp build, reranker) apply to every controller."""
+    spec = expected_server()
+    shared = {k: v for k, v in spec.items() if k not in CONTROLLER_KEYS and k != "controllers"}
+    if spec.get("alias") == model_name or not spec.get("controllers"):
+        return spec
+    for alias, entry in (spec.get("controllers") or {}).items():
+        if alias == model_name:
+            return {**shared, "alias": alias, **entry}
+    return {**shared, "alias": None, "unpinned_controller": model_name}
+
+
 def seed_canary(cfg) -> Dict[str, Any]:
     """Four real completions: seed A twice, seed B once, seed A once more, with the benchmark's sampler. Tells whether the
     server honours `seed` (different seeds should differ at temperature>0) and whether it is reproducible here."""
@@ -247,8 +263,15 @@ def run(plan: Dict[str, Any]) -> Dict[str, Any]:
         _add(checks, f"lock:{bm.name}", state == "ok" or plan["smoke"], f"lock {state}" + (": " + "; ".join(problems) if problems else ""),
              "error", {"problems": problems})
 
+    revision = plan.get("system_revision") or {}
+    _add(checks, "system_revision", True,
+         (f"protocol {plan.get('protocol')} ({rb.protocol_label(plan.get('protocol'))}): {len(revision.get('effective') or {})} revision switches effective, all requested by "
+          f"{plan['model_config']}" if plan.get("protocol") else "frozen v3 protocol: no revision switches"), "info", revision)
+
     first_cfg = plan["first_cfg"]
-    expected = expected_server()
+    expected = expected_controller(first_cfg.model.name)
+    if expected.get("unpinned_controller"):
+        _add(checks, "controller_pinned", False, f"controller {first_cfg.model.name!r} has no pinned identity in expected_server.yaml")
     try:
         server = rb.server_info(first_cfg, sha_model=not plan.get("skip_model_hash"))
     except rb.BenchmarkError as exc:

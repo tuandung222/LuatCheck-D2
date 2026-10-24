@@ -39,11 +39,8 @@ LLM-judge estimates (success, behaviour, faithfulness) are not human labels. Ret
 | comparison | scope | tasks | d strict success | d behaviour match | d R@5 | d cit F1 | d error rate |
 |---|---|---|---|---|---|---|---|
 | L1 vs OFF | labour_vi_v1 | 50 | -0.0 [-6.7,+6.7] | -22.7 [-33.3,-12.0] | +5.2 [-0.7,+11.9] | -10.0 [-17.7,-2.6] | -0.7 [-2.0,+0.0] |
-| L1 vs OFF | pooled | 50 | -0.0 [-6.7,+6.7] | -22.7 [-33.3,-12.0] | +5.2 [-0.7,+11.9] | -10.0 [-17.7,-2.6] | -0.7 [-2.0,+0.0] |
 | L1+rerank vs L1 | labour_vi_v1 | 50 | +4.0 [-5.3,+13.3] | -2.0 [-12.7,+8.7] | +15.6 [+3.0,+28.9] | +3.1 [-6.5,+13.3] | +0.7 [+0.0,+2.0] |
-| L1+rerank vs L1 | pooled | 50 | +4.0 [-5.3,+13.3] | -2.0 [-12.7,+8.7] | +15.6 [+3.0,+28.9] | +3.1 [-6.5,+13.3] | +0.7 [+0.0,+2.0] |
 | L1+rerank vs OFF | labour_vi_v1 | 50 | +4.0 [-4.0,+12.0] | -24.7 [-36.0,-14.0] | +20.7 [+6.7,+35.2] | -6.9 [-19.9,+5.7] | +0.0 [-2.0,+2.0] |
-| L1+rerank vs OFF | pooled | 50 | +4.0 [-4.0,+12.0] | -24.7 [-36.0,-14.0] | +20.7 [+6.7,+35.2] | -6.9 [-19.9,+5.7] | +0.0 [-2.0,+2.0] |
 
 ## Diagnostic baselines (seed 42, no tools; NOT system variants; reference rows are the system variants on answerable tasks only)
 

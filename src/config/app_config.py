@@ -36,6 +36,10 @@ class ModelConfig(BaseModel):
     enable_thinking: Optional[bool] = Field(default=None, description="Chat-template thinking switch (llamacpp)")
     api_key_env: Optional[str] = Field(default=None, description="Environment variable holding the gateway credential")
     reasoning_effort: Optional[str] = Field(default=None, description="Gateway reasoning effort, when supported")
+    thought_max_chars: Optional[int] = Field(
+        default=None, ge=20,
+        description="r2 (F7): upper bound on the length of the `thought` string of an action. null (default) = unbounded, as in the frozen v3 runs. "
+                    "Set, it is added as maxLength to the action JSON schema (see src/agent/llm_client.py)")
 
 
 class BudgetsConfig(BaseModel):
@@ -133,6 +137,11 @@ class RetrievalConfig(BaseModel):
     dense_top_k: int = Field(default=5, ge=1, description="Accepted for compatibility; not read")
     rrf_k: int = Field(default=60, ge=1, description="Reciprocal Rank Fusion smoothing constant")
     final_top_k: int = Field(default=5, ge=1)
+    default_top_k: int = Field(default=3, ge=1, description="r2 (F2): top_k used when the model omits it (still capped by final_top_k). 3 = the frozen v3 behaviour")
+    first_search_anchor: Literal["none", "question_plus_query"] = Field(
+        default="none",
+        description="r2 (F1): 'none' = the first search uses the model's query (v3). 'question_plus_query' = the first search of a run uses the user's "
+                    "question followed by the words of the model's query that the question does not already contain")
     corpus_path: str = Field(default="data/corpus/labor_code_2019_official.json")
     dense_model_type: Literal["tfidf", "bm25", "bge-m3", "phobert", "all-minilm", "nomic-embed-text"] = Field(
         default="tfidf",
@@ -182,7 +191,17 @@ class VerifierConfig(BaseModel):
     `l2_use_slm: true`); aliases are listed in `src/verifier/modes.py`. `nli` is an independent optional step."""
     mode: str = Field(default="l1", description="Verification mode: 'off', 'l1', 'l1_l2' (or an alias, see src/verifier/modes.py)")
     similarity_threshold: float = Field(default=0.70, ge=0.0, le=1.0, description="Accepted for compatibility; not read by any verifier")
-    l1_overlap_threshold: float = Field(default=0.25, ge=0.0, le=1.0, description="Minimum L1 token overlap threshold")
+    l1_version: Literal["v1", "v2"] = Field(default="v1", description="L1 implementation (default v1 so every existing config keeps its meaning): 'v1' (original, whole-record bag of words; reproduces the frozen runs) or 'v2' (fair quote matching, claim-local quantities, sentence-level support, actionable feedback)")
+    l1_overlap_threshold: float = Field(default=0.25, ge=0.0, le=1.0, description="L1 v1 only: minimum token overlap with the whole cited text")
+    l1_support_threshold: float = Field(default=0.50, ge=0.0, le=1.0, description="L1 v2 only: minimum fraction of an answer sentence's content tokens found in its best single source window")
+    l1_sentence_support: Literal["block", "warn"] = Field(
+        default="block",
+        description="L1 v2 only. 'block' (default) = an answer sentence below l1_support_threshold rejects the answer. 'warn' = recorded as a warning in the "
+                    "ledger and the result, the answer is not rejected; quote and quantity failures still block. v1 ignores this key")
+    repair_feedback_style: Literal["v1", "verifier_report"] = Field(
+        default="v1",
+        description="r2 (F6): how a rejection reaches the model. 'v1' = the profile's repair_prompt as a user message (frozen v3 behaviour). "
+                    "'verifier_report' = a labelled [VERIFIER_REPORT] observation that offers fixing the flagged item and refuses only if the sources lack the answer")
     l2_entailment_threshold: float = Field(default=0.30, ge=0.0, le=1.0, description="Minimum L2 semantic entailment threshold")
     l2_use_slm: bool = Field(default=False, description="Enable native-model L2 entailment; no heuristic substitute")
     nli: NLIConfig = Field(default_factory=NLIConfig)
@@ -221,6 +240,30 @@ class SecurityConfig(BaseModel):
 class DomainConfig(BaseModel):
     profile: str = Field(default=DEFAULT_PROFILE_ID,
                          description="Domain profile id (config/domains/<id>.yaml) or path to a profile YAML: prompts, tool names, ID rules, guardrails, L1 units")
+    profile_variant: Literal["", "r2"] = Field(
+        default="",
+        description="r2 (F4, F6): '' = load `profile` as written. 'r2' = load the revised profile `<profile>_r2` (config/domains/<profile>_r2.yaml): "
+                    "refuse also when the retrieved text lacks the answer, clarify only for missing facts about the user's situation, query-writing guidance. "
+                    "Needs a profile id, not a path")
+
+
+class ToolsConfig(BaseModel):
+    """Wording of the tool observations the model reads."""
+    search_hints: bool = Field(
+        default=False,
+        description="r2 (F3): false = search observations as in v3. true = each search observation also states how many hits are truncated, "
+                    "advises reading before concluding, and shows `tool_calls_remaining`")
+
+
+class AgentConfig(BaseModel):
+    """Controller policy of one run (`src/agent/loop.py`)."""
+    require_search_before_answer: bool = Field(
+        default=False,
+        description="r2 (F5): true = an answer or clarify before the first search becomes an observation telling the model to search first "
+                    "(a step, not a tool call); refuse stays allowed. Inactive when the client cannot search (closed-book / oracle baselines)")
+    free_duplicate_notices: bool = Field(
+        default=False,
+        description="r2 (F8): true = duplicate_query / already_read notices do not consume a tool call (they still use a step)")
 
 
 class ModelsConfig(BaseModel):
@@ -236,6 +279,8 @@ class ModelsConfig(BaseModel):
 
 class AppConfig(BaseModel):
     domain: DomainConfig = Field(default_factory=DomainConfig)
+    agent: AgentConfig = Field(default_factory=AgentConfig)
+    tools: ToolsConfig = Field(default_factory=ToolsConfig)
     model: ModelConfig = Field(default_factory=ModelConfig)
     budgets: BudgetsConfig = Field(default_factory=BudgetsConfig)
     retrieval: RetrievalConfig = Field(default_factory=RetrievalConfig)

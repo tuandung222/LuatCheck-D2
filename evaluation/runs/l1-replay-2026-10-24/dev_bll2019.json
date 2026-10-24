@@ -1,0 +1,550 @@
+{
+  "set": "bll2019-main-v2 final answers with labels from deepseek-judge-main-v1 (strict success, see strict_success)",
+  "n_answers": 29,
+  "n_strictly_correct": 19,
+  "n_not_strictly_correct": 10,
+  "n_off": 15,
+  "n_l1_on": 14,
+  "caveat": "l1_on finals already passed v1 (selection); off finals are unselected. Small set from one 3B model; the threshold is a coarse a-priori choice, not a calibrated optimum.",
+  "selection_rule": "Chosen a priori, before any v3 label existed: the largest value of the grid {0.2, 0.3, 0.4, 0.5, 0.6} for which L1 v2 rejects no answer that the judge scored strictly correct on the bll2019 development set (a repair loop that rejects correct answers only wastes the controller's budget).",
+  "selected_threshold": 0.5,
+  "default_in_code": 0.5,
+  "v1_baseline": {
+    "all": {
+      "n": 29,
+      "pass_correct": 19,
+      "pass_incorrect": 6,
+      "reject_correct": 0,
+      "reject_incorrect": 4,
+      "precision_of_pass": 0.76,
+      "rejection_rate_of_incorrect": 0.4,
+      "rejection_rate_of_correct": 0.0
+    },
+    "off_only": {
+      "n": 15,
+      "pass_correct": 8,
+      "pass_incorrect": 3,
+      "reject_correct": 0,
+      "reject_incorrect": 4,
+      "precision_of_pass": 0.7272727272727273,
+      "rejection_rate_of_incorrect": 0.5714285714285714,
+      "rejection_rate_of_correct": 0.0
+    }
+  },
+  "v2_sweep": {
+    "0.2": {
+      "all": {
+        "n": 29,
+        "pass_correct": 19,
+        "pass_incorrect": 7,
+        "reject_correct": 0,
+        "reject_incorrect": 3,
+        "precision_of_pass": 0.7307692307692307,
+        "rejection_rate_of_incorrect": 0.3,
+        "rejection_rate_of_correct": 0.0
+      },
+      "off_only": {
+        "n": 15,
+        "pass_correct": 8,
+        "pass_incorrect": 4,
+        "reject_correct": 0,
+        "reject_incorrect": 3,
+        "precision_of_pass": 0.6666666666666666,
+        "rejection_rate_of_incorrect": 0.42857142857142855,
+        "rejection_rate_of_correct": 0.0
+      },
+      "reasons": {
+        "quote_mismatch": 2,
+        "claim_unsupported": 1,
+        "missing_citation": 1
+      }
+    },
+    "0.3": {
+      "all": {
+        "n": 29,
+        "pass_correct": 19,
+        "pass_incorrect": 7,
+        "reject_correct": 0,
+        "reject_incorrect": 3,
+        "precision_of_pass": 0.7307692307692307,
+        "rejection_rate_of_incorrect": 0.3,
+        "rejection_rate_of_correct": 0.0
+      },
+      "off_only": {
+        "n": 15,
+        "pass_correct": 8,
+        "pass_incorrect": 4,
+        "reject_correct": 0,
+        "reject_incorrect": 3,
+        "precision_of_pass": 0.6666666666666666,
+        "rejection_rate_of_incorrect": 0.42857142857142855,
+        "rejection_rate_of_correct": 0.0
+      },
+      "reasons": {
+        "quote_mismatch": 2,
+        "claim_unsupported": 1,
+        "missing_citation": 1
+      }
+    },
+    "0.4": {
+      "all": {
+        "n": 29,
+        "pass_correct": 19,
+        "pass_incorrect": 7,
+        "reject_correct": 0,
+        "reject_incorrect": 3,
+        "precision_of_pass": 0.7307692307692307,
+        "rejection_rate_of_incorrect": 0.3,
+        "rejection_rate_of_correct": 0.0
+      },
+      "off_only": {
+        "n": 15,
+        "pass_correct": 8,
+        "pass_incorrect": 4,
+        "reject_correct": 0,
+        "reject_incorrect": 3,
+        "precision_of_pass": 0.6666666666666666,
+        "rejection_rate_of_incorrect": 0.42857142857142855,
+        "rejection_rate_of_correct": 0.0
+      },
+      "reasons": {
+        "quote_mismatch": 2,
+        "claim_unsupported": 2,
+        "missing_citation": 1
+      }
+    },
+    "0.5": {
+      "all": {
+        "n": 29,
+        "pass_correct": 19,
+        "pass_incorrect": 6,
+        "reject_correct": 0,
+        "reject_incorrect": 4,
+        "precision_of_pass": 0.76,
+        "rejection_rate_of_incorrect": 0.4,
+        "rejection_rate_of_correct": 0.0
+      },
+      "off_only": {
+        "n": 15,
+        "pass_correct": 8,
+        "pass_incorrect": 3,
+        "reject_correct": 0,
+        "reject_incorrect": 4,
+        "precision_of_pass": 0.7272727272727273,
+        "rejection_rate_of_incorrect": 0.5714285714285714,
+        "rejection_rate_of_correct": 0.0
+      },
+      "reasons": {
+        "quote_mismatch": 2,
+        "claim_unsupported": 4,
+        "missing_citation": 1
+      }
+    },
+    "0.6": {
+      "all": {
+        "n": 29,
+        "pass_correct": 18,
+        "pass_incorrect": 5,
+        "reject_correct": 1,
+        "reject_incorrect": 5,
+        "precision_of_pass": 0.782608695652174,
+        "rejection_rate_of_incorrect": 0.5,
+        "rejection_rate_of_correct": 0.05263157894736842
+      },
+      "off_only": {
+        "n": 15,
+        "pass_correct": 8,
+        "pass_incorrect": 3,
+        "reject_correct": 0,
+        "reject_incorrect": 4,
+        "precision_of_pass": 0.7272727272727273,
+        "rejection_rate_of_incorrect": 0.5714285714285714,
+        "rejection_rate_of_correct": 0.0
+      },
+      "reasons": {
+        "claim_unsupported": 7,
+        "quote_mismatch": 2,
+        "missing_citation": 1
+      }
+    }
+  },
+  "per_answer": [
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "off",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 42,
+      "mode": "off",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "off",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 42,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 42,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "correct": false,
+      "judge_correctness": 1,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": false
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 42,
+      "mode": "off",
+      "correct": false,
+      "judge_correctness": 1,
+      "v1_pass": false,
+      "v2_pass@0.2": false,
+      "v2_pass@0.3": false,
+      "v2_pass@0.4": false,
+      "v2_pass@0.5": false,
+      "v2_pass@0.6": false
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "l1_on",
+      "correct": false,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 42,
+      "mode": "off",
+      "correct": false,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-09-DEPOSIT",
+      "seed": 42,
+      "mode": "off",
+      "correct": false,
+      "judge_correctness": 1,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": false,
+      "v2_pass@0.6": false
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 123,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 123,
+      "mode": "off",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 123,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": false
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 123,
+      "mode": "off",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 123,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 123,
+      "mode": "l1_on",
+      "correct": false,
+      "judge_correctness": 0,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 2026,
+      "mode": "off",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-01-PROBATION",
+      "seed": 2026,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 2026,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-02-PROBATION_WAGE",
+      "seed": 2026,
+      "mode": "off",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 2026,
+      "mode": "off",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-03-NOTICE",
+      "seed": 2026,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 2026,
+      "mode": "off",
+      "correct": false,
+      "judge_correctness": 1,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-05-PREGNANCY",
+      "seed": 2026,
+      "mode": "l1_on",
+      "correct": true,
+      "judge_correctness": 2,
+      "v1_pass": true,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-06-UNLAWFUL_RESIGNATION",
+      "seed": 2026,
+      "mode": "off",
+      "correct": false,
+      "judge_correctness": 0,
+      "v1_pass": false,
+      "v2_pass@0.2": false,
+      "v2_pass@0.3": false,
+      "v2_pass@0.4": false,
+      "v2_pass@0.5": false,
+      "v2_pass@0.6": false
+    },
+    {
+      "task_id": "BLL19-08-UNLAWFUL_TERMINATION",
+      "seed": 2026,
+      "mode": "off",
+      "correct": false,
+      "judge_correctness": 2,
+      "v1_pass": false,
+      "v2_pass@0.2": true,
+      "v2_pass@0.3": true,
+      "v2_pass@0.4": true,
+      "v2_pass@0.5": true,
+      "v2_pass@0.6": true
+    },
+    {
+      "task_id": "BLL19-10-FOREIGN_SCOPE",
+      "seed": 2026,
+      "mode": "off",
+      "correct": false,
+      "judge_correctness": 0,
+      "v1_pass": false,
+      "v2_pass@0.2": false,
+      "v2_pass@0.3": false,
+      "v2_pass@0.4": false,
+      "v2_pass@0.5": false,
+      "v2_pass@0.6": false
+    }
+  ]
+}

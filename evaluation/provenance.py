@@ -24,7 +24,9 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # 1.0.0  first D2 matrix harness (runner, judge, analysis, tables)
 # 1.1.0  strict-success rule for refusals (judge_rules), baselines (closed_book / oracle), reranker chunk policy wiring, provenance + registry
-HARNESS_VERSION = "1.1.2"
+# 1.2.0  protocol field (`r2-posthoc`) + recorded revision switches in the manifest and fingerprint, config/domains/** in the collection fingerprint,
+#        `pinned` registry state, v3-vs-r2 comparison tables, refusal source on trial rows. Runs of 1.1.x stay valid only as `pinned` (v3) or are stale.
+HARNESS_VERSION = "1.2.0"
 
 STAMP_FILE = REPO_ROOT / "PROVENANCE.json"
 # Paths whose uncommitted state invalidates a main run (everything that can change a trial or its scoring), relative to the repo root.
@@ -32,7 +34,7 @@ CLEAN_PATHS = ["src", "config", "evaluation", "data/corpus", "requirements.txt",
 # Web/Streamlit front ends: never imported by the harness, so UI work must not invalidate or stale a benchmark run.
 UI_ONLY_SOURCE_DIRS = ["src/api", "src/services", "src/ui"]
 CLEAN_EXCLUDES = ["evaluation/runs", "evaluation/benchmarks/qa", *UI_ONLY_SOURCE_DIRS]   # run outputs, QA scratch and UI are not harness code
-ENV_KEYS = ["RUN_ID", "RUN_PROFILE", "KIND", "CUDA_VISIBLE_DEVICES", "PRISM_PORT", "PRISM_DIR", "RERANKER_PORT", "RERANKER_MODEL_DIR",
+ENV_KEYS = ["RUN_ID", "RUN_PROFILE", "KIND", "MODEL_ALIAS", "MODEL_CONFIG", "MATRIX", "CUDA_VISIBLE_DEVICES", "PRISM_PORT", "PRISM_DIR", "RERANKER_PORT", "RERANKER_MODEL_DIR",
             "RERANKER_QUANT", "NP", "CTX_PER_SLOT", "MAC_CTX", "GGUF_PATH", "SKIP_JUDGE", "MAX_JUDGE_USD", "EXTRA", "KEEP_SERVERS"]
 
 

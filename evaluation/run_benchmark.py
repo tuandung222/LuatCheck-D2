@@ -59,6 +59,17 @@ MODEL_ENV_OVERRIDES = ("MODEL_ENDPOINT", "OLLAMA_ENDPOINT", "MODEL_NAME", "MODEL
 LOOPBACK = {"localhost", "127.0.0.1", "::1"}
 RETRYABLE_ERROR_KINDS = {"backend_error"}
 
+# Post-hoc revision "r2" (docs/reviews/v3_failure_analysis_2026-10-24.md): opt-in config switches. Every one defaults to the frozen v3
+# behaviour, so a model config that does not name them reproduces v3. A run that sets them is a different SYSTEM: it must say so
+# (--protocol r2-posthoc), the runner refuses a model-config key that the installed src/ would silently drop, and the effective
+# switches are recorded in the manifest and in the fingerprint (a resume can never mix two systems).
+R2_SWITCH_KEYS = (
+    "retrieval.first_search_anchor", "retrieval.default_top_k", "tools.search_hints", "domain.profile_variant",
+    "agent.require_search_before_answer", "verifier.repair_feedback_style", "model.thought_max_chars", "agent.free_duplicate_notices",
+    "verifier.l1_version", "verifier.l1_sentence_support")
+PROTOCOL_LABELS = {"r2-posthoc": "post-hoc revision evaluated on the same tasks"}
+NOT_SUPPORTED = "<not supported by the installed src/>"
+
 
 def discover_profiles() -> Dict[str, Path]:
     """name -> path of every run profile (config/benchmark/profile_*.yaml). Adding a file adds a profile."""
@@ -166,6 +177,54 @@ def deep_merge(base: Dict[str, Any], extra: Dict[str, Any]) -> Dict[str, Any]:
         else:
             base[key] = copy.deepcopy(value)
     return base
+
+
+def protocol_label(protocol: Optional[str]) -> Optional[str]:
+    """The sentence every table and RUN_NOTES prints next to the results of a non-pre-planned protocol (None for the frozen protocol)."""
+    return PROTOCOL_LABELS.get(protocol) if protocol else None
+
+
+def _dotted(source: Any, dotted: str, default: Any = None) -> Any:
+    """`a.b.c` from nested dicts or attribute objects (pydantic models); `default` when any step is missing."""
+    cur = source
+    for part in dotted.split("."):
+        if isinstance(cur, dict):
+            if part not in cur:
+                return default
+            cur = cur[part]
+        else:
+            if not hasattr(cur, part):
+                return default
+            cur = getattr(cur, part)
+    return cur
+
+
+def requested_switches(model_config: Path) -> Dict[str, Any]:
+    """The r2 switches the model-config YAML names (only those it names)."""
+    raw = yaml.safe_load(Path(model_config).read_text(encoding="utf-8")) or {}
+    marker = object()
+    return {k: v for k in R2_SWITCH_KEYS for v in [_dotted(raw, k, marker)] if v is not marker}
+
+
+def system_revision(model_config: Path, cfg, protocol: Optional[str]) -> Dict[str, Any]:
+    """What the manifest and the fingerprint say about the revision switches: requested in the YAML, resolved by the installed src/."""
+    requested = requested_switches(model_config)
+    effective = {k: _dotted(cfg, k, NOT_SUPPORTED) for k in R2_SWITCH_KEYS if k in requested or protocol}
+    return {"protocol": protocol, "protocol_label": protocol_label(protocol), "switch_keys": list(R2_SWITCH_KEYS),
+            "requested_in_model_config": requested, "effective": effective,
+            "note": "Keys not named by the model config run with the frozen v3 default of the installed src/ (see config/reference.yaml)."}
+
+
+def assert_model_config_honoured(model_config: Path) -> None:
+    """Every key of the controller model config must be a real field of the installed src/ configuration and must resolve to the written
+    value. AppConfig only WARNS about unknown keys and drops them; for a benchmark run that would silently turn a revised system into v3."""
+    from src.config.app_config import find_unknown_keys, load_config
+    raw = yaml.safe_load(Path(model_config).read_text(encoding="utf-8")) or {}
+    unknown = list(find_unknown_keys(raw))
+    if unknown:
+        raise ConfigError(f"{model_config}: config keys not supported by the installed src/ (they would be silently ignored): {', '.join(unknown)}")
+    cfg = load_config(str(model_config))
+    _assert_honoured(cfg, raw, path="")
 
 
 def record_id(record: Dict[str, Any]) -> str:
@@ -488,6 +547,7 @@ def build_variant_config(model_config: Path, bm: Benchmark, variant: str, varian
         data["model"]["endpoint"] = endpoint
     if not isinstance(data.get("domain"), dict):
         raise ConfigError("Installed src/ has no domain.profile config key.")
+    variant_before = data["domain"].get("profile_variant")   # a model config may pick a profile variant (r2); the benchmark owns only domain.profile
     data["domain"]["profile"] = bm.profile_ref
     data["retrieval"]["corpus_path"] = bm.corpus_path
     data["verifier"]["mode"] = variant_spec["verification_mode"]
@@ -508,6 +568,9 @@ def build_variant_config(model_config: Path, bm: Benchmark, variant: str, varian
     _assert_honoured(cfg, overrides, path="")
     if cfg.domain.profile != bm.profile_ref:
         raise ConfigError(f"domain.profile was not applied ({cfg.domain.profile!r} != {bm.profile_ref!r}).")
+    if getattr(cfg.domain, "profile_variant", None) != variant_before:
+        raise ConfigError(f"domain.profile_variant of the model config ({variant_before!r}) did not survive the benchmark profile "
+                          f"({getattr(cfg.domain, 'profile_variant', None)!r}).")
     if cfg.retrieval.corpus_path != bm.corpus_path:
         raise ConfigError("retrieval.corpus_path was not applied.")
     return cfg
@@ -722,6 +785,9 @@ def collection_paths(benchmarks: List[Benchmark], model_config: Path, run_profil
                 chosen[rel(p)] = p
     extra = [Path(f) for f in COLLECTION_EVALUATION_FILES] + [Path(f) for f in COLLECTION_CONFIG_FILES] + [
         Path("requirements.txt"), model_config, Path(run_profile["_path"])]
+    # Domain profiles, prompt/message packs and profile variants are read when an agent is built: they are part of the system (harness 1.2.0;
+    # the frozen v3 fingerprints predate this and are verified through the registry's `pinned` state instead).
+    extra += [p for p in Path("config/domains").glob("**/*.yaml") if p.is_file()]
     for bm in benchmarks:
         extra += [p for p in bm.directory.iterdir() if p.is_file() and p.stat().st_size < 8_000_000]
         extra += [Path(bm.corpus_path), bm.profile_path]
@@ -937,6 +1003,7 @@ def execute_trial(agent, bm_name: str, variant: str, verification_mode: str, tas
         "retrieval": calculate_retrieval_metrics(ledger.retrieved_article_ids, gold),
         "citation": calculate_citation_metrics(ids, gold),
         "lexical_unsupported_proxy": unsupported,
+        **({"refusal_source": getattr(ledger, "refusal_source")} if getattr(ledger, "refusal_source", None) else {}),
         "lexical_unsupported_proxy_note": "Lexical proxy from the agent's L1 verifier; not answer correctness.",
         "run_profile": run_profile, "latency_reportable": latency_reportable, "worker": worker,
         "trial_timeout_seconds": timeout_seconds,
@@ -1174,6 +1241,17 @@ def resolve_plan(args) -> Dict[str, Any]:
         if state != "ok" and args.limit is None:
             raise BenchmarkError("--allow-unfrozen is for --limit smoke runs only; a main run must match the benchmark lock.")
     model_config = Path(args.model_config)
+    assert_model_config_honoured(model_config)
+    protocol = getattr(args, "protocol", None)
+    if protocol is not None and protocol not in PROTOCOL_LABELS:
+        raise BenchmarkError(f"Unknown --protocol {protocol!r}; defined: {sorted(PROTOCOL_LABELS)} (omit it for the frozen protocol).")
+    named = requested_switches(model_config)
+    if protocol and set(named) != set(R2_SWITCH_KEYS):
+        raise BenchmarkError(f"--protocol {protocol} needs every revision switch in the model config; missing: "
+                             f"{sorted(set(R2_SWITCH_KEYS) - set(named))} ({model_config}).")
+    if named and not protocol:
+        raise BenchmarkError(f"{model_config} sets revision switches {sorted(named)} but no --protocol was given: a revised system must be "
+                             "tagged (--protocol r2-posthoc) so that tables and notes can label it.")
     effective_configs: Dict[str, Any] = {}
     first_cfg = None
     for bm in benchmarks:
@@ -1190,8 +1268,12 @@ def resolve_plan(args) -> Dict[str, Any]:
             raise BenchmarkError("workers: auto needs the server's /props total_slots, which it does not report.")
         workers = max(1, min(int(slots), int(profile.get("max_workers", 8))))
     workers = int(workers)
+    revision = system_revision(model_config, first_cfg, protocol)
+    unsupported = sorted(k for k, v in revision["effective"].items() if v == NOT_SUPPORTED)
+    if unsupported:
+        raise ConfigError(f"The installed src/ does not support the revision switches {unsupported}; refusing to run (no emulation).")
     return {"benchmarks": benchmarks, "variant_names": variant_names, "variants": variants, "baselines": baselines, "seeds": seeds, "profile": profile,
-            "workers": workers, "model_config": model_config, "endpoint": args.endpoint, "smoke": smoke,
+            "protocol": protocol, "system_revision": revision, "workers": workers, "model_config": model_config, "endpoint": args.endpoint, "smoke": smoke,
             "first_cfg": first_cfg, "effective_configs": effective_configs, "output": Path(args.output),
             "require_clean": getattr(args, "require_clean", False), "allow_build_drift": getattr(args, "allow_build_drift", False),
             "skip_model_hash": getattr(args, "skip_model_hash", False), "skip_canary": getattr(args, "skip_canary", False),
@@ -1220,6 +1302,8 @@ def build_fingerprint(plan: Dict[str, Any], preflight_report: Dict[str, Any], co
             "model_config_sha256": sha256_file(plan["model_config"]), "variants_sha256": sha256_file(VARIANTS_CONFIG),
             "benchmark_locks": {bm.name: (sha256_file(bm.lock_path) if bm.lock_path.is_file() else None) for bm in plan["benchmarks"]},
             "seeds": plan["seeds"], "variants": plan["variant_names"], "baselines": {n: s_ for n, s_ in plan["baselines"].items()},
+            "protocol": plan.get("protocol"),
+            "system_revision_effective": (plan.get("system_revision") or {}).get("effective") or None,
         },
         "may_differ": {
             "run_profile": plan["profile"]["name"], "workers": plan["workers"], "platform": platform.platform(),
@@ -1330,6 +1414,7 @@ def cmd_run(args) -> int:
         new_fp = build_fingerprint(plan, report, collection_sha)["must_match"]
         drifted = [k for k in ("controller_model_file_sha256", "llama_cpp_build", "chat_template_sha256", "request_sampling",
                                "controller_ftype") if old_fp.get(k) is not None and old_fp.get(k) != new_fp.get(k)]
+        drifted += [k for k in ("protocol", "system_revision_effective") if old_fp.get(k) != new_fp.get(k)]   # a different system or protocol is never resumed
         if drifted:
             raise BenchmarkError(f"The controller server changed since this run started ({', '.join(drifted)}); resuming would mix "
                                  "two different systems in one run. Start a new run directory.")
@@ -1363,6 +1448,8 @@ def cmd_run(args) -> int:
             "endpoint_override": args.endpoint, "effective_configs": plan["effective_configs"],
             "git": report["git"], "hardware": hardware_info(), "server": server, "preflight": report,
             "kind": run_kind, "harness_version": provenance.HARNESS_VERSION, "run_state": "running",
+            "protocol": plan["protocol"], "protocol_label": protocol_label(plan["protocol"]),
+            "system_revision": plan["system_revision"],
             "provenance": {"git": provenance.run_git_record(git_live, stamp), "host": provenance.host_record(),
                            "invocation": provenance.invocation_record(), "created_local": provenance.local_now(),
                            "config_sha256": {p: sha256_file(p) for p in (str(model_config), str(VARIANTS_CONFIG), str(EXPECTED_SERVER_CONFIG), profile["_path"],
@@ -1561,6 +1648,8 @@ def _selection_arguments(sub: argparse.ArgumentParser) -> None:
     sub.add_argument("--run-profile", default="mac-latency", help=f"one of {sorted(discover_profiles())} or the path of a profile YAML")
     sub.add_argument("--workers", help="positive integer or 'auto' (= the server's slots, capped by the profile's max_workers); default from the run profile")
     sub.add_argument("--model-config", default=str(DEFAULT_MODEL_CONFIG))
+    sub.add_argument("--protocol", choices=sorted(PROTOCOL_LABELS), help="tag a post-hoc revised system (config/benchmark/model_prism_gguf*_r2.yaml); required exactly when the "
+                     "model config sets the revision switches; the frozen v3 protocol has no tag")
     sub.add_argument("--endpoint", help="override model.endpoint (loopback only, e.g. a forwarded port)")
     sub.add_argument("--limit", type=int, help="smoke: N tasks per benchmark, round-robin over categories")
     sub.add_argument("--allow-unfrozen", action="store_true", help="smoke only: run without a matching lock (run is marked non-eligible)")

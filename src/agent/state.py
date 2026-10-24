@@ -40,6 +40,7 @@ class GroundingVerificationResult(BaseModel):
     unsupported_claims: List[str] = Field(default_factory=list, description="Claim sentences lacking source evidence")
     invalid_citations: List[str] = Field(default_factory=list, description="Non-existent or un-retrieved article identifiers")
     repair_feedback: Optional[str] = Field(default=None, description="Self-repair guidance fed back to the agent upon violation")
+    warnings: List[Dict[str, Any]] = Field(default_factory=list, description="Findings that did not reject the answer (verifier.l1_sentence_support: warn)")
 
 
 L1VerificationResult = GroundingVerificationResult
@@ -70,6 +71,8 @@ class CaseLedger(BaseModel):
     is_terminal: bool = False
     terminal_status: Optional[Literal["answered", "clarified", "refused", "error"]] = None
     final_output: Optional[Dict[str, Any]] = None
+    refusal_source: Optional[Literal["model", "repair_exhausted", "budget", "guardrail", "controller"]] = Field(
+        default=None, description="Who ended a refused run: the model's own refuse action, the repair budget, a tool/step budget, the input guardrails, or another controller rule")
     audit_events: List[Dict[str, Any]] = Field(default_factory=list)
     llm_calls: List[Dict[str, Any]] = Field(default_factory=list)
     deadline_monotonic: Optional[float] = Field(default=None, exclude=True)

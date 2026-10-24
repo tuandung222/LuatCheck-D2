@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-23T17:34:54+00:00",
+  "recorded_at": "2026-10-24T09:18:18+00:00",
   "backend_status": {
     "numpy": {
       "package": "numpy",
@@ -36,68 +36,68 @@
     }
   },
   "embedding_model": {
-    "load_seconds": 11.08,
+    "load_seconds": 5.31,
     "device": "mps",
-    "rss_before_load_mb": 106.1,
-    "memory_rss_plus_mps_after_load_mb": 2207.9,
+    "rss_before_load_mb": 773.5,
+    "memory_rss_plus_mps_after_load_mb": 2800.7,
     "native_max_seq_length": 8192,
     "configured_max_seq_length": 2048,
     "dimension": 1024,
     "model_revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568",
     "mps_allocated_after_close_mb": 0.0,
-    "memory_peak_seen_mb": 2479.0,
-    "memory_loaded_end_mb": 2378.7,
-    "rss_after_close_mb": 898.8,
-    "process_peak_rss_mb": 898.8
+    "memory_peak_seen_mb": 3414.6,
+    "memory_loaded_end_mb": 3270.0,
+    "rss_after_close_mb": 1188.6,
+    "process_peak_rss_mb": 1421.2
   },
   "build": {
-    "wall_seconds": 63.13,
+    "wall_seconds": 34.48,
     "records": 363,
     "chunks": 421,
-    "embed_seconds": 50.68,
-    "embed_texts_per_second": 8.31,
-    "keyword_build_seconds": 0.035,
+    "embed_seconds": 32.026,
+    "embed_texts_per_second": 13.15,
+    "keyword_build_seconds": 0.016,
     "keyword_size_bytes": 1249280,
     "stores": {
       "numpy": {
-        "write_seconds": 0.037,
+        "write_seconds": 0.009,
         "size_bytes": 2099881,
         "count": 421,
         "version": "2.5.4"
       },
       "faiss": {
-        "write_seconds": 0.013,
+        "write_seconds": 0.007,
         "size_bytes": 2113512,
         "count": 421,
         "version": "1.15.1"
       },
       "faiss_hnsw": {
-        "write_seconds": 0.069,
+        "write_seconds": 0.044,
         "size_bytes": 2227673,
         "count": 421,
         "version": "1.15.1"
       },
       "sqlite_vec": {
-        "write_seconds": 0.366,
+        "write_seconds": 0.045,
         "size_bytes": 4694016,
         "count": 421,
         "version": "0.1.9"
       },
       "lancedb": {
-        "write_seconds": 3.506,
-        "size_bytes": 1955518,
+        "write_seconds": 0.286,
+        "size_bytes": 1951357,
         "count": 421,
         "version": "0.40.0"
       },
       "qdrant": {
-        "write_seconds": 4.989,
+        "write_seconds": 0.382,
         "size_bytes": 5210705,
         "count": 421,
         "version": "1.20.0"
       },
       "chroma": {
-        "write_seconds": 0.92,
-        "size_bytes": 5929636,
+        "write_seconds": 0.289,
+        "size_bytes": 5933732,
         "count": 421,
         "version": "1.5.9"
       }
@@ -110,7 +110,7 @@
     "Dieu_24",
     "HCMUT_HVDT1260_Dieu_1_S5_3"
   ],
-  "query_embedding_ms_per_query": 97.4,
+  "query_embedding_ms_per_query": 23.7,
   "exact_backends_compared": [
     "numpy",
     "sqlite_vec",
@@ -119,28 +119,28 @@
   ],
   "query_latency_ms_top10": {
     "numpy": {
-      "median": 0.042,
-      "max": 0.099,
+      "median": 0.038,
+      "max": 0.058,
       "n_queries": 8
     },
     "sqlite_vec": {
-      "median": 1.574,
-      "max": 5.53,
+      "median": 1.056,
+      "max": 1.404,
       "n_queries": 8
     },
     "lancedb": {
-      "median": 3.059,
-      "max": 61.705,
+      "median": 2.607,
+      "max": 22.717,
       "n_queries": 8
     },
     "qdrant": {
-      "median": 0.775,
-      "max": 32.006,
+      "median": 0.701,
+      "max": 2.155,
       "n_queries": 8
     },
     "chroma": {
-      "median": 1.771,
-      "max": 6.569,
+      "median": 1.538,
+      "max": 2.853,
       "n_queries": 8
     }
   },
@@ -149,8 +149,8 @@
   },
   "faiss_isolated_process": {
     "latency_ms_median_top10": {
-      "faiss": 0.107,
-      "faiss_hnsw": 0.133
+      "faiss": 0.106,
+      "faiss_hnsw": 0.159
     },
     "hnsw_recall_at_10_vs_flat": 1.0,
     "n_queries": 8
@@ -307,8 +307,8 @@
     }
   },
   "hybrid_search_ms_incl_query_embedding": {
-    "median": 43.0,
-    "max": 48.9,
+    "median": 45.9,
+    "max": 47.8,
     "n_queries": 8
   }
 }

@@ -92,15 +92,15 @@
 \renewcommand{\footrulewidth}{0.3pt}
 
 \captionsetup{font=small,labelfont=bf,aboveskip=4pt,belowskip=2pt}
-\setlength{\floatsep}{8pt plus 2pt minus 2pt}
-\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
-\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{5pt plus 1pt minus 1pt}
+\setlength{\textfloatsep}{5pt plus 1pt minus 1pt}
+\setlength{\intextsep}{5pt plus 1pt minus 1pt}
 
 % ---------------------------------------------------------------------
 % Macros
 % ---------------------------------------------------------------------
 % Run-in paragraph heading.
-\newcommand{\hdr}[1]{\par\smallskip\noindent\textbf{#1}}
+\newcommand{\hdr}[1]{\par\vspace{1.5pt}\noindent\textbf{#1}}
 % Red placeholders: every missing result, input or decision uses one of these two macros
 % (the generated tables use the identical red bold [PENDING] marker).
 \newcommand{\pending}[1]{\textcolor{red}{\textbf{[PENDING: #1]}}}
@@ -118,6 +118,11 @@
 % \inputhere: input a generated table file but place its floats where they appear (the renderer emits [t]).
 \makeatletter
 \newcommand{\inputhere}[1]{\begingroup\renewcommand\table[1][]{\@float{table}[!htb]}\input{#1}\endgroup}
+% \inputrun{suffix}{file}: like \inputhere for a generated table file of ONE run, but every \label inside gets "-suffix" appended,
+% so the same generated labels from the two benchmark runs (hcmut, labour) do not collide; captions are set smaller to save space.
+\newcommand{\inputrun}[2]{\begingroup\let\lc@origlabel\label\renewcommand\label[1]{\lc@origlabel{##1-#1}}%
+  \captionsetup{font=scriptsize,labelfont=bf,aboveskip=2pt,belowskip=0pt}%
+  \renewcommand\table[1][]{\@float{table}[!htb]}\input{#2}\endgroup}
 \makeatother
 
 \begin{document}
@@ -131,7 +136,7 @@
 {\Huge\bfseries D2 Interim Report}\\[12pt]
 {\Large LuatCheck: A Local, Source-Grounded Assistant\\ over Vietnamese Regulations}\\[12pt]
 Application Track -- Group 8\\[15pt]
-\pending{Draft of 23 October 2026. All result tables stay empty until the main runs, the judge audit and the team's inputs exist.}\\[15pt]
+\pending{Draft of 24 October 2026. Result tables are generated from the two frozen v3 runs; the human audit of the judge, the post-hoc revision r2 and the team's inputs are still pending.}\\[15pt]
 \begin{tabular}{ll}
 Instructor & TS. Lê Xuân Bách\\
 Members & Lê Trí Quyền (2470740)\\
@@ -141,7 +146,7 @@ Members & Lê Trí Quyền (2470740)\\
 \textbf{Repository:} \url{https://github.com/tuandung222/LuatCheck-D2}\\[8pt]
 \textbf{Reported revision:} \pending{Insert the full final commit hash after freezing the source.}\\[8pt]
 \textbf{Access:} \pending{Confirm the instructor can read the repository.}\\[8pt]
-\textbf{Status:} At risk (provisional). The benchmark design is frozen and the pipeline is in place; main-run results, the human audit of the judge and the demo rehearsal are outstanding.
+\textbf{Status:} At risk (provisional). The benchmark design is frozen, the pipeline is in place and the v3 main runs exist (Section~\ref{sec:eval}); strict success is low for every variant, and the human audit of the judge, the post-hoc revision r2 and the demo rehearsal are outstanding.
 \vfill HO CHI MINH CITY, OCTOBER 2026
 \end{center}\end{titlepage}
 \hypersetup{pageanchor=true}\setcounter{page}{1}
@@ -150,8 +155,9 @@ Members & Lê Trí Quyền (2470740)\\
 \fbox{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{\small
 \textbf{Summary.} LuatCheck is a local agent that answers only from a document collection, cites the sections it used, checks those citations in code, and refuses or asks a clarifying question when the sources do not answer. One bounded agent loop drives a 2B ternary controller that fits a 16\,GiB Mac.\par\smallskip
 \textbf{Implemented:} the loop, a read-only tool layer with gated writes, lexical citation checking (L1) with bounded repair, an optional cross-encoder reranker, two ingested corpora (academic regulations of the Ho Chi Minh City University of Technology, HCMUT, and Vietnamese labour-law texts) and a one-command, hash-locked benchmark pipeline (Sections~\ref{sec:arch}--\ref{sec:memory}).\par\smallskip
-\textbf{Evaluation design, frozen but not yet run:} two 50-task benchmarks $\times$ three variants (OFF: no verification; L1: lexical verification with repair; L1+rerank: L1 plus reranker) $\times$ three seeds, plus two diagnostic baselines (closed-book and oracle, one seed, not system variants), scored by a large language model (LLM) judge whose reliability is to be checked against human labels (Section~\ref{sec:eval}).\par\smallskip
-\textbf{Pending, in red throughout:} the results of the planned 1,090 trials (900 system plus 190 baseline), the judge audit, member contribution evidence, the commit hash and the demo rehearsal. Self-assessment: \textbf{at risk} (Section~\ref{sec:plan}).}}
+\textbf{Evaluation (frozen design, v3 runs collected and judged):} two 50-task benchmarks $\times$ three variants (OFF: no verification; L1: lexical verification with repair; L1+rerank: L1 plus reranker) $\times$ three seeds, plus two diagnostic baselines (closed-book and oracle, one seed, not system variants), scored by a large language model (LLM) judge whose reliability is to be checked against human labels (Section~\ref{sec:eval}).\par\smallskip
+\textbf{Main result (Bonsai 2B, LLM-judge lower bounds):} strict success is 12.0--18.7\% for every variant on both benchmarks; L1 and the reranker change it by no detectable amount, L1 lowers the judge-free behaviour match by 20.7 and 22.7\,pp, and the oracle with gold evidence reaches only 28.9\% and 44.4\%.\par\smallskip
+\textbf{Pending, in red throughout:} the judge audit, the post-hoc revision r2 (not yet run), member contribution evidence, the commit hash and the demo rehearsal. Self-assessment: \textbf{at risk} (Section~\ref{sec:plan}).}}
 \end{center}
 
 \section{Changes from the Proposal}\label{sec:changes}
@@ -166,7 +172,7 @@ Members & Lê Trí Quyền (2470740)\\
 Budgeted loop, schema output, L1 citation check & Done & Runs end to end (Section~\ref{sec:arch}); budgets and failure semantics unchanged.\\
 Qwen3-4B/8B controllers; 32B comparator & Dropped & The controller is Ternary Bonsai 2 2B (GGUF). It fits a 16\,GiB Mac and one GPU slot, so the same weights serve the benchmark and the demo. A 20-trial diagnostic on the earlier task set ran about $2\times$ faster than the MLX build (\code{gguf2b-bonsai-diag-v1}).\\
 BM25 + Qdrant dense retrieval; 200 held-out VLQA pairs & Dropped & Replaced by BM25 + TF-IDF fused by reciprocal rank fusion (RRF). The persisted vector index exists but is not used in D2 runs. The VLQA record mapping could not be established, so retrieval is measured as source-ID metrics on the new benchmarks.\\
-$\ge$10 end-to-end tasks; 3 configurations $\times$ 3 seeds & In progress & Two frozen 50-task benchmarks, variants OFF / L1 / L1+rerank, seeds 42, 123 and 2026 (900 planned system trials per machine run), plus 190 planned diagnostic-baseline trials. Collection pending: \tbd.\\
+$\ge$10 end-to-end tasks; 3 configurations $\times$ 3 seeds & Done & Two frozen 50-task benchmarks, variants OFF / L1 / L1+rerank, seeds 42, 123 and 2026 (900 system trials), plus 190 diagnostic-baseline trials; collected and judged as two runs of 545 trials (Section~\ref{sec:eval}).\\
 Reranker (optional in D1) & In progress & Implemented and wired as variant L1+rerank; parity of its two runtimes pending (Section~\ref{sec:memory}).\\
 L2 entailment with natural language inference (NLI), optional & In progress & Implemented as optional components; excluded from all D2 runs.\\
 Guarded \code{send_summary}, UI, audit log & Done & Changed: the model can only propose; a trusted UI approves an exact payload; reversible local outbox, no sender.\\
@@ -184,7 +190,7 @@ HR walkthrough (W5) & Not started & Reported by the group on 22 October. \pendin
 \begin{table}[!htb]\tabstyle
 \begin{tabularx}{\textwidth}{@{}L{2.5cm}L{5.7cm}Y@{}}
 \toprule Component & Choice & Runtime and role\\\midrule
-Controller & Ternary Bonsai 2 2B, GGUF, PQ2\_0 quantisation (\code{prism-ml/Ternary-Bonsai-2-2B-gguf}; file SHA-256 \code{d5f01a4e}\ldots) & PrismML fork of \code{llama.cpp}, commit \code{73bfe6c}; Metal on the Mac, CUDA on server 82 (\pending{result of the PQ2\_0-on-CUDA gate}). Used for every reported number and for the live demo.\\
+Controller & Ternary Bonsai 2 2B, GGUF, PQ2\_0 quantisation (\code{prism-ml/Ternary-Bonsai-2-2B-gguf}; file SHA-256 \code{d5f01a4e}\ldots) & PrismML fork of \code{llama.cpp}, commit \code{73bfe6c}; Metal on the Mac, CUDA on server 82 (build \code{b10787-73bfe6cc4}; the PQ2\_0 file ran on CUDA in both v3 runs). Used for every reported number and for the live demo.\\
 Reranker & \code{AITeamVN/Vietnamese_Reranker}, cross-encoder, revision \code{f5369762} (weights SHA-256 \code{1cecccab}\ldots) & Variant L1+rerank only: torch fp16 on server 82, a GGUF conversion on the Mac.\\
 First-stage retrieval & BM25 + TF-IDF fused by RRF; no neural embeddings & In memory; all variants.\\
 Judge & DeepSeek V4.1 Flash & Through an API gateway; offline evaluation only.\\
@@ -264,16 +270,16 @@ A later AI audit (\code{docs/reviews/benchmark_quality_2026-10-23.md}) found no 
 \item \textbf{B3.} 22 HCMUT questions pin a document by a decision number taken from a web listing.
 \end{itemize}
 
-\hdr{Design and machines.} Two benchmarks $\times$ three variants $\times$ three seeds $\times$ 50 tasks give 900 planned system trials per run; the two diagnostic baselines below add 190 planned trials, so the planned matrix is 1,090 trials per machine profile (plan figures, not recorded counts). The same model file, \code{llama.cpp} commit, prompts and budgets are required on both machines; preflight enforces this against \code{config/benchmark/expected_server.yaml}.
+\hdr{Design and machines.} Two benchmarks $\times$ three variants $\times$ three seeds $\times$ 50 tasks give 900 system trials; the two diagnostic baselines below add 190, so the matrix is 1,090 trials, collected as two runs (one per benchmark) of 545 trials each, all recorded. The same model file, \code{llama.cpp} commit, prompts and budgets are required on both machines; preflight enforces this against \code{config/benchmark/expected_server.yaml}.
 \begin{itemize}
-\item \textbf{Accuracy:} server 82 (shared; one H100, 8 parallel slots, CUDA build of the same commit; GPU model and driver \pending{from the manifest}). Latency measured there is not reported.
+\item \textbf{Accuracy:} server 82 (shared; one NVIDIA H100 PCIe per run, driver 575.57.08, 16 parallel slots, CUDA build of the same commit; from the run manifests). Latency measured there is not reported.
 \item \textbf{Latency and memory:} Apple M4, 10 cores, 16\,GiB, Metal, strictly sequential after warm-up, planned for seed 42 only (300 trials).
 \end{itemize}
 Seeds average out the controller's sampling variance (temperature 0.7) but add no tasks, so confidence intervals are taken over tasks. With 50 tasks per benchmark, paired differences below about 10 percentage points (pp) are not detectable.
 
-\hdr{Diagnostic baselines (not system variants).} Two extra cells run in the same run with the same Bonsai file, sampler, domain prompt and constrained decoding, verification off (L1 not applied), seed 42 only, and the same judge. A disclosed prompt addendum says there are no tools and only answer, clarify or refuse are allowed. \emph{Closed-book:} the question only, no tools and no documents, all 50 tasks per benchmark (100 planned trials); it isolates the parametric-knowledge share of the score (and over-refusal or unsafe answers without evidence). \emph{Oracle:} the full text of the gold records is given up front in the user turn in the read-tool observation format, with no search, on the 45 answerable tasks per benchmark (90 planned trials; refusal tasks have no gold context and are excluded); it isolates the reading and reasoning ceiling of the 2B controller under perfect retrieval, without tool-use burden. Both are separate cells, reported only in Table~\ref{tab:benchmark-baselines} beside the system variants restricted to answerable tasks (reference rows), and never pooled with the variants or used in the paired differences. They are not the stronger-model closed-book probes behind B2.
+\hdr{Diagnostic baselines (not system variants).} Two extra cells use the same Bonsai file, sampler, domain prompt, constrained decoding and judge, verification off, seed 42 only, with a disclosed prompt addendum (no tools; only answer, clarify or refuse). \emph{Closed-book:} the question only, no tools and no documents, all 50 tasks per benchmark (100 planned trials); it isolates the parametric-knowledge share of the score. \emph{Oracle:} the full text of the gold records is given up front in the user turn in the read-tool observation format, with no search, on the 45 answerable tasks per benchmark (90 planned trials; refusal tasks have no gold context and are excluded); it isolates the reading ceiling of the 2B controller under perfect retrieval. Both are separate cells, reported only in Tables~\ref{tab:benchmark-baselines-hcmut} and~\ref{tab:benchmark-baselines-labour} beside the system variants restricted to answerable tasks (reference rows), and never pooled with the variants or used in the paired differences (they are not the closed-book probes behind B2).
 
-\emph{Error split (answerable tasks).} Let $S$ be a system variant's strict success and $O$ the oracle's: $O-S$ is what retrieval, tool use and verification cost relative to perfect evidence, while the closed-book rate is the parametric floor. Within a variant, answerable trials are split by whether the agent surfaced all gold ids: a failure after all gold surfaced is a reading or tool-use failure, a failure with gold missed is a retrieval failure. Caveats: one seed (intervals over tasks only); the baselines use the addendum prompt, so $O-S$ mixes evidence access with that difference; all values are LLM-judge estimates. \pending{The gold-surfaced split is computed in the analysis summary (\code{answerable_by_gold_surfaced}) but has no table yet; report it from the run or drop this sentence.}
+\emph{Error split (answerable tasks).} With $S$ a variant's strict success and $O$ the oracle's, $O-S$ is what retrieval, tool use and verification cost relative to gold evidence, and the closed-book rate is the parametric floor. Caveats: the baselines have one seed and use the addendum prompt, so $O-S$ mixes evidence access with that difference; all values are LLM-judge estimates. The split of failures by whether all gold ids surfaced (\code{answerable_by_gold_surfaced}) is computed in the analysis summary but not tabulated, so it is not reported.
 
 \hdr{Metrics.} Table~\ref{tab:metrics} defines the metrics.
 \begin{table}[!htb]\tabstyle
@@ -283,7 +289,7 @@ Seeds average out the controller's sampling variance (temperature 0.7) but add n
 Strict success (LLM-judge estimate) & A trial succeeds only if the run completes, the judgment is valid, behaviour is appropriate, correctness and completeness are both 2/2 and every factual claim is supported (for refusals, absence statements are not claims; a contradicted claim still fails). An execution error counts as failure; an invalid judgment is unknown and also counts as failure. Reported over \emph{all planned} trials, so it is a lower bound, with a 95\% bootstrap interval over tasks (seeds averaged per task).\\
 Behaviour confusion (no judge) & Expected behaviour (answer or refuse) against terminal status (answered, refused, clarified, error): over-refusal, unsafe-answer rate, refusal precision and recall, strict match (errors count as mismatches).\\
 Faithfulness & Supported claims over all judged claims (support judged against gold and cited records).\\
-Retrieval (ID proxy) & Recall@5, MRR and nDCG@5 over the agent's trace (distinct ids in order of first appearance, searches then reads), on answerable trials. Near ceiling by B1.\\
+Retrieval (ID proxy) & Recall@5, MRR and nDCG@5 over the agent's trace (distinct ids in order of first appearance, searches then reads), on answerable trials. Plain BM25 on the raw question is near ceiling by B1; the agent's own trace is lower (see Results).\\
 Citation P/R/F1 (ID proxy) & Cited ids against gold ids; nothing cited counts as 0 (macro average). Says nothing about answer correctness.\\
 Errors, latency, tokens & Error rate with Wilson interval by kind; trial and per-call p50/p95 (non-error trials, Mac only); controller tokens from server usage; judge cost as reported by the gateway (not an invoice). Local controller cost is not an API cost, and GPU-active hours are not measured, only wall time and hardware.\\
 Paired difference & Treatment minus baseline per task; paired bootstrap, 5,000 draws, no multiplicity correction.\\
@@ -293,29 +299,39 @@ Paired difference & Treatment minus baseline per task; paired bootstrap, 5,000 d
 
 \hdr{Judge and its reliability.} DeepSeek V4.1 Flash judges each output through the gateway, blind to the variant and the verifier outcome (thinking on, high effort, JSON validated, up to three attempts plus extra rounds for invalid ones). We claim no seed or temperature, and the model revision behind the route is not pinned~\citep{deepseek2026api}. The gateway sees only benchmark questions, candidate answers and gold sources, never user data. LLM judges can be biased~\citep{zheng2023judge}, so we check this one against human labels. On Saturday 24 October the group labels a stratified blind sample of about 30 items per benchmark with the same claim-counting rule, and \cmd{make audit-score} computes agreement and Cohen's $\kappa$ against the judge's strict-success label. \pending{Human audit not yet performed; agreement and $\kappa$ unavailable.} Separating answer correctness from citation support follows~\citet{gao2023alce}.
 
-\hdr{Results.} Results will be reported per benchmark and variant in eight tables: strict success with retrieval and citation proxies (Table~\ref{tab:benchmark-main}), operations and judge cost (Table~\ref{tab:benchmark-ops}), paired differences (Table~\ref{tab:benchmark-paired}), the diagnostic baselines (Table~\ref{tab:benchmark-baselines}), behaviour without a judge (Table~\ref{tab:benchmark-behaviour}), closed-book strata (Table~\ref{tab:benchmark-strata}), Mac latency (Table~\ref{tab:benchmark-latency}) and errors (Table~\ref{tab:errors}). Every cell stays a red placeholder until the main runs exist.
+\hdr{Results (v3, Bonsai 2B).} Both benchmarks were collected in full and judged (545 of 545 trials per run: 450 system, 50 closed-book, 45 oracle). HCMUT is run \code{d2-gpu-main-hcmut-v3} and labour is run \code{d2-gpu-main-labour-v3} (commit 957579b without tracked changes, harness 1.1.2, one H100 PCIe each, 16 parallel slots). Each table below is rendered from one run by \code{render_benchmark_tables.py} and names it in its source line; nothing is pooled across benchmarks (in the paired tables the ``pooled'' rows repeat the benchmark rows, because a run holds one benchmark). Success, behaviour-appropriateness and faithfulness are LLM-judge estimates, not human labels (audit pending); strict success is a lower bound over all planned trials, with 95\% intervals over tasks. The Mac latency run has not been done (Table~\ref{tab:benchmark-latency} stays red).
 
-\IfFileExists{benchmark_results.tex}{\inputhere{benchmark_results.tex}}{\inputhere{benchmark_results_skeleton.tex}}
-\IfFileExists{benchmark_diagnostics.tex}{\inputhere{benchmark_diagnostics.tex}}{\inputhere{benchmark_diagnostics_skeleton.tex}}
+\hdr{Headline.} Strict success is low for every variant (Tables~\ref{tab:benchmark-main-hcmut} and~\ref{tab:benchmark-main-labour}). On HCMUT it is 18.0\% [11--26] for OFF, 12.0\% [7--18] for L1 and 14.0\% [8--21] for L1+rerank; on labour it is 14.7\% [7--23], 14.7\% [7--23] and 18.7\% [11--27]. Intervals overlap within each benchmark. Trace Recall@5 is 0.674, 0.659 and 0.756 on HCMUT and 0.607, 0.659 and 0.815 on labour,, below the near-ceiling of BM25 on the raw question (Recall@5 0.99 in an offline probe; B1).
+
+\hdr{Paired comparisons} (Tables~\ref{tab:benchmark-paired-hcmut} and~\ref{tab:benchmark-paired-labour}; 50 tasks, no multiplicity correction). L1 against OFF changes strict success by $-6.0$\,pp [$-13.3$, $+0.7$] on HCMUT and 0.0\,pp [$-6.7$, $+6.7$] on labour, so no detectable change; the judge-free behaviour match falls by 20.7\,pp [$-30.7$, $-10.7$] and 22.7\,pp [$-33.3$, $-12.0$], and the cited-id F1 (a source-ID proxy) by 15.2 and 10.0\,pp, with intervals that exclude zero. L1+rerank against L1 raises Recall@5 by 9.6\,pp [$-0.7$, $+20.7$] on HCMUT and by 15.6\,pp [$+3.0$, $+28.9$] on labour, but the strict-success differences ($+2.0$ [$-5.3$, $+9.3$] and $+4.0$ [$-5.3$, $+13.3$]) are not significant. So the reranker improves what the agent retrieves on labour (a retrieval proxy) without a measurable gain in judged success.
+
+\hdr{Answer, refuse, clarify.} Of 150 trials per variant, answered/refused/clarified counts are, on HCMUT, 66/25/59 for OFF, 33/59/58 for L1 and 38/55/55 plus 2 errors for L1+rerank; on labour 91/9/49 plus 1 error, 52/45/53 and 49/56/44 plus 1 error (Tables~\ref{tab:benchmark-ops-hcmut} and~\ref{tab:benchmark-ops-labour}). Over-refusal (refused or clarified when an answer exists) rises from 53.3\% for OFF to 77.0\% for L1 and 72.2\% for L1+rerank on HCMUT, and from 34.3\% to 62.2\% and 63.4\% on labour (Tables~\ref{tab:benchmark-behaviour-hcmut} and~\ref{tab:benchmark-behaviour-labour}). No task expects a clarification, so every clarify on an answerable task is a miss. Unsafe answers on the 15 out-of-scope trials per variant: 20.0\%, 13.3\%, 6.7\% (HCMUT) and 20.0\%, 6.7\%, 0.0\% (labour), from a very small base.
+
+\hdr{Baselines} (Tables~\ref{tab:benchmark-baselines-hcmut} and~\ref{tab:benchmark-baselines-labour}; seed 42, not variants). Closed-book strict success is 6.0\% on HCMUT (0.0\% on the 45 answerable tasks: its three successes are refusal tasks) and 14.0\% [6--24] on labour (13.3\% [4--24] on answerable tasks). The oracle, which sees the gold records and needs no retrieval, reaches only 28.9\% [16--42] on HCMUT and 44.4\% [31--58] on labour, although it answers 84.4\% of the answerable tasks: the 2B controller fails the strict criterion on most items even with gold evidence. The oracle is above every variant's answerable-only rate (OFF, L1, L1+rerank: 17.8\%, 10.4\%, 14.1\% on HCMUT; 14.1\%, 11.9\%, 16.3\% on labour), clearly on labour but not clearly on HCMUT (OFF [10--26]). On labour the closed-book interval overlaps every variant's, so there is no evidence that retrieval raised judged success over parametric knowledge.
+
+\hdr{Execution errors.} Five of the 1,090 trials ended in \code{model_output_error} (invalid or truncated action); there were no timeouts or backend errors. HCMUT L1+rerank had 2 of 150 (1.3\%, Wilson 95\% [0.4, 4.7]); labour OFF and L1+rerank 1 of 150 each (0.7\%, [0.1, 3.7]); labour oracle 1 of 45. They count as failures, never as refusals.
+
+\hdr{Failure analysis (diagnostics, not measured effects).} Computed offline from the recorded ledgers (probes \code{v3_failure_analysis.py} and \code{l1_replay.py} in \code{evaluation/probes}; write-up in \code{docs/reviews}) with lexical proxies and benchmark reference quotes; associations, not tested interventions, and not for tuning on these benchmarks.
+\begin{itemize}
+\item \textbf{Clarify is a missing-evidence exit.} OFF clarifies 50 of 135 answerable HCMUT trials (37\%) and 40 of 135 labour trials (30\%), and 9 of 15 out-of-scope trials (60\%) on both; the oracle clarifies 7 and 6 of 45. On single-evidence tasks OFF clarifies in 17\% (HCMUT) and 13\% (labour) of trials when the reference evidence was in the model's view, against 58\% and 45\% when the gold record was not retrieved. A keyword heuristic labels 86 of 90 OFF clarifications on answerable tasks as asking for more document detail and one as asking for a situational fact.
+\item \textbf{Model-written queries retrieve worse than the question.} For the first search of answerable OFF and L1 trials (n = 245 HCMUT, 267 labour), Recall@3 is 0.73 and 0.63 for the model's query against 0.97 and 0.98 for BM25 on the raw question.
+\item \textbf{Repair feedback leads to refusals.} After a verifier repair message the controller refuses in 61 of 109 cases (56\%) on HCMUT and 68 of 128 (53\%) on labour; only 10 of 90 and 8 of 106 trials with a repair end answered.
+\item \textbf{Quote mismatch dominates L1 rejections.} 172 of the 237 repair events (both benchmarks, L1 and L1+rerank) failed on the exact quote alone. The replay of the unchanged verifier reproduces all 429 recorded drafts. Snippets join clauses with ``[...]'', which quotes can elide; how much of the mismatch this explains is not isolated.
+\end{itemize}
+
+\hdr{Reading the results.} (i) The L1 variants lower the judge-free behaviour match and raise refusals and clarifications, with no measurable gain in judged success. (ii) Success on closed-book-guessable tasks reflects parametric knowledge as much as grounding (Tables~\ref{tab:benchmark-strata-hcmut} and~\ref{tab:benchmark-strata-labour}). (iii) Differences under about 10\,pp are within noise at 50 tasks, and all success figures are LLM estimates until the audit is done.
+
+\hdr{Post-hoc revision r2 (in progress).} The diagnostics above were read after the v3 results, so any change they motivate is a post-hoc revision evaluated on the same 100 tasks: exploratory, with v3 staying the pre-planned result (\code{docs/plans/D2_REVISION_L1_BONSAI4B.md}). Revision r2 targets the failure modes above: an L1 verifier v2 that accepts elided and wrapped quotes, checks quantities against the sentence and not the whole record, and returns feedback that shows the closest source span (its support threshold, 0.5, was chosen a priori on the 29 answers of the historical \code{bll2019} development set, not on these benchmarks, and is a coarse operating point); and controller-side fixes for the first-search query, the clarify and refuse contract, repair framing and observation cues, to be fixed when r2 is frozen. In an offline replay of the recorded drafts, v2 would have accepted 42 of the 237 repaired drafts and would also have rejected 74 of the 172 that v1 accepted (\code{evaluation/runs/l1-replay-2026-10-24}); lexical proxies, not correctness. r2 will run with Bonsai 2B (isolates the system change) and Bonsai 4B (isolates model size). \pending{r2 results for Bonsai 2B and 4B on both benchmarks (run ids, strict success, paired differences against v3); no r2 run exists yet.}
+
+\IfFileExists{tables_hcmut_v3/benchmark_results.tex}{\inputrun{hcmut}{tables_hcmut_v3/benchmark_results.tex}}{\pending{HCMUT result tables missing}}
+\IfFileExists{tables_labour_v3/benchmark_results.tex}{\inputrun{labour}{tables_labour_v3/benchmark_results.tex}}{\pending{Labour result tables missing}}
+\IfFileExists{tables_hcmut_v3/benchmark_diagnostics.tex}{\inputrun{hcmut}{tables_hcmut_v3/benchmark_diagnostics.tex}}{\pending{HCMUT behaviour tables missing}}
+\IfFileExists{tables_labour_v3/benchmark_diagnostics.tex}{\inputrun{labour}{tables_labour_v3/benchmark_diagnostics.tex}}{\pending{Labour behaviour tables missing}}
 \IfFileExists{benchmark_latency_mac.tex}{\inputhere{benchmark_latency_mac.tex}}{\inputhere{benchmark_latency_skeleton.tex}}
 
-\begin{table}[!htb]\tabstyle
-% PROVENANCE: n/a placeholder table, every cell is a red pending marker; replace with run=<run-id> when filled from a current report-eligible run
-\begin{tabular}{@{}lrrr@{}}
-\toprule Execution error kind (\code{error_kind}) & OFF & L1 & L1+rerank\\\midrule
-\code{model_output_error} (invalid or truncated action) & \tbd & \tbd & \tbd\\
-\code{wall_timeout}, \code{runner_trial_timeout} & \tbd & \tbd & \tbd\\
-\code{backend_error} (controller or reranker down) & \tbd & \tbd & \tbd\\
-Total errors out of 300 trials (Wilson 95\% interval) & \tbd & \tbd & \tbd\\
-\bottomrule\end{tabular}
-\caption{Execution errors per variant (both benchmarks, three seeds; GPU accuracy run), to be filled from \code{analysis/summary.json}. Errors count as failures in strict success and are never recoded as refusals.}\label{tab:errors}
-\end{table}
+\hdr{Cost, latency and reproduction.} Judge spend as reported by the gateway, failed attempts included and not an invoice, was USD 0.655 for the HCMUT run and USD 0.628 for the labour run (\code{analysis/summary.json}). Collection took 946\,s and 1,047\,s of wall time on the shared H100; GPU-active hours, Mac latency and memory are not measured. Run ids: \code{d2-gpu-main-hcmut-v3} and \code{d2-gpu-main-labour-v3}. One command per machine runs the whole pipeline: \cmd{make benchmark-d2-gpu} on server 82 (see \code{docs/RUNBOOK_D2.md}) and \cmd{make benchmark-d2-mac}. Each writes a run directory under \code{evaluation/runs/} and refuses to start if the lock or the source has drifted; \cmd{make judge RUN=<run>} and \cmd{make tables RUN=<run>} re-run the judge and the tables. \cmd{make benchmark-smoke} output is not reportable.
 
-\hdr{Reading the results and failure analysis.} \pending{After the main run: one paragraph per finding, each tied to a table cell, with the caveats that (i) retrieval is saturated, so no reranker benefit is claimed from Recall or MRR; (ii) success on closed-book-guessable tasks measures parametric knowledge as much as grounding; (iii) differences under about 10\,pp are within noise; (iv) numbers are LLM estimates until the audit agreement is known. Then execution errors by kind with Wilson intervals, per-task consistency across seeds, and three or four failures read from the ledgers, with causes marked as untested.}
-
-\hdr{Cost, latency and reproduction.} We will report judge spend (as reported by the gateway), controller tokens, and device wall-hours with hardware. Planned, not measured: about USD 2.9 of judge spend for the 1,090 planned packets (an extrapolation from smoke runs at about USD 0.0026 per valid packet, guard USD 6). On the shared H100 only wall time is available; the Mac is an M4. Run ids: \tbd. One command per machine runs the whole pipeline: \cmd{make benchmark-d2-gpu} on server 82 (see \code{docs/RUNBOOK_D2.md}) and \cmd{make benchmark-d2-mac}. Each writes a run directory (\code{evaluation/runs/<id>}: manifest, trials, source snapshot, judge attempts, analysis, tables) and refuses to start if the lock or the source has drifted. \cmd{make judge RUN=<run>} and \cmd{make tables RUN=<run>} re-run the judge and the tables. \cmd{make benchmark-smoke} is a pipeline check whose output is not reportable. The GPU run needs a CUDA machine and the pinned weights; the Mac command reproduces the whole matrix more slowly.
-
-\hdr{Provenance of reported tables.} Every generated result table carries a machine-readable header and a visible source line with its run id, commit and harness version. Runs are listed in \code{evaluation/runs/REGISTRY.md} with a freshness status (current, stale, historical, incomplete); only a report-eligible, current main run may feed the report. \cmd{make report-check} refreshes the registry (\cmd{make runs}) and refuses tables from a stale, smoke, incomplete or ineligible run, and hand-written numeric tables without a provenance marker. Historical results stay in the registry, not in any table. \pending{Confirm \cmd{make report-check} passes on the final tree; quote the run ids.}
+\hdr{Provenance of reported tables.} Every generated result table carries a machine-readable header and a visible source line with its run id, commit and harness version. Runs are listed in \code{evaluation/runs/REGISTRY.md} with a freshness status (current, pinned, stale, historical, incomplete); only a report-eligible main run that is current or pinned may feed the report. The two v3 runs are \emph{pinned}: the frozen, pre-planned D2 result at commit 957579b, against which the post-hoc revision r2 will be compared and never merged. \cmd{make report-check} refreshes the registry (\cmd{make runs}) and refuses tables from a stale, smoke, incomplete or ineligible run, and hand-written numeric tables without a provenance marker; it passed on 24 October 2026 with the 12 generated tables from the two v3 runs. Earlier attempts v1 and v2 of each benchmark on server 82 were superseded by v3; their directories are not synced to this machine and no number from them is reported. \pending{Re-run \cmd{make report-check} on the final tree once r2 is added.}
 
 \section{Threat Model (R6)}\label{sec:threat}
 \hdr{Assets.} (A1) Faithfulness: answers and citations that users rely on must trace to source sections~\citep{magesh2025hallucination}. (A2) User data: questions, pasted documents, memory, audit log and web-run store. (A3) Integrity of corpora, domain profiles, prompts, model weights and the frozen benchmark and evidence. (A4) The tool boundary: no unreviewed write or egress. (A5) Availability of a bounded local machine. (A6) The judge-gateway credential.
@@ -344,7 +360,7 @@ Table~\ref{tab:plan} runs to the first final presentation in week 49.
 \begin{table}[!htb]\tabstyle
 \begin{tabularx}{\textwidth}{@{}L{3.5cm}L{2.2cm}Y@{}}
 \toprule Week (dates) & Owner (proposed) & Deliverable and acceptance\\\midrule
-Sat 24 Oct & All & Human audit of the judge sample; agreement and $\kappa$ entered in Table~\ref{tab:benchmark-main}.\\
+Sat 24 Oct & All & Human audit of the judge sample; agreement and $\kappa$ entered in Tables~\ref{tab:benchmark-main-hcmut} and~\ref{tab:benchmark-main-labour}.\\
 Sun 25 Oct, Wed 28 Oct & Group leader, all & Submit report and slides; presentation, live demo, backup video.\\
 W45 (2--8 Nov) & Quyền, Phong & HR walkthrough and findings; harder benchmark slice (unnamed documents, paraphrases) for B1.\\
 W46 (9--15 Nov) & Dũng, Quyền & Failure analysis; verifier false accepts and rejects; reranker parity report.\\
@@ -356,7 +372,7 @@ W49 (30 Nov--2 Dec) & All & Tagged release and Round 1 presentation on 2 Decembe
 \end{table}
 \hdr{Riskiest assumptions and fallback.} A 2B ternary controller may not answer correctly within its budget, and the benchmarks may be too easy for the variants to differ (B1, B2). If so, we keep the loop, the frozen benchmarks, the variants and the pipeline, report the measured numbers as they are, and cut the vector index, L2/NLI and further domains.
 
-\hdr{Self-assessment: at risk.} The design is frozen and the pipeline has run end to end in smoke checks (not reportable). No main-run result exists yet. \pending{Re-assess after the main run and the audit.}
+\hdr{Self-assessment: at risk.} The design is frozen and the pipeline has produced two complete, judged main runs, but their result is weak: strict success of 12.0--18.7\% for all variants, with the gold-evidence oracle at 28.9\% and 44.4\%, and the judge is not yet audited by humans. \pending{Re-assess after the audit and the r2 runs.}
 
 \section{Member Contributions and AI-Use Statement}\label{sec:contrib}
 \begin{table}[!htb]\tabstyle
@@ -384,5 +400,6 @@ DeepSeek V4.1 Flash & Evaluation judge\\
 
 \hdr{Verified by the group.} \pending{Members to state what they checked themselves (audit labels, source spot-checks, code review, demo rehearsal); nothing is claimed here.} Automated tests run real implementations, no mocks. \pending{Test count from a recorded run at the frozen commit.}
 
-\bibliography{refs}
+\begingroup\footnotesize\setlength{\bibsep}{1pt plus 0.5pt}
+\bibliography{refs}\endgroup
 \end{document}

@@ -1,6 +1,11 @@
 # Curated marks for evaluation/runs/* (read by evaluation/registry.py). Runs are never deleted or edited: a mark is metadata.
 # `kind`: historical | smoke | diagnostic (anything else comes from the run's own manifest). Later patterns override earlier ones;
 # <run>/RUN_STATUS.json overrides both. `superseded_by: <run-id>` marks a run replaced by a newer one.
+#
+# `pinned:` freezes a result on purpose. A run listed here with its commit is reported as `pinned@<commit>` (instead of `stale` once the code moved on)
+# only while its recorded collection fingerprint equals the fingerprint of that commit's sources (`git show <commit>:<path>` hashes, not the working tree;
+# evaluation/registry.py pin_problems). Everything else stays `stale`. A pin is a statement about the past; it never makes the run `current`.
+# `remote:` lists runs whose directory lives only on server 82 (not synced): the registry shows them as `remote/not synced`, with `superseded_by` when given.
 overrides:
   - {match: "bll2019-*", kind: historical, reason: "old D2 protocol: 10-task bll2019_v1 benchmark, Qwen2.5-3B (Ollama) controller; superseded by the two frozen 50-task benchmarks with the Bonsai 2B GGUF controller"}
   - {match: "*-diag-v1", kind: historical, reason: "earlier controller-capacity diagnostic (other model / backend, old 10-task benchmark); kept for the record, not on the frozen benchmarks"}
@@ -8,3 +13,15 @@ overrides:
   - {match: "deepseek-judge-*", kind: historical, reason: "judge runs of the old 10-task native batch (including recovery runs); the judge protocol has since changed (refusal-claim rule, harness 1.1)"}
   - {match: "bench-smoke-*", kind: smoke, reason: "pipeline check on a few tasks; never report evidence"}
   - {match: "reranker-parity-*", kind: diagnostic, reason: "reranker runtime parity / latency probe (evaluation/probes/reranker_parity.py), not a D2 matrix run"}
+
+pinned:
+  - {run: d2-gpu-main-hcmut-v3, commit: 957579b, reason: "frozen pre-planned D2 result (Bonsai 2B, protocol v3, harness 1.1.2); the post-hoc revision r2 is compared against it, never merged into it"}
+  - {run: d2-gpu-main-labour-v3, commit: 957579b, reason: "frozen pre-planned D2 result (Bonsai 2B, protocol v3, harness 1.1.2); the post-hoc revision r2 is compared against it, never merged into it"}
+
+remote:
+  # Earlier attempts of the GPU matrix on server 82 (crashed / re-started / re-launched); only the v3 runs were synced back. Kept for the record, never report evidence.
+  - {run: "d2-gpu-main-hcmut-v1", kind: main, superseded_by: d2-gpu-main-hcmut-v3, reason: "attempt 1 of the HCMUT GPU matrix on server 82; directory not synced"}
+  - {run: "d2-gpu-main-hcmut-v2", kind: main, superseded_by: d2-gpu-main-hcmut-v3, reason: "attempt 2 of the HCMUT GPU matrix on server 82; directory not synced"}
+  - {run: "d2-gpu-main-labour-v1", kind: main, superseded_by: d2-gpu-main-labour-v3, reason: "attempt 1 of the Labour GPU matrix on server 82; directory not synced"}
+  - {run: "d2-gpu-main-labour-v2", kind: main, superseded_by: d2-gpu-main-labour-v3, reason: "attempt 2 of the Labour GPU matrix on server 82; directory not synced"}
+  - {run: "d2-gpu-gate-*", kind: smoke, superseded_by: "d2-gpu-main-*-v3", reason: "CUDA gate runs (3 tasks, RUNBOOK A6) on server 82; directory not synced"}

@@ -39,11 +39,8 @@ LLM-judge estimates (success, behaviour, faithfulness) are not human labels. Ret
 | comparison | scope | tasks | d strict success | d behaviour match | d R@5 | d cit F1 | d error rate |
 |---|---|---|---|---|---|---|---|
 | L1 vs OFF | hcmut_v1 | 50 | -6.0 [-13.3,+0.7] | -20.7 [-30.7,-10.7] | -1.5 [-9.6,+7.0] | -15.2 [-24.2,-6.5] | +0.0 [+0.0,+0.0] |
-| L1 vs OFF | pooled | 50 | -6.0 [-13.3,+0.7] | -20.7 [-30.7,-10.7] | -1.5 [-9.6,+7.0] | -15.2 [-24.2,-6.5] | +0.0 [+0.0,+0.0] |
 | L1+rerank vs L1 | hcmut_v1 | 50 | +2.0 [-5.3,+9.3] | +4.0 [-4.7,+12.7] | +9.6 [-0.7,+20.7] | +6.9 [-1.7,+15.8] | +1.3 [+0.0,+3.3] |
-| L1+rerank vs L1 | pooled | 50 | +2.0 [-5.3,+9.3] | +4.0 [-4.7,+12.7] | +9.6 [-0.7,+20.7] | +6.9 [-1.7,+15.8] | +1.3 [+0.0,+3.3] |
 | L1+rerank vs OFF | hcmut_v1 | 50 | -4.0 [-11.3,+3.3] | -16.7 [-26.7,-6.7] | +8.1 [-2.6,+18.5] | -8.3 [-18.1,+1.1] | +1.3 [+0.0,+3.3] |
-| L1+rerank vs OFF | pooled | 50 | -4.0 [-11.3,+3.3] | -16.7 [-26.7,-6.7] | +8.1 [-2.6,+18.5] | -8.3 [-18.1,+1.1] | +1.3 [+0.0,+3.3] |
 
 ## Diagnostic baselines (seed 42, no tools; NOT system variants; reference rows are the system variants on answerable tasks only)
 

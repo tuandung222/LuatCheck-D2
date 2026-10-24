@@ -12,7 +12,7 @@ from src.tools.legal_tools import LegalToolRegistry
 # Model-facing tool names and descriptions come from the configured domain profile
 # (labour_vi_2019 by default: search_law / get_article).
 config = load_config()
-profile = load_profile(config.domain.profile)
+profile = load_profile(config.domain.profile, config.domain.profile_variant)
 mcp = MCPServer("luatcheck-local-tools")
 registry = LegalToolRegistry(corpus_path=config.retrieval.corpus_path, profile=profile)
 

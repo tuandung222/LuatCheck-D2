@@ -18,6 +18,7 @@ from typing import Callable, Dict, Any, Optional, List, Tuple
 
 from src.agent.citations import build_citation, dump_citations, parse_model_citations
 from src.agent.llm_client import InferenceError, NativeLLMClient
+from src.agent.query import anchor_query
 from src.agent.state import ActionType, CaseLedger, Citation
 from src.config.app_config import AppConfig, load_config
 from src.domains import DomainProfile
@@ -48,6 +49,7 @@ class _Run:
     # notice (still a tool call against the budget).
     search_history: Dict[str, List[str]] = field(default_factory=dict)
     fully_read: set = field(default_factory=set)
+    searched: bool = False    # a search action has been executed in this run (agent.require_search_before_answer, retrieval.first_search_anchor)
 
 
 class LuatCheckAgent:
@@ -228,10 +230,12 @@ class LuatCheckAgent:
 
     # ------------------------------------------------------------------ ledger outcomes
     @staticmethod
-    def _finish(ledger: CaseLedger, status: str, output: Dict[str, Any]) -> None:
+    def _finish(ledger: CaseLedger, status: str, output: Dict[str, Any], refusal_source: Optional[str] = None) -> None:
         ledger.is_terminal = True
         ledger.terminal_status = status
         ledger.final_output = output
+        # Who ended a refused run: model | repair_exhausted | budget | guardrail | controller (any other controller rule).
+        ledger.refusal_source = (refusal_source or "controller") if status == "refused" else None
 
     @staticmethod
     def _error_output(reason: str, kind: str, verified_flag: bool = True) -> Dict[str, Any]:
@@ -240,8 +244,8 @@ class LuatCheckAgent:
             output["verified"] = False
         return output
 
-    def _refuse(self, ledger: CaseLedger, reason: str) -> None:
-        self._finish(ledger, "refused", {"action": "refuse", "reason": reason, "citations": []})
+    def _refuse(self, ledger: CaseLedger, reason: str, source: str = "controller") -> None:
+        self._finish(ledger, "refused", {"action": "refuse", "reason": reason, "citations": []}, refusal_source=source)
 
     # ------------------------------------------------------------------ guardrails
     def _refused_by_guardrails(self, run: _Run, pasted_doc: Optional[str]) -> bool:
@@ -251,7 +255,7 @@ class LuatCheckAgent:
         if is_safe:
             return False
         self._finish(run.ledger, "refused", {"action": "refuse", "pre_model_policy_refusal": True,
-                                             "reason": safety_msg, "citations": []})
+                                             "reason": safety_msg, "citations": []}, refusal_source="guardrail")
         self.audit_logger.log_event(run.session_id, "security_refusal", {"query": run.query, "reason": safety_msg})
         return True
 
@@ -264,7 +268,7 @@ class LuatCheckAgent:
                                                                  verified_flag=False))
                 return
             if not ledger.can_step():
-                self._refuse(ledger, self.profile.messages.steps_exhausted.format(max_steps=self.max_steps))
+                self._refuse(ledger, self.profile.messages.steps_exhausted.format(max_steps=self.max_steps), source="budget")
                 return
 
             ledger.record_step()
@@ -284,15 +288,38 @@ class LuatCheckAgent:
                                                                  "model_output_error"))
                 return
 
-            tool_args = agent_resp["tool_args"]
-            if canonical is ActionType.SEARCH:
-                self._act_search(run, agent_resp, tool_args)
-            elif canonical is ActionType.READ:
-                self._act_read(run, agent_resp, tool_args)
-            elif canonical is ActionType.ANSWER:
-                self._act_answer(run, agent_resp, tool_args)
-            else:
-                self._act_clarify_or_refuse(run, agent_resp, canonical, tool_args)
+            self._dispatch(run, agent_resp, canonical)
+
+    def _dispatch(self, run: _Run, agent_resp: Dict[str, Any], canonical: ActionType) -> None:
+        """Execute one validated model action."""
+        tool_args = agent_resp["tool_args"]
+        if self._search_required(run, canonical):
+            self._act_search_required(run, agent_resp)
+        elif canonical is ActionType.SEARCH:
+            self._act_search(run, agent_resp, tool_args)
+        elif canonical is ActionType.READ:
+            self._act_read(run, agent_resp, tool_args)
+        elif canonical is ActionType.ANSWER:
+            self._act_answer(run, agent_resp, tool_args)
+        else:
+            self._act_clarify_or_refuse(run, agent_resp, canonical, tool_args)
+
+    def _can_search(self) -> bool:
+        """False for a client that cannot take the search action (closed-book / oracle baselines restrict the actions)."""
+        allowed = getattr(self.llm_client, "allowed_actions", None)
+        return allowed is None or ActionType.SEARCH in allowed
+
+    def _search_required(self, run: _Run, canonical: ActionType) -> bool:
+        """agent.require_search_before_answer (F5): an answer or clarify before any search. Refuse is always allowed."""
+        return (self.config.agent.require_search_before_answer and canonical in (ActionType.ANSWER, ActionType.CLARIFY)
+                and not run.searched and self._can_search())
+
+    def _act_search_required(self, run: _Run, agent_resp: Dict[str, Any]) -> None:
+        """The draft action becomes an observation; it costs a step but no tool call."""
+        run.ledger.audit_events.append({"event": "search_required_notice", "action": agent_resp.get("action")})
+        search_tool = self.profile.model_action_name(ActionType.SEARCH)
+        self._observe(run, agent_resp, {"status": "search_required",
+                                        "message": self.profile.messages.search_first_required.format(search_tool=search_tool)})
 
     @staticmethod
     def _assistant_turn(run: _Run, agent_resp: Dict[str, Any]) -> None:
@@ -310,7 +337,8 @@ class LuatCheckAgent:
         self._assistant_turn(run, agent_resp)
         run.messages.append({"role": "user", "content": template.format(max_tool_calls=self.max_tool_calls)})
         if ledger.step_count >= self.max_steps - 1:
-            self._refuse(ledger, self.profile.messages.tool_budget_exhausted.format(max_tool_calls=self.max_tool_calls))
+            self._refuse(ledger, self.profile.messages.tool_budget_exhausted.format(max_tool_calls=self.max_tool_calls),
+                         source="budget")
         return True
 
     def _act_search(self, run: _Run, agent_resp: Dict[str, Any], tool_args: Dict[str, Any]) -> None:
@@ -320,18 +348,30 @@ class LuatCheckAgent:
         search_tool = self.profile.model_action_name(ActionType.SEARCH)
         read_tool = self.profile.model_action_name(ActionType.READ)
 
-        query = str(tool_args.get("query") or run.query)
+        retrieval = self.config.retrieval
+        model_query = str(tool_args.get("query") or run.query)
         try:
-            top_k = int(tool_args.get("top_k", 3))
+            top_k = int(tool_args.get("top_k", retrieval.default_top_k))
         except (ValueError, TypeError):
-            top_k = 3
-        top_k = max(1, min(top_k, self.config.retrieval.final_top_k))
+            top_k = retrieval.default_top_k
+        top_k = max(1, min(top_k, retrieval.final_top_k))
+
+        # retrieval.first_search_anchor (F1): the first search of the run is the user's question plus the model's words.
+        anchored = (not run.searched) and retrieval.first_search_anchor == "question_plus_query"
+        run.searched = True
+        query = anchor_query(run.query, model_query) if anchored else model_query
 
         query_key = " ".join(query.lower().split())
         if query_key in run.search_history:
             tool_res = {"status": "duplicate_query", "article_ids": run.search_history[query_key],
                         "message": messages.duplicate_query.format(read_tool=read_tool)}
             search_meta = None
+            if self.config.agent.free_duplicate_notices:
+                # F8: the notice repeats what is already in the context; it costs a step, not a tool call.
+                ledger.audit_events.append({"event": "free_notice", "kind": "duplicate_query", "tool": search_tool,
+                                            "args": tool_args})
+                self._observe(run, agent_resp, self._search_hints(ledger, tool_res, read_tool))
+                return
         else:
             try:
                 tool_res, search_meta = self._search_with_metadata(query, top_k)
@@ -342,19 +382,42 @@ class LuatCheckAgent:
                 ledger.audit_events[-1]["error"] = {"kind": exc.kind, "type": type(exc).__name__, "message": str(exc)}
                 self._finish(ledger, "error", self._error_output(str(exc), exc.kind))
                 return
-            run.search_history[query_key] = [a["article_id"] for a in tool_res.get("articles", [])]
+            hit_ids = [a["article_id"] for a in tool_res.get("articles", [])]
+            run.search_history[query_key] = hit_ids
+            if anchored:
+                # a later repeat of the model's own query is a repeat of what it already got
+                run.search_history.setdefault(" ".join(model_query.lower().split()), hit_ids)
+                tool_res = {**tool_res, "search_note": messages.first_search_anchor_note.format(model_query=model_query)}
 
         articles = tool_res.get("articles", [])
         for article in articles:
             CaseLedgerManager.add_retrieved_article(ledger, article["article_id"], article["content_snippet"])
         CaseLedgerManager.add_query(ledger, query)
         ledger.record_tool_call(search_tool, tool_args, messages.search_summary.format(count=len(articles)))
+        if anchored:
+            ledger.audit_events[-1]["query_anchor"] = {"mode": retrieval.first_search_anchor, "model_query": model_query,
+                                                       "searched_query": query}
         if search_meta:
             ledger.audit_events[-1]["metadata"] = search_meta   # ledger only; not in the model-visible observation
         self._emit_run_event("tool_completed", tool=search_tool,
                              article_ids=[str(a.get("article_id", "")) for a in articles if a.get("article_id")],
                              result_count=len(articles))
-        self._observe(run, agent_resp, tool_res)
+        self._observe(run, agent_resp, self._search_hints(ledger, tool_res, read_tool))
+
+    def _search_hints(self, ledger: CaseLedger, tool_res: Dict[str, Any], read_tool: str) -> Dict[str, Any]:
+        """tools.search_hints (F3): `tool_calls_remaining` and, for a result with hits, how many are truncated and what to do about it.
+        Off (default): the observation is returned unchanged."""
+        if not self.config.tools.search_hints:
+            return tool_res
+        out = dict(tool_res)
+        out["tool_calls_remaining"] = max(0, ledger.max_tool_calls - ledger.tool_calls_count)
+        articles = tool_res.get("articles") or []
+        if articles:
+            truncated = sum(1 for a in articles if a.get("snippet_truncated"))
+            messages = self.profile.messages
+            out["hint"] = (messages.search_hint_truncated.format(truncated=truncated, count=len(articles), read_tool=read_tool)
+                           if truncated else messages.search_hint_complete.format(count=len(articles)))
+        return out
 
     def _act_read(self, run: _Run, agent_resp: Dict[str, Any], tool_args: Dict[str, Any]) -> None:
         ledger, messages = run.ledger, self.profile.messages
@@ -365,6 +428,12 @@ class LuatCheckAgent:
         doc_id = str(tool_args.get("article_id") or "")
         if doc_id.lower() in run.fully_read:
             tool_res = {"status": "already_read", "article_id": doc_id, "message": messages.already_read}
+            if self.config.agent.free_duplicate_notices:
+                # F8: a notice about text already in the context costs a step, not a tool call.
+                ledger.audit_events.append({"event": "free_notice", "kind": "already_read", "tool": read_tool,
+                                            "args": tool_args})
+                self._observe(run, agent_resp, tool_res)
+                return
         else:
             tool_res = self._read(doc_id)
             if tool_res.get("status") == "success":
@@ -388,26 +457,40 @@ class LuatCheckAgent:
         if getattr(result, "nli_result", None) is not None:
             ledger.audit_events.append({"event": "nli_check", "metadata": {"nli": result.nli_result}})
         self._emit_run_event("verification_completed", mode=result.mode, passed=bool(result.is_valid))
+        # verifier.l1_sentence_support: warn -> findings that did not reject the answer are kept in the ledger and the result
+        warnings = list(getattr(getattr(result, "grounding_result", None), "warnings", None) or [])
+        if warnings:
+            ledger.audit_events.append({"event": "l1_warning", "metadata": {"warnings": warnings}})
 
         verified = self.verification_mode != OFF
         if result.is_valid:
             citations_out = dump_citations(citations)
-            self._finish(ledger, "answered", {"action": "answer", "content": answer, "citations": citations_out,
-                                              "verified": verified})
-            # Persisted only when verified, and only with the native model calls that produced the answer.
-            self.answer_memory.remember(ledger, run.session_id, run.query, answer, citations_out, verified=verified,
-                                        native_inference=isinstance(self.llm_client, NativeLLMClient))
+            output = {"action": "answer", "content": answer, "citations": citations_out, "verified": verified}
+            if warnings:
+                output["verification_warnings"] = warnings
+            self._finish(ledger, "answered", output)
+            # Persisted only when verified without warnings, and only with the native model calls that produced the answer.
+            if not warnings:
+                self.answer_memory.remember(ledger, run.session_id, run.query, answer, citations_out, verified=verified,
+                                            native_inference=isinstance(self.llm_client, NativeLLMClient))
         elif ledger.can_repair():
             # Targeted self-repair: the verifier's feedback goes back to the model.
             ledger.record_repair(result.repair_feedback)
             self._emit_run_event("repair_started", attempt=ledger.repairs_count)
             self._assistant_turn(run, agent_resp)
-            run.messages.append({"role": "user",
-                                 "content": self.profile.repair_prompt.format(repair_feedback=result.repair_feedback)})
+            run.messages.append({"role": "user", "content": self._repair_message(result.repair_feedback)})
         else:
             # Self-repair budget exhausted -> refuse decisively.
             self._refuse(ledger, self.profile.messages.repair_exhausted.format(
-                max_repairs=self.max_repairs, repair_feedback=result.repair_feedback))
+                max_repairs=self.max_repairs, repair_feedback=result.repair_feedback), source="repair_exhausted")
+
+    def _repair_message(self, repair_feedback: Optional[str]) -> str:
+        """verifier.repair_feedback_style: v1 = the profile's repair prompt (a user turn, as in the frozen v3 runs);
+        verifier_report = a labelled automatic report that offers fixing the flagged item before refusing (F6)."""
+        if self.config.verifier.repair_feedback_style == "verifier_report":
+            return self.profile.messages.repair_report.format(
+                repair_feedback=repair_feedback, read_tool=self.profile.model_action_name(ActionType.READ))
+        return self.profile.repair_prompt.format(repair_feedback=repair_feedback)
 
     def _act_clarify_or_refuse(self, run: _Run, agent_resp: Dict[str, Any], canonical: ActionType,
                                tool_args: Dict[str, Any]) -> None:
@@ -419,7 +502,7 @@ class LuatCheckAgent:
                                                                  "model_output_error"))
             return
         self._finish(run.ledger, "clarified" if canonical is ActionType.CLARIFY else "refused",
-                     {"action": agent_resp["action"], field_name: text, "citations": []})
+                     {"action": agent_resp["action"], field_name: text, "citations": []}, refusal_source="model")
 
 
 LocalSLMAgent = LuatCheckAgent

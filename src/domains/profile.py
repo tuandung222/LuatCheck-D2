@@ -88,10 +88,21 @@ PACK_MESSAGES: Dict[str, Optional[Dict[str, Any]]] = {
     "l1_empty_answer_claim": None, "l1_empty_answer_feedback": None, "l1_missing_citation_feedback": None,
     "l1_unknown_citation": {"doc_id": "x"}, "l1_quote_mismatch": {"doc_id": "x"},
     "l1_unsupported_claims": {"count": 1, "claims": "x"},
+    "l1v2_quote_mismatch": {"doc_id": "x", "span": "x"},
+    "l1v2_quote_other_record": {"doc_id": "x", "other_id": "x"},
+    "l1v2_claim": {"claim": "x", "doc_id": "x", "span": "x"},
+    "l1v2_quantity": {"quantity": "x", "claim": "x", "doc_id": "x", "span": "x"},
     "nli_repair_feedback": {"count": 1, "threshold": 0.9, "pairs": "x"},
     "nli_pair_line": {"sentence": "x", "premise_id": "x", "probability": 0.5},
     "l2_repair_feedback": {"count": 1, "threshold": 0.5, "claims": "x"},
     "cache_l2_rejection": {"count": 1, "claims": "x"},
+    # r2 switches (all off by default): tools.search_hints, retrieval.first_search_anchor, agent.require_search_before_answer,
+    # verifier.repair_feedback_style
+    "search_hint_truncated": {"truncated": 1, "count": 1, "read_tool": "x"},
+    "search_hint_complete": {"count": 1},
+    "first_search_anchor_note": {"model_query": "x"},
+    "search_first_required": {"search_tool": "x"},
+    "repair_report": {"repair_feedback": "x", "read_tool": "x"},
 }
 
 
@@ -131,10 +142,19 @@ class MessagesSpec(BaseModel):
     l1_unknown_citation: Optional[str] = Field(default=None, description="{doc_id}")
     l1_quote_mismatch: Optional[str] = Field(default=None, description="{doc_id}")
     l1_unsupported_claims: Optional[str] = Field(default=None, description="{count}, {claims}")
+    l1v2_quote_mismatch: Optional[str] = Field(default=None, description="L1 v2 quote feedback; {doc_id}, {span}")
+    l1v2_quote_other_record: Optional[str] = Field(default=None, description="L1 v2: the quote is verbatim in another retrieved record; {doc_id}, {other_id}")
+    l1v2_claim: Optional[str] = Field(default=None, description="L1 v2 unsupported-sentence feedback; {claim}, {doc_id}, {span}")
+    l1v2_quantity: Optional[str] = Field(default=None, description="L1 v2 quantity feedback; {quantity}, {claim}, {doc_id}, {span}")
     nli_repair_feedback: Optional[str] = Field(default=None, description="{count}, {threshold}, {pairs}")
     nli_pair_line: Optional[str] = Field(default=None, description="{sentence}, {premise_id}, {probability}")
     l2_repair_feedback: Optional[str] = Field(default=None, description="{count}, {threshold}, {claims}")
     cache_l2_rejection: Optional[str] = Field(default=None, description="{count}, {claims}")
+    search_hint_truncated: Optional[str] = Field(default=None, description="tools.search_hints: hint when some hits are truncated; {truncated}, {count}, {read_tool}")
+    search_hint_complete: Optional[str] = Field(default=None, description="tools.search_hints: hint when no hit is truncated; {count}")
+    first_search_anchor_note: Optional[str] = Field(default=None, description="retrieval.first_search_anchor: note that shows the model's own query; {model_query}")
+    search_first_required: Optional[str] = Field(default=None, description="agent.require_search_before_answer: observation for an answer/clarify before any search; {search_tool}")
+    repair_report: Optional[str] = Field(default=None, description="verifier.repair_feedback_style verifier_report: the labelled report; {repair_feedback}, {read_tool}")
 
     @model_validator(mode="after")
     def _formattable(self) -> "MessagesSpec":
@@ -250,10 +270,31 @@ class DomainProfile(BaseModel):
         return set(self.l1.stopwords)
 
 
-def load_profile(profile: Union[str, Path, None] = None) -> DomainProfile:
-    """Load a profile by id (config/domains/<id>.yaml) or from an explicit YAML path."""
+PROFILE_VARIANTS = ("", "r2")
+
+
+def _is_path_ref(ref: str) -> bool:
+    return "/" in ref or "\\" in ref or ref.endswith((".yaml", ".yml"))
+
+
+def profile_file_stem(profile: Union[str, Path, None] = None, variant: str = "") -> str:
+    """Profile id actually loaded for `domain.profile` + `domain.profile_variant`: `<id>` or `<id>_<variant>`."""
     ref = str(profile) if profile else DEFAULT_PROFILE_ID
-    if "/" in ref or "\\" in ref or ref.endswith((".yaml", ".yml")):
+    if variant not in PROFILE_VARIANTS:
+        raise ValueError(f"Unknown profile variant {variant!r}; expected one of {list(PROFILE_VARIANTS)}.")
+    if not variant:
+        return ref
+    if _is_path_ref(ref):
+        raise ValueError(f"domain.profile_variant {variant!r} needs a profile id, not the path {ref!r}.")
+    return f"{ref}_{variant}"
+
+
+def load_profile(profile: Union[str, Path, None] = None, variant: str = "") -> DomainProfile:
+    """Load a profile by id (config/domains/<id>.yaml) or from an explicit YAML path.
+
+    `variant` ("" or "r2") loads the revised profile `<id>_<variant>` instead; "" is the profile as written (default)."""
+    ref = profile_file_stem(profile, variant)
+    if _is_path_ref(ref):
         path = Path(ref)
     else:
         if not _PROFILE_ID.match(ref):
@@ -261,7 +302,8 @@ def load_profile(profile: Union[str, Path, None] = None) -> DomainProfile:
         path = PROFILE_DIR / f"{ref}.yaml"
     if not path.is_file():
         available = sorted(p.stem for p in PROFILE_DIR.glob("*.yaml"))
-        raise FileNotFoundError(f"Domain profile not found: {path} (available: {available})")
+        hint = f" for domain.profile_variant {variant!r}" if variant else ""
+        raise FileNotFoundError(f"Domain profile not found{hint}: {path} (available: {available})")
     raw: Dict[str, Any] = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     loaded = DomainProfile(**raw)
     if path.parent == PROFILE_DIR and loaded.id != path.stem:

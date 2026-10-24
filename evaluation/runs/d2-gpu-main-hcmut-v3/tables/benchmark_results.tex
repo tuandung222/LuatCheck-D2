@@ -11,7 +11,7 @@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 0f518017229284d911dde646e7b9c732b0fa5f3d9e95569c64ee0625b7f840e8
-% generated_local: 2026-10-24T16:03:17+07:00
+% generated_local: 2026-10-24T16:21:17+07:00
 % generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-main-hcmut-v3 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -28,7 +28,7 @@ Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@
  & L1{+}rerank & 150 & 14.0\,{\scriptsize[8--21]}$^{\dagger11}$ & 25.2 & 54.9 & 0.756 & 0.630 & 0.237 & 0.237 & 0.235\\
 \bottomrule
 \end{tabular}}
-\caption{Benchmark results per variant (450 real native trials; seeds 42, 123, 2026; run d2-gpu-main-hcmut-v3). \emph{Succ.} is the strict-success rate (behaviour appropriate, correctness and completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\% interval; execution errors count as failures and $\dagger k$ marks $k$ judge-unknown trials counted as failures. Succ., Beh., Faith. are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking enabled, effort high; model revision not pinned), \textbf{not human labels}. The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}. Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; near ceiling on these benchmarks, so they cannot separate variants); Cit. P/R/F1 are macro cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.}
+\caption{Benchmark results per variant (450 real native trials; seeds 42, 123, 2026; run d2-gpu-main-hcmut-v3). \emph{Succ.} is the strict-success rate (behaviour appropriate, correctness and completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\% interval; execution errors count as failures and $\dagger k$ marks $k$ judge-unknown trials counted as failures. Succ., Beh., Faith. are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking enabled, effort high; model revision not pinned), \textbf{not human labels}. The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}. Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; Recall@5 of the cells shown ranges 0.66--0.76, so retrieval is not saturated); Cit. P/R/F1 are macro cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.}
 \label{tab:benchmark-main}
 \par\vspace{2pt}{\tiny\textit{Source: run d2-gpu-main-hcmut-v3 @ 957579b, harness 1.1.2, main.}}
 \end{table}
@@ -44,7 +44,7 @@ Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 0f518017229284d911dde646e7b9c732b0fa5f3d9e95569c64ee0625b7f840e8
-% generated_local: 2026-10-24T16:03:17+07:00
+% generated_local: 2026-10-24T16:21:17+07:00
 % generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-main-hcmut-v3 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -77,7 +77,7 @@ Benchmark & Variant & Ans/Ref/Clar/Err & Err.\ (\%) & Trial p50/p95 (s) & Call p
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 0f518017229284d911dde646e7b9c732b0fa5f3d9e95569c64ee0625b7f840e8
-% generated_local: 2026-10-24T16:03:17+07:00
+% generated_local: 2026-10-24T16:21:17+07:00
 % generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-main-hcmut-v3 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -89,17 +89,14 @@ Benchmark & Variant & Ans/Ref/Clar/Err & Err.\ (\%) & Trial p50/p95 (s) & Call p
 \toprule
 Comparison & Scope & Tasks & $\Delta$ Succ.\ (pp) & $\Delta$ Beh.\ match (pp) & $\Delta$ Rec.@5 (pp) & $\Delta$ Cit.\ F1 (pp) & $\Delta$ Err.\ (pp)\\
 \midrule
-\multirow{2}{*}{L1 vs OFF} & HCMUT-v1 & 50 & -6.0\,{\scriptsize[-13.3,+0.7]} & -20.7\,{\scriptsize[-30.7,-10.7]} & -1.5\,{\scriptsize[-9.6,+7.0]} & -15.2\,{\scriptsize[-24.2,-6.5]} & +0.0\,{\scriptsize[+0.0,+0.0]}\\
- & pooled & 50 & -6.0\,{\scriptsize[-13.3,+0.7]} & -20.7\,{\scriptsize[-30.7,-10.7]} & -1.5\,{\scriptsize[-9.6,+7.0]} & -15.2\,{\scriptsize[-24.2,-6.5]} & +0.0\,{\scriptsize[+0.0,+0.0]}\\
+\multirow{1}{*}{L1 vs OFF} & HCMUT-v1 & 50 & -6.0\,{\scriptsize[-13.3,+0.7]} & -20.7\,{\scriptsize[-30.7,-10.7]} & -1.5\,{\scriptsize[-9.6,+7.0]} & -15.2\,{\scriptsize[-24.2,-6.5]} & +0.0\,{\scriptsize[+0.0,+0.0]}\\
 \midrule
-\multirow{2}{*}{L1{+}rerank vs L1} & HCMUT-v1 & 50 & +2.0\,{\scriptsize[-5.3,+9.3]} & +4.0\,{\scriptsize[-4.7,+12.7]} & +9.6\,{\scriptsize[-0.7,+20.7]} & +6.9\,{\scriptsize[-1.7,+15.8]} & +1.3\,{\scriptsize[+0.0,+3.3]}\\
- & pooled & 50 & +2.0\,{\scriptsize[-5.3,+9.3]} & +4.0\,{\scriptsize[-4.7,+12.7]} & +9.6\,{\scriptsize[-0.7,+20.7]} & +6.9\,{\scriptsize[-1.7,+15.8]} & +1.3\,{\scriptsize[+0.0,+3.3]}\\
+\multirow{1}{*}{L1{+}rerank vs L1} & HCMUT-v1 & 50 & +2.0\,{\scriptsize[-5.3,+9.3]} & +4.0\,{\scriptsize[-4.7,+12.7]} & +9.6\,{\scriptsize[-0.7,+20.7]} & +6.9\,{\scriptsize[-1.7,+15.8]} & +1.3\,{\scriptsize[+0.0,+3.3]}\\
 \midrule
-\multirow{2}{*}{L1{+}rerank vs OFF} & HCMUT-v1 & 50 & -4.0\,{\scriptsize[-11.3,+3.3]} & -16.7\,{\scriptsize[-26.7,-6.7]} & +8.1\,{\scriptsize[-2.6,+18.5]} & -8.3\,{\scriptsize[-18.1,+1.1]} & +1.3\,{\scriptsize[+0.0,+3.3]}\\
- & pooled & 50 & -4.0\,{\scriptsize[-11.3,+3.3]} & -16.7\,{\scriptsize[-26.7,-6.7]} & +8.1\,{\scriptsize[-2.6,+18.5]} & -8.3\,{\scriptsize[-18.1,+1.1]} & +1.3\,{\scriptsize[+0.0,+3.3]}\\
+\multirow{1}{*}{L1{+}rerank vs OFF} & HCMUT-v1 & 50 & -4.0\,{\scriptsize[-11.3,+3.3]} & -16.7\,{\scriptsize[-26.7,-6.7]} & +8.1\,{\scriptsize[-2.6,+18.5]} & -8.3\,{\scriptsize[-18.1,+1.1]} & +1.3\,{\scriptsize[+0.0,+3.3]}\\
 \bottomrule
 \end{tabular}}
-\caption{Paired variant differences (treatment minus baseline, percentage points) with 95\% paired bootstrap intervals over tasks (seeds averaged per task; 5000 resamples; pooled = both benchmarks' tasks together). Succ.\ is the strict-success lower bound (LLM-judge estimate), Beh.\ the structural behaviour match, Rec.@5 the trace retrieval, Cit.\ F1 the cited-id F1, Err.\ the execution-error rate. No multiple-comparison correction; intervals that include 0 show no detectable difference at this sample size.}
+\caption{Paired variant differences (treatment minus baseline, percentage points) with 95\% paired bootstrap intervals over tasks (seeds averaged per task; 5000 resamples). Succ.\ is the strict-success lower bound (LLM-judge estimate), Beh.\ the structural behaviour match, Rec.@5 the trace retrieval, Cit.\ F1 the cited-id F1, Err.\ the execution-error rate. No multiple-comparison correction; intervals that include 0 show no detectable difference at this sample size.}
 \label{tab:benchmark-paired}
 \par\vspace{2pt}{\tiny\textit{Source: run d2-gpu-main-hcmut-v3 @ 957579b, harness 1.1.2, main.}}
 \end{table}
@@ -115,7 +112,7 @@ Comparison & Scope & Tasks & $\Delta$ Succ.\ (pp) & $\Delta$ Beh.\ match (pp) & 
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: 0f518017229284d911dde646e7b9c732b0fa5f3d9e95569c64ee0625b7f840e8
-% generated_local: 2026-10-24T16:03:17+07:00
+% generated_local: 2026-10-24T16:21:17+07:00
 % generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-main-hcmut-v3 --expect-benchmarks hcmut_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
 % === END PROVENANCE ===
 \begin{table}[t]

@@ -233,6 +233,118 @@ def test_matrix_config_is_the_900_trial_d2_plan():
     assert trials * len(matrix["variants"]) * len(matrix["seeds"]) == 900
 
 
+# ----------------------------------------------------------------------------- post-hoc revision r2 (protocol tag, switches, matrix, script)
+# These tests read the real r2 model configs and the installed src/ configuration: they depend on the core agent's config keys
+# (retrieval.first_search_anchor, ... verifier.l1_sentence_support) existing in src/config/app_config.py. No server is needed.
+
+R2_CONFIGS = ("config/benchmark/model_prism_gguf2b_r2.yaml", "config/benchmark/model_prism_gguf4b_r2.yaml")
+R2_EXPECTED = {"retrieval.first_search_anchor": "question_plus_query", "retrieval.default_top_k": 5, "tools.search_hints": True,
+               "domain.profile_variant": "r2", "agent.require_search_before_answer": True, "verifier.repair_feedback_style": "verifier_report",
+               "model.thought_max_chars": 800, "agent.free_duplicate_notices": True, "verifier.l1_version": "v2", "verifier.l1_sentence_support": "warn"}
+
+
+def plan_for(model_config, protocol=None, *extra):
+    argv = ["preflight", "--benchmark", "hcmut_v1", "--benchmark", "labour_vi_v1", "--variants", "off,l1,l1_rerank", "--baselines", "closed_book,oracle",
+            "--run-profile", "gpu-accuracy", "--model-config", model_config, "--endpoint", "http://127.0.0.1:28081/v1", "--workers", "16", *extra]
+    if protocol:
+        argv += ["--protocol", protocol]
+    return rb.resolve_plan(rb.build_parser().parse_args(argv))
+
+
+@pytest.mark.parametrize("config", R2_CONFIGS)
+def test_r2_model_configs_name_all_ten_switches_and_the_effective_config_shows_them(config):
+    assert rb.requested_switches(REPO / config) == R2_EXPECTED and set(R2_EXPECTED) == set(rb.R2_SWITCH_KEYS)
+    plan = plan_for(config, "r2-posthoc")
+    assert plan["protocol"] == "r2-posthoc" and plan["system_revision"]["effective"] == R2_EXPECTED
+    assert plan["system_revision"]["protocol_label"] == "post-hoc revision evaluated on the same tasks"
+    for key, effective in plan["effective_configs"].items():       # every benchmark x variant / baseline carries the switches
+        bm, variant = key.split("/")
+        assert effective["domain"]["profile"] == rb.Benchmark(rb.BENCHMARKS_DIR / bm).profile_ref        # the benchmark still owns domain.profile ...
+        assert effective["domain"]["profile_variant"] == "r2"                                           # ... and the model config's variant is combined with it
+        assert effective["verifier"]["l1_version"] == "v2" and effective["model"]["thought_max_chars"] == 800 and effective["agent"]["require_search_before_answer"] is True
+        assert effective["retrieval"]["first_search_anchor"] == "question_plus_query" and effective["tools"]["search_hints"] is True
+
+
+def test_r2_2b_and_4b_configs_differ_only_in_the_model_name_and_extend_the_v3_configs_by_the_switches():
+    import yaml
+    load = lambda name: yaml.safe_load((REPO / "config" / "benchmark" / name).read_text())
+    a, b = load("model_prism_gguf2b_r2.yaml"), load("model_prism_gguf4b_r2.yaml")
+    assert a["model"].pop("name") == "prism-ml/Ternary-Bonsai-2-2B-gguf" and b["model"].pop("name") == "prism-ml/Ternary-Bonsai-2-4B-gguf" and a == b
+
+    def strip(cfg):
+        cfg = json.loads(json.dumps(cfg))
+        for dotted in R2_EXPECTED:
+            node = cfg
+            *path, leaf = dotted.split(".")
+            for part in path:
+                node = node.get(part, {})
+            node.pop(leaf, None)
+        return {k: v for k, v in cfg.items() if v}
+    for size in ("2b", "4b"):
+        assert strip(load(f"model_prism_gguf{size}_r2.yaml")) == strip(load(f"model_prism_gguf{size}.yaml"))   # nothing but the ten switches changed
+
+
+def test_revised_systems_must_be_tagged_and_tagged_runs_must_carry_every_switch():
+    with pytest.raises(rb.BenchmarkError, match="no --protocol was given"):
+        plan_for(R2_CONFIGS[0])
+    with pytest.raises(rb.BenchmarkError, match="needs every revision switch"):
+        plan_for("config/benchmark/model_prism_gguf2b.yaml", "r2-posthoc")
+    for config in ("config/benchmark/model_prism_gguf2b.yaml", "config/benchmark/model_prism_gguf4b.yaml"):      # the v3 configs stay v3
+        plan = plan_for(config)
+        assert plan["protocol"] is None and plan["system_revision"]["effective"] == {} and rb.protocol_label(plan["protocol"]) is None
+
+
+def test_a_model_config_key_the_installed_src_would_drop_is_refused_not_ignored(tmp_path):
+    import yaml
+    raw = yaml.safe_load((REPO / R2_CONFIGS[0]).read_text())
+    raw["retrieval"]["a_switch_src_does_not_know"] = True
+    path = tmp_path / "model_with_unknown_key.yaml"
+    path.write_text(yaml.safe_dump(raw))
+    with pytest.raises(rb.ConfigError, match="a_switch_src_does_not_know"):
+        rb.assert_model_config_honoured(path)
+    rb.assert_model_config_honoured(REPO / R2_CONFIGS[0])
+
+
+def test_collection_fingerprint_covers_domain_profiles_message_packs_and_variants():
+    plan = plan_for(R2_CONFIGS[0], "r2-posthoc")
+    paths = rb.collection_paths(plan["benchmarks"], plan["model_config"], plan["profile"])
+    assert "config/domains/messages/vi.yaml" in paths and "config/domains/hcmut_academic_r2.yaml" in paths and R2_CONFIGS[0] in paths
+
+
+def test_r2_matrix_is_the_v3_plan_with_the_protocol_tag_and_selects_the_r2_config():
+    import yaml
+    v3 = yaml.safe_load((REPO / "config" / "benchmark" / "d2_matrix.yaml").read_text())
+    r2 = yaml.safe_load((REPO / "config" / "benchmark" / "d2_matrix_r2.yaml").read_text())
+    for key in ("benchmarks", "variants", "seeds", "baselines", "judge_config", "planning_usd_per_packet", "max_judge_usd", "judge_extra_rounds"):
+        assert r2[key] == v3[key], key
+    assert r2["protocol"] == "r2-posthoc" and r2["model_config"] == R2_CONFIGS[0] and "protocol" not in v3
+    from evaluation import run_d2
+    args = run_d2.build_parser().parse_args(["preflight", "--profile", "gpu-accuracy", "--matrix", "config/benchmark/d2_matrix_r2.yaml", "--model-config", R2_CONFIGS[1]])
+    argv = run_d2.runner_args(args, run_d2.load_matrix(args.matrix), command="run")
+    assert argv[argv.index("--protocol") + 1] == "r2-posthoc" and argv[argv.index("--model-config") + 1] == R2_CONFIGS[1]
+    plain = run_d2.build_parser().parse_args(["preflight", "--profile", "gpu-accuracy"])
+    assert "--protocol" not in run_d2.runner_args(plain, run_d2.load_matrix(plain.matrix), command="run")        # the default matrix stays the frozen protocol
+
+
+def test_the_controller_identity_is_pinned_per_alias_for_2b_and_4b():
+    from evaluation import bench_preflight as pre
+    two, four = pre.expected_controller("prism-ml/Ternary-Bonsai-2-2B-gguf"), pre.expected_controller("prism-ml/Ternary-Bonsai-2-4B-gguf")
+    assert two["gguf_sha256"].startswith("d5f01a4e") and four["gguf_sha256"].startswith("d406b1e9") and two["llama_cpp_commit"] == four["llama_cpp_commit"]
+    assert two["reranker_weights_sha256"] == four["reranker_weights_sha256"]            # shared pins apply to every controller
+    assert pre.expected_controller("some/other-model").get("unpinned_controller") == "some/other-model"
+
+
+def test_run_script_derives_the_server_alias_from_the_model_config_and_refuses_a_contradiction():
+    logs = REPO / "logs" / "d2"
+    run_id = "zz-test-alias-check"
+    try:
+        env = {**os.environ, "RUN_ID": run_id, "CUDA_VISIBLE_DEVICES": "0", "PYTHON": sys.executable, "MODEL_CONFIG": R2_CONFIGS[1], "MODEL_ALIAS": "not/the-config-alias"}
+        bad = subprocess.run(["bash", str(REPO / "scripts" / "run_d2_benchmarks.sh"), "gpu"], cwd=REPO, env=env, capture_output=True, text=True, timeout=120)
+        assert bad.returncode == 2 and "contradicts model.name=prism-ml/Ternary-Bonsai-2-4B-gguf" in bad.stderr
+    finally:
+        shutil.rmtree(logs / run_id, ignore_errors=True)
+
+
 # ----------------------------------------------------------------------------- rows, preflight, failure handling (real failures)
 
 def test_read_rows_ignores_a_truncated_last_line_but_never_a_corrupt_middle_line(tmp_path):

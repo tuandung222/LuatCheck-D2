@@ -131,7 +131,7 @@ clean:
 #   make judge RUN=evaluation/runs/<id>         # judge stage alone (needs the gateway key on this machine)
 #   make tables RUN=evaluation/runs/<id>        # analysis + tables + RUN_NOTES alone
 .PHONY: benchmark-freeze benchmark-preflight benchmark-d2 benchmark-d2-gpu benchmark-d2-mac benchmark-smoke \
-        benchmark-status benchmark-compare judge tables audit-score
+        benchmark-status benchmark-compare benchmark-compare-systems judge tables audit-score
 
 RUN_PROFILE ?= mac-latency
 BENCH_STAMP := $(shell date +%Y%m%d-%H%M%S)
@@ -171,6 +171,12 @@ benchmark-status:
 
 benchmark-compare:
 	$(PYTHON) evaluation/run_d2.py compare $(RUN_A) $(RUN_B)
+
+# Same-task comparison of systems (v3 vs the post-hoc revision r2, 2B vs 4B), paired bootstrap, md + tex + json under evaluation/comparisons/:
+#   make benchmark-compare-systems ARMS="v3-2B=d2-gpu-main-hcmut-v3,d2-gpu-main-labour-v3 r2-2B=d2-gpu-r2-2b-hcmut-v1,d2-gpu-r2-2b-labour-v1 r2-4B=d2-gpu-r2-4b-hcmut-v1,d2-gpu-r2-4b-labour-v1"
+ARMS ?=
+benchmark-compare-systems:
+	$(PYTHON) evaluation/run_d2.py compare $(foreach a,$(ARMS),--arm $(a)) $(D2_EXTRA)
 
 judge:
 	$(PYTHON) evaluation/run_d2.py judge --run-dir $(RUN) --execute $(D2_EXTRA)

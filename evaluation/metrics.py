@@ -383,6 +383,31 @@ def behaviour_confusion(rows: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
+UNRECORDED_SOURCE = "unrecorded"
+
+
+def refusal_source_breakdown(rows: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Which component ended each refused / clarified trial, by the trial row's `refusal_source` (copied from the ledger when the system records it:
+    e.g. the model's own refusal vs a controller refusal after repair exhaustion or an exhausted budget). Rows of a system that does not record a source
+    (the frozen v3 runs) are counted as `unrecorded`: the breakdown then says only that the sources are unknown, it never guesses them.
+    Per source and terminal status the split by EXPECTED behaviour shows which abstentions were over-refusals (expected answer) and which were
+    appropriate (expected refuse). Execution errors are not abstentions and are excluded."""
+    sources: Dict[str, Dict[str, Dict[str, int]]] = {}
+    for r in rows:
+        status = r.get("terminal_status")
+        if status not in ("refused", "clarified"):
+            continue
+        source = str(r.get("refusal_source") or UNRECORDED_SOURCE)
+        slot = sources.setdefault(source, {s: {"total": 0, "expected_answer": 0, "expected_refuse": 0} for s in ("refused", "clarified")})[status]
+        slot["total"] += 1
+        slot["expected_answer" if r.get("expected_behavior") == "answer" else "expected_refuse"] += 1
+    recorded = [k for k in sources if k != UNRECORDED_SOURCE]
+    return {"by_source": dict(sorted(sources.items())), "source_recorded_on_all": bool(sources) and not (UNRECORDED_SOURCE in sources),
+            "any_source_recorded": bool(recorded),
+            "note": "Abstentions (refused, clarified) by the component that ended the trial; `unrecorded` = the system did not record a source (frozen v3). "
+                    "Counts, not rates; expected_answer = over-refusals, expected_refuse = appropriate abstentions."}
+
+
 def _positive(values):
     return [v for v in values if isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0]
 

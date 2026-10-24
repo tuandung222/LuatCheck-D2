@@ -11,7 +11,7 @@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: aa8788bb626ce83c2d003c6e75f73d6166d001f1130d6b3a370ec27a62867f16
-% generated_local: 2026-10-24T16:03:19+07:00
+% generated_local: 2026-10-24T16:21:17+07:00
 % generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-main-labour-v3 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -28,7 +28,7 @@ Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@
  & L1{+}rerank & 150 & 18.7\,{\scriptsize[11--27]}$^{\dagger12}$ & 39.1 & 61.4 & 0.815 & 0.685 & 0.296 & 0.289 & 0.289\\
 \bottomrule
 \end{tabular}}
-\caption{Benchmark results per variant (450 real native trials; seeds 42, 123, 2026; run d2-gpu-main-labour-v3). \emph{Succ.} is the strict-success rate (behaviour appropriate, correctness and completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\% interval; execution errors count as failures and $\dagger k$ marks $k$ judge-unknown trials counted as failures. Succ., Beh., Faith. are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking enabled, effort high; model revision not pinned), \textbf{not human labels}. The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}. Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; near ceiling on these benchmarks, so they cannot separate variants); Cit. P/R/F1 are macro cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.}
+\caption{Benchmark results per variant (450 real native trials; seeds 42, 123, 2026; run d2-gpu-main-labour-v3). \emph{Succ.} is the strict-success rate (behaviour appropriate, correctness and completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\% interval; execution errors count as failures and $\dagger k$ marks $k$ judge-unknown trials counted as failures. Succ., Beh., Faith. are LLM-judge estimates by deepseek/deepseek-v4-flash (gateway-routed, thinking enabled, effort high; model revision not pinned), \textbf{not human labels}. The human audit of the judge is \textcolor{red}{\textbf{[PENDING]}}. Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; Recall@5 of the cells shown ranges 0.61--0.81, so retrieval is not saturated); Cit. P/R/F1 are macro cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.}
 \label{tab:benchmark-main}
 \par\vspace{2pt}{\tiny\textit{Source: run d2-gpu-main-labour-v3 @ 957579b, harness 1.1.2, main.}}
 \end{table}
@@ -44,7 +44,7 @@ Benchmark & Variant & Trials & Succ.\ (\%) & Beh.\ (\%) & Faith.\ (\%) & Recall@
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: aa8788bb626ce83c2d003c6e75f73d6166d001f1130d6b3a370ec27a62867f16
-% generated_local: 2026-10-24T16:03:19+07:00
+% generated_local: 2026-10-24T16:21:17+07:00
 % generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-main-labour-v3 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -77,7 +77,7 @@ Benchmark & Variant & Ans/Ref/Clar/Err & Err.\ (\%) & Trial p50/p95 (s) & Call p
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: aa8788bb626ce83c2d003c6e75f73d6166d001f1130d6b3a370ec27a62867f16
-% generated_local: 2026-10-24T16:03:19+07:00
+% generated_local: 2026-10-24T16:21:17+07:00
 % generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-main-labour-v3 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
 % === END PROVENANCE ===
 \begin{table}[t]
@@ -89,17 +89,14 @@ Benchmark & Variant & Ans/Ref/Clar/Err & Err.\ (\%) & Trial p50/p95 (s) & Call p
 \toprule
 Comparison & Scope & Tasks & $\Delta$ Succ.\ (pp) & $\Delta$ Beh.\ match (pp) & $\Delta$ Rec.@5 (pp) & $\Delta$ Cit.\ F1 (pp) & $\Delta$ Err.\ (pp)\\
 \midrule
-\multirow{2}{*}{L1 vs OFF} & Labour-VI-v1 & 50 & -0.0\,{\scriptsize[-6.7,+6.7]} & -22.7\,{\scriptsize[-33.3,-12.0]} & +5.2\,{\scriptsize[-0.7,+11.9]} & -10.0\,{\scriptsize[-17.7,-2.6]} & -0.7\,{\scriptsize[-2.0,+0.0]}\\
- & pooled & 50 & -0.0\,{\scriptsize[-6.7,+6.7]} & -22.7\,{\scriptsize[-33.3,-12.0]} & +5.2\,{\scriptsize[-0.7,+11.9]} & -10.0\,{\scriptsize[-17.7,-2.6]} & -0.7\,{\scriptsize[-2.0,+0.0]}\\
+\multirow{1}{*}{L1 vs OFF} & Labour-VI-v1 & 50 & -0.0\,{\scriptsize[-6.7,+6.7]} & -22.7\,{\scriptsize[-33.3,-12.0]} & +5.2\,{\scriptsize[-0.7,+11.9]} & -10.0\,{\scriptsize[-17.7,-2.6]} & -0.7\,{\scriptsize[-2.0,+0.0]}\\
 \midrule
-\multirow{2}{*}{L1{+}rerank vs L1} & Labour-VI-v1 & 50 & +4.0\,{\scriptsize[-5.3,+13.3]} & -2.0\,{\scriptsize[-12.7,+8.7]} & +15.6\,{\scriptsize[+3.0,+28.9]} & +3.1\,{\scriptsize[-6.5,+13.3]} & +0.7\,{\scriptsize[+0.0,+2.0]}\\
- & pooled & 50 & +4.0\,{\scriptsize[-5.3,+13.3]} & -2.0\,{\scriptsize[-12.7,+8.7]} & +15.6\,{\scriptsize[+3.0,+28.9]} & +3.1\,{\scriptsize[-6.5,+13.3]} & +0.7\,{\scriptsize[+0.0,+2.0]}\\
+\multirow{1}{*}{L1{+}rerank vs L1} & Labour-VI-v1 & 50 & +4.0\,{\scriptsize[-5.3,+13.3]} & -2.0\,{\scriptsize[-12.7,+8.7]} & +15.6\,{\scriptsize[+3.0,+28.9]} & +3.1\,{\scriptsize[-6.5,+13.3]} & +0.7\,{\scriptsize[+0.0,+2.0]}\\
 \midrule
-\multirow{2}{*}{L1{+}rerank vs OFF} & Labour-VI-v1 & 50 & +4.0\,{\scriptsize[-4.0,+12.0]} & -24.7\,{\scriptsize[-36.0,-14.0]} & +20.7\,{\scriptsize[+6.7,+35.2]} & -6.9\,{\scriptsize[-19.9,+5.7]} & +0.0\,{\scriptsize[-2.0,+2.0]}\\
- & pooled & 50 & +4.0\,{\scriptsize[-4.0,+12.0]} & -24.7\,{\scriptsize[-36.0,-14.0]} & +20.7\,{\scriptsize[+6.7,+35.2]} & -6.9\,{\scriptsize[-19.9,+5.7]} & +0.0\,{\scriptsize[-2.0,+2.0]}\\
+\multirow{1}{*}{L1{+}rerank vs OFF} & Labour-VI-v1 & 50 & +4.0\,{\scriptsize[-4.0,+12.0]} & -24.7\,{\scriptsize[-36.0,-14.0]} & +20.7\,{\scriptsize[+6.7,+35.2]} & -6.9\,{\scriptsize[-19.9,+5.7]} & +0.0\,{\scriptsize[-2.0,+2.0]}\\
 \bottomrule
 \end{tabular}}
-\caption{Paired variant differences (treatment minus baseline, percentage points) with 95\% paired bootstrap intervals over tasks (seeds averaged per task; 5000 resamples; pooled = both benchmarks' tasks together). Succ.\ is the strict-success lower bound (LLM-judge estimate), Beh.\ the structural behaviour match, Rec.@5 the trace retrieval, Cit.\ F1 the cited-id F1, Err.\ the execution-error rate. No multiple-comparison correction; intervals that include 0 show no detectable difference at this sample size.}
+\caption{Paired variant differences (treatment minus baseline, percentage points) with 95\% paired bootstrap intervals over tasks (seeds averaged per task; 5000 resamples). Succ.\ is the strict-success lower bound (LLM-judge estimate), Beh.\ the structural behaviour match, Rec.@5 the trace retrieval, Cit.\ F1 the cited-id F1, Err.\ the execution-error rate. No multiple-comparison correction; intervals that include 0 show no detectable difference at this sample size.}
 \label{tab:benchmark-paired}
 \par\vspace{2pt}{\tiny\textit{Source: run d2-gpu-main-labour-v3 @ 957579b, harness 1.1.2, main.}}
 \end{table}
@@ -115,7 +112,7 @@ Comparison & Scope & Tasks & $\Delta$ Succ.\ (pp) & $\Delta$ Beh.\ match (pp) & 
 % profile: gpu-accuracy
 % report_eligible: True
 % trials_sha256: aa8788bb626ce83c2d003c6e75f73d6166d001f1130d6b3a370ec27a62867f16
-% generated_local: 2026-10-24T16:03:19+07:00
+% generated_local: 2026-10-24T16:21:17+07:00
 % generator: python evaluation/render_benchmark_tables.py --run-dir evaluation/runs/d2-gpu-main-labour-v3 --expect-benchmarks labour_vi_v1 --expect-variants off,l1,l1_rerank --allow-non-eligible
 % === END PROVENANCE ===
 \begin{table}[t]

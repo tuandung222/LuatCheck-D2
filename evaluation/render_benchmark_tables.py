@@ -17,6 +17,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 REPORT_TABLES = REPO_ROOT / "report_d2" / "benchmark_results.tex"
 PENDING = r"\textcolor{red}{\textbf{[PENDING]}}"
 NOT_REPORTABLE = r"\textit{n/r}"
@@ -26,6 +28,16 @@ MD_PENDING = "PENDING"
 
 
 PROVENANCE_MARK = "LUATCHECK-PROVENANCE v1"
+from evaluation.run_benchmark import protocol_label   # noqa: E402  (the sentence printed next to results of a post-hoc protocol)
+
+
+def protocol_banner(summary: Dict[str, Any]) -> str:
+    """Visible caption prefix for a run of a non-pre-planned protocol (r2-posthoc), empty for the frozen protocol."""
+    label = summary.get("protocol_label") or protocol_label(summary.get("protocol"))
+    if not label:
+        return ""
+    return (r"	extbf{" + esc(label[0].upper() + label[1:]) + r"} (protocol " + esc(summary["protocol"]) + r"; the revision was designed after the frozen v3 "
+            r"results on these tasks were seen, so this is not a pre-planned result). ")
 
 
 def provenance_for(run_dir: Path, summary: Dict[str, Any], command: str) -> Dict[str, Any]:
@@ -34,6 +46,7 @@ def provenance_for(run_dir: Path, summary: Dict[str, Any], command: str) -> Dict
     manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
     git = (manifest.get("provenance") or {}).get("git") or {}
     return {"run_id": manifest["run_id"], "run_dir": str(run_dir), "kind": manifest.get("kind") or manifest.get("phase"),
+            "protocol": manifest.get("protocol"), "protocol_label": manifest.get("protocol_label") or protocol_label(manifest.get("protocol")),
             "commit": git.get("commit") or (manifest.get("git") or {}).get("commit"), "harness_version": manifest.get("harness_version"),
             "collection_sha256": (manifest.get("sources") or {}).get("collection_sha256"), "profile": manifest["run_profile"]["name"],
             "report_eligible": bool(summary.get("report_eligible")), "generated_local": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -53,9 +66,11 @@ def tag_tables(text: str, prov: Optional[Dict[str, Any]]) -> str:
             continue
         block = [f"% === {PROVENANCE_MARK} ===", f"% table: {label.group(1)}"] + [
             f"% {k}: {prov[k]}" for k in ("run_id", "run_dir", "kind", "commit", "harness_version", "collection_sha256", "profile", "report_eligible",
-                                          "trials_sha256", "generated_local", "generator")] + ["% === END PROVENANCE ==="]
+                                          "trials_sha256", "generated_local", "generator")] + (
+            [f"% protocol: {prov['protocol']}"] if prov.get("protocol") else []) + ["% === END PROVENANCE ==="]
         visible = (rf"\par\vspace{{2pt}}{{\tiny\textit{{Source: run {esc(prov['run_id'])} @ {esc(str(prov['commit'])[:7])}, harness {esc(prov['harness_version'])}, "
-                   rf"{esc(prov['kind'])}{'' if prov['report_eligible'] else ', NOT report-eligible'}.}}}}")
+                   rf"{esc(prov['kind'])}{'' if prov['report_eligible'] else ', NOT report-eligible'}"
+                   rf"{', ' + esc(prov['protocol_label']) if prov.get('protocol_label') else ''}.}}}}")
         chunk = chunk.replace("\\end{table}", visible + "\n\\end{table}", 1)
         out.append("\n".join(block) + "\n" + chunk)
     return "".join(out)
@@ -118,6 +133,25 @@ def audit_sentence(agreement: Optional[Dict[str, Any]]) -> str:
             + (f" ({len(pooled)} reviewer(s))" if pooled else "") + ".")
 
 
+def recall_phrase(summary: Dict[str, Any], expect_benchmarks: List[str], expect_variants: List[str]) -> str:
+    """Caption wording about the saturation of trace Recall@5, driven by the data: 'near ceiling' only when every shown system cell has R@5 >= 0.95."""
+    values = [c["retrieval"]["Recall@5"] for bm in expect_benchmarks for v in expect_variants
+              for c in [summary["cells"].get(f"{bm}/{v}")] if c and c.get("arm", "system") == "system" and c["retrieval"].get("Recall@5") is not None]
+    if not values:
+        return "answerable trials"
+    if min(values) >= 0.95:
+        return f"answerable trials; near ceiling on these benchmarks (all cells {min(values):.2f}--{max(values):.2f}), so they cannot separate variants"
+    return f"answerable trials; Recall@5 of the cells shown ranges {min(values):.2f}--{max(values):.2f}, so retrieval is not saturated"
+
+
+def paired_scopes(entry: Dict[str, Any], expect_benchmarks: List[str]) -> List[tuple]:
+    """Per-benchmark scopes, plus a pooled row only when at least two benchmarks are present (with one benchmark it would repeat that row;
+    pooling across separate single-benchmark runs belongs to `run_d2.py compare`)."""
+    present = [bm for bm in expect_benchmarks if entry["by_benchmark"].get(bm)]
+    scopes = [(bm, entry["by_benchmark"].get(bm)) for bm in expect_benchmarks]
+    return scopes + ([("pooled", entry["pooled"])] if len(present) > 1 else [])
+
+
 def render(summary: Dict[str, Any], expect_benchmarks: List[str], expect_variants: List[str],
            agreement: Optional[Dict[str, Any]] = None) -> Dict[str, str]:
     cells = summary["cells"]
@@ -132,6 +166,7 @@ def render(summary: Dict[str, Any], expect_benchmarks: List[str], expect_variant
     banner = ""
     if non_eligible:
         banner = (r"\textcolor{red}{\textbf{NON-ELIGIBLE RUN (" + esc(summary["phase"]) + r"): pipeline check only, not report evidence.}} ")
+    banner += protocol_banner(summary)
     cost = summary["judge_cost_total"]
 
     main_rows: List[str] = []
@@ -185,7 +220,7 @@ def render(summary: Dict[str, Any], expect_benchmarks: List[str], expect_variant
                     f"completeness 2, all claims supported) as a lower bound over all trials, with a task-level bootstrap 95\\% interval; "
                     f"execution errors count as failures and $\\dagger k$ marks $k$ judge-unknown trials counted as failures. "
                     f"Succ., Beh., Faith. are LLM-judge estimates by {judge_text}, \\textbf{{not human labels}}. {audit_sentence(agreement)} "
-                    f"Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace (answerable trials; near ceiling on these benchmarks, so they cannot separate variants); Cit. P/R/F1 are macro "
+                    f"Recall@5 and MRR are retrieval of gold ids over the agent's search+read trace ({recall_phrase(summary, expect_benchmarks, expect_variants)}); Cit. P/R/F1 are macro "
                     f"cited-id set matches to gold ids (nothing cited = 0; source-ID proxies, not answer correctness). Red entries are not measured.")
     caption_ops = (banner + "Operational measurements and judge cost per variant. Counts are answered/refused/clarified/execution-error trials; "
                    "Err.\\ is the execution-error rate. "
@@ -326,7 +361,7 @@ def render_paired(summary: Dict[str, Any], expect_benchmarks: List[str], banner:
     comparisons = (summary.get("paired_differences") or {}).get("comparisons") or {}
     rows: List[str] = []
     for label, entry in comparisons.items():
-        scopes = [(bm, entry["by_benchmark"].get(bm)) for bm in expect_benchmarks] + [("pooled", entry["pooled"])]
+        scopes = paired_scopes(entry, expect_benchmarks)
         for i, (scope, metrics) in enumerate(scopes):
             lead = rf"\multirow{{{len(scopes)}}}{{*}}{{{esc(label).replace('+', '{+}')}}}" if i == 0 else ""
             name = "pooled" if scope == "pooled" else esc(BENCH_NAMES.get(scope, scope))
@@ -343,8 +378,10 @@ def render_paired(summary: Dict[str, Any], expect_benchmarks: List[str], banner:
         rows.pop()
     else:
         rows = [r"\multicolumn{8}{c}{" + PENDING + r"}\\"]
+    pooled_shown = any(len(paired_scopes(e, expect_benchmarks)) > len(expect_benchmarks) for e in comparisons.values())
+    pooled_note = "; pooled = both benchmarks' tasks together" if pooled_shown else ""
     caption = (banner + "Paired variant differences (treatment minus baseline, percentage points) with 95\\% paired bootstrap intervals over tasks "
-               f"(seeds averaged per task; {(summary.get('paired_differences') or {}).get('draws', '--')} resamples; pooled = both benchmarks' tasks together). "
+               f"(seeds averaged per task; {(summary.get('paired_differences') or {}).get('draws', '--')} resamples{pooled_note}). "
                "Succ.\\ is the strict-success lower bound (LLM-judge estimate), Beh.\\ the structural behaviour match, Rec.@5 the trace retrieval, Cit.\\ F1 the "
                "cited-id F1, Err.\\ the execution-error rate. No multiple-comparison correction; intervals that include 0 show no detectable difference at this sample size.")
     return "\n".join([
@@ -359,6 +396,8 @@ def render_markdown(summary: Dict[str, Any], expect_benchmarks: List[str], expec
         return MD_PENDING if v is None else f"{scale * v:.{d}f}"
     lines = [f"# Results summary - run `{summary['run_id']}` ({summary['phase']}, {summary['run_profile']})", "",
              f"report_eligible: **{summary['report_eligible']}** - {summary['report_eligible_note']}", "",
+             *([f"**{(summary.get('protocol_label') or protocol_label(summary['protocol'])).capitalize()}** (protocol `{summary['protocol']}`): the revision was designed after the "
+                "frozen v3 results on these tasks were seen; this is not a pre-planned result.", ""] if summary.get("protocol") else []),
              "LLM-judge estimates (success, behaviour, faithfulness) are not human labels. Retrieval and citation numbers are source-ID proxies. "
              "Execution errors count as failures in strict success and are reported separately.", ""]
     lines += ["| benchmark | variant | trials | strict success % [95% CI] | unknown | judge behav % | faithfulness % | R@5 | MRR | nDCG@5 | cit P | cit R | cit F1 | err % |",
@@ -416,7 +455,7 @@ def render_markdown(summary: Dict[str, Any], expect_benchmarks: List[str], expec
         lines += ["", "## Paired differences (treatment - baseline, pp; 95% paired bootstrap over tasks)", "",
                   "| comparison | scope | tasks | d strict success | d behaviour match | d R@5 | d cit F1 | d error rate |", "|---|---|---|---|---|---|---|---|"]
         for label, entry in paired.items():
-            for scope, metrics in list(entry["by_benchmark"].items()) + [("pooled", entry["pooled"])]:
+            for scope, metrics in [(k, v) for k, v in paired_scopes(entry, expect_benchmarks) if k == "pooled" or k in entry["by_benchmark"]]:
                 def cell(key):
                     r = (metrics or {}).get(key)
                     return MD_PENDING if not r else f"{100 * r['diff_b_minus_a']:+.1f} [{100 * r['ci95'][0]:+.1f},{100 * r['ci95'][1]:+.1f}]"
@@ -439,6 +478,20 @@ def render_markdown(summary: Dict[str, Any], expect_benchmarks: List[str], expec
                          f"{f(c['strict_success']['rate_lower_bound'], 100) if r['role'] == 'baseline' else '--'} | {f(a['strict_success_lower'], 100)}"
                          + (f" [{100 * ci[0]:.0f}-{100 * ci[1]:.0f}]" if ci else "") + f" | {f(a['answer_rate'], 100)} | "
                          f"{f(cit['precision'], 1, 3) if show_cit else '--'} | {f(cit['recall'], 1, 3) if show_cit else '--'} |")
+    sources = {k: c.get("refusal_sources") for k, c in summary["cells"].items() if c.get("arm", "system") == "system" and c.get("refusal_sources")}
+    if sources:
+        lines += ["", "## Refusals and clarifications by source (counts: total / expected-answer / expected-refuse)", "",
+                  "| benchmark | variant | source | refused | clarified |", "|---|---|---|---|---|"]
+        for bm in expect_benchmarks:
+            for v in expect_variants:
+                block = sources.get(f"{bm}/{v}")
+                if not block:
+                    continue
+                for src, by_status in block["by_source"].items():
+                    cell = lambda st: f"{by_status[st]['total']} / {by_status[st]['expected_answer']} / {by_status[st]['expected_refuse']}"
+                    lines.append(f"| {bm} | {v} | {src} | {cell('refused')} | {cell('clarified')} |")
+        if not any(b["any_source_recorded"] for b in sources.values()):
+            lines += ["", "No refusal source was recorded by this run (`unrecorded` = the system did not log which component ended the trial)."]
     lines += ["", "## Judge reliability", "",
               ("Human audit: " + json.dumps(agreement["judge_vs_human"].get("strict_success"), default=str)) if agreement and agreement.get("status") == "ok"
               else "Human audit labels: PENDING (agreement and kappa are not computed without real labels).", ""]

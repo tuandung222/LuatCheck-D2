@@ -204,9 +204,70 @@ Expect `comparable: false` only through `may_differ`-type differences being list
 
 * **Before a MAIN run**: commit everything in `src/ config/ evaluation/ data/corpus requirements*.txt` and **push** (`git push origin main`). A main run is refused (before any server is touched) on a dirty collection path or a commit that is not on origin; smoke / `--allow-unfrozen` / `--kind diagnostic` runs may be dirty but are marked and never report-eligible. Server 82 has no `.git`: on the clean, pushed Mac checkout run `make stamp-provenance` (writes `PROVENANCE.json`, valid only while the collection sources are unchanged), then sync the repository including that file.
 * Every run records in `manifest.json`: `kind`, `harness_version` (`evaluation/provenance.py`, bumped by hand on any metric / collection / judge-rule / table change), commit + branch + remote + on-origin, exact `argv` and the environment variables that matter (`RUN_ID`, `CUDA_VISIBLE_DEVICES`, ports ...), host (hostname, OS, GPU/driver/CUDA, Python and package versions), model identities (GGUF sha, llama.cpp commit, reranker sha/revision), benchmark lock hashes, config hashes, `run_state` (running|complete|incomplete|failed) and local start/end time. Judge and analysis stages write `stage_provenance` (harness version, judge prompt hash, the run and trials hash they consumed); tables write `tables/PROVENANCE.json`.
-* **`make runs`** (= `python evaluation/run_d2.py registry`) rewrites `evaluation/runs/REGISTRY.md` + `registry.jsonl`: one row per run with kind, state, commit, harness, `report_eligible` and **freshness** against HEAD: `current`, `stale: <what differs>` (re-run, never quote), `historical: <reason>`, `superseded_by: <run>`, `incomplete`, `n/a`. Marks live in `evaluation/runs/registry_overrides.yaml` and an optional `<run>/RUN_STATUS.json` (`{"superseded_by": "<run>"}` when a re-run replaces a run); runs are never deleted.
+* **`make runs`** (= `python evaluation/run_d2.py registry`) rewrites `evaluation/runs/REGISTRY.md` + `registry.jsonl`: one row per run with kind, state, commit, harness, `report_eligible` and **freshness** against HEAD: `current`, `pinned@<commit>` (a result frozen on purpose, listed under `pinned:` in `registry_overrides.yaml`; holds only while the run's recorded fingerprint equals that commit's sources, checked with `git show`), `stale: <what differs>` (re-run, never quote), `historical: <reason>`, `superseded_by: <run>`, `remote/not synced` (listed under `remote:`, lives only on server 82), `incomplete`, `n/a`. Marks live in `evaluation/runs/registry_overrides.yaml` and an optional `<run>/RUN_STATUS.json` (`{"superseded_by": "<run>"}` when a re-run replaces a run); runs are never deleted.
 * Every table the renderer writes has a `% === LUATCHECK-PROVENANCE v1 ===` comment block (run id, commit, harness, generator command) and a visible "Source: run ... @ commit, harness ..." line.
 * **Final steps, always**: `make runs` then **`make report-check`**. It fails if any result table in `report_d2/main_d2.tex` comes from a run that is not `main`, not report-eligible or not `current`, if the tables of one file mix commits / harness versions, if trials changed after a table was rendered, or if a table with measured numbers is written inline without `% PROVENANCE: run=<id>` / `% PROVENANCE: historical <reason>` (`n/a` only for design / plan tables). It writes `report_d2/RESULTS_PROVENANCE.md` (table -> run -> commit -> command). Do not send the report while it says FAILED. If a run is `stale` because you changed code after the run, either re-run it or (analysis-only change) re-run `make tables`, bump nothing, and re-check; if it is stale because the harness version moved, the run must be repeated.
+
+## F. Post-hoc revision r2 on server 82 (2B on GPU 2, 4B on GPU 3) and the v3-vs-r2 comparison
+
+Written 2026-10-24 (UTC+7). The frozen v3 runs (`d2-gpu-main-{hcmut,labour}-v3`, commit 957579b, harness 1.1.2) stay the pre-planned result and are **pinned** in the registry (`pinned@957579b`).
+The revision r2 (ten opt-in switches, see the comment header of `config/benchmark/model_prism_gguf2b_r2.yaml` and `docs/reviews/v3_failure_analysis_2026-10-24.md`) was designed AFTER
+the v3 results of `hcmut_v1` / `labour_vi_v1` were seen. Its runs are `kind: main` but carry `protocol: r2-posthoc`; every table and `RUN_NOTES.md` prints **"post-hoc revision evaluated on the same tasks"**.
+Same matrix as v3 (2 benchmarks x 3 variants x 3 seeds + closed_book/oracle) for two controllers: 2B (isolates the system fix) and 4B (isolates model size on the revised system).
+Run ids: `d2-gpu-r2-{2b,4b}-{hcmut,labour}-v1` (one run per benchmark, as for v3, so a resume stays small).
+
+What the runner enforces: `config/benchmark/d2_matrix_r2.yaml` sets `protocol`; the runner refuses a model config whose keys the installed `src/` would drop, a revised config without the protocol tag, a tagged run without all ten switches, and a resume across a different system. The manifest records
+`protocol`, `protocol_label` and `system_revision` (`requested_in_model_config` and `effective`, the values `src/` resolved) and the same in `fingerprint.must_match` (`protocol`, `system_revision_effective`); each `effective_configs[...]` entry shows `domain.profile` (set per benchmark) together with `domain.profile_variant: r2`.
+Check before launching: `jq '.system_revision.effective, .protocol' evaluation/runs/<run>/manifest.json`.
+
+### F1. Before launching (Mac): commit and push, stamp, sync
+```
+git push origin main && make stamp-provenance          # a main run needs a clean, pushed tree; sync PROVENANCE.json with the repo (server 82 has no .git)
+```
+Ports: 2B uses 28081 (GPU 2), 4B uses 28082 (GPU 3). 4B uses about 11 GB VRAM (check `nvidia-smi -i 3`; the script refuses a GPU with > 4000 MiB used by others). Both GGUFs:
+`/home/dungvpt/workspace/dungvpt/models/bonsai/Ternary-Bonsai-2-2B-PQ2_0.gguf` (sha256 d5f01a4e...) and `/home/dungvpt/workspace/dungvpt/models/bonsai/4b/Ternary-Bonsai-2-4B-PQ2_0.gguf` (sha256 d406b1e9..., pinned in `expected_server.yaml` under `controllers:`; preflight pins the controller by alias with `expected_controller(alias)`).
+
+### F2. Launch (tmux on 82; resume = run the same command again)
+Common environment (the script starts `llama-server -np 16 -c 262144 --kv-unified` itself when nothing healthy answers on the port; `--workers 16` = the slots, as in v3):
+```
+cd /home/dungvpt/luatcheck-d2
+export PYTHON=/home/dungvpt/workspace/dungvpt/d2-setup/py.sh SKIP_JUDGE=1 NP=16 CTX_PER_SLOT=16384
+export PRISM_DIR=/home/dungvpt/workspace/dungvpt/src/prism-llama.cpp
+export RERANKER_MODEL_DIR=/home/dungvpt/workspace/dungvpt/models/reranker/AITeamVN_Vietnamese_Reranker
+export MATRIX=config/benchmark/d2_matrix_r2.yaml
+```
+2B on GPU 2, port 28081 (tmux session `r2-2b`):
+```
+export CUDA_VISIBLE_DEVICES=2 PRISM_PORT=28081 MODEL_CONFIG=config/benchmark/model_prism_gguf2b_r2.yaml MODEL_ALIAS=prism-ml/Ternary-Bonsai-2-2B-gguf
+export GGUF_PATH=/home/dungvpt/workspace/dungvpt/models/bonsai/Ternary-Bonsai-2-2B-PQ2_0.gguf
+RUN_ID=d2-gpu-r2-2b-hcmut-v1  EXTRA="--benchmarks hcmut_v1 --workers 16"      scripts/run_d2_benchmarks.sh gpu
+RUN_ID=d2-gpu-r2-2b-labour-v1 EXTRA="--benchmarks labour_vi_v1 --workers 16"   scripts/run_d2_benchmarks.sh gpu
+```
+4B on GPU 3, port 28082 (second tmux session `r2-4b`):
+```
+export CUDA_VISIBLE_DEVICES=3 PRISM_PORT=28082 MODEL_CONFIG=config/benchmark/model_prism_gguf4b_r2.yaml MODEL_ALIAS=prism-ml/Ternary-Bonsai-2-4B-gguf
+export GGUF_PATH=/home/dungvpt/workspace/dungvpt/models/bonsai/4b/Ternary-Bonsai-2-4B-PQ2_0.gguf
+RUN_ID=d2-gpu-r2-4b-hcmut-v1  EXTRA="--benchmarks hcmut_v1 --workers 16"      scripts/run_d2_benchmarks.sh gpu
+RUN_ID=d2-gpu-r2-4b-labour-v1 EXTRA="--benchmarks labour_vi_v1 --workers 16"   scripts/run_d2_benchmarks.sh gpu
+```
+(`MODEL_ALIAS` is optional: the script reads `model.name` from `MODEL_CONFIG` and refuses a contradicting value. The two shells use different GPUs and ports, so they may run at the same time. The script stops only a server it started, so the second benchmark of a controller starts a fresh server; set `KEEP_SERVERS=1` to keep it.)
+A dry run prints the plan and the judge estimate: `.venv/bin/python evaluation/run_d2.py all --profile gpu-accuracy --matrix config/benchmark/d2_matrix_r2.yaml --model-config config/benchmark/model_prism_gguf4b_r2.yaml`.
+A preflight by hand (needs the server): `$PYTHON evaluation/run_d2.py preflight --profile gpu-accuracy --matrix $MATRIX --model-config $MODEL_CONFIG --endpoint http://127.0.0.1:$PRISM_PORT/v1`.
+
+### F3. Copy back, judge, tables (Mac), registry
+`sync_pull` each `evaluation/runs/d2-gpu-r2-*` and `logs/d2/d2-gpu-r2-*`; then per run `make judge RUN=evaluation/runs/<run> D2_EXTRA="--judge-concurrency 12"` and `make tables RUN=evaluation/runs/<run>`; `make runs`.
+`RUN_NOTES.md` and `tables/summary.md` show the protocol line, the revision switches (requested -> effective) and the refusals/clarifications by source (`refusal_source`; `unrecorded` for the frozen v3 runs).
+
+### F4. v3 vs r2 comparison (same tasks, paired task-level bootstrap, seeds averaged)
+```
+make benchmark-compare-systems ARMS="v3-2B=d2-gpu-main-hcmut-v3,d2-gpu-main-labour-v3 r2-2B=d2-gpu-r2-2b-hcmut-v1,d2-gpu-r2-2b-labour-v1 r2-4B=d2-gpu-r2-4b-hcmut-v1,d2-gpu-r2-4b-labour-v1"
+# = .venv/bin/python evaluation/run_d2.py compare --arm "v3-2B=..." --arm "r2-2B=..." --arm "r2-4B=..."
+```
+Contrasts (default for three arms): **system effect** = r2-2B - v3-2B, **model effect** = r2-4B - r2-2B; pass `--contrast "LABEL=ARM_B minus ARM_A"` for others. Output `evaluation/comparisons/<arms>/comparison.{md,tex,json}`:
+strict success per variant for every arm with the differences, plus behaviour match, Recall@5, answer rate and error rate. Every table has a `LUATCHECK-COMPARE-PROVENANCE v1` header (run, commit, harness, freshness, protocol, trials hash per arm) and prints the post-hoc sentence; `make report-check` validates it (each arm run `main`, report-eligible and `current` or `pinned`; a table FILE of ordinary result tables must not mix pinned and current runs - only comparison tables show them side by side).
+Self-test on the recorded v3 runs (all differences must be exactly 0 and the cells equal each run's own `analysis/summary.json`): `compare --arm "a=d2-gpu-main-hcmut-v3,d2-gpu-main-labour-v3" --arm "b=d2-gpu-main-hcmut-v3,d2-gpu-main-labour-v3"`.
+
+---------------------------------------------------------------------------------------------------
 
 ## E. Quick reference
 
@@ -222,4 +283,6 @@ Expect `comparable: false` only through `may_differ`-type differences being list
 | may the report be sent? | `make report-check` (RESULTS_PROVENANCE.md) |
 | certify a checkout for a host without .git | `make stamp-provenance` |
 | are two runs comparable? | `make benchmark-compare RUN_A=<a> RUN_B=<b>` |
+| v3 vs r2 / 2B vs 4B tables | `make benchmark-compare-systems ARMS="label=run,run label=run,run ..."` (section F4) |
+| r2 on 82 | section F2: `MATRIX=config/benchmark/d2_matrix_r2.yaml MODEL_CONFIG=config/benchmark/model_prism_gguf{2b,4b}_r2.yaml RUN_ID=d2-gpu-r2-{2b,4b}-{hcmut,labour}-v1 ...` |
 | servers | `make prism-server`, `make prism-server-gpu GPU=2 GPU_PORT=28081 GGUF_PATH=...`, `make rerank-server-mac` |

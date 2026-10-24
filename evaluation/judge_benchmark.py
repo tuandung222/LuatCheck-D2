@@ -39,6 +39,7 @@ from evaluation import metrics as bm_metrics
 from evaluation import stats
 from evaluation.judge_gateway import local_environment, sha, validate
 from evaluation.run_benchmark import RUN_SCHEMA, latest_by_key, read_rows, record_id, sha256_file, trials_path
+from evaluation.run_benchmark import protocol_label as rb_protocol_label
 
 DEFAULT_JUDGE_CONFIG = Path("config/benchmark/judge_gateway.json")
 JUDGE_PROMPT = Path("evaluation/judge_prompt.txt")
@@ -501,6 +502,8 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
         "run_id": manifest["run_id"], "phase": manifest["phase"], "run_status": manifest["status"],
         "run_profile": manifest["run_profile"]["name"], "latency_reportable": manifest["latency_reportable"],
         "report_eligible": False,
+        "protocol": manifest.get("protocol"), "protocol_label": manifest.get("protocol_label") or rb_protocol_label(manifest.get("protocol")),
+        "system_revision_effective": (manifest.get("system_revision") or {}).get("effective"),
         "judge_model": None, "human_labels_received": False, "human_judge_agreement": None,
         "runs_sha256": sha256_file(trials_path(run_dir)), "peak_memory_mb": manifest.get("peak_memory_mb"),
         "cells": {}, "claims_note": "Micro-average over factual claims in valid judgeable outputs, refusals included.",
@@ -628,6 +631,7 @@ def analyze(run_dir: Path, *, audit_size: int = 30) -> Dict[str, Any]:
                                     "precision_when_cited excludes trials that cited nothing; micro_* pools ids."},
             "behaviour_confusion": bm_metrics.behaviour_confusion(rows_),
             "errors": bm_metrics.error_profile(rows_),
+            "refusal_sources": bm_metrics.refusal_source_breakdown(rows_),
             "refusal_behaviour": {"expected_refuse_trials": len(expected_refuse),
                                   "refused": sum(r["terminal_status"] == "refused" for r in expected_refuse),
                                   "answered_instead": sum(r["terminal_status"] == "answered" for r in expected_refuse)},

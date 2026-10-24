@@ -111,10 +111,12 @@ def test_registry_scan_lists_every_run_dir_and_writes_markdown_and_jsonl(tmp_pat
     for name in ("bench-smoke-both-20261023", "bll2019-pilot-v1", "reranker-parity-2026-10-23"):
         (runs / name).symlink_to(REAL / name, target_is_directory=True)
     rows = registry.write_registry(runs)
-    assert [r["run"] for r in rows] == sorted(p.name for p in runs.iterdir() if p.is_dir())
+    local = sorted(p.name for p in runs.iterdir() if p.is_dir())
+    assert [r["run"] for r in rows if r["state"] != "remote"] == local            # every directory is listed ...
+    assert {r["run"] for r in rows if r["state"] == "remote"} == {i["run"] for i in registry.load_remote()}     # ... plus the runs that live only on server 82
     text = (runs / "REGISTRY.md").read_text()
     assert "| bench-smoke-both-20261023 | smoke |" in text and "historical" in text and "Only `report_eligible = yes` AND `current`" in text
-    assert len((runs / "registry.jsonl").read_text().splitlines()) == 3
+    assert len((runs / "registry.jsonl").read_text().splitlines()) == len(rows)
 
 
 def test_freshness_is_current_only_when_sources_harness_and_locks_match(tmp_path):
@@ -288,3 +290,189 @@ def test_na_marker_is_only_allowed_on_design_tables_not_on_results_tables(tmp_pa
     (report_dir / "main.tex").write_text(body.format(label="tab:benchmark-results"))
     problems = check.check(report_dir / "main.tex", REAL)["problems"]
     assert len(problems) == 1 and "only allowed on design / plan tables" in problems[0]
+
+
+# ----------------------------------------------------------------------------- pinned runs, remote runs, comparison tables
+
+import os
+
+V3_HCMUT, V3_LABOUR = "d2-gpu-main-hcmut-v3", "d2-gpu-main-labour-v3"
+
+
+def light_copy(tmp_path, name, source_name=V3_HCMUT, **manifest_changes) -> Path:
+    """A run directory that is a COPY of a recorded run's manifest and summary (all the registry reads) with symlinks to the big recorded files,
+    so the copy can also feed the comparison. Manifest fields can be changed to provoke one failure."""
+    runs = tmp_path / "runs"
+    runs.mkdir(exist_ok=True)
+    run = runs / name
+    source = REAL / source_name
+    (run / "analysis").mkdir(parents=True)
+    manifest = json.loads((source / "manifest.json").read_text())
+    manifest.update(run_id=name, **manifest_changes)
+    (run / "manifest.json").write_text(json.dumps(manifest))
+    shutil.copy(source / "analysis" / "summary.json", run / "analysis" / "summary.json")
+    os.symlink(source / "analysis" / "private-trial-details.json", run / "analysis" / "private-trial-details.json")
+    os.symlink(source / "trials.jsonl", run / "trials.jsonl")
+    return run
+
+
+def test_the_frozen_v3_runs_are_pinned_to_their_commit_and_stay_reportable():
+    pins = registry.load_pins()
+    assert {r: pins[r]["commit"] for r in (V3_HCMUT, V3_LABOUR)} == {V3_HCMUT: "957579b", V3_LABOUR: "957579b"}
+    for name in (V3_HCMUT, V3_LABOUR):
+        row = registry.describe(REAL / name)
+        assert row["freshness"] == "pinned@957579b" and row["kind"] == "main" and row["report_eligible"] is True and row["harness_version"] == "1.1.2"
+        manifest = json.loads((REAL / name / "manifest.json").read_text())
+        assert registry.pin_problems(manifest, pins[name]) == []
+        # the working tree has moved on (so an unpinned run with the same fingerprint is stale), the pin does not look at it
+        assert registry.stale_reasons(manifest)
+
+
+def test_a_pin_holds_only_while_the_recorded_fingerprint_equals_the_commits_sources(tmp_path):
+    ok = light_copy(tmp_path, V3_HCMUT)
+    assert registry.describe(ok)["freshness"] == "pinned@957579b"
+    manifest = json.loads((ok / "manifest.json").read_text())
+    victim = next(p for p in manifest["sources"]["collection_files"] if p.startswith("src/") and p.endswith(".py"))
+
+    edited = json.loads(json.dumps(manifest))
+    edited["sources"]["files_sha256"][victim] = "0" * 64
+    (ok / "manifest.json").write_text(json.dumps(edited))
+    fresh = registry.describe(ok)["freshness"]
+    assert fresh.startswith("stale: pin 957579b does not hold") and victim in fresh
+
+    edited = json.loads(json.dumps(manifest))
+    edited["sources"]["collection_sha256"] = "1" * 64
+    (ok / "manifest.json").write_text(json.dumps(edited))
+    assert "collection_sha256" in registry.describe(ok)["freshness"]
+
+    edited = json.loads(json.dumps(manifest))
+    edited["provenance"]["git"]["commit"] = "a" * 40
+    (ok / "manifest.json").write_text(json.dumps(edited))
+    assert "recorded commit aaaaaaaaaaaa, not the pinned" in registry.describe(ok)["freshness"]
+
+    edited = json.loads(json.dumps(manifest))
+    edited["sources"]["collection_files"] = edited["sources"]["collection_files"][:-3]
+    (ok / "manifest.json").write_text(json.dumps(edited))
+    assert "not in the run's fingerprint" in registry.describe(ok)["freshness"] or "stale" in registry.describe(ok)["freshness"]
+
+    unavailable = {"run": "x", "commit": "0123456789abcdef0123456789abcdef01234567"}
+    assert "not available in this repository" in registry.pin_problems(manifest, unavailable)[0]
+
+
+def test_an_old_run_that_is_not_pinned_still_shows_stale(tmp_path):
+    other = light_copy(tmp_path, "d2-gpu-main-hcmut-v9")                  # same recorded fingerprint, but nobody pinned this run
+    assert registry.describe(other)["freshness"].startswith("stale:")
+    marked = light_copy(tmp_path, "d2-gpu-main-hcmut-v8")
+    (marked / "RUN_STATUS.json").write_text(json.dumps({"superseded_by": V3_HCMUT}))
+    assert registry.describe(marked)["freshness"] == f"superseded_by: {V3_HCMUT}"
+
+
+def test_runs_that_live_only_on_server_82_are_listed_as_remote_and_superseded(tmp_path):
+    runs = tmp_path / "runs"
+    runs.mkdir()
+    (runs / V3_HCMUT).symlink_to(REAL / V3_HCMUT, target_is_directory=True)
+    rows = {r["run"]: r for r in registry.scan(runs)}
+    for name in ("d2-gpu-main-hcmut-v1", "d2-gpu-main-hcmut-v2", "d2-gpu-main-labour-v1", "d2-gpu-main-labour-v2"):
+        assert rows[name]["freshness"] == f"remote/not synced (superseded_by: {name.rsplit('-', 1)[0]}-v3)" and rows[name]["state"] == "remote"
+        assert rows[name]["report_eligible"] is False
+    assert rows["d2-gpu-gate-*"]["freshness"].startswith("remote/not synced") and rows["d2-gpu-gate-*"]["kind"] == "smoke"
+    assert rows[V3_HCMUT]["freshness"] == "pinned@957579b"
+    registry.write_registry(runs)
+    text = (runs / "REGISTRY.md").read_text()
+    assert "remote/not synced" in text and "pinned@957579b" in text and "pinned 1" in text
+    # a directory that is synced back later is described by its own manifest and keeps the supersession mark
+    synced = light_copy(tmp_path, "d2-gpu-main-hcmut-v2")
+    assert registry.describe(synced)["freshness"] == f"superseded_by: {V3_HCMUT}"
+    assert "d2-gpu-main-hcmut-v2" in {r["run"] for r in registry.scan(synced.parent)} and registry.scan(synced.parent)
+
+
+def comparison_report(tmp_path, runs_dir, arms):
+    from evaluation import compare_runs as cmp
+    data = cmp.build([cmp.parse_arm(a) for a in arms], cmp.default_contrasts([cmp.parse_arm(a)[0] for a in arms]), ["off", "l1", "l1_rerank"], runs_dir)
+    out = tmp_path / "report"
+    out.mkdir(exist_ok=True)
+    cmp.write_outputs(data, out, "python evaluation/run_d2.py compare (test)")
+    (out / "main.tex").write_text("\\documentclass{article}\\begin{document}\\input{comparison}\n\\end{document}\n")
+    return out / "main.tex", out / "comparison.tex"
+
+
+def test_report_check_accepts_pinned_runs_and_their_own_tables():
+    report_dir = Path(__import__("tempfile").mkdtemp())
+    try:
+        (report_dir / "benchmark_results.tex").write_text((REAL / V3_HCMUT / "tables" / "benchmark_results.tex").read_text())
+        (report_dir / "benchmark_diagnostics.tex").write_text((REAL / V3_HCMUT / "tables" / "benchmark_diagnostics.tex").read_text())
+        (report_dir / "main.tex").write_text("\\input{benchmark_results}\\input{benchmark_diagnostics}\n")
+        result = check.check(report_dir / "main.tex", REAL)
+        assert result["problems"] == [] and {r["freshness"] for r in result["rows"]} == {"pinned@957579b"} and len(result["rows"]) >= 4
+        # an inline table can name a pinned run too
+        (report_dir / "main.tex").write_text(f"\\begin{{table}}\\label{{tab:results-x}}% PROVENANCE: run={V3_HCMUT}\n\\begin{{tabular}}{{ll}}a & 61.5\\% \\\\ b & 0.83 \\\\\\end{{tabular}}\\end{{table}}\n")
+        assert check.check(report_dir / "main.tex", REAL)["problems"] == []
+    finally:
+        shutil.rmtree(report_dir, ignore_errors=True)
+
+
+def test_a_table_file_mixing_a_pinned_and_a_current_run_fails(tmp_path):
+    current = current_looking_copy(tmp_path)
+    (current.parent / V3_HCMUT).symlink_to(REAL / V3_HCMUT, target_is_directory=True)
+    report = rendered_report(tmp_path, current)
+    own = (report.parent / "benchmark_results.tex").read_text()
+    assert check.check(report, current.parent)["problems"] == []
+    (report.parent / "benchmark_results.tex").write_text(own + (REAL / V3_HCMUT / "tables" / "benchmark_results.tex").read_text())
+    problems = check.check(report, current.parent)["problems"]
+    assert any("mix pinned and current runs" in p for p in problems) and any("different commits" in p for p in problems)
+    # the same holds for an inline table that names both
+    inline = ("\\begin{table}\\label{tab:results-inline}% PROVENANCE: run=" + f"{V3_HCMUT},{current.name}" +
+              "\n\\begin{tabular}{ll}a & 61.5\\% \\\\ b & 0.83 \\\\\\end{tabular}\\end{table}\n")
+    (report.parent / "benchmark_results.tex").write_text(own)
+    (report.parent / "main.tex").write_text(inline)
+    assert any("mixes pinned and current runs" in p for p in check.check(report.parent / "main.tex", current.parent)["problems"])
+
+
+def test_comparison_tables_may_put_a_pinned_and_a_current_run_side_by_side_but_every_arm_is_checked(tmp_path):
+    current = current_looking_copy(tmp_path)
+    runs = current.parent
+    (runs / V3_HCMUT).symlink_to(REAL / V3_HCMUT, target_is_directory=True)
+    (runs / V3_LABOUR).symlink_to(REAL / V3_LABOUR, target_is_directory=True)
+    # (the "current" arm is the re-pointed smoke copy: other tasks, so use v3 as both arms for the accepted case and check the mix by the registry rows)
+    report, table = comparison_report(tmp_path, runs, [f"v3={V3_HCMUT},{V3_LABOUR}", f"v3-again={V3_HCMUT},{V3_LABOUR}"])
+    result = check.check(report, runs)
+    assert result["problems"] == [] and {r["freshness"] for r in result["rows"]} == {"pinned@957579b"} and len(result["rows"]) == 2 * 2 * 2
+    good = table.read_text()
+    table.write_text(good.replace("harness_version: 1.1.2", "harness_version: 1.1.3", 1))
+    assert any("header harness" in p for p in check.check(report, runs)["problems"])
+    table.write_text(good.replace("% arm: v3 | benchmark: hcmut_v1 | run: " + V3_HCMUT, "% arm: v3 | benchmark: hcmut_v1 | run: " + current.name, 1))
+    assert any("header commit" in p or "trials of run" in p or "differs" in p for p in check.check(report, runs)["problems"])
+    table.write_text(good.replace(check.CMP_START, "% header removed", 1))
+    assert any("comparison blocks" in p for p in check.check(report, runs)["problems"])
+    table.write_text(good.replace("trials_sha256: ", "trials_sha256: 00", 1))
+    assert any("changed after the table was rendered" in p for p in check.check(report, runs)["problems"])
+    table.write_text(good)
+    # an arm run that is not main / eligible / current-or-pinned fails the whole table
+    smoke_like = light_copy(tmp_path, "d2-gpu-main-hcmut-v7")           # unpinned copy of v3: stale
+    report2, _ = comparison_report(tmp_path, smoke_like.parent, [f"a=d2-gpu-main-hcmut-v7", "b=d2-gpu-main-hcmut-v7"])
+    assert any("is not current: stale" in p for p in check.check(report2, smoke_like.parent)["problems"])
+
+
+def test_a_post_hoc_arm_requires_the_label_in_every_table_that_shows_it(tmp_path):
+    # a COPY of the real v3 run's records whose manifest carries the r2 protocol tag (it is still pinned to the same commit by its name)
+    revised = light_copy(tmp_path, V3_LABOUR, source_name=V3_LABOUR, protocol="r2-posthoc", protocol_label="post-hoc revision evaluated on the same tasks")
+    (revised.parent / V3_HCMUT).symlink_to(REAL / V3_HCMUT, target_is_directory=True)
+    # arms must cover the same benchmark: build the comparison from the labour copy against the real labour run
+    (revised.parent.parent / "runs2").mkdir(exist_ok=True)
+    runs2 = revised.parent.parent / "runs2"
+    (runs2 / V3_LABOUR).symlink_to(REAL / V3_LABOUR, target_is_directory=True)
+    (runs2 / "d2-gpu-main-labour-v3-copy").symlink_to(revised, target_is_directory=True)
+    assert V3_LABOUR in registry.load_pins()
+    from evaluation import compare_runs as cmp
+    data = cmp.build([cmp.parse_arm(f"frozen={V3_LABOUR}"), cmp.parse_arm("revised=d2-gpu-main-labour-v3-copy")], [("system effect", "frozen", "revised")], ["off"], runs2)
+    assert data["arms"]["revised"]["labour_vi_v1"]["protocol_label"] == "post-hoc revision evaluated on the same tasks"
+    out = tmp_path / "rep"
+    out.mkdir()
+    cmp.write_outputs(data, out, "python evaluation/run_d2.py compare (test)")
+    tex = (out / "comparison.tex").read_text()
+    assert tex.lower().count("post-hoc revision evaluated on the same tasks") >= 2 and "post-hoc revision evaluated on the same tasks" in (out / "comparison.md").read_text().lower()
+    (out / "main.tex").write_text("\\input{comparison}\n")
+    problems = check.check(out / "main.tex", runs2)["problems"]
+    assert not any("does not print" in p for p in problems)
+    (out / "comparison.tex").write_text(tex.replace("ost-hoc revision evaluated on the same tasks", "ost-hoc"))
+    assert any("does not print" in p for p in check.check(out / "main.tex", runs2)["problems"])

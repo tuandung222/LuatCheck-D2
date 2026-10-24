@@ -11,7 +11,7 @@ This module is the one place that maps a config key to an implementation:
 | `verifier.nli.enabled/backend`            | optional NLI step after L1                             |
 | `memory.enabled/reuse_answers/backend`    | episodic answer memory                                 |
 | `security.guardrails.enabled`             | input guardrails (read by the controller)              |
-| `domain.profile`                          | prompts, tool names, ID rules, messages                |
+| `domain.profile`, `domain.profile_variant` | prompts, tool names, ID rules, messages (`<id>` or the revised `<id>_r2`) |
 
 Nothing is built unless its section asks for it; an unavailable backend raises when it is used and never turns into a
 substitute result. Callers that already own a component pass it in `Overrides`, which takes precedence over the config.
@@ -29,7 +29,7 @@ from src.memory.sqlite_store import SQLiteEpisodicStore
 from src.model_manager import ModelManager
 from src.security.audit_logger import AuditLogger
 from src.tools.domain_tools import DomainKnowledgeRegistry
-from src.verifier.lexical_grounding import LexicalGroundingVerifier
+from src.verifier.lexical_grounding_v2 import make_lexical_verifier
 from src.verifier.modes import resolve_mode
 from src.verifier.pipeline import NLIStep, VerificationPipeline
 from src.verifier.semantic_nli import SemanticNLIVerifier
@@ -101,7 +101,7 @@ def build_llm_client(config: AppConfig, profile: DomainProfile, *, endpoint: Opt
     endpoint = endpoint or model.endpoint
     options = dict(model_name=model_name or model.name, temperature=model.temperature,
                    timeout_seconds=model.timeout_seconds, seed=model.seed, max_output_tokens=model.max_output_tokens,
-                   context_tokens=model.context_tokens, profile=profile)
+                   context_tokens=model.context_tokens, profile=profile, thought_max_chars=model.thought_max_chars)
     provider = model.provider
     if provider == "gateway":
         if not model.api_key_env:
@@ -172,8 +172,10 @@ def build_verification_pipeline(config: AppConfig, profile: DomainProfile, regis
     """(L1 verifier, L2 verifier, pipeline) for `verifier.*`. The NLI step is added only when `verifier.nli.enabled`."""
     verifier_cfg, nli_cfg = config.verifier, config.verifier.nli
     corpus = getattr(registry.retriever, "corpus", [])
-    lexical = lexical or LexicalGroundingVerifier(corpus, overlap_threshold=verifier_cfg.l1_overlap_threshold,
-                                                  profile=profile)
+    lexical = lexical or make_lexical_verifier(corpus, verifier_cfg.l1_version, profile=profile,
+                                               overlap_threshold=verifier_cfg.l1_overlap_threshold,
+                                               support_threshold=verifier_cfg.l1_support_threshold,
+                                               sentence_support=verifier_cfg.l1_sentence_support)
     semantic = semantic or SemanticNLIVerifier(corpus, entailment_threshold=verifier_cfg.l2_entailment_threshold,
                                                ollama_url=endpoint, model_name=model_name, use_slm=l2_use_slm,
                                                profile=profile)
@@ -194,7 +196,7 @@ def build_verification_pipeline(config: AppConfig, profile: DomainProfile, regis
 def build_components(config: AppConfig, overrides: Optional[Overrides] = None) -> AgentComponents:
     """Read `config` and build every component it enables; `overrides` replace config values or whole components."""
     o = overrides or Overrides()
-    profile = o.profile or load_profile(config.domain.profile)
+    profile = o.profile or load_profile(config.domain.profile, config.domain.profile_variant)
     model_name = o.model_name or config.model.name
     endpoint = o.endpoint or config.model.endpoint
     corpus_path = o.corpus_path or config.retrieval.corpus_path

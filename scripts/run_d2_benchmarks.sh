@@ -14,8 +14,15 @@
 #   RUN_ID            run directory name under evaluation/runs/            [d2-<profile>-main-v1]
 #   CUDA_VISIBLE_DEVICES  GPU id for the server AND the torch reranker (gpu: required)
 #   PRISM_DIR         llama.cpp (PrismML fork) checkout with build/bin/llama-server   [$HOME/src/prism-llama.cpp]
-#   GGUF_PATH         Ternary-Bonsai-2-2B-PQ2_0.gguf (needed only when this script has to start the server)
+#   GGUF_PATH         the controller GGUF, Ternary-Bonsai-2-{2B,4B}-PQ2_0.gguf (needed only when this script has to start the server)
 #   PRISM_PORT        controller server port (loopback only)              [gpu: 28081 - server 82 is shared, 8081/8082 may be taken by others; mac: 8081]
+#   MODEL_CONFIG      controller model config passed to run_d2.py (--model-config)  [the matrix default, config/benchmark/model_prism_gguf2b.yaml]
+#                     post-hoc revision r2: config/benchmark/model_prism_gguf2b_r2.yaml or ..._gguf4b_r2.yaml
+#   MATRIX            collection matrix YAML (--matrix)                   [config/benchmark/d2_matrix.yaml]; post-hoc revision r2: config/benchmark/d2_matrix_r2.yaml
+#                     (it carries `protocol: r2-posthoc`; the runner then tags the manifest, tables and RUN_NOTES)
+#   MODEL_ALIAS       alias the started controller server serves (must equal model.name of the model config)  [model.name of MODEL_CONFIG, else
+#                     prism-ml/Ternary-Bonsai-2-2B-gguf]; a value that differs from the config's model.name is refused (exit 2). The preflight pins the
+#                     controller identity (GGUF sha256, quantisation) for that alias in config/benchmark/expected_server.yaml (2B top level, 4B under controllers:).
 #   NP                server slots = runner workers (gpu)                  [8]   (-c = NP x CTX_PER_SLOT, CTX_PER_SLOT [16384])
 #   MAC_CTX           mac server -c (unified KV, 4 slots; one sequence may use all of it)  [65536]
 #   RERANKER_PORT     mac reranker server port                             [8082]
@@ -44,6 +51,19 @@ PYTHON="${PYTHON:-}"
 if [ -z "$PYTHON" ]; then if [ -x .venv/bin/python ]; then PYTHON=.venv/bin/python; else PYTHON=python3; fi; fi
 LOG_DIR="logs/d2/$RUN_ID"
 mkdir -p "$LOG_DIR"
+# The alias the server must serve is the model.name of the model config (MODEL_CONFIG, else the matrix default): derive it, and refuse a contradicting MODEL_ALIAS.
+CONFIG_FOR_ALIAS="${MODEL_CONFIG:-}"
+if [ -z "$CONFIG_FOR_ALIAS" ]; then
+  CONFIG_FOR_ALIAS="$("$PYTHON" -c 'import sys,yaml;print((yaml.safe_load(open(sys.argv[1])) or {}).get("model_config",""))' "${MATRIX:-config/benchmark/d2_matrix.yaml}" 2>/dev/null || true)"
+fi
+CONFIG_ALIAS=""
+if [ -n "$CONFIG_FOR_ALIAS" ] && [ -f "$CONFIG_FOR_ALIAS" ]; then
+  CONFIG_ALIAS="$("$PYTHON" -c 'import sys,yaml;print(((yaml.safe_load(open(sys.argv[1])) or {}).get("model") or {}).get("name",""))' "$CONFIG_FOR_ALIAS" 2>/dev/null || true)"
+fi
+if [ -n "${MODEL_ALIAS:-}" ] && [ -n "$CONFIG_ALIAS" ] && [ "$MODEL_ALIAS" != "$CONFIG_ALIAS" ]; then
+  echo "MODEL_ALIAS=$MODEL_ALIAS contradicts model.name=$CONFIG_ALIAS of $CONFIG_FOR_ALIAS: the server must serve the alias the config asks for." >&2; exit 2
+fi
+MODEL_ALIAS="${MODEL_ALIAS:-${CONFIG_ALIAS:-prism-ml/Ternary-Bonsai-2-2B-gguf}}"
 STARTED_PIDS=()
 
 log() { echo "$(date -u +%FT%TZ) [run_d2_benchmarks] $*" | tee -a "$LOG_DIR/run.log"; }
@@ -93,6 +113,7 @@ wait_healthy() {  # port label
 {
   echo "date: $(date -u +%FT%TZ)"; echo "host: $(hostname)"; echo "kind: $KIND profile: $PROFILE run_id: $RUN_ID"
   echo "PRISM_DIR=$PRISM_DIR PRISM_PORT=$PRISM_PORT NP=$NP CTX_PER_SLOT=$CTX_PER_SLOT RERANKER_PORT=$RERANKER_PORT"
+  echo "MODEL_ALIAS=$MODEL_ALIAS MODEL_CONFIG=${MODEL_CONFIG:-matrix default} MATRIX=${MATRIX:-config/benchmark/d2_matrix.yaml}"
   echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset} GGUF_PATH=${GGUF_PATH:-unset} PYTHON=$PYTHON SKIP_JUDGE=${SKIP_JUDGE:-0}"
   echo "git: $(git rev-parse HEAD 2>/dev/null || echo none) dirty-files: $(git status --porcelain 2>/dev/null | wc -l)"
 } >"$LOG_DIR/env.txt"
@@ -119,7 +140,7 @@ else
   if [ "$KIND" = gpu ]; then SLOTS="-np $NP -c $((NP * CTX_PER_SLOT)) --kv-unified"; else SLOTS="-c ${MAC_CTX:-65536}"; fi
   log "starting controller llama-server on $PRISM_PORT ($SLOTS)"
   nohup "$PRISM_DIR/build/bin/llama-server" -m "$GGUF_PATH" -ngl 99 -fa on $SLOTS --host 127.0.0.1 --port "$PRISM_PORT" \
-    --alias prism-ml/Ternary-Bonsai-2-2B-gguf --jinja \
+    --alias "$MODEL_ALIAS" --jinja \
     --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0 --presence-penalty 1.5 --repeat-penalty 1.0 --repeat-last-n 64 \
     >"$LOG_DIR/server.log" 2>&1 &
   STARTED_PIDS+=("$!")
@@ -144,6 +165,8 @@ fi
 
 # --- the matrix
 ARGS=(all --profile "$PROFILE" --run-dir "evaluation/runs/$RUN_ID" --execute --endpoint "http://127.0.0.1:$PRISM_PORT/v1")
+[ -n "${MODEL_CONFIG:-}" ] && ARGS+=(--model-config "$MODEL_CONFIG")
+[ -n "${MATRIX:-}" ] && ARGS+=(--matrix "$MATRIX")
 [ "${SKIP_JUDGE:-0}" = "1" ] && ARGS+=(--skip-judge)
 [ -n "${MAX_JUDGE_USD:-}" ] && ARGS+=(--max-judge-usd "$MAX_JUDGE_USD")
 [ "$KIND" = gpu ] && ARGS+=(--server-note "gpu ${CUDA_VISIBLE_DEVICES}, $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -1), llama.cpp prism, -np $NP -c $((NP * CTX_PER_SLOT))")
