@@ -1,0 +1,64 @@
+# D2 live demo, lighter controller: the chosen D2 system (r2, L1 + reranker) with Bonsai 2B on 127.0.0.1:8083.
+# Generated from config/benchmark/model_prism_gguf2b_r2.yaml + the l1_rerank variant + the Mac reranker; corpus/profile as in the labour_vi_multi benchmark.
+# Servers: `make demo-model-server-2b` (8083) and `make rerank-server-mac` (8082); UI: `make demo-web-2b` (port 8001).
+model:
+  provider: llamacpp
+  endpoint: http://127.0.0.1:8083/v1
+  name: prism-ml/Ternary-Bonsai-2-2B-gguf
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  min_p: 0.0
+  presence_penalty: 1.5
+  constrained_json: true
+  enable_thinking: false
+  timeout_seconds: 60
+  max_output_tokens: 1024
+  context_tokens: 8192
+  thought_max_chars: 800
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+  max_steps: 8
+  wall_seconds: 180
+retrieval:
+  dense_model_type: tfidf
+  final_top_k: 5
+  rrf_k: 60
+  first_search_anchor: question_plus_query
+  default_top_k: 5
+  mode: bm25_tfidf
+  corpus_path: data/corpus/labour_vi_v1.json
+  reranker:
+    enabled: true
+    top_k_in: 20
+    top_k_out: 5
+    max_length: 1024
+    chunk_chars: 1500
+    chunk_overlap_chars: 200
+    backend: llamacpp_http
+    base_url: http://127.0.0.1:8082
+    model: Vietnamese_Reranker-f16
+verifier:
+  mode: l1
+  l1_overlap_threshold: 0.25
+  l1_version: v2
+  l1_sentence_support: warn
+  repair_feedback_style: verifier_report
+  l2_use_slm: false
+memory:
+  enabled: false
+  reuse_answers: false
+  similarity_threshold: 0.85
+  index_version: benchmark-d2-v1
+security:
+  egress_requires_confirmation: true
+  audit_log_path: data/demo_labour_2b_audit_log.jsonl
+tools:
+  search_hints: true
+domain:
+  profile_variant: r2
+  profile: labour_vi_multi
+agent:
+  require_search_before_answer: true
+  free_duplicate_notices: true

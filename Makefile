@@ -3,7 +3,7 @@ HEADLESS ?= false
 PYTHON ?= .venv/bin/python
 WEB_PORT ?= 8000
 
-.PHONY: prism-setup prism-server demo-model-server prism-server-gpu rerank-server-mac mlx-setup mlx-server test eval eval_d3 redteam demo web demo-web web-build report report_d2 report_d3 clean all
+.PHONY: prism-setup prism-server demo-model-server demo-model-server-2b demo-web-2b prism-server-gpu rerank-server-mac mlx-setup mlx-server test eval eval_d3 redteam demo web demo-web web-build report report_d2 report_d3 clean all
 
 all: test report_d2
 
@@ -30,6 +30,14 @@ prism-server:
 # Controller of the chosen D2 system (r2, Bonsai 4B) for the demo and the Mac latency run: same target, 4B GGUF.
 demo-model-server:
 	$(MAKE) prism-server GGUF_REPO=prism-ml/Ternary-Bonsai-2-4B-gguf GGUF_FILE=Ternary-Bonsai-2-4B-PQ2_0.gguf PRISM_CTX=65536
+
+# Same chosen system with the lighter Bonsai 2B controller, on its own port so both demos can run side by side.
+demo-model-server-2b:
+	$(MAKE) prism-server PRISM_PORT=8083 PRISM_CTX=65536
+
+demo-web-2b:
+	@curl -sf -m 2 127.0.0.1:8083/health >/dev/null || echo "WARNING: 2B controller not healthy on 127.0.0.1:8083 (make demo-model-server-2b)"
+	$(MAKE) demo-web DEMO_CONFIGS=config/profiles/demo-hcmut-2b.yaml,config/profiles/demo-labour-2b.yaml WEB_PORT=8001 DEMO_WEB_DB=data/db/web_demo_2b.sqlite3
 
 # D2 GPU server (server 82): same PrismML llama.cpp commit and same GGUF as the Mac, built with CUDA (docs/RUNBOOK_D2.md).
 #   make prism-server-gpu GPU=2 GPU_PORT=28081 NP=8 GGUF_PATH=/path/to/Ternary-Bonsai-2-2B-PQ2_0.gguf
