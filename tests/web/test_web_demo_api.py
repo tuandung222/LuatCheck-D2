@@ -93,7 +93,7 @@ def test_capabilities_describe_both_demo_profiles(client: TestClient) -> None:
         reranker = profile["retrieval"]["reranker"]
         assert reranker["enabled"] is True and reranker["top_k_in"] == 20 and reranker["top_k_out"] == 5
         assert profile["suggestions"], "each demo profile ships example questions"
-    assert caps["model"]["name"] == "prism-ml/Ternary-Bonsai-2-2B-gguf"
+    assert caps["model"]["name"] == "prism-ml/Ternary-Bonsai-2-4B-gguf"   # the chosen D2 system (r2, Bonsai 4B)
 
 
 def test_unknown_profile_is_rejected(client: TestClient) -> None:
