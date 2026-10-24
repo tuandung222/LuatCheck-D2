@@ -1,132 +1,146 @@
 # LuatCheck
 
-**A small, local assistant that answers only from a document collection, cites the sections it used, checks those citations in code, and refuses or asks a question when the sources do not answer.**
+**A local, source-grounded assistant over Vietnamese regulations that answers only from a loaded document collection, cites the sections it used, verifies every citation against the source text in code, and refuses or asks for clarification when the sources do not answer.**
 
 <p align="center">
-  <img src="deliverables/d2/demo/gifs/21_hcmut_answer_2b.gif" alt="LuatCheck answering a HCMUT regulation question with a verified citation" width="800">
+  <img src="deliverables/d2/demo/gifs/11_hcmut_answer_4b.gif" alt="LuatCheck (4B controller) answering an HCMUT regulation question with a verified citation" width="820">
 </p>
 
-CO5151 Advanced Agentic Artificial Intelligence, Group 8, Ho Chi Minh City University of Technology (HCMUT).
-Two document collections are implemented and evaluated: HCMUT academic regulations and Vietnamese labour-law texts.
+**Course:** CO5151 — Advanced Agentic Artificial Intelligence (Application Track, Group 8) · Ho Chi Minh City University of Technology (HCMUT) · Instructor: TS. Lê Xuân Bách.
 
-## Demo
+---
 
-| Labour law: answer with a verified citation | The verifier rejects drafts and asks for repairs |
+## D2 Interim Submission — Quick Links
+
+| Deliverable / Artifact | Link | Description |
+|---|---|---|
+| **D2 Interim Report (PDF)** | [`deliverables/d2/report/main_d2.pdf`](deliverables/d2/report/main_d2.pdf) | 10-page main report + References + generated result appendix (`main_d2.tex`, modular `sections/`, `tables/`, `figures/`) |
+| **D2 Presentation Slides (PDF)** | [`deliverables/d2/slides/main.pdf`](deliverables/d2/slides/main.pdf) | 12-slide presentation deck + 5 backup slides (`SPEAKER_NOTES.md`) |
+| **Live Demo Script & Backup Video** | [`deliverables/d2/demo/DEMO_SCRIPT.md`](deliverables/d2/demo/DEMO_SCRIPT.md) | Live demo walkthrough + unedited 4B backup video [`demo_backup_4b.mp4`](deliverables/d2/demo/gifs/demo_backup_4b.mp4) |
+| **Results Provenance & Run Registry** | [`deliverables/d2/report/RESULTS_PROVENANCE.md`](deliverables/d2/report/RESULTS_PROVENANCE.md) | Maps every report table to its recorded run, commit hash, and SHA-256 fingerprint ([`REGISTRY.md`](evaluation/runs/REGISTRY.md)) |
+| **60-Item Blind Human Audit of Judge** | [HCMUT Audit](evaluation/runs/d2-gpu-r2-4b-hcmut-v1/analysis/human-audit/AUDIT_NOTES.md) · [Labour Audit](evaluation/runs/d2-gpu-r2-4b-labour-v1/analysis/human-audit/AUDIT_NOTES.md) | Item-by-item verification (`labels.csv`, `agreement.md`, `AUDIT_NOTES.md`) |
+
+---
+
+## Demo Recordings (Current System, 4B Controller)
+
+| Labour law: verified answer with citation | Citation verifier rejects draft $\rightarrow$ repaired & verified |
 |---|---|
-| <img src="deliverables/d2/demo/gifs/22_labour_answer_2b.gif" alt="Labour-law question answered with a verified citation, agent timeline on the right" width="400"> | <img src="deliverables/d2/demo/gifs/23_verifier_repair_2b.gif" alt="The citation verifier rejects a draft answer twice; the run ends as a refusal" width="400"> |
+| <img src="deliverables/d2/demo/gifs/12_labour_answer_4b.gif" alt="Labour-law question answered with a verified citation" width="410"> | <img src="deliverables/d2/demo/gifs/13_verifier_repair_4b.gif" alt="Citation verifier rejects first draft quote, controller repairs and passes" width="410"> |
 
-The recordings above (including the HCMUT one at the top) use the current system with the 2B controller (faster), 25 Oct 2026; the 4B controller gives more accurate answers but takes about 30 s per question.
-Each answer shows the cited section (click to expand the source text with the quoted span highlighted) and the agent's
-timeline: search, reranking, reading, the citation check and any repair. The right-hand clip is a real failure case: the verifier
-rejected the draft's quote, two repairs did not fix it, and the run ended as a refusal rather than an unsupported answer.
-Recordings with the 4B controller (the live-demo configuration) are in `deliverables/d2/demo/gifs/`: `11_hcmut_answer_4b.gif`, `12_labour_answer_4b.gif`,
-`13_verifier_repair_4b.gif` (repair, then a verified answer) and the backup video `demo_backup_4b.mp4`.
+<details>
+<summary><strong>Safety & boundary recordings: out-of-scope refusal, prompt-injection guardrail block, and backend error handling</strong></summary>
+<br>
 
-## What it does
+| Out-of-scope question refused | Prompt-injection attempt blocked before model call (3 ms) |
+|---|---|
+| <img src="deliverables/d2/demo/gifs/14_hcmut_refuse_4b.gif" alt="Out-of-scope question refused" width="410"> | <img src="deliverables/d2/demo/gifs/15_guardrail_4b.gif" alt="Prompt-injection attempt blocked by regex guardrail" width="410"> |
 
-- **Grounded answers with citations:** the agent searches and reads the corpus, then answers with the section ids it used; the UI opens each cited section with the quoted sentence highlighted.
-- **Checks its own citations (L1):** a lexical verifier checks ids, retrieval provenance, quote overlap and exact quantities, and sends the model back to repair a failed answer (at most 2 repairs). These are proxies, not proof of correctness.
-- **Refuses and clarifies:** when the sources do not cover a question the model refuses or asks which case is meant; an unsafe input is blocked before any model call.
-- **Runs on a laptop:** a 2B or 4B ternary controller (Ternary Bonsai, GGUF) on llama.cpp plus a Vietnamese cross-encoder reranker, all on one Mac.
-- **Honest failures:** a backend or budget failure is an execution error, never a substitute answer; there are no mock models anywhere, including in tests.
-- **Replayable evaluation:** two frozen, hash-locked 50-task benchmarks, a one-command runner and per-run artifacts (see "Reproducing the numbers").
+Additional recordings (including the faster 2B controller configuration, clarification turns, verifier-off mode, and fail-closed execution error when the reranker server is down) are in [`deliverables/d2/demo/gifs/`](deliverables/d2/demo/gifs/).
+
+</details>
+
+---
+
+## What LuatCheck Does
+
+- **Source-grounded answers over two corpora:**
+  1. **HCMUT academic regulations** (10 official decisions/regulations, 143 sections; for students and academic advisers).
+  2. **Vietnamese labour law** (10 legal documents: 2019 Labour Code + 2 laws, 6 decrees, 1 circular of 2020–2025, 458 articles; for employees and HR staff).
+- **Code-enforced citation verification:** Every `answer` goes through a deterministic citation verifier in code (`src/verifier/`) that checks record IDs, retrieval provenance, verbatim/elided quotes, term overlap, and numeric quantities within the claim's sentence. If a check fails, a structured tool report is returned to the controller for at most **2 repairs**; if repairs are exhausted, the run ends as a refusal.
+- **Strict read-only tool boundary:** The controller's action schema only exposes `search`, `read_document`, `answer`, `clarify`, and `refuse`. Input regex guardrails (`src/security/`) run before any model call, user text is wrapped in untrusted tags, and the outbound summary queue requires explicit host-UI approval bound to the payload SHA-256 hash.
+- **Runs 100% locally on a 16 GiB Mac:** Uses ternary-quantised **Bonsai 4B** (default) or **Bonsai 2B** (faster option) on `llama.cpp` (Apple Metal) together with a local Vietnamese cross-encoder reranker (`AITeamVN/Vietnamese_Reranker`, GGUF f16). A backend or budget failure terminates as an explicit `error` state—never a fabricated answer or silent fallback.
+
+---
 
 ## Architecture
 
 ![Architecture and control flow of LuatCheck](docs/images/architecture.png)
 
-- **Loop:** a bounded ReAct loop (at most 8 steps, 5 tool calls, 2 repairs, 180 s per task); the controller emits one JSON action per step: `search`, `read`, `answer`, `clarify` or `refuse`.
-- **Retrieval and reranker:** first-stage BM25 + TF-IDF with reciprocal rank fusion; in the L1+rerank variant the top 20 are re-scored by a Vietnamese cross-encoder (AITeamVN/Vietnamese_Reranker, GGUF f16) and the top 5 are returned.
-- **L1 verifier and repair:** an `answer` is accepted only if its citations pass L1; otherwise the verifier's feedback goes back to the controller, and after the repairs are spent the run ends as a refusal.
-- **Guardrails:** pattern checks, sanitising and untrusted-input tagging run before the model; the tool layer is read-only and writes need a trusted-UI approval.
-- **On-device controller:** Ternary Bonsai 2B or 4B (PrismML llama.cpp fork, Metal) with decoding constrained to the action JSON schema.
+- **Bounded ReAct loop (`src/agent/`):** At most 8 steps, 5 tool calls, 2 verifier repairs, and 180 s per question; constrained JSON decoding guarantees one valid action per step.
+- **Hybrid lexical retrieval + neural reranking (`src/indexing/`, `src/retrieval/`):** First-stage BM25 + word 1–3-gram TF-IDF fused by Reciprocal Rank Fusion (RRF, top-20 candidates), rescored by the cross-encoder reranker to keep the top 5 sections. The first search of every run anchors on the user's original question plus the model's query.
+- **Custom Python implementation (no external agent framework):** The control loop, tool registry, retrieval/RRF pipeline, citation verifier, and evaluation harness are written directly in Python (`FastAPI`, `SQLite`, `rank-bm25`, `scikit-learn`, `llama.cpp`), keeping permissions and token/step budgets directly inspectable.
 
-The drawing is the report's Figure 1 (source `docs/images/architecture.tex`); module map and data flow: [docs/reference/architecture.md](docs/reference/architecture.md).
+---
 
-## Chosen D2 system
+## Evaluation & First Results (D2 Checkpoint)
 
-**LuatCheck r2** with **Ternary Bonsai 4B** (or **2B**) as controller, **L1** verification and the **reranker**: the profiles `config/profiles/demo-hcmut.yaml` and `demo-labour.yaml` (and `-2b` variants). Print what a profile switches on, without loading a model:
+We evaluate **two self-built, hash-locked 50-question benchmarks** (100 questions total; each benchmark has 40 single-record questions, 5 two-record questions, and 5 out-of-scope refusal questions) across **3 configurations** (`No verifier`, `Verifier`, `Verifier + reranker`), **3 random seeds** (`42, 123, 2026`), and **2 diagnostic baselines** (`Closed-book` without documents, `Oracle` with gold sections given up front) — **1,090 recorded trials per system**.
 
-```sh
-.venv/bin/python -m src.pipeline config/profiles/demo-hcmut.yaml
-```
+| Benchmark | Configuration | Initial system, 2B (%) | Current system, 2B (%) | Current system, 4B (%) | Revision effect at 2B (pp) | Controller effect 4B − 2B (pp) |
+|---|---|---:|---:|---:|---:|---:|
+| **HCMUT regulations** | No verifier | 18.0 [11–26] | 31.3 [22–41] | **70.0 [61–79]** | +13.3 [+4.0, +22.7]* | +38.7 [+27.3, +50.0]* |
+| | Verifier (with repair) | 12.0 [7–18] | 24.0 [15–33] | 64.0 [53–75] | +12.0 [+4.0, +20.7]* | +40.0 [+28.7, +51.3]* |
+| | **Verifier + reranker (full)** | 14.0 [8–21] | 28.7 [20–37] | **60.7 [50–71]** | +14.7 [+6.0, +23.3]* | +32.0 [+21.3, +42.0]* |
+| **Labour law** | No verifier | 14.7 [7–23] | 31.3 [22–41] | **62.0 [52–72]** | +16.7 [+7.3, +25.3]* | +30.7 [+20.7, +40.7]* |
+| | Verifier (with repair) | 14.7 [7–23] | 28.0 [19–38] | 52.7 [43–63] | +13.3 [+4.0, +22.7]* | +24.7 [+12.0, +37.3]* |
+| | **Verifier + reranker (full)** | 18.7 [11–27] | 28.0 [19–37] | **56.7 [47–67]** | +9.3 [+0.7, +18.0]* | +28.7 [+18.0, +39.3]* |
 
-r2 is a post-hoc revision of the first frozen system (v3): it was designed after the v3 results on the same tasks were seen. Details: [docs/plans/D2_REVISION_L1_BONSAI4B.md](docs/plans/D2_REVISION_L1_BONSAI4B.md).
+*Notes on reading the results:*
+1. **Strict success** (lower bound over all trials; execution errors and unjudged trials count as failures) requires appropriate behaviour (`answer` vs `refuse`), full correctness (`2/2`), full completeness (`2/2`), and every factual claim supported by the cited sources.
+2. **Blind human audit of the LLM judge (`deepseek/deepseek-v4-flash`):** On a stratified blind sample of **60 outputs** (30 per benchmark), judge–human agreement on strict success is **96.7%** ($\kappa = 0.93$, design-weighted 98.8%) on HCMUT regulations and **90.0%** ($\kappa = 0.80$, design-weighted 97.5%) on labour law.
+3. **Diagnostic caveat:** The current system was revised after analysing the initial 2B system's failure modes on these same 100 questions, so the revision gains may be optimistic and will be verified on a new unseen benchmark in Week 45.
+4. **Cost & Mac latency:** Local inference has **USD 0 API cost**; offline LLM judging across both 545-trial runs cost **USD 2.17** in total (`$1.06 + $1.10`). On an Apple M4 MacBook (16 GiB, sequential single-query runs), median / p95 latency for the full system is **33.0 s / 86 s** (HCMUT) and **29.8 s / 72 s** (labour law) with the **4B controller** ($\approx 43$ tok/s), and **13.3 s / 30 s** and **14.6 s / 28 s** with the **2B controller** ($\approx 92$ tok/s).
 
-## Results at a glance
+---
 
-Strict success (%) of the full system (variant L1+rerank), mean over 3 seeds, 50 tasks per benchmark, with the bootstrap interval; source: [evaluation/comparisons/v3-2B_vs_r2-2B_vs_r2-4B/comparison.md](evaluation/comparisons/v3-2B_vs_r2-2B_vs_r2-4B/comparison.md).
-
-| benchmark | v3-2B | r2-2B | r2-4B |
-|---|---|---|---|
-| hcmut_v1 | 14.0 [8-21] | 28.7 [20-37] | 60.7 [50-71] |
-| labour_vi_v1 | 18.7 [11-27] | 28.0 [19-37] | 56.7 [47-67] |
-
-Caveats: strict success is an **LLM-judge estimate** (lower bound; errors count as failures), not human labels. r2 was designed after seeing v3 on the same tasks, so the v3 to r2 gap is a post-hoc improvement, not a pre-planned result. The comparison file also has behaviour match, Recall@5, answer rate and error rate.
-
-## Demo quickstart (Mac, 16 GiB)
+## Quickstart: Running the Live Demo (macOS, 16 GiB)
 
 ```sh
 .venv/bin/pip install -r requirements.txt
-make prism-setup                # once: build the llama.cpp fork, download the 2B GGUF
-make demo-model-server          # terminal 1: controller, Bonsai 4B, 127.0.0.1:8081 (first start downloads the 4B GGUF)
-make rerank-server-mac          # terminal 2: reranker, 127.0.0.1:8082
-make demo-web                   # terminal 3: UI on http://127.0.0.1:8000, HCMUT / labour corpus switch
+make prism-setup                # once: build the llama.cpp fork and download GGUF weights
+make demo-model-server          # terminal 1: Bonsai 4B controller on 127.0.0.1:8081
+make rerank-server-mac          # terminal 2: Vietnamese cross-encoder reranker on 127.0.0.1:8082
+make demo-web                   # terminal 3: FastAPI + React Web UI on http://127.0.0.1:8000
 ```
 
-Lighter Bonsai 2B demo, side by side with the above: `make demo-model-server-2b` (port 8083), then `make demo-web-2b` (UI on port 8001); it uses the same reranker server. If a server is down a run ends as an execution error by design. Demo queries, timings and fallbacks: [deliverables/d2/demo/DEMO_SCRIPT.md](deliverables/d2/demo/DEMO_SCRIPT.md).
-
-<details>
-<summary>Safety behaviour: refusal when the sources do not answer, and an injection blocked before the model</summary>
-
-| Out-of-scope question refused | Prompt-injection attempt blocked by the guardrail |
-|---|---|
-| <img src="deliverables/d2/demo/gifs/03_hcmut_refuse_out_of_scope.gif" alt="Out-of-scope question refused" width="400"> | <img src="deliverables/d2/demo/gifs/04_guardrail_injection.gif" alt="Prompt-injection attempt blocked by the guardrail" width="400"> |
-
-These two were recorded on 24 Oct 2026 with the 2B controller of the initial system; the same two scenarios recorded with the 4B controller on 25 Oct are `14_hcmut_refuse_4b.gif` and `15_guardrail_4b.gif` in `deliverables/d2/demo/gifs/`.
-
-</details>
-
-More recordings (clarification, verifier off, reranker down) are in `deliverables/d2/demo/gifs/`.
-
-From Python:
+- **Lighter 2B controller option:** Run `make demo-model-server-2b` (port `8083`) and `make demo-web-2b` (port `8001`).
+- **Python API usage:**
 
 ```python
 from src.agent.loop import LuatCheckAgent
 
-agent = LuatCheckAgent.from_config("config/profiles/demo-hcmut.yaml")   # needs the two servers above
+agent = LuatCheckAgent.from_config("config/profiles/demo-hcmut.yaml")
 ledger = agent.run("Khi tham gia sự kiện của Nhà trường, người học phải có mặt trước giờ khai mạc ít nhất bao lâu?")
-print(ledger.terminal_status, ledger.final_output)    # answered | clarified | refused | error
+print(ledger.terminal_status, ledger.final_output)  # answered | clarified | refused | error
 ```
 
-## Reproducing the numbers
+---
 
-Every reported number comes from `evaluation/run_d2.py` runs (resumable, with preflight checks of benchmark locks, model files and servers); run directories are indexed in `evaluation/runs/REGISTRY.md`. Step-by-step commands: [docs/guides/REPRODUCE_D2.md](docs/guides/REPRODUCE_D2.md); machine setup and the run matrix: [docs/guides/RUNBOOK_D2.md](docs/guides/RUNBOOK_D2.md); metric definitions and their limits: [docs/reference/BENCHMARKS_AND_METRICS.md](docs/reference/BENCHMARKS_AND_METRICS.md). Judge scores stay LLM estimates until checked against the team's human audit ([guide](docs/guides/HUMAN_AUDIT_GUIDE.md)).
+## Reproducing the Report Tables & PDFs
 
-## Repository map
+All numbers and tables in the D2 report are regenerated and verified against the recorded run artifacts with **one command**:
 
-| Path | Content |
+```sh
+make report-check               # verifies run registry freshness, 33 report/appendix tables, and writes RESULTS_PROVENANCE.md
+make report_d2                  # builds deliverables/d2/report/main_d2.pdf
+make -B slides_d2               # builds deliverables/d2/slides/main.pdf
+```
+
+Full reproduction instructions: [`docs/guides/REPRODUCE_D2.md`](docs/guides/REPRODUCE_D2.md) · Runbook: [`docs/guides/RUNBOOK_D2.md`](docs/guides/RUNBOOK_D2.md) · Metric definitions: [`docs/reference/BENCHMARKS_AND_METRICS.md`](docs/reference/BENCHMARKS_AND_METRICS.md).
+
+---
+
+## Repository Structure
+
+| Path | Description |
 |---|---|
-| `src/agent`, `src/tools`, `src/retrieval`, `src/verifier`, `src/security` | loop, tool registry, retrieval and reranker, L1 verifier, guardrails |
-| `src/pipeline`, `src/api`, `frontend/` | config-to-components builder, FastAPI backend, React demo UI |
-| `config/` | profiles (`config/profiles`), per-domain settings (`config/domains`), benchmark matrix (`config/benchmark`) |
-| `data/corpus/` | source-backed corpora: `hcmut_academic_v1.json`, `labour_vi_v1.json` |
-| `evaluation/` | benchmark runner, `benchmarks/` (frozen tasks), `runs/` (replayable run artifacts), `comparisons/` |
-| `deliverables/d2/report/` | D2 interim report (LaTeX, PDF), provenance of every table |
-| `docs/` | runbook, reproduction guide, reviews, plans, demo script and GIFs |
-| `tests/` | tests of the real implementations (no mocks, no monkeypatching) |
+| `src/ingestion/`, `src/indexing/`, `src/retrieval/` | PDF ingestion/normalisation, BM25 + TF-IDF + vector indexing with RRF fusion, cross-encoder reranker |
+| `src/agent/`, `src/verifier/`, `src/pipeline/` | Bounded ReAct control loop, L1 citation verifier & repair, config-driven pipeline builder |
+| `src/tools/`, `src/security/`, `src/memory/` | Read-only tool registry & permissions, regex guardrails & PII filter, SQLite memory & audit ledger |
+| `src/api/`, `frontend/`, `src/ui/` | FastAPI backend, React/Vite Web UI (`frontend/`), Streamlit UI & trusted outbox |
+| `config/` | Runtime profiles (`config/profiles/`), domain configurations (`config/domains/`), benchmark configs |
+| `data/corpus/` | Normalized corpora with SHA-256 and page provenance (`hcmut_academic_v1.json`, `labour_vi_v1.json`) |
+| `evaluation/` | Frozen 100-task benchmarks (`benchmarks/`), recorded runs (`runs/`), paired comparisons (`comparisons/`), human audit scorer |
+| `deliverables/` | Course submissions: `d1/` (Proposal), `d2/report/` (modular LaTeX report), `d2/slides/` (Beamer slides), `d2/demo/` (GIFs & MP4s) |
+| `tests/` | Automated test suite using real components and no mocks (`.venv/bin/pytest tests/ -q`) |
 
-Development: `.venv/bin/python -m pytest tests/ -q` (includes real inference: do not run it during benchmark collection). Integrity rules: [AGENTS.md](AGENTS.md).
+---
 
-## Documentation
+## Team & Responsibilities (Group 8)
 
-- Report: [deliverables/d2/report/main_d2.pdf](deliverables/d2/report/main_d2.pdf), source [main_d2.tex](deliverables/d2/report/main_d2.tex), [requirements](deliverables/d2/report/D2_REQUIREMENTS.md), [table provenance](deliverables/d2/report/RESULTS_PROVENANCE.md)
-- Slides: [outline](deliverables/d2/demo/D2_SLIDES_OUTLINE.md), [demo script](deliverables/d2/demo/DEMO_SCRIPT.md)
-- Reviews: [benchmark quality](docs/reviews/benchmark_quality_2026-10-23.md), [metrics](docs/reviews/metrics_review_2026-10-23.md), [v3 failure analysis](docs/reviews/v3_failure_analysis_2026-10-24.md), [requirements gap](docs/reviews/d2_requirements_gap_2026-10-23.md)
-- Plans: [completion plan](docs/plans/D2_COMPLETION_PLAN.md), [reranker](docs/design/reranker.md), [benchmarking](docs/design/benchmarking.md)
-- Configuration: [config/README.md](config/README.md), [web UI API](docs/reference/web-ui-api.md)
-- Historical, not current evidence: the earlier Qwen2.5-3B pilot on `bll2019_v1`, [redteam/](redteam/README.md), [deliverables/d3/report/](deliverables/d3/report/README.md)
-
-## Course and team
-
-CO5151 Advanced Agentic Artificial Intelligence, Application Track, Group 8. Instructor: TS. Lê Xuân Bách. Members: Lê Trí Quyền, Võ Phạm Tuấn Dũng, Nguyễn Hoàng Phong. Repository: https://github.com/tuandung222/LuatCheck-D2
+| Member | Student ID | Role | Primary Modules |
+|---|---|---|---|
+| **Lê Trí Quyền** | 2470740 | Group Leader — Retrieval & Serving | Corpus ingestion (`src/ingestion/`), BM25 + TF-IDF & vector indexing with RRF (`src/indexing/`), cross-encoder reranker (`src/retrieval/`), local `llama.cpp`/Docker serving |
+| **Võ Phạm Tuấn Dũng** | 2570015 | Technical Lead — Agent & Evaluation | Idea & commit verification; bounded ReAct loop (`src/agent/`, `src/pipeline/`), L1 citation verifier & repair (`src/verifier/`), 100-task benchmarks, GPU/Mac evaluation, 60-item judge audit, D2 report & slides |
+| **Nguyễn Hoàng Phong** | 2570477 | Member — System & Security | Tool registry & permissions (`src/tools/`), regex guardrails & PII filter (`src/security/`), Web/Streamlit UI & trusted outbox (`frontend/`, `src/api/`), SQLite store & audit ledger (`src/memory/`), security/fault tests |
