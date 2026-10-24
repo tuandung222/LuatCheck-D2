@@ -192,7 +192,7 @@ def stage_tables(run_dir: Path, matrix: Dict[str, Any], expect_benchmarks: List[
     if allow_non_eligible or not summary["report_eligible"]:
         argv.append("--allow-non-eligible")
     code = render.main(argv)
-    log(run_dir, f"tables: wrote {run_dir / 'tables'} (report_eligible={summary['report_eligible']}); publishing to report_d2 is a separate explicit step "
+    log(run_dir, f"tables: wrote {run_dir / 'tables'} (report_eligible={summary['report_eligible']}); publishing to deliverables/d2/report is a separate explicit step "
                  "(render_benchmark_tables.py --publish)")
     return code
 

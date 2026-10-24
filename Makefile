@@ -3,7 +3,7 @@ HEADLESS ?= false
 PYTHON ?= .venv/bin/python
 WEB_PORT ?= 8000
 
-.PHONY: prism-setup prism-server demo-model-server demo-model-server-2b demo-web-2b prism-server-gpu rerank-server-mac mlx-setup mlx-server test eval eval_d3 redteam demo web demo-web web-build report report_d2 report_d3 clean all
+.PHONY: prism-setup prism-server demo-model-server demo-model-server-2b demo-web-2b prism-server-gpu rerank-server-mac mlx-setup mlx-server test eval eval_d3 redteam demo web demo-web web-build report report_d1 report_d2 report_d3 slides_d2 clean all
 
 all: test report_d2
 
@@ -84,10 +84,10 @@ test:
 eval: eval_d3
 
 eval_d3:
-	@echo "No automatic experiments. See report_d2/D2_EXPERIMENT_PLAN.md for explicit native collection commands."
+	@echo "No automatic experiments. See deliverables/d2/report/D2_EXPERIMENT_PLAN.md for explicit native collection commands."
 
 redteam:
-	@echo "Legacy red-team scorer is disabled. Threat-model review is in report_d2/D2_EXPERIMENT_PLAN.md."
+	@echo "Legacy red-team scorer is disabled. Threat-model review is in deliverables/d2/report/D2_EXPERIMENT_PLAN.md."
 
 demo:
 	streamlit run src/ui/app.py --server.port $(PORT) --server.headless $(HEADLESS) --browser.gatherUsageStats false
@@ -112,7 +112,7 @@ web-build:
 report: report_d2 report_d3
 
 report_d2:
-	cd report_d2 && \
+	cd deliverables/d2/report && \
 	rm -f *.aux *.bbl *.blg *.out *.log *.run.xml *-blx.bib *.toc *.lot *.lof && \
 	pdflatex -interaction=nonstopmode main_d2.tex && \
 	bibtex main_d2 && \
@@ -120,17 +120,29 @@ report_d2:
 	pdflatex -interaction=nonstopmode main_d2.tex
 
 report_d3:
-	cd report_d3 && \
+	cd deliverables/d3/report && \
 	rm -f *.aux *.bbl *.blg *.out *.log *.run.xml *-blx.bib *.toc *.lot *.lof && \
 	pdflatex -interaction=nonstopmode main_d3.tex && \
 	bibtex main_d3 && \
 	pdflatex -interaction=nonstopmode main_d3.tex && \
 	pdflatex -interaction=nonstopmode main_d3.tex
 
+report_d1:
+	cd deliverables/d1/report && \
+	rm -f *.aux *.bbl *.blg *.out *.log *.run.xml *-blx.bib *.toc *.lot *.lof && \
+	pdflatex -interaction=nonstopmode main_d1.tex && \
+	bibtex main_d1 && \
+	pdflatex -interaction=nonstopmode main_d1.tex && \
+	pdflatex -interaction=nonstopmode main_d1.tex
+
+# D2 slides (XeLaTeX; fonts Arial and Menlo): deliverables/d2/slides/main.pdf
+slides_d2:
+	$(MAKE) -C deliverables/d2/slides
+
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +
-	find report_d2 report_d3 -type f \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.bbl" -o -name "*.blg" -o -name "*.run.xml" -o -name "*-blx.bib" -o -name "*.toc" -o -name "*.lot" -o -name "*.lof" \) -delete 2>/dev/null || true
+	find deliverables/d2/report deliverables/d3/report -type f \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.bbl" -o -name "*.blg" -o -name "*.run.xml" -o -name "*-blx.bib" -o -name "*.toc" -o -name "*.lot" -o -name "*.lof" \) -delete 2>/dev/null || true
 
 # ---- D2 benchmarking: evaluation/run_d2.py drives run_benchmark.py, judge_benchmark.py, render_benchmark_tables.py
 # (docs/plans/benchmarking.md, docs/RUNBOOK_D2.md). It never starts a model server (see prism-server / prism-server-gpu /
@@ -205,7 +217,7 @@ runs:
 	$(PYTHON) evaluation/run_d2.py registry
 
 report-check: runs
-	$(PYTHON) evaluation/check_report_provenance.py --report report_d2/main_d2.tex
+	$(PYTHON) evaluation/check_report_provenance.py --report deliverables/d2/report/main_d2.tex
 
 # On a clean, pushed checkout that will be copied to a host without .git (server 82): certify it for main runs.
 stamp-provenance:

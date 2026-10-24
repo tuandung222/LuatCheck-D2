@@ -1,5 +1,5 @@
 % Standalone render of the Figure 1 architecture diagram for README.md.
-% The drawing itself lives in report_d2/images/architecture.tikz and is \input here, so the
+% The drawing itself lives in deliverables/d2/report/images/architecture.tikz and is \input here, so the
 % README image always follows the report figure. To re-render after the tikz file changes:
 %
 %   cd docs/images
@@ -7,7 +7,7 @@
 %   gs -q -dNOPAUSE -dBATCH -sDEVICE=png16m -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r240 -sOutputFile=architecture.png architecture.pdf
 %   (about 1665 px wide, white background; pdftoppm was not installed on the authoring machine)
 %
-% Preamble below mirrors report_d2/main_d2.tex (fonts, xcolor, tikz + arrows.meta, calc, \code).
+% Preamble below mirrors deliverables/d2/report/main_d2.tex (fonts, xcolor, tikz + arrows.meta, calc, \code).
 \documentclass[border=6pt]{standalone}
 \usepackage[utf8]{inputenc}
 \usepackage[T5]{fontenc}
@@ -17,5 +17,5 @@
 \usetikzlibrary{arrows.meta,calc}
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
 \begin{document}
-\input{../../report_d2/images/architecture.tikz}
+\input{../../deliverables/d2/report/images/architecture.tikz}
 \end{document}

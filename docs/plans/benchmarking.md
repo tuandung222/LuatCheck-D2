@@ -91,7 +91,7 @@ strict success by closed-book stratum, and `paired_differences` (paired task-lev
 ## 5. Tables
 
 `run_d2.py tables --run-dir <run>` (or `make tables RUN=...`) writes `<run>/tables/`: `benchmark_results.tex` (`tab:benchmark-main`, `tab:benchmark-ops`, `tab:benchmark-paired`), `benchmark_diagnostics.tex` (`tab:benchmark-behaviour`, `tab:benchmark-strata`) and `summary.md`.
-Needs `booktabs`, `multirow`, `graphicx`, `xcolor`. Missing cells, variants or benchmarks are red `[PENDING]`; non-eligible runs carry a red banner and cannot be published. `render_benchmark_tables.py --publish` copies `benchmark_results.tex` to `report_d2/` (eligible runs only, explicit).
+Needs `booktabs`, `multirow`, `graphicx`, `xcolor`. Missing cells, variants or benchmarks are red `[PENDING]`; non-eligible runs carry a red banner and cannot be published. `render_benchmark_tables.py --publish` copies `benchmark_results.tex` to `deliverables/d2/report/` (eligible runs only, explicit).
 The main caption names the judge, says "not human labels", and shows the human-audit agreement or a red placeholder.
 
 ## 6. Human audit
@@ -103,7 +103,7 @@ The main caption names the judge, says "not human labels", and shows the human-a
 
 `evaluation/provenance.py` holds `HARNESS_VERSION` (bump MAJOR/MINOR on any change to collection, metrics, judge rule/prompt, analysis or table content; PATCH for neutral edits) and the main-run gate: a main run needs a clean tree in all collection paths and a commit on origin (or a valid `PROVENANCE.json` on a host without `.git`, written by `run_d2.py stamp`). The manifest records kind, harness version + collection-source hash, git commit / branch / remote, argv + environment, host and package versions, model and reranker identities, lock and config hashes, run state and local times; judge / analysis / table stages record the harness version and the run they consumed.
 `run_d2.py registry` (`make runs`) writes `evaluation/runs/REGISTRY.md`: kind, state, commit, harness, `report_eligible` and freshness (`current` / `stale: <reason>` / `historical` / `superseded_by` / `incomplete` / `n/a`) against HEAD; curated marks in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
-Every rendered table carries a provenance comment block and a visible source line; `make report-check` (`evaluation/check_report_provenance.py`) fails when the report would mix outdated and current results and writes `report_d2/RESULTS_PROVENANCE.md`.
+Every rendered table carries a provenance comment block and a visible source line; `make report-check` (`evaluation/check_report_provenance.py`) fails when the report would mix outdated and current results and writes `deliverables/d2/report/RESULTS_PROVENANCE.md`.
 
 ## 7. Cost and time (extrapolations from recorded smoke runs; the real totals are in the manifest and `RUN_NOTES.md`)
 

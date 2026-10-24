@@ -1,6 +1,6 @@
 r"""Fail the build when the report can mix outdated and current results.
 
-  python evaluation/check_report_provenance.py [--report report_d2/main_d2.tex]      (make report-check)
+  python evaluation/check_report_provenance.py [--report deliverables/d2/report/main_d2.tex]      (make report-check)
 
 Rules (every violation is listed; exit code 1 if any)
   1. Every result table file the report \\input s (a file that contains a table float) carries one `LUATCHECK-PROVENANCE v1` comment
@@ -17,7 +17,7 @@ Rules (every violation is listed; exit code 1 if any)
   4. A table written inline in main_d2.tex that contains numbers must carry `% PROVENANCE: run=<run-id> ...` (checked like rule 2) or
      `% PROVENANCE: historical <reason>`, or `% PROVENANCE: n/a <reason>` which is accepted for design / plan / definition / placeholder tables but refused on tables labelled like result tables (tab:benchmark-*, tab:result*, tab:latency*, tab:accuracy*, tab:baseline*...) (listed in the output). "Results table" = label matching result/metric/error/bench/latency/accuracy/... with numbers, or any table with 3+ decimal/percent/ratio numbers; otherwise it is a hard-coded number without provenance.
   5. A table file that the report references through \\IfFileExists but that does not exist yet is a red placeholder in the report: allowed, reported.
-Writes report_d2/RESULTS_PROVENANCE.md: table -> source file -> run -> commit -> harness -> status -> command.
+Writes deliverables/d2/report/RESULTS_PROVENANCE.md: table -> source file -> run -> commit -> harness -> status -> command.
 """
 import argparse
 import json
@@ -268,7 +268,7 @@ def write_markdown(report: Path, result: Dict[str, Any]) -> Path:
 
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--report", default="report_d2/main_d2.tex")
+    parser.add_argument("--report", default="deliverables/d2/report/main_d2.tex")
     parser.add_argument("--runs-dir", default="evaluation/runs")
     parser.add_argument("--no-write", action="store_true", help="do not write RESULTS_PROVENANCE.md next to the report")
     args = parser.parse_args(argv)

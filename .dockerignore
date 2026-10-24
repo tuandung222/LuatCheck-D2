@@ -10,9 +10,7 @@ __pycache__
 *.egg-info
 dist
 build
-report_d1
-report_d2
-report_d3
+deliverables
 *.pdf
 *.tex
 *.pptx

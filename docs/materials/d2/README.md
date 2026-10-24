@@ -13,7 +13,7 @@ Lưu ngày 21/10/2026 từ ba nguồn người dùng cung cấp để chuẩn b�
 
 ## Note và bằng chứng đối chiếu
 
-- [D2_REQUIREMENTS.md](../../../report_d2/D2_REQUIREMENTS.md): note tổng hợp chính, có checklist; đây là bản diễn giải, không thay thế tài liệu nguồn.
+- [D2_REQUIREMENTS.md](../../../deliverables/d2/report/D2_REQUIREMENTS.md): note tổng hợp chính, có checklist; đây là bản diễn giải, không thay thế tài liệu nguồn.
 - [D2_REQUIREMENTS_REVIEW.md](D2_REQUIREMENTS_REVIEW.md): phạm vi, cách kiểm tra, bảng đối chiếu nội dung và các điểm giữ nguyên theo nguồn.
 - [verification.json](verification.json): SHA-256, kết quả kiểm tra file/sheet/công thức/trọng số/ngày tháng và liên kết nội bộ tại thời điểm đối chiếu.
 

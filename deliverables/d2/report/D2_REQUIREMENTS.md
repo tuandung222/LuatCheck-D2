@@ -6,9 +6,9 @@ Môn CO5151 - Advanced Agentic Artificial Intelligence, HK261. Tổng hợp ngà
 
 | Ký hiệu | Nguồn | Nội dung đã đối chiếu |
 | --- | --- | --- |
-| **[PDF]** | [interim-report-requirements.pdf](../docs/materials/d2/interim-report-requirements.pdf) | Toàn bộ 3 trang: cách nộp, tám phần bắt buộc, phần proposal cần bổ sung và checklist. |
-| **[XLSX]** | [CO5151-D2-Rubric.xlsx](../docs/materials/d2/CO5151-D2-Rubric.xlsx) | Cả tám sheet G1-G8, gồm trọng số, công thức và **ghi chú tại ô tên tiêu chí**. Nội dung tiêu chí và ghi chú giống nhau giữa các sheet, chỉ khác tên nhóm. |
-| **[Email]** | [Thông báo của giảng viên](../docs/materials/d2/CO5151-D2-announcement.md) | Toàn bộ nội dung được giữ nguyên từ văn bản người dùng gửi; mục 3: nộp D2, mục 4: rubric, mục 5: trình bày/demo, mục 6: lịch. Có cả [bản TXT](../docs/materials/d2/CO5151-D2-announcement.txt). |
+| **[PDF]** | [interim-report-requirements.pdf](../../../docs/materials/d2/interim-report-requirements.pdf) | Toàn bộ 3 trang: cách nộp, tám phần bắt buộc, phần proposal cần bổ sung và checklist. |
+| **[XLSX]** | [CO5151-D2-Rubric.xlsx](../../../docs/materials/d2/CO5151-D2-Rubric.xlsx) | Cả tám sheet G1-G8, gồm trọng số, công thức và **ghi chú tại ô tên tiêu chí**. Nội dung tiêu chí và ghi chú giống nhau giữa các sheet, chỉ khác tên nhóm. |
+| **[Email]** | [Thông báo của giảng viên](../../../docs/materials/d2/CO5151-D2-announcement.md) | Toàn bộ nội dung được giữ nguyên từ văn bản người dùng gửi; mục 3: nộp D2, mục 4: rubric, mục 5: trình bày/demo, mục 6: lịch. Có cả [bản TXT](../../../docs/materials/d2/CO5151-D2-announcement.txt). |
 
 Các mục yêu cầu dưới đây là nội dung tổng hợp từ giảng viên và rubric. Phần ghi **“Gợi ý”** là cách tổ chức công việc, không phải yêu cầu bổ sung của môn học. Checklist chưa đánh dấu không có nghĩa nhóm đang thiếu mục đó; note này chưa đánh giá report hoặc mã nguồn hiện tại.
 
@@ -238,4 +238,4 @@ Checklist tổng hợp từ [PDF] mục 4 và các yêu cầu chi tiết phía t
 - Ba nguồn được gửi thống nhất về yêu cầu chính. PDF bổ sung quy định nộp trễ và các mục proposal cần hoàn thiện; ghi chú Excel bổ sung mức kỳ vọng chi tiết, đặc biệt **tái lập bằng một lệnh** ở A2.
 - [Hướng dẫn đồ án chung](https://lexuanbach.github.io/5151/project.html) được PDF và email dẫn chiếu; PDF nêu đây là nơi giải thích các mã yêu cầu R1-R9, RT1-RT4 và AT1-AT4. Note này chỉ tổng hợp ba nguồn được gửi, chưa mở rộng sang nội dung trên website đó.
 
-Đối chiếu sâu ngày 21/10/2026: đọc toàn bộ PDF và xem ảnh cả ba trang, kiểm tra nội dung/ghi chú/công thức/dropdown trên tám sheet, đọc toàn bộ email. Đã đưa bản nguồn vào repo và kiểm tra bản sao khớp từng byte bằng SHA-256; xem [thư mục tài liệu](../docs/materials/d2/README.md), [biên bản đối chiếu](../docs/materials/d2/D2_REQUIREMENTS_REVIEW.md) và [kết quả kiểm tra](../docs/materials/d2/verification.json).
+Đối chiếu sâu ngày 21/10/2026: đọc toàn bộ PDF và xem ảnh cả ba trang, kiểm tra nội dung/ghi chú/công thức/dropdown trên tám sheet, đọc toàn bộ email. Đã đưa bản nguồn vào repo và kiểm tra bản sao khớp từng byte bằng SHA-256; xem [thư mục tài liệu](../../../docs/materials/d2/README.md), [biên bản đối chiếu](../../../docs/materials/d2/D2_REQUIREMENTS_REVIEW.md) và [kết quả kiểm tra](../../../docs/materials/d2/verification.json).

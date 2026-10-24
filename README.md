@@ -3,7 +3,7 @@
 **A small, local assistant that answers only from a document collection, cites the sections it used, checks those citations in code, and refuses or asks a question when the sources do not answer.**
 
 <p align="center">
-  <img src="docs/presentation/gifs/21_hcmut_answer_2b.gif" alt="LuatCheck answering a HCMUT regulation question with a verified citation" width="800">
+  <img src="deliverables/d2/demo/gifs/21_hcmut_answer_2b.gif" alt="LuatCheck answering a HCMUT regulation question with a verified citation" width="800">
 </p>
 
 CO5151 Advanced Agentic Artificial Intelligence, Group 8, Ho Chi Minh City University of Technology (HCMUT).
@@ -13,13 +13,13 @@ Two document collections are implemented and evaluated: HCMUT academic regulatio
 
 | Labour law: answer with a verified citation | The verifier rejects drafts and asks for repairs |
 |---|---|
-| <img src="docs/presentation/gifs/22_labour_answer_2b.gif" alt="Labour-law question answered with a verified citation, agent timeline on the right" width="400"> | <img src="docs/presentation/gifs/23_verifier_repair_2b.gif" alt="The citation verifier rejects a draft answer twice; the run ends as a refusal" width="400"> |
+| <img src="deliverables/d2/demo/gifs/22_labour_answer_2b.gif" alt="Labour-law question answered with a verified citation, agent timeline on the right" width="400"> | <img src="deliverables/d2/demo/gifs/23_verifier_repair_2b.gif" alt="The citation verifier rejects a draft answer twice; the run ends as a refusal" width="400"> |
 
 The recordings above (including the HCMUT one at the top) use the current system with the 2B controller (faster), 25 Oct 2026; the 4B controller gives more accurate answers but takes about 30 s per question.
 Each answer shows the cited section (click to expand the source text with the quoted span highlighted) and the agent's
 timeline: search, reranking, reading, the citation check and any repair. The right-hand clip is a real failure case: the verifier
 rejected the draft's quote, two repairs did not fix it, and the run ended as a refusal rather than an unsupported answer.
-Recordings with the 4B controller (the live-demo configuration) are in `docs/presentation/gifs/`: `11_hcmut_answer_4b.gif`, `12_labour_answer_4b.gif`,
+Recordings with the 4B controller (the live-demo configuration) are in `deliverables/d2/demo/gifs/`: `11_hcmut_answer_4b.gif`, `12_labour_answer_4b.gif`,
 `13_verifier_repair_4b.gif` (repair, then a verified answer) and the backup video `demo_backup_4b.mp4`.
 
 ## What it does
@@ -74,20 +74,20 @@ make rerank-server-mac          # terminal 2: reranker, 127.0.0.1:8082
 make demo-web                   # terminal 3: UI on http://127.0.0.1:8000, HCMUT / labour corpus switch
 ```
 
-Lighter Bonsai 2B demo, side by side with the above: `make demo-model-server-2b` (port 8083), then `make demo-web-2b` (UI on port 8001); it uses the same reranker server. If a server is down a run ends as an execution error by design. Demo queries, timings and fallbacks: [docs/presentation/DEMO_SCRIPT.md](docs/presentation/DEMO_SCRIPT.md).
+Lighter Bonsai 2B demo, side by side with the above: `make demo-model-server-2b` (port 8083), then `make demo-web-2b` (UI on port 8001); it uses the same reranker server. If a server is down a run ends as an execution error by design. Demo queries, timings and fallbacks: [deliverables/d2/demo/DEMO_SCRIPT.md](deliverables/d2/demo/DEMO_SCRIPT.md).
 
 <details>
 <summary>Safety behaviour: refusal when the sources do not answer, and an injection blocked before the model</summary>
 
 | Out-of-scope question refused | Prompt-injection attempt blocked by the guardrail |
 |---|---|
-| <img src="docs/presentation/gifs/03_hcmut_refuse_out_of_scope.gif" alt="Out-of-scope question refused" width="400"> | <img src="docs/presentation/gifs/04_guardrail_injection.gif" alt="Prompt-injection attempt blocked by the guardrail" width="400"> |
+| <img src="deliverables/d2/demo/gifs/03_hcmut_refuse_out_of_scope.gif" alt="Out-of-scope question refused" width="400"> | <img src="deliverables/d2/demo/gifs/04_guardrail_injection.gif" alt="Prompt-injection attempt blocked by the guardrail" width="400"> |
 
-These two were recorded on 24 Oct 2026 with the 2B controller of the initial system; the same two scenarios recorded with the 4B controller on 25 Oct are `14_hcmut_refuse_4b.gif` and `15_guardrail_4b.gif` in `docs/presentation/gifs/`.
+These two were recorded on 24 Oct 2026 with the 2B controller of the initial system; the same two scenarios recorded with the 4B controller on 25 Oct are `14_hcmut_refuse_4b.gif` and `15_guardrail_4b.gif` in `deliverables/d2/demo/gifs/`.
 
 </details>
 
-More recordings (clarification, verifier off, reranker down) are in `docs/presentation/gifs/`.
+More recordings (clarification, verifier off, reranker down) are in `deliverables/d2/demo/gifs/`.
 
 From Python:
 
@@ -112,7 +112,7 @@ Every reported number comes from `evaluation/run_d2.py` runs (resumable, with pr
 | `config/` | profiles (`config/profiles`), per-domain settings (`config/domains`), benchmark matrix (`config/benchmark`) |
 | `data/corpus/` | source-backed corpora: `hcmut_academic_v1.json`, `labour_vi_v1.json` |
 | `evaluation/` | benchmark runner, `benchmarks/` (frozen tasks), `runs/` (replayable run artifacts), `comparisons/` |
-| `report_d2/` | D2 interim report (LaTeX, PDF), provenance of every table |
+| `deliverables/d2/report/` | D2 interim report (LaTeX, PDF), provenance of every table |
 | `docs/` | runbook, reproduction guide, reviews, plans, demo script and GIFs |
 | `tests/` | tests of the real implementations (no mocks, no monkeypatching) |
 
@@ -120,12 +120,12 @@ Development: `.venv/bin/python -m pytest tests/ -q` (includes real inference: do
 
 ## Documentation
 
-- Report: [report_d2/main_d2.pdf](report_d2/main_d2.pdf), source [main_d2.tex](report_d2/main_d2.tex), [requirements](report_d2/D2_REQUIREMENTS.md), [table provenance](report_d2/RESULTS_PROVENANCE.md)
-- Slides: [outline](docs/presentation/D2_SLIDES_OUTLINE.md), [demo script](docs/presentation/DEMO_SCRIPT.md)
+- Report: [deliverables/d2/report/main_d2.pdf](deliverables/d2/report/main_d2.pdf), source [main_d2.tex](deliverables/d2/report/main_d2.tex), [requirements](deliverables/d2/report/D2_REQUIREMENTS.md), [table provenance](deliverables/d2/report/RESULTS_PROVENANCE.md)
+- Slides: [outline](deliverables/d2/demo/D2_SLIDES_OUTLINE.md), [demo script](deliverables/d2/demo/DEMO_SCRIPT.md)
 - Reviews: [benchmark quality](docs/reviews/benchmark_quality_2026-10-23.md), [metrics](docs/reviews/metrics_review_2026-10-23.md), [v3 failure analysis](docs/reviews/v3_failure_analysis_2026-10-24.md), [requirements gap](docs/reviews/d2_requirements_gap_2026-10-23.md)
 - Plans: [completion plan](docs/plans/D2_COMPLETION_PLAN.md), [reranker](docs/plans/reranker.md), [benchmarking](docs/plans/benchmarking.md)
 - Configuration: [config/README.md](config/README.md), [web UI API](docs/web-ui-api.md)
-- Historical, not current evidence: the earlier Qwen2.5-3B pilot on `bll2019_v1`, [redteam/](redteam/README.md), [report_d3/](report_d3/README.md)
+- Historical, not current evidence: the earlier Qwen2.5-3B pilot on `bll2019_v1`, [redteam/](redteam/README.md), [deliverables/d3/report/](deliverables/d3/report/README.md)
 
 ## Course and team
 

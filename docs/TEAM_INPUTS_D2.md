@@ -59,4 +59,4 @@ Mỗi người 1–3 dòng: đã làm gì trong D2 và bằng chứng (file, run
 
 - [ ] Quay lại video demo dự phòng bằng controller 4B trên laptop trình bày
 - [ ] Trưởng nhóm gửi email `[CO5151][G8] D2 Interim report` tới lexuanbach@hcmut.edu.vn, CC các thành viên, đính kèm
-      `report_d2/main_d2.pdf` và `slides_d2/main.pdf`
+      `deliverables/d2/report/main_d2.pdf` và `deliverables/d2/slides/main.pdf`

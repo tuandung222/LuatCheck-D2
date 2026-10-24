@@ -9,8 +9,8 @@ Requirements (repo .venv only; the browser binary goes to the user-level Playwri
     /opt/homebrew/bin/ffmpeg
 Usage:
     make demo-web   # in another terminal, servers 8081/8082 running
-    .venv/bin/python docs/presentation/record_demo.py --base http://127.0.0.1:8000 --only 01 02
-Outputs: docs/presentation/gifs/<id>.gif (+ <id>.mp4 kept in --work) and docs/presentation/gifs/demo_backup.mp4
+    .venv/bin/python deliverables/d2/demo/record_demo.py --base http://127.0.0.1:8000 --only 01 02
+Outputs: deliverables/d2/demo/gifs/<id>.gif (+ <id>.mp4 kept in --work) and deliverables/d2/demo/gifs/demo_backup.mp4
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 FFMPEG = "/opt/homebrew/bin/ffmpeg"
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 SCENARIOS_FILE = Path(__file__).with_name("demo_scenarios.json")
 
 

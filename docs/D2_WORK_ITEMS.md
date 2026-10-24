@@ -74,8 +74,8 @@
 |---|---|---|---|---|
 | 6.1 | Web UI update: corpus switch, agent timeline, cited source spans, outcome states | `frontend/`, `src/api/` | ✅ | |
 | 6.2 | Demo configs identical to the benchmark L1+rerank system | `config/profiles/demo-*.yaml` | ✅ | |
-| 6.3 | Demo script with live-verified queries | `docs/presentation/DEMO_SCRIPT.md` | ✅ | |
-| 6.4 | Recorded GIFs and MP4 backup video | `docs/presentation/gifs/` | ✅ | |
+| 6.3 | Demo script with live-verified queries | `deliverables/d2/demo/DEMO_SCRIPT.md` | ✅ | |
+| 6.4 | Recorded GIFs and MP4 backup video | `deliverables/d2/demo/gifs/` | ✅ | |
 | 6.5 | Demo rehearsal on the presenting laptop; re-record backup there | — | ☐ | |
 | 6.6 | `make demo-preflight` (server check + warm-up) | — | ☐ (optional) | |
 
@@ -83,15 +83,15 @@
 
 | # | Item | Evidence | Status | Owner |
 |---|---|---|---|---|
-| 7.1 | Rewrite the D2 report for the current system (sections 1–8, threat model, metric definitions) | `report_d2/main_d2.tex` | ✅ | |
-| 7.2 | New architecture figure (Figure 1) | `report_d2/images/architecture.tikz` | ✅ | |
+| 7.1 | Rewrite the D2 report for the current system (sections 1–8, threat model, metric definitions) | `deliverables/d2/report/main_d2.tex` | ✅ | |
+| 7.2 | New architecture figure (Figure 1) | `deliverables/d2/report/images/architecture.tikz` | ✅ | |
 | 7.3 | Editorial and AI-slop passes | report history | ✅ | |
-| 7.4 | v3 result tables with provenance; latency, reranker parity and trace | `report_d2/tables_*_v3/`, `benchmark_latency_mac.tex` | ✅ | |
-| 7.5 | r2 results section, AI-use statement, benchmark-review statement, final professional pass | `report_d2/main_d2.tex` | ⏳ (tonight) | |
+| 7.4 | v3 result tables with provenance; latency, reranker parity and trace | `deliverables/d2/report/tables_*_v3/`, `benchmark_latency_mac.tex` | ✅ | |
+| 7.5 | r2 results section, AI-use statement, benchmark-review statement, final professional pass | `deliverables/d2/report/main_d2.tex` | ⏳ (tonight) | |
 | 7.6 | Reproduction guide for every reported result | `docs/REPRODUCE_D2.md` | ☐ (tonight) | |
 | 7.7 | Member contribution evidence and "verified by the group" statements | report Section 8 | ☐ (group) | |
 | 7.8 | Final freeze: commit hash, report-check, lecturer repository access | — | ☐ | |
-| 7.9 | Slide outline | `docs/presentation/D2_SLIDES_OUTLINE.md` | ✅ | |
+| 7.9 | Slide outline | `deliverables/d2/demo/D2_SLIDES_OUTLINE.md` | ✅ | |
 | 7.10 | Slide deck (from the outline, with final numbers) | — | ☐ | |
 | 7.11 | Q&A preparation (limitations, who answers what) | — | ☐ | |
 

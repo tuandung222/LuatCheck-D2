@@ -2,7 +2,7 @@
 
 # Bằng chứng review gap D2
 
-Kết luận và danh sách hành động nằm trong [D2_GAP_REVIEW.md](../../../report_d2/D2_GAP_REVIEW.md).
+Kết luận và danh sách hành động nằm trong [D2_GAP_REVIEW.md](../../../deliverables/d2/report/D2_GAP_REVIEW.md).
 
 - `pytest-output.txt`, `pytest.xml`: 487 tests pass trong bản sao tạm. Đây là kết quả tests hiện có, không chứng nhận đủ yêu cầu môn học hoặc đúng số liệu report.
 - `diagnostics.json`: các kiểm tra tổng hợp, lỗi import MCP và số lần primary/fallback.

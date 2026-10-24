@@ -18,7 +18,7 @@
 |---|---|---|---|---|
 | 0 | Full test suite on the current tree | supervisor (background) | suite finishes; failures explained | running |
 | 1 | Experiment tracking layer: provenance in manifests, run registry with freshness (`make runs`), table provenance headers, `make report-check`, backfill of old runs | Sonnet (evaluation owner) | registry lists every run with kind/status/freshness; report-check fails on stale tables; tests green | running |
-| 2 | Web UI demo polish, live run of every demo query, GIFs + MP4 | Sonnet (frontend owner) | UI builds, every demo query verified live, GIFs in `docs/presentation/gifs/` | running |
+| 2 | Web UI demo polish, live run of every demo query, GIFs + MP4 | Sonnet (frontend owner) | UI builds, every demo query verified live, GIFs in `deliverables/d2/demo/gifs/` | running |
 | 3 | Review phase 1; re-run evaluation, pipeline and reranker tests; commit the benchmark code (UI files excluded while in flight) as the owner, push | supervisor | clean commit on origin; working tree clean in collection paths | pending |
 | 4 | Server 82 setup: pull; Python venv on top of the CUDA-12 torch env; prism llama.cpp CUDA build; Bonsai GGUF + reranker weights pinned; free GPU; port 28081; preflight | Sonnet (82 runner) | `make benchmark-preflight` passes on 82 with recorded GPU/driver/model identities | pending |
 | 5 | Gate trial then full GPU matrix: OFF/L1/L1+rerank × seeds 42/123/2026 + closed-book and oracle baselines (seed 42), ~1,090 trials, judge skipped on 82, tmux/job with resume | Sonnet (82 runner), supervisor monitors | `status` shows complete, 0 unexplained errors, registry `current` | pending |

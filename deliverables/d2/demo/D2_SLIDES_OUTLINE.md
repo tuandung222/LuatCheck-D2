@@ -4,7 +4,7 @@ Written 2026-10-23 (UTC+7) for the presentation on Wed 28 Oct 2026, 18:00, room 
 Status: outline only; no slide file exists yet. Everything marked `[PENDING ...]` is filled from the main-run tables or by the team, never invented.
 
 Ground rules for every slide (AGENTS.md, rubric B2/B3):
-- The current system runs the same model for the reported numbers and the demo: Ternary Bonsai 2 4B (GGUF PQ2_0); a 2B controller is the lighter option. Put that on the architecture slide once. The built deck is slides_d2/main.pdf.
+- The current system runs the same model for the reported numbers and the demo: Ternary Bonsai 2 4B (GGUF PQ2_0); a 2B controller is the lighter option. Put that on the architecture slide once. The built deck is deliverables/d2/slides/main.pdf.
 - Strict success, behaviour and faithfulness are LLM-judge estimates (not human labels) until the human-audit agreement is known; retrieval and citation numbers are source-ID proxies.
 - Benchmarks are AI-written and AI-verified (no human review); retrieval is near-saturated, about one third of tasks are closed-book guessable. Say this on the evaluation slide.
 - Show red `[PENDING]` on a slide rather than a number we do not have. The old Qwen2.5-3B / ten-task results never appear.
@@ -57,7 +57,7 @@ Every member should speak at least once and be able to answer on their part (ann
 ### 5. Live demo (rubric B1, 20%; see DEMO_SCRIPT.md)
 - Four queries: HCMUT answer with citations; labour answer with citations; a refusal; an injection blocked before the model.
 - What to point at: action timeline, retrieved ids, cited section text, L1 verdict, tokens and seconds.
-- Backup: video of the same flow plus screenshots (checklist in DEMO_SCRIPT.md; draft recordings of real runs are in `docs/presentation/gifs/`, including the execution-error state). Say aloud if a fallback is used.
+- Backup: video of the same flow plus screenshots (checklist in DEMO_SCRIPT.md; draft recordings of real runs are in `deliverables/d2/demo/gifs/`, including the execution-error state). Say aloud if a fallback is used.
 - Start the demo with `make demo-web` (corpus switch in the UI); the final query set and live outcomes are in DEMO_SCRIPT.md section 3.
 - Same model and config as the tables.
 

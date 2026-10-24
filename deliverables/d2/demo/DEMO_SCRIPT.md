@@ -168,9 +168,9 @@ no model call. 2:20 one sentence on what the demo does not show (accuracy is in 
 
 ### 8a. Current system, recorded 2026-10-25 (01:00 to 01:20, UTC+7)
 
-Real runs of the chosen system through the browser UI (headless Chromium, `docs/presentation/record_demo.py`; nothing edited, staged or pre-recorded; the only cut is the blank first 0.7 s of page load), 1280x800,
+Real runs of the chosen system through the browser UI (headless Chromium, `deliverables/d2/demo/record_demo.py`; nothing edited, staged or pre-recorded; the only cut is the blank first 0.7 s of page load), 1280x800,
 each GIF at most 3 MB, 8 fps and 1000 px wide unless noted. Servers: `make demo-model-server` (4B, :8081), `make demo-model-server-2b` (2B, :8083), `make rerank-server-mac` (:8082), `make demo-web` (:8000) and
-`make demo-web-2b` (:8001); one throw-away warm-up question per corpus and controller was run first and is not used. The scenarios behind the files below are in `docs/presentation/demo_scenarios_current.json` (same queries as section 4; the repair clips use benchmark questions HCMUT-002 and LVN-003). Run 4B ids against :8000 and 2B ids
+`make demo-web-2b` (:8001); one throw-away warm-up question per corpus and controller was run first and is not used. The scenarios behind the files below are in `deliverables/d2/demo/demo_scenarios_current.json` (same queries as section 4; the repair clips use benchmark questions HCMUT-002 and LVN-003). Run 4B ids against :8000 and 2B ids
 (21 to 23) against :8001 with `--base`. Note that the files 13 and 23 are the runs that happened to show a repair; the scenario only asks for one, a re-run may end differently (see the search below).
 
 | File | Controller | Scenario | Run time in the UI | Notes |
@@ -192,12 +192,12 @@ questions were chosen for frequent repairs and the attempts were not repeated. F
 HCMUT-007 refusal after 2 repairs, 39.4 s; LVN-011 clarification after 1 repair, 13.9 s) and none ended in a verified answer.
 
 Where each file is used: README Demo section = 21, 22, 23 (2B, short clips); README safety section = 03, 04 (old, 2B initial system); README text names 11, 12, 13 and `demo_backup_4b.mp4`; slides = frames of 11 (slide 5),
-15 and 13 (backup slide D) in `slides_d2/assets/demo_answer_l1_4b.png`, `demo_guardrail_4b.png`, `demo_l1_repair_4b.png`; the backup video for the day is `demo_backup_4b.mp4` (4B). The recorder was extended with
+15 and 13 (backup slide D) in `deliverables/d2/slides/assets/demo_answer_l1_4b.png`, `demo_guardrail_4b.png`, `demo_l1_repair_4b.png`; the backup video for the day is `demo_backup_4b.mp4` (4B). The recorder was extended with
 `--scenarios <file>`, `require_repair` (retry until the timeline shows a repair step) and `after: show_repairs` (scroll the repair step into view).
 
 ### 8b. Earlier recordings (2026-10-24, initial 2B system)
 
-**The GIFs 01 to 08 and `demo_backup.mp4` in `docs/presentation/gifs/` were recorded on 2026-10-24 (earlier in the day) with the initial 2B system** (Bonsai 2B controller, `make prism-server PRISM_CTX=65536` on :8081 at
+**The GIFs 01 to 08 and `demo_backup.mp4` in `deliverables/d2/demo/gifs/` were recorded on 2026-10-24 (earlier in the day) with the initial 2B system** (Bonsai 2B controller, `make prism-server PRISM_CTX=65536` on :8081 at
 that time), not with the current system and not with the 4B controller. They are real runs (nothing pre-recorded or edited; the only cut is the blank first 0.65 s of page load), recorded at 1280x800
 (each GIF at most 3 MB, 8 fps, 1000 px wide, loops), so the flow, the UI and the outcome types are the same, but the answer wording and times (2B: 9 to 15 s) differ from what the 4B controller shows now.
 Kept untouched as secondary backup (label them as the initial 2B system if shown); `06`, `07`, `05` have no recording with the current system (reranker-down error, OFF mode, clarification).
@@ -215,15 +215,15 @@ Kept untouched as secondary backup (label them as the initial 2B system if shown
 | `demo_backup.mp4` | files 01 to 08 concatenated, 1280x800, H.264, about 2.5 minutes, about 5 MB | | backup video for the day, initial 2B system |
 
 Re-record (this is how the 4B and 2B clips of 8a were made, with `--scenarios` pointing at a scenario file for the new names): servers running (`make demo-model-server`, `make rerank-server-mac`), `make demo-web` in one terminal, then
-`.venv/bin/python docs/presentation/record_demo.py --base http://127.0.0.1:8000 --only 01 02 03 04` (scenarios in `docs/presentation/demo_scenarios.json`; run 4B takes about 25 s per answer, the script waits up to 240 s).
+`.venv/bin/python deliverables/d2/demo/record_demo.py --base http://127.0.0.1:8000 --only 01 02 03 04` (scenarios in `deliverables/d2/demo/demo_scenarios.json`; run 4B takes about 25 s per answer, the script waits up to 240 s).
 Needs `.venv/bin/pip install playwright && .venv/bin/python -m playwright install chromium` (user-level cache) and `/opt/homebrew/bin/ffmpeg`. A scenario may name the UI state it demonstrates (`expect_state`, with
 `max_attempts`); attempts that end in a different state are discarded and printed, which is why the log can show more runs than files. Scenario 05 (clarify) is not reliable with the current system; skip it or accept whatever state it ends in.
 Write new files with a different output directory (`--out`) so the old 2B recordings stay available.
 
 ## 9. Backup video checklist (rubric B1: video-only without an incident cannot reach the top band; the live demo stays primary)
 
-- [x] Draft backup video from real runs: `docs/presentation/gifs/demo_backup.mp4` (2026-10-24, initial 2B system).
-- [x] Backup video with the current system (4B controller): `docs/presentation/gifs/demo_backup_4b.mp4` (2026-10-25, 2 min 37 s, Q1, Q2, a verifier repair, refusal, guardrail; headless-browser recording of the real UI on this Mac, 1280x800, no cuts). Not yet shown: the health checks and config print (next item) and the OFF-mode query.
+- [x] Draft backup video from real runs: `deliverables/d2/demo/gifs/demo_backup.mp4` (2026-10-24, initial 2B system).
+- [x] Backup video with the current system (4B controller): `deliverables/d2/demo/gifs/demo_backup_4b.mp4` (2026-10-25, 2 min 37 s, Q1, Q2, a verifier repair, refusal, guardrail; headless-browser recording of the real UI on this Mac, 1280x800, no cuts). Not yet shown: the health checks and config print (next item) and the OFF-mode query.
 - [ ] Optional: re-record on the presenting laptop with the real servers (screen capture, 1080p, no edits that hide failures).
 - [ ] Show the two health checks (8081, 8082) and the config print before the first query.
 - [ ] Record Q1 to Q4 in the order of section 4, each ending with the cited section opened and the timeline visible.

@@ -1,6 +1,6 @@
 # Biên bản đối chiếu note yêu cầu D2
 
-Ngày đối chiếu: 21/10/2026, múi giờ Việt Nam. Đối tượng: [D2_REQUIREMENTS.md](../../../report_d2/D2_REQUIREMENTS.md) và ba nguồn trong [thư mục tài liệu](README.md).
+Ngày đối chiếu: 21/10/2026, múi giờ Việt Nam. Đối tượng: [D2_REQUIREMENTS.md](../../../deliverables/d2/report/D2_REQUIREMENTS.md) và ba nguồn trong [thư mục tài liệu](README.md).
 
 **Kết quả đọc và đối chiếu:** không phát hiện yêu cầu D2 bị bỏ sót hoặc bị diễn giải trái nguồn trong phạm vi ba tài liệu được cung cấp sau các chỉnh sửa dưới đây. Bảng 80 nhóm nội dung bên dưới ghi nơi kiểm tra và nơi thể hiện trong note. Đây là đối chiếu yêu cầu; chưa đánh giá report, demo, số liệu hay mã nguồn của nhóm có đáp ứng chúng hay không.
 

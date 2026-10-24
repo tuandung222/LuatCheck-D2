@@ -10,6 +10,6 @@ The Qwen2.5-3B / `bll2019_v1` pilot is superseded and must not appear on a resul
 
 Where to look:
 
-- `docs/presentation/D2_SLIDES_OUTLINE.md`: 10-minute talk, slide by slide, mapped to the rubric.
-- `docs/presentation/DEMO_SCRIPT.md`: server start-up, demo queries, fallback plan, backup-video checklist.
-- `report_d2/main_d2.tex`: the report the slides must agree with (Section 1 "Models and framework").
+- `deliverables/d2/demo/D2_SLIDES_OUTLINE.md`: 10-minute talk, slide by slide, mapped to the rubric.
+- `deliverables/d2/demo/DEMO_SCRIPT.md`: server start-up, demo queries, fallback plan, backup-video checklist.
+- `deliverables/d2/report/main_d2.tex`: the report the slides must agree with (Section 1 "Models and framework").

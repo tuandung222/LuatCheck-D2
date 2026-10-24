@@ -573,7 +573,7 @@ def test_render_marks_non_eligible_runs_and_shows_missing_cells_as_red(smoke_run
     jb.analyze(work, audit_size=3)
     with pytest.raises(SystemExit):  # a smoke run must never reach the report file
         render.main(["--run-dir", str(work)])
-    report_file = REPO / "report_d2" / "benchmark_results.tex"
+    report_file = REPO / "deliverables/d2/report" / "benchmark_results.tex"
     report_before = report_file.read_bytes() if report_file.exists() else None
     out = tmp_path / "tables.tex"
     assert render.main(["--run-dir", str(work), "--output", str(out), "--allow-non-eligible"]) == 0

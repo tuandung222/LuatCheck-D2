@@ -159,5 +159,5 @@ def test_real_collector_refuses_unapproved_execution():
 
 def test_actual_report_has_eight_ordered_sections():
     import re
-    source = (ROOT/"report_d2/main_d2.tex").read_text()
+    source = (ROOT/"deliverables/d2/report/main_d2.tex").read_text()
     assert len(re.findall(r"^\\section\{",source,re.MULTILINE)) == 8

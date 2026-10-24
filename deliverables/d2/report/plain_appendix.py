@@ -1,9 +1,9 @@
 """Write reader-friendly copies of the generated appendix tables (labels and captions only; numbers and provenance headers untouched).
 
-  python report_d2/plain_appendix.py        (run after `make tables` / compare, before building the report)
+  python deliverables/d2/report/plain_appendix.py        (run after `make tables` / compare, before building the report)
 
-Reads the generated table files (report_d2/tables_*_r2_4b/*.tex and evaluation/comparisons/<cmp>/comparison.tex, never modified) and writes
-report_d2/appendix_plain/*.tex. What changes: internal labels in cells (variant, benchmark and system names), the captions (plain wording),
+Reads the generated table files (deliverables/d2/report/tables_*_r2_4b/*.tex and evaluation/comparisons/<cmp>/comparison.tex, never modified) and writes
+deliverables/d2/report/appendix_plain/*.tex. What changes: internal labels in cells (variant, benchmark and system names), the captions (plain wording),
 and the visible "Source:" lines (removed; the run, commit and hash stay in the unchanged `%` provenance header, which
 evaluation/check_report_provenance.py verifies). Table values are copied byte for byte.
 """
@@ -12,8 +12,9 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[2]   # deliverables/d2/report -> repository root
 OUT = HERE / "appendix_plain"
-CMP = HERE.parent / "evaluation" / "comparisons" / "v3-2B_vs_r2-2B_vs_r2-4B" / "comparison.tex"
+CMP = REPO / "evaluation" / "comparisons" / "v3-2B_vs_r2-2B_vs_r2-4B" / "comparison.tex"
 POSTHOC_COMMENT = "% protocol label (kept for evaluation/check_report_provenance.py): post-hoc revision evaluated on the same tasks"
 
 # Plain-language statement that replaces the internal protocol label in every caption.
@@ -143,7 +144,7 @@ def main() -> int:
             jobs.append((HERE / f"tables_{key}_r2_4b" / f"{stem}.tex", OUT / f"{key}_{stem}.tex", LABEL_BENCH[key]))
     for src, dst, bench in jobs:
         dst.write_text(convert(src.read_text(encoding="utf-8"), bench), encoding="utf-8")
-        print(f"wrote {dst.relative_to(HERE.parent)}")
+        print(f"wrote {dst.relative_to(REPO)}")
     return 0
 
 

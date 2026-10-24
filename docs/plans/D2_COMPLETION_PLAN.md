@@ -2,7 +2,7 @@
 
 Written 23 Oct 2026 (local time ~05:30, UTC+7). Deadline: report PDF + slide PDF emailed by the group leader before
 **23:59 Sun 25 Oct 2026** (late = −10%/day). Presentation and live demo: Wed 28 Oct 2026, 18:00, room B4-305.
-Teacher requirements: `report_d2/D2_REQUIREMENTS.md` (8 sections in fixed order, ≤10 content pages, repo URL + commit
+Teacher requirements: `deliverables/d2/report/D2_REQUIREMENTS.md` (8 sections in fixed order, ≤10 content pages, repo URL + commit
 hash, LLM-judge reliability checked on a human-labelled sample, one-command reproducibility).
 
 Read first, in this order: `AGENTS.md` (integrity rules — they override convenience), this file,
@@ -13,7 +13,7 @@ Read first, in this order: `AGENTS.md` (integrity rules — they override conven
 - Real inference only. A backend/model failure is an execution error, never an answer, refusal or zero cost.
 - No mocks, stubs, monkeypatching or canned outputs anywhere, including tests (`tests/test_real_system.py` enforces part of this).
 - Never fabricate scores, token counts, latency, costs, human labels, provenance or member contributions. Missing evidence stays a
-  red `\pending{...}` placeholder in `report_d2/main_d2.tex`.
+  red `\pending{...}` placeholder in `deliverables/d2/report/main_d2.tex`.
 - Preserve every run directory, including failed/interrupted ones. Never overwrite a run; start a new output directory.
 - The two benchmarks are frozen (`evaluation/benchmarks/*/benchmark.lock.json`). Do not edit `tasks.json`, corpora or domain
   profiles; if a defect is found, record it, fix it in a new versioned benchmark, re-freeze, and say so in the report.
@@ -30,12 +30,12 @@ Read first, in this order: `AGENTS.md` (integrity rules — they override conven
 | Benchmark `hcmut_v1` | 50 tasks (40 single / 5 multi / 5 out_of_scope), corpus `data/corpus/hcmut_academic_v1.json` (143 records, 10 official HCMUT docs ≤21 pages), profile `hcmut_academic`. Haiku drafts → 2 independent Sonnet verifiers → Sonnet adjudication → independent recheck (9/9 accept). Gemma-4-31B oracle check 49/50. Frozen, tasks sha256 `591513d0f8fc…` | `evaluation/benchmarks/hcmut_v1/{tasks.json,ADJUDICATION.md,README.md,verify_*.json,recheck_C.json,benchmark.lock.json}`, `evaluation/runs/hcmut-sanity-final-v1/` |
 | Benchmark `labour_vi_v1` | 50 tasks (40/5/5), corpus `data/corpus/labour_vi_v1.json` (458 records: BLLĐ 2019 + 9 labour documents ≤36 pages from congbao/chinhphu), profile `labour_vi_multi`. Same verification chain (recheck 10/11 accept; LVN-014 fix applied). Gemma oracle 50/50. Frozen, tasks sha256 `f6bfe0efb471…` | `evaluation/benchmarks/labour_vi_v1/…`, `docs/materials/labour-sources/`, `evaluation/runs/labour-sanity-final-v1/` |
 | Known corpus limits | `labour_vi_v1`: NĐ 145/2020 excluded (95 pages); unnumbered annexes of ND293_2025 and TT26_2025 not extracted; TT26 number/date not printed (metadata from vanban.chinhphu.vn, file hash = official attachment). `hcmut_v1`: base regulations 2933/2931/2929 are image-only and absent; several documents are amendment-only; CTDT1862_Dieu_1 is one 19.6k-char record; HVDT2749_PhuLuc_1 duplicates HVDT1260_PhuLuc_1 text | benchmark READMEs |
-| Benchmark tooling | `evaluation/run_benchmark.py` (freeze/run/status, profiles mac-latency/gpu-accuracy, resumable, refuses lock/source drift), `evaluation/judge_benchmark.py` (blinded packets, DeepSeek Flash gateway judge, analysis, stratified human-audit export with blank labels), `evaluation/render_benchmark_tables.py` (→ `report_d2/benchmark_results.tex`), Makefile targets `benchmark-freeze`, `benchmark-d2`, `benchmark-smoke` | `docs/plans/benchmarking.md` |
+| Benchmark tooling | `evaluation/run_benchmark.py` (freeze/run/status, profiles mac-latency/gpu-accuracy, resumable, refuses lock/source drift), `evaluation/judge_benchmark.py` (blinded packets, DeepSeek Flash gateway judge, analysis, stratified human-audit export with blank labels), `evaluation/render_benchmark_tables.py` (→ `deliverables/d2/report/benchmark_results.tex`), Makefile targets `benchmark-freeze`, `benchmark-d2`, `benchmark-smoke` | `docs/plans/benchmarking.md` |
 | Smoke run | Both benchmarks × off/l1/l1_rerank × 3 tasks × seed 42: 18/18 trials, 0 execution errors, rerank metadata present, judge ≈ $0.046 (1 unknown judgment). NOT report evidence | `evaluation/runs/bench-smoke-both-20261023/` |
 | Wiring | `retrieval.reranker`, `verifier.nli` (default off), `retrieval.mode: hybrid_index`, `models.*` ModelManager, profiles `config/profiles/{lite,local-full,remote}.yaml`; frozen `config/d2_native.yaml` behaviour unchanged (pinned digests) | `docs/plans/wiring.md`, `tests/test_wiring.py` |
 | Tests | Full suite run alone: 192 passed, 1 skipped (HTTP embedding success path: no embedding server), peak RSS 4.5 GB | `PYTHONPATH=. .venv/bin/python -m pytest -q tests/` |
 | Model servers | Default app model: Ternary Bonsai 2 2B GGUF PQ2_0 on the PrismML llama.cpp fork (built at `~/src/prism-llama.cpp`, commit 73bfe6c), `make prism-server` → 127.0.0.1:8081. **Currently NOT running** (the session that started it ended). Ollama (Qwen2.5-3B, frozen old D2 run) on 11434. Qev OneJev servers on GPU 82 forwarded to 127.0.0.1:18001 (0.8B) / 18004 (4B) by an existing ssh tunnel (not used in D2 main runs) | `make prism-server`, `curl 127.0.0.1:8081/health` |
-| Report | `report_d2/main_d2.tex` still reports the OLD frozen Qwen2.5-3B run on the 10-task `bll2019_v1` benchmark as the main result, plus diagnostics. `report_d2/benchmark_results.tex` does not exist yet. PDF currently 11 pages total (cover + 10 numbered, references on the last page) | `make report_d2` |
+| Report | `deliverables/d2/report/main_d2.tex` still reports the OLD frozen Qwen2.5-3B run on the 10-task `bll2019_v1` benchmark as the main result, plus diagnostics. `deliverables/d2/report/benchmark_results.tex` does not exist yet. PDF currently 11 pages total (cover + 10 numbered, references on the last page) | `make report_d2` |
 | Human labels | None yet. The group scheduled human labelling for **Sat 24 Oct evening**. The new judge exports an audit sample but there is **no script yet that computes human–judge agreement / Cohen's kappa for the new runs** | `evaluation/judge_benchmark.py` (export only) |
 | Git | Nothing committed for D2; ~75 untracked, 33 modified, 25 deleted paths | `git status` |
 
@@ -86,11 +86,11 @@ Acceptance: latency p50/p95, tokens/trial, peak memory per variant present in `a
 ### D. Judging, analysis, tables (~1.5 h, ≈$1.5–3 for 900 trials)
 1. `make benchmark-d2` already chains judge + analyze + render. If run separately:
    `.venv/bin/python evaluation/judge_benchmark.py all --run-dir <run> --execute`, then
-   `.venv/bin/python evaluation/render_benchmark_tables.py --run-dir <accuracy run> --output report_d2/benchmark_results.tex`.
+   `.venv/bin/python evaluation/render_benchmark_tables.py --run-dir <accuracy run> --output deliverables/d2/report/benchmark_results.tex`.
 2. Check: every trial judged or an execution error; unknown judgments listed (not counted as success); gateway-reported cost recorded (not an invoice).
 3. Write a short `evaluation/runs/<run>/RUN_NOTES.md`: hardware, server note, start/end, anomalies, retries, any manual step.
 4. Independently recompute 3–4 headline numbers from `runs.jsonl` / `judge/` with a few lines of Python (same practice as earlier: counts per status, strict success per variant) and record the check in RUN_NOTES.
-Acceptance: `report_d2/benchmark_results.tex` exists and is regenerated only from a report-eligible, frozen, non-smoke run.
+Acceptance: `deliverables/d2/report/benchmark_results.tex` exists and is regenerated only from a report-eligible, frozen, non-smoke run.
 
 ### E. Human audit of the judge (Sat 24 Oct evening, group members)
 1. The audit sample is exported under `<accuracy run>/analysis/human-audit/` (blank labels). Give the team clear instructions: label each item without looking at the judge verdict; fields = correctness 0/1/2, behaviour appropriate yes/no, unsupported claims count (mirror the judge rubric in `evaluation/judge_prompt.txt` / `judge_benchmark.py`). Record labeller names per item (member contribution evidence).
@@ -98,7 +98,7 @@ Acceptance: `report_d2/benchmark_results.tex` exists and is regenerated only fro
 3. If the team does not label, the report keeps the red placeholders for agreement/kappa. Never fill them.
 Acceptance: agreement + kappa computed from real labels, or placeholders retained.
 
-### F. Report D2 rewrite (`report_d2/main_d2.tex`, ≤10 numbered content pages)
+### F. Report D2 rewrite (`deliverables/d2/report/main_d2.tex`, ≤10 numbered content pages)
 Keep the 8 required sections and their order (`tests/test_real_system.py::test_actual_report_has_eight_ordered_sections`). Keep all remaining `\pending{}` for evidence that does not exist. Section by section:
 1. **Changes from the proposal:** the evaluation moved from the 10-task `bll2019_v1` set to two frozen 50-task benchmarks (why: too small, one corpus); controller for results and demo = Bonsai 2B GGUF (why: local speed/memory measurements: GGUF ≈2× faster per task than MLX, ~0.7 GB server RSS); reranker added; status table updated (done / in progress / not started / dropped). Keep pitch feedback / HR walkthrough statuses as reported by the team (no invented events).
 2. **Architecture:** update Figure 1 (reranker now wired as an optional step after first-stage retrieval; Bonsai controller; NLI/vector index implemented but outside D2 runs). Replace the native trace with a real trace from the new main run (pick one trial id; quote ledger facts only).
@@ -108,11 +108,11 @@ Keep the 8 required sections and their order (`tests/test_real_system.py::test_a
 6. **Threat model:** unchanged unless new entry points (reranker adds none); keep "no attack evaluation in D2".
 7. **Plan:** W45–W49 with owners (still `\pending` until the team confirms), riskiest assumption (small local controller quality — now measured), cut-scope (keep loop + reranker + two benchmarks; defer NLI/vector).
 8. **Contributions + AI-use:** list AI tools actually used (Claude Code orchestrator with Sonnet/Haiku subagents, OpenAI Codex earlier, Codex Astra review, Qoder/DeepSeek Flash research, DeepSeek Flash judge, Gemma-4-31B benchmark sanity check) and what humans verified; member evidence stays `\pending` until provided.
-Then `make report_d2`; check page count (`gs -q -dNODISPLAY -dNOSAFER -c "(report_d2/main_d2.pdf) (r) file runpdfbegin pdfpagecount = quit"` and where References start); fix overflow by tightening text, not by shrinking fonts below the template.
+Then `make report_d2`; check page count (`gs -q -dNODISPLAY -dNOSAFER -c "(deliverables/d2/report/main_d2.pdf) (r) file runpdfbegin pdfpagecount = quit"` and where References start); fix overflow by tightening text, not by shrinking fonts below the template.
 Acceptance: compiles without errors, ≤10 numbered content pages, every number traceable to a run artifact, placeholders only for genuinely missing evidence.
 
 ### G. Slides and demo prep
-- `report_d2/SLIDE_DEMO_MODEL_NOTE.md` is now OUTDATED (it says main numbers come from Qwen2.5-3B). Update it: main numbers and demo both use Bonsai 2B GGUF; keep the honest caveats (AI-verified benchmarks, LLM-judge estimates).
+- `deliverables/d2/report/SLIDE_DEMO_MODEL_NOTE.md` is now OUTDATED (it says main numbers come from Qwen2.5-3B). Update it: main numbers and demo both use Bonsai 2B GGUF; keep the honest caveats (AI-verified benchmarks, LLM-judge estimates).
 - Demo script: `make prism-server`, UI (`make web` + frontend or `make demo`), 2–3 pre-chosen tasks that work reliably (pick from the run where Bonsai succeeded), one refusal case; record a backup video (rubric B1).
 - Slides (10 minutes): changes, running architecture, demo, results table, cost/latency, threat model, plan/risks.
 

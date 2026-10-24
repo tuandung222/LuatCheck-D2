@@ -51,7 +51,7 @@ Presenter assignment is not decided: every "Speaker" cell is a placeholder for t
 - Query 1 (HCMUT) answer: follow the timeline, open the cited section, compare the highlighted quote. Query 2 (labour) same flow on the second collection. Query 3 refusal; mention that a red "execution error" state exists for backend failures. Query 4 injection: guardrail block, no model call.
 - Close with one sentence: the demo illustrates; the tables are the evidence; the verifier is a word-overlap check and can pass a wrong answer.
 - If something fails: show it as it is (read the cited section, point at the failed check). Backup video: say aloud that it is a recording and explain the trace. If short on time, skip the optional clarification query, then query 2.
-- Backup video with the current system (4B controller): `docs/presentation/gifs/demo_backup_4b.mp4` (recorded 25 October on the Mac, 2 min 37 s: Q1, Q2, a verifier repair, refusal, guardrail). The older clips (initial system, 2B) are secondary backup. Optional: re-record on the presenting laptop.
+- Backup video with the current system (4B controller): `deliverables/d2/demo/gifs/demo_backup_4b.mp4` (recorded 25 October on the Mac, 2 min 37 s: Q1, Q2, a verifier repair, refusal, guardrail). The older clips (initial system, 2B) are secondary backup. Optional: re-record on the presenting laptop.
 
 **6. Evaluation design and judge (0:45)**
 - 2 benchmarks of 50 questions (45 answerable, 5 to refuse), 3 configurations, 3 runs with different seeds; two diagnostic baselines (closed-book and oracle) on one run each.

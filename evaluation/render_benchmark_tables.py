@@ -4,7 +4,7 @@ Outputs (all inside the run directory unless --output/--publish says otherwise)
   tables/benchmark_results.tex      \\input-able: tab:benchmark-main, tab:benchmark-ops, tab:benchmark-paired
   tables/benchmark_diagnostics.tex  behaviour confusion / abstention table (tab:benchmark-behaviour)
   tables/summary.md                 the same numbers as plain Markdown (for RUN_NOTES and review)
-  report_d2/benchmark_results.tex   only with --publish, and only for a report-eligible run
+  deliverables/d2/report/benchmark_results.tex   only with --publish, and only for a report-eligible run
 
 Values come only from the analysis summary; anything missing is a visible red [PENDING], never a filled-in number.
 Smoke or otherwise non-eligible runs are labelled with a red banner and can never be published to the report path.
@@ -19,7 +19,7 @@ from typing import Any, Dict, List, Optional
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
-REPORT_TABLES = REPO_ROOT / "report_d2" / "benchmark_results.tex"
+REPORT_TABLES = REPO_ROOT / "deliverables/d2/report" / "benchmark_results.tex"
 PENDING = r"\textcolor{red}{\textbf{[PENDING]}}"
 NOT_REPORTABLE = r"\textit{n/r}"
 BENCH_NAMES = {"hcmut_v1": "HCMUT-v1", "labour_vi_v1": "Labour-VI-v1"}
@@ -502,7 +502,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--run-dir", required=True)
     parser.add_argument("--output", help="results .tex path (default <run>/tables/benchmark_results.tex)")
-    parser.add_argument("--publish", action="store_true", help="also write report_d2/benchmark_results.tex (report-eligible runs only)")
+    parser.add_argument("--publish", action="store_true", help="also write deliverables/d2/report/benchmark_results.tex (report-eligible runs only)")
     parser.add_argument("--expect-benchmarks", default="hcmut_v1,labour_vi_v1")
     parser.add_argument("--expect-variants", default="off,l1,l1_rerank")
     parser.add_argument("--allow-non-eligible", action="store_true",
@@ -515,7 +515,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     output = Path(args.output).resolve() if args.output else (run_dir / "tables" / "benchmark_results.tex").resolve()
     if not summary["report_eligible"]:
         if args.publish or output == REPORT_TABLES.resolve():
-            raise SystemExit("Refusing to write a non-eligible (smoke/incomplete/unjudged) run to report_d2/benchmark_results.tex. "
+            raise SystemExit("Refusing to write a non-eligible (smoke/incomplete/unjudged) run to deliverables/d2/report/benchmark_results.tex. "
                              f"Reason: {summary.get('report_eligible_note')}")
         if not args.allow_non_eligible:
             raise SystemExit("Run is not report-eligible; pass --allow-non-eligible to render it with a visible banner.")

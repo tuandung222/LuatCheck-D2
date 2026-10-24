@@ -2,7 +2,7 @@
 
 # LuatCheck - Review gap giữa project, report D2 và yêu cầu môn học
 
-Ngày review: 21/10/2026. Commit được đọc: `3996f1f84d0dbd1356744b51758f96e829d3c1de`. Đối tượng: source hiện tại, D1, [D2 LaTeX](main_d2.tex), [D2 PDF](main_d2.pdf), các task/kết quả trong repo và [ba nguồn yêu cầu](../docs/materials/d2/README.md).
+Ngày review: 21/10/2026. Commit được đọc: `3996f1f84d0dbd1356744b51758f96e829d3c1de`. Đối tượng: source hiện tại, D1, [D2 LaTeX](main_d2.tex), [D2 PDF](main_d2.pdf), các task/kết quả trong repo và [ba nguồn yêu cầu](../../../docs/materials/d2/README.md).
 
 **Kết luận:** chưa nên nộp report D2 hiện tại nguyên trạng. Nhóm đã có nền tảng chạy được bằng fallback: loop có ngân sách, retrieval, verifier, memory, UI và test suite. Gap lớn nhất là **report mô tả kết quả/đường chạy mạnh hơn bằng chứng đang lưu**, đồng thời thiếu một số phần bắt buộc. Cần ưu tiên xác minh số liệu và đồng bộ mô tả với code, sau đó hoàn thiện cấu trúc/nội dung và hồ sơ demo.
 
@@ -17,7 +17,7 @@ Ngày review: 21/10/2026. Commit được đọc: `3996f1f84d0dbd1356744b51758f9
 - Kiểm tra cổng local mặc định: `11434/api/tags` và `8080/health` đều `ConnectionError` tại lúc review. Điều này không chứng minh nhóm chưa từng chạy LLM ở máy/cổng khác.
 - Không sửa implementation hoặc report D2. Chỉ thêm tài liệu review và bằng chứng. Chưa kiểm tra quyền đọc repository của Thầy, trình bày trực tiếp, file ngoài repo, tính đúng pháp luật của toàn bộ corpus hoặc mọi nguồn thư mục tham khảo.
 
-Bằng chứng: [diagnostics.json](../docs/reviews/d2-gap-review-2026-10-21/diagnostics.json), [pytest-output.txt](../docs/reviews/d2-gap-review-2026-10-21/pytest-output.txt), [source-manifest.json](../docs/reviews/d2-gap-review-2026-10-21/source-manifest.json).
+Bằng chứng: [diagnostics.json](../../../docs/reviews/d2-gap-review-2026-10-21/diagnostics.json), [pytest-output.txt](../../../docs/reviews/d2-gap-review-2026-10-21/pytest-output.txt), [source-manifest.json](../../../docs/reviews/d2-gap-review-2026-10-21/source-manifest.json).
 
 ## 2. Những gap cần ưu tiên cao nhất
 
@@ -27,8 +27,8 @@ Bằng chứng: [diagnostics.json](../docs/reviews/d2-gap-review-2026-10-21/diag
 
 Report `main_d2.tex:309-344` khẳng định 30 lượt/cấu hình chạy Qwen2.5-3B qua Ollama trên Metal. Tuy nhiên:
 
-- [Runner](../evaluation/run_eval.py) dòng 38, 49 và 239 mặc định `offline=True`, chuyển endpoint tới `http://127.0.0.1:1`.
-- [CompositeLLMClient](../src/agent/llm_client.py) dòng 282-286 bắt mọi exception và chuyển sang `MockRuleBasedLLMClient`; không gắn nhãn fallback vào kết quả benchmark.
+- [Runner](../../../evaluation/run_eval.py) dòng 38, 49 và 239 mặc định `offline=True`, chuyển endpoint tới `http://127.0.0.1:1`.
+- [CompositeLLMClient](../../../src/agent/llm_client.py) dòng 282-286 bắt mọi exception và chuyển sang `MockRuleBasedLLMClient`; không gắn nhãn fallback vào kết quả benchmark.
 - Kiểm tra mới ghi nhận **129 primary calls, 0 primary success, 129 primary errors, 129 fallback calls** trên 60 lượt. Neural embedding cũng không hoạt động trong cả hai agent; retrieval dùng nhánh TF-IDF fallback.
 - Bảng report khác JSON đang lưu và khác lượt chạy diagnostic mới. Không tìm thấy bộ artifact trong repo chứng minh các số như Recall@1 `0.9333`, coverage `0.8333`, p95 `51,324.55 ms` đúng với phiên bản đang báo cáo.
 
@@ -48,7 +48,7 @@ Ba cột không phải ba benchmark tương đương: cột JSON lưu không có
 
 **Loại:** giới hạn scorer + tuyên bố quá bằng chứng. **Ảnh hưởng:** A2, A5, B3.
 
-[L1 verifier](../src/verifier/lexical_grounding.py) dòng 150-164 kiểm tra tỷ lệ giao tập token, ngưỡng 0.25. [Scorer USR](../evaluation/metrics.py) dòng 142-152 gọi lại chính verifier này. Kiểm tra tổng hợp thay **85% trong corpus Điều 26 thành 50%** trong một câu có nhiều từ trùng nguồn: L1 vẫn `is_valid=True`, scorer vẫn trả `USR=0.0`.
+[L1 verifier](../../../src/verifier/lexical_grounding.py) dòng 150-164 kiểm tra tỷ lệ giao tập token, ngưỡng 0.25. [Scorer USR](../../../evaluation/metrics.py) dòng 142-152 gọi lại chính verifier này. Kiểm tra tổng hợp thay **85% trong corpus Điều 26 thành 50%** trong một câu có nhiều từ trùng nguồn: L1 vẫn `is_valid=True`, scorer vẫn trả `USR=0.0`.
 
 Vì vậy câu “100% elimination of ungrounded legal claims” tại `main_d2.tex:343` vượt quá điều đã đo. Chỉ số hiện tại là lỗi theo tiêu chí lexical/provenance của code, không phải nhãn độc lập về đúng/sai nội dung tư vấn. Trường `expected_answer` có trong task nhưng runner không dùng để chấm đúng toàn bộ câu trả lời. Với task nhiều gold article, `calculate_retrieval_metrics` còn dùng “có bất kỳ gold nào trong top-k”, nên tên Recall@k cần giải thích hoặc đổi thành hit@k.
 
@@ -58,9 +58,9 @@ Vì vậy câu “100% elimination of ungrounded legal claims” tại `main_d2.
 
 **Loại:** implementation + mô tả kiến trúc. **Ảnh hưởng:** A1, A3, B1, B3.
 
-1. [MCP server](../src/tools/mcp_server.py) dòng 6 import `mcp.server.fastmcp.FastMCP`. Môi trường `.venv` hiện có `mcp==2.3.0`; import thực tế bị `ModuleNotFoundError`. [requirements.txt](../requirements.txt) dòng 8 chỉ đặt `mcp>=1.0.0`, không khóa compatibility.
-2. MCP `get_article` dòng 29 gọi `registry.get_article(article_id=...)`, nhưng alias trong [domain_tools.py](../src/tools/domain_tools.py) dòng 97, 128 trỏ tới `get_document(doc_id)`. Gọi keyword tương ứng đã tái hiện `TypeError`. MCP wrapper chưa chạy qua lỗi này vì lỗi import xảy ra trước.
-3. Runtime agent gọi trực tiếp `self.tool_registry` ở [loop.py](../src/agent/loop.py) dòng 372, 398; không đi qua MCP client/transport. Vì vậy có code server không đồng nghĩa trace chính đã chạy qua FastMCP như hình dễ làm người đọc hiểu.
+1. [MCP server](../../../src/tools/mcp_server.py) dòng 6 import `mcp.server.fastmcp.FastMCP`. Môi trường `.venv` hiện có `mcp==2.3.0`; import thực tế bị `ModuleNotFoundError`. [requirements.txt](../../../requirements.txt) dòng 8 chỉ đặt `mcp>=1.0.0`, không khóa compatibility.
+2. MCP `get_article` dòng 29 gọi `registry.get_article(article_id=...)`, nhưng alias trong [domain_tools.py](../../../src/tools/domain_tools.py) dòng 97, 128 trỏ tới `get_document(doc_id)`. Gọi keyword tương ứng đã tái hiện `TypeError`. MCP wrapper chưa chạy qua lỗi này vì lỗi import xảy ra trước.
+3. Runtime agent gọi trực tiếp `self.tool_registry` ở [loop.py](../../../src/agent/loop.py) dòng 372, 398; không đi qua MCP client/transport. Vì vậy có code server không đồng nghĩa trace chính đã chạy qua FastMCP như hình dễ làm người đọc hiểu.
 4. `dispatch_external_action` nhận `proposal_id`/`approval_token` nhưng không kiểm tra chúng. Test tổng hợp truyền `user_confirmed=True`, proposal không tồn tại, token sai vẫn tạo record thành công dù không có approval server-side. UI có checkbox thật; lỗ hổng nằm ở callable/MCP-facing boundary tin cờ do caller cung cấp.
 5. `save_case` trong registry chỉ ghi dictionary trong RAM (`domain_tools.py:130-146`), khác `SQLiteEpisodicStore` được agent tự ghi sau verification. Bảng tools report gán `save_case` cho SQLite/audit chưa đúng đường cài đặt.
 6. `send_summary` hiện ghi in-memory/local outbox; không có vận chuyển email/webhook thật trong implementation được đọc. Kiểm tra không gửi thông điệp ra ngoài.
@@ -79,7 +79,7 @@ Report có sơ đồ và đoạn case study, nhưng không có trace task thật
 
 **Loại:** thiếu kiểm chứng phù hợp, không phải thiếu số lượng tests.
 
-[test_challenger_m5.py](../tests/test_challenger_m5.py) dòng 196-227 mang tên kiểm tra fidelity nhưng chỉ assert các literal trong LaTeX; tham số `eval_data` không được dùng để so số trong hai bảng. Dòng 97-100 còn giả định D2 bắt buộc 4-6 trang, trong khi tài liệu hiện tại quy định tối đa 10 trang nội dung. Vì vậy **487 tests pass không xác nhận report đúng số liệu hoặc đủ requirements**. Bộ tests chạy cũng chưa bắt lỗi import MCP nêu trên.
+[test_challenger_m5.py](../../../tests/test_challenger_m5.py) dòng 196-227 mang tên kiểm tra fidelity nhưng chỉ assert các literal trong LaTeX; tham số `eval_data` không được dùng để so số trong hai bảng. Dòng 97-100 còn giả định D2 bắt buộc 4-6 trang, trong khi tài liệu hiện tại quy định tối đa 10 trang nội dung. Vì vậy **487 tests pass không xác nhận report đúng số liệu hoặc đủ requirements**. Bộ tests chạy cũng chưa bắt lỗi import MCP nêu trên.
 
 **Cần làm:** đối chiếu bảng với kết quả thật, bổ sung integration check cho đường demo/MCP được tuyên bố, kiểm tra schema/provenance artifact. Sửa các điều kiện report theo requirements mới. Không cần tăng số test chỉ để tăng con số pass.
 
@@ -119,7 +119,7 @@ Nguồn quy định: PDF mục 1-4, email mục 3-5 và ghi chú rubric A1-A5/B1
 
 Thầy **chưa yêu cầu injection tests ở D2**. Đây không phải lý do phải mở thêm nghiên cứu trước deadline; vấn đề là report hiện đang đưa kết luận mạnh từ suite hạn chế.
 
-- Hai ca tên `POISONED_SHARD_*` trong [test_cases.json](../redteam/test_cases.json) được truyền qua `pasted_doc`; [runner](../redteam/run_redteam.py) dòng 35-40 không cấy payload vào retrieval index/tool observation. Vì vậy chưa chứng minh đã kiểm thử poisoned retrieved shard như nhãn bảng.
+- Hai ca tên `POISONED_SHARD_*` trong [test_cases.json](../../../redteam/test_cases.json) được truyền qua `pasted_doc`; [runner](../../../redteam/run_redteam.py) dòng 35-40 không cấy payload vào retrieval index/tool observation. Vì vậy chưa chứng minh đã kiểm thử poisoned retrieved shard như nhãn bảng.
 - Oracle tại `run_redteam.py:49-61` dựa vào terminal refusal và tìm một vài từ/ID. Không kiểm tra từng attacker objective bằng receipt của tool/outbox hoặc secret canary; mọi non-refusal bị xem exploited, kể cả một câu trả lời an toàn.
 - Clean utility tại dòng 89-96 chỉ đếm trạng thái `answered`, không chấm câu trả lời đúng. **100% answered không đồng nghĩa 100% giải đúng task.**
 - Report gán việc chặn từng attack cho L1/MCP/SQLite nhưng không có trace quy trách nhiệm. Nếu input regex đã trả refused ngay đầu loop thì run đó chưa thực sự đi tới L1 hoặc cổng egress.
@@ -156,11 +156,11 @@ Hồ sơ cần nộp: report PDF và slide PDF, nhóm trưởng email Thầy, CC
 
 ## 7. Danh mục bằng chứng
 
-- [diagnostics.json](../docs/reviews/d2-gap-review-2026-10-21/diagnostics.json): các ca xác minh tổng hợp và thống kê primary/fallback.
-- [offline-diagnostic-results.json](../docs/reviews/d2-gap-review-2026-10-21/offline-diagnostic-results.json): 60 lượt diagnostic mới, hai mode; chỉ dùng để kiểm tra fallback hiện tại.
-- [offline-trajectories.json](../docs/reviews/d2-gap-review-2026-10-21/offline-trajectories.json): ledger của các lượt đó; không phải trace native Qwen.
-- [offline-diagnostic-output.txt](../docs/reviews/d2-gap-review-2026-10-21/offline-diagnostic-output.txt): stdout diagnostic.
-- [cli-offline-results.json](../docs/reviews/d2-gap-review-2026-10-21/cli-offline-results.json) và [stdout CLI](../docs/reviews/d2-gap-review-2026-10-21/cli-offline-output.txt): kiểm tra riêng CLI gốc, vẫn là fallback; không thay kết quả gốc trong `evaluation/`.
-- [pytest-output.txt](../docs/reviews/d2-gap-review-2026-10-21/pytest-output.txt), [pytest.xml](../docs/reviews/d2-gap-review-2026-10-21/pytest.xml): kết quả tests trong bản sao tạm.
-- [source-manifest.json](../docs/reviews/d2-gap-review-2026-10-21/source-manifest.json): commit và SHA-256 nguồn lúc review.
-- [review_checks.py](../docs/reviews/d2-gap-review-2026-10-21/review_checks.py): mã kiểm tra để chạy trên một bản sao tạm, không chạy trên dữ liệu production.
+- [diagnostics.json](../../../docs/reviews/d2-gap-review-2026-10-21/diagnostics.json): các ca xác minh tổng hợp và thống kê primary/fallback.
+- [offline-diagnostic-results.json](../../../docs/reviews/d2-gap-review-2026-10-21/offline-diagnostic-results.json): 60 lượt diagnostic mới, hai mode; chỉ dùng để kiểm tra fallback hiện tại.
+- [offline-trajectories.json](../../../docs/reviews/d2-gap-review-2026-10-21/offline-trajectories.json): ledger của các lượt đó; không phải trace native Qwen.
+- [offline-diagnostic-output.txt](../../../docs/reviews/d2-gap-review-2026-10-21/offline-diagnostic-output.txt): stdout diagnostic.
+- [cli-offline-results.json](../../../docs/reviews/d2-gap-review-2026-10-21/cli-offline-results.json) và [stdout CLI](../../../docs/reviews/d2-gap-review-2026-10-21/cli-offline-output.txt): kiểm tra riêng CLI gốc, vẫn là fallback; không thay kết quả gốc trong `evaluation/`.
+- [pytest-output.txt](../../../docs/reviews/d2-gap-review-2026-10-21/pytest-output.txt), [pytest.xml](../../../docs/reviews/d2-gap-review-2026-10-21/pytest.xml): kết quả tests trong bản sao tạm.
+- [source-manifest.json](../../../docs/reviews/d2-gap-review-2026-10-21/source-manifest.json): commit và SHA-256 nguồn lúc review.
+- [review_checks.py](../../../docs/reviews/d2-gap-review-2026-10-21/review_checks.py): mã kiểm tra để chạy trên một bản sao tạm, không chạy trên dữ liệu production.

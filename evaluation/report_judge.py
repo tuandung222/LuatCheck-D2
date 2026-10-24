@@ -81,9 +81,9 @@ def render(summary_path):
 
 
 def update(summary_path):
-    report = Path("report_d2/main_d2.tex")
+    report = Path("deliverables/d2/report/main_d2.tex")
     text = report.read_text()
-    Path("report_d2/semantic_results.tex").write_text(render(summary_path))
+    Path("deliverables/d2/report/semantic_results.tex").write_text(render(summary_path))
     if r"\input{semantic_results.tex}" not in text:
         text = text.replace(r"\input{native_results.tex}", r"\input{native_results.tex}" + "\n" + r"\input{semantic_results.tex}")
     text = text.replace(
@@ -102,7 +102,7 @@ def update(summary_path):
     if data.get("recovery"):
         text = text.replace("and at most two retained attempts per output;", "and at most two initial attempts per output, with a separately disclosed streamed recovery for invalid judgments;")
     report.write_text(text)
-    native = Path("report_d2/native_results.tex")
+    native = Path("deliverables/d2/report/native_results.tex")
     text = native.read_text().replace("Semantic task success", "Human-validated task success")
     text = text.replace("Claim support / unsupported rate", "Human-validated support rate")
     text = text.replace(r"\pending{judge / human audit}", r"\pending{human audit}")
