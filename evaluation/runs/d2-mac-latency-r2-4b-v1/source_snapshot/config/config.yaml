@@ -1,0 +1,59 @@
+# Local SLM CPU System Configuration
+# Default on the Mac: Ternary Bonsai 2 2B (ternary weights, GGUF PQ2_0) on the PrismML llama.cpp fork,
+# served by `make prism-server` (llama-server, OpenAI-compatible, loopback, port 8081). Measured on the
+# same tasks it was about 2x faster per task than the MLX build of the same weights, with ~0.7 GB instead of
+# up to 6.6 GB of memory (evaluation/runs/gguf2b-bonsai-diag-v1 vs mlx2b-bonsai-diag-v1).
+# Sampling follows the model card's non-thinking settings; thinking is disabled per request.
+# MLX alternative: config/d2_mlx2b_diagnostic.yaml with `make mlx-server`.
+# The frozen D2 experiment keeps its own config (config/d2_native.yaml, Qwen2.5-3B via Ollama).
+
+# Domain profile (config/domains/<id>.yaml): prompts, tool names, ID rules, guardrails and L1 units.
+# This app default serves the Labour Code 2019 corpus; use hcmut_academic only with its own corpus_path.
+domain:
+  profile: labour_vi_2019
+
+model:
+  provider: "llamacpp"
+  endpoint: "http://127.0.0.1:8081/v1"
+  name: "prism-ml/Ternary-Bonsai-2-2B-gguf"
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  min_p: 0.0
+  presence_penalty: 1.5
+  # Decoding is constrained to the controller's action JSON schema; responses are still validated.
+  constrained_json: true
+  enable_thinking: false
+  timeout_seconds: 60
+  max_output_tokens: 1024
+  context_tokens: 16384
+
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+
+retrieval:
+  bm25_top_k: 5
+  dense_top_k: 5
+  rrf_k: 60
+  final_top_k: 5
+  corpus_path: "data/corpus/labor_code_2019_official.json"
+  dense_model_type: "tfidf" # Explicit BM25 + TF-IDF/RRF, not neural embeddings
+
+verifier:
+  mode: l1
+  l1_overlap_threshold: 0.25
+  l2_use_slm: false
+
+memory:
+  # Verified answers are still stored, but never served again for the demo: reuse matches only the question
+  # text (TF-IDF/Jaccard >= 0.85), not a pasted document or the facts that decide the case, so a similar
+  # question that differs in one legal detail could receive another case's answer.
+  reuse_answers: false
+  sqlite_path: "data/db/local_slm_memory.db"
+  similarity_threshold: 0.85
+  index_version: "native-v2026.10.23-bonsai-gguf" # new model: answers cached under the previous model are not reused
+
+security:
+  audit_log_path: "data/audit_log.jsonl"
+  egress_requires_confirmation: true

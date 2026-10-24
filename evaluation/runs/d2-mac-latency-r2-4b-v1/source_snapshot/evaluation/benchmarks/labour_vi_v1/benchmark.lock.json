@@ -1,0 +1,48 @@
+{
+  "schema": "luatcheck.benchmark.lock.v1",
+  "benchmark": "labour_vi_v1",
+  "frozen_at": "2026-10-22T21:59:37.157663+00:00",
+  "review_status": "pending",
+  "tasks": {
+    "path": "evaluation/benchmarks/labour_vi_v1/tasks.json",
+    "sha256": "f6bfe0efb47167699f26657888276597196e1c36598cb9ff895b8a90614eb1db",
+    "count": 50,
+    "categories": {
+      "single": 40,
+      "multi": 5,
+      "out_of_scope": 5
+    },
+    "expected_behaviors": {
+      "answer": 45,
+      "refuse": 5
+    }
+  },
+  "corpus": {
+    "path": "data/corpus/labour_vi_v1.json",
+    "sha256": "51154b6e9c9320b507d7ee19512e729f7908e45840c7ea701d92bf28fe65bea8",
+    "records": 458
+  },
+  "profile": {
+    "ref": "labour_vi_multi",
+    "path": "config/domains/labour_vi_multi.yaml",
+    "sha256": "e11d17f2def6b41996486aed7624c5a938a349d7d77fe07e812d0418cf00fcc3"
+  },
+  "benchmark_yaml": {
+    "path": "evaluation/benchmarks/labour_vi_v1/benchmark.yaml",
+    "sha256": "c008d40accdc92d8ef3fe879c954cd0c66f4f6c3dab7d2ec34c49f5c4553bd1a"
+  },
+  "verification_files": {
+    "evaluation/benchmarks/labour_vi_v1/ADJUDICATION.md": "0278b715f1887e9b7efa57767292618ec024e672364bc9603940f558a93a89a7",
+    "evaluation/benchmarks/labour_vi_v1/README.md": "898e9a09daea87dcae66ea0be2443091ee4ca779e1d0f26077135efea71c03d1",
+    "evaluation/benchmarks/labour_vi_v1/VERIFIER_BRIEF.md": "99276cdb601fcf9ba60c4dac426d8f4cc4507bcf704d782ac035f736c5c06b3c",
+    "evaluation/benchmarks/labour_vi_v1/WRITER_BRIEF.md": "8a8996491e71ebe9d8602e74578c8ec2509ef06a4c05808fca31c35c40e4e123",
+    "evaluation/benchmarks/labour_vi_v1/draft_all.json": "ecd6eda7fc9a03ace73ad9bdd200b6fb54173073d671497d7b2a88c64c48d998",
+    "evaluation/benchmarks/labour_vi_v1/draft_part1.json": "6863fd3a52d798c61876323751330ff60b0dfb58d9949b1ec65fc5fdda359c55",
+    "evaluation/benchmarks/labour_vi_v1/draft_part2.json": "2e1dcfabbb3abab3f96a85592f5bb2b1bf8c429f50968728c70db00564055005",
+    "evaluation/benchmarks/labour_vi_v1/recheck_C.json": "ed9496e00f13770ad9a661858999b741f1f890a682598f59fbfdd19e06ef682f",
+    "evaluation/benchmarks/labour_vi_v1/verify_A.json": "b4a09a7d43fde3a862e17f9340a28e46eae5763e06fb86734c23f504df33c789",
+    "evaluation/benchmarks/labour_vi_v1/verify_B.json": "14f009776c70016d47ba8433de475b4194e561832e71241be0fd8a925165daf3"
+  },
+  "mechanical_checks": "passed: unique ids, required fields, quotes verbatim in records, gold ids exist, evidence ids equal gold ids",
+  "note": "Mechanical checks only; they do not certify gold answers. See review_status and the benchmark README."
+}

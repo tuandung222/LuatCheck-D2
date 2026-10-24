@@ -1,0 +1,44 @@
+# Controller model block for evaluation/run_benchmark.py (--model-config): Ternary Bonsai 2 4B, otherwise identical to model_prism_gguf2b.yaml.
+# Ternary Bonsai 2 4B (GGUF PQ2_0, pinned in expected_server.yaml under controllers:) on the PrismML llama.cpp fork, OpenAI-compatible llama-server, loopback only
+# (`make prism-server`; a GPU-server run reaches its llama-server through a forwarded loopback port).
+# Same sampler/constrained-decoding settings as config/d2_gguf2b_diagnostic.yaml (model-card non-thinking sampler,
+# decoding constrained to the action JSON schema, thinking disabled per request).
+#
+# Only the model, budgets and the fixed retrieval/verifier defaults live here. The runner sets, per benchmark and
+# variant (config/benchmark/variants.yaml): domain.profile, retrieval.corpus_path, verifier.mode, retrieval.reranker,
+# and per-worker memory/audit paths. Verified-answer reuse is off; memory is disabled so trials are independent.
+model:
+  provider: llamacpp
+  endpoint: http://127.0.0.1:8081/v1
+  name: prism-ml/Ternary-Bonsai-2-4B-gguf
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  min_p: 0.0
+  presence_penalty: 1.5
+  constrained_json: true
+  enable_thinking: false
+  timeout_seconds: 60
+  max_output_tokens: 1024
+  # llama-server splits -c across its parallel slots: -c must be >= context_tokens x slots in use.
+  context_tokens: 8192
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+  max_steps: 8
+  wall_seconds: 180
+retrieval:
+  dense_model_type: tfidf   # explicit BM25 + TF-IDF/RRF, not neural embeddings
+  final_top_k: 5
+  rrf_k: 60
+verifier:
+  mode: l1
+  l1_overlap_threshold: 0.25
+  l2_use_slm: false
+memory:
+  enabled: false
+  reuse_answers: false
+  similarity_threshold: 0.85
+  index_version: benchmark-d2-v1
+security:
+  egress_requires_confirmation: true

@@ -1,0 +1,13 @@
+{
+  "run_id": "d2-mac-latency-r2-4b-l1rr-v1",
+  "packets": 100,
+  "execution_errors_not_judged": 0,
+  "runs_sha256_at_build": "75ef3ceaf70585f95173976881fd566152887a35fb356e79bba41c2cd7f38bfb",
+  "files_sha256": {
+    "SEMANTIC_JUDGING.md": "6407a5548ce798e1eff5640118205fbd2b5b03b2821f1ba9907949e5a75e20e5",
+    "judge_packets.json": "10bd60fb44bf9959a0cfc3dfe57d75344d2dd6c7bafa519b12435d626be4548c",
+    "private_mapping.json": "244577ca0bbf740b9b04aa317692d81c8d523eded173d50c1b996d07b20354db"
+  },
+  "labels_generated": false,
+  "instructions": "A reviewer gets only judge_packets.json and SEMANTIC_JUDGING.md; private_mapping.json stays private."
+}

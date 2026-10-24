@@ -1,0 +1,17 @@
+# The D2 collection matrix of the POST-HOC REVISION "r2" (select it with `run_d2.py ... --matrix config/benchmark/d2_matrix_r2.yaml`, or MATRIX=... for
+# scripts/run_d2_benchmarks.sh). Identical to d2_matrix.yaml (2 benchmarks x 3 variants x 3 seeds x 50 tasks + closed_book/oracle baselines) so that
+# r2 results are evaluated on exactly the tasks, variants and seeds of the frozen v3 runs; only the system under test differs.
+#
+# Run ids: d2-gpu-r2-{2b,4b}-{hcmut,labour}-v1 (one run per controller and benchmark: RUN_ID=d2-gpu-r2-2b-hcmut-v1 EXTRA="--benchmarks hcmut_v1" ...).
+# `model_config` is the default; MODEL_CONFIG=config/benchmark/model_prism_gguf4b_r2.yaml (or --model-config) selects the 4B controller.
+# Kind stays `main`; the manifest carries `protocol: r2-posthoc` and every table / RUN_NOTES prints "post-hoc revision evaluated on the same tasks".
+protocol: r2-posthoc
+benchmarks: [hcmut_v1, labour_vi_v1]
+variants: ["off", l1, l1_rerank]   # "off" must stay quoted: YAML 1.1 reads a bare off as false
+seeds: [42, 123, 2026]
+baselines: [closed_book, oracle]   # same diagnostic baselines as v3 (seed 42), built from the same r2 model config
+model_config: config/benchmark/model_prism_gguf2b_r2.yaml
+judge_config: config/benchmark/judge_gateway.json
+planning_usd_per_packet: 0.0026
+max_judge_usd: 6.0
+judge_extra_rounds: 2

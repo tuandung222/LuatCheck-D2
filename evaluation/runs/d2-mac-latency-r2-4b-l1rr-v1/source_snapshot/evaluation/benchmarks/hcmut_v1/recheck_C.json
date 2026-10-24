@@ -1,0 +1,146 @@
+[
+ {
+  "task_id": "HCMUT-005",
+  "verdict": "accept",
+  "issues": [
+   "No blocking issue. Both quotes verbatim, each unique in the record. Answer (xét miễn Anh văn 1,2,3,4 theo bảng 3.1; một lần duy nhất) matches the text of Phụ lục 1 mục 4.1.",
+   "Minor: identical sentence also in superseded HCMUT_HVDT1260_PhuLuc_1; gold on HVDT2749 is justified because the question names 2749 and HVDT2749_Dieu_1 states it replaces Phụ lục 1.",
+   "Minor: rule is in Part A (Vietnamese-language programmes); Part B has no such test, so no conflict."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "xét miễn một lần",
+   "kiểm tra trình độ",
+   "định dạng TOEIC",
+   "2749",
+   "vừa trúng tuyển"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task_id": "HCMUT-014",
+  "verdict": "accept",
+  "issues": [
+   "No issue. Quote verbatim and unique; answer (tối thiểu 01 ngày, tối đa 07 ngày trước ngày dạy bù) is correct. 'dạy bù' appears only in GIANGDAY2282_Dieu_1; no conflicting record. The 16g00 deadline is omitted but not asked."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "dạy bù",
+   "đăng ký dạy bù",
+   "07 ngày"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task_id": "HCMUT-016",
+  "verdict": "accept",
+  "issues": [
+   "No issue. Phụ lục 2 mục 2 first bullet supports the answer exactly; GIANGDAY2282_Dieu_2 confirms Phụ lục 1,2 are replaced. Phụ lục 1 (international programmes) has a different, non-conflicting standard (thạc sĩ phù hợp ngành) and does not cover PFIEV/Tài năng.",
+   "Minor wording: Điều 2 'thay thế' the appendix rather than 'sửa đổi'; harmless."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "Thạc sĩ tốt nghiệp",
+   "trường Đại học nước ngoài",
+   "thạc sĩ",
+   "Tài năng",
+   "Phụ lục 2"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task_id": "HCMUT-021",
+  "verdict": "accept",
+  "issues": [
+   "No issue. Điều 7 Bước 1 -> Phòng Công tác sinh viên; Điều 8 khoản 1 -> Trưởng Phòng CTSV = Phó Chủ tịch, Phó Trưởng phòng CTSV = thư ký. Phụ lục 1 Bước 2 is consistent (nộp trực tiếp tại Phòng CTSV). Quotes verbatim (incl. line-break forms). VINHDANH658 also has a Phó Chủ tịch = Trưởng phòng CTSV but for a different council; question names the tuition-extension council so no conflict.",
+   "Genuine two-record, same-regulation question; answer complete."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "gia hạn thời gian nộp",
+   "đơn xin gia hạn",
+   "Phó Chủ tịch Hội đồng",
+   "thư ký",
+   "nợ học phí"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task_id": "HCMUT-022",
+  "verdict": "accept",
+  "issues": [
+   "No blocking issue. 5.5 last paragraph gives GPA >= 2.0 (thang 4); 2,35 lies in 'Từ 2,00 đến cận 2,50: Trung bình'. 'GPA' and 'Xếp loại học lực' occur only in the cited records, no conflict.",
+   "Optional: the answer's 'áp dụng từ học kỳ 1 năm học 2025-2026' is in the record but outside the quoted span; could be added to the quote, not required."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "GPA",
+   "điểm trung bình tích lũy (GPA)",
+   "Xếp loại học lực",
+   "học phần tốt nghiệp",
+   "Trung bình"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task_id": "HCMUT-023",
+  "verdict": "accept",
+  "issues": [
+   "No blocking issue. 25.5 allows chính quy -> VLVH/từ xa and keeps results; 3.1 table columns are Kế hoạch / Chuẩn / Tối đa so VLVH tối đa = 16. Answer correct; conditions are marked as a qualification, not required.",
+   "Note: row is shared 'Vừa làm vừa học, đào tạo từ xa'; 'tối đa 16 học kỳ chính' is the total for the form, not remaining semesters (answer does not claim otherwise). HVDT1260_PhuLuc_3 mention of 'chuyển sang hình thức vừa làm vừa học' concerns bảo lưu of internal standards, not conflicting."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "vừa làm vừa học",
+   "chuyển sang hình thức vừa",
+   "tối đa 16",
+   "Chuyển hình thức đào tạo"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task_id": "HCMUT-032",
+  "verdict": "accept",
+  "issues": [
+   "No issue. Điều 5 khoản 8 says hút thuốc lá ... (bao gồm thuốc lá điện tử); UNGXU3408_Dieu_4 is consistent (kể cả thuốc lá điện tử). Quote verbatim and unique. Question now targets the parenthetical so a single answer remains."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "thuốc lá",
+   "thuốc lá điện tử",
+   "hút thuốc"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task_id": "HCMUT-036",
+  "verdict": "accept",
+  "issues": [
+   "No issue. Quote 1 ends in the ABET table (block row 68–72 followed by Tổng tín chỉ 128–132), quote 2 gives 'Toán tối thiểu 11' in the ABET table; both verbatim and unique. FIBAA table has Toán 9 and PFIEV 21 (distractors not used). Phụ lục XI (khóa 2026) ABET structure also gives tối thiểu 11 and 128–132, consistent."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "Tổng tín chỉ",
+   "Toán tối thiểu",
+   "ABET",
+   "128–132"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task_id": "HCMUT-047",
+  "verdict": "accept",
+  "issues": [
+   "No blocking issue. Điều 15 (Chương IV, Nhiệm vụ của CVHT) khoản 4: 'Tư vấn cho người học về các tín chỉ tự chọn tự do'; amended Điều 12 khoản 5: 'tối thiểu 9 tín chỉ tự chọn tự do (đối với khóa 2025 về trước)'. 'tự chọn tự do' occurs only in these two records.",
+   "Limitations: two independent facts joined by a conjunction (no reasoning chain); distractor is Điều 12 khoản 4 (9 tín chỉ tự chọn = 3 học phần tự chọn ngành/chuyên ngành), which the question does not ask and which uses different wording. Acceptable."
+  ],
+  "fix": null,
+  "searched_terms": [
+   "tự chọn tự do",
+   "tự chọn",
+   "khóa 2025 về trước",
+   "Tư vấn cho người học"
+  ],
+  "confidence": "medium"
+ }
+]

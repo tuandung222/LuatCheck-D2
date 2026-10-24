@@ -1,0 +1,29 @@
+# Rebuild the 2019 Labour Code corpus from the Official Gazette PDF with the generic ingestion pipeline.
+# Output goes to a NEW path; data/corpus/labor_code_2019_official.json is frozen (hash-pinned) and is never written.
+#   .venv/bin/python -m src.ingestion build --config config/ingestion/labor_code_2019.yaml
+version: 1
+output:
+  corpus: data/corpus/labor_code_2019_ingested.json
+  manifest: data/corpus/labor_code_2019_ingested.manifest.json
+sources:
+  - path: docs/materials/benchmark-sources/bll2019-congbao.pdf
+    url: https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2019/11/30232/29070-1-2019993-99445-2019-qh14.pdf
+    collection_id: labor_code_2019
+    doc_code: BLL2019
+    source_name: Bộ luật Lao động 2019
+    title: Bộ luật Lao động 2019
+    document_number: 45/2019/QH14
+    ruleset: vi_legal
+    ruleset_options:
+      end_markers: ['^CHỦ TỊCH QUỐC HỘI']   # signature block after Điều 220
+    chunking:
+      granularity: article              # one record per Điều, clauses/points stay inside it
+      content_whitespace: collapse      # same representation as the legacy corpus (single-space text)
+    ids:
+      article_id_alias: true            # keep `article_id` next to `doc_id` for existing consumers
+      templates:
+        article: "Dieu_{num}"           # legacy id convention (Dieu_<n>)
+    metadata:                           # copied verbatim into every record (legacy corpus fields)
+      law_id: 45/2019/QH14
+      law_name: Bộ luật Lao động 2019 — nguyên bản Công báo 26-12-2019
+      scope: Original 2019 enactment, not a consolidated statement of current 2026 law

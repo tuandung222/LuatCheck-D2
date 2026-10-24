@@ -1,0 +1,41 @@
+# Index of the original 2019 Labour Code (220 articles) with a local multilingual embedding model.
+# Build:  PYTHONPATH=. .venv/bin/python -m src.indexing build --config config/indexing/labor_code_2019.yaml --overwrite
+# Output: data/index/labor_code_2019_vi/  (manifest.json, records.sqlite, keyword/, vector/<backend>/)
+# The `retrieval:` block below uses the same key names proposed for config/config.yaml.
+name: labor_code_2019_vi
+corpora:
+  - path: data/corpus/labor_code_2019_official.json
+    collection_id: labor_code_2019   # default for records without a collection_id (this corpus has law_id only)
+
+chunking:
+  max_tokens: 512        # per chunk, incl. special tokens; records that fit are one chunk, longer ones are split with overlap
+  overlap_tokens: 64
+  contextual_title: true # chunks after the first are embedded as "<title>\n<chunk>"
+
+retrieval:
+  embedding:
+    provider: sentence_transformers
+    model: AITeamVN/Vietnamese_Embedding   # 568M params, 1024-d, fine-tuned from BAAI/bge-m3 for Vietnamese retrieval
+    device: auto                           # mps on Apple Silicon, else cpu
+    batch_size: 4
+    max_seq_length: 2048                   # the model card's trained length (checkpoint config says 8192)
+    dtype: float32
+    normalize: true
+    max_rss_gb: 4.0                        # process RSS + Metal allocation; MemoryLimitError above this
+    wait_for_quiet_machine_gb: 2.0         # wait (up to 10 min) while another python process holds > 2 GB
+  keyword_index:
+    backend: sqlite_fts5
+    tokenizer: "unicode61 remove_diacritics 0"
+    title_weight: 2.0
+    bigrams: true          # also match adjacent syllable pairs as phrases (Vietnamese words are mostly 2 syllables)
+  vector_stores:                           # several backends are built from one embedding pass; pick one at query time
+    - {backend: numpy,      collection: chunks, metric: cosine}
+    - {backend: faiss,      collection: chunks, metric: cosine, index_type: flat}
+    - {backend: faiss, name: faiss_hnsw, collection: chunks, metric: cosine, index_type: hnsw, hnsw_m: 32, ef_construction: 200, ef_search: 128}
+    - {backend: sqlite_vec, collection: chunks, metric: cosine}
+    - {backend: lancedb,    collection: chunks, metric: cosine}
+    - {backend: qdrant,     collection: chunks, metric: cosine}
+    - {backend: chroma,     collection: chunks, metric: cosine}
+  default_store: numpy
+  rrf_k: 60
+  candidates: 50

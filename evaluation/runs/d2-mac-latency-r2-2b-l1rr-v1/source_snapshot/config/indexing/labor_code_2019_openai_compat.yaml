@@ -1,0 +1,21 @@
+# Embeddings from any OpenAI-compatible /v1/embeddings server (llama.cpp `llama-server --embeddings`, Ollama /v1,
+# vLLM, a gateway). Loopback endpoints are allowed by default; a non-loopback host needs `allow_remote: true`.
+# Vector store: a Qdrant server (remote mode is implemented but not exercised by the local test-suite).
+name: labor_code_2019_openai_compat
+corpus: data/corpus/labor_code_2019_official.json
+chunking: {max_chars: 1500, overlap_chars: 200}
+retrieval:
+  embedding:
+    provider: openai_compatible
+    model: bge-m3
+    endpoint: http://127.0.0.1:8082/v1
+    batch_size: 16
+    # api_key_env: EMBEDDING_API_KEY      # name of an environment variable; keys are never stored in configs
+  keyword_index: {backend: bm25_memory}
+  vector_store:
+    backend: qdrant
+    collection: labor_code_2019
+    metric: cosine
+    url: http://127.0.0.1:6333
+    # api_key_env: QDRANT_API_KEY
+    exact: true

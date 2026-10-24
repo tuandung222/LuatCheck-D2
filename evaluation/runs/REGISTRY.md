@@ -1,10 +1,10 @@
 # Run registry
 
-Generated 2026-10-24T20:07:31.777089+07:00 by `python evaluation/run_d2.py registry` against HEAD `0448ad8eaede` (clean collection paths), harness `1.2.0`. Do not edit by hand: marks live in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
+Generated 2026-10-24T21:07:48.650509+07:00 by `python evaluation/run_d2.py registry` against HEAD `6e6e48a612aa` (clean collection paths), harness `1.2.0`. Do not edit by hand: marks live in `evaluation/runs/registry_overrides.yaml` and `<run>/RUN_STATUS.json`.
 
 Freshness: **current** = same collection sources / harness / locks / models as HEAD; **stale** = differs, re-run before quoting; **pinned@commit** = a deliberately frozen result whose recorded fingerprint equals that commit's sources (reportable, but never in one table with current runs); **historical** / **superseded_by** = kept for the record, never in current report tables; **remote/not synced** = lives only on server 82; **incomplete**; **n/a**. Only `report_eligible = yes` AND `current` (or `pinned`) runs may feed the report (`make report-check` enforces this).
 
-Counts: current 5, historical 20, incomplete 3, n/a 1, pinned 2, remote/not synced 5, stale 6
+Counts: current 7, historical 20, incomplete 2, n/a 1, pinned 2, remote/not synced 5, stale 6
 
 | run | kind | state | commit | harness | created | report_eligible | freshness | note |
 |---|---|---|---|---|---|---|---|---|
@@ -29,7 +29,8 @@ Counts: current 5, historical 20, incomplete 3, n/a 1, pinned 2, remote/not sync
 | d2-gpu-r2-2b-labour-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:59:58 | yes | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
 | d2-gpu-r2-4b-hcmut-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:38:52 | yes | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
 | d2-gpu-r2-4b-labour-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T10:13:36 | yes | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
-| d2-mac-latency-r2-4b-l1rr-v1 | main | running | 8cdd28d80296 | 1.2.0 | 2026-10-24T12:31:17 | no | incomplete (running) | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
+| d2-mac-latency-r2-2b-l1rr-v1 | main | complete | 6e6e48a612aa | 1.2.0 | 2026-10-24T13:39:36 | no | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
+| d2-mac-latency-r2-4b-l1rr-v1 | main | complete | 8cdd28d80296 | 1.2.0 | 2026-10-24T12:31:17 | no | current | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
 | d2-mac-latency-r2-4b-v1 | main | incomplete | d149e0813b9d | 1.2.0 | 2026-10-24T12:25:04 | no | incomplete (incomplete) | protocol r2-posthoc: post-hoc revision evaluated on the same tasks. |
 | d2-mac-latency-v3sys-v1 | main | complete | cdb6b243aac5 | 1.2.0 | 2026-10-24T09:43:53 | no | current |  |
 | deepseek-judge-main-v1 | historical | legacy | - | - | - | no | historical: judge runs of the old 10-task native batch (including recovery runs); the judge protocol has since changed (refusal-claim rule, harness 1.1) |  |
