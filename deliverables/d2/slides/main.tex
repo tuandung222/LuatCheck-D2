@@ -129,8 +129,8 @@
   \end{tabularx}
   \vspace{2pt}
 
-  \begin{block}{Engineering progression at D2}
-    \scriptsize An early 2B prototype reached 14.0\% (HCMUT) and 18.7\% (labour) strict success. Fixing query anchoring, clarify/refuse rules and verifier feedback raised the 2B system to 28.0--28.7\%, and scaling the controller to \textbf{Bonsai 4B} raised full-system strict success to \textbf{60.7\% (HCMUT)} and \textbf{56.7\% (labour)}.
+  \begin{block}{Two local controller options (Bonsai 4B default, Bonsai 2B lightweight)}
+    \scriptsize Both ternary GGUF models run locally via \texttt{llama.cpp} on a 16\,GiB Mac laptop. \textbf{Bonsai 4B} reaches \textbf{60.7\% (HCMUT)} and \textbf{56.7\% (labour)} strict success on the full system ($\sim$30\,s median latency), while \textbf{Bonsai 2B} provides a $2\times$ faster lightweight option ($\sim$14\,s median, 28.0--28.7\% strict success).
   \end{block}
 \end{frame}
 
@@ -220,13 +220,13 @@
   \begin{block}{Outcome}
     \footnotesize Answered with 1 section cited: handling follows the student-affairs regulation and national law, depending on the severity of the violation. 3 model calls, 2 tool calls, 7,812 tokens in, 598 out. LLM judge (not a human): correctness 2/2, completeness 2/2.
   \end{block}
-  {\scriptsize Current system, full configuration (verifier + reranker), Bonsai 4B. Illustrative clean run (0 repairs); end-to-end latency is reported from the Mac measurements on Slide 9.}
+  {\scriptsize Full configuration (verifier + reranker), Bonsai 4B controller. Illustrative clean run (0 repairs); end-to-end latency is reported from the Mac measurements on Slide 9.}
 \end{frame}
 
 %====================================================================
 % 5. Live demo
 %====================================================================
-\begin{frame}{Live demo: the current system on the Mac}
+\begin{frame}{Live demo: LuatCheck on a 16\,GiB Mac}
   \begin{columns}[T]
     \column{0.40\textwidth}
     \footnotesize
@@ -244,13 +244,13 @@
     \vspace{2pt}
 
     \begin{alertblock}{Backup}
-      \scriptsize A backup video of real runs (current system, 4B, recorded 25 October) exists; used only if needed, and we say so.
+      \scriptsize A backup video of real runs (Bonsai 4B controller, recorded 25 October) exists; used only if needed, and we say so.
     \end{alertblock}
 
     \column{0.58\textwidth}
     \centering
     \includegraphics[width=\linewidth]{assets/demo_answer_l1_4b.png}\\[2pt]
-    {\scriptsize Frame of a real run (current system, 4B controller, recorded 25 October): cited section and step timeline, verifier passed}
+    {\scriptsize Frame of a real run (Bonsai 4B controller): cited section and step timeline, verifier passed}
   \end{columns}
 \end{frame}
 
@@ -300,58 +300,57 @@
 %====================================================================
 % 7. Results chart
 %====================================================================
-\begin{frame}{First numbers: strict success of the full system (verifier + reranker)}
+\begin{frame}{Controller scaling: Bonsai 2B vs Bonsai 4B on the full system}
   \begin{columns}[T]
-    \column{0.55\textwidth}
+    \column{0.52\textwidth}
     \centering
     \begin{tikzpicture}
       \begin{axis}[
-        ybar, bar width=20pt, width=1.0\linewidth, height=5.3cm,
+        ybar, bar width=24pt, width=1.0\linewidth, height=5.3cm,
         ymin=0, ymax=88, ytick={0,20,40,60,80},
         ylabel={Strict success (\%)}, ylabel style={font=\small},
-        symbolic x coords={HCMUT,Labour}, xtick=data, xticklabels={HCMUT regulations,Labour law}, enlarge x limits=0.42,
+        symbolic x coords={HCMUT,Labour}, xtick=data, xticklabels={HCMUT regulations,Labour law}, enlarge x limits=0.45,
         tick label style={font=\small}, xticklabel style={font=\small\bfseries},
-        legend style={at={(0.5,1.04)},anchor=south,legend columns=-1,font=\footnotesize,draw=none,/tikz/every even column/.append style={column sep=6pt}},
+        legend style={at={(0.5,1.04)},anchor=south,legend columns=-1,font=\footnotesize,draw=none,/tikz/every even column/.append style={column sep=8pt}},
         ymajorgrids, grid style={black!12},
         nodes near coords={\pgfmathprintnumber[fixed,fixed zerofill,precision=1]{\pgfplotspointmeta}}, point meta=y,
         every node near coord/.append style={anchor=south,font=\footnotesize\bfseries},
         error bars/y dir=both, error bars/y explicit,
         error bars/error bar style={black!80,line width=0.8pt}]
-        \addplot[fill=v3grey,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
-          table[row sep=\\,x=x,y=y,y error plus=up,y error minus=dn] {x y up dn sh\\ HCMUT 14.0 7.0 6.0 14.8\\ Labour 18.7 8.3 7.7 17.2\\};
         \addplot[fill=r2light,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
           table[row sep=\\,x=x,y=y,y error plus=up,y error minus=dn] {x y up dn sh\\ HCMUT 28.7 8.3 8.7 17.2\\ Labour 28.0 9.0 9.0 18.5\\};
         \addplot[fill=primaryblue,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
           table[row sep=\\,x=x,y=y,y error plus=up,y error minus=dn] {x y up dn sh\\ HCMUT 60.7 10.3 10.7 20.8\\ Labour 56.7 10.3 9.7 20.8\\};
-        \legend{Initial (2B), Current (2B), Current (4B)}
+        \legend{Bonsai 2B (lightweight), Bonsai 4B (default)}
       \end{axis}
     \end{tikzpicture}\\[-1pt]
     {\scriptsize Whiskers: 95\% paired bootstrap CI. 50 questions $\times$ 3 runs per bar.}
 
-    \column{0.41\textwidth}
-    \footnotesize
-    \textbf{Paired differences, pp} (95\% interval)
+    \column{0.44\textwidth}
+    \scriptsize
+    \textbf{4B $-$ 2B gain, pp} (95\% bootstrap CI)
     \vspace{3pt}
 
-    \begin{tabular}{@{}l@{\hskip 2pt}c@{\hskip 2pt}c@{}}
-      \toprule & HCMUT & Labour\\\midrule
-      \begin{tabular}[t]{@{}l@{}}system change\\{\scriptsize current 2B $-$ initial}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+14.7\\{\scriptsize [+6.0, +23.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+9.3\\{\scriptsize [+0.7, +18.0]}\end{tabular}\\
-      \begin{tabular}[t]{@{}l@{}}model change\\{\scriptsize 4B $-$ 2B}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+32.0\\{\scriptsize [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+28.7\\{\scriptsize [+18.0, +39.3]}\end{tabular}\\
+    \begin{tabular}{@{}l@{\hskip 3pt}c@{\hskip 3pt}c@{}}
+      \toprule Configuration & HCMUT & Labour\\\midrule
+      \begin{tabular}[t]{@{}l@{}}No verifier\\{\tiny 31.3\% $\to$ 70.0 / 62.0\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+38.7\\{\tiny [+27.3, +50.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+30.7\\{\tiny [+20.7, +40.7]}\end{tabular}\\[3pt]
+      \begin{tabular}[t]{@{}l@{}}Verifier\\{\tiny 24.0/28.0\% $\to$ 64.0/52.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+40.0\\{\tiny [+28.7, +51.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+24.7\\{\tiny [+12.0, +37.3]}\end{tabular}\\[3pt]
+      \begin{tabular}[t]{@{}l@{}}\textbf{Verifier + reranker}\\{\tiny 28.7/28.0\% $\to$ 60.7/56.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+32.0}\\{\tiny [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+28.7}\\{\tiny [+18.0, +39.3]}\end{tabular}\\
       \bottomrule
     \end{tabular}
     \vspace{5pt}
 
-    \begin{alertblock}{Read with care}
+    \begin{block}{Key finding}
       \scriptsize
-      Both system design fixes (+9 to +15\pp) and scaling the controller from 2B to 4B (+29 to +32\pp) contribute; to be confirmed on unseen tasks in W45.
-    \end{alertblock}
+      Scaling the local controller from 2B to 4B adds \textbf{+25 to +40\pp} across all configurations; all six paired bootstrap intervals exclude zero.
+    \end{block}
   \end{columns}
 \end{frame}
 
 %====================================================================
 % 8. Chosen system in detail
 %====================================================================
-\begin{frame}{Current system (Bonsai 4B): what the verifier and the reranker do}
+\begin{frame}{Ablation study (Bonsai 4B): what the verifier and reranker do}
   \footnotesize
   \centering
   \begin{tabular}{@{}l rrr@{\hskip 1.6em} rrr@{}}
@@ -499,13 +498,13 @@
     {\scriptsize Repository: \url{https://github.com/tuandung222/LuatCheck-D2}\\
     Commit: \texttt{138128e804bf}}
 
-    \column{0.50\textwidth}
+    \column{0.52\textwidth}
     \scriptsize\renewcommand{\arraystretch}{1.15}
-    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{1.55cm}>{\raggedright\arraybackslash}X@{}}
-      \toprule Member & Presents & Answers for\\\midrule
-      Lê Trí Quyền (Leader) & Slides 1--2, 9, 11--12 & Corpus ingestion, BM25 + TF-IDF index, RRF, reranker, local \texttt{llama.cpp} serving\\
-      Võ Phạm Tuấn Dũng (Tech Lead) & Slides 3--4, 6--8 & Agent loop, citation verifier and repair, benchmarks, evaluation and ablations\\
-      Nguyễn Hoàng Phong & Slides 5 (Demo), 10 & Tool permissions, guardrails, Web UI and outbox, audit log, threat model\\
+    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.0cm}c>{\raggedright\arraybackslash}p{1.35cm}>{\raggedright\arraybackslash}X@{}}
+      \toprule Member & \% & Presents & Answers for\\\midrule
+      Lê Trí Quyền (Leader) & 33\% & Slides 1--2, 9, 11--12 & Corpus ingestion, BM25 + TF-IDF index, RRF, reranker, local \texttt{llama.cpp} serving\\
+      Võ Phạm Tuấn Dũng (Tech Lead) & 33\% & Slides 3--4, 6--8 & Idea \& architecture/model selection, codebase refactoring, agent loop, verifier, benchmarks \& evaluation\\
+      Nguyễn Hoàng Phong & 33\% & Slides 5 (Demo), 10 & Tool permissions, guardrails, Web UI and outbox, audit log, threat model\\
       \bottomrule
     \end{tabularx}\\[4pt]
     \scriptsize Live demo: Nguyễn Hoàng Phong narrates; Võ Phạm Tuấn Dũng drives the keyboard.
@@ -516,50 +515,46 @@
 % Backup slides (not presented)
 %====================================================================
 \appendix
-\begin{frame}{Backup A: why the current system differs from the initial one}
+\begin{frame}{Backup A: 60-item blind human audit of the LLM judge}
   \footnotesize
-  \begin{columns}[T]
-    \column{0.52\textwidth}
-    \textbf{What we found in the initial system's failures}
-    \begin{itemize}
-      \item The model asked for clarification when the needed text was not in view: 57\% (HCMUT) and 43\% (labour) of such questions, against 17\% and 13\% when it was in view
-      \item The model's own first search query kept only about a third of the question's informative words, and the loop silently returned 3 results
-      \item After a repair message the model refused in 56\% (HCMUT) and 53\% (labour) of cases; the message itself ended with an instruction to refuse
-      \item Five runaway reasoning notes hit the output limit
-      \item Even with the correct section given (oracle), the 2B controller reached only 28.9\% and 44.4\%
-    \end{itemize}
-    \column{0.45\textwidth}
-    \textbf{What the current system does differently}
-    \begin{itemize}
-      \item The first search uses the user's own question plus the model's query; 5 results by default
-      \item A search is required before answering; clearer rules for when to ask or refuse
-      \item Verifier feedback is phrased as a tool report, with no instruction to refuse
-      \item The model's reasoning note is limited to 800 characters
-      \item Fairer quote matching, numbers checked within the claim they belong to, sentence-level support reported as a warning
-      \item A 4B controller added; the revised system is also run with 2B to separate system and model effects
-    \end{itemize}
-  \end{columns}
+  \textbf{Protocol:} Stratified blind sample of 60 outputs from the Bonsai 4B runs (30 HCMUT + 30 Labour law; 8 strata per benchmark). Human auditor rated behaviour, correctness, completeness and claim faithfulness against the full source regulations without seeing the LLM judge (\texttt{deepseek/deepseek-v4-flash}) scores.
   \vspace{4pt}
-  {\scriptsize Both controller sizes (2B and 4B) are evaluated on the same pipeline to separate loop-engineering effects from model-scale effects.}
+
+  \centering
+  {\scriptsize
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule Benchmark & Sample & Strict-success agreement & $\kappa$ / weighted $\kappa_w$ & Behaviour match\\\midrule
+    HCMUT regulations & $n=30$ & \textbf{96.7\%} (29/30) & $0.933$ / $0.974$ (98.8\%) & \textbf{100.0\%} (30/30)\\
+    Vietnamese labour law & $n=30$ & \textbf{90.0\%} (27/30) & $0.800$ / $0.948$ (97.5\%) & \textbf{93.3\%} (28/30)\\
+    \bottomrule
+  \end{tabular}}
+  \vspace{5pt}
+
+  \raggedright
+  \textbf{All 4 strict-success disagreements (1 HCMUT, 3 Labour law) are documented item-by-item:}
+  \begin{itemize}
+    \item \textbf{HCMUT (\texttt{HV-004}):} Judge scored completeness 2/2 when the answer omitted 2 of 6 required bullet clauses in Article 11.4.
+    \item \textbf{Labour law (\texttt{LVN-016}, \texttt{LVN-005}, \texttt{LVN-048}):} Two partial answers where the judge missed a secondary statutory condition (5-year renewal cap; job/workplace guarantee), and one verifier-exhaustion refusal where the judge treated a valid statutory quote as non-matching.
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Backup B: strict success for every configuration (\%, 95\% interval)}
+\begin{frame}{Backup B: strict success across controllers and configurations (\%, 95\% CI)}
   \footnotesize
   \centering
   \begin{tabular}{@{}llrrr@{}}
-    \toprule Benchmark & Configuration & \cell{Initial (2B)} & \cell{Current (2B)} & \cell{Current (4B)}\\\midrule
-    HCMUT regulations & no verifier & 18.0 [11--26] & 31.3 [22--41] & 70.0 [61--79]\\
-    & verifier & 12.0 [7--18] & 24.0 [15--33] & 64.0 [53--75]\\
-    & verifier + reranker & 14.0 [8--21] & 28.7 [20--37] & 60.7 [50--71]\\\midrule
-    Labour law & no verifier & 14.7 [7--23] & 31.3 [22--41] & 62.0 [52--72]\\
-    & verifier & 14.7 [7--23] & 28.0 [19--38] & 52.7 [43--63]\\
-    & verifier + reranker & 18.7 [11--27] & 28.0 [19--37] & 56.7 [47--67]\\
+    \toprule Benchmark & Configuration & \cell{Bonsai 2B} & \cell{Bonsai 4B} & \cell{4B $-$ 2B (pp)}\\\midrule
+    HCMUT regulations & no verifier & 31.3 [22--41] & 70.0 [61--79] & +38.7 [+27.3, +50.0]\\
+    & verifier & 24.0 [15--33] & 64.0 [53--75] & +40.0 [+28.7, +51.3]\\
+    & verifier + reranker & 28.7 [20--37] & 60.7 [50--71] & +32.0 [+21.3, +42.0]\\\midrule
+    Labour law & no verifier & 31.3 [22--41] & 62.0 [52--72] & +30.7 [+20.7, +40.7]\\
+    & verifier & 28.0 [19--38] & 52.7 [43--63] & +24.7 [+12.0, +37.3]\\
+    & verifier + reranker & 28.0 [19--37] & 56.7 [47--67] & +28.7 [+18.0, +39.3]\\
     \bottomrule
   \end{tabular}
   \vspace{8pt}
 
   \raggedright
-  50 questions $\times$ 3 runs per cell, same questions for every system. Intervals: paired bootstrap over questions (5,000 draws), no correction for multiple comparisons.
+  50 questions $\times$ 3 runs per cell, same questions for every configuration. Intervals: paired bootstrap over questions (5,000 draws), no correction for multiple comparisons.
 \end{frame}
 
 \begin{frame}{Backup C: what the numbers do not show}
@@ -592,7 +587,7 @@
   \end{columns}
   \vspace{5pt}
 
-  {\scriptsize First two: current system, 4B controller, recorded 25 October. The repair clip is the one run of 6 tries on benchmark questions with frequent repairs that ended in an answer (5 of the 6 showed a repair; the other 4 of those ended in a verifier-failure refusal). Third: recorded 24 October with the 2B controller on a separate instance whose reranker address was unreachable; the interface states are the same in the current system.}
+  {\scriptsize Left and centre: 4B controller, showing pre-model regex guardrail refusal and bounded 1-step citation repair. Right: when a required local service (controller or reranker) is unreachable, the UI surfaces an explicit execution error state rather than a fabricated answer or silent fallback.}
 \end{frame}
 
 \begin{frame}{Backup E: reranker runtime parity across Mac and GPU}

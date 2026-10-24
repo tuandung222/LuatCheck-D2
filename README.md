@@ -67,14 +67,14 @@ Additional recordings (including the faster 2B controller configuration, clarifi
 
 We evaluate **two self-built, hash-locked 50-question benchmarks** (100 questions total; each benchmark has 40 single-record questions, 5 two-record questions, and 5 out-of-scope refusal questions) across **3 configurations** (`No verifier`, `Verifier`, `Verifier + reranker`), **3 random seeds** (`42, 123, 2026`), and **2 diagnostic baselines** (`Closed-book` without documents, `Oracle` with gold sections given up front) — **1,090 recorded trials per system**.
 
-| Benchmark | Configuration | Initial system, 2B (%) | Current system, 2B (%) | Current system, 4B (%) | Revision effect at 2B (pp) | Controller effect 4B − 2B (pp) |
-|---|---|---:|---:|---:|---:|---:|
-| **HCMUT regulations** | No verifier | 18.0 [11–26] | 31.3 [22–41] | **70.0 [61–79]** | +13.3 [+4.0, +22.7]* | +38.7 [+27.3, +50.0]* |
-| | Verifier (with repair) | 12.0 [7–18] | 24.0 [15–33] | 64.0 [53–75] | +12.0 [+4.0, +20.7]* | +40.0 [+28.7, +51.3]* |
-| | **Verifier + reranker (full)** | 14.0 [8–21] | 28.7 [20–37] | **60.7 [50–71]** | +14.7 [+6.0, +23.3]* | +32.0 [+21.3, +42.0]* |
-| **Labour law** | No verifier | 14.7 [7–23] | 31.3 [22–41] | **62.0 [52–72]** | +16.7 [+7.3, +25.3]* | +30.7 [+20.7, +40.7]* |
-| | Verifier (with repair) | 14.7 [7–23] | 28.0 [19–38] | 52.7 [43–63] | +13.3 [+4.0, +22.7]* | +24.7 [+12.0, +37.3]* |
-| | **Verifier + reranker (full)** | 18.7 [11–27] | 28.0 [19–37] | **56.7 [47–67]** | +9.3 [+0.7, +18.0]* | +28.7 [+18.0, +39.3]* |
+| Benchmark | Configuration | Bonsai 2B (%) | Bonsai 4B (%) | Controller scaling 4B − 2B (pp) |
+|---|---|---:|---:|---:|
+| **HCMUT regulations** | No verifier | 31.3 [22–41] | **70.0 [61–79]** | +38.7 [+27.3, +50.0]* |
+| | Verifier (with repair) | 24.0 [15–33] | 64.0 [53–75] | +40.0 [+28.7, +51.3]* |
+| | **Verifier + reranker (full)** | 28.7 [20–37] | **60.7 [50–71]** | +32.0 [+21.3, +42.0]* |
+| **Labour law** | No verifier | 31.3 [22–41] | **62.0 [52–72]** | +30.7 [+20.7, +40.7]* |
+| | Verifier (with repair) | 28.0 [19–38] | 52.7 [43–63] | +24.7 [+12.0, +37.3]* |
+| | **Verifier + reranker (full)** | 28.0 [19–37] | **56.7 [47–67]** | +28.7 [+18.0, +39.3]* |
 
 *Notes on reading the results:*
 1. **Strict success** (lower bound over all trials; execution errors and unjudged trials count as failures) requires appropriate behaviour (`answer` vs `refuse`), full correctness (`2/2`), full completeness (`2/2`), and every factual claim supported by the cited sources.
@@ -134,13 +134,3 @@ Full reproduction instructions: [`docs/guides/REPRODUCE_D2.md`](docs/guides/REPR
 | `evaluation/` | Frozen 100-task benchmarks (`benchmarks/`), recorded runs (`runs/`), paired comparisons (`comparisons/`), human audit scorer |
 | `deliverables/` | Course submissions: `d1/` (Proposal), `d2/report/` (modular LaTeX report), `d2/slides/` (Beamer slides), `d2/demo/` (GIFs & MP4s) |
 | `tests/` | Automated test suite using real components and no mocks (`.venv/bin/pytest tests/ -q`) |
-
----
-
-## Team & Responsibilities (Group 8)
-
-| Member | Student ID | Role | Primary Modules |
-|---|---|---|---|
-| **Lê Trí Quyền** | 2470740 | Group Leader — Retrieval & Serving | Corpus ingestion (`src/ingestion/`), BM25 + TF-IDF & vector indexing with RRF (`src/indexing/`), cross-encoder reranker (`src/retrieval/`), local `llama.cpp`/Docker serving |
-| **Võ Phạm Tuấn Dũng** | 2570015 | Technical Lead — Agent & Evaluation | Idea & commit verification; bounded ReAct loop (`src/agent/`, `src/pipeline/`), L1 citation verifier & repair (`src/verifier/`), 100-task benchmarks, GPU/Mac evaluation, 60-item judge audit, D2 report & slides |
-| **Nguyễn Hoàng Phong** | 2570477 | Member — System & Security | Tool registry & permissions (`src/tools/`), regex guardrails & PII filter (`src/security/`), Web/Streamlit UI & trusted outbox (`frontend/`, `src/api/`), SQLite store & audit ledger (`src/memory/`), security/fault tests |

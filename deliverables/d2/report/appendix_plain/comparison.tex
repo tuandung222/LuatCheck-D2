@@ -19,20 +19,20 @@
 \scriptsize
 \setlength{\tabcolsep}{3pt}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}llrrrrr@{}}
+\begin{tabular}{@{}llrrr@{}}
 \toprule
-Benchmark & Configuration & \makecell{Initial, 2B\\ Succ.\ (\%)} & \makecell{Current, 2B\\ Succ.\ (\%)} & \makecell{Current, 4B\\ Succ.\ (\%)} & \makecell{revision effect\\ (pp)} & \makecell{controller effect\\ (pp)}\\
+Benchmark & Configuration & \makecell{Bonsai 2B\\ Succ.\ (\%)} & \makecell{Bonsai 4B\\ Succ.\ (\%)} & \makecell{Controller effect\\ 4B$-$2B (pp)}\\
 \midrule
-\multirow{3}{*}{HCMUT regulations} & no verifier & 18.0\,{\scriptsize[11--26]} & 31.3\,{\scriptsize[22--41]} & 70.0\,{\scriptsize[61--79]} & +13.3\,{\scriptsize[+4.0,+22.7]}$^{*}$ & +38.7\,{\scriptsize[+27.3,+50.0]}$^{*}$\\
- & verifier & 12.0\,{\scriptsize[7--18]} & 24.0\,{\scriptsize[15--33]} & 64.0\,{\scriptsize[53--75]} & +12.0\,{\scriptsize[+4.0,+20.7]}$^{*}$ & +40.0\,{\scriptsize[+28.7,+51.3]}$^{*}$\\
- & verifier + reranker & 14.0\,{\scriptsize[8--21]} & 28.7\,{\scriptsize[20--37]} & 60.7\,{\scriptsize[50--71]} & +14.7\,{\scriptsize[+6.0,+23.3]}$^{*}$ & +32.0\,{\scriptsize[+21.3,+42.0]}$^{*}$\\
+\multirow{3}{*}{HCMUT regulations} & no verifier & 31.3\,{\scriptsize[22--41]} & 70.0\,{\scriptsize[61--79]} & +38.7\,{\scriptsize[+27.3,+50.0]}$^{*}$\\
+ & verifier & 24.0\,{\scriptsize[15--33]} & 64.0\,{\scriptsize[53--75]} & +40.0\,{\scriptsize[+28.7,+51.3]}$^{*}$\\
+ & verifier + reranker & 28.7\,{\scriptsize[20--37]} & 60.7\,{\scriptsize[50--71]} & +32.0\,{\scriptsize[+21.3,+42.0]}$^{*}$\\
 \midrule
-\multirow{3}{*}{Labour law} & no verifier & 14.7\,{\scriptsize[7--23]} & 31.3\,{\scriptsize[22--41]} & 62.0\,{\scriptsize[52--72]} & +16.7\,{\scriptsize[+7.3,+25.3]}$^{*}$ & +30.7\,{\scriptsize[+20.7,+40.7]}$^{*}$\\
- & verifier & 14.7\,{\scriptsize[7--23]} & 28.0\,{\scriptsize[19--38]} & 52.7\,{\scriptsize[43--63]} & +13.3\,{\scriptsize[+4.0,+22.7]}$^{*}$ & +24.7\,{\scriptsize[+12.0,+37.3]}$^{*}$\\
- & verifier + reranker & 18.7\,{\scriptsize[11--27]} & 28.0\,{\scriptsize[19--37]} & 56.7\,{\scriptsize[47--67]} & +9.3\,{\scriptsize[+0.7,+18.0]}$^{*}$ & +28.7\,{\scriptsize[+18.0,+39.3]}$^{*}$\\
+\multirow{3}{*}{Labour law} & no verifier & 31.3\,{\scriptsize[22--41]} & 62.0\,{\scriptsize[52--72]} & +30.7\,{\scriptsize[+20.7,+40.7]}$^{*}$\\
+ & verifier & 28.0\,{\scriptsize[19--38]} & 52.7\,{\scriptsize[43--63]} & +24.7\,{\scriptsize[+12.0,+37.3]}$^{*}$\\
+ & verifier + reranker & 28.0\,{\scriptsize[19--37]} & 56.7\,{\scriptsize[47--67]} & +28.7\,{\scriptsize[+18.0,+39.3]}$^{*}$\\
 \bottomrule
 \end{tabular}}
-\caption{\textbf{Strict success across controller sizes and engineering iterations on both benchmarks}: the initial 2B prototype, the current system with the 2B controller and the current system with the 4B controller (LLM-judge estimate, \textbf{not human labels}; lower bound over all planned trials, errors and trials the judge could not rate count as failures; seeds averaged per question). Revision effect = current 2B minus initial 2B; controller effect = current 4B minus current 2B (paired bootstrap differences over questions, 5000 draws). $^{*}$: the 95\% interval excludes 0 (descriptive, no multiple-comparison correction). Same questions in every column.}
+\caption{\textbf{Strict success across controller sizes (Bonsai 2B vs Bonsai 4B) on both benchmarks} (LLM-judge estimate, \textbf{not human labels}; lower bound over all planned trials, errors and trials the judge could not rate count as failures; seeds averaged per question). Controller effect = 4B minus 2B (paired bootstrap differences over questions, 5000 draws). $^{*}$: the 95\% interval excludes 0 (descriptive, no multiple-comparison correction). Same questions in every column.}
 \label{tab:compare-success}
 \end{table}
 
@@ -58,17 +58,17 @@ Benchmark & Configuration & \makecell{Initial, 2B\\ Succ.\ (\%)} & \makecell{Cur
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}llrrrrrrrr@{}}
 \toprule
-Benchmark & Configuration & \makecell{Behaviour\\ match (\%)} & \makecell{$\Delta$ revision /\\ controller} & Recall@5 & \makecell{$\Delta$ revision /\\ controller} & \makecell{Answer\\ rate (\%)} & \makecell{$\Delta$ revision /\\ controller} & \makecell{Execution-\\ error rate (\%)} & \makecell{$\Delta$ revision /\\ controller}\\
+Benchmark & Configuration & \makecell{Behaviour\\ match (2B / 4B, \%)} & \makecell{$\Delta$ controller\\ (4B$-$2B)} & \makecell{Recall@5\\ (2B / 4B)} & \makecell{$\Delta$ controller\\ (4B$-$2B)} & \makecell{Answer rate\\ (2B / 4B, \%)} & \makecell{$\Delta$ controller\\ (4B$-$2B)} & \makecell{Execution-error\\ rate (2B / 4B, \%)} & \makecell{$\Delta$ controller\\ (4B$-$2B)}\\
 \midrule
-\multirow{3}{*}{HCMUT regulations} & no verifier & 44.0 / 58.0 / 88.0 & +14.0$^{*}$ / +30.0$^{*}$ & 0.674 / 0.856 / 0.989 & +0.181$^{*}$ / +0.133$^{*}$ & 44.0 / 55.3 / 80.7 & +11.3 / +25.3$^{*}$ & 0.0 / 0.0 / 2.0 & +0.0 / +2.0\\
- & verifier & 23.3 / 45.3 / 82.7 & +22.0$^{*}$ / +37.3$^{*}$ & 0.659 / 0.859 / 0.989 & +0.200$^{*}$ / +0.130$^{*}$ & 22.0 / 41.3 / 72.7 & +19.3$^{*}$ / +31.3$^{*}$ & 0.0 / 0.0 / 2.0 & +0.0 / +2.0\\
- & verifier + reranker & 27.3 / 46.7 / 80.0 & +19.3$^{*}$ / +33.3$^{*}$ & 0.756 / 0.844 / 0.978 & +0.089 / +0.133$^{*}$ & 25.3 / 42.0 / 72.7 & +16.7$^{*}$ / +30.7$^{*}$ & 1.3 / 0.7 / 2.0 & -0.7 / +1.3\\
+\multirow{3}{*}{HCMUT regulations} & no verifier & 58.0 / 88.0 & +30.0$^{*}$ & 0.856 / 0.989 & +0.133$^{*}$ & 55.3 / 80.7 & +25.3$^{*}$ & 0.0 / 2.0 & +2.0\\
+ & verifier & 45.3 / 82.7 & +37.3$^{*}$ & 0.859 / 0.989 & +0.130$^{*}$ & 41.3 / 72.7 & +31.3$^{*}$ & 0.0 / 2.0 & +2.0\\
+ & verifier + reranker & 46.7 / 80.0 & +33.3$^{*}$ & 0.844 / 0.978 & +0.133$^{*}$ & 42.0 / 72.7 & +30.7$^{*}$ & 0.7 / 2.0 & +1.3\\
 \midrule
-\multirow{3}{*}{Labour law} & no verifier & 60.7 / 78.7 / 94.0 & +18.0$^{*}$ / +15.3$^{*}$ & 0.607 / 0.967 / 0.989 & +0.359$^{*}$ / +0.022 & 60.7 / 74.0 / 88.0 & +13.3$^{*}$ / +14.0$^{*}$ & 0.7 / 0.0 / 0.0 & -0.7 / +0.0\\
- & verifier & 38.0 / 63.3 / 81.3 & +25.3$^{*}$ / +18.0$^{*}$ & 0.659 / 0.989 / 0.989 & +0.330$^{*}$ / +0.000 & 34.7 / 56.0 / 74.0 & +21.3$^{*}$ / +18.0$^{*}$ & 0.0 / 0.0 / 2.7 & +0.0 / +2.7$^{*}$\\
- & verifier + reranker & 36.0 / 65.3 / 79.3 & +29.3$^{*}$ / +14.0$^{*}$ & 0.815 / 0.993 / 0.993 & +0.178$^{*}$ / +0.000 & 32.7 / 57.3 / 72.0 & +24.7$^{*}$ / +14.7$^{*}$ & 0.7 / 0.7 / 2.7 & +0.0 / +2.0\\
+\multirow{3}{*}{Labour law} & no verifier & 78.7 / 94.0 & +15.3$^{*}$ & 0.967 / 0.989 & +0.022 & 74.0 / 88.0 & +14.0$^{*}$ & 0.0 / 0.0 & +0.0\\
+ & verifier & 63.3 / 81.3 & +18.0$^{*}$ & 0.989 / 0.989 & +0.000 & 56.0 / 74.0 & +18.0$^{*}$ & 0.0 / 2.7 & +2.7$^{*}$\\
+ & verifier + reranker & 65.3 / 79.3 & +14.0$^{*}$ & 0.993 / 0.993 & +0.000 & 57.3 / 72.0 & +14.7$^{*}$ & 0.7 / 2.7 & +2.0\\
 \bottomrule
 \end{tabular}}
-\caption{\textbf{Metrics that need no judge, for the same three runs}: behaviour match (expected answer $\to$ answered, expected refusal $\to$ refused), Recall@5 of gold documents in the agent's results (answerable questions; a retrieval measure on document ids, not answer correctness), answer rate and execution-error rate; percentages except Recall@5. Each cell lists initial 2B / current 2B / current 4B; $\Delta$ lists the revision effect (current 2B minus initial 2B) and the controller effect (current 4B minus current 2B) in percentage points (Recall@5 absolute). $^{*}$: the paired 95\% bootstrap interval excludes 0 (descriptive).}
+\caption{\textbf{Metrics that need no judge across controller sizes (Bonsai 2B vs Bonsai 4B)}: behaviour match (expected answer $\to$ answered, expected refusal $\to$ refused), Recall@5 of gold documents in the agent's results (answerable questions; a retrieval measure on document ids, not answer correctness), answer rate and execution-error rate; percentages except Recall@5. Each cell lists 2B / 4B; $\Delta$ lists the controller effect (4B minus 2B) in percentage points (Recall@5 absolute). $^{*}$: the paired 95\% bootstrap interval excludes 0 (descriptive).}
 \label{tab:compare-structural}
 \end{table}

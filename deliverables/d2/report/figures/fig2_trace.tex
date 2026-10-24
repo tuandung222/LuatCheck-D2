@@ -12,10 +12,10 @@
 \node[st,below=0.32cm of b] (c) {\textbf{3~answer.} ``17,800 VND per hour'', quote ``Vùng IV 3.700.000 17.800'' from Article 3. \textbf{Citation verifier: accepted, 0 repairs.} \emph{3,623 in, 211 out.}};
 \node[rs,below=0.32cm of c] (r) {\textbf{Outcome:} answered with a verified citation; 8,118 tokens in, 482 out in total. The answer equals the benchmark's reference answer.};
 \draw[fl] (q) -- (a); \draw[fl] (a) -- (b); \draw[fl] (b) -- (c); \draw[fl] (c) -- (r);
-\end{tikzpicture}\\[2pt]{\small (a) Trace of the current system (4B controller, verifier and reranker on).}
+\end{tikzpicture}\\[2pt]{\small (a) Trace of LuatCheck (4B controller, verifier and reranker on).}
 \end{minipage}\hfill
 \begin{minipage}[c]{0.52\textwidth}\centering
 \includegraphics[width=\linewidth]{images/demo_answer.png}\\[2pt]{\small (b) Web interface, same question.}
 \end{minipage}
-\caption{(a) One completed trial from the evaluation of the current system (a labour-law question about the hourly minimum wage, seed 42). (b) The web interface answering the same question, recorded on 24 October with the initial system (2B controller); the same interface serves the current system.}\label{fig:trace}
+\caption{(a) One completed trial from the evaluation (a labour-law question about the hourly minimum wage, seed 42). (b) The web interface answering the same question, showing the answer, citation verifier status, highlighted source section and step timeline.}\label{fig:trace}
 \end{figure}

@@ -22,7 +22,7 @@ OPTIMISTIC = r""
 
 CAPTIONS = {
     "tab:benchmark-main": (
-        r"\textbf{Results of the current system with the 4B controller on the {bench} benchmark}, three configurations "
+        r"\textbf{Results with the Bonsai 4B controller on the {bench} benchmark}, three configurations "
         r"({trials} trials; random seeds 42, 123, 2026). \emph{Succ.} is strict success (appropriate behaviour, "
         r"correctness and completeness both full, every claim supported): a lower bound over all trials, with a 95\% bootstrap interval "
         r"over questions; execution errors count as failures, and $\dagger k$ marks $k$ trials the judge could not rate, also counted as failures. "
@@ -32,7 +32,7 @@ CAPTIONS = {
         r"all cells are {cells}, so they cannot separate the configurations). Cit. P/R/F1 compare the cited document ids with the gold ids "
         r"(nothing cited counts as 0); they are measured on document ids and say nothing about answer correctness. Red entries are not measured."),
     "tab:benchmark-ops": (
-        r"\textbf{Operating measurements and judge cost} of the current system with the 4B controller on the {bench} benchmark. "
+        r"\textbf{Operating measurements and judge cost} with the Bonsai 4B controller on the {bench} benchmark. "
         r"Ans/Ref/Clar/Err are the numbers of answered, refused, clarified and execution-error trials; Err. is the execution-error rate. "
         r"n/r (not reported): latency was recorded while several workers ran at once, so it is not reportable. Call = one controller model call; "
         r"tok/s = generated tokens per second. Tokens are controller input/output per trial (trials with complete usage only). "
@@ -62,32 +62,32 @@ CAPTIONS = {
         r"measure the model's own knowledge as much as grounding. ``Not guessable'': partially correct or unsolved without the corpus. Refusal questions have no such split. "
         r"Intervals are bootstrap intervals over questions; n = questions in the group."),
     "tab:compare-success": (
-        r"\textbf{Strict success across controller sizes and engineering iterations on both benchmarks}: the initial 2B prototype, the current system with the 2B controller and "
-        r"the current system with the 4B controller (LLM-judge estimate, \textbf{not human labels}; lower bound over all planned trials, errors and trials the judge "
-        r"could not rate count as failures; seeds averaged per question). Revision effect = current 2B minus initial 2B; controller effect = current 4B minus current 2B "
+        r"\textbf{Strict success across controller sizes (Bonsai 2B vs Bonsai 4B) on both benchmarks} "
+        r"(LLM-judge estimate, \textbf{not human labels}; lower bound over all planned trials, errors and trials the judge "
+        r"could not rate count as failures; seeds averaged per question). Controller effect = 4B minus 2B "
         r"(paired bootstrap differences over questions, 5000 draws). $^{*}$: the 95\% interval excludes 0 (descriptive, no multiple-comparison correction). "
         r"Same questions in every column."),
     "tab:compare-structural": (
-        r"\textbf{Metrics that need no judge, for the same three runs}: behaviour match (expected answer $\to$ answered, expected refusal $\to$ refused), "
+        r"\textbf{Metrics that need no judge across controller sizes (Bonsai 2B vs Bonsai 4B)}: behaviour match (expected answer $\to$ answered, expected refusal $\to$ refused), "
         r"Recall@5 of gold documents in the agent's results (answerable questions; a retrieval measure on document ids, not answer correctness), answer rate and "
-        r"execution-error rate; percentages except Recall@5. Each cell lists initial 2B / current 2B / current 4B; $\Delta$ lists the revision effect (current 2B minus "
-        r"initial 2B) and the controller effect (current 4B minus current 2B) in percentage points (Recall@5 absolute). $^{*}$: the paired 95\% bootstrap interval "
-        r"excludes 0 (descriptive)."),
+        r"execution-error rate; percentages except Recall@5. Each cell lists 2B / 4B; $\Delta$ lists the controller effect (4B minus 2B) "
+        r"in percentage points (Recall@5 absolute). $^{*}$: the paired 95\% bootstrap interval excludes 0 (descriptive)."),
 }
 
 # Ordered cell/header substitutions (applied outside captions and % lines).
 SUBS = [
+    (r"\\begin\{tabular\}\{@\{\}llrrrrr@\{\}\}", r"\begin{tabular}{@{}llrrr@{}}"),
     (r"v3-2B Succ\.\\ \(\\%\)", r"\makecell{Initial, 2B\\ Succ.\ (\%)}"),
-    (r"r2-2B Succ\.\\ \(\\%\)", r"\makecell{Current, 2B\\ Succ.\ (\%)}"),
-    (r"r2-4B Succ\.\\ \(\\%\)", r"\makecell{Current, 4B\\ Succ.\ (\%)}"),
-    # structural table: the three systems and the two effects are explained in the caption, so the headers stay short
-    (r"Behaviour match \(v3-2B / r2-2B / r2-4B\)", r"\makecell{Behaviour\\ match (\%)}"),
-    (r"Recall@5 \(v3-2B / r2-2B / r2-4B\)", r"Recall@5"),
-    (r"Answer rate \(v3-2B / r2-2B / r2-4B\)", r"\makecell{Answer\\ rate (\%)}"),
-    (r"Execution-error rate \(v3-2B / r2-2B / r2-4B\)", r"\makecell{Execution-\\ error rate (\%)}"),
-    (r"\$\\Delta\$ \(system effect / model effect\)", r"\makecell{$\Delta$ revision /\\ controller}"),
+    (r"r2-2B Succ\.\\ \(\\%\)", r"\makecell{Bonsai 2B\\ Succ.\ (\%)}"),
+    (r"r2-4B Succ\.\\ \(\\%\)", r"\makecell{Bonsai 4B\\ Succ.\ (\%)}"),
+    # structural table: the two controllers and controller effect are explained in the caption, so the headers stay short
+    (r"Behaviour match \(v3-2B / r2-2B / r2-4B\)", r"\makecell{Behaviour\\ match (2B / 4B, \%)}"),
+    (r"Recall@5 \(v3-2B / r2-2B / r2-4B\)", r"\makecell{Recall@5\\ (2B / 4B)}"),
+    (r"Answer rate \(v3-2B / r2-2B / r2-4B\)", r"\makecell{Answer rate\\ (2B / 4B, \%)}"),
+    (r"Execution-error rate \(v3-2B / r2-2B / r2-4B\)", r"\makecell{Execution-error\\ rate (2B / 4B, \%)}"),
+    (r"\$\\Delta\$ \(system effect / model effect\)", r"\makecell{$\Delta$ controller\\ (4B$-$2B)}"),
     (r"system effect \(pp\)", r"\makecell{revision effect\\ (pp)}"),
-    (r"model effect \(pp\)", r"\makecell{controller effect\\ (pp)}"),
+    (r"model effect \(pp\)", r"\makecell{Controller effect\\ 4B$-$2B (pp)}"),
     (r"HCMUT-v1", r"HCMUT regulations"),
     (r"Labour-VI-v1", r"Labour law"),
     (r"L1\{\+\}rerank vs OFF", r"verifier + reranker vs no verifier"),
@@ -106,9 +106,12 @@ LABEL_BENCH = {"hcmut": "HCMUT regulations", "labour": "Labour law"}
 def convert(text: str, bench: str) -> str:
     lines = text.splitlines()
     out, header_done = [], False
+    in_compare_table = None
     i = 0
     while i < len(lines):
         line = lines[i]
+        if line.startswith("% table: tab:compare-"):
+            in_compare_table = line.split(": ", 1)[1].strip()
         if line.startswith("%"):
             out.append(line)
             if line.strip() in ("% === END PROVENANCE ===", "% === END COMPARE PROVENANCE ==="):
@@ -132,6 +135,22 @@ def convert(text: str, bench: str) -> str:
             continue
         for pattern, repl in SUBS:
             line = re.sub(pattern, lambda m, r=repl: r, line)
+        if in_compare_table == "tab:compare-success" and "&" in line and line.endswith(r"\\"):
+            parts = [p.strip() for p in line[:-2].split("&")]
+            if len(parts) == 7:
+                line = " & ".join([parts[0], parts[1], parts[3], parts[4], parts[6]]) + r"\\"
+        elif in_compare_table == "tab:compare-structural" and "&" in line and line.endswith(r"\\"):
+            parts = [p.strip() for p in line[:-2].split("&")]
+            if len(parts) == 10 and "/" in parts[2]:
+                for idx in (2, 4, 6, 8):
+                    sub = [s.strip() for s in parts[idx].split("/")]
+                    if len(sub) == 3:
+                        parts[idx] = f"{sub[1]} / {sub[2]}"
+                for idx in (3, 5, 7, 9):
+                    sub = [s.strip() for s in parts[idx].split("/")]
+                    if len(sub) == 2:
+                        parts[idx] = sub[1]
+                line = " & ".join(parts) + r"\\"
         out.append(line)
         i += 1
     return "\n".join(out) + "\n"
