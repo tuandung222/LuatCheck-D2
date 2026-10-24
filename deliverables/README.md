@@ -15,9 +15,9 @@ Everything that is handed in for the course (CO5151) lives under this folder, on
 |---|---|
 | `d1/report/` | D1 proposal (`main_d1.tex`, `main_d1.pdf`, `chap1.tex`) and the one-page version (`main_1page.*`). Historical, as submitted. |
 | `d1/slides/` | D1 pitch deck (`LuatCheck_D1_Pitch.pptx`, `.pdf`) and speaker notes. Historical, as submitted. |
-| `d2/report/` | D2 report: modular LaTeX source (`main_d2.tex`, `sections/`, `tables/`, `figures/`), `refs.bib`, `images/`, generated result tables (`tables_*`, `appendix_plain/`, `benchmark_latency_mac.tex`), `RESULTS_PROVENANCE.md` (table to run to commit), and helper scripts `make_latency_table.py`, `plain_appendix.py`. |
-| `d2/slides/` | D2 slides: `main.tex` (XeLaTeX, 17 pages: 12 main slides + 5 backup slides), `assets/` (screenshots), `SPEAKER_NOTES.md`, `SOURCES_INTERNAL.md`. |
-| `d2/demo/` | Live-demo material: `DEMO_SCRIPT.md`, `D2_SLIDES_OUTLINE.md`, `demo_scenarios*.json`, `record_demo.py`, and `gifs/` (recordings and the backup videos `demo_backup*.mp4`). |
+| `d2/report/` | D2 report: modular LaTeX source (`main_d2.tex`, `sections/`, `tables/`, `figures/`), standalone appendix (`appendix_tables.tex`, `appendix_tables.pdf`), `refs.bib`, `images/`, generated result tables (`tables_*`, `appendix_plain/`, `benchmark_latency_mac.tex`), `RESULTS_PROVENANCE.md` (table to run to commit), and helper scripts `make_latency_table.py`, `plain_appendix.py`. |
+| `d2/slides/` | D2 slides: `main.tex` (XeLaTeX, 16 pages: 12 main slides + 4 backup slides), `assets/` (screenshots), `SPEAKER_NOTES.md`. |
+| `d2/demo/` | Live-demo material: `DEMO_SCRIPT.md`, `demo_scenarios*.json`, `record_demo.py`, and `gifs/` (recordings and the backup videos `demo_backup*.mp4`). |
 | `d3/report/` | Retired D3 draft, marked historical and not current evidence (see its README). |
 
 ## Build (from the repository root)

@@ -84,10 +84,10 @@ test:
 eval: eval_d3
 
 eval_d3:
-	@echo "No automatic experiments. See deliverables/d2/report/D2_EXPERIMENT_PLAN.md for explicit native collection commands."
+	@echo "No automatic experiments. See docs/guides/RUNBOOK_D2.md for explicit native collection commands."
 
 redteam:
-	@echo "Legacy red-team scorer is disabled. Threat-model review is in deliverables/d2/report/D2_EXPERIMENT_PLAN.md."
+	@echo "Legacy red-team scorer is disabled. Threat-model review is in deliverables/d2/report/main_d2.pdf (Section 6)."
 
 demo:
 	streamlit run src/ui/app.py --server.port $(PORT) --server.headless $(HEADLESS) --browser.gatherUsageStats false
