@@ -122,7 +122,7 @@
     Qwen3 controllers, 32B & \textcolor{dangerred}{Dropped} & Ternary Bonsai 2B and 4B: the same weights fit a 16\,GiB Mac and a GPU\\
     BM25 + Qdrant dense retrieval & \textcolor{dangerred}{Dropped} & BM25 + TF-IDF; vector index built, \emph{not evaluated}\\
     $\ge$10 tasks, 3 configurations & \textcolor{successgreen}{Done} & Two fixed 50-question benchmarks (HCMUT regulations, Labour law); 3 runs per configuration\\
-    Reranker (optional) & \textcolor{successgreen}{Done} & Vietnamese cross-encoder, evaluated as ``verifier + reranker''; runtime parity measured\\
+    Reranker (optional) & \textcolor{successgreen}{Done} & Vietnamese cross-encoder, evaluated as ``verifier + reranker''\\
     Verifier audit (30 pairs) & \textcolor{successgreen}{Done} & 60-item blind judge audit: 96.7\% agreement ($\kappa=0.93$, HCMUT), 90.0\% ($\kappa=0.80$, labour)\\
     HR walkthrough; attack tests & \textcolor{warnorange}{Not started} & Walkthrough scheduled for W45 (Quyền, Phong); attack tests planned for W47\\
     \bottomrule
@@ -412,11 +412,10 @@
     \vspace{4pt}
 
     \footnotesize
-    \textbf{Hardware \& parity notes:}
+    \textbf{Measurement environment:}
     \begin{itemize}\footnotesize
-      \item Accuracy tables come from H100 GPU runs; interactive latency comes from the Mac (not pooled).
-      \item Shared GPU server wall-times are not reported as latency.
-      \item \textbf{Reranker parity:} Mac GGUF f16 and H100 fp16 match the CPU fp32 reference at Spearman \textbf{0.9994} and \textbf{0.9943} (99/100 and 100/100 top-1 agreement; see Backup E).
+      \item Accuracy tables come from batch runs on an H100 GPU; interactive latency is measured one query at a time on the Apple M4 Mac.
+      \item All inference (controller + reranker) runs 100\% locally with zero per-query API cost.
     \end{itemize}
   \end{columns}
 \end{frame}
@@ -588,24 +587,6 @@
   \vspace{5pt}
 
   {\scriptsize Left and centre: 4B controller, showing pre-model regex guardrail refusal and bounded 1-step citation repair. Right: when a required local service (controller or reranker) is unreachable, the UI surfaces an explicit execution error state rather than a fabricated answer or silent fallback.}
-\end{frame}
-
-\begin{frame}{Backup E: reranker runtime parity across Mac and GPU}
-  \footnotesize
-  \textbf{Parity probe against a PyTorch fp32 CPU reference:} 100 benchmark questions (50 HCMUT, 50 labour law), 20 retrieved candidates per question. Measures rank agreement across quantization/hardware runtimes, not answer correctness.
-  \vspace{6pt}
-
-  \centering
-  \begin{tabular}{@{}lcccc@{}}
-    \toprule Runtime & \cell{Mean Spearman} & \cell{Min Spearman} & \cell{Top-1 match} & \cell{Max score $\Delta$}\\\midrule
-    Mac: \texttt{llama.cpp} GGUF f16 & 0.9994 & 0.9955 & 99 / 100 & 0.094\\
-    GPU: H100 PyTorch fp16 & 0.9943 & 0.9601 & 100 / 100 & 0.034\\
-    \bottomrule
-  \end{tabular}
-  \vspace{8pt}
-
-  \raggedright
-  Accuracy numbers in the report come from H100 GPU runs; interactive latency comes from the Apple M4 Mac. Because both runtimes rank the top-20 candidates almost identically to the fp32 reference, accuracy and latency characterise the same retrieval ranking behaviour (reported separately, never pooled).
 \end{frame}
 
 \end{document}
