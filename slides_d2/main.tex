@@ -373,7 +373,7 @@
     \vspace{5pt}
 
     \begin{alertblock}{Mac latency, current system}
-      \footnotesize p50 / p95 seconds per question, tokens/s: \pend{Mac measurements in progress}
+      \footnotesize Apple M4, one question at a time, median / 95th percentile per question:\\ 4B controller: 33\,s / 86\,s (HCMUT), 30\,s / 72\,s (labour), $\approx$43 tokens/s\\ 2B controller: 13\,s / 30\,s, 15\,s / 28\,s, $\approx$92 tokens/s
     \end{alertblock}
 
     \column{0.47\textwidth}
@@ -445,7 +445,7 @@
     \textbf{Fallback:} keep the loop, benchmarks, configurations and pipeline; cut the vector index, semantic check and extra domains.
     \vspace{3pt}
 
-    \textbf{Done:} loop, citation verifier, reranker, 2 collections, reproducible runs. \textbf{Measured:} strict success (judge estimate), cost. \textbf{Planned:} human audit, Mac latency, attack tests.
+    \textbf{Done:} loop, citation verifier, reranker, 2 collections, reproducible runs. \textbf{Measured:} strict success (judge estimate), cost. \textbf{Measured on the Mac:} latency. \textbf{Planned:} human audit, attack tests.
     \vspace{3pt}
 
     Self-assessment: \pend{on track / at risk / narrow scope, after audit and latency results}
@@ -542,7 +542,7 @@
     \item \textbf{Guardrails:} regex patterns in Vietnamese and English; no red-team numbers yet.
     \item \textbf{Retrieval:} BM25 + TF-IDF with rank fusion; dense embedding retrieval is implemented but not evaluated.
     \item \textbf{Scope:} two document collections; labour-law results are not evidence for other domains. Not tried by real users.
-    \item \textbf{Latency:} Mac numbers for the current system: \pend{Mac measurements in progress}; GPU wall times are not reported.
+    \item \textbf{Latency:} on the Mac the full system takes a median of about 30\,s per question with the 4B controller and about 14\,s with the 2B controller; GPU wall times are not reported.
   \end{itemize}
 \end{frame}
 

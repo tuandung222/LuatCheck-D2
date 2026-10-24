@@ -139,7 +139,7 @@
 {\Huge\bfseries D2 Interim Report}\\[12pt]
 {\Large LuatCheck: A Local, Source-Grounded Assistant\\ over Vietnamese Regulations}\\[12pt]
 Application Track -- Group 8\\[15pt]
-\pending{Draft of 24 October 2026. Human audit of the judge, member contribution evidence, the commit hash and the Mac latency of the current system are still pending.}\\[15pt]
+\pending{Draft of 24 October 2026. Human audit of the judge, member contribution evidence and the commit hash are still pending.}\\[15pt]
 \begin{tabular}{ll}
 Instructor & TS. Lê Xuân Bách\\
 Members & Lê Trí Quyền (2470740)\\
@@ -372,7 +372,7 @@ Oracle (gold records given up front) & -- & 82.2 [71--93] & -- & 75.6 [62--87]\\
 
 Other limits: success is an unaudited LLM estimate; the benchmarks are AI-written, easy for retrieval, and partly answerable without documents; three seeds add no questions, so intervals are over 50 questions.
 
-\hdr{Cost and latency.} The controller and reranker run locally, so there is no per-call API cost. For the full system the controller reads on average 12,070 (HCMUT regulations) and 11,477 (labour law) tokens and writes 763 and 865 tokens per trial, over 3.4 and 3.7 model calls. The judge cost, as reported by the gateway and not an invoice, was USD 1.06 and USD 1.10 for the two 545-trial runs. Collecting a run took 34 and 33 minutes of wall time on the shared H100 (GPU-active hours were not measured). Latency on the laptop for the current system with the 4B and the 2B controller: \pending{Mac M4 trial latency (p50 and p95) and peak memory; runs in progress}.
+\hdr{Cost and latency.} The controller and reranker run locally, so there is no per-call API cost. For the full system the controller reads on average 12,070 (HCMUT regulations) and 11,477 (labour law) tokens and writes 763 and 865 tokens per trial, over 3.4 and 3.7 model calls. The judge cost, as reported by the gateway and not an invoice, was USD 1.06 and USD 1.10 for the two 545-trial runs. Collecting a run took 34 and 33 minutes of wall time on the shared H100 (GPU-active hours were not measured). On the laptop (Apple M4, one question at a time, 50 questions per benchmark), the full system answers in a median of 33.0\,s (HCMUT regulations) and 29.8\,s (labour law) per question with the 4B controller (95th percentile 86\,s and 72\,s), and in 13.3\,s and 14.6\,s with the 2B controller (95th percentile 30\,s and 28\,s); the 4B model generates about 43 tokens/s, the 2B about 92.
 
 \hdr{Reproducibility.} Repository: \url{https://github.com/tuandung222/LuatCheck-D2}; reported commit \pending{final commit hash}. All numbers can be regenerated from recorded runs; step-by-step instructions are in the repository.
 
