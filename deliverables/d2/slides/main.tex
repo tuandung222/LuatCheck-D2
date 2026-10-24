@@ -158,7 +158,7 @@
   \node[box,text width=2.0cm] (t) at (9.65,4.95) {\textbf{Tools}\\search, read\\read-only};
   \node[box,text width=2.15cm] (r) at (12.65,4.95) {\textbf{Retrieval}\\BM25 + TF-IDF\\RRF, top-20};
   % row 2
-  \node[var,text width=2.5cm] (v) at (7.0,2.85) {\textbf{Citation verifier}\\ids, quotes, numbers};
+  \node[var,text width=2.5cm] (v) at (7.0,2.85) {\textbf{Citation verifier}\\rule-based Python\\IDs, quotes, numbers};
   \node[var,text width=2.15cm] (rr) at (12.65,2.85) {\textbf{Reranker}\\cross-encoder\\top-20 $\to$ top-5};
   % outputs
   \node[term,text width=2.0cm] (ref) at (2.85,0.8) {\textbf{Refused} or \textbf{clarified}};
@@ -185,7 +185,7 @@
 
   \vspace{1pt}
   {\scriptsize \textcolor{primaryblue}{\rule{5pt}{5pt}} used in every configuration \quad \textcolor{orange}{\rule{5pt}{5pt}} optional, switched on or off in the evaluation \quad dashed: implemented, not used yet}\\[2pt]
-  \footnotesize One agent, not several: permissions and budgets stay inspectable. A backend failure is an \textbf{error}, never an answer or a refusal.
+  \footnotesize One LLM agent + deterministic rule-based citation verifier (no multi-agent critic): permissions and budgets stay inspectable.
 \end{frame}
 
 %====================================================================
@@ -369,9 +369,9 @@
 
   \raggedright
   \begin{itemize}
-    \item \textbf{Verifier vs no verifier, strict success:} $-6.0$\pp [$-16.0$, $+4.0$] HCMUT, $-9.3$\pp [$-18.7$, $0.0$] labour: \textbf{no gain measured}. Faithfulness unchanged; citation F1 lower by 11.6\pp and 11.2\pp (intervals exclude 0).
-    \item \textbf{Why:} after repeated rejections the model refuses. Answerable questions refused after the repair budget ran out: 10 (verifier) and 13 (full system) of 150 HCMUT trials; 14 and 18 on labour.
-    \item \textbf{Reranker:} Recall@5 is already 0.98--0.99 without it, so no effect is detectable here. The verifier is a word-overlap check and can pass a wrong answer.
+    \item \textbf{What the L1 verifier is (rule-based Python heuristic, $<2$\,ms, not a model or agent):} Enforces 3 hard gates—(1) cited ID was retrieved in-session, (2) verbatim/elided quote match with digit guards, (3) claim-local number+unit match inside a 300-char window—plus a $50\%$ word-overlap warning.
+    \item \textbf{Verifier vs no verifier, strict success:} $-6.0$\pp [$-16.0$, $+4.0$] HCMUT, $-9.3$\pp [$-18.7$, $0.0$] labour (no gain measured). Answerable questions refused after 2 failed quote/number repairs: \textbf{10--13/150} (HCMUT) and \textbf{14--18/150} (labour).
+    \item \textbf{Reranker \& lexical limits:} Recall@5 is already 0.98--0.99 without reranking; because L1 is a lexical/numeric heuristic, it guarantees checkable quotes and local numbers but cannot catch semantic negation.
   \end{itemize}
 \end{frame}
 

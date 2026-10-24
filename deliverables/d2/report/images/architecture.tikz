@@ -28,7 +28,7 @@
 \node[box,text width=2.0cm] (t) at (10.0,6.5) {\textbf{Tool registry}\\search, read\\read-only};
 \node[box,text width=3.2cm] (r) at (15.1,8.1) {\textbf{First-stage retrieval}\\BM25 + TF-IDF, RRF\\top-20 candidates};
 \node[var,text width=3.2cm] (rr) at (15.1,5.5) {\textbf{Reranker} (switch)\\cross-encoder\\top-20 $\to$ top-5};
-\node[var,text width=3.0cm] (v) at (5.4,4.1) {\textbf{Citation verifier + repair} (switch)\\ids, quotes,\\term overlap, numbers};
+\node[var,text width=3.0cm] (v) at (5.4,4.1) {\textbf{Citation verifier + repair} (rule-based)\\retrieved IDs, verbatim quotes, local numbers};
 \node[off,text width=3.2cm] (l2) at (15.1,4.1) {Semantic (NLI) check, dense retrieval\\implemented, not used yet};
 
 % terminal states and side components (bottom row)

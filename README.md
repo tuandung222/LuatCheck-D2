@@ -15,14 +15,15 @@
 | Deliverable / Artifact | Link | Description |
 |---|---|---|
 | **D2 Interim Report (PDF)** | [`deliverables/d2/report/main_d2.pdf`](deliverables/d2/report/main_d2.pdf) | 10-page main report + References + generated result appendix (`main_d2.tex`, modular `sections/`, `tables/`, `figures/`) |
-| **D2 Presentation Slides (PDF)** | [`deliverables/d2/slides/main.pdf`](deliverables/d2/slides/main.pdf) | 12-slide presentation deck + 5 backup slides (`SPEAKER_NOTES.md`) |
+| **D2 Presentation Slides (PDF)** | [`deliverables/d2/slides/main.pdf`](deliverables/d2/slides/main.pdf) | 12-slide presentation deck + 4 backup slides (`SPEAKER_NOTES.md`) |
+| **L1 Citation Verifier Specification** | [`docs/reference/CITATION_VERIFIER_L1.md`](docs/reference/CITATION_VERIFIER_L1.md) | Rule-based Python heuristic specification (3 hard gates + 1 soft check + 2-turn repair; not a model or agent) |
 | **Live Demo Script & Backup Video** | [`deliverables/d2/demo/DEMO_SCRIPT.md`](deliverables/d2/demo/DEMO_SCRIPT.md) | Live demo walkthrough + unedited 4B backup video [`demo_backup_4b.mp4`](deliverables/d2/demo/gifs/demo_backup_4b.mp4) |
 | **Results Provenance & Run Registry** | [`deliverables/d2/report/RESULTS_PROVENANCE.md`](deliverables/d2/report/RESULTS_PROVENANCE.md) | Maps every report table to its recorded run, commit hash, and SHA-256 fingerprint ([`REGISTRY.md`](evaluation/runs/REGISTRY.md)) |
 | **60-Item Blind Human Audit of Judge** | [HCMUT Audit](evaluation/runs/d2-gpu-r2-4b-hcmut-v1/analysis/human-audit/AUDIT_NOTES.md) · [Labour Audit](evaluation/runs/d2-gpu-r2-4b-labour-v1/analysis/human-audit/AUDIT_NOTES.md) | Item-by-item verification (`labels.csv`, `agreement.md`, `AUDIT_NOTES.md`) |
 
 ---
 
-## Demo Recordings (Current System, 4B Controller)
+## Demo Recordings (Bonsai 4B Controller)
 
 | Labour law: verified answer with citation | Citation verifier rejects draft $\rightarrow$ repaired & verified |
 |---|---|
@@ -47,7 +48,12 @@ Additional recordings (including the faster 2B controller configuration, clarifi
 - **Source-grounded answers over two corpora:**
   1. **HCMUT academic regulations** (10 official decisions/regulations, 143 sections; for students and academic advisers).
   2. **Vietnamese labour law** (10 legal documents: 2019 Labour Code + 2 laws, 6 decrees, 1 circular of 2020–2025, 458 articles; for employees and HR staff).
-- **Code-enforced citation verification:** Every `answer` goes through a deterministic citation verifier in code (`src/verifier/`) that checks record IDs, retrieval provenance, verbatim/elided quotes, term overlap, and numeric quantities within the claim's sentence. If a check fails, a structured tool report is returned to the controller for at most **2 repairs**; if repairs are exhausted, the run ends as a refusal.
+- **Rule-based L1 citation verifier (`src/verifier/lexical_grounding_v2.py` — deterministic Python heuristic, NOT an LLM, neural model, or second agent):** Every proposed `answer` runs through a $<2\text{ ms}$ rule-based gate with **3 hard checks** and **1 soft diagnostic check** (full specification in [`docs/reference/CITATION_VERIFIER_L1.md`](docs/reference/CITATION_VERIFIER_L1.md)):
+  1. *Session retrieval provenance (hard gate):* every cited `article_id` must exist in the corpus and have been returned by `search` or `read_document` in the current run.
+  2. *Normalised verbatim / elided quote match (hard gate):* after Unicode NFC, case, and whitespace/line-wrap folding, every non-trivial segment ($\ge 12$ chars or $\ge 3$ words) of a quote (supporting `...` elisions) must appear verbatim and in order inside the cited section, with digit-boundary guards (`5` cannot match inside `15` or `3,5`).
+  3. *Claim-local numeric & unit verification (hard gate):* every number + unit in an answer sentence must occur inside the $\le 300$-character source window that best matches the surrounding $\pm 8$ context words of that claim.
+  4. *Content-token overlap (soft warning, threshold $\ge 0.50$):* logs a diagnostic warning if fewer than $50\%$ of a sentence's non-stopword tokens appear in the best source window.
+  If any hard gate fails, a structured tool report with the closest 170-character source passage is returned to the controller for at most **2 repairs**; if repairs are exhausted, the run terminates as a refusal.
 - **Strict read-only tool boundary:** The controller's action schema only exposes `search`, `read_document`, `answer`, `clarify`, and `refuse`. Input regex guardrails (`src/security/`) run before any model call, user text is wrapped in untrusted tags, and the outbound summary queue requires explicit host-UI approval bound to the payload SHA-256 hash.
 - **Runs 100% locally on a 16 GiB Mac:** Uses ternary-quantised **Bonsai 4B** (default) or **Bonsai 2B** (faster option) on `llama.cpp` (Apple Metal) together with a local Vietnamese cross-encoder reranker (`AITeamVN/Vietnamese_Reranker`, GGUF f16). A backend or budget failure terminates as an explicit `error` state—never a fabricated answer or silent fallback.
 
