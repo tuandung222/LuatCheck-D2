@@ -5,4 +5,4 @@ main.pdf: main.tex $(wildcard assets/*.png)
 	xelatex -interaction=nonstopmode -halt-on-error main.tex
 	xelatex -interaction=nonstopmode -halt-on-error main.tex
 
-.PHONY: all
+.PHONY: all main.pdf
