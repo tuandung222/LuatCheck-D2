@@ -3,7 +3,7 @@
 **A local, source-grounded assistant over Vietnamese regulations that answers only from a loaded document collection, cites the sections it used, verifies every citation against the source text in code, and refuses or asks for clarification when the sources do not answer.**
 
 <p align="center">
-  <img src="docs/images/demo/11_hcmut_answer_4b.gif" alt="LuatCheck (4B controller) answering an HCMUT regulation question with a verified citation" width="820" fetchpriority="high" decoding="async">
+  <img src="docs/images/demo/11_hcmut_answer_4b.gif" alt="LuatCheck (4B controller) answering an HCMUT regulation question with a verified citation" width="820" height="512" fetchpriority="high" decoding="async">
 </p>
 
 <details>
@@ -12,11 +12,11 @@
 
 | Labour law: verified answer with citation | Citation verifier rejects draft $\rightarrow$ repaired & verified |
 |---|---|
-| <img src="docs/images/demo/12_labour_answer_4b.gif" alt="Labour-law question answered with a verified citation" width="410" loading="lazy" decoding="async"> | <img src="docs/images/demo/13_verifier_repair_4b.gif" alt="Citation verifier rejects first draft quote, controller repairs and passes" width="410" loading="lazy" decoding="async"> |
+| <img src="docs/images/demo/12_labour_answer_4b.gif" alt="Labour-law question answered with a verified citation" width="410" height="256" loading="lazy" decoding="async"> | <img src="docs/images/demo/13_verifier_repair_4b.gif" alt="Citation verifier rejects first draft quote, controller repairs and passes" width="410" height="256" loading="lazy" decoding="async"> |
 
 | Out-of-scope question refused | Prompt-injection attempt blocked before model call (3 ms) |
 |---|---|
-| <img src="docs/images/demo/14_hcmut_refuse_4b.gif" alt="Out-of-scope question refused" width="410" loading="lazy" decoding="async"> | <img src="docs/images/demo/15_guardrail_4b.gif" alt="Prompt-injection attempt blocked by regex guardrail" width="410" loading="lazy" decoding="async"> |
+| <img src="docs/images/demo/14_hcmut_refuse_4b.gif" alt="Out-of-scope question refused" width="410" height="256" loading="lazy" decoding="async"> | <img src="docs/images/demo/15_guardrail_4b.gif" alt="Prompt-injection attempt blocked by regex guardrail" width="410" height="256" loading="lazy" decoding="async"> |
 
 </details>
 
