@@ -224,14 +224,18 @@ class IndexedRetriever(BaseRetriever):
         if local:
             gb, source = estimate_weights_gb(provider.model, getattr(provider, "dtype", "float32"),
                                              self.manager.default_estimate_gb)
-            self.handle = self.manager.register(("embedding", provider.kind, provider.model, str(index_dir)), "embedding",
-                                                provider, provider.load, provider.close, gb)
+            self.handle = self.manager.register(
+                ("embedding", provider.kind, provider.model, getattr(provider, "truncate_dim", None)),
+                "embedding", provider, provider.load, provider.close, gb,
+            )
             self.handle.estimate_source = source
+            self._loaded.provider = self.handle.component
+            self.searcher.provider = self.handle.component
         else:
             self.handle = None   # HTTP embedding provider: nothing resident in this process
 
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
-        if self.handle is None:
+        if self.handle is None or self.index_cfg.search_mode == "keyword":
             return self.searcher.search(query, top_k=top_k, mode=self.index_cfg.search_mode)
         with self.handle.use():
             return self.searcher.search(query, top_k=top_k, mode=self.index_cfg.search_mode)

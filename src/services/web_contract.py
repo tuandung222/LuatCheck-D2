@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 VerificationMode = Literal["off", "lexical_grounding", "semantic_entailment"]
+RetrievalMode = Literal["hybrid_wrrf", "bm25_tfidf", "fts5_keyword", "vector_768d", "hybrid_rrf_equal"]
 TerminalStatus = Literal["answered", "clarified", "refused", "error"]
 JobStatus = Literal["queued", "running", "finished"]
 
@@ -88,6 +89,7 @@ class RunSnapshot(ContractModel):
     profile: Optional[ProfileRef] = None
     final_output: FinalOutputSnapshot = Field(default_factory=FinalOutputSnapshot)
     verification_mode: Optional[VerificationMode] = None
+    retrieval_mode: Optional[RetrievalMode] = None
     budgets: Optional[RunBudgets] = None
     retrieved_article_ids: List[str] = Field(default_factory=list)
     grounding: Optional[GroundingSnapshot] = None
@@ -99,6 +101,7 @@ class RunSummaryResponse(ContractModel):
     run_id: str
     query: str
     verification_mode: VerificationMode
+    retrieval_mode: Optional[RetrievalMode] = None
     job_status: JobStatus
     terminal_status: Optional[TerminalStatus] = None
     profile_id: Optional[str] = None
@@ -142,6 +145,12 @@ class ConfirmResponse(ContractModel):
 
 def _valid_mode(value: Any) -> Optional[VerificationMode]:
     if value in {"off", "lexical_grounding", "semantic_entailment"}:
+        return value
+    return None
+
+
+def _valid_retrieval_mode(value: Any) -> Optional[RetrievalMode]:
+    if value in {"hybrid_wrrf", "bm25_tfidf", "fts5_keyword", "vector_768d", "hybrid_rrf_equal"}:
         return value
     return None
 
@@ -249,6 +258,7 @@ def normalize_snapshot(
         "terminal_status": status,
         "final_output": final_output,
         "verification_mode": _valid_mode(raw.get("verification_mode")) or _valid_mode(persisted_mode),
+        "retrieval_mode": _valid_retrieval_mode(raw.get("retrieval_mode")),
         "refusal_kind": raw.get("refusal_kind") if raw.get("refusal_kind") in {"guardrail", "verification_failed", "model"} else None,
         "profile": profile_ref,
         "budgets": budgets,
@@ -265,6 +275,7 @@ def make_error_snapshot(
     error_kind: str,
     reason: str,
     elapsed_ms: Optional[float],
+    retrieval_mode: Any = None,
 ) -> Dict[str, Any]:
     return RunSnapshot.model_validate({
         "terminal_status": "error",
@@ -276,6 +287,7 @@ def make_error_snapshot(
             "verified": False,
         },
         "verification_mode": _valid_mode(verification_mode),
+        "retrieval_mode": _valid_retrieval_mode(retrieval_mode),
         "budgets": None,
         "retrieved_article_ids": [],
         "grounding": None,

@@ -1,6 +1,6 @@
 import { Cpu, Database, Layers, ShieldCheck } from "lucide-react";
 import { formatCount, providerLabel, shortModelName } from "./format";
-import type { Capabilities, Health, ProfileInfo } from "./types";
+import type { Capabilities, Health, ProfileInfo, RetrievalMode } from "./types";
 
 function Dot({ state }: { state: boolean | null | undefined }) {
   const cls = state === true ? "ok" : state === false ? "bad" : "unknown";
@@ -15,6 +15,26 @@ function verifierLabel(mode?: string) {
   return mode;
 }
 
+export function retrievalStageLabel(mode?: RetrievalMode | null, profile?: ProfileInfo | null) {
+  const effective = mode ?? profile?.retrieval?.active_mode;
+  switch (effective) {
+    case "hybrid_wrrf":
+      return "Weighted RRF 768-d (0.75/0.25)";
+    case "bm25_tfidf":
+      return "BM25 + TF-IDF";
+    case "fts5_keyword":
+      return "SQLite FTS5 (BM25)";
+    case "vector_768d":
+      return "Vector 768-d (Gemma-2)";
+    case "hybrid_rrf_equal":
+      return "Standard RRF 768-d (50/50)";
+    default: {
+      const ret = profile?.retrieval;
+      return ret?.mode === "hybrid_index" ? `Hybrid Index (${ret.index?.search_mode || "hybrid"})` : "BM25+TF-IDF";
+    }
+  }
+}
+
 export function ProfileSwitch({ profiles, value, onChange, disabled }: {
   profiles: ProfileInfo[]; value: string | null; onChange: (id: string) => void; disabled: boolean;
 }) {
@@ -24,11 +44,16 @@ export function ProfileSwitch({ profiles, value, onChange, disabled }: {
   </div>;
 }
 
-export function SystemStrip({ capabilities, health, profile }: { capabilities: Capabilities | null; health: Health | null; profile: ProfileInfo | null }) {
+export function SystemStrip({ capabilities, health, profile, retrievalMode }: {
+  capabilities: Capabilities | null;
+  health: Health | null;
+  profile: ProfileInfo | null;
+  retrievalMode?: RetrievalMode | null;
+}) {
   const model = capabilities?.model;
   const rr = profile?.retrieval?.reranker;
   const ret = profile?.retrieval;
-  const stage1 = ret?.mode === "hybrid_index" ? `Hybrid Index (${ret.index?.search_mode || "hybrid"})` : "BM25+TF-IDF";
+  const stage1 = retrievalStageLabel(retrievalMode, profile);
   const mode = profile?.verifier_mode;
   return <div className="system-strip" aria-label="Hệ thống đang chạy">
     <div className="fact" title={profile?.display_name}><Database size={16} /><span><small>Bộ văn bản</small><b>{profile ? `${formatCount(profile.corpus?.documents)} văn bản · ${formatCount(profile.corpus?.records)} mục` : "—"}</b></span></div>

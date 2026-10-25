@@ -1,4 +1,4 @@
-import type { ActivityEvent, Article, Capabilities, Health, Proposal, RunRecord, VerificationMode } from "./types";
+import type { ActivityEvent, Article, Capabilities, Health, Proposal, RetrievalMode, RunRecord, VerificationMode } from "./types";
 
 let csrfToken = "";
 
@@ -40,11 +40,24 @@ export const getRun = (runId: string) => request<RunRecord>(`/api/v1/runs/${enco
 export const getArticle = (runId: string, articleId: string) =>
   request<Article>(`/api/v1/runs/${encodeURIComponent(runId)}/articles/${encodeURIComponent(articleId)}`);
 
-export async function createRun(query: string, pastedDocument: string, verificationMode: VerificationMode, idempotencyKey: string, profile?: string) {
+export async function createRun(
+  query: string,
+  pastedDocument: string,
+  verificationMode: VerificationMode,
+  idempotencyKey: string,
+  profile?: string,
+  retrievalMode?: RetrievalMode,
+) {
   return request<{ run_id: string; job_status: string; replayed: boolean }>("/api/v1/runs", {
     method: "POST",
     headers: { "Idempotency-Key": idempotencyKey },
-    body: JSON.stringify({ query, pasted_document: pastedDocument || null, verification_mode: verificationMode, profile: profile ?? null }),
+    body: JSON.stringify({
+      query,
+      pasted_document: pastedDocument || null,
+      verification_mode: verificationMode,
+      retrieval_mode: retrievalMode ?? null,
+      profile: profile ?? null,
+    }),
   });
 }
 

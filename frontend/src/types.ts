@@ -1,4 +1,5 @@
 export type VerificationMode = "off" | "lexical_grounding" | "semantic_entailment";
+export type RetrievalMode = "hybrid_wrrf" | "bm25_tfidf" | "fts5_keyword" | "vector_768d" | "hybrid_rrf_equal";
 export type JobStatus = "queued" | "running" | "finished";
 export type TerminalStatus = "answered" | "clarified" | "refused" | "error";
 
@@ -30,6 +31,7 @@ export interface RunSnapshot {
   refusal_kind?: "guardrail" | "verification_failed" | "model" | null;
   profile?: { id: string; display_name?: string | null } | null;
   verification_mode?: VerificationMode | null;
+  retrieval_mode?: RetrievalMode | null;
   budgets: {
     tool_calls: { used: number; limit: number };
     repairs: { used: number; limit: number };
@@ -56,6 +58,7 @@ export interface RunRecord {
   run_id: string;
   query: string;
   verification_mode: VerificationMode;
+  retrieval_mode?: RetrievalMode | null;
   job_status: JobStatus;
   terminal_status: TerminalStatus | null;
   profile_id?: string | null;
@@ -83,8 +86,10 @@ export interface ProfileInfo {
   corpus?: { records: number | null; documents: number | null };
   retrieval?: {
     mode: string;
+    active_mode?: RetrievalMode;
+    available_modes?: RetrievalMode[];
     first_stage: string;
-    index?: { path: string | null; store: string | null; search_mode: string } | null;
+    index?: { path: string | null; store: string | null; search_mode: string; keyword_weight?: number; vector_weight?: number } | null;
     reranker: { enabled: boolean; backend: string | null; model: string | null; top_k_in: number | null; top_k_out: number | null };
   };
   verifier_mode?: string;
@@ -97,6 +102,8 @@ export interface Capabilities {
   profiles?: ProfileInfo[];
   default_profile?: string | null;
   default_verification_mode?: VerificationMode;
+  default_retrieval_mode?: RetrievalMode;
+  retrieval_modes?: RetrievalMode[];
   corpus?: { available: boolean; name: string; scope: string; retrieval: string };
   verification_modes: VerificationMode[];
   semantic_unavailable_reason: string | null;

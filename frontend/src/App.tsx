@@ -10,11 +10,11 @@ import {
 import { SectionErrorBoundary } from "./ErrorBoundary";
 import { formatClock, formatDuration } from "./format";
 import { LexicalPanel, Measurements, OutcomeCard, SourceItem, WorkingCard, type ArticleState } from "./Results";
-import { ProfileSwitch, SystemStrip } from "./SystemBar";
+import { ProfileSwitch, SystemStrip, retrievalStageLabel } from "./SystemBar";
 import { Timeline } from "./Timeline";
 import { buildTrace } from "./trace";
 import type {
-  ActivityEvent, Capabilities, Health, ProfileInfo, Proposal, RunRecord, TerminalStatus, VerificationMode,
+  ActivityEvent, Capabilities, Health, ProfileInfo, Proposal, RetrievalMode, RunRecord, TerminalStatus, VerificationMode,
 } from "./types";
 
 function statusText(run: RunRecord) {
@@ -74,6 +74,7 @@ export default function App() {
   const [pastedDocument, setPastedDocument] = useState("");
   const [showDocument, setShowDocument] = useState(false);
   const [verificationMode, setVerificationMode] = useState<VerificationMode>("lexical_grounding");
+  const [retrievalMode, setRetrievalMode] = useState<RetrievalMode>("hybrid_wrrf");
   const [profileId, setProfileId] = useState<string | null>(null);
   const [initializing, setInitializing] = useState(true);
   const [connection, setConnection] = useState<"idle" | "connected" | "disconnected">("idle");
@@ -144,6 +145,7 @@ export default function App() {
       setRuns(history.items);
       setProfileId((existing) => existing ?? caps.default_profile ?? caps.profiles?.[0]?.id ?? null);
       if (caps.default_verification_mode) setVerificationMode(caps.default_verification_mode);
+      if (caps.default_retrieval_mode) setRetrievalMode(caps.default_retrieval_mode);
       if (!caps.available && caps.reason) setApiError(caps.reason);
     } catch (error) {
       setApiError(error instanceof Error ? error.message : "Không kết nối được với API local.");
@@ -224,13 +226,13 @@ export default function App() {
     setSubmitting(true);
     setApiError("");
     try {
-      const fingerprint = JSON.stringify([query.trim(), pastedDocument, verificationMode, profileId]);
+      const fingerprint = JSON.stringify([query.trim(), pastedDocument, verificationMode, retrievalMode, profileId]);
       if (!runRequestRef.current || runRequestRef.current.fingerprint !== fingerprint) {
         runRequestRef.current = { fingerprint, key: crypto.randomUUID() };
       }
-      const result = await createRun(query.trim(), pastedDocument, verificationMode, runRequestRef.current.key, profileId ?? undefined);
+      const result = await createRun(query.trim(), pastedDocument, verificationMode, runRequestRef.current.key, profileId ?? undefined, retrievalMode);
       const created = await getRun(result.run_id).catch((): RunRecord => ({
-        run_id: result.run_id, query: query.trim(), verification_mode: verificationMode, job_status: "queued", terminal_status: null,
+        run_id: result.run_id, query: query.trim(), verification_mode: verificationMode, retrieval_mode: retrievalMode, job_status: "queued", terminal_status: null,
         profile_id: profileId, created_at: Date.now() / 1000, updated_at: Date.now() / 1000, snapshot: null,
       }));
       setRuns((previous) => [created, ...previous.filter((run) => run.run_id !== result.run_id)]);
@@ -259,6 +261,8 @@ export default function App() {
     setQuery(run.query);
     setPastedDocument(run.pasted_document ?? "");
     setVerificationMode(run.snapshot?.verification_mode ?? run.verification_mode);
+    const savedRetrieval = run.snapshot?.retrieval_mode ?? run.retrieval_mode;
+    if (savedRetrieval) setRetrievalMode(savedRetrieval);
     if (run.profile_id) setProfileId(run.profile_id);
     setActiveRunId(null);
     resetSources();
@@ -407,7 +411,12 @@ export default function App() {
             <button className="icon-button quiet" aria-label="Cài đặt" onClick={() => setShowSettings(true)}><Settings2 size={18} /></button>
           </div>
         </header>
-        <SystemStrip capabilities={capabilities} health={health} profile={shownProfile} />
+        <SystemStrip
+          capabilities={capabilities}
+          health={health}
+          profile={shownProfile}
+          retrievalMode={activeRun ? (activeRun.retrieval_mode ?? activeRun.snapshot?.retrieval_mode ?? retrievalMode) : retrievalMode}
+        />
 
         <main className="main-area">
           {!activeRun ? (
@@ -427,6 +436,13 @@ export default function App() {
                 />
                 <div className="composer-options">
                   <button type="button" className={`attach-button ${showDocument ? "active" : ""}`} disabled={submitting} onClick={() => setShowDocument((value) => !value)}><FileText size={15} /> {showDocument ? "Ẩn văn bản đính kèm" : "Đính kèm văn bản"}<ChevronDown size={14} /></button>
+                  <label className="mode-select-label">TRUY XUẤT<select value={retrievalMode} disabled={submitting} onChange={(event) => setRetrievalMode(event.target.value as RetrievalMode)} aria-label="Chế độ truy xuất">
+                    <option value="hybrid_wrrf">Weighted RRF 768-d (0.75 FTS5 + 0.25 Vec)</option>
+                    <option value="bm25_tfidf">BM25 + TF-IDF (RRF)</option>
+                    <option value="fts5_keyword">SQLite FTS5 (BM25 Keyword)</option>
+                    <option value="vector_768d">Vector 768-d (EmbeddingGemma-2)</option>
+                    <option value="hybrid_rrf_equal">Standard RRF 768-d (50/50)</option>
+                  </select></label>
                   <label className="mode-select-label">KIỂM TRA<select value={verificationMode} disabled={submitting} onChange={(event) => setVerificationMode(event.target.value as VerificationMode)} aria-label="Chế độ kiểm tra">
                     <option value="lexical_grounding">L1: kiểm tra trích dẫn</option>
                     <option value="off">OFF: không kiểm tra</option>
@@ -453,6 +469,7 @@ export default function App() {
                 <div className="run-meta-row">
                   <span className={`state-badge state-${stateClass(activeRun)}`}><StateIcon run={activeRun} size={14} />{statusText(activeRun)}</span>
                   {runProfileId && <span className="meta-chip">{profileName(runProfileId)}</span>}
+                  <span className="meta-chip">{retrievalStageLabel(activeRun.retrieval_mode ?? activeRun.snapshot?.retrieval_mode, shownProfile)}</span>
                   <span className="meta-chip">{modeName(activeRun.verification_mode)}</span>
                   <span className="meta-chip faint">{formatClock(activeRun.created_at)}</span>
                   <button className="button-secondary ask-again" onClick={startNew}><Plus size={15} /> Hỏi câu khác</button>

@@ -37,6 +37,9 @@ from src.services.web_contract import (
 from src.services.web_store import WebStore
 from src.api.runtime import (
     ProfileRuntime,
+    RETRIEVAL_MODES,
+    apply_retrieval_mode,
+    config_retrieval_mode,
     default_runtime,
     describe_runtime,
     load_profile_runtimes,
@@ -62,6 +65,7 @@ class RunRequest(BaseModel):
     query: str = Field(min_length=1, max_length=MAX_QUERY_CHARS)
     pasted_document: Optional[str] = Field(default=None, max_length=MAX_DOCUMENT_CHARS)
     verification_mode: str = Field(default="lexical_grounding", max_length=40)
+    retrieval_mode: Optional[str] = Field(default=None, max_length=40, description="First-stage retrieval mode; default = profile config")
     profile: Optional[str] = Field(default=None, max_length=80, description="Domain profile id; default = first available")
 
 
@@ -226,6 +230,7 @@ def _ledger_snapshot(ledger: Any, agent: LuatCheckAgent, started_at: float,
         "terminal_status": ledger.terminal_status,
         "final_output": final_output,
         "verification_mode": agent.verification_mode,
+        "retrieval_mode": config_retrieval_mode(agent.config),
         "refusal_kind": refusal_kind,
         "profile": {"id": runtime.key, "display_name": getattr(runtime.profile, "display_name", None)} if runtime else None,
         "budgets": {
@@ -263,14 +268,15 @@ def _run_worker(app: FastAPI) -> None:
             runtime = app.state.profiles.get(job.get("profile"))
             if runtime is None or not runtime.available:
                 raise RuntimeError(f"Profile {job.get('profile')!r} is not loaded.")
+            run_registry = runtime.registry_for_config(config)
             holder: Dict[str, Any] = {}
 
-            def title_of(article_id: str, _registry=runtime.registry) -> str:
+            def title_of(article_id: str, _registry=run_registry) -> str:
                 dto = _article_dto(_registry, article_id)
                 return (dto or {}).get("title", "") if dto else ""
 
             sink = make_event_sink(lambda name, data: _event(app, run_id, name, data), holder, title_of)
-            agent = LuatCheckAgent(config=config, tool_registry=runtime.registry, event_sink=sink)
+            agent = LuatCheckAgent(config=config, tool_registry=run_registry, event_sink=sink)
             holder["agent"] = agent
             ledger = agent.run(job["query"], pasted_doc=job.get("pasted_document"), session_id=run_id)
             if ledger.terminal_status not in {"answered", "clarified", "refused", "error"}:
@@ -296,6 +302,7 @@ def _run_worker(app: FastAPI) -> None:
                 str(error_kind),
                 f"Tác vụ thất bại do lỗi thực thi ({type(exc).__name__}: {str(exc)[:240]}). Xem log của API để biết chi tiết.",
                 round((time.monotonic() - started_at) * 1000, 1),
+                retrieval_mode=job.get("retrieval_mode"),
             )
             app.state.store.update_run_status(run_id, "finished", "error", snapshot)
             app.state.store.append_event(run_id, "run_failed", {"error_kind": str(error_kind)})
@@ -409,10 +416,12 @@ def _public_run(row: Dict[str, Any], *, include_document: bool = False) -> Dict[
         persisted_mode=row.get("verification_mode"),
         persisted_terminal=row.get("terminal_status"),
     )
+    ret_mode = (snapshot.get("retrieval_mode") if isinstance(snapshot, dict) else None) or config_retrieval_mode(row.get("config"))
     payload = {
         "run_id": row["run_id"],
         "query": row["query_text"],
         "verification_mode": row["verification_mode"],
+        "retrieval_mode": ret_mode,
         "job_status": row["job_status"],
         "terminal_status": snapshot["terminal_status"] if snapshot else row.get("terminal_status"),
         "created_at": row["created_at"],
@@ -461,6 +470,8 @@ def capabilities(request: Request):
     default_info = next((p for p in profiles if p["id"] == request.app.state.default_profile), None)
     configured_mode = canonical_mode(config.verifier.mode) if config else OFF
     default_mode = configured_mode if configured_mode in modes else LEXICAL_GROUNDING
+    avail_ret_modes = ((default_info or {}).get("retrieval") or {}).get("available_modes") or list(RETRIEVAL_MODES)
+    default_ret_mode = "hybrid_wrrf" if "hybrid_wrrf" in avail_ret_modes else config_retrieval_mode(config)
     any_available = any(p["available"] for p in profiles)
     reason = None if any_available else (request.app.state.config_error or "Không có profile miền nào sẵn sàng.")
     return {
@@ -470,6 +481,8 @@ def capabilities(request: Request):
         "profiles": profiles,
         "default_profile": request.app.state.default_profile,
         "default_verification_mode": default_mode,
+        "default_retrieval_mode": default_ret_mode,
+        "retrieval_modes": avail_ret_modes,
         "corpus": {
             "available": bool(request.app.state.corpus_available),
             "name": (default_info or {}).get("display_name") or (default_info or {}).get("id") or "",
@@ -516,8 +529,12 @@ def create_run(
         raise HTTPException(status_code=422, detail="Native semantic verification is not enabled in the configured backend.")
     config = base_config.model_copy(deep=True)
     config.verifier.mode = requested_mode
+    requested_retrieval = body.retrieval_mode or config_retrieval_mode(base_config)
+    if requested_retrieval not in RETRIEVAL_MODES:
+        raise HTTPException(status_code=422, detail="Unsupported retrieval mode.")
+    apply_retrieval_mode(config, requested_retrieval)
     canonical = {"query": body.query, "pasted_document": body.pasted_document, "verification_mode": requested_mode,
-                 "profile": runtime.key}
+                 "retrieval_mode": requested_retrieval, "profile": runtime.key}
     request_sha = hashlib.sha256(json.dumps(canonical, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
 
     with request.app.state.enqueue_lock:
@@ -540,6 +557,7 @@ def create_run(
                 "query": body.query,
                 "pasted_document": body.pasted_document,
                 "verification_mode": requested_mode,
+                "retrieval_mode": requested_retrieval,
                 "profile": runtime.key,
                 "config": config.model_dump(mode="json"),
             }

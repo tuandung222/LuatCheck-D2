@@ -82,6 +82,14 @@ def test_capabilities_describe_both_demo_profiles(client: TestClient) -> None:
     assert caps["available"] is True
     assert caps["default_profile"] == "hcmut_academic"
     assert caps["default_verification_mode"] == "lexical_grounding"
+    assert caps["default_retrieval_mode"] == "hybrid_wrrf"
+    assert set(caps["retrieval_modes"]) == {
+        "hybrid_wrrf",
+        "bm25_tfidf",
+        "fts5_keyword",
+        "vector_768d",
+        "hybrid_rrf_equal",
+    }
     by_id = {p["id"]: p for p in caps["profiles"]}
     assert set(by_id) == {"hcmut_academic", "labour_vi_multi"}
     assert by_id["hcmut_academic"]["corpus"] == {"records": 143, "documents": 10}
@@ -99,6 +107,27 @@ def test_capabilities_describe_both_demo_profiles(client: TestClient) -> None:
 def test_unknown_profile_is_rejected(client: TestClient) -> None:
     response = _post_run(client, {"query": "Câu hỏi bất kỳ", "profile": "does_not_exist"})
     assert response.status_code == 422
+
+
+def test_unknown_retrieval_mode_is_rejected(client: TestClient) -> None:
+    response = _post_run(client, {"query": "Câu hỏi bất kỳ", "retrieval_mode": "invalid_mode"})
+    assert response.status_code == 422
+
+
+def test_retrieval_mode_selection_persists_and_loads_hybrid_wrrf(client: TestClient) -> None:
+    response = _post_run(
+        client,
+        {
+            "query": INJECTION,
+            "profile": "hcmut_academic",
+            "verification_mode": "lexical_grounding",
+            "retrieval_mode": "hybrid_wrrf",
+        },
+    )
+    assert response.status_code == 202
+    run = _wait_finished(client, response.json()["run_id"])
+    assert run["retrieval_mode"] == "hybrid_wrrf"
+    assert run["snapshot"]["retrieval_mode"] == "hybrid_wrrf"
 
 
 def test_guardrail_block_is_a_distinct_state_with_events_and_profile(client: TestClient) -> None:
