@@ -1,4 +1,4 @@
 \begin{figure}[!tbp]\centering
 \adjustbox{max width=\textwidth,max height=6.55cm}{\input{images/architecture.tikz}}
-\caption{Two-phase architecture of LuatCheck: Phase 1 (top) ingests official PDFs into a normalized JSON corpus and builds an in-memory BM25 + TF-IDF index; Phase 2 (main frame) runs the online bounded ReAct loop. Blue: core active modules. Orange: configurable modules ablated in Section~\ref{sec:eval}. Dashed: implemented in code, disabled in D2 runs. Grey: terminal run states.}\label{fig:arch}
+\caption{Two-phase architecture of LuatCheck: Phase~1 (top) ingests official PDFs into a normalized corpus and builds an in-memory BM25 + TF-IDF index; Phase~2 (main frame) runs the online bounded ReAct loop. Solid blue: core active modules. Solid orange: configurable modules ablated in Section~\ref{sec:eval}. Dashed boxes/arrows: implemented in code, disabled or bypassed in D2 runs. Dotted blue arrows: read-only corpus/index lookups. Solid grey: terminal run states.}\label{fig:arch}
 \end{figure}

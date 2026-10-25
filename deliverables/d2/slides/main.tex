@@ -143,8 +143,8 @@
   }
 
   \vspace{2pt}
-  {\scriptsize \textcolor{primaryblue}{\rule{5pt}{5pt}} Core pipeline (always on) \quad \textcolor{orange}{\rule{5pt}{5pt}} Ablated modules (verifier, reranker) \quad Dashed: implemented, off in D2 runs}\\[1pt]
-  \footnotesize Single-agent ReAct loop with a deterministic Python citation verifier: tool permissions and step budgets remain directly auditable.
+  {\scriptsize \textcolor{primaryblue}{\rule{5pt}{5pt}} Core pipeline \quad \textcolor{orange}{\rule{5pt}{5pt}} Ablated modules (L1 verifier, reranker) \quad Dashed: implemented, switched off in current D2 ablation}\\[1pt]
+  \footnotesize Single-agent ReAct loop with a deterministic Python citation verifier; dense vector index, L2 NLI check, and answer memory are switched off in D2 baseline runs.
 \end{frame}
 
 %====================================================================
@@ -462,8 +462,8 @@
     \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.9cm}c>{\raggedright\arraybackslash}p{1.3cm}>{\raggedright\arraybackslash}X@{}}
       \toprule Member & \% & Presents & Answers for\\\midrule
       Lê Trí Quyền (Leader) & 33\% & Slides 1--2, 9, 11--12 & Corpus ingestion, BM25 + TF-IDF index, RRF, reranker, local \texttt{llama.cpp} serving\\
-      Võ Phạm Tuấn Dũng (Tech Lead) & 33\% & Slides 3--4, 6--8 & System architecture \& model selection, codebase refactoring, agent loop, verifier, benchmarks \& evaluation\\
       Nguyễn Hoàng Phong & 33\% & Slides 5 (Demo), 10 & Tool permissions, guardrails, Web UI and outbox, audit log, threat model\\
+      Võ Phạm Tuấn Dũng & 33\% & Slides 3--4, 6--8 & System architecture \& model selection, codebase refactoring, agent loop, verifier, benchmarks \& evaluation\\
       \bottomrule
     \end{tabularx}\\[4pt]
     \scriptsize Live demo: Nguyễn Hoàng Phong narrates; Võ Phạm Tuấn Dũng drives the keyboard.
