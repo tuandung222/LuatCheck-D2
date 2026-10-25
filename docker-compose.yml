@@ -1,45 +1,30 @@
-version: '3.8'
-
 # ==============================================================================
-# LuatCheck (Local-SLM-CPU) - Universal Multi-Platform Docker Compose
-# Compatible across macOS (Apple Silicon M1-M4 & Intel), Windows 10/11, and Linux
+# LuatCheck-D2 - Multi-Platform Docker Compose (macOS Apple Silicon/Intel & Linux)
+# Serves the React + FastAPI Web Demo App on http://127.0.0.1:8000 with
+# Weighted RRF 768-d (EmbeddingGemma-2) and bridges to macOS Metal servers
+# (`make demo-model-server` on 8081 & `make rerank-server-mac` on 8082).
 # ==============================================================================
 
 services:
-  local-slm-cpu:
-    container_name: local-slm-cpu
+  luatcheck-web:
+    container_name: luatcheck-web
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8501:8501"
+      - "127.0.0.1:8000:8000"
     environment:
-      - MODEL_PROVIDER=ollama
-      - MODEL_NAME=qwen2.5:3b
-      - MODEL_ENDPOINT=http://host.docker.internal:11434
-      - STREAMLIT_SERVER_PORT=8501
-      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
-      - STREAMLIT_SERVER_HEADLESS=true
+      - LUATCHECK_UI_MODE=web
+      - LUATCHECK_WEB_HOST=0.0.0.0
+      - LUATCHECK_WEB_PORT=8000
+      - LUATCHECK_WEB_ALLOW_CONTAINER_BIND=1
+      - LUATCHECK_WEB_CONFIGS=config/profiles/demo-hcmut-gemma2-768d.yaml,config/profiles/demo-labour-gemma2-768d.yaml
+      - LUATCHECK_WEB_DB=data/db/web_demo_gemma2_768d.sqlite3
+      - LUATCHECK_CONTROLLER_ENDPOINT=http://host.docker.internal:8081/v1
+      - LUATCHECK_RERANKER_BASE_URL=http://host.docker.internal:8082
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./data:/app/data
+      - ~/.cache/huggingface:/root/.cache/huggingface
     restart: unless-stopped
-
-  # ============================================================================
-  # Optional Full-Stack Profile: Self-contained Ollama inside Docker
-  # Usage: docker compose --profile fullstack up -d
-  # ============================================================================
-  ollama:
-    image: ollama/ollama:latest
-    container_name: local-slm-ollama
-    profiles:
-      - fullstack
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_models:/root/.ollama
-    restart: unless-stopped
-
-volumes:
-  ollama_models:

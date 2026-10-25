@@ -173,6 +173,12 @@ def _build_runtime(index: int, path: Optional[str]) -> ProfileRuntime:
     key = f"config_{index}"
     try:
         config = load_config(path)
+        ctrl_ep = os.getenv("LUATCHECK_CONTROLLER_ENDPOINT", "").strip()
+        if ctrl_ep:
+            config.model.endpoint = ctrl_ep
+        rerank_url = os.getenv("LUATCHECK_RERANKER_BASE_URL", "").strip()
+        if rerank_url:
+            config.retrieval.reranker.base_url = rerank_url
         key = config.domain.profile
         runtime = ProfileRuntime(key=key, config_path=path, config=config)
         if not os.path.isfile(config.retrieval.corpus_path):

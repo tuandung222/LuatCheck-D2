@@ -162,3 +162,17 @@ def test_snapshot_contract_keeps_refusal_kind_and_profile() -> None:
     assert normalized["profile"] == {"id": "hcmut_academic", "display_name": "x"}
     unknown = normalize_snapshot({**raw, "refusal_kind": "made_up"}, persisted_mode="off", persisted_terminal="refused")
     assert unknown["refusal_kind"] is None
+
+
+def test_container_endpoint_env_overrides(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    from src.api.runtime import _build_runtime
+
+    hcmut = tmp_path / "hcmut.yaml"
+    _temp_profile(ROOT / "config/profiles/demo-hcmut.yaml", hcmut, tmp_path)
+    monkeypatch.setenv("LUATCHECK_CONTROLLER_ENDPOINT", "http://host.docker.internal:8081/v1")
+    monkeypatch.setenv("LUATCHECK_RERANKER_BASE_URL", "http://host.docker.internal:8082")
+    rt = _build_runtime(0, str(hcmut))
+    assert rt.available is True
+    assert rt.config is not None
+    assert rt.config.model.endpoint == "http://host.docker.internal:8081/v1"
+    assert rt.config.retrieval.reranker.base_url == "http://host.docker.internal:8082"

@@ -756,7 +756,8 @@ def main() -> None:
     import uvicorn
 
     host = os.getenv("LUATCHECK_WEB_HOST", "127.0.0.1")
-    if not _loopback_only(host):
+    allow_container = os.getenv("LUATCHECK_WEB_ALLOW_CONTAINER_BIND", "").strip() in {"1", "true", "yes"}
+    if not _loopback_only(host) and not (allow_container and host == "0.0.0.0"):
         raise SystemExit("LuatCheck web UI is local-only; LUATCHECK_WEB_HOST must be a loopback address.")
     port = int(os.getenv("LUATCHECK_WEB_PORT", "8000"))
     uvicorn.run("src.api.app:app", host=host, port=port, reload=False, access_log=False)
