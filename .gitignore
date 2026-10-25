@@ -34,6 +34,8 @@ data/db/*.sqlite3
 
 # Runtime outputs (benchmark launcher logs, demo audit logs, provenance stamp)
 logs/
+output/
+tmp/
 data/demo_audit_log*.jsonl
 PROVENANCE.json
 data/db/*.sqlite3-*
