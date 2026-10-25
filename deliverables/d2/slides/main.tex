@@ -111,6 +111,50 @@
 \end{frame}
 
 %====================================================================
+% 1b. Presentation Outline
+%====================================================================
+\begin{frame}{Presentation Outline}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{1. System Design \& Live Demo}
+      \scriptsize
+      \begin{itemize}\scriptsize
+        \item \textbf{Changes since D1 Proposal:} Scope expansion (HCMUT + Labour law) and local ternary controllers (\texttt{Bonsai 4B} \& \texttt{2B}).
+        \item \textbf{Two-Phase Architecture:} Offline corpus ingestion/indexing and online bounded ReAct loop ($\le 8$ steps, $\le 2$ repairs).
+        \item \textbf{Execution Trace \& Live Demo:} End-to-end walkthrough on a 16\,GiB Apple M4 Mac (verified answer, refusal, guardrail block).
+      \end{itemize}
+    \end{block}
+    \vspace{2pt}
+
+    \begin{block}{2. Evaluation Protocol \& Core Results}
+      \scriptsize
+      \begin{itemize}\scriptsize
+        \item \textbf{Benchmarks \& Judge Audit:} Two 50-item hash-locked suites (1,090 trials/controller) + 60-item blind human audit ($\kappa = 0.80\text{--}0.93$).
+        \item \textbf{Controller Scaling:} \texttt{Bonsai 2B} vs.\ \texttt{Bonsai 4B} ($+28.7$ to $+32.0$\pp strict success gain).
+      \end{itemize}
+    \end{block}
+
+    \column{0.48\textwidth}
+    \begin{block}{3. Verifier \& Retrieval Deep-Dives}
+      \scriptsize
+      \begin{itemize}\scriptsize
+        \item \textbf{Rule-Based L1 Citation Verifier:} Deterministic Python gates ($<2$\,ms, 0 LLM calls) cutting unverified citations from $25.6\text{--}28.0\% \to \textbf{0.0\%}$ ($+5.4$ to $+8.7$\pp audited strict accuracy).
+        \item \textbf{Dense Vector \& Hybrid Retrieval Probe:} \texttt{EmbeddingGemma-2} (128-d vs.\ 768-d) vs.\ \texttt{FTS5} \& Weighted RRF on 818 Zalo Legal queries toward \textbf{D3}.
+      \end{itemize}
+    \end{block}
+    \vspace{2pt}
+
+    \begin{block}{4. Runtime Profile, Security \& D3 Roadmap}
+      \scriptsize
+      \begin{itemize}\scriptsize
+        \item \textbf{Cost, RAM \& Latency:} USD 0 inference cost, $\approx 4.8\text{--}5.3$\,GB RAM on Mac, $\sim 30$\,s (4B) / $\sim 14$\,s (2B) median latency.
+        \item \textbf{Threat Model \& D3 Plan:} Code-enforced tool/guardrail boundaries and W45--W49 roadmap to final presentation.
+      \end{itemize}
+    \end{block}
+  \end{columns}
+\end{frame}
+
+%====================================================================
 % 2. What changed since the proposal
 %====================================================================
 \begin{frame}{Changes Since the D1 Proposal}
