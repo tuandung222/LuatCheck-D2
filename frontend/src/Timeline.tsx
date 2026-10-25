@@ -17,7 +17,7 @@ function IdChips({ results, onOpen, disabled }: { results: NonNullable<TraceStep
   ))}</ul>;
 }
 
-function StepBody({ step, onOpenSource, searchTool, sourcesEnabled }: { step: TraceStep; onOpenSource: (id: string) => void; searchTool?: string; sourcesEnabled: boolean }) {
+function StepBody({ step, onOpenSource, searchTool, sourcesEnabled, stage1Label }: { step: TraceStep; onOpenSource: (id: string) => void; searchTool?: string; sourcesEnabled: boolean; stage1Label?: string }) {
   switch (step.kind) {
     case "guardrail":
       return <><p className="step-note">Câu hỏi khớp mẫu an ninh của guardrail. Không có lệnh gọi model và không có bước tra cứu.</p></>;
@@ -26,9 +26,9 @@ function StepBody({ step, onOpenSource, searchTool, sourcesEnabled }: { step: Tr
       return <>
         <p className="step-query"><span>truy vấn</span>“{step.query}”</p>
         {r ? <ul className="substeps">
-          <li><b>Truy xuất bậc 1</b> BM25 + TF-IDF (RRF): {formatCount(r.n_candidates)} ứng viên · {formatDuration(r.first_stage_ms)}</li>
+          <li><b>Truy xuất bậc 1</b> {stage1Label || "BM25 + TF-IDF (RRF)"}: {formatCount(r.n_candidates)} ứng viên · {formatDuration(r.first_stage_ms)}</li>
           <li><b>Reranker</b> {r.model ?? r.backend}: chấm {formatCount(r.n_scored)} cặp, giữ {formatCount(step.results?.length)} · {formatDuration(r.wall_ms)}{r.n_truncated ? ` · ${r.n_truncated} cặp bị cắt` : ""}</li>
-        </ul> : <p className="step-note">Truy xuất bậc 1 (không có reranker trong cấu hình này).</p>}
+        </ul> : <p className="step-note">Truy xuất bậc 1 {stage1Label ? `(${stage1Label}, không có reranker)` : "(không có reranker trong cấu hình này)"}.</p>}
         <IdChips results={step.results ?? []} onOpen={onOpenSource} disabled={!sourcesEnabled} />
         <ModelLine step={step} />
       </>;
@@ -79,9 +79,9 @@ function title(step: TraceStep): { icon: JSX.Element; text: string } {
 }
 
 export function Timeline({
-  trace, nowMs, running, connection, onOpenSource, searchTool, profileLabel,
+  trace, nowMs, running, connection, onOpenSource, searchTool, profileLabel, stage1Label,
 }: {
-  trace: Trace; nowMs: number | null; running: boolean; connection: string; onOpenSource: (id: string) => void; searchTool?: string; profileLabel?: string;
+  trace: Trace; nowMs: number | null; running: boolean; connection: string; onOpenSource: (id: string) => void; searchTool?: string; profileLabel?: string; stage1Label?: string;
 }) {
   const total = trace.totalMs ?? (running ? nowMs : null);
   return <section className="timeline-card" aria-label="Quy trình xử lý">
@@ -102,7 +102,7 @@ export function Timeline({
             <span className="step-dot">{t.icon}</span>
             <div className="step-main">
               <div className="step-line"><b><span className="step-index">{index + 1}</span>{t.text}</b>{dur !== null && !(step.kind === "repair") && <span className="step-time" title={`bắt đầu +${formatDuration(step.startMs)}`}>{formatDuration(dur)}</span>}</div>
-              <StepBody step={step} onOpenSource={onOpenSource} searchTool={searchTool} sourcesEnabled={!running} />
+              <StepBody step={step} onOpenSource={onOpenSource} searchTool={searchTool} sourcesEnabled={!running} stage1Label={stage1Label} />
             </div>
           </li>;
         })}

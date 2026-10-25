@@ -502,7 +502,7 @@ export default function App() {
                   </SectionErrorBoundary>}
                 </div>
                 <div className="result-right">
-                  <Timeline trace={trace} nowMs={elapsedMs} running={running} connection={connection} onOpenSource={(id) => { openSource(id); document.getElementById("sources-anchor")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} searchTool={shownProfile?.search_tool} profileLabel={shownProfile ? `${shownProfile.short_name ?? shownProfile.id} · công cụ ${shownProfile.search_tool} / ${shownProfile.read_tool}` : undefined} />
+                  <Timeline trace={trace} nowMs={elapsedMs} running={running} connection={connection} onOpenSource={(id) => { openSource(id); document.getElementById("sources-anchor")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} searchTool={shownProfile?.search_tool} profileLabel={shownProfile ? `${shownProfile.short_name ?? shownProfile.id} · công cụ ${shownProfile.search_tool} / ${shownProfile.read_tool}` : undefined} stage1Label={retrievalStageLabel(activeRun.retrieval_mode ?? activeRun.snapshot?.retrieval_mode, shownProfile)} />
                 </div>
               </div>
             </div>
