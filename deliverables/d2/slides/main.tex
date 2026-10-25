@@ -95,7 +95,7 @@
   \includegraphics[height=1.0cm]{assets/hcmut.png}\\[6pt]
   {\normalsize\textbf{\color{primaryblue}CO5151 Advanced Agentic AI \,|\, D2 Interim Report}}\\[1pt]
   Application Track, Group 8 \,|\, Instructor: TS. Lê Xuân Bách}
-\date[28 Oct 2026]{28 October 2026}
+\date[25 Oct 2026]{25 October 2026}
 
 \begin{document}
 
@@ -372,9 +372,10 @@
     \vspace{4pt}
 
     \footnotesize
-    \textbf{Measurement environment:}
+    \textbf{Local RAM footprint \& measurement environment:}
     \begin{itemize}\footnotesize
-      \item Accuracy tables come from batch runs on an H100 GPU; interactive latency is measured one query at a time on the Apple M4 Mac.
+      \item \textbf{Resident RAM (RSS):} $\approx$\textbf{4.8\,GB} total for the 4B stack (3.4\,GB 4B controller + 1.2\,GB reranker + 0.2\,GB web app \& lexical index), or $\approx$\textbf{2.8\,GB} for the 2B stack (1.4\,GB 2B controller).
+      \item Accuracy tables come from batch runs on an H100 GPU; interactive latency is measured one query at a time on the 16\,GiB Apple M4 Mac.
       \item All inference (controller + reranker) runs 100\% locally with zero per-query API cost.
     \end{itemize}
   \end{columns}
