@@ -374,7 +374,7 @@
     \footnotesize
     \textbf{Local RAM footprint \& measurement environment:}
     \begin{itemize}\footnotesize
-      \item \textbf{Resident RAM (RSS):} $\approx$\textbf{4.8\,GB} total for the 4B stack (3.4\,GB 4B controller + 1.2\,GB reranker + 0.2\,GB web app \& lexical index), or $\approx$\textbf{2.8\,GB} for the 2B stack (1.4\,GB 2B controller).
+      \item \textbf{Resident RAM (RSS):} $\approx$\textbf{4.8\,GB} for the 4B stack (3.4\,GB 4B + 1.2\,GB reranker + 0.2\,GB web/lexical) or $\approx$\textbf{2.8\,GB} for 2B; enabling \texttt{EmbeddingGemma-2} vector search adds $\approx$\textbf{1.8\,GB} ($\approx$6.6\,GB / 4.6\,GB total).
       \item Accuracy tables come from batch runs on an H100 GPU; interactive latency is measured one query at a time on the 16\,GiB Apple M4 Mac.
       \item All inference (controller + reranker) runs 100\% locally with zero per-query API cost.
     \end{itemize}
@@ -459,15 +459,14 @@
     Commit: \texttt{138128e804bf}}
 
     \column{0.52\textwidth}
-    \scriptsize\renewcommand{\arraystretch}{1.15}
-    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.9cm}c>{\raggedright\arraybackslash}p{1.3cm}>{\raggedright\arraybackslash}X@{}}
-      \toprule Member & \% & Presents & Answers for\\\midrule
-      Lê Trí Quyền (Leader) & 33\% & Slides 1--2, 9, 11--12 & Corpus ingestion, BM25 + TF-IDF index, RRF, reranker, local \texttt{llama.cpp} serving\\
-      Nguyễn Hoàng Phong & 33\% & Slides 5 (Demo), 10 & Tool permissions, guardrails, Web UI and outbox, audit log, threat model\\
-      Võ Phạm Tuấn Dũng & 33\% & Slides 3--4, 6--8 & System architecture \& model selection, codebase refactoring, agent loop, verifier, benchmarks \& evaluation\\
+    \scriptsize\renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.25cm}c>{\raggedright\arraybackslash}X@{}}
+      \toprule Member & \% & Contributions \& Q\&A ownership\\\midrule
+      Lê Trí Quyền (Leader) & 33\% & Corpus ingestion, BM25 + TF-IDF index, RRF, reranker, local \texttt{llama.cpp} serving\\
+      Nguyễn Hoàng Phong & 33\% & Tool permissions, guardrails, Web UI and outbox, audit log, threat model\\
+      Võ Phạm Tuấn Dũng & 33\% & System architecture \& model selection, codebase refactoring, agent loop, verifier, benchmarks \& evaluation\\
       \bottomrule
-    \end{tabularx}\\[4pt]
-    \scriptsize Live demo: Nguyễn Hoàng Phong narrates; Võ Phạm Tuấn Dũng drives the keyboard.
+    \end{tabularx}
   \end{columns}
 \end{frame}
 
