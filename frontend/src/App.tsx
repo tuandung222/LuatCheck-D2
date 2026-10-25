@@ -205,6 +205,7 @@ export default function App() {
     setActiveRunId(null);
     setQuery("");
     setPastedDocument("");
+    setShowDocument(false);
     resetSources();
     setMobileNavOpen(false);
     setApiError("");
@@ -241,6 +242,7 @@ export default function App() {
       resetSources();
       setQuery("");
       setPastedDocument("");
+      setShowDocument(false);
       runRequestRef.current = null;
     } catch (error) {
       setApiError(error instanceof Error ? error.message : "Không gửi được run.");
@@ -259,7 +261,9 @@ export default function App() {
 
   const recoverRunInput = async (run: RunRecord) => {
     setQuery(run.query);
-    setPastedDocument(run.pasted_document ?? "");
+    const initialDoc = run.pasted_document ?? "";
+    setPastedDocument(initialDoc);
+    setShowDocument(Boolean(initialDoc.trim()));
     setVerificationMode(run.snapshot?.verification_mode ?? run.verification_mode);
     const savedRetrieval = run.snapshot?.retrieval_mode ?? run.retrieval_mode;
     if (savedRetrieval) setRetrievalMode(savedRetrieval);
@@ -270,7 +274,9 @@ export default function App() {
     if (run.pasted_document === undefined) {
       try {
         const detail = await getRun(run.run_id);
-        setPastedDocument((current) => current || detail.pasted_document || "");
+        const doc = detail.pasted_document || "";
+        setPastedDocument((current) => current || doc);
+        if (doc.trim()) setShowDocument(true);
       } catch {
         // The saved question remains available for editing even if the API drops again.
       }
