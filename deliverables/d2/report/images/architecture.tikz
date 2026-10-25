@@ -1,66 +1,94 @@
-% Figure 1 (architecture and control flow). Drawn at true size, 17.0 cm wide, no scaling.
+% Figure 1 (two-phase architecture: offline ingestion/indexing + online bounded agent loop).
+% Drawn at true size, 17.0 cm wide.
 % Encoding (Okabe-Ito blue/orange; every class also differs in border style or tag text, so it reads in greyscale):
-%   blue fill   = part of the current system, always on
-%   orange fill = part of the current system with an on/off switch (ablated in Section 5)
-%   dashed      = implemented, not used in any measurement
+%   blue fill   = core active component (always on)
+%   orange fill = configurable active component with on/off switch (ablated in Section 5)
+%   dashed      = implemented in code, disabled in current benchmark runs
 %   grey fill   = terminal state of a run
-\begin{tikzpicture}[x=1cm,y=1cm,font=\scriptsize,line cap=round,
-  box/.style={draw=blue!55!black,fill=blue!8,rounded corners=2pt,align=center,inner sep=3pt,minimum height=1.0cm,line width=0.6pt},
+\begin{tikzpicture}[x=1cm,y=1cm,font=\fontsize{7}{8.2}\selectfont,line cap=round,
+  box/.style={draw=blue!55!black,fill=blue!8,rounded corners=2pt,align=center,inner sep=2.5pt,minimum height=0.82cm,line width=0.6pt,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
+  store/.style={box,draw=blue!65!black,fill=blue!14,line width=0.7pt},
   var/.style={box,draw=orange!70!black,fill=orange!22},
   off/.style={box,dashed,draw=black!60,fill=white,text=black!70},
   term/.style={box,draw=black!70,fill=black!10},
   frame/.style={draw=black!45,fill=black!3,rounded corners=4pt,line width=0.6pt},
-  flow/.style={-{Stealth[length=5pt,width=4.5pt]},line width=0.8pt},
+  pframe/.style={draw=blue!40!black,fill=blue!3,rounded corners=4pt,line width=0.55pt},
+  flow/.style={-{Stealth[length=4.8pt,width=4.2pt]},line width=0.75pt},
+  dflow/.style={-{Stealth[length=4.5pt,width=4.0pt]},line width=0.65pt,blue!55!black,densely dotted},
   alt/.style={flow,dashed},
   logl/.style={-{Stealth[length=4pt,width=3.5pt]},line width=0.6pt,dotted,black!65},
-  lab/.style={font=\scriptsize,inner sep=1.2pt,fill=white,fill opacity=0.92,text opacity=1}]
+  lab/.style={font=\fontsize{6.8}{8}\selectfont,inner sep=1.0pt,fill=white,fill opacity=0.94,text opacity=1}]
 
-% loop frame and its budget label
-\node[frame,minimum width=13.9cm,minimum height=6.2cm,anchor=north west] (fr) at (3.1,9.3) {};
-\node[anchor=north west,align=left,font=\scriptsize\bfseries] at (3.3,9.2) {Bounded agent loop\\[-1pt]{\normalfont $\le$\,8 steps, 5 tool calls,}\\[-1pt]{\normalfont 2 repairs, 180\,s per task}};
+% =====================================================================
+% PHASE 1: OFFLINE INGESTION & INDEXING PIPELINE (TOP BAND)
+% =====================================================================
+\node[pframe,minimum width=16.9cm,minimum height=1.72cm,anchor=north west] (p1) at (0,10.55) {};
+\node[anchor=north west,font=\fontsize{7}{8.2}\selectfont\bfseries,text=blue!55!black] at (0.20,10.46) {Phase 1: Offline Corpus Ingestion \& Indexing (\texttt{src/ingestion/}, \texttt{src/indexing/})};
+
+\node[box,text width=2.25cm,minimum height=0.80cm] (pdf) at (1.35,9.40) {\textbf{Official PDFs}\\10 HCMUT, 10 Labour};
+\node[box,text width=3.15cm,minimum height=0.80cm] (ing) at (4.65,9.40) {\textbf{Ingestion \& normalisation}\\NFC, section split, SHA-256};
+\node[store,text width=3.10cm,minimum height=0.80cm] (corp) at (8.40,9.40) {\textbf{Normalized corpus JSON}\\143 / 458 sections (\texttt{data/corpus/})};
+\node[store,text width=2.85cm,minimum height=0.80cm] (lex) at (12.00,9.40) {\textbf{In-memory lexical index}\\BM25 + 1--3-gram TF-IDF};
+\node[off,text width=2.45cm,minimum height=0.80cm] (vec) at (15.35,9.40) {\textbf{Dense vector index}\\built, D3 ablation};
+
+\draw[flow] (pdf) -- (ing);
+\draw[flow] (ing) -- (corp);
+\draw[flow] (corp) -- (lex);
+\draw[alt] (lex) -- (vec);
+
+% =====================================================================
+% PHASE 2: ONLINE BOUNDED AGENT & VERIFICATION LOOP (MAIN BAND)
+% =====================================================================
+\node[frame,minimum width=13.9cm,minimum height=5.95cm,anchor=north west] (fr) at (3.0,8.45) {};
+\node[anchor=north west,align=left,font=\fontsize{7}{8.2}\selectfont\bfseries] at (3.2,8.35) {Phase 2: Online Bounded ReAct Loop\\[-1pt]{\normalfont $\le$\,8 steps, 5 tool calls, 2 repairs, 180\,s per task}};
 
 % input column
-\node[box,text width=2.0cm] (q) at (1.1,8.45) {Question or pasted document};
-\node[box,text width=2.0cm] (g) at (1.1,6.5) {\textbf{Input guardrails}\\pattern checks, sanitising, untrusted tags};
+\node[box,text width=2.1cm] (q) at (1.15,7.70) {User question or pasted text};
+\node[box,text width=2.1cm] (g) at (1.15,5.95) {\textbf{Input guardrails}\\regex checks, sanitising, untrusted tags};
 
 % loop body
-\node[box,text width=3.0cm] (c) at (5.4,6.5) {\textbf{Controller}\\4B model (2B option), one action per step};
-\node[box,text width=2.0cm] (t) at (10.0,6.5) {\textbf{Tool registry}\\search, read\\read-only};
-\node[box,text width=3.2cm] (r) at (15.1,8.1) {\textbf{First-stage retrieval}\\BM25 + TF-IDF, RRF\\top-20 candidates};
-\node[var,text width=3.2cm] (rr) at (15.1,5.5) {\textbf{Reranker} (switch)\\cross-encoder\\top-20 $\to$ top-5};
-\node[var,text width=3.0cm] (v) at (5.4,4.1) {\textbf{Citation verifier + repair} (rule-based)\\retrieved IDs, verbatim quotes, local numbers};
-\node[off,text width=3.2cm] (l2) at (15.1,4.1) {Semantic (NLI) check, dense retrieval\\implemented, not used yet};
+\node[box,text width=3.25cm] (c) at (5.45,5.95) {\textbf{Controller} (\texttt{llama.cpp})\\Bonsai 4B (2B option), 1 JSON action:\\\texttt{search}, \texttt{read}, \texttt{answer},\\\texttt{clarify}, \texttt{refuse}};
+\node[box,text width=2.25cm] (t) at (10.05,5.95) {\textbf{Tool registry}\\\texttt{search}, \texttt{read\_document}\\(read-only)};
+\node[box,text width=3.2cm] (r) at (15.05,7.40) {\textbf{First-stage retrieval}\\BM25 + TF-IDF, RRF\\top-20 + query anchoring};
+\node[var,text width=3.2cm] (rr) at (15.05,4.95) {\textbf{Reranker} (switch)\\Vietnamese cross-encoder\\top-20 $\to$ top-5 clauses};
+\node[var,text width=3.35cm] (v) at (5.45,3.45) {\textbf{Rule-based L1 verifier}\\session IDs, verbatim quotes,\\local numbers ($\le 2$ repairs)};
+\node[off,text width=3.2cm] (l2) at (15.05,3.45) {\textbf{Semantic NLI check (L2)}\\mDeBERTa-v3 (implemented,\\disabled in D2 runs)};
 
 % terminal states and side components (bottom row)
-\node[term,text width=2.0cm] (ref) at (1.1,1.7) {\textbf{Refused} or \textbf{clarified}};
-\node[term,text width=3.0cm] (ans) at (5.4,1.7) {\textbf{Answer} with verified citations};
-\node[off,text width=2.3cm] (mem) at (9.1,1.7) {Answer memory\\(off in all runs)};
-\node[term,text width=2.6cm] (err) at (12.1,1.7) {\textbf{Error}: backend or budget failure, never an answer};
-\node[off,text width=2.5cm] (out) at (15.7,1.7) {Trusted UI outbox\\(host approves payload)};
-\node[box,fill=black!3,draw=black!60,minimum width=16.9cm,minimum height=0.7cm,anchor=south west] (led) at (0,-0.35) {\textbf{Case ledger and audit log}: queries, tool calls, ids, repairs, tokens, times};
+\node[term,text width=2.1cm] (ref) at (1.15,1.40) {\textbf{Refused} or \textbf{clarified}};
+\node[term,text width=3.1cm] (ans) at (5.45,1.40) {\textbf{Answer} with\\verified citations};
+\node[off,text width=2.3cm] (mem) at (9.15,1.40) {Answer memory\\(off in all runs)};
+\node[term,text width=2.6cm] (err) at (12.15,1.40) {\textbf{Execution error}\\backend or budget failure};
+\node[off,text width=2.45cm] (out) at (15.65,1.40) {Trusted UI outbox\\(host approves SHA-256)};
+\node[box,fill=black!3,draw=black!60,minimum width=16.9cm,minimum height=0.62cm,anchor=south west] (led) at (0,-0.25) {\textbf{Case ledger and audit log} (\texttt{SQLite} / \texttt{JSONL}): queries, tool calls, retrieved IDs, verifier checks, repairs, tokens, latency};
+
+% offline-to-online data connections
+\draw[dflow] (lex.south) -- ++(0,-0.36) -| node[lab,pos=0.25]{index lookup} ([xshift=0.35cm]r.north);
+\draw[dflow] ([xshift=0.90cm]corp.south) -- node[lab,pos=0.62]{read section} ([xshift=-0.75cm]t.north);
 
 % control flow inside the loop
 \draw[flow] (q) -- (g);
 \draw[flow] (g) -- (c);
-\draw[flow] ([yshift=0.27cm]c.east) -- node[lab,above=1pt]{tool call} ([yshift=0.27cm]t.west);
-\draw[flow] ([yshift=-0.27cm]t.west) -- node[lab,below=1pt]{observation} ([yshift=-0.27cm]c.east);
+\draw[flow] ([yshift=0.25cm]c.east) -- node[lab,above=1pt]{tool call} ([yshift=0.25cm]t.west);
+\draw[flow] ([yshift=-0.25cm]t.west) -- node[lab,below=1pt]{observation} ([yshift=-0.25cm]c.east);
 \draw[flow] ([xshift=-0.7cm]c.south) -- node[lab,left=1pt]{answer} ([xshift=-0.7cm]v.north);
-\draw[flow] ([xshift=0.7cm]v.north) -- node[lab,right=1pt]{repair} ([xshift=0.7cm]c.south);
+\draw[flow] ([xshift=0.7cm]v.north) -- node[lab,right=1pt]{repair ($\le 2$)} ([xshift=0.7cm]c.south);
+
 % search path: query goes out above, results come back below (nested, no crossings)
-\draw[flow] ([xshift=-0.4cm]t.north) |- node[lab,pos=0.8]{query} ([yshift=0.27cm]r.west);
-\draw[alt] ([yshift=-0.27cm]r.west) -| node[lab,pos=0.2]{top-5 (reranker off)} ([xshift=0.4cm]t.north);
+\draw[flow] ([xshift=-0.10cm]t.north) |- node[lab,pos=0.78]{search query} ([yshift=0.22cm]r.west);
+\draw[alt] ([yshift=-0.22cm]r.west) -| node[lab,pos=0.22]{top-5 (reranker off)} ([xshift=0.55cm]t.north);
 \draw[flow] (r) -- node[lab]{top-20} (rr);
-\draw[flow] (rr.west) -| node[lab,pos=0.2]{top-5 reranked} (t.south);
-\draw[alt] (v.east) -- node[lab]{optional} (l2.west);
+\draw[flow] (rr.west) -| node[lab,pos=0.24]{top-5 reranked} (t.south);
+\draw[alt] (v.east) -- node[lab]{optional L2} (l2.west);
 
 % exits
 \draw[flow] (g.south) -- node[lab,pos=0.4]{unsafe} (ref.north);
-\draw[flow] ([yshift=-0.27cm]c.west) -- ++(-1.1,0) coordinate (cl) |- ([yshift=0.25cm]ref.east);
-\node[lab,rotate=90] at (cl |- 0,3.9) {clarify, refuse};
-\draw[flow] ([yshift=-0.27cm]v.west) -- ++(-0.5,0) coordinate (rs) |- ([yshift=-0.25cm]ref.east);
-\node[lab,rotate=90] at (rs |- 0,2.55) {repairs spent};
+\draw[flow] ([yshift=-0.25cm]c.west) -- ++(-0.98,0) coordinate (cl) |- ([yshift=0.22cm]ref.east);
+\node[lab,rotate=90] at (cl |- 0,3.5) {clarify, refuse};
+\draw[flow] ([yshift=-0.25cm]v.west) -- ++(-0.42,0) coordinate (rs) |- ([yshift=-0.22cm]ref.east);
+\node[lab,rotate=90] at (rs |- 0,2.2) {repairs spent};
 \draw[flow] (v.south) -- node[lab]{pass} (ans.north);
 \draw[alt] (ans.east) -- (mem.west);
 \draw[flow] (fr.south -| err) -- node[lab]{any failure} (err.north);
-\draw[logl] (13.95,3.1) -- (13.95,0.35);
+\draw[logl] (13.85,2.5) -- (13.85,0.37);
 \end{tikzpicture}

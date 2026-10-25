@@ -1,7 +1,8 @@
 \begin{table}[!htbp]\tabstyle
 % PROVENANCE: run=d2-gpu-r2-4b-hcmut-v1,d2-gpu-r2-4b-labour-v1 (label required by the checker, invisible: post-hoc revision evaluated on the same tasks)
+\begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{@{}llccccccc@{}}
-\toprule Benchmark & Configuration & \makecell{Unverified\\cit.\ leak (\%)} & \makecell{Audited\\strict (\%)} & \makecell{Behaviour\\match (\%)} & \makecell{Over-\\refusal (\%)} & \makecell{Faithful-\\ness (\%)} & \makecell{Citation\\F1} & Recall@5\\\midrule
+\toprule Benchmark & Configuration & \makecell{Unverified\\cit.\ leak (\%)} & \makecell{Audited\\strict (\%)} & \makecell{Behaviour\\match (\%)} & \makecell{Over-refusal\\(\%)} & \makecell{Faithfulness\\(\%)} & \makecell{Citation\\F1} & Recall@5\\\midrule
 \multirow{3}{*}{HCMUT regulations} & No verifier & 25.6 & 55.3 & 88.0 & 9.8 & 89.8 & 0.820 & 0.989\\
  & Verifier & \textbf{0.0} & \textbf{64.0} & 82.7 & 17.4 & 90.3 & 0.704 & 0.989\\
  & Verifier + reranker & \textbf{0.0} & \textbf{60.7} & 80.0 & 18.9 & 89.3 & 0.714 & 0.978\\\midrule
@@ -9,5 +10,6 @@
  & Verifier & \textbf{0.0} & 52.7 & 81.3 & 16.8 & 86.3 & 0.728 & 0.989\\
  & Verifier + reranker & \textbf{0.0} & \textbf{56.7} & 79.3 & 19.1 & 85.6 & 0.691 & 0.993\\
 \bottomrule\end{tabular}
-\caption{Ablation of the rule-based citation verifier and the reranker (4B controller, 3 seeds $\times$ 50 questions per row). \emph{Unverified cit.\ leak}: share of emitted answers whose quotes, section IDs or numbers fail deterministic source verification against the full PDF corpus (31/121 HCMUT and 37/132 labour answers in \emph{No verifier} vs 0/109 and 0/108 with the verifier). \emph{Audited strict}: trials that pass both the LLM judge and deterministic L1 citation verification. Behaviour match, Over-refusal, Citation F1 and Recall@5 need no judge.}\label{tab:diag}
+\end{adjustbox}
+\caption{Ablation of the rule-based citation verifier and the reranker (4B controller, 3 seeds $\times$ 50 questions per row). \emph{Unverified cit.\ leak}: share of emitted answers whose quotes, section IDs or numbers fail deterministic source verification against the full PDF corpus (31/121 HCMUT and 37/132 labour answers in \emph{No verifier} vs 0/109 on HCMUT and 0/111--108 on labour law with the verifier). \emph{Audited strict}: trials that pass both the LLM judge and deterministic L1 citation verification. \emph{Behaviour match} (deterministic action-match rate), \emph{Over-refusal}, \emph{Citation F1} and \emph{Recall@5} require no LLM judge.}\label{tab:diag}
 \end{table}

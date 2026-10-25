@@ -4,7 +4,7 @@
 \toprule Proposal commitment & State & Change and reason\\\midrule
 Budgeted loop, schema output, citation check & Done & Runs end to end; extended with bounded repair and better quote matching.\\
 Qwen3 4B/8B controllers, 32B comparator & Dropped & Replaced by two small ternary models (4B and 2B, Section~\ref{sec:arch}): one 16\,GiB laptop runs the demo and the benchmark model.\\
-BM25 + Qdrant dense retrieval; 200 held-out question pairs & Changed & BM25 + TF-IDF with rank fusion and a neural reranker. Dense index implemented, not evaluated. The pair mapping could not be established; two own benchmarks replace it.\\
+BM25 + Qdrant dense retrieval; 200 held-out question pairs & Changed & BM25 + TF-IDF with rank fusion and a neural reranker. Dense index implemented, not evaluated. External pair mapping unavailable; replaced by two 50-question benchmarks.\\
 $\ge$10 end-to-end tasks, 3 configurations $\times$ 3 seeds & Done & 100 questions, 3 configurations $\times$ 3 seeds, 1{,}090 trials per system.\\
 Reranker (optional) & Done & In the current system; ablated in Section~\ref{sec:eval}.\\
 Semantic (NLI) check, optional & In progress & Implemented, not used in any measurement yet.\\

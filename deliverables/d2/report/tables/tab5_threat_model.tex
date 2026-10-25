@@ -9,7 +9,7 @@ Memory (A1, A2) & Off in all runs and in the demo; index version, similarity, re
 Weights, configuration, binaries (A3) & Recorded hashes and commit, identity checks before each run, loopback-only endpoints & Third-party weights and the llama.cpp fork are not audited.\\
 Judge gateway (A2) & Offline only; benchmark data only; key kept in the environment; blind packets; output validation; human audit & Candidate text could steer the judge (untested); model version not fixed.\\
 Web interface, API, outbox, long inputs (A4, A5) & Loopback bind, session cookie and CSRF token, size limits; proposal-only tools with host approval; step, tool, repair, time limits & Single-user assumption; limits turn overload into errors, not into defences.\\
-Web pages & Not applicable: there is no browsing tool. & ---\\
+Web pages & Not applicable: there is no browsing tool. & --\\
 \bottomrule\end{tabularx}
 \caption{Threat model by entry point. Mitigations are implementation boundaries, not measured attack effectiveness. The full-system injection tests~\citep{greshake2023indirect,debenedetti2024agentdojo} belong to the final report (planned for week 47; no attack numbers in this report).}\label{tab:threat}
 \end{table}

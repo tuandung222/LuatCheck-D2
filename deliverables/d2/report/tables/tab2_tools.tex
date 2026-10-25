@@ -2,7 +2,7 @@
 % PROVENANCE: n/a descriptive tool inventory, no measured values
 \begin{tabularx}{\textwidth}{@{}L{3.3cm}L{2.2cm}L{2.5cm}Y@{}}
 \toprule Interface & State & Permission level & Enforced boundary\\\midrule
-Search and read tools (for labour law) & Implemented, used & Read-only & Return local corpus text only.\\
+Corpus search and read tools & Implemented, used & Read-only & Return local corpus text only.\\
 Reranker (inside search) & Implemented, used & Read-only model component & Scores candidates; a failure is an execution error, never a silent fallback.\\
 Answer-memory write & Implemented, off in all runs & Reversible write & Local database write only after the verification gate.\\
 Case-saving tool of the MCP server & Implemented, blocked & Reversible write & A model caller cannot self-attest verification; the call returns blocked.\\

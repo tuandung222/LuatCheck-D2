@@ -40,7 +40,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.17}
+\pgfplotsset{compat=1.18}
 
 \usetheme{Madrid}
 \useoutertheme{infolines}
@@ -55,8 +55,7 @@
 \definecolor{successgreen}{RGB}{46,125,50}
 \definecolor{warnorange}{RGB}{230,81,0}
 \definecolor{dangerred}{RGB}{183,28,28}
-\definecolor{v3grey}{RGB}{140,140,140}
-\definecolor{r2light}{RGB}{120,170,215}
+\definecolor{secondaryblue}{RGB}{120,170,215}
 
 \setbeamercolor{palette primary}{bg=primaryblue,fg=white}
 \setbeamercolor{titlelike}{parent=palette primary}
@@ -80,6 +79,7 @@
 \addtobeamertemplate{frametitle}{}{\vspace{-0.15cm}}
 
 \hypersetup{colorlinks=true,urlcolor=primaryblue,linkcolor=.}
+\pdfstringdefDisableCommands{\def\translate#1{#1}}
 
 % Red placeholders: missing results, inputs and decisions are always visible.
 \newcommand{\pend}[1]{\textcolor{red}{\textbf{[PENDING: #1]}}}
@@ -88,12 +88,12 @@
 \newcommand{\cell}[1]{\multicolumn{1}{c}{#1}}
 \renewcommand{\arraystretch}{1.15}
 
-\title[LuatCheck | github.com/tuandung222/LuatCheck-D2]{\textbf{LuatCheck}\\[2pt]\normalsize A local, source-grounded assistant over Vietnamese regulations}
+\title[LuatCheck | github.com/tuandung222/LuatCheck-D2]{\textbf{LuatCheck}\\[2pt]\normalsize A Local, Source-Grounded QA Agent for Vietnamese Regulations}
 \author[Group 8]{Lê Trí Quyền (2470740) \texorpdfstring{\,|\,}{ | } Võ Phạm Tuấn Dũng (2570015) \texorpdfstring{\,|\,}{ | } Nguyễn Hoàng Phong (2570477)}
 \institute[HCMUT]{%
   \vspace{-0.25cm}
   \includegraphics[height=1.0cm]{assets/hcmut.png}\\[6pt]
-  {\normalsize\textbf{\color{primaryblue}CO5151 Advanced Agentic AI \,|\, D2 interim report}}\\[1pt]
+  {\normalsize\textbf{\color{primaryblue}CO5151 Advanced Agentic AI \,|\, D2 Interim Report}}\\[1pt]
   Application Track, Group 8 \,|\, Instructor: TS. Lê Xuân Bách}
 \date[28 Oct 2026]{28 October 2026}
 
@@ -104,30 +104,29 @@
 %====================================================================
 \begin{frame}[plain]
   \titlepage
-  \vspace{-0.45cm}
-  \begin{block}{What it is}
-    \footnotesize A local assistant that answers only from the loaded regulations, cites the sections it used, checks those citations in code, and refuses (or asks) when the sources do not answer.
-    Two evaluated collections: \textbf{HCMUT academic regulations} (10 documents, 143 sections; for students \& advisers) and \textbf{Vietnamese labour law} (10 documents, 458 sections; 2019 Labour Code plus 9 later laws, decrees and circulars; for employees \& HR). Not legal advice.
+  \vspace{-0.55cm}
+  \begin{block}{System Overview}
+    \footnotesize LuatCheck answers regulatory questions strictly from local document collections, verifies every cited section and quote in Python before returning an answer, and refuses or asks for clarification when the sources do not support a conclusion. Evaluated on \textbf{HCMUT academic regulations} (10 documents, 143 sections) and \textbf{Vietnamese labour law} (10 documents, 458 sections: 2019 Labour Code plus 9 implementing laws, decrees, and circulars). Research prototype; not legal advice.
   \end{block}
 \end{frame}
 
 %====================================================================
 % 2. What changed since the proposal
 %====================================================================
-\begin{frame}{What changed since the proposal}
+\begin{frame}{Changes Since the D1 Proposal}
   \footnotesize\renewcommand{\arraystretch}{1.02}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.8cm}>{\bfseries}p{1.9cm}>{\raggedright\arraybackslash}X@{}}
-    \toprule Proposal commitment & State & What changed and why (no D1 pitch feedback received)\\\midrule
-    Agent loop, citation check & \textcolor{successgreen}{Done} & Runs end to end; budgets unchanged\\
-    Qwen3 controllers, 32B & \textcolor{dangerred}{Dropped} & Ternary Bonsai 2B and 4B: the same weights fit a 16\,GiB Mac and a GPU\\
-    BM25 + Qdrant dense retrieval & \textcolor{dangerred}{Dropped} & BM25 + TF-IDF; vector index built, \emph{not evaluated}\\
-    $\ge$10 tasks, 3 configurations & \textcolor{successgreen}{Done} & Two fixed 50-question benchmarks (HCMUT regulations, Labour law); 3 runs per configuration\\
-    Reranker (optional) & \textcolor{successgreen}{Done} & Vietnamese cross-encoder, evaluated as ``verifier + reranker''\\
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.0cm}>{\bfseries}p{1.9cm}>{\raggedright\arraybackslash}X@{}}
+    \toprule Proposal commitment & State & Status and rationale (no D1 pitch feedback received)\\\midrule
+    Agent loop, citation check & \textcolor{successgreen}{Done} & Runs end to end; step/tool/repair budgets unchanged\\
+    Qwen3 controllers, 32B & \textcolor{dangerred}{Dropped} & Replaced by ternary Bonsai 2B and 4B (GGUF); runs on a 16\,GiB Mac and GPU\\
+    BM25 + Qdrant dense retrieval & \textcolor{warnorange}{Changed} & BM25 + TF-IDF + reranker; vector index built, scheduled for W46 ablation\\
+    $\ge$10 tasks, 3 configurations & \textcolor{successgreen}{Done} & Two fixed 50-question benchmarks (HCMUT regulations, Labour law); 3 seeds\\
+    Reranker (optional) & \textcolor{successgreen}{Done} & Vietnamese cross-encoder, evaluated in ``verifier + reranker''\\
     Verifier audit (30 pairs) & \textcolor{successgreen}{Done} & 60-item blind judge audit: 96.7\% agreement ($\kappa=0.93$, HCMUT), 90.0\% ($\kappa=0.80$, labour)\\
     HR walkthrough; attack tests & \textcolor{warnorange}{Not started} & Walkthrough scheduled for W45 (Quyền, Phong); attack tests planned for W47\\
     \bottomrule
   \end{tabularx}
-  \vspace{2pt}
+  \vspace{3pt}
 
   \begin{block}{Two local controller options (Bonsai 4B default, Bonsai 2B lightweight)}
     \scriptsize Both ternary GGUF models run locally via \texttt{llama.cpp} on a 16\,GiB Mac laptop. \textbf{Bonsai 4B} reaches \textbf{60.7\% (HCMUT)} and \textbf{56.7\% (labour)} strict success on the full system ($\sim$30\,s median latency), while \textbf{Bonsai 2B} provides a $2\times$ faster lightweight option ($\sim$14\,s median, 28.0--28.7\% strict success).
@@ -137,131 +136,91 @@
 %====================================================================
 % 3. Architecture
 %====================================================================
-\begin{frame}{Architecture that runs end to end}
+\begin{frame}{System Architecture: Offline Indexing and Bounded Agent Loop}
   \centering
-  \adjustbox{max width=\textwidth,max height=6.0cm}{%
-  \begin{tikzpicture}[x=1cm,y=1cm,font=\footnotesize,line cap=round,
-    box/.style={draw=primaryblue!80!black,fill=primaryblue!9,rounded corners=2pt,align=center,inner sep=3pt,minimum height=1.0cm,line width=0.7pt},
-    var/.style={box,draw=orange!70!black,fill=orange!22},
-    off/.style={box,dashed,draw=black!55,fill=white,text=black!70},
-    term/.style={box,draw=black!70,fill=black!10},
-    frm/.style={draw=black!40,fill=black!3,rounded corners=4pt,line width=0.6pt},
-    flow/.style={-{Stealth[length=5pt,width=4.5pt]},line width=0.9pt},
-    lab/.style={font=\scriptsize,inner sep=1.2pt,fill=white,fill opacity=0.9,text opacity=1}]
-  % loop frame
-  \node[frm,minimum width=9.45cm,minimum height=4.6cm,anchor=north west] (fr) at (4.8,6.6) {};
-  \node[anchor=north west,font=\scriptsize\bfseries,align=left] at (4.95,6.52) {Bounded agent loop: $\le$8 steps, 5 tool calls, 2 repairs, 180\,s};
-  % row 1
-  \node[box,text width=1.5cm] (q) at (0.95,4.95) {Question or pasted text};
-  \node[box,text width=1.9cm] (g) at (3.35,4.95) {\textbf{Input guardrails}\\regex, pre-model};
-  \node[box,text width=2.5cm] (c) at (6.4,4.95) {\textbf{Controller}\\Bonsai 4B or 2B\\one JSON action per step};
-  \node[box,text width=2.0cm] (t) at (9.65,4.95) {\textbf{Tools}\\search, read\\read-only};
-  \node[box,text width=2.15cm] (r) at (12.65,4.95) {\textbf{Retrieval}\\BM25 + TF-IDF\\RRF, top-20};
-  % row 2
-  \node[var,text width=2.5cm] (v) at (7.0,2.85) {\textbf{Citation verifier}\\rule-based Python\\IDs, quotes, numbers};
-  \node[var,text width=2.15cm] (rr) at (12.65,2.85) {\textbf{Reranker}\\cross-encoder\\top-20 $\to$ top-5};
-  % outputs
-  \node[term,text width=2.0cm] (ref) at (2.85,0.8) {\textbf{Refused} or \textbf{clarified}};
-  \node[term,text width=2.4cm] (ans) at (7.0,0.8) {\textbf{Answer} with verified citations};
-  \node[term,text width=2.6cm] (err) at (10.35,0.8) {\textbf{Error}: backend or budget failure, never an answer};
-  \node[off,text width=2.35cm,font=\scriptsize] (nr) at (13.15,0.8) {\textbf{Not used yet:}\\semantic check,\\vector index, memory};
-  % ledger
-  \node[box,fill=black!4,draw=black!55,minimum width=14.25cm,minimum height=0.55cm,anchor=south west] (led) at (0,-0.75) {\textbf{Case ledger and audit log}: queries, tool calls, ids, repairs, tokens};
-  % flow
-  \draw[flow] (q) -- (g);
-  \draw[flow] (g) -- (c);
-  \draw[flow] ([yshift=0.25cm]c.east) -- ([yshift=0.25cm]t.west);
-  \draw[flow] ([yshift=-0.25cm]t.west) -- ([yshift=-0.25cm]c.east);
-  \draw[flow] (t) -- (r);
-  \draw[flow] (r) -- (rr);
-  \draw[flow] (rr.west) -| node[lab,pos=0.2]{top-5} (t.south);
-  \draw[flow] ([xshift=-0.3cm]c.south) -- node[lab,right=1pt]{answer} ([xshift=-0.9cm]v.north);
-  \draw[flow] ([xshift=0.9cm]v.north) -- node[lab,right=1pt]{repair} ([xshift=0.9cm]c.south);
-  \draw[flow] (v.south) -- node[lab]{pass} (ans.north);
-  \draw[flow] (g.south) -- node[lab,pos=0.35]{unsafe} (ref.north);
-  \draw[flow] ([xshift=-1.05cm]c.south) |- node[lab,pos=0.74,above=1pt]{clarify, refuse} (ref.east);
-  \draw[flow] (fr.south -| err) -- node[lab]{any failure} (err.north);
-  \end{tikzpicture}}
+  \adjustbox{max width=\textwidth,max height=5.85cm}{%
+    \input{../report/images/architecture.tikz}%
+  }
 
-  \vspace{1pt}
-  {\scriptsize \textcolor{primaryblue}{\rule{5pt}{5pt}} used in every configuration \quad \textcolor{orange}{\rule{5pt}{5pt}} optional, switched on or off in the evaluation \quad dashed: implemented, not used yet}\\[2pt]
-  \footnotesize One LLM agent + deterministic rule-based citation verifier (no multi-agent critic): permissions and budgets stay inspectable.
+  \vspace{2pt}
+  {\scriptsize \textcolor{primaryblue}{\rule{5pt}{5pt}} Core pipeline (always on) \quad \textcolor{orange}{\rule{5pt}{5pt}} Ablated modules (verifier, reranker) \quad Dashed: implemented, off in D2 runs}\\[1pt]
+  \footnotesize Single-agent ReAct loop with a deterministic Python citation verifier: tool permissions and step budgets remain directly auditable.
 \end{frame}
 
 %====================================================================
 % 4. Real trace
 %====================================================================
-\begin{frame}{The loop on one real question (trace)}
+\begin{frame}{Execution Trace on a Sample HCMUT Query}
   \footnotesize
   \textbf{Question (HCMUT regulations):} \emph{Sinh viên vi phạm Nội quy học đường sẽ được xử lý theo căn cứ nào, và mức xử lý phụ thuộc vào yếu tố nào?}
   \vspace{5pt}
 
   \centering
   \begin{tikzpicture}[font=\footnotesize,
-    stp/.style={draw=primaryblue!80!black,fill=primaryblue!8,rounded corners=3pt,text width=3.95cm,inner sep=4.5pt,align=flush left,line width=0.7pt,anchor=north west,minimum height=3.25cm},
+    stp/.style={draw=primaryblue!80!black,fill=primaryblue!8,rounded corners=3pt,text width=3.95cm,inner sep=4.5pt,align=left,line width=0.7pt,anchor=north west,minimum height=3.45cm,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
     flow/.style={-{Stealth[length=5pt,width=4.5pt]},line width=1pt}]
     \node[stp] (s1) at (0,0) {\textbf{1. search}\\[2pt]
       query: \emph{vi phạm nội quy học đường xử lý mức xử lý phụ thuộc}\\[2pt]
       20 candidates reranked, top 5 kept; Article 6 of the student code of conduct ranked first\\[3pt]
       \textcolor{black!65}{1,509 tokens in, 117 out}};
-    \node[stp] (s2) at (4.72,0) {\textbf{2. read the document}\\[2pt]
+    \node[stp] (s2) at (4.72,0) {\textbf{2. read\_document}\\[2pt]
       Article 6, \emph{Nội quy học đường} (decision 1924/QĐ-ĐHBK)\\[2pt]
-      the full section text enters the model's context\\[3pt]
+      loads the full text of Article 6 into the agent context\\[3pt]
       \textcolor{black!65}{2,905 tokens in, 171 out}};
     \node[stp] (s3) at (9.44,0) {\textbf{3. answer}\\[2pt]
       cites Article 6 with one exact quote\\[2pt]
       \textbf{Citation verifier: accepted, 0 repairs} (two soft warnings on one sentence, no rejection)\\[3pt]
       \textcolor{black!65}{3,398 tokens in, 310 out}};
-    \draw[flow] ([yshift=-1.6cm]s1.north east) -- ([yshift=-1.6cm]s2.north west);
-    \draw[flow] ([yshift=-1.6cm]s2.north east) -- ([yshift=-1.6cm]s3.north west);
+    \draw[flow] ([yshift=-1.7cm]s1.north east) -- ([yshift=-1.7cm]s2.north west);
+    \draw[flow] ([yshift=-1.7cm]s2.north east) -- ([yshift=-1.7cm]s3.north west);
   \end{tikzpicture}
 
-  \vspace{5pt}
+  \vspace{4pt}
   \begin{block}{Outcome}
-    \footnotesize Answered with 1 section cited: handling follows the student-affairs regulation and national law, depending on the severity of the violation. 3 model calls, 2 tool calls, 7,812 tokens in, 598 out. LLM judge (not a human): correctness 2/2, completeness 2/2.
+    \footnotesize Verified answer citing Article 6: disciplinary action follows the student-affairs regulation and national law based on violation severity. Total cost: 3 model calls, 2 tool calls, 7,812 input tokens, 598 output tokens. Offline LLM judge score: correctness 2/2, completeness 2/2.
   \end{block}
-  {\scriptsize Full configuration (verifier + reranker), Bonsai 4B controller. Illustrative clean run (0 repairs); end-to-end latency is reported from the Mac measurements on Slide 9.}
+  {\scriptsize Full configuration (verifier + reranker), Bonsai 4B controller. End-to-end Mac latency measurements are reported on Slide 9.}
 \end{frame}
 
 %====================================================================
 % 5. Live demo
 %====================================================================
-\begin{frame}{Live demo: LuatCheck on a 16\,GiB Mac}
+\begin{frame}{Live Demo: LuatCheck on a 16\,GiB Mac}
   \begin{columns}[T]
     \column{0.40\textwidth}
     \footnotesize
-    \textbf{System:} Bonsai 4B controller (2B also runs), BM25 + TF-IDF + reranker, citation verifier with repair, regex guardrails, \texttt{llama.cpp}, all on device.
+    \textbf{System:} Bonsai 4B controller (2B option available), BM25 + TF-IDF + reranker, rule-based citation verifier with repair, regex guardrails, \texttt{llama.cpp}, running locally.
     \vspace{2pt}
 
     \textbf{Four queries:}
     \begin{enumerate}
-      \item HCMUT: answer with a citation
-      \item Labour law: same flow, second collection
-      \item Out of scope: refusal
-      \item Prompt injection: blocked before any model call
+      \item HCMUT: verified answer with citation
+      \item Labour law: same pipeline, second corpus
+      \item Out of scope: explicit refusal
+      \item Prompt injection: blocked pre-model
     \end{enumerate}
-    \textbf{Point at:} timeline, retrieved sections, highlighted quote, verifier verdict, tokens.
+    \textbf{UI elements shown:} step timeline, retrieved sections, highlighted verbatim quote, verifier verdict, and token counts.
     \vspace{2pt}
 
-    \begin{alertblock}{Backup}
-      \scriptsize A backup video of real runs (Bonsai 4B controller, recorded 25 October) exists; used only if needed, and we say so.
+    \begin{alertblock}{Fallback recording}
+      \scriptsize An unedited screen recording of the same 4B configuration (recorded 25 October) is available if a live local service fails.
     \end{alertblock}
 
     \column{0.58\textwidth}
     \centering
     \includegraphics[width=\linewidth]{assets/demo_answer_l1_4b.png}\\[2pt]
-    {\scriptsize Frame of a real run (Bonsai 4B controller): cited section and step timeline, verifier passed}
+    {\scriptsize Web UI (Bonsai 4B): verified answer with highlighted source quote and step timeline.}
   \end{columns}
 \end{frame}
 
 %====================================================================
 % 6. Evaluation design and judge
 %====================================================================
-\begin{frame}{Evaluation design and how correctness is decided}
+\begin{frame}{Evaluation Protocol and Metrics}
   \centering
   \adjustbox{max width=\textwidth}{%
   \begin{tikzpicture}[font=\footnotesize,
-    b/.style={draw=primaryblue!80!black,fill=primaryblue!8,rounded corners=3pt,align=center,inner sep=4pt,minimum height=1.1cm,line width=0.7pt},
+    b/.style={draw=primaryblue!80!black,fill=primaryblue!8,rounded corners=3pt,align=center,inner sep=3.5pt,minimum height=0.95cm,line width=0.7pt},
     flow/.style={-{Stealth[length=5pt,width=4.5pt]},line width=0.9pt}]
     \node[b,text width=3.35cm] (a) at (0,0) {\textbf{2 benchmarks}\\50 questions each\\(45 to answer, 5 to refuse)};
     \node[b,text width=3.05cm] (b) at (4.0,0) {\textbf{3 configurations}\\no verifier, verifier,\\verifier + reranker};
@@ -269,7 +228,7 @@
     \node[b,text width=3.25cm,fill=orange!15,draw=orange!70!black] (d) at (11.4,0) {\textbf{LLM judge}\\DeepSeek V4 Flash,\\blind \& offline};
     \draw[flow] (a) -- (b); \draw[flow] (b) -- (c); \draw[flow] (c) -- (d);
   \end{tikzpicture}}
-  \vspace{5pt}
+  \vspace{2pt}
 
   \begin{columns}[T]
     \column{0.51\textwidth}
@@ -278,20 +237,20 @@
       \item \textbf{Strict success} (lower bound): run completes, valid judgment, appropriate behaviour, correctness 2/2, completeness 2/2, and all claims supported (errors/unknowns = fail).
       \item \textbf{Judge reliability} (blind human audit, 30 items/benchmark):
       \begin{itemize}\footnotesize
-        \item HCMUT: \textbf{96.7\%} agreement ($\kappa=0.93$)
-        \item Labour law: \textbf{90.0\%} agreement ($\kappa=0.80$)
+        \item HCMUT: \textbf{96.7\%} agreement ($\kappa=0.93$).
+        \item Labour law: \textbf{90.0\%} agreement ($\kappa=0.80$).
       \end{itemize}
-      \item \textbf{Auxiliary metrics:} Recall@5 and citation F1 check section IDs only; the citation verifier checks word/quote overlap.
+      \item \textbf{Auxiliary metrics:} Recall@5 and citation F1 check section IDs only; the L1 citation verifier checks provenance, verbatim quotes, and local numbers.
     \end{itemize}
 
     \column{0.45\textwidth}
-    \begin{alertblock}{D2 evaluation scope \& honest limits}
-      \footnotesize
+    \begin{alertblock}{D2 evaluation scope and limitations}
+      \scriptsize
       \begin{itemize}
-        \item \textbf{D2 goal:} prove the end-to-end system and harness \textbf{run reliably and are measurable}; deeper improvements and experiments follow in \textbf{D3}
-        \item Questions are AI-drafted and AI-verified; reviewed internally, no external legal review
-        \item Retrieval is near-saturated; 15/45 HCMUT and 12/45 labour questions are guessable closed-book
-        \item At $N=50$ questions, differences under $\sim$10\pp are within noise
+        \item \textbf{D2 objective:} verify that the end-to-end pipeline and evaluation harness \textbf{run reliably and produce reproducible baseline metrics}; broader experiments follow in \textbf{D3}.
+        \item Questions are LLM-drafted, cross-checked, and reviewed by the team (no external legal review).
+        \item Lexical retrieval is near ceiling (Recall@5 $\approx 0.99$); 15/45 HCMUT and 12/45 labour items are answerable closed-book.
+        \item At $N=50$ questions, differences under $\sim$10\pp fall within bootstrap confidence intervals.
       \end{itemize}
     \end{alertblock}
   \end{columns}
@@ -300,13 +259,14 @@
 %====================================================================
 % 7. Results chart
 %====================================================================
-\begin{frame}{Controller scaling: Bonsai 2B vs Bonsai 4B on the full system}
+\begin{frame}{Controller Scaling: Bonsai 2B vs.\ Bonsai 4B on the Full System}
   \begin{columns}[T]
-    \column{0.52\textwidth}
+    \column{0.51\textwidth}
     \centering
+    \adjustbox{max width=\linewidth}{%
     \begin{tikzpicture}
       \begin{axis}[
-        ybar, bar width=24pt, width=1.0\linewidth, height=5.3cm,
+        ybar, bar width=24pt, width=0.94\linewidth, height=5.3cm,
         ymin=0, ymax=88, ytick={0,20,40,60,80},
         ylabel={Strict success (\%)}, ylabel style={font=\small},
         symbolic x coords={HCMUT,Labour}, xtick=data, xticklabels={HCMUT regulations,Labour law}, enlarge x limits=0.45,
@@ -317,23 +277,23 @@
         every node near coord/.append style={anchor=south,font=\footnotesize\bfseries},
         error bars/y dir=both, error bars/y explicit,
         error bars/error bar style={black!80,line width=0.8pt}]
-        \addplot[fill=r2light,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
+        \addplot[fill=secondaryblue,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
           table[row sep=\\,x=x,y=y,y error plus=up,y error minus=dn] {x y up dn sh\\ HCMUT 28.7 8.3 8.7 17.2\\ Labour 28.0 9.0 9.0 18.5\\};
         \addplot[fill=primaryblue,draw=none,visualization depends on={\thisrow{sh} \as \shv},every node near coord/.append style={yshift=\shv pt}]
           table[row sep=\\,x=x,y=y,y error plus=up,y error minus=dn] {x y up dn sh\\ HCMUT 60.7 10.3 10.7 20.8\\ Labour 56.7 10.3 9.7 20.8\\};
         \legend{Bonsai 2B (lightweight), Bonsai 4B (default)}
       \end{axis}
-    \end{tikzpicture}\\[-1pt]
-    {\scriptsize Whiskers: 95\% paired bootstrap CI. 50 questions $\times$ 3 runs per bar.}
+    \end{tikzpicture}}\\[-1pt]
+    {\scriptsize Whiskers: 95\% bootstrap CI (50 questions $\times$ 3 seeds).}
 
-    \column{0.44\textwidth}
+    \column{0.45\textwidth}
     \scriptsize
-    \textbf{4B $-$ 2B gain, pp} (95\% bootstrap CI)
+    \textbf{4B $-$ 2B gain, pp} (95\% paired bootstrap CI)
     \vspace{3pt}
 
     \begin{tabular}{@{}l@{\hskip 3pt}c@{\hskip 3pt}c@{}}
       \toprule Configuration & HCMUT & Labour\\\midrule
-      \begin{tabular}[t]{@{}l@{}}No verifier\\{\tiny 31.3\% $\to$ 70.0 / 62.0\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+38.7\\{\tiny [+27.3, +50.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+30.7\\{\tiny [+20.7, +40.7]}\end{tabular}\\[3pt]
+      \begin{tabular}[t]{@{}l@{}}No verifier\\{\tiny 31.3/31.3\% $\to$ 70.0/62.0\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+38.7\\{\tiny [+27.3, +50.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+30.7\\{\tiny [+20.7, +40.7]}\end{tabular}\\[3pt]
       \begin{tabular}[t]{@{}l@{}}Verifier\\{\tiny 24.0/28.0\% $\to$ 64.0/52.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+40.0\\{\tiny [+28.7, +51.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+24.7\\{\tiny [+12.0, +37.3]}\end{tabular}\\[3pt]
       \begin{tabular}[t]{@{}l@{}}\textbf{Verifier + reranker}\\{\tiny 28.7/28.0\% $\to$ 60.7/56.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+32.0}\\{\tiny [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+28.7}\\{\tiny [+18.0, +39.3]}\end{tabular}\\
       \bottomrule
@@ -348,9 +308,9 @@
 \end{frame}
 
 %====================================================================
-% 8. Chosen system in detail
+% 8. Component ablation
 %====================================================================
-\begin{frame}{Ablation study (Bonsai 4B): why the rule-based citation verifier matters}
+\begin{frame}{Component Ablation (Bonsai 4B): Impact of the Citation Verifier}
   \footnotesize
   \centering
   {\scriptsize\setlength{\tabcolsep}{4pt}
@@ -362,23 +322,23 @@
     Verifier & 64.0 & \textbf{64.0} & \textcolor{successgreen}{\textbf{0.0}} & 0.704 & 52.7 & 52.7 & \textcolor{successgreen}{\textbf{0.0}} & 0.728\\
     Verifier + reranker (full) & 60.7 & \textbf{60.7} & \textcolor{successgreen}{\textbf{0.0}} & 0.714 & 56.7 & \textbf{56.7} & \textcolor{successgreen}{\textbf{0.0}} & 0.691\\\midrule
     Closed-book (no documents) & 2.0 & \cell{--} & \cell{--} & \cell{--} & 24.0 & \cell{--} & \cell{--} & \cell{--}\\
-    Oracle (correct section given) & 82.2 & \cell{--} & \cell{--} & \cell{--} & 75.6 & \cell{--} & \cell{--} & \cell{--}\\
+    Oracle (gold section given, 45 ans.) & 82.2 & \cell{--} & \cell{--} & \cell{--} & 75.6 & \cell{--} & \cell{--} & \cell{--}\\
     \bottomrule
   \end{tabular}}\\[3pt]
-  {\scriptsize \textbf{judge \%} = LLM-judge strict success alone; \textbf{audited \%} = passes LLM judge \emph{and} deterministic L1 citation verification; \textbf{leak \%} = share of emitted answers with fabricated/non-verbatim quotes, unretrieved IDs or wrong-clause numbers.}
+  {\scriptsize \textbf{judge~\%} = LLM-judge strict success alone; \textbf{audited~\%} = passes LLM judge \emph{and} deterministic L1 citation verification; \textbf{leak~\%} = share of emitted answers with non-verbatim quotes, unretrieved IDs, or wrong-clause numbers.}
   \vspace{4pt}
 
   \raggedright
   \begin{itemize}\scriptsize
-    \item \textbf{Without the L1 verifier (\emph{No verifier}):} \textbf{25.6\% (31/121)} of HCMUT answers and \textbf{28.0\% (37/132)} of labour answers (39.8\% and 45.9\% on 2B) leak unverifiable quotes or wrong-clause numbers that slip past the LLM judge.
-    \item \textbf{With the L1 verifier (rule-based Python heuristic, $<2$\,ms, no LLM):} Eliminates unverified citation leakage to \textbf{0.0\%}, rescues \textbf{17--20 flawed first drafts} via bounded 2-turn repair, and raises \textbf{citation-audited strict success} from \textbf{55.3\% $\to$ 60.7--64.0\% (+5.4 to +8.7\pp)} on HCMUT and \textbf{51.3\% $\to$ 56.7\% (+5.4\pp)} on labour law.
+    \item \textbf{Without the L1 verifier (\emph{No verifier}):} \textbf{25.6\% (31/121)} of HCMUT answers and \textbf{28.0\% (37/132)} of labour answers (39.8\% and 45.9\% on 2B) contain non-verbatim quotes, unretrieved section IDs, or wrong-clause numbers undetected by the prose-only LLM judge.
+    \item \textbf{With the L1 verifier (deterministic Python check, $<2$\,ms, no LLM):} Reduces unverified citation leakage to \textbf{0.0\%}, corrects \textbf{17--20 initial drafts} via bounded 2-turn repair, and increases \textbf{citation-audited strict success} from \textbf{55.3\% $\to$ 60.7--64.0\% (+5.4 to +8.7\pp)} on HCMUT and \textbf{51.3\% $\to$ 56.7\% (+5.4\pp)} on labour law.
   \end{itemize}
 \end{frame}
 
 %====================================================================
 % 9. Cost and latency
 %====================================================================
-\begin{frame}{Cost, latency and runtime environment}
+\begin{frame}{Cost, Latency, and Runtime Environment}
   \begin{columns}[T]
     \column{0.49\textwidth}
     \footnotesize
@@ -397,7 +357,7 @@
 
     \textbf{Offline evaluation judge cost:}
     \begin{itemize}\footnotesize
-      \item \textbf{USD 2.17 total} across both benchmarks (USD 1.06 HCMUT + 1.10 labour; $\approx$USD 0.002 per valid judgment).
+      \item \textbf{USD 2.17 total} across both benchmarks (USD 1.06 HCMUT and USD 1.10 labour; $\approx$USD 0.002 per valid judgment).
       \item Reported by the API gateway (lower bound; timed-out or invalid attempts were automatically retried).
     \end{itemize}
 
@@ -423,10 +383,10 @@
 %====================================================================
 % 10. Threat model
 %====================================================================
-\begin{frame}{Threat model}
+\begin{frame}{Threat Model}
   \footnotesize
   \textbf{Assets:} faithful answers \& citations; user data; corpus, config \& weights; read-only tool boundary; availability.\\
-  \textbf{Attacker:} submits arbitrary questions or pasted text; cannot alter code, corpus files, weights, logs or host approvals.\\[3pt]
+  \textbf{Attacker:} submits arbitrary questions or pasted text; cannot alter code, corpus files, weights, logs, or host approvals.\\[3pt]
   \scriptsize\renewcommand{\arraystretch}{1.08}
   \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
     \toprule Entry point & Mitigation (enforced in code) & Residual risk\\\midrule
@@ -439,23 +399,23 @@
   \end{tabularx}
   \vspace{3pt}
 
-  \footnotesize \textcolor{dangerred}{\textbf{No attack results yet.}} Mitigations define architectural boundaries; red-team attack tests are scheduled for W47.
+  \footnotesize \textcolor{dangerred}{\textbf{Evaluation status:}} Mitigations above are code-enforced boundaries; red-team attack tests are scheduled for W47.
 \end{frame}
 
 %====================================================================
 % 11. Plan, risks, status
 %====================================================================
-\begin{frame}{Plan to the first final presentation, risks, status}
+\begin{frame}{D3 Roadmap, Key Risks, and Project Status}
   \begin{columns}[T]
     \column{0.55\textwidth}
     \scriptsize\renewcommand{\arraystretch}{1.15}
-    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.05cm}>{\raggedright\arraybackslash}X@{}}
+    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.25cm}>{\raggedright\arraybackslash}X@{}}
       \toprule Week & Deliverable\\\midrule
-      W45, 2--8 Nov & HR walkthrough; new benchmark of unseen questions with a harder slice (unnamed documents, paraphrases)\\
-      W46, 9--15 Nov & Failure analysis; verifier false accepts and rejects\\
-      W47, 16--22 Nov & Attack tests per entry point, permission and fault checks\\
-      W48, 23--29 Nov & Reproduction from frozen artifacts; demo hardening; final report (semantic check \& vector index only if core is complete)\\
-      W49, 30 Nov--2 Dec & Tagged release; first final presentation on 2 Dec\\
+      W45, 2--8 Nov & HR walkthrough; design and freeze unseen harder benchmark (multi-hop, unnamed documents, paraphrases)\\
+      W46, 9--15 Nov & Run system \& ablations on unseen benchmark; add dense-retrieval ablation; failure analysis\\
+      W47, 16--22 Nov & Entry-point attack tests; permission and fault checks\\
+      W48, 23--29 Nov & Reproduction from recorded runs; demo hardening; final report\\
+      W49, 30 Nov--2 Dec & Tagged release; Round 1 final presentation on 2 Dec\\
       \bottomrule
     \end{tabularx}\\[4pt]
     \footnotesize \textbf{Owners:} Quyền, Phong (W45); Dũng, Quyền (W46); Phong, Dũng (W47); all (W48--W49)
@@ -469,7 +429,7 @@
       \item Harder benchmarks separate the configurations
     \end{itemize}
     \vspace{2pt}
-    \textbf{Fallback scope:} keep the loop, unseen benchmark, ablations and reproduction pipeline; cut vector index, semantic check and extra domains.
+    \textbf{Fallback scope:} keep the loop, unseen benchmark, ablations and reproduction pipeline; drop vector index, semantic check and extra domains.
     \vspace{4pt}
 
     \begin{block}{D2 status \& D3 roadmap}
@@ -481,17 +441,17 @@
 %====================================================================
 % 12. Team and close
 %====================================================================
-\begin{frame}{Team, roles and what we ask you to challenge}
+\begin{frame}{Key Takeaways and Team Contributions}
   \begin{columns}[T]
     \column{0.46\textwidth}
     \footnotesize
     \textbf{Three takeaways}
     \begin{enumerate}
-      \item \textbf{Controller scale + loop design:} 60.7\% (HCMUT) and 56.7\% (labour) strict success with Bonsai 4B (vs 28.0--28.7\% with 2B).
-      \item \textbf{The bottleneck was controller behaviour, not retrieval} (Recall@5 $\approx$ 0.99).
-      \item \textbf{Rule-based citation verifier eliminates unverified citation leakage} (26--28\% $\to$ \textbf{0.0\%}) and raises citation-audited strict success by \textbf{+5.4 to +8.7\pp}.
+      \item \textbf{Controller scale + loop design:} 60.7\% (HCMUT) and 56.7\% (labour) strict success with Bonsai 4B (vs.\ 28.0--28.7\% with 2B).
+      \item \textbf{The bottleneck is controller synthesis, not lexical retrieval} (Recall@5 $\approx$ 0.99).
+      \item \textbf{Rule-based citation verifier reduces unverified citation leakage} (26--28\% $\to$ \textbf{0.0\%}) and raises citation-audited strict success by \textbf{+5.4 to +8.7\pp}.
     \end{enumerate}
-    \textbf{Please challenge:} verifier over-refusal trade-off, benchmark difficulty, and multi-hop synthesis limits.
+    \textbf{Open questions for discussion:} verifier over-refusal trade-off, benchmark difficulty, and multi-clause synthesis limits.
     \vspace{4pt}
 
     {\scriptsize Repository: \url{https://github.com/tuandung222/LuatCheck-D2}\\
@@ -499,10 +459,10 @@
 
     \column{0.52\textwidth}
     \scriptsize\renewcommand{\arraystretch}{1.15}
-    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.0cm}c>{\raggedright\arraybackslash}p{1.35cm}>{\raggedright\arraybackslash}X@{}}
+    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.9cm}c>{\raggedright\arraybackslash}p{1.3cm}>{\raggedright\arraybackslash}X@{}}
       \toprule Member & \% & Presents & Answers for\\\midrule
       Lê Trí Quyền (Leader) & 33\% & Slides 1--2, 9, 11--12 & Corpus ingestion, BM25 + TF-IDF index, RRF, reranker, local \texttt{llama.cpp} serving\\
-      Võ Phạm Tuấn Dũng (Tech Lead) & 33\% & Slides 3--4, 6--8 & Idea \& architecture/model selection, codebase refactoring, agent loop, verifier, benchmarks \& evaluation\\
+      Võ Phạm Tuấn Dũng (Tech Lead) & 33\% & Slides 3--4, 6--8 & System architecture \& model selection, codebase refactoring, agent loop, verifier, benchmarks \& evaluation\\
       Nguyễn Hoàng Phong & 33\% & Slides 5 (Demo), 10 & Tool permissions, guardrails, Web UI and outbox, audit log, threat model\\
       \bottomrule
     \end{tabularx}\\[4pt]
@@ -514,7 +474,7 @@
 % Backup slides (not presented)
 %====================================================================
 \appendix
-\begin{frame}{Backup A: 60-item blind human audit of the LLM judge}
+\begin{frame}{Backup A: 60-Item Blind Human Audit of the LLM Judge}
   \footnotesize
   \textbf{Protocol:} Stratified blind sample of 60 outputs from the Bonsai 4B runs (30 HCMUT + 30 Labour law; 8 strata per benchmark). Human auditor rated behaviour, correctness, completeness and claim faithfulness against the full source regulations without seeing the LLM judge (\texttt{deepseek/deepseek-v4-flash}) scores.
   \vspace{4pt}
@@ -537,7 +497,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Backup B: strict success across controllers and configurations (\%, 95\% CI)}
+\begin{frame}{Backup B: Strict Success by Controller and Configuration (\%, 95\% CI)}
   \footnotesize
   \centering
   \begin{tabular}{@{}llrrr@{}}
@@ -556,19 +516,19 @@
   50 questions $\times$ 3 runs per cell, same questions for every configuration. Intervals: paired bootstrap over questions (5,000 draws), no correction for multiple comparisons.
 \end{frame}
 
-\begin{frame}{Backup C: what the numbers do not show}
+\begin{frame}{Backup C: Methodological Scope and Limitations}
   \footnotesize
   \begin{itemize}
     \item \textbf{Judge:} LLM estimates; on a 60-item blind human audit, strict-success agreement is 96.7\% ($\kappa=0.93$, HCMUT) and 90.0\% ($\kappa=0.80$, labour). Judge attempts invalid or timed out: 36\% (HCMUT), 45\% (labour); invalid or unjudged trials count as failures.
-    \item \textbf{Benchmarks:} 50 questions each, AI-drafted and AI-verified; no expert review of documents or questions; about half the questions name their source document.
-    \item \textbf{Guardrails:} regex patterns in Vietnamese and English; no red-team numbers yet.
-    \item \textbf{Retrieval:} BM25 + TF-IDF with rank fusion; dense embedding retrieval is implemented but not evaluated.
-    \item \textbf{Scope:} two document collections; labour-law results are not evidence for other domains. Not tried by real users.
-    \item \textbf{Latency:} on the Mac the full system takes a median of about 30\,s per question with the 4B controller and about 14\,s with the 2B controller; GPU wall times are not reported.
+    \item \textbf{Benchmarks:} 50 questions each, LLM-drafted and cross-checked, then reviewed by the team; no external legal review; about half the questions name their source document.
+    \item \textbf{Guardrails:} regex patterns in Vietnamese and English; systematic red-team evaluation is scheduled for W47.
+    \item \textbf{Retrieval:} BM25 + TF-IDF with rank fusion; dense embedding retrieval is implemented and scheduled for ablation in W46.
+    \item \textbf{Domain scope:} evaluated on two regulatory collections; generalization to other domains and end-user testing (HR walkthrough in W45) remain future work.
+    \item \textbf{Latency:} on the Mac the full system takes a median of about 30\,s per question with the 4B controller and about 14\,s with the 2B controller; GPU wall times are from batch runs on a shared server.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Backup D: failure states in the demo UI (real recordings)}
+\begin{frame}{Backup D: Guardrail, Verifier Repair, and Error States in the Web UI}
   \footnotesize
   \begin{columns}[T]
     \column{0.32\textwidth}
@@ -578,11 +538,11 @@
     \column{0.32\textwidth}
     \centering
     \includegraphics[width=\linewidth]{assets/demo_l1_repair_4b.png}\\[2pt]
-    Verifier rejected the first draft (quote not verbatim); after one repair the answer passes
+    Verifier rejected first draft (quote not verbatim); repaired and accepted
     \column{0.32\textwidth}
     \centering
     \includegraphics[width=\linewidth]{assets/demo_error.png}\\[2pt]
-    Reranker server down: execution error, never an answer
+    Reranker server unreachable: explicit execution error state
   \end{columns}
   \vspace{5pt}
 

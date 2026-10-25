@@ -1,11 +1,11 @@
 # Live demo script (D2, Wed 28 Oct 2026, 18:00)
 
-Re-verified live on this Mac on 2026-10-24 (UTC+7, 21:00 to 21:50) with the **current system** (the chosen D2 system: agent loop with the L1 verifier and the
-Vietnamese reranker 20 to 5, post-hoc revision r2). Two controllers are available and both were tested through the web API the UI uses
+Re-verified live on this Mac on 2026-10-24 (UTC+7, 21:00 to 21:50) with the **D2 system** (bounded agent loop with the rule-based L1 citation verifier and the
+Vietnamese cross-encoder reranker, top-20 to top-5). Two controllers are available and both were tested through the web API the UI uses
 (`POST /api/v1/runs`) and once each through the real browser UI (headless Chromium, Playwright):
 
-- **current system, 4B controller**: Ternary Bonsai 4B (GGUF PQ2_0), model server on :8081, UI on :8000, configs `config/profiles/demo-hcmut.yaml` and `demo-labour.yaml`.
-- **current system, 2B controller**: Ternary Bonsai 2B (GGUF PQ2_0), model server on :8083, UI on :8001, configs `config/profiles/demo-hcmut-2b.yaml` and `demo-labour-2b.yaml`.
+- **Bonsai 4B controller (default)**: Ternary Bonsai 4B (GGUF PQ2_0), model server on :8081, UI on :8000, configs `config/profiles/demo-hcmut.yaml` and `demo-labour.yaml`.
+- **Bonsai 2B controller (lightweight)**: Ternary Bonsai 2B (GGUF PQ2_0), model server on :8083, UI on :8001, configs `config/profiles/demo-hcmut-2b.yaml` and `demo-labour-2b.yaml`.
 
 Both use the same prompts, tools, L1 verifier, reranker server (:8082) and settings (temperature 0.7); only the controller model differs. All counts below are runs of a
 small model with temperature 0.7: they show which queries behave reliably enough to present, not accuracy (accuracy is in the report tables). Time budget on stage:
@@ -191,7 +191,7 @@ LVN-004 (answered, no repair, 35.2 s), LVN-011 (repair x2, refusal, 79.0 s). So 
 questions were chosen for frequent repairs and the attempts were not repeated. For 2B, 6 tries (HCMUT-002, LVN-003, HCMUT-007, LVN-004, LVN-011, HCMUT-006) gave repairs in 3 (LVN-003 refusal after 2 repairs: file 23;
 HCMUT-007 refusal after 2 repairs, 39.4 s; LVN-011 clarification after 1 repair, 13.9 s) and none ended in a verified answer.
 
-Where each file is used: README Demo section = 21, 22, 23 (2B, short clips); README safety section = 03, 04 (old, 2B initial system); README text names 11, 12, 13 and `demo_backup_4b.mp4`; slides = frames of 11 (slide 5),
+Where each file is used: root `README.md` uses the 4B recordings in `docs/images/demo/11_hcmut_answer_4b.gif` through `15_guardrail_4b.gif`; slides = frames of 11 (slide 5),
 15 and 13 (backup slide D) in `deliverables/d2/slides/assets/demo_answer_l1_4b.png`, `demo_guardrail_4b.png`, `demo_l1_repair_4b.png`; the backup video for the day is `demo_backup_4b.mp4` (4B). The recorder was extended with
 `--scenarios <file>`, `require_repair` (retry until the timeline shows a repair step) and `after: show_repairs` (scroll the repair step into view).
 
@@ -228,9 +228,9 @@ Write new files with a different output directory (`--out`) so the old 2B record
 - [ ] Show the two health checks (8081, 8082) and the config print before the first query.
 - [ ] Record Q1 to Q4 in the order of section 4, each ending with the cited section opened and the timeline visible.
 - [ ] Record at least one query in OFF mode and one in L1 mode if time allows.
-- [ ] Length 3 to 4 minutes; export MP4; file name with date and commit hash [PENDING: final commit hash].
+- [ ] Length 3 to 4 minutes; export MP4; file name with date and commit hash (`138128e804bf`).
 - [ ] Play it once on the presenting laptop and once on a second device; copy to the laptop, a USB stick and cloud storage.
-- [ ] Every member can explain the trace shown (retrieval, rerank, controller, verifier); rehearse who speaks on each step [PENDING: team].
+- [ ] Every member can explain the trace shown (retrieval, rerank, controller, verifier); rehearse who speaks on each step (Nguyễn Hoàng Phong narrates; Võ Phạm Tuấn Dũng drives the keyboard).
 - [ ] Screenshots of each query result saved as slide backups.
 
 ## 10. Day-of checklist
