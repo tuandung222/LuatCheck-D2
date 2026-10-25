@@ -23,11 +23,11 @@
 % PHASE 1: OFFLINE INGESTION & INDEXING PIPELINE (TOP BAND)
 % =====================================================================
 \node[pframe,minimum width=16.9cm,minimum height=1.72cm,anchor=north west] (p1) at (0,10.55) {};
-\node[anchor=north west,font=\fontsize{7}{8.2}\selectfont\bfseries,text=blue!55!black] at (0.20,10.46) {Phase 1: Offline Corpus Ingestion \& Indexing (\texttt{src/ingestion/}, \texttt{src/indexing/})};
+\node[anchor=north west,font=\fontsize{7}{8.2}\selectfont\bfseries,text=blue!55!black] at (0.20,10.46) {Phase 1: Offline Corpus Ingestion \& Indexing};
 
 \node[box,text width=2.25cm,minimum height=0.80cm] (pdf) at (1.35,9.40) {\textbf{Official PDFs}\\10 HCMUT, 10 Labour};
 \node[box,text width=3.15cm,minimum height=0.80cm] (ing) at (4.65,9.40) {\textbf{Ingestion \& normalisation}\\NFC, section split, SHA-256};
-\node[store,text width=3.10cm,minimum height=0.80cm] (corp) at (8.40,9.40) {\textbf{Normalized corpus JSON}\\143 / 458 sections (\texttt{data/corpus/})};
+\node[store,text width=3.10cm,minimum height=0.80cm] (corp) at (8.40,9.40) {\textbf{Normalized corpus}\\143 HCMUT, 458 Labour\\article / section records};
 \node[store,text width=2.85cm,minimum height=0.80cm] (lex) at (12.00,9.40) {\textbf{In-memory lexical index}\\BM25 + 1--3-gram TF-IDF};
 \node[off,text width=2.45cm,minimum height=0.80cm] (vec) at (15.35,9.40) {\textbf{Dense vector index}\\built, D3 ablation};
 
