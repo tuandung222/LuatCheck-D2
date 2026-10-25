@@ -607,4 +607,41 @@
   {\scriptsize Left and centre: 4B controller, showing pre-model regex guardrail refusal and bounded 1-step citation repair. Right: when a required local service (controller or reranker) is unreachable, the UI surfaces an explicit execution error state rather than a fabricated answer or silent fallback.}
 \end{frame}
 
+\begin{frame}{Backup E: Benchmark Suites and Evaluation Metrics Specification}
+  \begin{columns}[T]
+    \column{0.45\textwidth}
+    \scriptsize
+    \textbf{1. Benchmark Suites (SHA-256 hash-locked)}
+    \vspace{2pt}
+
+    \adjustbox{max width=\linewidth}{%
+    \setlength{\tabcolsep}{2.5pt}
+    \begin{tabular}{@{}lrrrr@{}}
+      \toprule Suite & Docs & Records & Queries & Split (Ans / Multi / Ref)\\\midrule
+      \texttt{hcmut\_v1} (D2) & 10 & 143 & 50 & 40 single / 5 multi / 5 refuse\\
+      \texttt{labour\_vi\_v1} (D2) & 10 & 458 & 50 & 40 single / 5 multi / 5 refuse\\
+      \texttt{bll2019\_v1} (probe) & 1 & 220 & 9 & 9 answerable (Labour Code)\\
+      \texttt{zalo\_legal\_hard1k} & -- & 1,000 & 818 & 447 gold + 553 BM25 hard neg.\\\bottomrule
+    \end{tabular}}
+    \vspace{4pt}
+
+    \begin{itemize}\scriptsize
+      \item \textbf{Construction \& QA:} Drafted from source clauses, cross-checked by 2 independent verifiers + 1 adjudicator, programmatic exact-substring check on all 145 gold quotes, and 100/100 manual PDF verification by Võ Phạm Tuấn Dũng.
+      \item \textbf{Experimental protocol:} 3 system variants (\emph{no verifier}, \emph{verifier}, \emph{full}) $\times$ 3 seeds = 150 trials/cell + 2 single-seed baselines (\emph{closed-book}, \emph{oracle}) = \textbf{1,090 trials per controller}.
+    \end{itemize}
+
+    \column{0.50\textwidth}
+    \scriptsize
+    \textbf{2. Formal Definitions of Evaluation Metrics}
+    \vspace{2pt}
+    \begin{itemize}\scriptsize
+      \item \textbf{Judge-Only Strict Success (\%):} Trial finishes without error, matches expected action (\texttt{answer} vs.\ \texttt{refuse}), and receives full LLM-judge scores on correctness ($2/2$), completeness ($2/2$), and prose support ($1.0$). Execution/judge errors count as $0$ (conservative lower bound).
+      \item \textbf{Citation-Audited Strict Success (\%):} Trial passes \emph{both} Judge-Only Strict Success \emph{and} all 3 deterministic L1 citation verifier gates (session provenance, normalised verbatim/elided quote, and $\le 300$-char claim-local numbers/units).
+      \item \textbf{Unverified Citation Leakage (\%):} Share of emitted answers (\texttt{answered}) failing any L1 citation gate.
+      \item \textbf{Behavioural Metrics (no LLM judge):} \emph{Behaviour match} (correct action), \emph{Over-refusal} (refusing/clarifying an answerable task), and \emph{Unsafe rate} (answering an out-of-scope task or emitting unsupported claims).
+      \item \textbf{Grounding \& IR Metrics:} \emph{Citation F1} (set F1 between cited and gold \texttt{article\_id}s); \emph{Recall@$k$} ($|G_i \cap R_{i,k}| / |G_i|$) and \emph{MRR@10} ($\frac{1}{|Q|}\sum_{q} \frac{1}{\text{rank}_1(q)}$).
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
 \end{document}
