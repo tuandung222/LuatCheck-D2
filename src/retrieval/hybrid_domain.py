@@ -165,6 +165,14 @@ class HybridDomainRetriever(BaseRetriever):
         return enriched_results
 
 
+DEFAULT_768D_INDEX_BY_CORPUS: Dict[str, str] = {
+    "labor_code_2019_official.json": "labor_code_2019_gemma2_768d",
+    "labour_vi_v1.json": "labour_vi_v1_gemma2_768d",
+    "hcmut_academic_v1.json": "hcmut_academic_v1_gemma2_768d",
+    "corpus_eval_hard2k.json": "zalo_legal_gemma2_768d",
+}
+
+
 class IndexedRetriever(BaseRetriever):
     """`retrieval.mode: hybrid_index`: `src/indexing` HybridSearcher over a built, persisted index.
 
@@ -177,7 +185,9 @@ class IndexedRetriever(BaseRetriever):
     segfaults), and the application loads torch for rerankers, NLI and the embedding model.
     """
 
-    def __init__(self, index_cfg: Any, manager: Any = None, id_normalizer: Optional[Callable[[str], str]] = None):
+    def __init__(self, index_cfg: Any, manager: Any = None, id_normalizer: Optional[Callable[[str], str]] = None,
+                 corpus_path: Optional[str] = None):
+        from pathlib import Path
         from src.indexing import ConfigError, load_index
         from src.indexing.builder import resolve_index_dir
         from src.indexing.manifest import read_manifest
@@ -185,7 +195,11 @@ class IndexedRetriever(BaseRetriever):
 
         if not index_cfg.path:
             raise ConfigError("retrieval.mode 'hybrid_index' requires retrieval.index.path")
-        index_dir = resolve_index_dir(index_cfg.path)
+        raw_path = str(index_cfg.path).strip()
+        if raw_path == "auto" and corpus_path:
+            corpus_name = Path(corpus_path).name
+            raw_path = DEFAULT_768D_INDEX_BY_CORPUS.get(corpus_name, "labor_code_2019_gemma2_768d")
+        index_dir = resolve_index_dir(raw_path)
         manifest = read_manifest(index_dir)
         store = index_cfg.store or manifest["default_store"]
         entries = {e["name"]: e for e in manifest["vector_stores"]}
@@ -199,7 +213,9 @@ class IndexedRetriever(BaseRetriever):
         self.index_cfg = index_cfg
         self.id_normalizer = id_normalizer
         self._loaded = load_index(index_dir, stores=[store], verify_corpus=index_cfg.verify_corpus)
-        self.searcher = self._loaded.searcher(store)
+        kw_w = getattr(index_cfg, "keyword_weight", 0.75)
+        vec_w = getattr(index_cfg, "vector_weight", 0.25)
+        self.searcher = self._loaded.searcher(store, keyword_weight=kw_w, vector_weight=vec_w)
         self.corpus: List[Dict[str, Any]] = [_normalized_record(r) for r in self._loaded.records]
         self.retrieval_mode = f"hybrid_index:{index_cfg.search_mode}"
         provider = self._loaded.provider

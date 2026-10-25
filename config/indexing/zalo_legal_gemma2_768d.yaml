@@ -42,3 +42,5 @@ retrieval:
   default_store: numpy
   rrf_k: 60
   candidates: 50
+  keyword_weight: 0.75
+  vector_weight: 0.25

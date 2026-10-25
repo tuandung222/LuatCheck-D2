@@ -29,6 +29,13 @@ retrieval:
   default_top_k: 5
   mode: bm25_tfidf
   corpus_path: data/corpus/hcmut_academic_v1.json
+  index:
+    path: hcmut_academic_v1_gemma2_768d
+    store: numpy
+    search_mode: hybrid
+    verify_corpus: true
+    keyword_weight: 0.75
+    vector_weight: 0.25
   reranker:
     enabled: true
     top_k_in: 20

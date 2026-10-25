@@ -126,10 +126,12 @@ class IndexConfig(BaseModel):
     """`retrieval.index`: a built `src/indexing` index used when `retrieval.mode` is `hybrid_index`."""
     model_config = ConfigDict(extra="forbid")
 
-    path: Optional[str] = Field(default=None, description="Index name under data/index or a path to the index directory")
+    path: Optional[str] = Field(default=None, description="Index name under data/index or a path to the index directory ('auto' selects the 768-d index for corpus_path)")
     store: Optional[str] = Field(default=None, description="Vector store name inside the index; default = the manifest's default store")
     search_mode: Literal["hybrid", "keyword", "vector"] = "hybrid"
     verify_corpus: bool = Field(default=True, description="Refuse an index whose corpus hash no longer matches")
+    keyword_weight: float = Field(default=0.75, ge=0.0, description="RRF weight for the keyword (FTS5/BM25) branch in hybrid search")
+    vector_weight: float = Field(default=0.25, ge=0.0, description="RRF weight for the dense vector branch in hybrid search")
 
 
 class RetrievalConfig(BaseModel):

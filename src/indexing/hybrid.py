@@ -24,7 +24,7 @@ class HybridSearcher:
 
     def __init__(self, keyword_index: KeywordIndex, vector_store: VectorStore, embedding_provider: EmbeddingProvider,
                  records: RecordStore, rrf_k: int = 60, candidates: int = 50,
-                 keyword_weight: float = 1.0, vector_weight: float = 1.0):
+                 keyword_weight: float = 0.75, vector_weight: float = 0.25):
         if rrf_k < 1 or candidates < 1:
             raise ConfigError("rrf_k and candidates must be >= 1")
         self.keyword = keyword_index

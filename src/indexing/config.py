@@ -54,6 +54,8 @@ class IndexConfig:
     output_dir: str = DEFAULT_OUTPUT_DIR
     rrf_k: int = 60
     candidates: int = 50
+    keyword_weight: float = 0.75
+    vector_weight: float = 0.25
     vector_metadata_fields: Optional[List[str]] = None
     default_store: Optional[str] = None
     source_path: Optional[str] = None
@@ -75,6 +77,8 @@ class IndexConfig:
                                   for s in self.vector_stores],
                 "rrf_k": self.rrf_k,
                 "candidates": self.candidates,
+                "keyword_weight": self.keyword_weight,
+                "vector_weight": self.vector_weight,
             },
             "vector_metadata_fields": self.vector_metadata_fields,
             "default_store": self.default_store,
@@ -82,7 +86,7 @@ class IndexConfig:
 
 
 _TOP_KEYS = {"name", "corpus", "corpora", "chunking", "retrieval", "output_dir", "vector_metadata_fields"}
-_RETRIEVAL_KEYS = {"embedding", "keyword_index", "vector_store", "vector_stores", "rrf_k", "candidates", "default_store"}
+_RETRIEVAL_KEYS = {"embedding", "keyword_index", "vector_store", "vector_stores", "rrf_k", "candidates", "keyword_weight", "vector_weight", "default_store"}
 
 
 def parse_store(raw: Dict[str, Any]) -> StoreSpec:
@@ -135,5 +139,6 @@ def load_config(path: str | Path) -> IndexConfig:
         name=name, corpora=corpora, embedding=dict(r["embedding"]), keyword_index=dict(r.get("keyword_index") or {"backend": "sqlite_fts5"}),
         vector_stores=stores, chunking=ChunkingConfig.from_dict(raw.get("chunking")), output_dir=raw.get("output_dir", DEFAULT_OUTPUT_DIR),
         rrf_k=int(r.get("rrf_k", 60)), candidates=int(r.get("candidates", 50)),
+        keyword_weight=float(r.get("keyword_weight", 0.75)), vector_weight=float(r.get("vector_weight", 0.25)),
         vector_metadata_fields=raw.get("vector_metadata_fields"), default_store=default_store, source_path=str(p),
     )

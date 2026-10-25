@@ -1,9 +1,9 @@
 # Báo Cáo Thực Nghiệm & Phân Tích Chuyên Sâu: Đánh Giá Truy Hồi `google/embeddinggemma-2` (128-d vs 768-d) Trên Hệ Thống LuatCheck-D2
 
-- **Ngày giờ lập báo cáo:** `2026-10-25 17:35:00+07:00` (`2026-10-25T10:35:00Z`)
-- **Khung thời gian thực nghiệm:** `2026-10-25 05:11:47+07:00` $\rightarrow$ `2026-10-25 17:35:00+07:00`
+- **Ngày giờ lập báo cáo:** `2026-10-25 17:35:00+07:00` (Cập nhật bổ sung Weighted RRF lúc `2026-10-25 19:37:30+07:00` / `2026-10-25T12:37:30Z`)
+- **Khung thời gian thực nghiệm:** `2026-10-25 05:11:47+07:00` $\rightarrow$ `2026-10-25 19:37:30+07:00`
 - **Tác giả / Người thực hiện:** Võ Phạm Tuấn Dũng (`tuandung222` — `tuandung12092002@gmail.com`)
-- **Repository:** [`tuandung222/LuatCheck-D2`](https://github.com/tuandung222/LuatCheck-D2) (nhánh `main`, commits `75703e9` & `5093613`)
+- **Repository:** [`tuandung222/LuatCheck-D2`](https://github.com/tuandung222/LuatCheck-D2) (nhánh `main`, commits `75703e9`, `5093613`, `c2cf676`)
 - **Hugging Face Index Repositories (Public):**
   - Bản `128-d`: [`tuandunghcmut/luatcheck-embeddinggemma2-128d-indexes`](https://huggingface.co/datasets/tuandunghcmut/luatcheck-embeddinggemma2-128d-indexes)
   - Bản `768-d`: [`tuandunghcmut/luatcheck-embeddinggemma2-768d-indexes`](https://huggingface.co/datasets/tuandunghcmut/luatcheck-embeddinggemma2-768d-indexes)
@@ -28,7 +28,8 @@ Toàn bộ quá trình chuẩn bị dữ liệu, tích hợp kiến trúc, xây 
 | 9 | `2026-10-25 06:00:55` | `2026-10-24T23:00:55Z` | Build index `hcmut_academic_v1_gemma2_768d` (143 mục, 206 chunks, full `768-d`). | `19.95s` (`10.66 chunks/s`) |
 | 10 | `2026-10-25 06:01:39` | `2026-10-24T23:01:39Z` | Build index `labour_vi_v1_gemma2_768d` (458 điều, 531 chunks, full `768-d`). | `44.11s` (`12.35 chunks/s`) |
 | 11 | `2026-10-25 06:04:39` | `2026-10-24T23:04:39Z` | Build index `zalo_legal_gemma2_768d` (1,000 văn bản Hard-Negative Pool, 1,644 chunks, full `768-d`). | `180.47s` (`9.27 chunks/s`) |
-| 12 | `2026-10-25 06:08:15` | `2026-10-24T23:08:15Z` | Chạy benchmark tổng thể so sánh 12 cấu hình (`Lexical`, `128-d`, `768-d`, `Hybrid RRF`) trên cả 4 tập dữ liệu; xuất bản bộ index `768-d` lên Hugging Face Hub và push commit `5093613` lên `origin/main`. | Hoàn tất toàn bộ pipeline |
+| 12 | `2026-10-25 06:08:15` | `2026-10-24T23:08:15Z` | Chạy benchmark tổng thể so sánh 12 cấu hình (`Lexical`, `128-d`, `768-d`, `Hybrid RRF`) trên cả 4 tập dữ liệu; xuất bản bộ index `768-d` lên Hugging Face Hub và push commit `5093613` lên `origin/main`. | Hoàn tất đánh giá `768-d` RRF 1:1 |
+| 13 | `2026-10-25 19:37:30` | `2026-10-25T12:37:30Z` | Cập nhật `HybridSearcher` & `IndexedRetriever` sang **Weighted RRF (`0.75 * FTS5 + 0.25 * Vector 768-d`)**, trỏ mặc định các profile demo/harness sang bộ index `768-d` (`store: numpy`), và chạy đánh giá xác nhận trên cả 4 tập benchmark. | Đạt hạng #1 toàn diện trên `zalo_legal` |
 
 ---
 
@@ -108,15 +109,16 @@ Các chỉ số đánh giá tiêu chuẩn Information Retrieval (IR) gồm:
 
 | Hạng (theo MRR@10) | Phương pháp Truy hồi | `Recall@1` | `Recall@5` | `Recall@10` | `Recall@20` | `MRR@10` | `NDCG@10` | `MAP@10` | Độ trễ tổng (`ms/q`) | Độ trễ tìm kiếm thuần (`ms/q`) |
 | :---: | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| **1** | **`SQLite FTS5 Keyword` (1K Hard Pool)** | **`68.83%`** | **`95.78%`** | **`98.78%`** | `99.14%` | **`80.20%`** | **`84.73%`** | **`80.05%`** | `3.58 ms` | `3.58 ms` |
-| **2** | **`EmbeddingGemma-2 768-d Hybrid RRF` (`FTS5 + Vector 768d`)** | `66.99%` | `94.56%` | `98.53%` | **`99.39%`** | `78.92%` | `83.68%` | `78.72%` | `21.77 ms` | `~3.65 ms` |
-| **3** | **`LuatCheck BM25 + TF-IDF 1–3-gram RRF` (Hiện tại)** | `62.47%` | `93.22%` | `98.17%` | `99.27%` | `75.43%` | `80.99%` | `75.34%` | `5.24 ms` | `5.24 ms` |
-| **4** | **`EmbeddingGemma-2 128-d Hybrid RRF` (`FTS5 + Vector 128d`)** | `59.90%` | `91.26%` | `96.27%` | `99.27%` | `73.34%` | `78.83%` | `73.05%` | `12.12 ms` *(batch)* / `52.44 ms` *(lẻ)* | `~3.65 ms` |
-| **5** | **`LuatCheck BM25-only`** | `58.68%` | `91.63%` | `96.64%` | `98.41%` | `72.62%` | `78.50%` | `72.53%` | **`1.85 ms`** | **`1.85 ms`** |
-| **6** | **`EmbeddingGemma-2 768-d Vector-only` (`FAISS HNSW`)** | `52.93%` | `83.68%` | `90.28%` | `94.19%` | `66.13%` | `71.88%` | `65.86%` | `18.28 ms` | `0.172 ms` |
-| **7** | **`EmbeddingGemma-2 768-d Vector-only` (`NumPy` / `FAISS Flat`)** | `52.93%` | `83.68%` | `90.28%` | `94.07%` | `66.13%` | `71.88%` | `65.86%` | `18.18 ms` | `0.069 ms` (`NumPy`) / `0.155 ms` (`FAISS`) |
-| **8** | **`EmbeddingGemma-2 128-d Vector-only` (`FAISS HNSW`)** | `39.98%` | `69.01%` | `80.87%` | `88.33%` | `53.62%` | `60.04%` | `53.37%` | `8.60 ms` | `0.138 ms` |
-| **9** | **`EmbeddingGemma-2 128-d Vector-only` (`NumPy` / `FAISS Flat` / `Qdrant`)** | `39.98%` | `69.01%` | `80.75%` | `88.33%` | `53.61%` | `60.01%` | `53.35%` | `8.52–8.99 ms` | `0.065 ms` (`NumPy`) / `0.529 ms` (`Qdrant`) |
+| **1** | **`EmbeddingGemma-2 768-d Weighted RRF` (`0.75*FTS5 + 0.25*Vec768d`)** | **`69.07%`** | **`97.00%`** | **`98.90%`** | **`99.51%`** | **`80.94%`** | **`85.32%`** | **`80.74%`** | `21.75 ms` | `~3.65 ms` |
+| **2** | **`SQLite FTS5 Keyword` (1K Hard Pool)** | `68.83%` | `95.78%` | `98.78%` | `99.14%` | `80.20%` | `84.73%` | `80.05%` | `3.58 ms` | `3.58 ms` |
+| **3** | **`EmbeddingGemma-2 768-d Hybrid RRF 1:1` (`FTS5 + Vector 768d`)** | `66.99%` | `94.56%` | `98.53%` | `99.39%` | `78.92%` | `83.68%` | `78.72%` | `21.77 ms` | `~3.65 ms` |
+| **4** | **`LuatCheck BM25 + TF-IDF 1–3-gram RRF` (Hiện tại)** | `62.47%` | `93.22%` | `98.17%` | `99.27%` | `75.43%` | `80.99%` | `75.34%` | `5.24 ms` | `5.24 ms` |
+| **5** | **`EmbeddingGemma-2 128-d Hybrid RRF 1:1` (`FTS5 + Vector 128d`)** | `59.90%` | `91.26%` | `96.27%` | `99.27%` | `73.34%` | `78.83%` | `73.05%` | `12.12 ms` *(batch)* / `52.44 ms` *(lẻ)* | `~3.65 ms` |
+| **6** | **`LuatCheck BM25-only`** | `58.68%` | `91.63%` | `96.64%` | `98.41%` | `72.62%` | `78.50%` | `72.53%` | **`1.85 ms`** | **`1.85 ms`** |
+| **7** | **`EmbeddingGemma-2 768-d Vector-only` (`FAISS HNSW`)** | `52.93%` | `83.68%` | `90.28%` | `94.19%` | `66.13%` | `71.88%` | `65.86%` | `18.28 ms` | `0.172 ms` |
+| **8** | **`EmbeddingGemma-2 768-d Vector-only` (`NumPy` / `FAISS Flat`)** | `52.93%` | `83.68%` | `90.28%` | `94.07%` | `66.13%` | `71.88%` | `65.86%` | `18.18 ms` | `0.069 ms` (`NumPy`) / `0.155 ms` (`FAISS`) |
+| **9** | **`EmbeddingGemma-2 128-d Vector-only` (`FAISS HNSW`)** | `39.98%` | `69.01%` | `80.87%` | `88.33%` | `53.62%` | `60.04%` | `53.37%` | `8.60 ms` | `0.138 ms` |
+| **10** | **`EmbeddingGemma-2 128-d Vector-only` (`NumPy` / `FAISS Flat` / `Qdrant`)** | `39.98%` | `69.01%` | `80.75%` | `88.33%` | `53.61%` | `60.01%` | `53.35%` | `8.52–8.99 ms` | `0.065 ms` (`NumPy`) / `0.529 ms` (`Qdrant`) |
 | *Tham chiếu* | *`SQLite FTS5` trên toàn bộ **61,425 điều luật** (Full Corpus)* | *`56.11%`* | *`83.44%`* | *`88.45%`* | *`92.11%`* | *`68.07%`* | *`72.98%`* | *`67.88%`* | *`152.24 ms`* | *`152.24 ms`* |
 
 ---
@@ -128,10 +130,11 @@ Các chỉ số đánh giá tiêu chuẩn Information Retrieval (IR) gồm:
 | **1** | **`LuatCheck BM25 + TF-IDF 1–3-gram RRF`** | **`77.78%`** | **`100.00%`** | **`100.00%`** | **`100.00%`** | **`94.44%`** | **`93.34%`** | **`89.26%`** | `1.86 ms` |
 | **1** | **`LuatCheck BM25-only`** | **`77.78%`** | **`100.00%`** | **`100.00%`** | **`100.00%`** | **`94.44%`** | **`93.34%`** | **`89.26%`** | **`1.06 ms`** |
 | **3** | **`SQLite FTS5 Keyword`** | **`77.78%`** | `94.44%` | **`100.00%`** | **`100.00%`** | **`94.44%`** | `93.14%` | `88.89%` | `3.66 ms` |
-| **4** | **`EmbeddingGemma-2 768-d Hybrid RRF` (`FTS5 + Vector 768d`)** | **`77.78%`** | `88.89%` | **`100.00%`** | **`100.00%`** | `92.59%` | `90.55%` | `84.92%` | `~3.76 ms` |
-| **5** | **`EmbeddingGemma-2 768-d Vector-only` (`NumPy` / `FAISS Flat` / `HNSW`)** | `44.44%` | `77.78%` | **`100.00%`** | **`100.00%`** | `67.96%` | `71.25%` | `59.55%` | `0.098–0.324 ms` |
-| **6** | **`EmbeddingGemma-2 128-d Hybrid RRF` (`FTS5 + Vector 128d`)** | `33.33%` | `83.33%` | `88.89%` | **`100.00%`** | `61.48%` | `65.28%` | `55.46%` | `~3.72 ms` |
-| **7** | **`EmbeddingGemma-2 128-d Vector-only` (`NumPy` / `FAISS` / `Qdrant`)** | `11.11%` | `61.11%` | `72.22%` | `83.33%` | `40.37%` | `43.65%` | `32.04%` | `0.061–0.535 ms` |
+| **4** | **`EmbeddingGemma-2 768-d Weighted RRF` (`0.75*FTS5 + 0.25*Vec768d`)** | **`77.78%`** | `94.44%` | **`100.00%`** | **`100.00%`** | **`94.44%`** | `92.66%` | `87.96%` | `~3.76 ms` |
+| **5** | **`EmbeddingGemma-2 768-d Hybrid RRF 1:1` (`FTS5 + Vector 768d`)** | **`77.78%`** | `88.89%` | **`100.00%`** | **`100.00%`** | `92.59%` | `90.55%` | `84.92%` | `~3.76 ms` |
+| **6** | **`EmbeddingGemma-2 768-d Vector-only` (`NumPy` / `FAISS Flat` / `HNSW`)** | `44.44%` | `77.78%` | **`100.00%`** | **`100.00%`** | `67.96%` | `71.25%` | `59.55%` | `0.098–0.324 ms` |
+| **7** | **`EmbeddingGemma-2 128-d Hybrid RRF 1:1` (`FTS5 + Vector 128d`)** | `33.33%` | `83.33%` | `88.89%` | **`100.00%`** | `61.48%` | `65.28%` | `55.46%` | `~3.72 ms` |
+| **8** | **`EmbeddingGemma-2 128-d Vector-only` (`NumPy` / `FAISS` / `Qdrant`)** | `11.11%` | `61.11%` | `72.22%` | `83.33%` | `40.37%` | `43.65%` | `32.04%` | `0.061–0.535 ms` |
 
 ---
 
@@ -141,11 +144,12 @@ Các chỉ số đánh giá tiêu chuẩn Information Retrieval (IR) gồm:
 | :---: | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | **1** | **`SQLite FTS5 Keyword`** | **`84.44%`** | **`100.00%`** | **`100.00%`** | **`100.00%`** | `94.81%` | **`96.43%`** | **`95.19%`** | `4.83 ms` |
 | **2** | **`LuatCheck BM25 + TF-IDF 1–3-gram RRF`** | **`84.44%`** | `98.89%` | `98.89%` | **`100.00%`** | **`95.19%`** | `95.69%` | `94.07%` | `2.72 ms` |
-| **3** | **`LuatCheck BM25-only`** | `80.00%` | `98.89%` | `98.89%` | `98.89%` | `92.41%` | `93.33%` | `90.72%` | **`1.59 ms`** |
-| **4** | **`EmbeddingGemma-2 768-d Hybrid RRF` (`FTS5 + Vector 768d`)** | `75.56%` | `97.78%` | **`100.00%`** | **`100.00%`** | `87.91%` | `90.12%` | `86.14%` | `~4.91 ms` |
-| **5** | **`EmbeddingGemma-2 128-d Hybrid RRF` (`FTS5 + Vector 128d`)** | `66.67%` | `91.11%` | `95.56%` | `98.89%` | `80.44%` | `84.05%` | `79.86%` | `~4.90 ms` |
-| **6** | **`EmbeddingGemma-2 768-d Vector-only` (`NumPy` / `FAISS Flat` / `HNSW`)** | `54.44%` | `84.44%` | `90.00%` | `98.89%` | `71.21%` | `74.51%` | `68.48%` | `0.079–0.187 ms` |
-| **7** | **`EmbeddingGemma-2 128-d Vector-only` (`NumPy` / `FAISS` / `Qdrant`)** | `41.11%` | `67.78%` | `86.67%` | `92.22%` | `55.87%` | `62.66%` | `54.63%` | `0.065–0.463 ms` |
+| **3** | **`EmbeddingGemma-2 768-d Weighted RRF` (`0.75*FTS5 + 0.25*Vec768d`)** | `82.22%` | **`100.00%`** | **`100.00%`** | **`100.00%`** | `94.07%` | `95.54%` | `93.70%` | `~4.91 ms` |
+| **4** | **`LuatCheck BM25-only`** | `80.00%` | `98.89%` | `98.89%` | `98.89%` | `92.41%` | `93.33%` | `90.72%` | **`1.59 ms`** |
+| **5** | **`EmbeddingGemma-2 768-d Hybrid RRF 1:1` (`FTS5 + Vector 768d`)** | `75.56%` | `97.78%` | **`100.00%`** | **`100.00%`** | `87.91%` | `90.12%` | `86.14%` | `~4.91 ms` |
+| **6** | **`EmbeddingGemma-2 128-d Hybrid RRF 1:1` (`FTS5 + Vector 128d`)** | `66.67%` | `91.11%` | `95.56%` | `98.89%` | `80.44%` | `84.05%` | `79.86%` | `~4.90 ms` |
+| **7** | **`EmbeddingGemma-2 768-d Vector-only` (`NumPy` / `FAISS Flat` / `HNSW`)** | `54.44%` | `84.44%` | `90.00%` | `98.89%` | `71.21%` | `74.51%` | `68.48%` | `0.079–0.187 ms` |
+| **8** | **`EmbeddingGemma-2 128-d Vector-only` (`NumPy` / `FAISS` / `Qdrant`)** | `41.11%` | `67.78%` | `86.67%` | `92.22%` | `55.87%` | `62.66%` | `54.63%` | `0.065–0.463 ms` |
 
 ---
 
@@ -154,12 +158,13 @@ Các chỉ số đánh giá tiêu chuẩn Information Retrieval (IR) gồm:
 | Hạng | Phương pháp Truy hồi | `Recall@1` | `Recall@5` | `Recall@10` | `Recall@20` | `MRR@10` | `NDCG@10` | `MAP@10` | Tìm kiếm thuần (`ms/q`) |
 | :---: | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | **1** | **`SQLite FTS5 Keyword`** | **`90.00%`** | **`100.00%`** | **`100.00%`** | **`100.00%`** | **`97.78%`** | **`97.64%`** | **`96.30%`** | `1.57 ms` |
-| **2** | **`LuatCheck BM25-only`** | `86.67%` | `98.89%` | `98.89%` | **`100.00%`** | `95.19%` | `95.16%` | `93.15%` | **`1.07 ms`** |
+| **2** | **`EmbeddingGemma-2 768-d Weighted RRF` (`0.75*FTS5 + 0.25*Vec768d`)** | `88.89%` | `96.67%` | `98.89%` | **`100.00%`** | `95.78%` | `95.36%` | `93.44%` | `~1.64 ms` |
 | **3** | **`LuatCheck BM25 + TF-IDF 1–3-gram RRF`** | `85.56%` | `98.89%` | **`100.00%`** | **`100.00%`** | `95.19%` | `95.51%` | `93.33%` | `1.17 ms` |
-| **4** | **`EmbeddingGemma-2 768-d Hybrid RRF` (`FTS5 + Vector 768d`)** | `77.78%` | `95.56%` | `96.67%` | `98.89%` | `89.63%` | `90.29%` | `87.24%` | `~1.64 ms` |
-| **5** | **`EmbeddingGemma-2 128-d Hybrid RRF` (`FTS5 + Vector 128d`)** | `65.56%` | `91.11%` | `92.22%` | `95.56%` | `80.44%` | `81.59%` | `76.72%` | `~1.62 ms` |
-| **6** | **`EmbeddingGemma-2 768-d Vector-only` (`NumPy` / `FAISS Flat` / `HNSW`)** | `61.11%` | `88.89%` | `94.44%` | `95.56%` | `77.08%` | `79.74%` | `73.74%` | `0.071–0.151 ms` |
-| **7** | **`EmbeddingGemma-2 128-d Vector-only` (`NumPy` / `FAISS` / `Qdrant`)** | `40.00%` | `74.44%` | `88.89%` | `88.89%` | `57.71%` | `64.63%` | `56.15%` | `0.052–0.390 ms` |
+| **4** | **`LuatCheck BM25-only`** | `86.67%` | `98.89%` | `98.89%` | **`100.00%`** | `95.19%` | `95.16%` | `93.15%` | **`1.07 ms`** |
+| **5** | **`EmbeddingGemma-2 768-d Hybrid RRF 1:1` (`FTS5 + Vector 768d`)** | `77.78%` | `95.56%` | `96.67%` | `98.89%` | `89.63%` | `90.29%` | `87.24%` | `~1.64 ms` |
+| **6** | **`EmbeddingGemma-2 128-d Hybrid RRF 1:1` (`FTS5 + Vector 128d`)** | `65.56%` | `91.11%` | `92.22%` | `95.56%` | `80.44%` | `81.59%` | `76.72%` | `~1.62 ms` |
+| **7** | **`EmbeddingGemma-2 768-d Vector-only` (`NumPy` / `FAISS Flat` / `HNSW`)** | `61.11%` | `88.89%` | `94.44%` | `95.56%` | `77.08%` | `79.74%` | `73.74%` | `0.071–0.151 ms` |
+| **8** | **`EmbeddingGemma-2 128-d Vector-only` (`NumPy` / `FAISS` / `Qdrant`)** | `40.00%` | `74.44%` | `88.89%` | `88.89%` | `57.71%` | `64.63%` | `56.15%` | `0.052–0.390 ms` |
 
 ---
 
@@ -211,8 +216,17 @@ Phân tích toán học trực tiếp trên công thức này giải thích rõ 
    - Trong khi đó, một điều luật gây nhiễu $d_{\text{noise}}$ cùng chủ đề được cả hai nhánh xếp ở hạng 2 ($r_{\text{vec}}(d_{\text{noise}}) = 2, r_{\text{fts}}(d_{\text{noise}}) = 2$) sẽ có điểm:
      $$\text{score}_{\text{RRF}}(d_{\text{noise}}) = \frac{1}{62} + \frac{1}{62} \approx 0.03226 > 0.02816$$
    - Kết quả là $d_{\text{noise}}$ vượt lên hạng 1, đẩy $d^*$ xuống hạng 2. Việc trao quyền biểu quyết ngang bằng (`50/50`) giữa một mô hình giỏi bắt chính xác điều khoản (`FTS5`, `R@1 = 68.83%`) và một mô hình yếu hơn ở vị trí đầu (`Vector`, `R@1 = 52.93%` ở `768-d` hoặc `39.98%` ở `128-d`) làm giảm độ chính xác tại `Top-1`.
-2. **Tại sao `Recall@20` của `768-d Hybrid RRF` đạt `99.39%` — cao nhất toàn bảng (vượt cả `FTS5` `99.14%` và `BM25+TF-IDF` `99.27%`)?**
+2. **Tại sao `Recall@20` của `768-d Hybrid RRF` đạt `99.39%` — vượt cả `FTS5` (`99.14%`) và `BM25+TF-IDF` (`99.27%`), và khi nâng lên `Weighted RRF (0.75 * FTS5 + 0.25 * Vector 768-d)` thì đứng #1 ở MỌI chỉ số?**
    - Với ~`0.86%` số câu hỏi mà người dùng diễn đạt hoàn toàn bằng ngôn ngữ đời thường (không khớp từ khóa với văn bản luật), `FTS5` không trả về điều luật đúng trong `Top-20`, nhưng `768-d Vector` vẫn xếp điều luật đúng trong nhóm dẫn đầu, giúp `Hybrid RRF` kéo điều luật đó vào `Top-20`.
+   - Khi áp dụng **Weighted RRF** ($w_{\text{fts}} = 0.75, w_{\text{vec}} = 0.25$):
+     $$\text{score}_{\text{WRRF}}(d) = 0.75 \cdot \frac{1}{60 + r_{\text{fts}}(d)} + 0.25 \cdot \frac{1}{60 + r_{\text{vec}}(d)}$$
+     Phương pháp **`EmbeddingGemma-2 768-d Weighted RRF`** lập tức **vượt qua cả `SQLite FTS5` lẫn `LuatCheck BM25 + TF-IDF RRF` trên tất cả các thước đo của tập `zalo_legal` (818 truy vấn)**:
+     - `Recall@1`: tăng từ `66.99%` lên **`69.07%`** (vượt `FTS5` `68.83%` và `BM25+TF-IDF` `62.47%`).
+     - `Recall@5`: tăng từ `94.56%` lên **`97.00%`** (vượt `FTS5` `95.78%` và `BM25+TF-IDF` `93.22%`).
+     - `Recall@10`: tăng từ `98.53%` lên **`98.90%`** (vượt `FTS5` `98.78%` và `BM25+TF-IDF` `98.17%`).
+     - `Recall@20`: tăng từ `99.39%` lên **`99.51%`** (cao nhất toàn bộ thực nghiệm).
+     - `MRR@10`: tăng từ `78.92%` lên **`80.94%`** (vượt `FTS5` `80.20%` và `BM25+TF-IDF` `75.43%`).
+     - Trên `labour_vi_v1`, `Recall@1` tăng từ `75.56%` lên **`82.22%`** (`Recall@5 = 100.0%`); trên `hcmut_v1`, `Recall@1` tăng từ `77.78%` lên **`88.89%`** (`MRR@10 = 95.78%`, vượt `BM25+TF-IDF` `95.19%`).
 
 ---
 
@@ -239,7 +253,6 @@ Dựa trên toàn bộ số liệu thực nghiệm trên, dưới đây là 3 kh
 2. **Chọn phương pháp truy hồi phù hợp với vai trò trong Pipeline:**
    - **Cho chế độ chạy nhanh / CPU-only / Không cần GPU (`hybrid_bm25`):** Giữ nguyên `LuatCheck BM25 + TF-IDF 1–3-gram RRF` hoặc `SQLite FTS5`. Cả hai có độ trễ chỉ `1.2–5.2 ms/query`, không tốn 517 MB VRAM cho model embedding, và đạt `MRR@10` từ `75.43%–80.20%` trên Zalo Legal (`94.44%–97.78%` trên các bộ luật chuyên biệt).
    - **Cho chế độ RAG / Agent (`hybrid_index` với `top_k = 8..20` đưa vào LLM đọc điều luật):** Sử dụng **`EmbeddingGemma-2 768-d Hybrid RRF (FTS5 + Vector 768-d)`** với backend `numpy` hoặc `faiss`, vì cấu hình này đạt **`Recall@20 = 99.39%`** trên Zalo Legal và **`Recall@10 = 100.0%`** trên `bll2019_v1` & `labour_vi_v1`.
-3. **Cải tiến công thức trộn điểm sang Weighted RRF (Trọng số lệch về Lexical):**
-   - Thay vì cộng 1:1 giữa `Vector` và `FTS5`, điều chỉnh trọng số trong [`IndexedRetriever.search`](../../src/retrieval/hybrid_domain.py) thành:
-     $$\text{score}_{\text{WRRF}}(d) = w_{\text{fts}} \cdot \frac{1}{k + r_{\text{fts}}(d)} + w_{\text{vec}} \cdot \frac{1}{k + r_{\text{vec}}(d)}, \quad (w_{\text{fts}} = 0.75,\; w_{\text{vec}} = 0.25)$$
-   - Khi $w_{\text{fts}} = 0.75$ và $w_{\text{vec}} = 0.25$, điều luật khớp chính xác từ khóa ở hạng 1 của `FTS5` sẽ không bị một văn bản hạng 2 của cả hai nhánh vượt mặt, giúp bảo toàn `Recall@1` ở mức `~68.8%` của `FTS5` đồng thời giữ nguyên `Recall@20 = 99.39%` của `768-d Vector`.
+3. **Đã triển khai mặc định Weighted RRF (`0.75 * FTS5 + 0.25 * Vector 768-d`) và bộ index `768-d` (`store: numpy`) trên toàn hệ thống:**
+   - Trong [`src/indexing/hybrid.py`](../../src/indexing/hybrid.py), [`src/indexing/config.py`](../../src/indexing/config.py), [`src/config/app_config.py`](../../src/config/app_config.py) và [`src/retrieval/hybrid_domain.py`](../../src/retrieval/hybrid_domain.py), trọng số mặc định của `HybridSearcher` và `IndexedRetriever` đã được đặt thành `keyword_weight = 0.75`, `vector_weight = 0.25`.
+   - Các profile cấu hình ([`demo-hcmut.yaml`](../../config/profiles/demo-hcmut.yaml), [`demo-labour.yaml`](../../config/profiles/demo-labour.yaml), [`demo-hcmut-gemma2-768d.yaml`](../../config/profiles/demo-hcmut-gemma2-768d.yaml), [`demo-labour-gemma2-768d.yaml`](../../config/profiles/demo-labour-gemma2-768d.yaml)) và target `make demo-web-gemma2` đã trỏ trực tiếp sang bộ index **`768-d`** (`store: numpy`).

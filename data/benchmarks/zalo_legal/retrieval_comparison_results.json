@@ -3,10 +3,10 @@
     "retriever_class": "IndexedRetriever",
     "search_law_top_articles": [
       "Dieu_25",
-      "Dieu_219",
       "Dieu_27",
-      "Dieu_53",
-      "Dieu_107"
+      "Dieu_24",
+      "Dieu_26",
+      "Dieu_219"
     ],
     "read_law_resolved": true,
     "alias_resolution_Dieu_25": true
@@ -153,6 +153,19 @@
           "search_only_ms_per_query": 0.324,
           "latency_ms_per_query": 618.32,
           "dimension": 768
+        },
+        "10_EmbeddingGemma2_768d_Hybrid_Weighted_RRF (0.75*FTS5+0.25*Vector)": {
+          "Recall@1": 77.78,
+          "Recall@5": 94.44,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 94.44,
+          "NDCG@10": 92.66,
+          "MAP@10": 87.96,
+          "latency_ms_per_query": 833.93,
+          "dimension": 768,
+          "keyword_weight": 0.75,
+          "vector_weight": 0.25
         }
       },
       "index_summary": {
@@ -326,6 +339,19 @@
           "search_only_ms_per_query": 0.187,
           "latency_ms_per_query": 133.59,
           "dimension": 768
+        },
+        "10_EmbeddingGemma2_768d_Hybrid_Weighted_RRF (0.75*FTS5+0.25*Vector)": {
+          "Recall@1": 82.22,
+          "Recall@5": 100.0,
+          "Recall@10": 100.0,
+          "Recall@20": 100.0,
+          "MRR@10": 94.07,
+          "NDCG@10": 95.54,
+          "MAP@10": 93.7,
+          "latency_ms_per_query": 23.77,
+          "dimension": 768,
+          "keyword_weight": 0.75,
+          "vector_weight": 0.25
         }
       },
       "index_summary": {
@@ -499,6 +525,19 @@
           "search_only_ms_per_query": 0.151,
           "latency_ms_per_query": 137.37,
           "dimension": 768
+        },
+        "10_EmbeddingGemma2_768d_Hybrid_Weighted_RRF (0.75*FTS5+0.25*Vector)": {
+          "Recall@1": 88.89,
+          "Recall@5": 96.67,
+          "Recall@10": 98.89,
+          "Recall@20": 100.0,
+          "MRR@10": 95.78,
+          "NDCG@10": 95.36,
+          "MAP@10": 93.44,
+          "latency_ms_per_query": 23.44,
+          "dimension": 768,
+          "keyword_weight": 0.75,
+          "vector_weight": 0.25
         }
       },
       "index_summary": {
@@ -683,6 +722,19 @@
           "MAP@10": 67.88,
           "latency_ms_per_query": 152.24,
           "corpus_size": 61425
+        },
+        "10_EmbeddingGemma2_768d_Hybrid_Weighted_RRF (0.75*FTS5+0.25*Vector)": {
+          "Recall@1": 69.07,
+          "Recall@5": 97.0,
+          "Recall@10": 98.9,
+          "Recall@20": 99.51,
+          "MRR@10": 80.94,
+          "NDCG@10": 85.32,
+          "MAP@10": 80.74,
+          "latency_ms_per_query": 13.46,
+          "dimension": 768,
+          "keyword_weight": 0.75,
+          "vector_weight": 0.25
         }
       },
       "index_summary": {

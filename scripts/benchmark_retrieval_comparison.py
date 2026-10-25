@@ -157,12 +157,13 @@ def _vector_doc_ranking(store: Any, qvec: np.ndarray, depth: int) -> List[str]:
     return seen
 
 
-def _rrf_fuse(kw_ids: List[str], vec_ids: List[str], rrf_k: int = 60, top_k: int = 20) -> List[str]:
+def _rrf_fuse(kw_ids: List[str], vec_ids: List[str], rrf_k: int = 60, top_k: int = 20,
+              kw_weight: float = 1.0, vec_weight: float = 1.0) -> List[str]:
     scores: Dict[str, float] = {}
     for rank, did in enumerate(kw_ids, start=1):
-        scores[did] = scores.get(did, 0.0) + 1.0 / (rrf_k + rank)
+        scores[did] = scores.get(did, 0.0) + kw_weight / (rrf_k + rank)
     for rank, did in enumerate(vec_ids, start=1):
-        scores[did] = scores.get(did, 0.0) + 1.0 / (rrf_k + rank)
+        scores[did] = scores.get(did, 0.0) + vec_weight / (rrf_k + rank)
     ordered = sorted(scores.items(), key=lambda kv: (-kv[1], kv[0]))[:top_k]
     return [did for did, _ in ordered]
 
@@ -356,6 +357,20 @@ def evaluate_suite(
                         "dimension": dim,
                     }
 
+                    t0 = time.perf_counter()
+                    r_wrrf = [
+                        [norm(d) for d in _rrf_fuse(kw_r, vec_r, rrf_k=rrf_k, top_k=top_k, kw_weight=0.75, vec_weight=0.25)]
+                        for kw_r, vec_r in zip(kw_full_rankings, vec_ex_full)
+                    ]
+                    wrrf_ex_ms = (time.perf_counter() - t0) * 1000.0 / len(queries)
+                    results["methods"][f"{label}_Hybrid_Weighted_RRF_{dim}d (0.75*FTS5+0.25*Vector)"] = {
+                        **compute_ir_metrics(r_wrrf, gold_sets),
+                        "latency_ms_per_query": round(emb_ex_ms + ms_fts5 + np_ex_ms + wrrf_ex_ms, 2),
+                        "dimension": dim,
+                        "keyword_weight": 0.75,
+                        "vector_weight": 0.25,
+                    }
+
                     tmp_q_ex = idx_path / "_eval_qvecs.npy"
                     np.save(tmp_q_ex, q_vecs_ex)
                     try:
@@ -405,9 +420,11 @@ def verify_pipeline_and_ui_wiring(shared_provider: Optional[EmbeddingProvider] =
     """Verify end-to-end integration with LuatCheck's pipeline builder, DomainKnowledgeRegistry, and Web Demo runtime."""
     cfg = AppConfig()
     cfg.retrieval.mode = "hybrid_index"
-    cfg.retrieval.index.path = "data/index/labor_code_2019_gemma2_128d"
+    cfg.retrieval.index.path = "data/index/labor_code_2019_gemma2_768d"
     cfg.retrieval.index.store = "numpy"
     cfg.retrieval.index.search_mode = "hybrid"
+    cfg.retrieval.index.keyword_weight = 0.75
+    cfg.retrieval.index.vector_weight = 0.25
 
     profile = load_profile(cfg.domain.profile, variant=cfg.domain.profile_variant)
     retriever = build_retriever(cfg.retrieval, corpus_path=cfg.retrieval.corpus_path, endpoint=None, manager=None, profile=profile)

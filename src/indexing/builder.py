@@ -241,7 +241,8 @@ def build_index(cfg: IndexConfig, provider: Optional[EmbeddingProvider] = None, 
                                                                if keyword.persistent else None)},
             "vector_stores": store_entries,
             "default_store": cfg.default_store or active_specs[0].name,
-            "search": {"rrf_k": cfg.rrf_k, "candidates": cfg.candidates},
+            "search": {"rrf_k": cfg.rrf_k, "candidates": cfg.candidates,
+                       "keyword_weight": cfg.keyword_weight, "vector_weight": cfg.vector_weight},
             "environment": {"python": sys.version.split()[0], "platform": platform.platform(), "machine": platform.machine(),
                             "process_peak_rss_mb": round(peak_rss_mb(), 1),
                             "provider_peak_memory_mb": getattr(provider, "memory_peak_seen_mb", None)},
@@ -309,6 +310,10 @@ class LoadedIndex:
         search = self.manifest["search"]
         kwargs.setdefault("rrf_k", search["rrf_k"])
         kwargs.setdefault("candidates", search["candidates"])
+        if "keyword_weight" in search:
+            kwargs.setdefault("keyword_weight", search["keyword_weight"])
+        if "vector_weight" in search:
+            kwargs.setdefault("vector_weight", search["vector_weight"])
         return HybridSearcher(self.keyword, self.store(backend), self.provider, self.records, **kwargs)
 
     def close(self) -> None:
@@ -324,7 +329,24 @@ class LoadedIndex:
         self.close()
 
 
+DEFAULT_768D_INDEX_ALIASES: Dict[str, str] = {
+    "labor_code_2019": "labor_code_2019_gemma2_768d",
+    "bll2019_v1": "labor_code_2019_gemma2_768d",
+    "labour_vi_v1": "labour_vi_v1_gemma2_768d",
+    "labour_vi_multi": "labour_vi_v1_gemma2_768d",
+    "hcmut_academic_v1": "hcmut_academic_v1_gemma2_768d",
+    "hcmut_academic": "hcmut_academic_v1_gemma2_768d",
+    "hcmut_v1": "hcmut_academic_v1_gemma2_768d",
+    "zalo_legal": "zalo_legal_gemma2_768d",
+}
+
+
 def resolve_index_dir(index: str | Path, output_dir: str = "data/index") -> Path:
+    raw_name = str(index).strip()
+    if raw_name in DEFAULT_768D_INDEX_ALIASES:
+        aliased = resolve_path(output_dir) / DEFAULT_768D_INDEX_ALIASES[raw_name]
+        if aliased.exists():
+            return aliased
     p = Path(index)
     if p.is_absolute() or len(p.parts) > 1 or p.exists():
         return p if p.is_absolute() else resolve_path(p)

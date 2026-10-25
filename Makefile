@@ -106,6 +106,10 @@ demo-web:
 	@curl -sf -m 2 127.0.0.1:8082/health >/dev/null || echo "WARNING: reranker server not healthy on 127.0.0.1:8082 (make rerank-server-mac)"
 	LUATCHECK_WEB_CONFIGS=$(DEMO_CONFIGS) LUATCHECK_WEB_DB=$(DEMO_WEB_DB) LUATCHECK_WEB_PORT=$(WEB_PORT) PYTHONPATH=. $(PYTHON) -m src.api.app
 
+# D2 live demo with EmbeddingGemma-2 768-d Hybrid Index (Weighted RRF: 0.75 FTS5 + 0.25 Vector 768-d, NumPy store).
+demo-web-gemma2:
+	$(MAKE) demo-web DEMO_CONFIGS=config/profiles/demo-hcmut-gemma2-768d.yaml,config/profiles/demo-labour-gemma2-768d.yaml DEMO_WEB_DB=data/db/web_demo_gemma2_768d.sqlite3
+
 web-build:
 	npm --prefix frontend run build
 

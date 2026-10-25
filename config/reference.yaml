@@ -109,10 +109,12 @@ retrieval:
   bm25_top_k: 5                  # accepted for compatibility, not read by any component
   dense_top_k: 5                 # accepted for compatibility, not read by any component
   index:                         # only for mode: hybrid_index
-    path: null                   # REQUIRED for hybrid_index: index name under data/index, or a directory
-    store: null                  # vector store inside the index; null = the manifest's default
+    path: null                   # REQUIRED for hybrid_index: index name under data/index, a directory, or 'auto' (768-d index for corpus_path)
+    store: null                  # vector store inside the index; null = the manifest's default (numpy)
     search_mode: hybrid          # hybrid | keyword | vector
     verify_corpus: true          # refuse an index whose corpus hash changed
+    keyword_weight: 0.75         # Weighted RRF weight for lexical FTS5/BM25 branch (>= 0)
+    vector_weight: 0.25          # Weighted RRF weight for dense vector branch (>= 0)
   reranker:                      # second stage; loaded through the ModelManager (see `models`)
     enabled: false               # false: first-stage order is returned
     backend: cross_encoder       # cross_encoder | qwen3 (local) | qev_http | llamacpp_http (HTTP, loopback only)
