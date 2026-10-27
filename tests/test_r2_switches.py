@@ -424,11 +424,18 @@ def test_search_first_gate_turns_an_early_answer_or_clarify_into_an_observation(
     assert run.ledger.is_terminal and run.ledger.terminal_status in ("clarified", "answered")
 
 
-def test_search_first_gate_never_blocks_refuse_and_is_off_for_clients_that_cannot_search(tmp_path):
+def test_search_first_gate_intercepts_premature_refuse_once_and_is_off_for_clients_that_cannot_search(tmp_path):
     refuse = first_trial("hcmut", lambda t: t["variant"] == "l1" and first_action(t) == "refuse")
     resp = refuse["ledger"]["llm_calls"][0]["response"]
     agent = agent_for("hcmut", tmp_path, agent={"require_search_before_answer": True})
     run = fresh_run(agent, refuse["ledger"]["original_query"])
+    run.ledger.record_step()
+    # First refuse before any search: intercepted once to encourage searching the loaded corpus
+    agent._dispatch(run, resp, ActionType.REFUSE)
+    assert not run.ledger.is_terminal and run.refuse_search_prompted
+    assert run.ledger.audit_events[-1]["event"] == "search_required_notice"
+    # Second consecutive refuse: allowed through without infinite loop
+    run.ledger.record_step()
     agent._dispatch(run, resp, ActionType.REFUSE)
     assert run.ledger.terminal_status == "refused" and run.ledger.refusal_source == "model"
 

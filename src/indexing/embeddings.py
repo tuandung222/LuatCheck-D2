@@ -32,6 +32,9 @@ def _version(pkg: str) -> Optional[str]:
 def _is_loopback(host: str) -> bool:
     if host in ("localhost",) or host.endswith(".localhost"):
         return True
+    allow_container = os.getenv("LUATCHECK_WEB_ALLOW_CONTAINER_BIND", "").strip() in {"1", "true", "yes"}
+    if allow_container and host in ("host.docker.internal", "gateway.docker.internal"):
+        return True
     try:
         return ipaddress.ip_address(host).is_loopback
     except ValueError:

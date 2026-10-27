@@ -19,6 +19,7 @@ from __future__ import annotations
 import ipaddress
 import json
 import math
+import os
 import threading
 import time
 import urllib.parse
@@ -114,7 +115,9 @@ def require_loopback_url(url: str, what: str) -> str:
     if parsed.scheme not in ("http", "https") or not parsed.hostname:
         raise ModelComponentError(f"{what}: endpoint must be an http(s) URL, got {url!r}", kind="config_error")
     host = parsed.hostname
-    loopback = host == "localhost"
+    allow_container = os.getenv("LUATCHECK_WEB_ALLOW_CONTAINER_BIND", "").strip() in {"1", "true", "yes"}
+    container_hosts = ("host.docker.internal", "gateway.docker.internal")
+    loopback = (host == "localhost") or (allow_container and host in container_hosts)
     if not loopback:
         try:
             loopback = ipaddress.ip_address(host).is_loopback

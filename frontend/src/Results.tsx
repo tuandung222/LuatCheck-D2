@@ -7,6 +7,20 @@ import type { Article, RunRecord } from "./types";
 
 export type ArticleState = { status: "loading" } | { status: "error"; message: string } | { status: "ok"; article: Article };
 
+// --------------------------------------------------------------------------- text formatting helper (inline **bold**)
+
+export function renderFormattedText(text?: string | null): ReactNode {
+  if (!text) return null;
+  const parts = text.split(/(\*\*[^*]+?\*\*)/g);
+  if (parts.length === 1) return text;
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
 // --------------------------------------------------------------------------- outcome (one visual state per terminal state)
 
 export function OutcomeCard({ run, onRetry, onOpenOutbox, onOpenSource }: {
@@ -18,7 +32,7 @@ export function OutcomeCard({ run, onRetry, onOpenOutbox, onOpenSource }: {
   if (status === "error") {
     return <article className="outcome outcome-error" role="alert">
       <header><span className="outcome-icon"><CircleAlert size={22} /></span><div><b>Lỗi thực thi</b><small>Đây không phải câu trả lời và cũng không phải từ chối. Không có nội dung thay thế nào được tạo.</small></div></header>
-      <p className="outcome-text">{output?.reason || "Một thành phần (model, reranker hoặc dữ liệu) đã gặp lỗi."}</p>
+      <p className="outcome-text">{renderFormattedText(output?.reason || "Một thành phần (model, reranker hoặc dữ liệu) đã gặp lỗi.")}</p>
       <div className="outcome-foot">{output?.error_kind && <code>{output.error_kind}</code>}<button className="button-secondary" onClick={onRetry}>Chỉnh câu hỏi và chạy lại</button></div>
     </article>;
   }
@@ -27,20 +41,20 @@ export function OutcomeCard({ run, onRetry, onOpenOutbox, onOpenSource }: {
     if (kind === "guardrail") {
       return <article className="outcome outcome-guardrail">
         <header><span className="outcome-icon"><ShieldAlert size={22} /></span><div><b>Bị chặn bởi guardrail</b><small>Chặn trước khi gọi model: không có lệnh gọi model, không có tra cứu.</small></div></header>
-        <p className="outcome-text">{output?.reason}</p>
+        <p className="outcome-text">{renderFormattedText(output?.reason)}</p>
         <div className="outcome-foot"><button className="button-secondary" onClick={onRetry}>Hỏi câu khác</button></div>
       </article>;
     }
     return <article className="outcome outcome-refused">
       <header><span className="outcome-icon"><Ban size={22} /></span><div><b>{kind === "verification_failed" ? "Từ chối: kiểm tra L1 không đạt" : "Từ chối: nguồn không đủ căn cứ"}</b><small>{kind === "verification_failed" ? "Câu trả lời nháp bị bộ kiểm tra bác sau khi hết lượt sửa chữa, nên không được hiển thị như một câu trả lời." : "Hệ thống không đưa ra câu trả lời thay vì suy đoán ngoài các văn bản đã nạp."}</small></div></header>
-      <p className="outcome-text">{output?.reason}</p>
+      <p className="outcome-text">{renderFormattedText(output?.reason)}</p>
       <div className="outcome-foot"><button className="button-secondary" onClick={onRetry}>Chỉnh câu hỏi</button></div>
     </article>;
   }
   if (status === "clarified") {
     return <article className="outcome outcome-clarify">
       <header><span className="outcome-icon"><CircleHelp size={22} /></span><div><b>Cần làm rõ thêm</b><small>Hệ thống hỏi lại thay vì trả lời; chưa có kết luận nào.</small></div></header>
-      <p className="outcome-text">{output?.question}</p>
+      <p className="outcome-text">{renderFormattedText(output?.question)}</p>
       <div className="outcome-foot"><button className="button-secondary" onClick={onRetry}>Chỉnh câu hỏi</button></div>
     </article>;
   }
@@ -52,7 +66,7 @@ export function OutcomeCard({ run, onRetry, onOpenOutbox, onOpenSource }: {
       <div><b>Câu trả lời</b><small>{output?.verified ? "Đã qua kiểm tra L1: trích dẫn tồn tại, đã được truy xuất, trùng từ vựng, số liệu khớp nguồn." : "Chế độ OFF: câu trả lời chưa được kiểm tra."}</small></div>
       <button className="button-ghost" onClick={onOpenOutbox}><Send size={14} /> Lưu bản tóm tắt</button>
     </header>
-    <div className="answer-text">{output?.content}</div>
+    <div className="answer-text">{renderFormattedText(output?.content)}</div>
     {citations.length > 0 && <div className="answer-cites"><span>Căn cứ</span>{citations.map((c, i) => <button key={`${c.article_id}-${i}`} onClick={() => onOpenSource(c.article_id)} title="Mở nguyên văn"><BookOpen size={13} />{c.article_id}</button>)}</div>}
     <p className="answer-note"><Info size={14} /> Thông tin tham khảo dựa trên các mục được liệt kê. Kiểm tra L1 là proxy từ vựng, không xác nhận độ đúng của nội dung.</p>
   </article>;
