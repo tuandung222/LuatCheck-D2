@@ -49,6 +49,7 @@ COPY --from=frontend-build /frontend/dist /app/frontend/dist
 COPY src/ /app/src/
 COPY config/ /app/config/
 COPY data/ /app/data/
+COPY docs/materials/ /app/docs/materials/
 COPY tests/ /app/tests/
 COPY conftest.py pytest.ini /app/
 COPY entrypoint.sh /app/entrypoint.sh

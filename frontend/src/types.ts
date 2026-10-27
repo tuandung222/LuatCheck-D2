@@ -178,3 +178,51 @@ export interface Health {
   active_run: boolean;
   queued_runs: number;
 }
+
+export interface CorpusDocument {
+  doc_code: string;
+  doc_title: string;
+  pdf_filename: string;
+  pdf_available: boolean;
+  pdf_url: string;
+  pages: number;
+  bytes: number;
+  sha256: string;
+  chunk_count: number;
+  chapters: string[];
+}
+
+export interface CorpusOverview {
+  corpus: string;
+  collection_id: string;
+  title: string;
+  chunking_granularity: string;
+  id_template: string;
+  total_documents: number;
+  total_chunks: number;
+  total_characters: number;
+  manifest_summary?: Record<string, unknown>;
+  documents: CorpusDocument[];
+}
+
+export interface CorpusChunkItem {
+  article_id: string;
+  title: string;
+  chapter: string | null;
+  doc_code: string;
+  doc_title: string;
+  text: string;
+  char_count: number;
+  word_count: number;
+  clause_count: number;
+  point_count: number;
+  pdf_url: string;
+}
+
+export interface CorpusChunksResponse {
+  corpus: string;
+  total: number;
+  limit: number;
+  offset: number;
+  items: CorpusChunkItem[];
+}

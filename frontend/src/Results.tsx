@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import {
-  ArrowUpRight, BookOpen, Check, ChevronDown, ChevronRight, CircleAlert, CircleHelp, Info, LoaderCircle, Send, ShieldAlert, ShieldCheck, Ban,
+  ArrowUpRight, BookOpen, Check, ChevronDown, ChevronRight, CircleAlert, CircleHelp, FileSearch, Info, LoaderCircle, Send, ShieldAlert, ShieldCheck, Ban,
 } from "lucide-react";
 import { formatCount, formatDuration } from "./format";
 import type { Article, RunRecord } from "./types";
@@ -92,8 +92,23 @@ function highlight(content: string, quote?: string | null): { node: ReactNode; f
   return { node: <>{content.slice(0, match.index)}<mark data-quote>{match[0]}</mark>{content.slice(match.index + match[0].length)}</>, found: true };
 }
 
-export function SourceItem({ id, title, subtitle, quote, state, open, onToggle, tag }: {
+export function parseDocCodeFromArticleId(id: string): string {
+  const parts = id.split("_");
+  if (id.startsWith("HCMUT_") && parts.length >= 2) {
+    return parts[1];
+  }
+  if (parts.length >= 2) {
+    if (parts[0].startsWith("ND") || parts[0].startsWith("TT") || parts[0].startsWith("LCD") || parts[0].startsWith("LVL")) {
+      return `${parts[0]}_${parts[1]}`;
+    }
+    return parts[0];
+  }
+  return id;
+}
+
+export function SourceItem({ id, title, subtitle, quote, state, open, onToggle, tag, onInspectPdfChunk }: {
   id: string; title: string; subtitle?: string; quote?: string | null; state?: ArticleState; open: boolean; onToggle: () => void; tag?: string;
+  onInspectPdfChunk?: (docCode: string, articleId: string) => void;
 }) {
   const ref = useRef<HTMLLIElement>(null);
   const article = state?.status === "ok" ? state.article : null;
@@ -126,6 +141,18 @@ export function SourceItem({ id, title, subtitle, quote, state, open, onToggle, 
           {article.source_url ? <><dt>Nguồn</dt><dd><a href={article.source_url} target="_blank" rel="noreferrer">Mở PDF gốc <ArrowUpRight size={13} /></a></dd></> : null}
         </dl>
       </>}
+      <div className="source-inspect-row">
+        <button
+          type="button"
+          className="button-secondary inspect-pdf-btn"
+          onClick={() => {
+            const docCode = parseDocCodeFromArticleId(id);
+            onInspectPdfChunk?.(docCode, id);
+          }}
+        >
+          <FileSearch size={14} /> Xem file PDF gốc & Chunk
+        </button>
+      </div>
     </div>}
   </li>;
 }

@@ -35,6 +35,7 @@ from src.services.web_contract import (
     normalize_snapshot,
 )
 from src.services.web_store import WebStore
+from src.services.corpus_inspector import get_corpus_inspector
 from src.api.runtime import (
     ProfileRuntime,
     RETRIEVAL_MODES,
@@ -732,6 +733,66 @@ def confirm_summary_proposal(proposal_id: str, body: ConfirmRequest, request: Re
     }
 
 
+# --------------------------------------------------------------------------- Corpus & PDF Chunk Inspector endpoints
+
+
+@app.get("/api/corpus/overview")
+@app.get("/api/v1/corpus/overview")
+def get_corpus_overview_api(corpus: str = Query("labour", description="Mã bộ văn bản (labour | hcmut)")):
+    try:
+        inspector = get_corpus_inspector()
+        return inspector.get_overview(corpus)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        logger.exception("Error in get_corpus_overview_api: %s", e)
+        raise HTTPException(status_code=500, detail="Không thể tải tổng quan bộ văn bản.")
+
+
+@app.get("/api/corpus/chunks")
+@app.get("/api/v1/corpus/chunks")
+def get_corpus_chunks_api(
+    corpus: str = Query("labour", description="Mã bộ văn bản (labour | hcmut)"),
+    doc_code: Optional[str] = Query(None, description="Mã định danh văn bản gốc"),
+    q: Optional[str] = Query(None, description="Từ khóa tìm kiếm trong chunk"),
+    chapter: Optional[str] = Query(None, description="Lọc theo chương"),
+    limit: int = Query(50, ge=1, le=500, description="Số lượng mục trả về"),
+    offset: int = Query(0, ge=0, description="Vị trí bắt đầu"),
+):
+    try:
+        inspector = get_corpus_inspector()
+        return inspector.get_chunks(corpus, doc_code=doc_code, q=q, chapter=chapter, limit=limit, offset=offset)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        logger.exception("Error in get_corpus_chunks_api: %s", e)
+        raise HTTPException(status_code=500, detail="Không thể truy xuất danh sách chunk.")
+
+
+@app.get("/api/corpus/pdf/{corpus}/{doc_code:path}")
+@app.head("/api/corpus/pdf/{corpus}/{doc_code:path}")
+@app.get("/api/v1/corpus/pdf/{corpus}/{doc_code:path}")
+@app.head("/api/v1/corpus/pdf/{corpus}/{doc_code:path}")
+def stream_corpus_pdf_api(corpus: str, doc_code: str):
+    if ".." in doc_code or "/" in doc_code or "\\" in doc_code:
+        raise HTTPException(status_code=400, detail="Mã văn bản không hợp lệ.")
+    inspector = get_corpus_inspector()
+    pdf_path = inspector.resolve_pdf(corpus, doc_code)
+    if not pdf_path or not pdf_path.is_file():
+        raise HTTPException(
+            status_code=404,
+            detail=f"Tài liệu PDF cho '{doc_code}' không tìm thấy trong bộ văn bản '{corpus}'.",
+        )
+    return FileResponse(
+        pdf_path,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'inline; filename="{pdf_path.name}"',
+            "Cache-Control": "public, max-age=86400",
+        },
+    )
+
+
 @app.get("/", include_in_schema=False)
 def root(request: Request):
     index = Path("frontend/dist/index.html")
@@ -742,6 +803,8 @@ def root(request: Request):
 
 @app.get("/{asset_path:path}", include_in_schema=False)
 def frontend_asset(asset_path: str):
+    if asset_path == "api" or asset_path.startswith("api/"):
+        raise HTTPException(status_code=404, detail="API route not found.")
     target = (Path("frontend/dist") / asset_path).resolve()
     root_path = Path("frontend/dist").resolve()
     if target.is_file() and root_path in target.parents:
