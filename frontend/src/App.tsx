@@ -490,7 +490,16 @@ export default function App() {
         <main className={`main-area ${activeView === "corpus" ? "main-corpus-view" : ""}`}>
           {activeView === "corpus" ? (
             <CorpusInspectorView
-              initialCorpus={inspectorCorpus}
+              activeCorpus={inspectorCorpus}
+              onSelectCorpus={(c) => {
+                setInspectorCorpus(c);
+                const targetProfile = profiles.find((p) =>
+                  c === "hcmut" ? p.id.includes("hcmut") : p.id.includes("labour")
+                );
+                if (targetProfile) {
+                  setProfileId(targetProfile.id);
+                }
+              }}
               initialDocCode={inspectorDocCode}
               initialChunkId={inspectorChunkId}
             />

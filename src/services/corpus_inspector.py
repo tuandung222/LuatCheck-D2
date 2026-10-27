@@ -103,6 +103,10 @@ class CorpusInspector:
                 file_bytes = int(src.get("bytes") or (abs_pdf.stat().st_size if abs_pdf else 0))
                 sha256 = src.get("sha256") or ""
                 pdf_filename = Path(rel_pdf).name if rel_pdf else ""
+                document_number = src.get("document_number") or ""
+                issued_date = src.get("issued_date") or ""
+                effective_date = src.get("effective_date") or ""
+                extraction_info = src.get("extraction") or ""
 
                 if doc_code:
                     docs_map[doc_code] = {
@@ -114,6 +118,10 @@ class CorpusInspector:
                         "pages": pages,
                         "bytes": file_bytes,
                         "sha256": sha256,
+                        "document_number": document_number,
+                        "issued_date": issued_date,
+                        "effective_date": effective_date,
+                        "extraction": extraction_info,
                         "chunk_count": 0,
                         "chapters": [],
                         "_abs_path": abs_pdf,
@@ -149,6 +157,7 @@ class CorpusInspector:
                     doc_chapters[doc_code].append(chapter)
 
             clauses, points = detect_clauses_and_points(content, title)
+            source_pages = item.get("source_pages") or []
             processed_chunks.append({
                 "article_id": article_id,
                 "title": title,
@@ -161,6 +170,13 @@ class CorpusInspector:
                 "clause_count": clauses,
                 "point_count": points,
                 "pdf_url": f"/api/corpus/pdf/labour/{doc_code}",
+                "source_pages": source_pages,
+                "char_start": item.get("char_start"),
+                "char_end": item.get("char_end"),
+                "document_number": item.get("document_number") or doc_meta.get("document_number"),
+                "issued_date": item.get("issued_date") or doc_meta.get("issued_date"),
+                "effective_date": item.get("effective_date") or doc_meta.get("effective_date"),
+                "extraction": item.get("extraction") or doc_meta.get("extraction"),
             })
 
         for doc_code, chapters in doc_chapters.items():
@@ -213,6 +229,13 @@ class CorpusInspector:
         docs_map: Dict[str, Dict[str, Any]] = {}
         pdf_whitelist: Dict[str, Path] = {}
 
+        # Build metadata lookup from source manifest
+        hcmut_source_doc_meta: Dict[str, Dict[str, Any]] = {}
+        for d in source_manifest.get("documents", []):
+            code = d.get("doc_code")
+            if code:
+                hcmut_source_doc_meta[code] = d
+
         # Load from manifest sources
         sources = manifest_data.get("sources", [])
         if isinstance(sources, list):
@@ -226,6 +249,12 @@ class CorpusInspector:
                 sha256 = src.get("sha256") or ""
                 pdf_filename = Path(rel_pdf).name if rel_pdf else ""
 
+                extra = hcmut_source_doc_meta.get(doc_code, {})
+                document_number = extra.get("document_number") or src.get("document_number") or ""
+                issued_date = extra.get("issued_date") or src.get("issued_date") or ""
+                effective_date = extra.get("effective_date") or src.get("effective_date") or ""
+                extraction_info = extra.get("verification_notes") or src.get("extraction") or ""
+
                 if doc_code:
                     docs_map[doc_code] = {
                         "doc_code": doc_code,
@@ -236,6 +265,10 @@ class CorpusInspector:
                         "pages": pages,
                         "bytes": file_bytes,
                         "sha256": sha256,
+                        "document_number": document_number,
+                        "issued_date": issued_date,
+                        "effective_date": effective_date,
+                        "extraction": extraction_info,
                         "chunk_count": 0,
                         "chapters": [],
                         "_abs_path": abs_pdf,
@@ -278,6 +311,7 @@ class CorpusInspector:
                     doc_chapters[doc_code].append(chapter)
 
             clauses, points = detect_clauses_and_points(content, title)
+            source_pages = item.get("source_pages") or []
             processed_chunks.append({
                 "article_id": article_id,
                 "title": title,
@@ -290,6 +324,13 @@ class CorpusInspector:
                 "clause_count": clauses,
                 "point_count": points,
                 "pdf_url": f"/api/corpus/pdf/hcmut/{doc_code}",
+                "source_pages": source_pages,
+                "char_start": item.get("char_start"),
+                "char_end": item.get("char_end"),
+                "document_number": item.get("document_number") or doc_meta.get("document_number"),
+                "issued_date": item.get("issued_date") or doc_meta.get("issued_date"),
+                "effective_date": item.get("effective_date") or doc_meta.get("effective_date"),
+                "extraction": item.get("extraction") or item.get("metadata_verification") or doc_meta.get("extraction"),
             })
 
         for doc_code, chapters in doc_chapters.items():

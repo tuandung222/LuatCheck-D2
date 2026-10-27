@@ -12,7 +12,7 @@ URL = "http://127.0.0.1:8000"
 
 def run_citation_jump_verification():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=True, args=["--headless=new"])
         context = browser.new_context(viewport={"width": 1440, "height": 900})
 
         # Set session cookie to match demo run session

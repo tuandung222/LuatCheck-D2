@@ -188,6 +188,10 @@ export interface CorpusDocument {
   pages: number;
   bytes: number;
   sha256: string;
+  document_number?: string | null;
+  issued_date?: string | null;
+  effective_date?: string | null;
+  extraction?: string | null;
   chunk_count: number;
   chapters: string[];
 }
@@ -217,6 +221,13 @@ export interface CorpusChunkItem {
   clause_count: number;
   point_count: number;
   pdf_url: string;
+  source_pages?: number[];
+  char_start?: number | null;
+  char_end?: number | null;
+  document_number?: string | null;
+  issued_date?: string | null;
+  effective_date?: string | null;
+  extraction?: string | null;
 }
 
 export interface CorpusChunksResponse {

@@ -29,6 +29,10 @@ def test_corpus_overview_labour(client):
     assert bll["pdf_filename"] == "bll2019-congbao.pdf"
     assert bll["chunk_count"] == 220
     assert bll["pages"] == 93
+    assert bll["document_number"] == "45/2019/QH14"
+    assert bll["issued_date"] == "2019-11-20"
+    assert "effective_date" in bll
+    assert "extraction" in bll
     assert len(bll["chapters"]) > 0
 
 
@@ -74,6 +78,13 @@ def test_corpus_chunks_labour_query(client):
     assert "clause_count" in item
     assert "point_count" in item
     assert "pdf_url" in item
+    assert "source_pages" in item
+    assert isinstance(item["source_pages"], list)
+    assert len(item["source_pages"]) > 0
+    assert "char_start" in item
+    assert "char_end" in item
+    assert item["char_end"] > item["char_start"]
+    assert "extraction" in item
 
     # Filter by doc_code
     r2 = client.get("/api/corpus/chunks?corpus=labour&doc_code=BLLD2019")

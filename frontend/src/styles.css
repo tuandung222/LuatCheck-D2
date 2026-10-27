@@ -744,7 +744,7 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
   color: #ffffff;
 }
 
-.badge-pages, .badge-size, .badge-chunks {
+.badge-pages, .badge-size, .badge-chunks, .badge-docnum, .badge-date {
   font-size: 12px;
   padding: 2px 8px;
   border-radius: 5px;
@@ -752,6 +752,13 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
   border: 1px solid var(--line);
   color: var(--ink-soft);
   font-weight: 550;
+}
+
+.badge-docnum {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  color: var(--teal);
+  background: var(--surface-tint);
+  border-color: color-mix(in srgb, var(--teal) 25%, transparent);
 }
 
 .doc-banner-title {
@@ -843,6 +850,12 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
   min-height: 44px;
 }
 
+.pane-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .pane-title {
   display: inline-flex;
   align-items: center;
@@ -851,6 +864,22 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
   font-weight: 750;
   letter-spacing: .4px;
   color: var(--ink-soft);
+}
+
+.pdf-page-indicator {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11.5px;
+  color: var(--teal);
+  background: var(--surface-tint);
+  border: 1px solid color-mix(in srgb, var(--teal) 25%, transparent);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.pdf-page-indicator strong {
+  font-weight: 700;
 }
 
 .file-name-pill {
@@ -1046,6 +1075,38 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
   white-space: nowrap;
 }
 
+.badge-page-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--teal);
+  background: var(--surface-tint);
+  border: 1px solid color-mix(in srgb, var(--teal) 30%, transparent);
+  padding: 2px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.badge-page-jump:hover {
+  background: var(--teal);
+  color: #ffffff;
+  border-color: var(--teal);
+  transform: translateY(-1px);
+}
+
+.badge-char-range {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+  color: var(--faint);
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
 .chunk-meta-right {
   display: flex;
   align-items: center;
@@ -1144,6 +1205,15 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
   font-size: 11px;
   color: var(--green);
   font-weight: 600;
+}
+
+.extraction-pipeline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--faint);
+  font-family: ui-monospace, SFMono-Regular, monospace;
 }
 
 .corpus-loading, .chunks-empty, .no-doc-selected {

@@ -15,11 +15,14 @@ import {
   Sparkles,
   Eye,
   AlignLeft,
+  Info,
 } from "lucide-react";
 import { getCorpusChunks, getCorpusOverview } from "./api";
 import type { CorpusChunkItem, CorpusDocument, CorpusOverview } from "./types";
 
 interface CorpusInspectorViewProps {
+  activeCorpus?: "labour" | "hcmut";
+  onSelectCorpus?: (corpus: "labour" | "hcmut") => void;
   initialCorpus?: "labour" | "hcmut";
   initialDocCode?: string | null;
   initialChunkId?: string | null;
@@ -33,14 +36,12 @@ function formatBytes(bytes: number): string {
 }
 
 function formatClausesAndPoints(text: string, title?: string) {
-  // Extract body without repeating title
   let body = text;
   if (title && body.startsWith(title)) {
     body = body.slice(title.length).trim();
   }
 
   // Regex to split on Vietnamese legal clauses e.g. " 1. ", " 2. ", "Khoản 1. "
-  // Lookahead splitting to preserve numbers
   const clauseRegex = /(?=(?:^|\s)(?:Khoản\s+\d+|[1-9]\d*)\.\s+[A-ZÀ-Ỹ“\"])/g;
   const segments = body.split(clauseRegex).map((s) => s.trim()).filter(Boolean);
 
@@ -51,7 +52,6 @@ function formatClausesAndPoints(text: string, title?: string) {
   return (
     <div className="chunk-clause-list">
       {segments.map((seg, idx) => {
-        // Match leading clause number e.g. "1. " or "Khoản 1. "
         const leadMatch = seg.match(/^((?:Khoản\s+\d+|[1-9]\d*)\.)\s+(.*)$/s);
         if (leadMatch) {
           const [, num, rest] = leadMatch;
@@ -73,14 +73,22 @@ function formatClausesAndPoints(text: string, title?: string) {
 }
 
 export function CorpusInspectorView({
+  activeCorpus,
+  onSelectCorpus,
   initialCorpus = "labour",
   initialDocCode,
   initialChunkId,
 }: CorpusInspectorViewProps) {
-  const [corpus, setCorpus] = useState<"labour" | "hcmut">(initialCorpus);
+  // Synchronized corpus state
+  const [localCorpus, setLocalCorpus] = useState<"labour" | "hcmut">(activeCorpus || initialCorpus);
+  const corpus = activeCorpus || localCorpus;
+
   const [overview, setOverview] = useState<CorpusOverview | null>(null);
   const [selectedDocCode, setSelectedDocCode] = useState<string | null>(initialDocCode || null);
   const [loadingOverview, setLoadingOverview] = useState(true);
+
+  // Active page for PDF jumping
+  const [activePdfPage, setActivePdfPage] = useState<number>(1);
 
   // Chunks state
   const [chunks, setChunks] = useState<CorpusChunkItem[]>([]);
@@ -96,10 +104,10 @@ export function CorpusInspectorView({
 
   // Sync corpus when prop changes
   useEffect(() => {
-    if (initialCorpus) {
-      setCorpus(initialCorpus);
+    if (activeCorpus) {
+      setLocalCorpus(activeCorpus);
     }
-  }, [initialCorpus]);
+  }, [activeCorpus]);
 
   useEffect(() => {
     if (initialDocCode) {
@@ -109,6 +117,15 @@ export function CorpusInspectorView({
       setHighlightChunkId(initialChunkId);
     }
   }, [initialDocCode, initialChunkId]);
+
+  const handleCorpusSwitch = (newCorpus: "labour" | "hcmut") => {
+    setLocalCorpus(newCorpus);
+    onSelectCorpus?.(newCorpus);
+    setSearchQuery("");
+    setChapterFilter("all");
+    setActivePdfPage(1);
+    setHighlightChunkId(null);
+  };
 
   // Load Overview whenever corpus changes
   useEffect(() => {
@@ -153,6 +170,14 @@ export function CorpusInspectorView({
         if (!active) return;
         setChunks(res.items);
         setLoadingChunks(false);
+
+        // If a target chunk was specified, jump PDF to its page
+        if (highlightChunkId) {
+          const target = res.items.find((c) => c.article_id === highlightChunkId);
+          if (target?.source_pages && target.source_pages.length > 0) {
+            setActivePdfPage(target.source_pages[0]);
+          }
+        }
       })
       .catch((err) => {
         if (!active) return;
@@ -163,7 +188,7 @@ export function CorpusInspectorView({
     return () => {
       active = false;
     };
-  }, [corpus, selectedDocCode]);
+  }, [corpus, selectedDocCode, highlightChunkId]);
 
   // Auto-scroll to highlighted chunk when loaded
   useEffect(() => {
@@ -203,6 +228,13 @@ export function CorpusInspectorView({
     setTimeout(() => setCopiedSha(false), 2000);
   };
 
+  const jumpToPage = (pageNum: number, articleId?: string) => {
+    setActivePdfPage(pageNum);
+    if (articleId) {
+      setHighlightChunkId(articleId);
+    }
+  };
+
   return (
     <div className="corpus-inspector">
       {/* ---------------- Top Summary Bar ---------------- */}
@@ -211,11 +243,7 @@ export function CorpusInspectorView({
           <button
             type="button"
             className={`corpus-pill-btn ${corpus === "labour" ? "active" : ""}`}
-            onClick={() => {
-              setCorpus("labour");
-              setSearchQuery("");
-              setChapterFilter("all");
-            }}
+            onClick={() => handleCorpusSwitch("labour")}
           >
             <BookOpen size={16} />
             <span>Pháp luật Lao động (10 văn bản)</span>
@@ -223,11 +251,7 @@ export function CorpusInspectorView({
           <button
             type="button"
             className={`corpus-pill-btn ${corpus === "hcmut" ? "active" : ""}`}
-            onClick={() => {
-              setCorpus("hcmut");
-              setSearchQuery("");
-              setChapterFilter("all");
-            }}
+            onClick={() => handleCorpusSwitch("hcmut")}
           >
             <Layers size={16} />
             <span>Học vụ HCMUT (10 văn bản)</span>
@@ -289,6 +313,7 @@ export function CorpusInspectorView({
                       setChapterFilter("all");
                       setSearchQuery("");
                       setHighlightChunkId(null);
+                      setActivePdfPage(1);
                     }}
                   >
                     <div className="doc-badge-row">
@@ -327,6 +352,12 @@ export function CorpusInspectorView({
                     <span className="badge-pages">{selectedDoc.pages} trang</span>
                     <span className="badge-size">{formatBytes(selectedDoc.bytes)}</span>
                     <span className="badge-chunks">{selectedDoc.chunk_count} Chunks Điều/Khoản</span>
+                    {selectedDoc.document_number && (
+                      <span className="badge-docnum">Số: {selectedDoc.document_number}</span>
+                    )}
+                    {selectedDoc.issued_date && (
+                      <span className="badge-date">Ban hành: {selectedDoc.issued_date}</span>
+                    )}
                   </div>
                   <h2 className="doc-banner-title">{selectedDoc.doc_title}</h2>
                   <div className="doc-banner-hash">
@@ -345,7 +376,7 @@ export function CorpusInspectorView({
 
                 <div className="doc-banner-actions">
                   <a
-                    href={selectedDoc.pdf_url}
+                    href={`${selectedDoc.pdf_url}#page=${activePdfPage}`}
                     target="_blank"
                     rel="noreferrer"
                     className="button-secondary open-pdf-btn"
@@ -367,17 +398,25 @@ export function CorpusInspectorView({
                 {/* ---------------- PANE A: Native PDF Viewer ---------------- */}
                 <section className="pane-container pane-pdf" aria-label="PDF Viewer">
                   <header className="pane-header">
-                    <div className="pane-title">
-                      <FileSearch size={16} />
-                      <span>PDF GỐC (BẢN CHÍNH THỨC)</span>
+                    <div className="pane-title-group">
+                      <div className="pane-title">
+                        <FileSearch size={16} />
+                        <span>PDF GỐC (BẢN CHÍNH THỨC)</span>
+                      </div>
+                      <div className="pdf-page-indicator">
+                        <span>
+                          Đang xem: Trang <strong>{activePdfPage}</strong> / {selectedDoc.pages}
+                        </span>
+                      </div>
                     </div>
                     <span className="file-name-pill">{selectedDoc.pdf_filename}</span>
                   </header>
 
                   <div className="pdf-frame-wrapper">
                     <iframe
-                      src={`${selectedDoc.pdf_url}#toolbar=1&navpanes=1`}
-                      title={`PDF - ${selectedDoc.doc_title}`}
+                      key={`${selectedDoc.doc_code}_p${activePdfPage}`}
+                      src={`${selectedDoc.pdf_url}#page=${activePdfPage}&toolbar=1&navpanes=1`}
+                      title={`PDF - ${selectedDoc.doc_title} - Trang ${activePdfPage}`}
                       className="pdf-embedded-frame"
                     />
                   </div>
@@ -465,11 +504,24 @@ export function CorpusInspectorView({
                     ) : (
                       filteredChunks.map((chunk) => {
                         const isHighlighted = highlightChunkId === chunk.article_id;
+                        const pageLabel =
+                          chunk.source_pages && chunk.source_pages.length > 0
+                            ? chunk.source_pages.length === 1
+                              ? `Trang ${chunk.source_pages[0]}`
+                              : `Trang ${chunk.source_pages[0]}–${chunk.source_pages[chunk.source_pages.length - 1]}`
+                            : null;
+
                         return (
                           <article
                             key={chunk.article_id}
                             ref={isHighlighted ? activeChunkRef : null}
                             className={`chunk-card ${isHighlighted ? "highlighted-pulse" : ""}`}
+                            onClick={() => {
+                              setHighlightChunkId(chunk.article_id);
+                              if (chunk.source_pages && chunk.source_pages.length > 0) {
+                                jumpToPage(chunk.source_pages[0], chunk.article_id);
+                              }
+                            }}
                           >
                             <header className="chunk-card-head">
                               <div className="chunk-badges-left">
@@ -477,6 +529,27 @@ export function CorpusInspectorView({
                                 {chunk.chapter && (
                                   <span className="chunk-chapter-badge" title={chunk.chapter}>
                                     {chunk.chapter}
+                                  </span>
+                                )}
+                                {pageLabel && chunk.source_pages && (
+                                  <button
+                                    type="button"
+                                    className="badge-page-jump"
+                                    title={`Bấm để chuyển PDF đến trang ${chunk.source_pages[0]}`}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      jumpToPage(chunk.source_pages![0], chunk.article_id);
+                                    }}
+                                  >
+                                    <FileText size={11} /> 📄 {pageLabel}
+                                  </button>
+                                )}
+                                {chunk.char_start != null && chunk.char_end != null && (
+                                  <span
+                                    className="badge-char-range"
+                                    title={`Vị trí ký tự trong toàn văn: ${chunk.char_start} – ${chunk.char_end}`}
+                                  >
+                                    char {chunk.char_start}–{chunk.char_end}
                                   </span>
                                 )}
                               </div>
@@ -511,6 +584,11 @@ export function CorpusInspectorView({
                               <span className="index-integrity-note">
                                 <CheckCircle2 size={12} /> Đã index trong hybrid vector/FTS5 store
                               </span>
+                              {chunk.extraction && (
+                                <span className="extraction-pipeline-badge" title={chunk.extraction}>
+                                  <Info size={11} /> Pipeline: pypdf layout + NFC
+                                </span>
+                              )}
                             </footer>
                           </article>
                         );

@@ -14,7 +14,7 @@ URL = "http://127.0.0.1:8000"
 
 def run_verification():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=True, args=["--headless=new"])
         context = browser.new_context(viewport={"width": 1440, "height": 900})
         page = context.new_page()
 
@@ -76,6 +76,17 @@ def run_verification():
 
         page.screenshot(path=str(OUTPUT_DIR / "03_chunks_filter_search.png"))
         print("  -> Saved 03_chunks_filter_search.png")
+
+        # Test clicking page jump badge
+        page_badge = page.locator(".chunk-card .badge-page-jump").first
+        if page_badge.is_visible():
+            print("  -> Clicking page jump badge:", page_badge.text_content())
+            page_badge.click()
+            time.sleep(1)
+            indicator_text = page.locator(".pdf-page-indicator").text_content()
+            print("  -> Updated page indicator:", indicator_text)
+            page.screenshot(path=str(OUTPUT_DIR / "03b_pdf_page_jump_active.png"))
+            print("  -> Saved 03b_pdf_page_jump_active.png")
 
         # Clear search
         page.locator("button.clear-search-btn").click()
