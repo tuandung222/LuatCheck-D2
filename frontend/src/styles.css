@@ -1046,8 +1046,10 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
 
 .chunk-badges-left {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
+  min-width: 0;
 }
 
 .chunk-id-badge {
@@ -1087,6 +1089,8 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
   padding: 2px 8px;
   border-radius: 12px;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all .15s ease;
 }
 
@@ -1105,6 +1109,8 @@ mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius:
   border: 1px solid var(--line);
   padding: 1px 6px;
   border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .chunk-meta-right {
