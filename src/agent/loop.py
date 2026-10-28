@@ -387,6 +387,7 @@ class LuatCheckAgent:
         anchored = (not run.searched) and retrieval.first_search_anchor == "question_plus_query"
         run.searched = True
         query = anchor_query(run.query, model_query) if anchored else model_query
+        self._emit_run_event("tool_started", tool=search_tool, query=query)
 
         query_key = " ".join(query.lower().split())
         if query_key in run.search_history:
@@ -453,6 +454,7 @@ class LuatCheckAgent:
         read_tool = self.profile.model_action_name(ActionType.READ)
 
         doc_id = str(tool_args.get("article_id") or "")
+        self._emit_run_event("tool_started", tool=read_tool, requested_id=doc_id)
         if doc_id.lower() in run.fully_read:
             tool_res = {"status": "already_read", "article_id": doc_id, "message": messages.already_read}
             if self.config.agent.free_duplicate_notices:

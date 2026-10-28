@@ -17,7 +17,7 @@ function IdChips({ results, onOpen, disabled }: { results: NonNullable<TraceStep
   ))}</ul>;
 }
 
-function StepBody({ step, onOpenSource, searchTool, sourcesEnabled, stage1Label }: { step: TraceStep; onOpenSource: (id: string) => void; searchTool?: string; sourcesEnabled: boolean; stage1Label?: string }) {
+function StepBody({ step, onOpenSource, sourcesEnabled, stage1Label }: { step: TraceStep; onOpenSource: (id: string) => void; sourcesEnabled: boolean; stage1Label?: string }) {
   switch (step.kind) {
     case "guardrail":
       return <><p className="step-note">Câu hỏi khớp mẫu an ninh của guardrail. Không có lệnh gọi model và không có bước tra cứu.</p></>;
@@ -60,7 +60,16 @@ function StepBody({ step, onOpenSource, searchTool, sourcesEnabled, stage1Label 
         <ModelLine step={step} />
       </>;
     case "running":
-      return <p className="step-note">Đang chờ model{searchTool ? ` (công cụ: ${searchTool})` : ""}…</p>;
+      if (step.runningPhase === "tool") {
+        return <>
+          <p className="step-note">
+            Đang chạy công cụ {step.tool ?? "tra cứu"}
+            {step.query ? ` với truy vấn “${step.query}”` : step.requestedId ? ` cho mục “${step.requestedId}”` : ""} (truy xuất & reranker)…
+          </p>
+          <ModelLine step={step} />
+        </>;
+      }
+      return <p className="step-note">Đang chờ model suy luận và chọn hành động…</p>;
   }
 }
 
@@ -74,12 +83,16 @@ function title(step: TraceStep): { icon: JSX.Element; text: string } {
     case "clarify": return { icon: <CircleHelp size={16} />, text: "Hỏi lại người dùng" };
     case "refuse": return { icon: <Ban size={16} />, text: "Từ chối" };
     case "error": return { icon: <CircleAlert size={16} />, text: "Lỗi thực thi" };
-    case "running": return { icon: <LoaderCircle size={16} className="spinning" />, text: `Bước ${step.modelStep ?? ""}: model đang xử lý` };
+    case "running":
+      if (step.runningPhase === "tool") {
+        return { icon: <LoaderCircle size={16} className="spinning" />, text: `Bước ${step.modelStep ?? ""}: đang chạy ${step.tool ?? "công cụ"}` };
+      }
+      return { icon: <LoaderCircle size={16} className="spinning" />, text: `Bước ${step.modelStep ?? ""}: model đang suy luận` };
   }
 }
 
 export function Timeline({
-  trace, nowMs, running, connection, onOpenSource, searchTool, profileLabel, stage1Label,
+  trace, nowMs, running, connection, onOpenSource, profileLabel, stage1Label,
 }: {
   trace: Trace; nowMs: number | null; running: boolean; connection: string; onOpenSource: (id: string) => void; searchTool?: string; profileLabel?: string; stage1Label?: string;
 }) {
@@ -102,7 +115,7 @@ export function Timeline({
             <span className="step-dot">{t.icon}</span>
             <div className="step-main">
               <div className="step-line"><b><span className="step-index">{index + 1}</span>{t.text}</b>{dur !== null && !(step.kind === "repair") && <span className="step-time" title={`bắt đầu +${formatDuration(step.startMs)}`}>{formatDuration(dur)}</span>}</div>
-              <StepBody step={step} onOpenSource={onOpenSource} searchTool={searchTool} sourcesEnabled={!running} stage1Label={stage1Label} />
+              <StepBody step={step} onOpenSource={onOpenSource} sourcesEnabled={!running} stage1Label={stage1Label} />
             </div>
           </li>;
         })}

@@ -22,6 +22,7 @@ export interface TraceStep {
   failedTool?: { tool?: string; query?: string; error_kind?: string };
   modelStep?: number;
   terminal?: TerminalStatus;
+  runningPhase?: "model" | "tool";
 }
 
 export interface Trace {
@@ -43,12 +44,22 @@ function relMs(event: ActivityEvent, startedAt: number | null): number {
   return startedAt === null ? 0 : Math.max(0, (event.created_at - startedAt) * 1000);
 }
 
+interface ActiveCursor {
+  startMs: number;
+  step: number;
+  runningPhase: "model" | "tool";
+  tool?: string;
+  query?: string;
+  requestedId?: string;
+  model: ModelCallInfo | null;
+}
+
 export function buildTrace(events: ActivityEvent[]): Trace {
   const steps: TraceStep[] = [];
   let startedAt: number | null = null;
   let queuedAt: number | null = null;
   let queueMs: number | null = null;
-  let cur: { startMs: number; step: number } | null = null;
+  let cur: ActiveCursor | null = null;
   let finished = false;
   let totalMs: number | null = null;
 
@@ -63,18 +74,55 @@ export function buildTrace(events: ActivityEvent[]): Trace {
         if (queuedAt !== null) queueMs = Math.max(0, (event.created_at - queuedAt) * 1000);
         break;
       case "model_call_started":
-        cur = { startMs: relMs(event, startedAt), step: Number(d.step ?? steps.length + 1) };
+        cur = {
+          startMs: relMs(event, startedAt),
+          step: Number(d.step ?? steps.length + 1),
+          runningPhase: "model",
+          model: null,
+        };
         break;
+      case "tool_started": {
+        if (cur) {
+          cur.runningPhase = "tool";
+          cur.tool = typeof d.tool === "string" ? d.tool : undefined;
+          cur.query = typeof d.query === "string" ? d.query : undefined;
+          cur.requestedId = typeof d.requested_id === "string" ? d.requested_id : undefined;
+          if (d.model) cur.model = d.model as ModelCallInfo;
+        } else {
+          cur = {
+            startMs: relMs(event, startedAt),
+            step: Number(d.step ?? steps.length + 1),
+            runningPhase: "tool",
+            tool: typeof d.tool === "string" ? d.tool : undefined,
+            query: typeof d.query === "string" ? d.query : undefined,
+            requestedId: typeof d.requested_id === "string" ? d.requested_id : undefined,
+            model: (d.model as ModelCallInfo) ?? null,
+          };
+        }
+        break;
+      }
       case "tool_completed": {
         const end = relMs(event, startedAt);
-        const isSearch = d.query !== undefined;
+        const isSearch = d.query !== undefined || cur?.query !== undefined;
+        const toolName = typeof d.tool === "string" ? d.tool : cur?.tool;
+        const queryText = typeof d.query === "string" ? d.query : cur?.query;
+        const reqId = typeof d.requested_id === "string" ? d.requested_id : cur?.requestedId;
         steps.push({
-          key: `s${event.id}`, kind: isSearch ? "search" : "read", startMs: cur?.startMs ?? end,
-          durationMs: cur ? Math.max(0, end - cur.startMs) : null, model: (d.model as ModelCallInfo) ?? null,
-          tool: typeof d.tool === "string" ? d.tool : undefined, query: typeof d.query === "string" ? d.query : undefined,
-          requestedId: typeof d.requested_id === "string" ? d.requested_id : undefined,
-          results: Array.isArray(d.results) ? (d.results as ResultRef[]) : (Array.isArray(d.article_ids) ? (d.article_ids as string[]).map((id) => ({ id, title: "" })) : []),
-          rerank: (d.rerank as RerankInfo) ?? null, modelStep: cur?.step,
+          key: `s${event.id}`,
+          kind: isSearch ? "search" : "read",
+          startMs: cur?.startMs ?? end,
+          durationMs: cur ? Math.max(0, end - cur.startMs) : null,
+          model: (d.model as ModelCallInfo) ?? cur?.model ?? null,
+          tool: toolName,
+          query: queryText,
+          requestedId: reqId,
+          results: Array.isArray(d.results)
+            ? (d.results as ResultRef[])
+            : Array.isArray(d.article_ids)
+            ? (d.article_ids as string[]).map((id) => ({ id, title: "" }))
+            : [],
+          rerank: (d.rerank as RerankInfo) ?? null,
+          modelStep: cur?.step,
         });
         cur = null;
         break;
@@ -131,7 +179,18 @@ export function buildTrace(events: ActivityEvent[]): Trace {
     }
   }
   if (!finished && cur) {
-    steps.push({ key: "running", kind: "running", startMs: cur.startMs, durationMs: null, modelStep: cur.step });
+    steps.push({
+      key: "running",
+      kind: "running",
+      startMs: cur.startMs,
+      durationMs: null,
+      modelStep: cur.step,
+      runningPhase: cur.runningPhase ?? "model",
+      tool: cur.tool,
+      query: cur.query,
+      requestedId: cur.requestedId,
+      model: cur.model,
+    });
   }
   return { steps, queueMs, finished, totalMs, startedAt };
 }

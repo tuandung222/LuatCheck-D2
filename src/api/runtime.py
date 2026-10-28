@@ -346,15 +346,18 @@ def _last_event(ledger: Any, kind: str) -> Optional[Dict[str, Any]]:
 def _enrich(name: str, payload: Dict[str, Any], ledger: Any, state: Dict[str, Any],
             title_of: Callable[[str], str]) -> None:
     calls = ledger.llm_calls
-    if name in {"tool_completed", "verification_completed", "run_finished"} and len(calls) > state["seen_calls"]:
-        call = calls[-1]
-        response = call.get("response") if isinstance(call.get("response"), dict) else {}
-        payload["model"] = {
-            "wall_ms": call.get("wall_ms"), "input_tokens": call.get("input_tokens"),
-            "output_tokens": call.get("output_tokens"), "outcome": call.get("outcome"),
-            "error_kind": call.get("error_kind"), "action": response.get("action"),
-        }
-        state["seen_calls"] = len(calls)
+    if name in {"tool_started", "tool_completed", "verification_completed", "run_finished"}:
+        if len(calls) > 0:
+            call = calls[-1]
+            response = call.get("response") if isinstance(call.get("response"), dict) else {}
+            model_info = {
+                "wall_ms": call.get("wall_ms"), "input_tokens": call.get("input_tokens"),
+                "output_tokens": call.get("output_tokens"), "outcome": call.get("outcome"),
+                "error_kind": call.get("error_kind"), "action": response.get("action"),
+            }
+            if len(calls) > state["seen_calls"] or name == "tool_completed":
+                payload["model"] = model_info
+                state["seen_calls"] = len(calls)
     if name == "tool_completed":
         record = _last_event(ledger, "tool_call") or {}
         args = record.get("args") if isinstance(record.get("args"), dict) else {}
