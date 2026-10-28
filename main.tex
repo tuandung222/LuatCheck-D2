@@ -356,7 +356,7 @@
 %====================================================================
 \begin{frame}{Rule-Based L1 Citation Verifier: Heuristic Design \& Ablation}
   \begin{columns}[T]
-    \column{0.46\textwidth}
+    \column{0.44\textwidth}
     \scriptsize
     \textbf{Deterministic Python heuristic} ($<2$\,ms, 0 LLM calls):
     \vspace{2pt}
@@ -367,9 +367,9 @@
       \item \textbf{Bounded Repair ($\le 2$ turns):} returns the failed rule + closest 170-char source span; exhausting repairs forces a safe refusal.
     \end{enumerate}
 
-    \column{0.52\textwidth}
+    \column{0.51\textwidth}
     \centering
-    {\scriptsize\setlength{\tabcolsep}{2.8pt}
+    {\scriptsize\setlength{\tabcolsep}{2.4pt}
     \begin{tabular}{@{}l rrr@{\hskip 0.7em} rrr@{}}
       \toprule & \multicolumn{3}{c}{HCMUT (4B)} & \multicolumn{3}{c}{Labour law (4B)}\\
       \cmidrule(r){2-4}\cmidrule(l){5-7}
@@ -471,7 +471,7 @@
       \textbf{Bonsai 2B ($\approx$92 tok/s):}\\
       \quad HCMUT: \textbf{13\,s} / 30\,s \quad|\quad Labour: \textbf{15\,s} / 28\,s
     \end{alertblock}
-    \vspace{4pt}
+    \vspace{1pt}
 
     \footnotesize
     \textbf{Local RAM footprint \& measurement environment:}
@@ -573,9 +573,31 @@
 \end{frame}
 
 %====================================================================
-% Backup slides (not presented)
+% End / Buffer slide before Backup slides
 %====================================================================
 \appendix
+\begin{frame}[plain,noframenumbering]
+  \vfill
+  \centering
+  \includegraphics[height=1.1cm]{assets/hcmut.png}\\[10pt]
+  {\LARGE\bfseries\color{primaryblue} Thank You \,|\, Questions \& Discussion}\\[6pt]
+  {\small\color{textgray} \textbf{LuatCheck} --- A Local, Source-Grounded QA Agent for Vietnamese Regulations}\\[3pt]
+  {\footnotesize\color{textgray} CO5151 Advanced Agentic AI $\cdot$ Group 8 $\cdot$ \url{https://github.com/tuandung222/LuatCheck-D2}}\\[22pt]
+  {\scriptsize\color{black!50}
+    \rule{0.72\textwidth}{0.4pt}\\[6pt]
+    \textbf{Backup Slides} \quad
+    A: Judge Audit $\cdot$
+    B: Bootstrap CIs $\cdot$
+    C: Scope \& Limitations $\cdot$
+    D: Web UI States $\cdot$
+    E: Benchmarks \& Metrics
+  }
+  \vfill
+\end{frame}
+
+%====================================================================
+% Backup slides (not presented)
+%====================================================================
 \begin{frame}{Backup A: 60-Item Blind Human Audit of the LLM Judge}
   \footnotesize
   \textbf{Protocol:} Stratified blind sample of 60 outputs from the Bonsai 4B runs (30 HCMUT + 30 Labour law; 8 strata per benchmark). Human auditor rated behaviour, correctness, completeness and claim faithfulness against the full source regulations without seeing the LLM judge (\texttt{deepseek/deepseek-v4-flash}) scores.
@@ -653,7 +675,7 @@
 
 \begin{frame}{Backup E: Benchmark Suites and Evaluation Metrics Specification}
   \begin{columns}[T]
-    \column{0.45\textwidth}
+    \column{0.44\textwidth}
     \scriptsize
     \textbf{1. Benchmark Suites (SHA-256 hash-locked)}
     \vspace{2pt}

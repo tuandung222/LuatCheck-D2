@@ -3,9 +3,10 @@
 - **File slide tương ứng:** `../main.pdf` (`../main.tex`)
 - **Người trình bày:** Võ Phạm Tuấn Dũng (đại diện Nhóm 8 thuyết trình toàn bộ)
 - **Thời lượng mục tiêu:** ~10 phút thuyết trình (bao gồm ~2 phút 20 giây Live Demo) + ~5 phút hỏi đáp (Q&A)
-- **Cấu trúc bộ slide:**
-  - **Slide 1 – 14:** Nội dung thuyết trình chính
-  - **Slide 15 – 19 (Backup A – E):** Chỉ bật lên khi giảng viên đặt câu hỏi liên quan trong phần Q&A
+- **Cấu trúc bộ slide (20 trang PDF):**
+  - **Trang 1 – 14:** 14 slide nội dung thuyết trình chính
+  - **Trang 15 (Slide End / Q&A):** Trang chắn (`Thank You | Questions & Discussion`) nằm giữa phần nội dung chính và phần Backup
+  - **Trang 16 – 20 (Backup A – E):** Chỉ bật lên khi giảng viên đặt câu hỏi liên quan trong phần Q&A
 
 ---
 
@@ -191,18 +192,20 @@
 > 3. **Bộ kiểm tra trích dẫn L1 bằng Python** giúp giảm tỷ lệ rò rỉ trích dẫn sai từ **26–28% về 0,0%** và tăng độ chính xác sau kiểm định thêm **+5,4 đến +8,7 điểm phần trăm**.
 >
 > Bên phải là bảng phân công công việc đồng đều (33% mỗi thành viên) gắn với từng mô-đun trong kho mã nguồn. Em xin cảm ơn thầy và các bạn đã lắng nghe. Rất mong nhận được câu hỏi và góp ý từ thầy ạ!
+>
+> *[Bấm sang Trang 15 — Màn hình `Thank You | Questions & Discussion` và dừng tại đây chờ câu hỏi của thầy]*
 
 ---
 ---
 
-# PHẦN 2: KỊCH BẢN PHÒNG NGỪA Q&A — 5 SLIDE BACKUP (Slide 15–19)
+# PHẦN 2: KỊCH BẢN PHÒNG NGỪA Q&A — 5 SLIDE BACKUP (Trang 16–20)
 
-*Lưu ý: Không trình bày các slide này trong 10 phút chính. Chỉ bấm chuyển tới slide tương ứng khi giảng viên hỏi đúng chủ đề.*
+*Lưu ý: Không trình bày các slide này trong 10 phút chính. Chỉ bấm chuyển từ Trang 15 (Thank You) tới đúng trang Backup tương ứng khi giảng viên hỏi đúng chủ đề.*
 
 ---
 
 ### 1. Khi thầy hỏi về độ tin cậy của LLM Judge / Tại sao dùng DeepSeek V4 Flash chấm điểm?
-👉 **Bật Slide 15 (`Backup A: 60-Item Blind Human Audit of the LLM Judge`)**
+👉 **Bật Trang 16 (`Backup A: 60-Item Blind Human Audit of the LLM Judge`)**
 
 > **Câu trả lời mẫu:**
 > "Dạ thưa thầy, để tránh phụ thuộc mù quáng vào điểm số của LLM Judge (`DeepSeek V4 Flash`), nhóm đã lấy mẫu phân tầng ngẫu nhiên **60 câu trả lời** của mô hình 4B (30 câu HCMUT và 30 câu Luật lao động, chia đều qua 8 nhóm hành vi/kết quả). Nhóm thực hiện chấm tay độc lập hoàn toàn (blind audit — không nhìn điểm của Judge) dựa trên văn bản PDF gốc.
@@ -216,7 +219,7 @@
 ---
 
 ### 2. Khi thầy hỏi chi tiết số liệu thống kê / Khoảng tin cậy (Confidence Intervals) giữa các cấu hình
-👉 **Bật Slide 16 (`Backup B: Strict Success by Controller and Configuration`)**
+👉 **Bật Trang 17 (`Backup B: Strict Success by Controller and Configuration`)**
 
 > **Câu trả lời mẫu:**
 > "Dạ trên Slide Backup B là bảng tổng hợp đầy đủ cả 6 tổ hợp (2 bộ benchmark $\times$ 3 cấu hình) cho cả **Bonsai 2B** và **Bonsai 4B**, mỗi ô là trung bình của **150 lượt chạy (50 câu hỏi $\times$ 3 seeds)** kèm khoảng tin cậy 95% paired bootstrap (5.000 lần lấy mẫu lại theo câu hỏi).
@@ -226,7 +229,7 @@
 ---
 
 ### 3. Khi thầy hỏi về hạn chế của hệ thống / Tại sao điểm Judge-only của `No verifier` lại cao hơn `Full system`?
-👉 **Bật Slide 17 (`Backup C: Methodological Scope and Limitations`)** (kết hợp **Slide 9**)
+👉 **Bật Trang 18 (`Backup C: Methodological Scope and Limitations`)** (kết hợp **Slide 9**)
 
 > **Câu trả lời mẫu:**
 > "Dạ có hai nguyên nhân thực tế mà nhóm phân tích rất kỹ trong báo cáo:
@@ -236,7 +239,7 @@
 ---
 
 ### 4. Khi thầy hỏi: "Khi Verifier bắt lỗi và yêu cầu sửa (Repair) hoặc khi sập server local thì giao diện hiển thị thế nào?"
-👉 **Bật Slide 18 (`Backup D: Guardrail, Verifier Repair, and Error States in the Web UI`)**
+👉 **Bật Trang 19 (`Backup D: Guardrail, Verifier Repair, and Error States in the Web UI`)**
 
 > **Câu trả lời mẫu:**
 > "Dạ trên Slide Backup D là 3 ảnh chụp màn hình thực tế các trạng thái bảo vệ của Web UI:
@@ -247,7 +250,7 @@
 ---
 
 ### 5. Khi thầy hỏi: "Bộ Benchmark được xây dựng và kiểm chứng như thế nào? Công thức tính các độ đo ra sao?"
-👉 **Bật Slide 19 (`Backup E: Benchmark Suites and Evaluation Metrics Specification`)**
+👉 **Bật Trang 20 (`Backup E: Benchmark Suites and Evaluation Metrics Specification`)**
 
 > **Câu trả lời mẫu:**
 > "Dạ Slide Backup E trình bày chi tiết quy trình xây dựng dữ liệu và định nghĩa toán học của từng độ đo:
