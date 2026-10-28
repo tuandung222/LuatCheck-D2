@@ -3,9 +3,13 @@
 Standalone Beamer slide deck (`main.tex` -> `main.pdf`) for **LuatCheck** (CO5151 Advanced Agentic AI, Group 8, HCMUT).
 
 ## Files
-- `main.tex`: Beamer LaTeX source (16:10 aspect ratio, 12 main slides + 4 backup slides)
+- `main.tex`: Beamer LaTeX source (16:10 aspect ratio, 14 main slides + 5 backup slides)
 - `main.pdf`: Pre-compiled slide deck
-- `SPEAKER_NOTES.md`: 10-minute presentation script, timing, and Q&A notes
+- `proposal_presentation_script/`: Presentation scripts and speaker notes:
+  - [`proposal_presentation_script/D2_PRESENTATION_SCRIPT_VI.md`](./proposal_presentation_script/D2_PRESENTATION_SCRIPT_VI.md): Full Vietnamese presentation script for all 14 main slides + 5 backup slides (A–E)
+  - [`proposal_presentation_script/D2_SPEAKER_NOTES_EN.md`](./proposal_presentation_script/D2_SPEAKER_NOTES_EN.md): English speaker notes, timing, and Q&A notes
+  - [`proposal_presentation_script/D2_LIVE_DEMO_SCRIPT.md`](./proposal_presentation_script/D2_LIVE_DEMO_SCRIPT.md): Live demo runbook, verified queries, and fallback checklist
+  - [`proposal_presentation_script/D1_PROPOSAL_PITCH_SCRIPT_VI.md`](./proposal_presentation_script/D1_PROPOSAL_PITCH_SCRIPT_VI.md) & [`LuatCheck_D1_SpeakerNotes.pdf`](./proposal_presentation_script/LuatCheck_D1_SpeakerNotes.pdf): D1 3-minute proposal pitch scripts
 - `assets/`: Figures, demo screenshots, HCMUT logo, and TikZ architecture diagram (`assets/architecture.tikz`)
 - `Makefile`: Build target for `main.pdf`
 
