@@ -335,14 +335,16 @@
     \textbf{4B $-$ 2B gain, pp} (95\% paired bootstrap CI)
     \vspace{3pt}
 
-    \begin{tabular}{@{}l@{\hskip 3pt}c@{\hskip 3pt}c@{}}
+    \adjustbox{max width=\linewidth}{%
+    \renewcommand{\arraystretch}{1.05}
+    \begin{tabular}{@{}l@{\hskip 4pt}c@{\hskip 4pt}c@{}}
       \toprule Configuration & HCMUT & Labour\\\midrule
-      \begin{tabular}[t]{@{}l@{}}No verifier\\{\tiny 31.3/31.3\% $\to$ 70.0/62.0\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+38.7\\{\tiny [+27.3, +50.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+30.7\\{\tiny [+20.7, +40.7]}\end{tabular}\\[3pt]
-      \begin{tabular}[t]{@{}l@{}}Verifier\\{\tiny 24.0/28.0\% $\to$ 64.0/52.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+40.0\\{\tiny [+28.7, +51.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+24.7\\{\tiny [+12.0, +37.3]}\end{tabular}\\[3pt]
-      \begin{tabular}[t]{@{}l@{}}\textbf{Verifier + reranker}\\{\tiny 28.7/28.0\% $\to$ 60.7/56.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+32.0}\\{\tiny [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+28.7}\\{\tiny [+18.0, +39.3]}\end{tabular}\\
+      \begin{tabular}[t]{@{}l@{}}No verifier\\{\color{textgray} 31.3/31.3\% $\to$ 70.0/62.0\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+38.7\\{\color{textgray} [+27.3, +50.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+30.7\\{\color{textgray} [+20.7, +40.7]}\end{tabular}\\[2pt]
+      \begin{tabular}[t]{@{}l@{}}Verifier\\{\color{textgray} 24.0/28.0\% $\to$ 64.0/52.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+40.0\\{\color{textgray} [+28.7, +51.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+24.7\\{\color{textgray} [+12.0, +37.3]}\end{tabular}\\[2pt]
+      \begin{tabular}[t]{@{}l@{}}\textbf{Verifier + reranker}\\{\color{textgray} 28.7/28.0\% $\to$ 60.7/56.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+32.0}\\{\color{textgray} [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+28.7}\\{\color{textgray} [+18.0, +39.3]}\end{tabular}\\
       \bottomrule
-    \end{tabular}
-    \vspace{5pt}
+    \end{tabular}}
+    \vspace{4pt}
 
     \begin{block}{Key finding}
       \scriptsize
@@ -356,7 +358,7 @@
 %====================================================================
 \begin{frame}{Rule-Based L1 Citation Verifier: Heuristic Design \& Ablation}
   \begin{columns}[T]
-    \column{0.44\textwidth}
+    \column{0.45\textwidth}
     \scriptsize
     \textbf{Deterministic Python heuristic} ($<2$\,ms, 0 LLM calls):
     \vspace{2pt}
@@ -367,9 +369,10 @@
       \item \textbf{Bounded Repair ($\le 2$ turns):} returns the failed rule + closest 170-char source span; exhausting repairs forces a safe refusal.
     \end{enumerate}
 
-    \column{0.51\textwidth}
+    \column{0.50\textwidth}
     \centering
-    {\scriptsize\setlength{\tabcolsep}{2.4pt}
+    \adjustbox{max width=\linewidth}{%
+    \scriptsize\setlength{\tabcolsep}{2.4pt}
     \begin{tabular}{@{}l rrr@{\hskip 0.7em} rrr@{}}
       \toprule & \multicolumn{3}{c}{HCMUT (4B)} & \multicolumn{3}{c}{Labour law (4B)}\\
       \cmidrule(r){2-4}\cmidrule(l){5-7}
@@ -382,8 +385,8 @@
       \bottomrule
     \end{tabular}}\\[3pt]
     \raggedright
-    {\tiny \textbf{judge} = LLM-judge strict \%; \textbf{audited} = passes LLM judge \emph{and} L1 verifier \%; \textbf{leak} = answers with broken citations \%.}
-    \vspace{3pt}
+    {\scriptsize \textbf{judge}: LLM-judge strict \%; \textbf{audited}: passes judge \& L1 \%; \textbf{leak}: broken citations \%.}
+    \vspace{2pt}
 
     \begin{block}{Empirical impact of L1 verification}
       \scriptsize
@@ -419,7 +422,7 @@
       \textbf{Weighted RRF (0.75 FTS5 + 0.25 Vec)} & \textbf{69.1} & \textbf{97.0} & \textbf{80.9} & 95.8 & 94.1\\
       \bottomrule
     \end{tabular}}\\[4pt]
-    {\tiny Stores tested: \texttt{NumPy}, \texttt{FAISS Flat/HNSW}, \texttt{Qdrant} ($<6$\,MB disk for 768-d; $0.07$\,ms pure vector search).}
+    {\scriptsize Stores tested: \texttt{NumPy}, \texttt{FAISS Flat/HNSW}, \texttt{Qdrant} ($<6$\,MB disk for 768-d; $0.07$\,ms pure vector search).}
 
     \column{0.44\textwidth}
     \scriptsize
