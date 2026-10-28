@@ -26,6 +26,7 @@ interface CorpusInspectorViewProps {
   initialCorpus?: "labour" | "hcmut";
   initialDocCode?: string | null;
   initialChunkId?: string | null;
+  initialPage?: number | null;
   onSelectDocCode?: (docCode: string) => void;
 }
 
@@ -78,6 +79,7 @@ export function CorpusInspectorView({
   initialCorpus = "labour",
   initialDocCode,
   initialChunkId,
+  initialPage,
 }: CorpusInspectorViewProps) {
   // Synchronized corpus state
   const [localCorpus, setLocalCorpus] = useState<"labour" | "hcmut">(activeCorpus || initialCorpus);
@@ -88,7 +90,7 @@ export function CorpusInspectorView({
   const [loadingOverview, setLoadingOverview] = useState(true);
 
   // Active page for PDF jumping
-  const [activePdfPage, setActivePdfPage] = useState<number>(1);
+  const [activePdfPage, setActivePdfPage] = useState<number>(initialPage || 1);
 
   // Chunks state
   const [chunks, setChunks] = useState<CorpusChunkItem[]>([]);
@@ -115,8 +117,23 @@ export function CorpusInspectorView({
     }
     if (initialChunkId) {
       setHighlightChunkId(initialChunkId);
+      setChapterFilter("all");
+      setSearchQuery("");
     }
-  }, [initialDocCode, initialChunkId]);
+    if (initialPage) {
+      setActivePdfPage(initialPage);
+    }
+  }, [initialDocCode, initialChunkId, initialPage]);
+
+  // Sync target chunk to its PDF page if chunks are already loaded or when they update
+  useEffect(() => {
+    if (highlightChunkId && chunks.length > 0) {
+      const target = chunks.find((c) => c.article_id === highlightChunkId);
+      if (target?.source_pages && target.source_pages.length > 0) {
+        setActivePdfPage(target.source_pages[0]);
+      }
+    }
+  }, [highlightChunkId, chunks]);
 
   const handleCorpusSwitch = (newCorpus: "labour" | "hcmut") => {
     setLocalCorpus(newCorpus);
@@ -139,8 +156,10 @@ export function CorpusInspectorView({
         // Default select first doc if not selected or invalid for this corpus
         if (data.documents.length > 0) {
           setSelectedDocCode((curr) => {
-            const exists = curr && data.documents.some((d) => d.doc_code.toLowerCase() === curr.toLowerCase());
-            return exists ? curr : data.documents[0].doc_code;
+            if (!curr) return data.documents[0].doc_code;
+            const normalized = curr.toUpperCase() === "BLL2019" ? "BLLD2019" : curr;
+            const exists = data.documents.some((d) => d.doc_code.toLowerCase() === normalized.toLowerCase());
+            return exists ? normalized : data.documents[0].doc_code;
           });
         }
       })

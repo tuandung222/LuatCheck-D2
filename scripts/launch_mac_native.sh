@@ -28,7 +28,10 @@ echo "=================================================================="
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 if [ "$CURRENT_BRANCH" != "$TARGET_BRANCH" ]; then
   echo "-> Chuyển sang nhánh: $TARGET_BRANCH"
-  git checkout "$TARGET_BRANCH"
+  if ! git checkout "$TARGET_BRANCH"; then
+    echo "⚠️ [CẢNH BÁO] Không thể chuyển sang nhánh $TARGET_BRANCH (có thể do tệp chưa commit)."
+    echo "   Vẫn tiếp tục chạy trên nhánh hiện tại: $CURRENT_BRANCH"
+  fi
 else
   echo "-> Đang ở nhánh: $TARGET_BRANCH ($(git rev-parse --short HEAD))"
 fi
@@ -52,11 +55,13 @@ cleanup() {
   echo ""
   echo "=================================================================="
   echo "-> Đang dừng các tiến trình LuatCheck do phiên này khởi tạo..."
-  for pid in "${STARTED_PIDS[@]:-}"; do
-    if [ -n "$pid" ] && kill -0 "$pid" >/dev/null 2>&1; then
-      kill "$pid" >/dev/null 2>&1 || true
-    fi
-  done
+  if [ ${#STARTED_PIDS[@]} -gt 0 ]; then
+    for pid in "${STARTED_PIDS[@]}"; do
+      if [ -n "$pid" ] && kill -0 "$pid" >/dev/null 2>&1; then
+        kill "$pid" >/dev/null 2>&1 || true
+      fi
+    done
+  fi
   echo "-> Đã dừng hoàn tất."
   echo "=================================================================="
 }
@@ -66,6 +71,14 @@ trap cleanup EXIT INT TERM
 if curl -sf -m 2 http://127.0.0.1:8081/health >/dev/null 2>&1; then
   echo "-> [OK] Model Controller (Bonsai 4B) đã sẵn sàng trên cổng 8081."
 else
+  STALE_8081="$(lsof -nP -iTCP:8081 -sTCP:LISTEN -t 2>/dev/null || true)"
+  if [ -n "$STALE_8081" ]; then
+    echo "-> Đang giải phóng cổng 8081 từ tiến trình cũ không phản hồi (PID: $STALE_8081)..."
+    for spid in $STALE_8081; do
+      kill "$spid" >/dev/null 2>&1 || true
+    done
+    sleep 1
+  fi
   echo "-> Đang khởi động Model Controller (Bonsai 4B Metal) trên cổng 8081..."
   MODEL_PATH="$(.venv-mlx/bin/python -c "
 from huggingface_hub import hf_hub_download
@@ -77,7 +90,7 @@ except Exception:
   "$LLAMA_SERVER" \
     -m "$MODEL_PATH" \
     -ngl 99 -fa on -c 65536 --host 0.0.0.0 --port 8081 \
-    --alias "$GGUF_REPO" --jinja \
+    --alias "$GGUF_REPO,prism-ml/Ternary-Bonsai-2-2B-gguf" --jinja \
     --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0 \
     --presence-penalty 1.5 --repeat-penalty 1.0 --repeat-last-n 64 \
     >/tmp/luatcheck_controller_8081.log 2>&1 &
@@ -98,6 +111,14 @@ fi
 if curl -sf -m 2 http://127.0.0.1:8082/health >/dev/null 2>&1; then
   echo "-> [OK] Vietnamese Reranker (f16) đã sẵn sàng trên cổng 8082."
 else
+  STALE_8082="$(lsof -nP -iTCP:8082 -sTCP:LISTEN -t 2>/dev/null || true)"
+  if [ -n "$STALE_8082" ]; then
+    echo "-> Đang giải phóng cổng 8082 từ tiến trình cũ không phản hồi (PID: $STALE_8082)..."
+    for spid in $STALE_8082; do
+      kill "$spid" >/dev/null 2>&1 || true
+    done
+    sleep 1
+  fi
   echo "-> Đang khởi động Vietnamese Reranker (Metal) trên cổng 8082..."
   LLAMA_SERVER="$LLAMA_SERVER" RERANKER_HOST="0.0.0.0" RERANKER_PORT=8082 \
     ./scripts/reranker/serve_mac.sh f16 >/tmp/luatcheck_reranker_8082.log 2>&1 &
@@ -118,8 +139,15 @@ fi
 OLD_WEB_PID="$(lsof -nP -iTCP:8000 -sTCP:LISTEN -t 2>/dev/null || true)"
 if [ -n "$OLD_WEB_PID" ]; then
   echo "-> Đang khởi động lại Web Server cũ trên cổng 8000 (PID: $OLD_WEB_PID)..."
-  kill $OLD_WEB_PID >/dev/null 2>&1 || true
+  for wpid in $OLD_WEB_PID; do
+    kill "$wpid" >/dev/null 2>&1 || true
+  done
   sleep 1
+  for wpid in $OLD_WEB_PID; do
+    if kill -0 "$wpid" >/dev/null 2>&1; then
+      kill -9 "$wpid" >/dev/null 2>&1 || true
+    fi
+  done
 fi
 
 # 7. Start FastAPI + React Web UI (:8000)
@@ -134,7 +162,7 @@ STARTED_PIDS+=("$WEB_PID")
 
 echo -n "   Đang chờ Web UI phản hồi"
 for _ in $(seq 1 45); do
-  if curl -sf -m 1 "$WEB_URL/api/state" >/dev/null 2>&1; then
+  if curl -sf -m 1 "$WEB_URL/api/v1/health" >/dev/null 2>&1; then
     echo " [XONG]"
     break
   fi

@@ -443,6 +443,8 @@ def get_session(request: Request, response: Response):
 
 
 @app.get("/api/v1/health")
+@app.get("/api/health")
+@app.get("/api/state")
 def health(request: Request):
     config = request.app.state.config
     return {

@@ -98,6 +98,7 @@ export default function App() {
   const [inspectorCorpus, setInspectorCorpus] = useState<"labour" | "hcmut">("labour");
   const [inspectorDocCode, setInspectorDocCode] = useState<string | null>(null);
   const [inspectorChunkId, setInspectorChunkId] = useState<string | null>(null);
+  const [inspectorPage, setInspectorPage] = useState<number | null>(null);
   const [now, setNow] = useState(() => Date.now() / 1000);
   const settingsRef = useRef<HTMLDialogElement>(null);
   const outboxRef = useRef<HTMLDialogElement>(null);
@@ -221,10 +222,13 @@ export default function App() {
   const chooseProfile = (id: string) => {
     setProfileId(id);
     setInspectorCorpus(id.includes("hcmut") ? "hcmut" : "labour");
+    setInspectorDocCode(null);
+    setInspectorChunkId(null);
+    setInspectorPage(null);
     if (activeRunId) startNew();
   };
 
-  const jumpToCorpusInspector = useCallback((docCode: string, articleId: string) => {
+  const jumpToCorpusInspector = useCallback((docCode: string, articleId: string, pageNum?: number) => {
     const isHcmut =
       articleId.startsWith("HCMUT_") ||
       ["HVDT", "HVCHUNG", "GIANGDAY", "HOCPHI", "GVCN", "NOIQUY", "CTDT", "VINHDANH", "UNGXU"].some((prefix) =>
@@ -233,6 +237,7 @@ export default function App() {
     setInspectorCorpus(isHcmut ? "hcmut" : "labour");
     setInspectorDocCode(docCode);
     setInspectorChunkId(articleId);
+    setInspectorPage(pageNum ?? null);
     setActiveView("corpus");
     setMobileNavOpen(false);
   }, []);
@@ -258,6 +263,7 @@ export default function App() {
       }));
       setRuns((previous) => [created, ...previous.filter((run) => run.run_id !== result.run_id)]);
       setActiveRunId(result.run_id);
+      setActiveView("qa");
       setEventsByRun((previous) => ({ ...previous, [result.run_id]: [] }));
       resetSources();
       setQuery("");
@@ -422,6 +428,9 @@ export default function App() {
             className={`rail-nav-tab ${activeView === "corpus" ? "active" : ""}`}
             onClick={() => {
               setInspectorCorpus(shownProfile?.id.includes("hcmut") ? "hcmut" : "labour");
+              setInspectorDocCode(null);
+              setInspectorChunkId(null);
+              setInspectorPage(null);
               setActiveView("corpus");
               setMobileNavOpen(false);
             }}
@@ -467,6 +476,9 @@ export default function App() {
                 className={`primary-tab-btn ${activeView === "corpus" ? "active" : ""}`}
                 onClick={() => {
                   setInspectorCorpus(shownProfile?.id.includes("hcmut") ? "hcmut" : "labour");
+                  setInspectorDocCode(null);
+                  setInspectorChunkId(null);
+                  setInspectorPage(null);
                   setActiveView("corpus");
                 }}
               >
@@ -502,6 +514,7 @@ export default function App() {
               }}
               initialDocCode={inspectorDocCode}
               initialChunkId={inspectorChunkId}
+              initialPage={inspectorPage}
             />
           ) : !activeRun ? (
             <div className="welcome-view">
@@ -572,12 +585,16 @@ export default function App() {
                     <section id="sources-anchor" className="panel sources" aria-label="Căn cứ">
                       <div className="panel-title"><span><BookOpen size={14} /> CĂN CỨ TRÍCH DẪN</span><span className="count-pill">{citedIds.length}</span></div>
                       {citedIds.length === 0 ? <p className="panel-empty">{terminal === "answered" ? "Câu trả lời không có trích dẫn." : "Không có trích dẫn: lượt chạy này không kết thúc bằng câu trả lời."}</p> : <ul className="source-list">
-                        {(output?.citations ?? []).map((c, i) => <SourceItem key={`${c.article_id}-${i}`} id={c.article_id} title={c.title || titles[c.article_id] || c.article_id} subtitle={[c.law_name, c.source_pages?.length ? `trang ${c.source_pages.join(", ")}` : ""].filter(Boolean).join(" · ")} quote={c.exact_quote} state={articles[`${activeRun.run_id}:${c.article_id}`]} open={openSources.includes(c.article_id)} onToggle={() => toggleSource(c.article_id)} tag="được trích dẫn" onInspectPdfChunk={jumpToCorpusInspector} />)}
+                        {(output?.citations ?? []).map((c, i) => <SourceItem key={`${c.article_id}-${i}`} id={c.article_id} title={c.title || titles[c.article_id] || c.article_id} subtitle={[c.law_name, c.source_pages?.length ? `trang ${c.source_pages.join(", ")}` : ""].filter(Boolean).join(" · ")} quote={c.exact_quote} state={articles[`${activeRun.run_id}:${c.article_id}`]} open={openSources.includes(c.article_id)} onToggle={() => toggleSource(c.article_id)} tag="được trích dẫn" onInspectPdfChunk={jumpToCorpusInspector} sourcePages={c.source_pages} />)}
                       </ul>}
                       {retrievedOnly.length > 0 && <div className="retrieved">
                         <button className="retrieved-toggle" aria-expanded={retrievedOpen} onClick={() => setRetrievedOpen((v) => !v)}>{retrievedOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />} Mục đã truy xuất nhưng không được trích dẫn <span className="count-pill">{retrievedOnly.length}</span></button>
                         {retrievedOpen && <ul className="source-list">
-                          {retrievedOnly.map((id) => <SourceItem key={id} id={id} title={titles[id] || id} state={articles[`${activeRun.run_id}:${id}`]} open={openSources.includes(id)} onToggle={() => toggleSource(id)} tag="đã truy xuất" onInspectPdfChunk={jumpToCorpusInspector} />)}
+                          {retrievedOnly.map((id) => {
+                            const artState = articles[`${activeRun.run_id}:${id}`];
+                            const pages = artState && artState.status === "ok" ? artState.article.source_pages : undefined;
+                            return <SourceItem key={id} id={id} title={titles[id] || id} state={artState} open={openSources.includes(id)} onToggle={() => toggleSource(id)} tag="đã truy xuất" onInspectPdfChunk={jumpToCorpusInspector} sourcePages={pages} />;
+                          })}
                         </ul>}
                       </div>}
                     </section>

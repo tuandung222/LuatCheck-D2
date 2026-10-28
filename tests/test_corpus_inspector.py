@@ -167,3 +167,64 @@ def test_api_v1_aliases(client):
     r3 = client.get("/api/v1/corpus/pdf/labour/BLLD2019")
     assert r3.status_code == 200
     assert len(r3.content) > 1000000
+
+
+def test_all_20_documents_pdf_stream_and_chunk_count(client):
+    for corpus in ("labour", "hcmut"):
+        overview = client.get(f"/api/corpus/overview?corpus={corpus}").json()
+        assert overview["total_documents"] == 10
+        for doc in overview["documents"]:
+            doc_code = doc["doc_code"]
+            assert doc["pdf_available"] is True
+            # GET PDF stream
+            res = client.get(f"/api/corpus/pdf/{corpus}/{doc_code}")
+            assert res.status_code == 200, f"Failed streaming PDF for {corpus}/{doc_code}"
+            assert res.headers["content-type"] == "application/pdf"
+            assert len(res.content) == doc["bytes"]
+
+            # HEAD PDF stream
+            h_res = client.head(f"/api/corpus/pdf/{corpus}/{doc_code}")
+            assert h_res.status_code == 200
+
+            # Chunks count match
+            c_res = client.get(f"/api/corpus/chunks?corpus={corpus}&doc_code={doc_code}&limit=500")
+            assert c_res.status_code == 200
+            c_data = c_res.json()
+            assert c_data["total"] == doc["chunk_count"], (
+                f"Mismatch for {doc_code}: {c_data['total']} != {doc['chunk_count']}"
+            )
+
+
+def test_all_chunks_article_id_mapping(client):
+    import re
+
+    def parse_doc_code(article_id: str) -> str:
+        parts = article_id.split("_")
+        if article_id.startswith("HCMUT_") and len(parts) >= 2:
+            return parts[1]
+        if len(parts) >= 2:
+            if re.match(r"^(ND|TT)", parts[0], re.IGNORECASE) and re.match(r"^\d{4}$", parts[1]):
+                return f"{parts[0]}_{parts[1]}"
+            if parts[0] == "BLL2019":
+                return "BLLD2019"
+            return parts[0]
+        return article_id
+
+    for corpus in ("labour", "hcmut"):
+        overview = client.get(f"/api/corpus/overview?corpus={corpus}").json()
+        valid_doc_codes = {d["doc_code"].lower() for d in overview["documents"]}
+        chunks = client.get(f"/api/corpus/chunks?corpus={corpus}&limit=500").json()["items"]
+        assert len(chunks) > 0
+        for c in chunks:
+            art_id = c["article_id"]
+            parsed_doc = parse_doc_code(art_id)
+            assert parsed_doc.lower() in valid_doc_codes, (
+                f"Chunk {art_id} parsed to {parsed_doc}, not in {valid_doc_codes}"
+            )
+            assert parsed_doc.lower() == c["doc_code"].lower() or (
+                parsed_doc == "BLLD2019" and c["doc_code"].lower() in {"bll2019", "blld2019"}
+            )
+            # Ensure valid source pages
+            assert len(c["source_pages"]) > 0
+            for p in c["source_pages"]:
+                assert isinstance(p, int) and p >= 1

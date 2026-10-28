@@ -98,17 +98,21 @@ export function parseDocCodeFromArticleId(id: string): string {
     return parts[1];
   }
   if (parts.length >= 2) {
-    if (parts[0].startsWith("ND") || parts[0].startsWith("TT") || parts[0].startsWith("LCD") || parts[0].startsWith("LVL")) {
+    if (/^(ND|TT)/i.test(parts[0]) && /^\d{4}$/.test(parts[1])) {
       return `${parts[0]}_${parts[1]}`;
+    }
+    if (parts[0] === "BLL2019") {
+      return "BLLD2019";
     }
     return parts[0];
   }
   return id;
 }
 
-export function SourceItem({ id, title, subtitle, quote, state, open, onToggle, tag, onInspectPdfChunk }: {
+export function SourceItem({ id, title, subtitle, quote, state, open, onToggle, tag, onInspectPdfChunk, sourcePages }: {
   id: string; title: string; subtitle?: string; quote?: string | null; state?: ArticleState; open: boolean; onToggle: () => void; tag?: string;
-  onInspectPdfChunk?: (docCode: string, articleId: string) => void;
+  onInspectPdfChunk?: (docCode: string, articleId: string, pageNum?: number) => void;
+  sourcePages?: number[] | null;
 }) {
   const ref = useRef<HTMLLIElement>(null);
   const article = state?.status === "ok" ? state.article : null;
@@ -147,7 +151,8 @@ export function SourceItem({ id, title, subtitle, quote, state, open, onToggle, 
           className="button-secondary inspect-pdf-btn"
           onClick={() => {
             const docCode = parseDocCodeFromArticleId(id);
-            onInspectPdfChunk?.(docCode, id);
+            const pageNum = sourcePages?.[0] || article?.source_pages?.[0];
+            onInspectPdfChunk?.(docCode, id, pageNum);
           }}
         >
           <FileSearch size={14} /> Xem file PDF gốc & Chunk
