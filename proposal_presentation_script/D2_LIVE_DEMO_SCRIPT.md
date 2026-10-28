@@ -9,7 +9,7 @@ Vietnamese cross-encoder reranker, top-20 to top-5). Two controllers are availab
 
 Both use the same prompts, tools, L1 verifier, reranker server (:8082) and settings (temperature 0.7); only the controller model differs. All counts below are runs of a
 small model with temperature 0.7: they show which queries behave reliably enough to present, not accuracy (accuracy is in the report tables). Time budget on stage:
-2:30 (slide 5). Do not run benchmarks, the test suite or other model processes during the demo.
+2:20 to 2:30 (Slide 6). Do not run benchmarks, the test suite or other model processes during the demo.
 
 Wait per question on this Mac (all three servers loaded, nothing else heavy running): 4B 19 to 26 s for an answer (Mac latency runs: p50 about 30 to 33 s, so allow up to
 about 35 s); 2B 9 to 15 s (latency runs: about 13 to 15 s). Refusals are faster (7 to 23 s); the guardrail block takes 5 to 20 ms (0.6 to 0.8 s including the HTTP round trip).
@@ -191,8 +191,8 @@ LVN-004 (answered, no repair, 35.2 s), LVN-011 (repair x2, refusal, 79.0 s). So 
 questions were chosen for frequent repairs and the attempts were not repeated. For 2B, 6 tries (HCMUT-002, LVN-003, HCMUT-007, LVN-004, LVN-011, HCMUT-006) gave repairs in 3 (LVN-003 refusal after 2 repairs: file 23;
 HCMUT-007 refusal after 2 repairs, 39.4 s; LVN-011 clarification after 1 repair, 13.9 s) and none ended in a verified answer.
 
-Where each file is used: root `README.md` uses the 4B recordings in `docs/images/demo/11_hcmut_answer_4b.gif` through `15_guardrail_4b.gif`; slides = frames of 11 (slide 5),
-15 and 13 (backup slide D) in `deliverables/d2/slides/assets/demo_answer_l1_4b.png`, `demo_guardrail_4b.png`, `demo_l1_repair_4b.png`; the backup video for the day is `demo_backup_4b.mp4` (4B). The recorder was extended with
+Where each file is used: root `README.md` uses the 4B recordings in `docs/images/demo/11_hcmut_answer_4b.gif` through `15_guardrail_4b.gif`; slides = frames of 11 (Slide 6),
+15 and 13 (Backup Slide D, Page 19) in `deliverables/d2/slides/assets/demo_answer_l1_4b.png`, `demo_guardrail_4b.png`, `demo_l1_repair_4b.png`; the backup video for the day is `demo_backup_4b.mp4` (4B). The recorder was extended with
 `--scenarios <file>`, `require_repair` (retry until the timeline shows a repair step) and `after: show_repairs` (scroll the repair step into view).
 
 ### 8b. Earlier recordings (2026-10-24, initial 2B system)
