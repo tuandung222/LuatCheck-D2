@@ -26,14 +26,21 @@ echo "  LuatCheck-D2 (Bonsai 9B) — Khởi chạy trực tiếp trên macOS"
 echo "  Chế độ: Duy trì liên tục (Auto-Heal Watchdog + Chống Sleep)"
 echo "=================================================================="
 
-# 0. Stop any previous 9B launcher instance first
-if [ -f "$PIDFILE" ]; then
-  OLD_LAUNCHER_PID="$(cat "$PIDFILE" 2>/dev/null || true)"
+# 0. Stop any previous launcher instance and unload 2B/4B from RAM first
+echo "9b" > /tmp/luatcheck_active_tier
+for old_lf in /tmp/luatcheck_launcher*.pid; do
+  [ -f "$old_lf" ] || continue
+  OLD_LAUNCHER_PID="$(cat "$old_lf" 2>/dev/null || true)"
   if [ -n "$OLD_LAUNCHER_PID" ] && [ "$OLD_LAUNCHER_PID" != "$$" ] && kill -0 "$OLD_LAUNCHER_PID" >/dev/null 2>&1; then
-    echo "-> Đang đóng phiên launcher 9B cũ (PID: $OLD_LAUNCHER_PID)..."
+    echo "-> Đang đóng phiên launcher cũ (PID: $OLD_LAUNCHER_PID)..."
     kill "$OLD_LAUNCHER_PID" >/dev/null 2>&1 || true
-    sleep 1
   fi
+done
+OTHER_MODEL_PIDS="$(lsof -nP -iTCP:8081,8000,8083,8001 -sTCP:LISTEN -t 2>/dev/null || true)"
+if [ -n "$OTHER_MODEL_PIDS" ]; then
+  echo "-> Đang giải phóng RAM từ mô hình 2B/4B đang chạy trước đó..."
+  for opid in $OTHER_MODEL_PIDS; do kill "$opid" >/dev/null 2>&1 || true; done
+  sleep 1
 fi
 echo "$$" > "$PIDFILE"
 
