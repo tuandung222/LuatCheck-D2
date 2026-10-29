@@ -7,6 +7,7 @@ import {
   ApiError, confirmProposal, createProposal, createRun, getArticle, getCapabilities, getHealth,
   getRun, initialize, listRuns, subscribeToRun,
 } from "./api";
+import { CorpusInspectorView } from "./CorpusInspectorView";
 import { SectionErrorBoundary } from "./ErrorBoundary";
 import { formatClock, formatDuration } from "./format";
 import { LexicalPanel, Measurements, OutcomeCard, SourceItem, WorkingCard, type ArticleState } from "./Results";
@@ -93,6 +94,11 @@ export default function App() {
   const [outboxMessageKind, setOutboxMessageKind] = useState<"info" | "success" | "error">("info");
   const [outboxBusy, setOutboxBusy] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [activeView, setActiveView] = useState<"qa" | "corpus">("qa");
+  const [inspectorCorpus, setInspectorCorpus] = useState<"labour" | "hcmut">("labour");
+  const [inspectorDocCode, setInspectorDocCode] = useState<string | null>(null);
+  const [inspectorChunkId, setInspectorChunkId] = useState<string | null>(null);
+  const [inspectorPage, setInspectorPage] = useState<number | null>(null);
   const [now, setNow] = useState(() => Date.now() / 1000);
   const settingsRef = useRef<HTMLDialogElement>(null);
   const outboxRef = useRef<HTMLDialogElement>(null);
@@ -203,6 +209,7 @@ export default function App() {
 
   const startNew = () => {
     setActiveRunId(null);
+    setActiveView("qa");
     setQuery("");
     setPastedDocument("");
     setShowDocument(false);
@@ -214,8 +221,26 @@ export default function App() {
 
   const chooseProfile = (id: string) => {
     setProfileId(id);
+    setInspectorCorpus(id.includes("hcmut") ? "hcmut" : "labour");
+    setInspectorDocCode(null);
+    setInspectorChunkId(null);
+    setInspectorPage(null);
     if (activeRunId) startNew();
   };
+
+  const jumpToCorpusInspector = useCallback((docCode: string, articleId: string, pageNum?: number) => {
+    const isHcmut =
+      articleId.startsWith("HCMUT_") ||
+      ["HVDT", "HVCHUNG", "GIANGDAY", "HOCPHI", "GVCN", "NOIQUY", "CTDT", "VINHDANH", "UNGXU"].some((prefix) =>
+        docCode.startsWith(prefix)
+      );
+    setInspectorCorpus(isHcmut ? "hcmut" : "labour");
+    setInspectorDocCode(docCode);
+    setInspectorChunkId(articleId);
+    setInspectorPage(pageNum ?? null);
+    setActiveView("corpus");
+    setMobileNavOpen(false);
+  }, []);
 
   const submitQuestion = async (event?: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
@@ -238,6 +263,7 @@ export default function App() {
       }));
       setRuns((previous) => [created, ...previous.filter((run) => run.run_id !== result.run_id)]);
       setActiveRunId(result.run_id);
+      setActiveView("qa");
       setEventsByRun((previous) => ({ ...previous, [result.run_id]: [] }));
       resetSources();
       setQuery("");
@@ -253,6 +279,7 @@ export default function App() {
 
   const chooseHistory = async (run: RunRecord) => {
     setActiveRunId(run.run_id);
+    setActiveView("qa");
     resetSources();
     setMobileNavOpen(false);
     setApiError("");
@@ -260,6 +287,7 @@ export default function App() {
   };
 
   const recoverRunInput = async (run: RunRecord) => {
+    setActiveView("qa");
     setQuery(run.query);
     const initialDoc = run.pasted_document ?? "";
     setPastedDocument(initialDoc);
@@ -387,6 +415,29 @@ export default function App() {
 
       <aside className={`left-rail ${mobileNavOpen ? "mobile-open" : ""}`}>
         <Brand />
+        <div className="rail-nav-section">
+          <button
+            type="button"
+            className={`rail-nav-tab ${activeView === "qa" ? "active" : ""}`}
+            onClick={() => { setActiveView("qa"); setMobileNavOpen(false); }}
+          >
+            <Scale size={16} /> <span>Hỏi đáp & Thẩm định</span>
+          </button>
+          <button
+            type="button"
+            className={`rail-nav-tab ${activeView === "corpus" ? "active" : ""}`}
+            onClick={() => {
+              setInspectorCorpus(shownProfile?.id.includes("hcmut") ? "hcmut" : "labour");
+              setInspectorDocCode(null);
+              setInspectorChunkId(null);
+              setInspectorPage(null);
+              setActiveView("corpus");
+              setMobileNavOpen(false);
+            }}
+          >
+            <BookOpen size={16} /> <span>Kho văn bản & Chunk</span>
+          </button>
+        </div>
         <button className="new-case-button" onClick={startNew}><Plus size={16} strokeWidth={2.4} /> Câu hỏi mới</button>
         <div className="rail-label"><History size={14} /> GẦN ĐÂY</div>
         <nav className="history-nav" aria-label="Các lượt chạy gần đây">
@@ -411,6 +462,30 @@ export default function App() {
           <div className="topbar-left">
             <span className="topbar-label">Bộ văn bản</span>
             <ProfileSwitch profiles={profiles} value={shownProfile?.id ?? profileId} onChange={chooseProfile} disabled={submitting || running} />
+            <div className="primary-nav-tabs">
+              <button
+                type="button"
+                className={`primary-tab-btn ${activeView === "qa" ? "active" : ""}`}
+                onClick={() => setActiveView("qa")}
+              >
+                <Scale size={15} />
+                <span>Hỏi đáp & Thẩm định</span>
+              </button>
+              <button
+                type="button"
+                className={`primary-tab-btn ${activeView === "corpus" ? "active" : ""}`}
+                onClick={() => {
+                  setInspectorCorpus(shownProfile?.id.includes("hcmut") ? "hcmut" : "labour");
+                  setInspectorDocCode(null);
+                  setInspectorChunkId(null);
+                  setInspectorPage(null);
+                  setActiveView("corpus");
+                }}
+              >
+                <BookOpen size={15} />
+                <span>Kho văn bản & Chunk</span>
+              </button>
+            </div>
           </div>
           <div className="topbar-actions">
             <span className={`connection-pill ${connection === "connected" ? "online" : connection === "disconnected" ? "offline" : ""}`}><i />{connLabel}</span>
@@ -424,8 +499,24 @@ export default function App() {
           retrievalMode={activeRun ? (activeRun.retrieval_mode ?? activeRun.snapshot?.retrieval_mode ?? retrievalMode) : retrievalMode}
         />
 
-        <main className="main-area">
-          {!activeRun ? (
+        <main className={`main-area ${activeView === "corpus" ? "main-corpus-view" : ""}`}>
+          {activeView === "corpus" ? (
+            <CorpusInspectorView
+              activeCorpus={inspectorCorpus}
+              onSelectCorpus={(c) => {
+                setInspectorCorpus(c);
+                const targetProfile = profiles.find((p) =>
+                  c === "hcmut" ? p.id.includes("hcmut") : p.id.includes("labour")
+                );
+                if (targetProfile) {
+                  setProfileId(targetProfile.id);
+                }
+              }}
+              initialDocCode={inspectorDocCode}
+              initialChunkId={inspectorChunkId}
+              initialPage={inspectorPage}
+            />
+          ) : !activeRun ? (
             <div className="welcome-view">
               <div className="welcome-kicker"><span className="kicker-mark"><Scale size={17} /></span> LUATCHECK · TRỢ LÝ HỎI ĐÁP CÓ CĂN CỨ</div>
               <h1>{shownProfile?.short_name ?? "Hỏi đáp có căn cứ"}</h1>
@@ -494,12 +585,16 @@ export default function App() {
                     <section id="sources-anchor" className="panel sources" aria-label="Căn cứ">
                       <div className="panel-title"><span><BookOpen size={14} /> CĂN CỨ TRÍCH DẪN</span><span className="count-pill">{citedIds.length}</span></div>
                       {citedIds.length === 0 ? <p className="panel-empty">{terminal === "answered" ? "Câu trả lời không có trích dẫn." : "Không có trích dẫn: lượt chạy này không kết thúc bằng câu trả lời."}</p> : <ul className="source-list">
-                        {(output?.citations ?? []).map((c, i) => <SourceItem key={`${c.article_id}-${i}`} id={c.article_id} title={c.title || titles[c.article_id] || c.article_id} subtitle={[c.law_name, c.source_pages?.length ? `trang ${c.source_pages.join(", ")}` : ""].filter(Boolean).join(" · ")} quote={c.exact_quote} state={articles[`${activeRun.run_id}:${c.article_id}`]} open={openSources.includes(c.article_id)} onToggle={() => toggleSource(c.article_id)} tag="được trích dẫn" />)}
+                        {(output?.citations ?? []).map((c, i) => <SourceItem key={`${c.article_id}-${i}`} id={c.article_id} title={c.title || titles[c.article_id] || c.article_id} subtitle={[c.law_name, c.source_pages?.length ? `trang ${c.source_pages.join(", ")}` : ""].filter(Boolean).join(" · ")} quote={c.exact_quote} state={articles[`${activeRun.run_id}:${c.article_id}`]} open={openSources.includes(c.article_id)} onToggle={() => toggleSource(c.article_id)} tag="được trích dẫn" onInspectPdfChunk={jumpToCorpusInspector} sourcePages={c.source_pages} />)}
                       </ul>}
                       {retrievedOnly.length > 0 && <div className="retrieved">
                         <button className="retrieved-toggle" aria-expanded={retrievedOpen} onClick={() => setRetrievedOpen((v) => !v)}>{retrievedOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />} Mục đã truy xuất nhưng không được trích dẫn <span className="count-pill">{retrievedOnly.length}</span></button>
                         {retrievedOpen && <ul className="source-list">
-                          {retrievedOnly.map((id) => <SourceItem key={id} id={id} title={titles[id] || id} state={articles[`${activeRun.run_id}:${id}`]} open={openSources.includes(id)} onToggle={() => toggleSource(id)} tag="đã truy xuất" />)}
+                          {retrievedOnly.map((id) => {
+                            const artState = articles[`${activeRun.run_id}:${id}`];
+                            const pages = artState && artState.status === "ok" ? artState.article.source_pages : undefined;
+                            return <SourceItem key={id} id={id} title={titles[id] || id} state={artState} open={openSources.includes(id)} onToggle={() => toggleSource(id)} tag="đã truy xuất" onInspectPdfChunk={jumpToCorpusInspector} sourcePages={pages} />;
+                          })}
                         </ul>}
                       </div>}
                     </section>
@@ -508,7 +603,7 @@ export default function App() {
                   </SectionErrorBoundary>}
                 </div>
                 <div className="result-right">
-                  <Timeline trace={trace} nowMs={elapsedMs} running={running} connection={connection} onOpenSource={(id) => { openSource(id); document.getElementById("sources-anchor")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} searchTool={shownProfile?.search_tool} profileLabel={shownProfile ? `${shownProfile.short_name ?? shownProfile.id} · công cụ ${shownProfile.search_tool} / ${shownProfile.read_tool}` : undefined} stage1Label={retrievalStageLabel(activeRun.retrieval_mode ?? activeRun.snapshot?.retrieval_mode, shownProfile)} />
+                  <Timeline trace={trace} nowMs={elapsedMs} running={running} connection={connection} onOpenSource={(id) => { openSource(id); document.getElementById("sources-anchor")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} profileLabel={shownProfile ? `${shownProfile.short_name ?? shownProfile.id} · Bộ công cụ: ${shownProfile.search_tool}, ${shownProfile.read_tool}` : undefined} stage1Label={retrievalStageLabel(activeRun.retrieval_mode ?? activeRun.snapshot?.retrieval_mode, shownProfile)} />
                 </div>
               </div>
             </div>

@@ -13,5 +13,5 @@ GGUF="$MODEL_ROOT/gguf/Vietnamese_Reranker-$QUANT.gguf"
 
 # --reranking: enable /v1/rerank. -ub/-b must be >= the longest (query+passage) sequence: a non-causal model has to
 # process the whole sequence in one physical batch. -np 1: one request at a time (the agent loop is sequential).
-exec "${LLAMA_SERVER:-llama-server}" -m "$GGUF" --reranking --host 127.0.0.1 --port "$PORT" \
+exec "${LLAMA_SERVER:-llama-server}" -m "$GGUF" --reranking --host "${RERANKER_HOST:-0.0.0.0}" --port "$PORT" \
   -c "$CTX" -b "$CTX" -ub "$CTX" -np 1 --alias "Vietnamese_Reranker-$QUANT" ${RERANKER_EXTRA_ARGS:-}

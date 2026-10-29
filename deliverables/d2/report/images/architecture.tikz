@@ -26,7 +26,7 @@
 \node[anchor=north west,font=\fontsize{7}{8.2}\selectfont\bfseries,text=blue!55!black] at (0.30,11.30) {Phase 1: Offline Corpus Ingestion \& Indexing};
 
 \node[box,minimum width=2.30cm,minimum height=0.98cm] (pdf) at (1.60,10.10) {\textbf{Official PDFs}\\10 HCMUT,\\10 Labour};
-\node[box,minimum width=2.95cm,minimum height=0.98cm] (ing) at (5.15,10.10) {\textbf{Corpus ingestion}\\NFC normalisation,\\section split, SHA-256};
+\node[box,minimum width=2.95cm,minimum height=0.98cm] (ing) at (5.15,10.10) {\textbf{Corpus ingestion}\\text normalisation,\\section splitting};
 \node[store,minimum width=3.10cm,minimum height=0.98cm] (corp) at (9.15,10.10) {\textbf{Normalized corpus}\\143 HCMUT, 458 Labour\\sections / articles};
 
 \node[off,minimum width=3.35cm,minimum height=0.78cm] (vec) at (14.45,10.72) {\textbf{Dense vector index}\\semantic embeddings};
@@ -61,7 +61,7 @@
 \node[term,minimum width=2.44cm,minimum height=0.84cm] (ref) at (1.22,1.35) {\textbf{Refused} or\\\textbf{clarified}};
 \node[term,minimum width=3.35cm,minimum height=0.84cm] (ans) at (5.45,1.35) {\textbf{Answer} with\\verified citations};
 \node[off,minimum width=2.45cm,minimum height=0.84cm] (mem) at (8.95,1.35) {\textbf{Answer memory}\\verified case store};
-\node[off,minimum width=2.65cm,minimum height=0.84cm] (out) at (12.05,1.35) {\textbf{Trusted UI outbox}\\(host SHA-256 gate)};
+\node[off,minimum width=2.65cm,minimum height=0.84cm] (out) at (12.05,1.35) {\textbf{Trusted UI outbox}\\(host approval)};
 \node[term,minimum width=2.60cm,minimum height=0.84cm] (err) at (15.45,1.35) {\textbf{Execution error}\\backend / budget};
 \node[box,fill=black!3,draw=black!60,minimum width=16.9cm,minimum height=0.62cm,anchor=south west] (led) at (0,-0.25) {\textbf{Case ledger and audit log} (\texttt{SQLite} / \texttt{JSONL}): queries, tool calls, retrieved IDs, verifier checks, repairs, tokens, latency};
 

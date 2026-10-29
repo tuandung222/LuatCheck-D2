@@ -12,13 +12,22 @@ from .errors import MemoryLimitError
 
 
 def current_rss_mb(pid: int | None = None) -> float:
-    """Resident set size of a process in MB (current, not peak), via `ps`."""
+    """Resident set size of a process in MB (current, not peak), via `ps` or `/proc`."""
     pid = os.getpid() if pid is None else pid
-    out = subprocess.run(["ps", "-o", "rss=", "-p", str(pid)], capture_output=True, text=True, check=False)
-    text = out.stdout.strip()
-    if not text:
-        raise OSError(f"cannot read RSS of pid {pid}: {out.stderr.strip()!r}")
-    return int(text) / 1024.0
+    try:
+        out = subprocess.run(["ps", "-o", "rss=", "-p", str(pid)], capture_output=True, text=True, check=False)
+        text = out.stdout.strip()
+        if text:
+            return int(text) / 1024.0
+    except Exception:
+        pass
+    if sys.platform != "darwin":
+        try:
+            with open(f"/proc/{pid}/statm", "r") as f:
+                return (int(f.read().split()[1]) * os.sysconf("SC_PAGE_SIZE")) / (1024.0 * 1024.0)
+        except Exception:
+            pass
+    return peak_rss_mb()
 
 
 def peak_rss_mb() -> float:

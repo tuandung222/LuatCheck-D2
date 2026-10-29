@@ -80,8 +80,16 @@ def available_memory_gb() -> float:
 
 def _process_footprint_gb() -> float:
     """RSS of this process plus the Metal allocation (RSS alone under-reports MPS weights)."""
-    out = subprocess.run(["ps", "-o", "rss=", "-p", str(os.getpid())], capture_output=True, text=True, check=False)
-    rss = int(out.stdout.strip() or 0) / (1024.0 * 1024.0)
+    rss = 0.0
+    try:
+        out = subprocess.run(["ps", "-o", "rss=", "-p", str(os.getpid())], capture_output=True, text=True, check=False)
+        rss = int(out.stdout.strip() or 0) / (1024.0 * 1024.0)
+    except Exception:
+        try:
+            with open("/proc/self/statm", "r") as f:
+                rss = (int(f.read().split()[1]) * os.sysconf("SC_PAGE_SIZE")) / (1024.0 * 1024.0 * 1024.0)
+        except Exception:
+            rss = 0.0
     mps = 0.0
     torch = sys.modules.get("torch")
     if torch is not None and getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():

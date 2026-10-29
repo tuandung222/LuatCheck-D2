@@ -1,0 +1,70 @@
+# D2 live demo with EmbeddingGemma-2 768-d Hybrid Index (Weighted RRF: 0.75 FTS5 + 0.25 Vector 768-d, NumPy store).
+# Controller: Bonsai 9B on 127.0.0.1:8084, Reranker on 127.0.0.1:8082; UI on port 8002.
+model:
+  provider: llamacpp
+  endpoint: http://127.0.0.1:8084/v1
+  name: prism-ml/Ternary-Bonsai-2-9B-gguf
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  min_p: 0.0
+  presence_penalty: 1.5
+  constrained_json: true
+  enable_thinking: false
+  timeout_seconds: 90
+  max_output_tokens: 1024
+  context_tokens: 8192
+  thought_max_chars: 800
+budgets:
+  max_tool_calls: 5
+  max_repairs: 2
+  max_steps: 8
+  wall_seconds: 180
+retrieval:
+  dense_model_type: tfidf
+  final_top_k: 5
+  rrf_k: 60
+  first_search_anchor: question_plus_query
+  default_top_k: 5
+  mode: hybrid_index
+  corpus_path: data/corpus/hcmut_academic_v1.json
+  index:
+    path: hcmut_academic_v1_gemma2_768d
+    store: numpy
+    search_mode: hybrid
+    verify_corpus: true
+    keyword_weight: 0.75
+    vector_weight: 0.25
+  reranker:
+    enabled: true
+    top_k_in: 20
+    top_k_out: 5
+    max_length: 1024
+    chunk_chars: 1500
+    chunk_overlap_chars: 200
+    backend: llamacpp_http
+    base_url: http://127.0.0.1:8082
+    model: Vietnamese_Reranker-f16
+verifier:
+  mode: l1
+  l1_overlap_threshold: 0.25
+  l1_version: v2
+  l1_sentence_support: warn
+  repair_feedback_style: verifier_report
+  l2_use_slm: false
+memory:
+  enabled: false
+  reuse_answers: false
+  similarity_threshold: 0.85
+  index_version: benchmark-d2-v1
+security:
+  egress_requires_confirmation: true
+  audit_log_path: data/demo_hcmut_9b_audit_log.jsonl
+tools:
+  search_hints: true
+domain:
+  profile_variant: r2
+  profile: hcmut_academic
+agent:
+  require_search_before_answer: true
+  free_duplicate_notices: true

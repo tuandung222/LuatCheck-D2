@@ -1,4 +1,15 @@
-import type { ActivityEvent, Article, Capabilities, Health, Proposal, RetrievalMode, RunRecord, VerificationMode } from "./types";
+import type {
+  ActivityEvent,
+  Article,
+  Capabilities,
+  CorpusChunksResponse,
+  CorpusOverview,
+  Health,
+  Proposal,
+  RetrievalMode,
+  RunRecord,
+  VerificationMode,
+} from "./types";
 
 let csrfToken = "";
 
@@ -100,3 +111,24 @@ export function subscribeToRun(runId: string, onEvent: (event: ActivityEvent) =>
   source.onerror = onError;
   return source;
 }
+
+export const getCorpusOverview = (corpus: string = "labour") =>
+  request<CorpusOverview>(`/api/corpus/overview?corpus=${encodeURIComponent(corpus)}`);
+
+export const getCorpusChunks = (params: {
+  corpus?: string;
+  doc_code?: string;
+  q?: string;
+  chapter?: string;
+  limit?: number;
+  offset?: number;
+}) => {
+  const qp = new URLSearchParams();
+  if (params.corpus) qp.set("corpus", params.corpus);
+  if (params.doc_code) qp.set("doc_code", params.doc_code);
+  if (params.q) qp.set("q", params.q);
+  if (params.chapter) qp.set("chapter", params.chapter);
+  if (params.limit != null) qp.set("limit", String(params.limit));
+  if (params.offset != null) qp.set("offset", String(params.offset));
+  return request<CorpusChunksResponse>(`/api/corpus/chunks?${qp.toString()}`);
+};

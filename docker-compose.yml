@@ -26,5 +26,6 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./data:/app/data
+      - ./docs/materials:/app/docs/materials:ro
       - ~/.cache/huggingface:/root/.cache/huggingface
     restart: unless-stopped

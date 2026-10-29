@@ -50,6 +50,7 @@ class _Run:
     search_history: Dict[str, List[str]] = field(default_factory=dict)
     fully_read: set = field(default_factory=set)
     searched: bool = False    # a search action has been executed in this run (agent.require_search_before_answer, retrieval.first_search_anchor)
+    refuse_search_prompted: bool = False
 
 
 class LuatCheckAgent:
@@ -295,6 +296,8 @@ class LuatCheckAgent:
         tool_args = agent_resp["tool_args"]
         if self._search_required(run, canonical):
             self._act_search_required(run, agent_resp)
+        elif self._refuse_search_required(run, canonical):
+            self._act_refuse_search_required(run, agent_resp)
         elif canonical is ActionType.SEARCH:
             self._act_search(run, agent_resp, tool_args)
         elif canonical is ActionType.READ:
@@ -310,7 +313,7 @@ class LuatCheckAgent:
         return allowed is None or ActionType.SEARCH in allowed
 
     def _search_required(self, run: _Run, canonical: ActionType) -> bool:
-        """agent.require_search_before_answer (F5): an answer or clarify before any search. Refuse is always allowed."""
+        """agent.require_search_before_answer (F5): an answer or clarify before any search."""
         return (self.config.agent.require_search_before_answer and canonical in (ActionType.ANSWER, ActionType.CLARIFY)
                 and not run.searched and self._can_search())
 
@@ -320,6 +323,30 @@ class LuatCheckAgent:
         search_tool = self.profile.model_action_name(ActionType.SEARCH)
         self._observe(run, agent_resp, {"status": "search_required",
                                         "message": self.profile.messages.search_first_required.format(search_tool=search_tool)})
+
+    def _refuse_search_required(self, run: _Run, canonical: ActionType) -> bool:
+        """When require_search_before_answer is enabled, intercept premature refuse before any search/read tool call."""
+        return (
+            self.config.agent.require_search_before_answer
+            and canonical is ActionType.REFUSE
+            and not run.searched
+            and len(run.ledger.retrieved_article_ids) == 0
+            and not run.refuse_search_prompted
+            and self._can_search()
+            and run.ledger.can_call_tool()
+            and run.ledger.can_step()
+        )
+
+    def _act_refuse_search_required(self, run: _Run, agent_resp: Dict[str, Any]) -> None:
+        """The premature refuse draft becomes an observation telling the controller to search first."""
+        run.refuse_search_prompted = True
+        run.ledger.audit_events.append({"event": "search_required_notice", "action": agent_resp.get("action")})
+        search_tool = self.profile.model_action_name(ActionType.SEARCH)
+        message = (
+            f"[YÊU_CẦU_TRA_CỨU] Bạn chưa thực hiện tra cứu cơ sở tri thức đã nạp. Hãy gọi `{search_tool}` "
+            f"ít nhất một lần để tìm kiếm văn bản liên quan trước khi kết luận rằng không có căn cứ hoặc từ chối."
+        )
+        self._observe(run, agent_resp, {"status": "search_required", "message": message})
 
     @staticmethod
     def _assistant_turn(run: _Run, agent_resp: Dict[str, Any]) -> None:
@@ -360,6 +387,7 @@ class LuatCheckAgent:
         anchored = (not run.searched) and retrieval.first_search_anchor == "question_plus_query"
         run.searched = True
         query = anchor_query(run.query, model_query) if anchored else model_query
+        self._emit_run_event("tool_started", tool=search_tool, query=query)
 
         query_key = " ".join(query.lower().split())
         if query_key in run.search_history:
@@ -426,6 +454,7 @@ class LuatCheckAgent:
         read_tool = self.profile.model_action_name(ActionType.READ)
 
         doc_id = str(tool_args.get("article_id") or "")
+        self._emit_run_event("tool_started", tool=read_tool, requested_id=doc_id)
         if doc_id.lower() in run.fully_read:
             tool_res = {"status": "already_read", "article_id": doc_id, "message": messages.already_read}
             if self.config.agent.free_duplicate_notices:
