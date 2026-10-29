@@ -106,7 +106,7 @@
   \titlepage
   \vspace{-0.55cm}
   \begin{block}{System Overview}
-    \footnotesize LuatCheck answers regulatory questions strictly from local document collections, verifies every cited section and quote in Python before returning an answer, and refuses or asks for clarification when the sources do not support a conclusion. Evaluated on \textbf{HCMUT academic regulations} (10 documents, 143 sections) and \textbf{Vietnamese labour law} (10 documents, 458 sections: 2019 Labour Code plus 9 implementing laws, decrees, and circulars). Research prototype; not legal advice.
+    \footnotesize LuatCheck answers regulatory questions strictly from local document collections, verifies every cited section and quote in Python before returning an answer, and refuses or asks for clarification when the sources do not support a conclusion. Evaluated on \textbf{HCMUT academic regulations} (10 documents, 143 sections) and \textbf{Vietnamese labour law} (10 documents, 458 sections: 2019 Labour Code plus 9 implementing laws, decrees, and circulars).
   \end{block}
 \end{frame}
 
@@ -129,7 +129,7 @@
     \begin{block}{2. Evaluation Protocol \& Core Results}
       \scriptsize
       \begin{itemize}\scriptsize
-        \item \textbf{Benchmarks \& Judge Audit:} Two 50-item hash-locked suites (1,090 trials/controller) + 60-item blind human audit ($\kappa = 0.80\text{--}0.93$).
+        \item \textbf{Benchmarks \& Judge Audit:} Two fixed 50-question benchmarks (3 configs $\times$ 3 seeds) + 60-item blind human audit ($\kappa = 0.80\text{--}0.93$).
         \item \textbf{Controller Scaling:} \texttt{Bonsai 2B} vs.\ \texttt{Bonsai 4B} ($+28.7$ to $+32.0$\pp strict success gain).
       \end{itemize}
     \end{block}
@@ -144,11 +144,11 @@
     \end{block}
     \vspace{2pt}
 
-    \begin{block}{4. Runtime Profile, Security \& D3 Roadmap}
+    \begin{block}{4. Runtime Profile \& D3 Roadmap}
       \scriptsize
       \begin{itemize}\scriptsize
         \item \textbf{Cost, RAM \& Latency:} USD 0 inference cost, $\approx 4.8\text{--}5.3$\,GB RAM on Mac, $\sim 30$\,s (4B) / $\sim 14$\,s (2B) median latency.
-        \item \textbf{Threat Model \& D3 Plan:} Code-enforced tool/guardrail boundaries and W45--W49 roadmap to final presentation.
+        \item \textbf{D3 Roadmap \& Takeaways:} W45--W49 execution plan, key risks, and team contributions.
       \end{itemize}
     \end{block}
   \end{columns}
@@ -160,14 +160,14 @@
 \begin{frame}{Changes Since the D1 Proposal}
   \footnotesize\renewcommand{\arraystretch}{1.02}
   \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.0cm}>{\bfseries}p{1.9cm}>{\raggedright\arraybackslash}X@{}}
-    \toprule Proposal commitment & State & Status and rationale (no D1 pitch feedback received)\\\midrule
+    \toprule Proposal commitment & State & Status and rationale\\\midrule
     Agent loop, citation check & \textcolor{successgreen}{Done} & Runs end to end; step/tool/repair budgets unchanged\\
     Qwen3 controllers, 32B & \textcolor{dangerred}{Dropped} & Replaced by ternary Bonsai 2B and 4B (GGUF); runs on a 16\,GiB Mac and GPU\\
     BM25 + Qdrant dense retrieval & \textcolor{warnorange}{Changed} & BM25 + TF-IDF + reranker; vector index built, scheduled for W46 ablation\\
     $\ge$10 tasks, 3 configurations & \textcolor{successgreen}{Done} & Two fixed 50-question benchmarks (HCMUT regulations, Labour law); 3 seeds\\
     Reranker (optional) & \textcolor{successgreen}{Done} & Vietnamese cross-encoder, evaluated in ``verifier + reranker''\\
     Verifier audit (30 pairs) & \textcolor{successgreen}{Done} & 60-item blind judge audit: 96.7\% agreement ($\kappa=0.93$, HCMUT), 90.0\% ($\kappa=0.80$, labour)\\
-    HR walkthrough; attack tests & \textcolor{warnorange}{Not started} & Walkthrough scheduled for W45 (Quyền, Phong); attack tests planned for W47\\
+    End-user walkthrough; attack tests & \textcolor{warnorange}{Not started} & Walkthrough scheduled for W45 (Quyền, Phong); attack tests planned for W47\\
     \bottomrule
   \end{tabularx}
   \vspace{3pt}
@@ -213,7 +213,7 @@
       \textcolor{black!65}{2,905 tokens in, 171 out}};
     \node[stp] (s3) at (9.44,0) {\textbf{3. answer}\\[2pt]
       cites Article 6 with one exact quote\\[2pt]
-      \textbf{Citation verifier: accepted, 0 repairs} (two soft warnings on one sentence, no rejection)\\[3pt]
+      \textbf{Citation verifier: accepted, 0 repairs}\\[3pt]
       \textcolor{black!65}{3,398 tokens in, 310 out}};
     \draw[flow] ([yshift=-1.7cm]s1.north east) -- ([yshift=-1.7cm]s2.north west);
     \draw[flow] ([yshift=-1.7cm]s2.north east) -- ([yshift=-1.7cm]s3.north west);
@@ -223,7 +223,7 @@
   \begin{block}{Outcome}
     \footnotesize Verified answer citing Article 6: disciplinary action follows the student-affairs regulation and national law based on violation severity. Total cost: 3 model calls, 2 tool calls, 7,812 input tokens, 598 output tokens. Offline LLM judge score: correctness 2/2, completeness 2/2.
   \end{block}
-  {\scriptsize Full configuration (verifier + reranker), Bonsai 4B controller. End-to-end Mac latency measurements are reported on Slide 9.}
+  {\scriptsize Full configuration (verifier + reranker), Bonsai 4B controller. End-to-end Mac latency measurements are reported on Slide 11.}
 \end{frame}
 
 %====================================================================
@@ -234,7 +234,7 @@
     \column{0.40\textwidth}
     \footnotesize
     \textbf{System:} Bonsai 4B controller (2B option available), BM25 + TF-IDF + reranker, rule-based citation verifier with repair, regex guardrails, \texttt{llama.cpp}, running locally.
-    \vspace{2pt}
+    \vspace{4pt}
 
     \textbf{Four queries:}
     \begin{enumerate}
@@ -243,12 +243,8 @@
       \item Out of scope: explicit refusal
       \item Prompt injection: blocked pre-model
     \end{enumerate}
-    \textbf{UI elements shown:} step timeline, retrieved sections, highlighted verbatim quote, verifier verdict, and token counts.
     \vspace{2pt}
-
-    \begin{alertblock}{Fallback recording}
-      \scriptsize An unedited screen recording of the same 4B configuration (recorded 25 October) is available if a live local service fails.
-    \end{alertblock}
+    \textbf{UI elements shown:} step timeline, retrieved sections, highlighted verbatim quote, verifier verdict, and token counts.
 
     \column{0.58\textwidth}
     \centering
@@ -335,14 +331,16 @@
     \textbf{4B $-$ 2B gain, pp} (95\% paired bootstrap CI)
     \vspace{3pt}
 
-    \begin{tabular}{@{}l@{\hskip 3pt}c@{\hskip 3pt}c@{}}
+    \adjustbox{max width=\linewidth}{%
+    \renewcommand{\arraystretch}{1.05}
+    \begin{tabular}{@{}l@{\hskip 4pt}c@{\hskip 4pt}c@{}}
       \toprule Configuration & HCMUT & Labour\\\midrule
-      \begin{tabular}[t]{@{}l@{}}No verifier\\{\tiny 31.3/31.3\% $\to$ 70.0/62.0\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+38.7\\{\tiny [+27.3, +50.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+30.7\\{\tiny [+20.7, +40.7]}\end{tabular}\\[3pt]
-      \begin{tabular}[t]{@{}l@{}}Verifier\\{\tiny 24.0/28.0\% $\to$ 64.0/52.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+40.0\\{\tiny [+28.7, +51.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+24.7\\{\tiny [+12.0, +37.3]}\end{tabular}\\[3pt]
-      \begin{tabular}[t]{@{}l@{}}\textbf{Verifier + reranker}\\{\tiny 28.7/28.0\% $\to$ 60.7/56.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+32.0}\\{\tiny [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+28.7}\\{\tiny [+18.0, +39.3]}\end{tabular}\\
+      \begin{tabular}[t]{@{}l@{}}No verifier\\{\color{textgray} 31.3/31.3\% $\to$ 70.0/62.0\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+38.7\\{\color{textgray} [+27.3, +50.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+30.7\\{\color{textgray} [+20.7, +40.7]}\end{tabular}\\[2pt]
+      \begin{tabular}[t]{@{}l@{}}Verifier\\{\color{textgray} 24.0/28.0\% $\to$ 64.0/52.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+40.0\\{\color{textgray} [+28.7, +51.3]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}+24.7\\{\color{textgray} [+12.0, +37.3]}\end{tabular}\\[2pt]
+      \begin{tabular}[t]{@{}l@{}}\textbf{Verifier + reranker}\\{\color{textgray} 28.7/28.0\% $\to$ 60.7/56.7\%}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+32.0}\\{\color{textgray} [+21.3, +42.0]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}\textbf{+28.7}\\{\color{textgray} [+18.0, +39.3]}\end{tabular}\\
       \bottomrule
-    \end{tabular}
-    \vspace{5pt}
+    \end{tabular}}
+    \vspace{4pt}
 
     \begin{block}{Key finding}
       \scriptsize
@@ -356,20 +354,21 @@
 %====================================================================
 \begin{frame}{Rule-Based L1 Citation Verifier: Heuristic Design \& Ablation}
   \begin{columns}[T]
-    \column{0.46\textwidth}
+    \column{0.45\textwidth}
     \scriptsize
     \textbf{Deterministic Python heuristic} ($<2$\,ms, 0 LLM calls):
     \vspace{2pt}
     \begin{enumerate}\scriptsize
       \item \textbf{Gate 1 -- Session Provenance:} cited \texttt{article\_id} must exist in the corpus \emph{and} appear in the current session's \texttt{search}/\texttt{read} history.
-      \item \textbf{Gate 2 -- Verbatim / Elided Quote:} Unicode NFC \& whitespace folding; every $\ge 12$-char segment of an elided quote (\texttt{...}) must match verbatim in order, with digit-boundary guards (\texttt{"5"} $\neq$ \texttt{"15"} or \texttt{"3,5"}).
+      \item \textbf{Gate 2 -- Verbatim / Elided Quote:} every $\ge 12$-char segment of an elided quote (\texttt{...}) must match verbatim in order, with digit-boundary guards (\texttt{"5"} $\neq$ \texttt{"15"} or \texttt{"3,5"}).
       \item \textbf{Gate 3 -- Claim-Local Numbers \& Units:} every number/unit in an answer sentence must occur in the $\le 300$-char source window best matching $\pm 8$ surrounding context words.
       \item \textbf{Bounded Repair ($\le 2$ turns):} returns the failed rule + closest 170-char source span; exhausting repairs forces a safe refusal.
     \end{enumerate}
 
-    \column{0.52\textwidth}
+    \column{0.50\textwidth}
     \centering
-    {\scriptsize\setlength{\tabcolsep}{2.8pt}
+    \adjustbox{max width=\linewidth}{%
+    \scriptsize\setlength{\tabcolsep}{2.4pt}
     \begin{tabular}{@{}l rrr@{\hskip 0.7em} rrr@{}}
       \toprule & \multicolumn{3}{c}{HCMUT (4B)} & \multicolumn{3}{c}{Labour law (4B)}\\
       \cmidrule(r){2-4}\cmidrule(l){5-7}
@@ -382,8 +381,8 @@
       \bottomrule
     \end{tabular}}\\[3pt]
     \raggedright
-    {\tiny \textbf{judge} = LLM-judge strict \%; \textbf{audited} = passes LLM judge \emph{and} L1 verifier \%; \textbf{leak} = answers with broken citations \%.}
-    \vspace{3pt}
+    {\scriptsize \textbf{judge}: LLM-judge strict \%; \textbf{audited}: passes judge \& L1 \%; \textbf{leak}: broken citations \%.}
+    \vspace{2pt}
 
     \begin{block}{Empirical impact of L1 verification}
       \scriptsize
@@ -419,7 +418,7 @@
       \textbf{Weighted RRF (0.75 FTS5 + 0.25 Vec)} & \textbf{69.1} & \textbf{97.0} & \textbf{80.9} & 95.8 & 94.1\\
       \bottomrule
     \end{tabular}}\\[4pt]
-    {\tiny Stores tested: \texttt{NumPy}, \texttt{FAISS Flat/HNSW}, \texttt{Qdrant} ($<6$\,MB disk for 768-d; $0.07$\,ms pure vector search).}
+    {\scriptsize Stores tested: \texttt{NumPy}, \texttt{FAISS Flat/HNSW}, \texttt{Qdrant} ($<6$\,MB disk for 768-d; $0.07$\,ms pure vector search).}
 
     \column{0.44\textwidth}
     \scriptsize
@@ -429,8 +428,8 @@
     \begin{alertblock}{Three technical insights for legal search}
       \scriptsize
       \begin{enumerate}\scriptsize
-        \item \textbf{Pure embeddings lag lexical on statutes:} Legal queries hinge on exact anchors (decree IDs, day counts, \% rates); general embeddings suffer from \emph{topic crowding} across adjacent articles (52.9\% vs.\ 68.8\% R@1).
-        \item \textbf{128-d MRL truncation hurts legal precision:} Drops R@1 by $-13.0$\pp vs.\ 768-d; fine-grained legal qualifiers live in dims 129--768 with no encoding speedup.
+        \item \textbf{Pure embeddings lag lexical on statutes:} Legal queries hinge on exact anchors (decree IDs, day counts, \% rates); general embeddings often confuse adjacent articles on the same topic (52.9\% vs.\ 68.8\% R@1).
+        \item \textbf{128-d vector truncation hurts legal precision:} Drops R@1 by $-13.0$\pp vs.\ 768-d; fine-grained legal qualifiers live in dims 129--768 with no encoding speedup.
         \item \textbf{Weighted Hybrid (0.75 Lexical + 0.25 Vec768d) wins:} Preserves Top-1 keyword precision while rescuing paraphrased queries (R@20 reaches \textbf{99.5\%}).
       \end{enumerate}
     \end{alertblock}
@@ -460,7 +459,6 @@
     \textbf{Offline evaluation judge cost:}
     \begin{itemize}\footnotesize
       \item \textbf{USD 2.17 total} across both benchmarks (USD 1.06 HCMUT and USD 1.10 labour; $\approx$USD 0.002 per valid judgment).
-      \item Reported by the API gateway (lower bound; timed-out or invalid attempts were automatically retried).
     \end{itemize}
 
     \column{0.47\textwidth}
@@ -471,38 +469,16 @@
       \textbf{Bonsai 2B ($\approx$92 tok/s):}\\
       \quad HCMUT: \textbf{13\,s} / 30\,s \quad|\quad Labour: \textbf{15\,s} / 28\,s
     \end{alertblock}
-    \vspace{4pt}
+    \vspace{1pt}
 
     \footnotesize
     \textbf{Local RAM footprint \& measurement environment:}
     \begin{itemize}\footnotesize
-      \item \textbf{Resident RAM (RSS):} $\approx$\textbf{4.8\,GB} for the 4B stack (3.4\,GB 4B + 1.2\,GB reranker + 0.2\,GB web/lexical) or $\approx$\textbf{2.8\,GB} for 2B; enabling \texttt{EmbeddingGemma-2} vector search adds $\approx$\textbf{0.5\,GB} (517\,MB weights; $\approx$5.3\,GB / 3.3\,GB total).
+      \item \textbf{RAM footprint:} $\approx$\textbf{4.8\,GB} for the 4B stack (3.4\,GB 4B + 1.2\,GB reranker + 0.2\,GB web/lexical) or $\approx$\textbf{2.8\,GB} for 2B; enabling \texttt{EmbeddingGemma-2} vector search adds $\approx$\textbf{0.5\,GB} (517\,MB weights; $\approx$5.3\,GB / 3.3\,GB total).
       \item Accuracy tables come from batch runs on an H100 GPU; interactive latency is measured one query at a time on the 16\,GiB Apple M4 Mac.
       \item All inference (controller + reranker) runs 100\% locally with zero per-query API cost.
     \end{itemize}
   \end{columns}
-\end{frame}
-
-%====================================================================
-% 10. Threat model
-%====================================================================
-\begin{frame}{Threat Model}
-  \footnotesize
-  \textbf{Assets:} faithful answers \& citations; user data; corpus, config \& weights; read-only tool boundary; availability.\\
-  \textbf{Attacker:} submits arbitrary questions or pasted text; cannot alter code, corpus files, weights, logs, or host approvals.\\[3pt]
-  \scriptsize\renewcommand{\arraystretch}{1.08}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
-    \toprule Entry point & Mitigation (enforced in code) & Residual risk\\\midrule
-    Question, pasted text & Pre-model regex guardrails, input sanitising, untrusted-content tags; no write tool exposed & Paraphrase bypass; Vietnamese/English patterns only; not red-teamed yet\\
-    Retrieved sections & Wrapped as tool output; citation verifier checks section IDs, provenance and verbatim quotes & Tagged, not filtered: an adversarial instruction inside a source document reaches the model\\
-    Corpus, weights, config & Offline ingestion with URL, SHA-256 and page provenance; pinned weight hashes; localhost servers & No cryptographic signatures; third-party weights and \texttt{llama.cpp} fork unaudited\\
-    Memory, outbox & Long-term memory disabled in all runs; outbox requires host approval bound to payload SHA-256 & Single-user local machine assumption\\
-    Judge gateway (offline) & Benchmark data only; API key in env; blind evaluation packets; strict JSON \& quote checks & Candidate answer text could steer the LLM judge (untested)\\
-    \bottomrule
-  \end{tabularx}
-  \vspace{3pt}
-
-  \footnotesize \textcolor{dangerred}{\textbf{Evaluation status:}} Mitigations above are code-enforced boundaries; red-team attack tests are scheduled for W47.
 \end{frame}
 
 %====================================================================
@@ -514,7 +490,7 @@
     \scriptsize\renewcommand{\arraystretch}{1.15}
     \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.25cm}>{\raggedright\arraybackslash}X@{}}
       \toprule Week & Deliverable\\\midrule
-      W45, 2--8 Nov & HR walkthrough; design and freeze unseen harder benchmark (multi-hop, unnamed documents, paraphrases)\\
+      W45, 2--8 Nov & End-user walkthrough; design and freeze unseen harder benchmark (multi-hop, unnamed documents, paraphrases)\\
       W46, 9--15 Nov & Run system \& ablations on unseen benchmark; add dense-retrieval ablation; failure analysis\\
       W47, 16--22 Nov & Entry-point attack tests; permission and fault checks\\
       W48, 23--29 Nov & Reproduction from recorded runs; demo hardening; final report\\
@@ -557,15 +533,14 @@
     \textbf{Open questions for discussion:} verifier over-refusal trade-off, benchmark difficulty, and multi-clause synthesis limits.
     \vspace{4pt}
 
-    {\scriptsize Repository: \url{https://github.com/tuandung222/LuatCheck-D2}\\
-    Commit: \texttt{21a70e4cb5f8}}
+    {\scriptsize Repository: \url{https://github.com/tuandung222/LuatCheck-D2}}
 
     \column{0.52\textwidth}
     \scriptsize\renewcommand{\arraystretch}{1.2}
     \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.25cm}c>{\raggedright\arraybackslash}X@{}}
       \toprule Member & \% & Contributions \& Q\&A ownership\\\midrule
       Lê Trí Quyền (Leader) & 33\% & Corpus ingestion, BM25 + TF-IDF index, RRF, reranker, local \texttt{llama.cpp} serving\\
-      Nguyễn Hoàng Phong & 33\% & Tool permissions, guardrails, Web UI and outbox, audit log, threat model\\
+      Nguyễn Hoàng Phong & 33\% & Tool permissions, guardrails, Web UI, audit log, threat model\\
       Võ Phạm Tuấn Dũng & 33\% & System architecture \& model selection, codebase refactoring, agent loop, verifier, benchmarks \& evaluation\\
       \bottomrule
     \end{tabularx}
@@ -573,9 +548,32 @@
 \end{frame}
 
 %====================================================================
-% Backup slides (not presented)
+% End / Buffer slide before Backup slides
 %====================================================================
 \appendix
+\begin{frame}[plain,noframenumbering]
+  \vfill
+  \centering
+  \includegraphics[height=1.1cm]{assets/hcmut.png}\\[10pt]
+  {\LARGE\bfseries\color{primaryblue} Thank You \,|\, Questions \& Discussion}\\[6pt]
+  {\small\color{textgray} \textbf{LuatCheck} --- A Local, Source-Grounded QA Agent for Vietnamese Regulations}\\[3pt]
+  {\footnotesize\color{textgray} CO5151 Advanced Agentic AI $\cdot$ Group 8 $\cdot$ \url{https://github.com/tuandung222/LuatCheck-D2}}
+  % \\[22pt]
+  % {\scriptsize\color{black!50}
+  %   \rule{0.72\textwidth}{0.4pt}\\[6pt]
+  %   \textbf{Backup Slides} \quad
+  %   A: Judge Audit $\cdot$
+  %   B: Bootstrap CIs $\cdot$
+  %   C: Scope \& Limitations $\cdot$
+  %   D: Web UI States $\cdot$
+  %   E: Benchmarks \& Metrics
+  % }
+  \vfill
+\end{frame}
+
+%====================================================================
+% Backup slides (not presented)
+%====================================================================
 \begin{frame}{Backup A: 60-Item Blind Human Audit of the LLM Judge}
   \footnotesize
   \textbf{Protocol:} Stratified blind sample of 60 outputs from the Bonsai 4B runs (30 HCMUT + 30 Labour law; 8 strata per benchmark). Human auditor rated behaviour, correctness, completeness and claim faithfulness against the full source regulations without seeing the LLM judge (\texttt{deepseek/deepseek-v4-flash}) scores.
@@ -625,7 +623,7 @@
     \item \textbf{Benchmarks:} 50 questions each, LLM-drafted and cross-checked, then reviewed by the team; no external legal review; about half the questions name their source document.
     \item \textbf{Guardrails:} regex patterns in Vietnamese and English; systematic red-team evaluation is scheduled for W47.
     \item \textbf{Retrieval:} BM25 + TF-IDF with rank fusion; dense embedding retrieval is implemented and scheduled for ablation in W46.
-    \item \textbf{Domain scope:} evaluated on two regulatory collections; generalization to other domains and end-user testing (HR walkthrough in W45) remain future work.
+    \item \textbf{Domain scope:} evaluated on two regulatory collections; generalization to other domains and end-user testing (scheduled for W45) remain future work.
     \item \textbf{Latency:} on the Mac the full system takes a median of about 30\,s per question with the 4B controller and about 14\,s with the 2B controller; GPU wall times are from batch runs on a shared server.
   \end{itemize}
 \end{frame}
@@ -653,9 +651,9 @@
 
 \begin{frame}{Backup E: Benchmark Suites and Evaluation Metrics Specification}
   \begin{columns}[T]
-    \column{0.45\textwidth}
+    \column{0.44\textwidth}
     \scriptsize
-    \textbf{1. Benchmark Suites (SHA-256 hash-locked)}
+    \textbf{1. Fixed Benchmark Suites}
     \vspace{2pt}
 
     \adjustbox{max width=\linewidth}{%
@@ -686,6 +684,25 @@
       \item \textbf{Grounding \& IR Metrics:} \emph{Citation F1} (set F1 between cited and gold \texttt{article\_id}s); \emph{Recall@$k$} ($|G_i \cap R_{i,k}| / |G_i|$) and \emph{MRR@10} ($\frac{1}{|Q|}\sum_{q} \frac{1}{\text{rank}_1(q)}$).
     \end{itemize}
   \end{columns}
+\end{frame}
+
+\begin{frame}{Backup F: Threat Model}
+  \footnotesize
+  \textbf{Assets:} faithful answers \& citations; user data; corpus, config \& weights; read-only tool boundary; availability.\\
+  \textbf{Attacker:} submits arbitrary questions or pasted text; cannot alter code, corpus files, weights, logs, or host approvals.\\[3pt]
+  \scriptsize\renewcommand{\arraystretch}{1.08}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+    \toprule Entry point & Mitigation (enforced in code) & Residual risk\\\midrule
+    Question, pasted text & Pre-model regex guardrails, input sanitising, untrusted-content tags; no write tool exposed & Paraphrase bypass; Vietnamese/English patterns only; not red-teamed yet\\
+    Retrieved sections & Wrapped as tool output; citation verifier checks section IDs, provenance and verbatim quotes & Tagged, not filtered: an adversarial instruction inside a source document reaches the model\\
+    Corpus, weights, config & Offline ingestion with URL and page provenance; pinned weight hashes; localhost servers & No cryptographic signatures; third-party weights and \texttt{llama.cpp} fork unaudited\\
+    Memory, outbox & Long-term memory disabled in all runs; outbox requires explicit host approval & Single-user local machine assumption\\
+    Judge gateway (offline) & Benchmark data only; API key in env; blind evaluation packets; strict JSON \& quote checks & Candidate answer text could steer the LLM judge (untested)\\
+    \bottomrule
+  \end{tabularx}
+  \vspace{3pt}
+
+  \footnotesize \textcolor{dangerred}{\textbf{Evaluation status:}} Mitigations above are code-enforced boundaries; red-team attack tests are scheduled for W47.
 \end{frame}
 
 \end{document}

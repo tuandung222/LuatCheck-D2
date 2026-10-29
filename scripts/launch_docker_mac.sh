@@ -142,6 +142,7 @@ else
 fi
 
 # 4. Stop any local non-Docker process on port 8000 before starting container
+touch /tmp/luatcheck_docker_starting
 if ! docker ps --format '{{.Names}}' | grep -q '^luatcheck-web$'; then
   OLD_WEB_PID="$(lsof -nP -iTCP:8000 -sTCP:LISTEN -t 2>/dev/null || true)"
   if [ -n "$OLD_WEB_PID" ]; then
@@ -157,6 +158,7 @@ fi
 # 5. Build & start Docker container
 echo "-> Đang khởi chạy container luatcheck-web bằng Docker Compose..."
 docker compose up -d --build
+rm -f /tmp/luatcheck_docker_starting
 
 shutdown_docker_session() {
   echo ""
