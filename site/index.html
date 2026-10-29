@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LuatCheck — evidence-grounded Vietnamese legal assistant</title>
+  <meta name="description" content="A local-first assistant over Vietnamese regulations that cites exact clauses, verifies every quotation in deterministic code, and refuses when the sources do not answer. Recorded traces and benchmark results." />
+  <meta name="theme-color" content="#f3eee3" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2314181c'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23f3eee3' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#runs">Skip to recorded runs</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="LuatCheck home">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span class="brand-name">LuatCheck</span>
+        <span class="brand-tag">D2</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#runs">Runs</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#results">Results</a>
+        <a href="#demo">Demo</a>
+        <a href="#limits">Scope</a>
+      </nav>
+      <a class="gh" href="https://github.com/tuandung222/LuatCheck-D2" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="kicker">Local-first · Vietnamese legal RAG · HCMUT D2</p>
+        <h1>Legal answers you can check, line by line.</h1>
+        <p class="lede">LuatCheck answers only from a loaded collection of Vietnamese regulations. It quotes the exact clause, verifies every quotation in deterministic code, and refuses when the sources do not support an answer.</p>
+        <div class="actions">
+          <a class="button primary" href="#runs">Inspect recorded runs</a>
+          <a class="button secondary" href="https://github.com/tuandung222/LuatCheck-D2" target="_blank" rel="noopener">Read the source</a>
+        </div>
+        <p class="hero-note">Static evidence page. The model runs locally; this page replays five stored traces from the real stack.</p>
+      </div>
+
+      <aside class="record-card" aria-label="Sample verified record">
+        <div class="record-top">
+          <span class="mono">RECORD · 7A75D738</span>
+          <span class="stamp">VERIFIED</span>
+        </div>
+        <p class="record-query" lang="vi">Khi tham gia hoạt động, sự kiện hoặc hội nghị của Nhà trường, người học phải có mặt trước giờ khai mạc ít nhất bao lâu?</p>
+        <blockquote class="record-quote" lang="vi">“Khi tham gia các hoạt động, sự kiện, hội nghị,… người học phải đến trước giờ khai mạc ít nhất <mark>5 phút</mark>.”</blockquote>
+        <div class="record-cite">
+          <span class="mono">HCMUT_UNGXU3408_Dieu_9</span>
+          <span>Điều 9 · p. 5</span>
+        </div>
+        <p class="record-foot">L1 verifier passed · 38.8 s end-to-end · Bonsai 4B</p>
+      </aside>
+    </section>
+
+    <section class="stats wrap" aria-label="Headline results">
+      <div class="stat">
+        <span class="stat-num">0.0%</span>
+        <span class="stat-label">unverified citation leak with the L1 verifier on — down from 25.6–28.0% without it</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">&lt;2 ms</span>
+        <span class="stat-label">deterministic citation gate per draft; 3 hard checks, 1 soft diagnostic</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1,090</span>
+        <span class="stat-label">recorded trials per controller across two 50-question benchmarks and 3 seeds</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">local inference on a 16 GiB Mac · zero API cost · Bonsai 2B / 4B on llama.cpp</span>
+      </div>
+    </section>
+
+    <section id="runs" class="section wrap">
+      <div class="section-head">
+        <p class="kicker">01 — Recorded runs</p>
+        <h2>Traces, not screenshots.</h2>
+        <p class="section-lede">Five runs executed by the local stack and stored in SQLite: two verified answers, one repair-then-pass, one refusal after failed repairs, and one prompt injection blocked before any model call. Timings, tokens, tool results and verifier outcomes are read from the trace — nothing is re-simulated.</p>
+      </div>
+
+      <div class="runs-shell">
+        <div class="run-list" id="run-list" role="tablist" aria-label="Recorded runs">
+          <p class="loading">Loading traces…</p>
+        </div>
+        <div class="run-detail" id="run-detail" role="tabpanel" tabindex="0" aria-live="polite">
+          <div class="detail-placeholder">
+            <p class="mono">Select a run</p>
+            <p>The inspector shows the query, the tool trace, the verifier decision, the final answer and its citations.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="fineprint">Recorded 25–28 Oct 2026, UTC. Model timings are per-call wall time from the trace; totals include retrieval, verification and queueing. Raw traces: <a href="data/runs.json">runs.json</a> (verbatim fields, no edits).</p>
+    </section>
+
+    <section id="pipeline" class="section wrap">
+      <div class="section-head">
+        <p class="kicker">02 — Pipeline</p>
+        <h2>Retrieve, read, answer, verify — in code.</h2>
+        <p class="section-lede">The controller is a bounded ReAct loop written directly in Python: at most 8 steps, 5 tool calls, 2 verification repairs and 180 s per question. Its action schema exposes only <code>search</code>, <code>read_document</code>, <code>answer</code>, <code>clarify</code> and <code>refuse</code>.</p>
+      </div>
+
+      <div class="pipeline-grid">
+        <figure class="architecture">
+          <img src="assets/architecture.png" width="960" height="540" alt="Architecture and control flow of LuatCheck: ingestion, hybrid retrieval, bounded agent loop and L1 citation verifier." />
+          <figcaption>Architecture and control flow. The verifier sits between the controller and the user; a failed check returns a structured repair report instead of an answer.</figcaption>
+        </figure>
+
+        <div class="steps">
+          <article class="step">
+            <span class="step-num">01</span>
+            <h3>Retrieve</h3>
+            <p>Weighted RRF over SQLite FTS5 and EmbeddingGemma-2 768-d vectors (<strong>0.75 / 0.25</strong>), top-20 candidates rescored by a Vietnamese cross-encoder to the top 5 sections.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">02</span>
+            <h3>Read</h3>
+            <p>The controller must open a section before it can cite it. Every cited <code>article_id</code> has to be returned by <code>search</code> or <code>read_document</code> in the same run.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">03</span>
+            <h3>Answer</h3>
+            <p>Constrained JSON decoding guarantees one valid action per step. Budgets are hard limits: no silent fallback, no fabricated answer after a backend failure.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">04</span>
+            <h3>Verify</h3>
+            <p>A rule-based L1 gate checks provenance, verbatim quotes and claim-local numbers before return. On failure the controller gets the closest source passage and at most two repairs.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="verifier-note">
+        <div>
+          <p class="kicker">The verifier is code, not a model</p>
+          <h3>Three hard gates before any answer leaves</h3>
+        </div>
+        <ol class="checks">
+          <li><strong>Provenance.</strong> Every cited section must exist in the corpus and have been retrieved in this run.</li>
+          <li><strong>Verbatim / elided quote.</strong> After Unicode NFC, case and whitespace folding, every non-trivial segment must appear in order inside the cited section — with digit-boundary guards, so <code>5</code> cannot match inside <code>15</code>.</li>
+          <li><strong>Claim-local numbers.</strong> Every number and unit in a sentence must occur inside the ≤300-character source window that best matches the claim’s context.</li>
+        </ol>
+        <p class="check-soft">Soft diagnostic: content-token overlap below 0.50 logs a warning. Spec: <a href="https://github.com/tuandung222/LuatCheck-D2/blob/main/docs/reference/CITATION_VERIFIER_L1.md" target="_blank" rel="noopener">CITATION_VERIFIER_L1.md</a>.</p>
+      </div>
+    </section>
+
+    <section id="results" class="section wrap">
+      <div class="section-head">
+        <p class="kicker">03 — Measured, not claimed</p>
+        <h2>The verifier removes the leaks.</h2>
+        <p class="section-lede">Two self-built, hash-locked 50-question benchmarks — HCMUT academic regulations and Vietnamese labour law — each with 40 single-record, 5 two-record and 5 out-of-scope questions. Three configurations, three seeds, two diagnostic baselines.</p>
+      </div>
+
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Benchmark results, scroll horizontally on narrow screens">
+        <table>
+          <caption>Bonsai 4B controller. Judge-Strict with 95% bootstrap intervals; citation-audited strict requires both judge correctness and a passing L1 check.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Benchmark</th>
+              <th scope="col">Configuration</th>
+              <th scope="col" class="num">Judge-Strict</th>
+              <th scope="col" class="num">Unverified citation leak</th>
+              <th scope="col" class="num">Citation-audited strict</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="rowgroup" rowspan="3">HCMUT regulations</th>
+              <td>No verifier</td>
+              <td class="num">70.0 <span class="ci">[61–79]</span></td>
+              <td class="num leak">25.6% <span class="frac">(31/121)</span></td>
+              <td class="num">55.3% <span class="frac">(83/150)</span></td>
+            </tr>
+            <tr>
+              <td>Verifier (with repair)</td>
+              <td class="num">64.0 <span class="ci">[53–75]</span></td>
+              <td class="num clean">0.0% <span class="frac">(0/109)</span></td>
+              <td class="num">64.0% <span class="frac">(96/150)</span></td>
+            </tr>
+            <tr class="full">
+              <td>Verifier + reranker (full)</td>
+              <td class="num">60.7 <span class="ci">[50–71]</span></td>
+              <td class="num clean">0.0% <span class="frac">(0/109)</span></td>
+              <td class="num">60.7% <span class="frac">(91/150)</span></td>
+            </tr>
+            <tr>
+              <th scope="rowgroup" rowspan="3">Labour law</th>
+              <td>No verifier</td>
+              <td class="num">62.0 <span class="ci">[52–72]</span></td>
+              <td class="num leak">28.0% <span class="frac">(37/132)</span></td>
+              <td class="num">51.3% <span class="frac">(77/150)</span></td>
+            </tr>
+            <tr>
+              <td>Verifier (with repair)</td>
+              <td class="num">52.7 <span class="ci">[43–63]</span></td>
+              <td class="num clean">0.0% <span class="frac">(0/111)</span></td>
+              <td class="num">52.7% <span class="frac">(79/150)</span></td>
+            </tr>
+            <tr class="full">
+              <td>Verifier + reranker (full)</td>
+              <td class="num">56.7 <span class="ci">[47–67]</span></td>
+              <td class="num clean">0.0% <span class="frac">(0/108)</span></td>
+              <td class="num">56.7% <span class="frac">(85/150)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-hint">Swipe or scroll horizontally to see all columns →</p>
+
+      <div class="result-notes">
+        <article>
+          <h3>Why leakage goes to zero</h3>
+          <p>Without the verifier, 25.6–28.0% of 4B answers carry a quote that does not exist in the PDF, an unretrieved section ID, or a number copied from an adjacent clause. The L1 gate rejects those drafts, feeds back the closest source passage, and repairs 17–20 drafts per benchmark before refusing.</p>
+        </article>
+        <article>
+          <h3>Judge calibration</h3>
+          <p>A blind human audit of 60 outputs shows 96.7% agreement (κ = 0.93) on HCMUT and 90.0% (κ = 0.80) on labour law. Offline judging across both 545-trial runs cost USD 2.17 in total; local inference itself costs USD 0.</p>
+        </article>
+        <article>
+          <h3>What the table says — and does not</h3>
+          <p>The verifier trades some raw judge credit for zero unsupported citations. It is not a claim of general legal correctness: harder unseen multi-hop and paraphrased benchmarks are scheduled for D3. Full metric definitions: <a href="https://github.com/tuandung222/LuatCheck-D2/blob/main/docs/reference/BENCHMARKS_AND_METRICS.md" target="_blank" rel="noopener">BENCHMARKS_AND_METRICS.md</a>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="demo" class="section wrap">
+      <div class="section-head">
+        <p class="kicker">04 — Recorded demo</p>
+        <h2>Watch the loop, including the refusal.</h2>
+        <p class="section-lede">Screen recordings of the local Web UI with the Bonsai 4B controller. The GIFs are stored assets, not a live model.</p>
+      </div>
+
+      <div class="gallery">
+        <figure class="shot wide">
+          <img src="assets/demo/11_hcmut_answer_4b.gif" alt="HCMUT regulation question answered with a verified citation in the LuatCheck web UI." loading="lazy" />
+          <figcaption><span class="shot-tag">Verified answer</span> HCMUT regulation question answered with a cited section. <span class="mono">4B</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/demo/13_verifier_repair_4b.gif" alt="The citation verifier rejects a draft quote, the controller repairs it, and the answer passes." loading="lazy" />
+          <figcaption><span class="shot-tag">Repair loop</span> Verifier rejects a draft; the controller repairs it; the answer passes.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/demo/14_hcmut_refuse_4b.gif" alt="An out-of-scope question is refused rather than answered without sources." loading="lazy" />
+          <figcaption><span class="shot-tag">Out of scope</span> Question outside the corpus is refused, not answered from memory.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/demo/15_guardrail_4b.gif" alt="A prompt-injection attempt is blocked by the input guardrail before the model is called." loading="lazy" />
+          <figcaption><span class="shot-tag">Guardrail</span> Prompt injection blocked by input policy before the model call.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/demo/12_labour_answer_4b.gif" alt="A Vietnamese labour-law question answered with a verified citation." loading="lazy" />
+          <figcaption><span class="shot-tag">Second corpus</span> Labour-law question answered with a verified citation.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="limits" class="section wrap">
+      <div class="section-head">
+        <p class="kicker">05 — Scope</p>
+        <h2>What this page is — and what runs where.</h2>
+      </div>
+
+      <div class="scope-grid">
+        <div class="scope-card">
+          <h3>On this page</h3>
+          <ul>
+            <li>Real traces exported from the app’s SQLite store (runs recorded 25–28 Oct 2026) — query, tool calls, timings, tokens, verifier decisions, citations.</li>
+            <li>Real benchmark numbers from the D2 evaluation runs, including the unverified-citation leak and the 2B/4B comparison.</li>
+            <li>Real screen recordings from the local Web UI.</li>
+            <li>Honest limits: five selected runs are evidence of behaviour, not a random sample.</li>
+          </ul>
+        </div>
+        <div class="scope-card accent">
+          <h3>What this page cannot do</h3>
+          <ul>
+            <li>Run the model. Qoder Sites serves static files; LuatCheck needs Python, FastAPI, torch, SQLite FTS5, llama.cpp and GGUF weights.</li>
+            <li>Re-execute a query. The traces are stored, not replayed against a backend.</li>
+            <li>Stand in for the full evaluation. The repository holds 1,090 trials per controller, seed breakdowns and the run registry.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="run-local">
+        <div>
+          <p class="kicker">Run the real thing</p>
+          <h3>16 GiB Mac · ~4.8 GB resident with the 4B stack</h3>
+          <p>The full system is self-hosted. The Web UI, retrieval stack, verifier and model servers start as separate local processes; Docker Compose is included in the repository.</p>
+        </div>
+        <pre><code><span class="comment"># once: build llama.cpp fork + fetch GGUF weights</span>
+make prism-setup
+
+<span class="comment"># terminal 1: Bonsai 4B controller on :8081</span>
+make demo-model-server
+
+<span class="comment"># terminal 2: Vietnamese reranker on :8082</span>
+make rerank-server-mac
+
+<span class="comment"># terminal 3: FastAPI + React UI on :8000</span>
+make demo-web-gemma2</code></pre>
+      </div>
+
+      <p class="fineprint">Latency on the recorded Mac: 33.0 s median / 86 s p95 (HCMUT) and 29.8 s / 72 s (labour law) with the 4B controller; the 2B controller runs at 13.3 s / 30 s and 14.6 s / 28 s. Sources: <a href="https://github.com/tuandung222/LuatCheck-D2" target="_blank" rel="noopener">github.com/tuandung222/LuatCheck-D2</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark small" aria-hidden="true">L</span>
+        <div>
+          <p class="footer-title">LuatCheck D2</p>
+          <p class="footer-sub">A local, evidence-grounded Vietnamese legal assistant.</p>
+        </div>
+      </div>
+      <p class="footer-meta">Showcase built and deployed with Qoder Sites · traces recorded 25–28 Oct 2026 · <a href="https://github.com/tuandung222/LuatCheck-D2" target="_blank" rel="noopener">source</a></p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

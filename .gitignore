@@ -52,3 +52,4 @@ data/benchmarks/zalo_legal/corpus_*.json
 data/benchmarks/zalo_legal/test_queries.json
 data/benchmarks/zalo_legal/manifest.json
 
+*.qoder.site
