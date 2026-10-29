@@ -11,7 +11,7 @@
 set -euo pipefail
 
 REPO_DIR="/Users/admin/Desktop/Recents/LuatCheck-D2"
-TARGET_BRANCH="fix/ui-markdown-and-search-before-refuse"
+TARGET_BRANCH="main"
 PRISM_DIR="${HOME}/src/prism-llama.cpp"
 LLAMA_SERVER="${PRISM_DIR}/build/bin/llama-server"
 GGUF_REPO="prism-ml/Ternary-Bonsai-2-9B-gguf"
